@@ -11,7 +11,7 @@ grant create synonym, create view, create database link, create public synonym, 
  * 	Login as alpaca
  */
 drop database link perci;
-create database link perci connect to PERCI_0829 identified by welcome1 using '10.14.35.41:1521/TEST';
+create database link perci connect to PERCI_1005 identified by welcome1 using '10.14.35.41:1521/TEST';
 --create database link perci connect to PERCI identified by WELCOME1 using 'entipx-ora2:1521/PROD';
 
 /**
