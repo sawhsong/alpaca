@@ -8,6 +8,8 @@ var com = {
 		 */
 		ctxClassPrefixButton:"actionButton",
 		ctxClassPrefixGrid:"actionInGrid",
+		ctxClassPrefixTheme:"theme",
+		ctxClassPrefixHeader:"header",
 
 		/*!
 		 * CKEditor Toolbar

@@ -42,8 +42,13 @@
 #divLogoArea a:hover {text-decoration:none;
 	color:#FFE633;
 }
-#aLogo {padding:6px 0px 6px 24px;
-	background:url('/shared/resource/image/icon/logo-gear_White.png') no-repeat 0% 50%;
+#aLogoFramework {padding:6px 0px 6px 24px;
+	font-size:0.8em;
+	background:url('/shared/resource/image/icon/logo-gear_Black.png') no-repeat 0% 50%;
+}
+#aLogo {padding:6px 0px 8px 100px;
+	background:url('/shared/resource/image/icon/logoPerci.png') no-repeat 0% 0%;
+	background-size:64px 30px;
 }
 
 /**

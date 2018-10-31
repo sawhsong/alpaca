@@ -41,7 +41,6 @@ public class MultiDatasourceBizImpl extends BaseBiz implements MultiDatasourceBi
 			queryAdvisor.setRequestDataSet(requestDataSet);
 			queryAdvisor.setPagination(true);
 
-			zebraBoardDao.setDataSourceName("Nony");
 			paramEntity.setAjaxResponseDataSet(zebraBoardDao.getNoticeBoardDataSetByCriteria(queryAdvisor));
 			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
 			paramEntity.setSuccess(true);
@@ -57,9 +56,6 @@ public class MultiDatasourceBizImpl extends BaseBiz implements MultiDatasourceBi
 		String articleId = requestDataSet.getValue("articleId");
 
 		try {
-			zebraBoardDao.setDataSourceName("Nony");
-			zebraBoardFileDao.setDataSourceName("Nony");
-
 			paramEntity.setObject("noticeBoard", zebraBoardDao.getBoardByArticleId(articleId));
 			paramEntity.setObject("fileDataSet", zebraBoardFileDao.getBoardFileListDataSetByArticleId(articleId));
 
@@ -98,7 +94,6 @@ public class MultiDatasourceBizImpl extends BaseBiz implements MultiDatasourceBi
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 
 		try {
-			zebraBoardFileDao.setDataSourceName("Nony");
 			paramEntity.setAjaxResponseDataSet(zebraBoardFileDao.getBoardFileListDataSetByArticleId(requestDataSet.getValue("articleId")));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
@@ -130,7 +125,6 @@ public class MultiDatasourceBizImpl extends BaseBiz implements MultiDatasourceBi
 			zebraBoard.setInsertDate(CommonUtil.toDate(CommonUtil.getSysdate()));
 			zebraBoard.setRefArticleId(CommonUtil.nvl(requestDataSet.getValue("articleId"), "-1"));
 
-			zebraBoardDao.setDataSourceName("Nony");
 			result = zebraBoardDao.insert(zebraBoard, fileDataSet, "Y");
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
@@ -156,7 +150,6 @@ public class MultiDatasourceBizImpl extends BaseBiz implements MultiDatasourceBi
 		int result = 0;
 
 		try {
-			zebraBoardDao.setDataSourceName("Nony");
 			zebraBoard = zebraBoardDao.getBoardByArticleId(articleId);
 			zebraBoard.setArticleId(articleId);
 			zebraBoard.setWriterId(loggedInUserId);
@@ -168,7 +161,6 @@ public class MultiDatasourceBizImpl extends BaseBiz implements MultiDatasourceBi
 			zebraBoard.setUpdateUserId(loggedInUserId);
 			zebraBoard.setUpdateDate(CommonUtil.toDate(CommonUtil.getSysdate()));
 
-			zebraBoardDao.setDataSourceName("Nony");
 			result = zebraBoardDao.update(zebraBoard, fileDataSet, "Y", fileIdsToDelete);
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
@@ -191,10 +183,8 @@ public class MultiDatasourceBizImpl extends BaseBiz implements MultiDatasourceBi
 
 		try {
 			if (CommonUtil.isBlank(articleId)) {
-				zebraBoardDao.setDataSourceName("Nony");
 				result = zebraBoardDao.delete(articleIds);
 			} else {
-				zebraBoardDao.setDataSourceName("Nony");
 				result = zebraBoardDao.delete(articleId);
 			}
 
@@ -234,7 +224,6 @@ public class MultiDatasourceBizImpl extends BaseBiz implements MultiDatasourceBi
 				queryAdvisor.setPagination(true);
 			}
 
-			zebraBoardDao.setDataSourceName("Nony");
 			exportHelper.setSourceDataSet(zebraBoardDao.getNoticeBoardDataSetByCriteria(queryAdvisor));
 
 			paramEntity.setSuccess(true);

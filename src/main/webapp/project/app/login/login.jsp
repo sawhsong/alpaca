@@ -48,7 +48,7 @@ body {background:#FFFFFF;}
 <body>
 <form id="fmDefault" name="fmDefault" method="post" action="">
 <div id="divLogo" class="logoImage">
-	<ui:img id="imgLogo" src="<mc:cp key=imgIcon/>/logoPerci.png" style="width:100px;height:50px;"/>
+	<ui:img id="imgLogo" src="<mc:cp key=imgIcon/>/logoEntitySolutions.png" style="width:100px;height:54px;"/>
 </div>
 <div id="divLoginPanel" class="loginPanel">
 	<div class="panel panel-default panelLogin">

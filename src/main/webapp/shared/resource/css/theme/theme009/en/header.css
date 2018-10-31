@@ -42,9 +42,13 @@
 #divLogoArea a:hover {text-decoration:none;
 	color:#459e00;
 }
-#aLogo {padding:24px 0px 24px 160px;
-/* 	background:url('/shared/resource/image/theme/theme009/common/logo-daintree.png') no-repeat 0% 50%; */
-	background-size:150px 55px;
+#aLogoFramework {padding:6px 0px 6px 24px;
+	font-size:0.8em;
+	background:url('/shared/resource/image/icon/logo-gear_Black.png') no-repeat 0% 50%;
+}
+#aLogo {padding:6px 0px 8px 100px;
+	background:url('/shared/resource/image/icon/logoPerci.png') no-repeat 0% 0%;
+	background-size:64px 30px;
 }
 
 /**

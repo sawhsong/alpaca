@@ -45,7 +45,7 @@ $(function() {
 			garbageCollectorPopup = commonJs.openPopup({
 				popupId:"garbageCollector",
 				url:menuUrl,
-				header:framework.messages.garbageCollection.header,
+				header:framework.header.garbageCollection,
 				width:640,
 				height:460,
 				draggable:true,
@@ -98,7 +98,7 @@ $(function() {
 		}
 
 		$("#aThemeSelector").contextMenu(themeMenu, {
-			classPrefix:"theme",
+			classPrefix:com.constants.ctxClassPrefixTheme,
 			effectDuration:300,
 			effect:"slide",
 			borderRadius:"bottom 5px",
@@ -113,7 +113,7 @@ $(function() {
 		ctxMenu.loggedInUser[0].fun = function() {getMyProfile("<%=userId%>");};
 		ctxMenu.loggedInUser[1].fun = function() {logout();};
 		$("#divLoggedInUser").contextMenu(ctxMenu.loggedInUser, {
-			classPrefix:"header",
+			classPrefix:com.constants.ctxClassPrefixHeader,
 			effectDuration:300,
 			effect:"slide",
 			borderRadius:"bottom 3px",

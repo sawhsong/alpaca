@@ -84,6 +84,7 @@
 		         where a.constraint_type in ('P', 'R', 'U')
 		           and a.table_name = b.table_name
 		           and a.constraint_name = b.constraint_name
+		         group by a.table_name, b.column_name
 		       ) c,
 		       user_col_comments d
 		 where a.table_name = upper('${table_name}')
