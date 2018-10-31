@@ -90,7 +90,7 @@ var nony = {
 
 		setTimeout(function() {
 			$("#" + formId).attr("action", action).attr("target", target).submit();
-		}, 300);
+		}, 50);
 //		$("#" + formId).attr("action", action).attr("target", target).submit();
 	},
 	doSubmit : function(params) {
@@ -108,7 +108,7 @@ var nony = {
 			if ("1" == jsconfig.get("submitEffect") || "1" == effect || "2" == jsconfig.get("submitEffect") || "2" == effect || "3" == jsconfig.get("submitEffect") || "3" == effect) {
 				// some actions do not refresh the page - download
 				if (params.action.indexOf("download") == -1) {
-					$.nony.showProcMessage(framework.messages.loading);
+					$.nony.showProcMessage(com.message.loading);
 				}
 
 				setTimeout(function() {
@@ -121,7 +121,7 @@ var nony = {
 			// some actions do not refresh the page - download
 			if (params.action.indexOf("download") == -1) {
 				if ("1" == jsconfig.get("submitEffect") || "1" == effect) {
-					$.nony.showProcMessage(framework.messages.loading);
+					$.nony.showProcMessage(com.message.loading);
 					setTimeout(function() {
 						$.nony.submit(params);
 					}, 10);
@@ -132,7 +132,7 @@ var nony = {
 						}, 10);
 					});
 				} else if ("3" == jsconfig.get("submitEffect") || "3" == effect) {
-					$.nony.showProcMessage(framework.messages.loading);
+					$.nony.showProcMessage(com.message.loading);
 					$("#divBodyHolder").slideUp("slow", function() {
 						setTimeout(function() {
 							$.nony.submit(params);
@@ -418,7 +418,7 @@ var nony = {
 	},
 	setFieldDateMask : function(elementId) {
 		if (typeof(elementId) != "string") {
-			throw new Error("The parameter" + framework.messages.invalid);
+			throw new Error("The parameter" + com.message.invalid);
 			return;
 		}
 
@@ -441,7 +441,7 @@ var nony = {
 	},
 	setFieldNumberMask : function(elementId, format) {
 		if (typeof(elementId) != "string") {
-			throw new Error("The parameter" + framework.messages.invalid);
+			throw new Error("The parameter" + com.message.invalid);
 			return;
 		}
 
@@ -459,7 +459,7 @@ var nony = {
 		var checkFlag = $.nony.nvl(jsconfig.get("toggleCheckboxes"));
 
 		if (typeof(elementName) != "string") {
-			throw new Error("The parameter" + framework.messages.invalid);
+			throw new Error("The parameter" + com.message.invalid);
 			return;
 		}
 
@@ -475,7 +475,7 @@ var nony = {
 		var cnt = 0;
 
 		if (typeof(checkboxName) != "string") {
-			throw new Error("The parameter" + framework.messages.invalid);
+			throw new Error("The parameter" + com.message.invalid);
 			return;
 		}
 
@@ -528,7 +528,7 @@ var nony = {
 
 		// Accordion container - Id or Class name
 		if ($.nony.isEmpty(params) || ($.nony.isEmpty(params.containerId) && $.nony.isEmpty(params.containerClass))) {
-			throw new Error("The parameter" + framework.messages.invalid);
+			throw new Error("The parameter" + com.message.invalid);
 			return;
 		}
 
@@ -610,7 +610,7 @@ var nony = {
 
 		// Accordion container - Id or Class name
 		if ($.nony.isEmpty(params) || ($.nony.isEmpty(params.containerId) && $.nony.isEmpty(params.containerClass))) {
-			throw new Error("The parameter" + framework.messages.invalid);
+			throw new Error("The parameter" + com.message.invalid);
 			return;
 		}
 
@@ -655,7 +655,7 @@ var nony = {
 	 */
 	setAutoComplete : function(jqObject, param) {
 		if (param == null || $.nony.isEmpty(param.method) || $.nony.isEmpty(param.label) || $.nony.isEmpty(param.value)) {
-			throw new Error("The parameter" + framework.messages.invalid);
+			throw new Error("The parameter" + com.message.invalid);
 			return;
 		}
 
@@ -689,7 +689,7 @@ var nony = {
 
 							$(jqObject).autocomplete("option", "source", dataSource);
 						} else {
-							throw new Error(framework.messages.error);
+							throw new Error(com.message.error);
 							return;
 						}
 					}
@@ -711,7 +711,7 @@ var nony = {
 //						dataSource.push(ds.getValue(i, 0));
 //					}
 //				} else {
-//					throw new Error("The parameter" + framework.messages.invalid);
+//					throw new Error("The parameter" + com.message.invalid);
 //					return;
 //				}
 //			}
@@ -743,25 +743,25 @@ var nony = {
 	alert : function(msg) {
 		var params = {};
 
-		params.type = "information";
+		params.type = com.message.I000;
 		params.contents = msg;
 
 		return $.nony.popup.openDialog(params);
 	},
 	confirm : function(params) {
 		if (typeof params != "object") {
-			throw new Error("Parameter" + framework.messages.required);
+			throw new Error("Parameter" + com.message.required);
 			return;
 		}
 
-		params.type = "question";
+		params.type = com.message.Q000;
 
 		return $.nony.popup.openDialog(params);
 	},
 	warn : function(msg) {
 		var params = {};
 
-		params.type = "warning";
+		params.type = com.message.W000;
 		params.contents = msg;
 
 		return $.nony.popup.openDialog(params);
@@ -769,7 +769,7 @@ var nony = {
 	error : function(msg) {
 		var params = {};
 
-		params.type = "error";
+		params.type = com.message.E000;
 		params.contents = msg;
 
 		return $.nony.popup.openDialog(params);
@@ -810,7 +810,7 @@ var nony = {
 		$.unblockUI();
 	},
 	showProcMessageOnElement : function(blockElementId, msg) {
-		var message = msg || framework.messages.loading;
+		var message = msg || com.message.loading;
 		$("#"+blockElementId).block({
 			message:"<img src='" + jsconfig.get("imgThemeCom") + "/waiting2.gif'/>&nbsp;" + message,
 			css:{
@@ -899,7 +899,7 @@ var nony = {
 			func();
 		} else {
 			if ($.nony.isEmpty(formAction)) {
-				throw new Error("The parameter " + framework.messages.invalid);
+				throw new Error("The parameter " + com.message.invalid);
 			}
 
 			$.nony.doSubmit({
@@ -991,6 +991,7 @@ var nony = {
 			heightCorrection = 2;
 			$("#divScrollablePanelPopup").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection))+"px");
 		} else {
+			heightCorrection = 0;
 			$("#divScrollablePanel").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection))+"px");
 		}
 
@@ -998,7 +999,7 @@ var nony = {
 			$(window).resize(function() {
 				setTimeout(function() {
 					$.nony._doResizeScrollablePanel();
-				}, 20);
+				}, 10);
 			});
 		}
 
@@ -1021,12 +1022,12 @@ var nony = {
 		jsconfig.put("defaultInnerLayoutOption", defaultInnerLayoutOption);
 
 		if ("1" == jsconfig.get("submitEffect")) {
-			$.nony.showProcMessage(framework.messages.loading);
+			$.nony.showProcMessage(com.message.loading);
 		} else if ("2" == jsconfig.get("submitEffect")) {
 			$("#divBodyHolder").hide();
 		} else if ("3" == jsconfig.get("submitEffect")) {
 			$("#divBodyHolder").hide();
-			$.nony.showProcMessage(framework.messages.loading);
+			$.nony.showProcMessage(com.message.loading);
 		}
 	},
 	_doPageLoadEffect : function() {

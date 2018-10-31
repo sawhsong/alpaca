@@ -18,7 +18,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<link rel="icon" type="image/png" href="<mc:cp key="imgIcon"/>/favicon.png">
+<link rel="icon" type="image/png" href="<mc:cp key="imgIcon"/>/faviconPerci.png">
 <title><mc:msg key="main.system.title"/></title>
 <%/************************************************************************************************
 * Stylesheet & Javascript
@@ -26,6 +26,7 @@
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
 </style>
+<script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
 $(function() {
 	/*!
@@ -53,7 +54,7 @@ $(function() {
 	setEditor = function() {
 		$("#articleContents").ckeditor({
 			height:500,
-			toolbar:"frameworkBasic",
+			toolbar:com.constants.toolbarDefault,
 			readOnly:true
 		});
 	};
@@ -81,9 +82,9 @@ $(function() {
 
 		if (param.mode == "Delete") {
 			commonJs.confirm({
-				contents:"<mc:msg key="Q002"/>",
+				contents:com.message.Q002,
 				buttons:[{
-					caption:"Yes",
+					caption:com.caption.yes,
 					callback:function() {
 						commonJs.ajaxSubmit({
 							url:action,
@@ -97,11 +98,11 @@ $(function() {
 
 								if (result.isSuccess == true || result.isSuccess == "true") {
 									commonJs.openDialog({
-										type:"information",
+										type:com.message.I000,
 										contents:result.message,
 										blind:true,
 										buttons:[{
-											caption:"Ok",
+											caption:com.caption.ok,
 											callback:function() {
 												commonJs.doSubmit({action:"/#MENU_URL#/getDefault.do"});
 											}
@@ -114,7 +115,7 @@ $(function() {
 						});
 					}
 				}, {
-					caption:"No",
+					caption:com.caption.no,
 					callback:function() {
 					}
 				}]

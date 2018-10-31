@@ -18,7 +18,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<link rel="icon" type="image/png" href="<mc:cp key="imgIcon"/>/favicon.png">
+<link rel="icon" type="image/png" href="<mc:cp key="imgIcon"/>/faviconPerci.png">
 <title><mc:msg key="main.system.title"/></title>
 <%/************************************************************************************************
 * Stylesheet & Javascript
@@ -26,37 +26,9 @@
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
 </style>
+<script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
-$(function() {
-	/*!
-	 * event
-	 */
-	$("#btnEdit").click(function(event) {
-		parent.popupUserProfile.resizeTo(0, 116);
-
-		commonJs.doSubmit({
-			form:"fmDefault",
-			action:"/login/getUpdateUserProfile.do",
-			data:{
-				userId:"<%=sysUser.getUserId()%>"
-			}
-		});
-	});
-
-	$("#btnClose").click(function(event) {
-		parent.popupUserProfile.close();
-	});
-
-	/*!
-	 * process
-	 */
-
-	/*!
-	 * load event (document / window)
-	 */
-	$(window).load(function() {
-	});
-});
+var userId = "<%=sysUser.getUserId()%>";
 </script>
 </head>
 <%/************************************************************************************************

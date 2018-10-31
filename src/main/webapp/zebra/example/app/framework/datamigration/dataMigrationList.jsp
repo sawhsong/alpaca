@@ -9,6 +9,9 @@
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
 	DataSet datasourceDataSet = (DataSet)paramEntity.getObject("datasourceDataSet");
+	String dataSourceNames[] = CommonUtil.split(ConfigUtil.getProperty("jdbc.multipleDatasource"), ConfigUtil.getProperty("delimiter.data"));
+	String targetDataSource = dataSourceNames[0];
+	String sourceDataSource = dataSourceNames[1];
 %>
 <%/************************************************************************************************
 * HTML
@@ -25,258 +28,8 @@
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
 </style>
+<script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
-var popup = null;
-var widthSourceDataDiv, widthTargetDataDiv, sourceGridWidthAdjust, targetGridWidthAdjust;
-
-$(function() {
-	/*!
-	 * event
-	 */
-	$("#btnSearch").click(function(event) {
-		setGridSize();
-		doSourceDataSearch();
-		doTargetDataSearch();
-	});
-
-	$("#icnCheckSourceData").click(function(event) {
-		commonJs.toggleCheckboxes("chkSourceData");
-	});
-
-	$("#sourceDb").change(function() {
-		setGridSize();
-		doSourceDataSearch();
-		doTargetDataSearch();
-	});
-
-	$("#targetDb").change(function() {
-		setGridSize();
-		doSourceDataSearch();
-		doTargetDataSearch();
-	});
-
-	$("#btnGenerate").click(function(event) {
-		if (commonJs.getCountChecked("chkSourceData") == 0) {
-			commonJs.warn("<mc:msg key="I902"/>");
-			return;
-		}
-
-		commonJs.confirm({
-			contents:"<mc:msg key="Q901"/>",
-			width:300,
-			height:150,
-			buttons:[{
-				caption:"Yes",
-				callback:function() {
-					exeGenerate();
-				}
-			}, {
-				caption:"No",
-				callback:function() {
-				}
-			}]
-		});
-	});
-	/*!
-	 * process
-	 */
-	doSourceDataSearch = function() {
-		commonJs.showProcMessageOnElement("tblSourceData");
-
-		setTimeout(function() {
-			commonJs.ajaxSubmit({
-				url:"/zebra/framework/datamigration/getTableList.do",
-				dataType:"json",
-				data:{dataSource:$("#sourceDb").val()},
-				success:function(data, textStatus) {
-					var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-					if (result.isSuccess == true || result.isSuccess == "true") {
-						renderSourceDataTable(result);
-					}
-				}
-			});
-		}, 100);
-	};
-
-	renderSourceDataTable = function(result) {
-		var dataSet = result.dataSet;
-		var html = "";
-
-		$("#tblSourceDataBody").html("");
-
-		if (dataSet.getRowCnt() > 0) {
-			for (var i=0; i<dataSet.getRowCnt(); i++) {
-				html += "<tr>";
-				html += "<td class=\"tdGridCt\"><input type=\"checkbox\" id=\"chkSourceData\" name=\"chkSourceData\" class=\"chkEn inTblGrid\" value=\""+dataSet.getValue(i, "TABLE_NAME")+"\"/></td>";
-				html += "<td class=\"tdGrid\"><a onclick=\"getDetail('"+$("#sourceDb").val()+"', '"+dataSet.getValue(i, "TABLE_NAME")+"')\" class=\"aEn\">"+dataSet.getValue(i, "TABLE_NAME")+"</a></td>";
-				html += "<td class=\"tdGrid\">"+commonJs.abbreviate(dataSet.getValue(i, "COMMENTS"), 60)+"</td>";
-				html += "</tr>";
-			}
-		} else {
-			html += "<tr>";
-			html += "<td class=\"tdGridCt\" colspan=\"3\"><mc:msg key="I001"/></td>";
-			html += "</tr>";
-		}
-
-		$("#tblSourceDataBody").append($(html));
-
-		$("#tblSourceData").fixedHeaderTable({
-			baseDivElement:"divSourceDataTable",
-			baseWidth:widthSourceDataDiv,
-			widthAdjust:sourceGridWidthAdjust
-		});
-
-		commonJs.hideProcMessageOnElement("tblSourceData");
-	};
-
-	doTargetDataSearch = function() {
-		commonJs.showProcMessageOnElement("tblTargetData");
-
-		setTimeout(function() {
-			commonJs.ajaxSubmit({
-				url:"/zebra/framework/datamigration/getTableList.do",
-				dataType:"json",
-				data:{dataSource:$("#targetDb").val()},
-				success:function(data, textStatus) {
-					var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-					if (result.isSuccess == true || result.isSuccess == "true") {
-						renderTargetDataTable(result);
-					}
-				}
-			});
-		}, 100);
-	};
-
-	renderTargetDataTable = function(result) {
-		var dataSet = result.dataSet;
-		var html = "";
-
-		$("#tblTargetDataBody").html("");
-
-		if (dataSet.getRowCnt() > 0) {
-			for (var i=0; i<dataSet.getRowCnt(); i++) {
-				html += "<tr>";
-				html += "<td class=\"tdGrid\"><a onclick=\"getDetail('"+$("#targetDb").val()+"', '"+dataSet.getValue(i, "TABLE_NAME")+"')\" class=\"aEn\">"+dataSet.getValue(i, "TABLE_NAME")+"</a></td>";
-				html += "<td class=\"tdGrid\">"+dataSet.getValue(i, "TABLE_DESCRIPTION")+"</td>";
-				html += "</tr>";
-			}
-		} else {
-			html += "<tr>";
-			html += "<td class=\"tdGridCt\" colspan=\"2\"><mc:msg key="I001"/></td>";
-			html += "</tr>";
-		}
-
-		$("#tblTargetDataBody").append($(html));
-
-		$("#tblTargetData").fixedHeaderTable({
-			baseDivElement:"divTargetDataTable",
-			baseWidth:widthTargetDataDiv,
-			widthAdjust:targetGridWidthAdjust
-		});
-
-		commonJs.hideProcMessageOnElement("tblTargetData");
-	};
-
-	getDetail = function(dbFlag, tableName) {
-		popup = commonJs.openPopup({
-			popupId:"TableDetail",
-			url:"/zebra/framework/datamigration/getDetail.do",
-			paramData:{
-				tableName:tableName,
-				dataSource:dbFlag
-			},
-			header:"TableDetail",
-			width:1000,
-			height:650
-		});
-	};
-
-	exeGenerate = function() {
-		var param = {};
-
-		param.sourceDb = $("#sourceDb").val();
-		param.targetDb = $("#targetDb").val();
-
-		popup = commonJs.openPopup({
-			popupId:"ProcessInformation",
-			header:"Process Result",
-			width:600,
-			height:400,
-			blind:false,
-			onLoad:function() {
-				$("input[name=chkSourceData]:checked").each(function(index) {
-					var $this = $(this);
-
-					setTimeout(function() {
-						param.tableName = $this.val();
-
-						commonJs.ajaxSubmit({
-							url:"/zebra/framework/datamigration/exeGenerate.do",
-							dataType:"json",
-							data:param,
-							blind:false,
-							success:function(data, textStatus) {
-								var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-								if (result.isSuccess == true || result.isSuccess == "true") {
-									popup.addContents("<mc:msg key="I802"/> : "+param.tableName);
-
-									if ((index+1) == commonJs.getCountChecked("chkSourceData")) {
-										commonJs.openDialog({
-											type:"information",
-											contents:"<mc:msg key="I801"/>",
-											modal:true,
-											width:300,
-											buttons:[{
-												caption:framework.messages.ok, callback:function() {
-													try {
-														popup.close();
-														doTargetDataSearch();
-													} catch(ex) {
-													}
-												}
-											}]
-										});
-									}
-								} else {
-									popup.addContents("<mc:msg key="E801"/> : "+param.tableName);
-								}
-							}
-						});
-					}, index * 100);
-				});
-			}
-		});
-	};
-	/*!
-	 * load event (document / window)
-	 */
-	setGridSize = function() {
-		$("#divSourceDataTable").css("height", ($("#divScrollablePanel").height()-10));
-		$("#divTargetDataTable").css("height", ($("#divScrollablePanel").height()-10));
-		widthSourceDataDiv = $("#divSourceDataTable").width();
-		widthTargetDataDiv = $("#divTargetDataTable").width();
-	};
-
-	setGridWidthAdjust = function() {
-		if (commonJs.browser.FireFox) {
-			sourceGridWidthAdjust = -14;
-			targetGridWidthAdjust = -23;
-		} else {
-			sourceGridWidthAdjust = -17;
-			targetGridWidthAdjust = -27;
-		}
-	};
-
-	$(window).load(function() {
-		setGridSize();
-		setGridWidthAdjust();
-		doSourceDataSearch();
-		doTargetDataSearch();
-	});
-});
 </script>
 </head>
 <%/************************************************************************************************
@@ -312,10 +65,10 @@ $(function() {
 					<tr>
 						<td class="tdDefault">
 							<label for="sourceDb" class="lblEn hor">Source Database</label>
-							<select id="sourceDb" name="sourceDb" class="bootstrapSelect default">
+							<select id="sourceDb" name="sourceDb" class="bootstrapSelect" disabled>
 <%
 							for (int i=0; i<datasourceDataSet.getRowCnt(); i++) {
-								String selected = (CommonUtil.equalsIgnoreCase(datasourceDataSet.getValue(i, "VALUE"), "hkmysql")) ? "selected" : "";
+								String selected = (CommonUtil.equalsIgnoreCase(datasourceDataSet.getValue(i, "VALUE"), sourceDataSource)) ? "selected" : "";
 %>
 								<option value="<%=datasourceDataSet.getValue(i, "VALUE")%>" <%=selected%>><%=datasourceDataSet.getValue(i, "NAME")%></option>
 <%
@@ -335,10 +88,10 @@ $(function() {
 					<tr>
 						<td class="tdDefault">
 							<label for="targetDb" class="lblEn hor">Target Database</label>
-							<select id="targetDb" name="targetDb" class="bootstrapSelect default">
+							<select id="targetDb" name="targetDb" class="bootstrapSelect" disabled>
 <%
 							for (int i=0; i<datasourceDataSet.getRowCnt(); i++) {
-								String selected = (CommonUtil.equalsIgnoreCase(datasourceDataSet.getValue(i, "VALUE"), "hkaccount")) ? "selected" : "";
+								String selected = (CommonUtil.equalsIgnoreCase(datasourceDataSet.getValue(i, "VALUE"), targetDataSource)) ? "selected" : "";
 %>
 								<option value="<%=datasourceDataSet.getValue(i, "VALUE")%>" <%=selected%>><%=datasourceDataSet.getValue(i, "NAME")%></option>
 <%
@@ -367,7 +120,7 @@ $(function() {
 		<table id="tblSourceData" class="tblGrid sort autosort">
 			<colgroup>
 				<col width="3%"/>
-				<col width="30%"/>
+				<col width="34%"/>
 				<col width="*"/>
 			</colgroup>
 			<thead>
@@ -379,7 +132,7 @@ $(function() {
 			</thead>
 			<tbody id="tblSourceDataBody">
 				<tr>
-					<td class="tdGridCt" colspan="3"><mc:msg key="I002"/></td>
+					<td class="tdGrid Ct" colspan="3"><mc:msg key="I002"/></td>
 				</tr>
 			</tbody>
 		</table>
@@ -388,7 +141,7 @@ $(function() {
 	<div id="divTargetDataTable" style="float:right;width:49%;">
 		<table id="tblTargetData" class="tblGrid sort autosort">
 			<colgroup>
-				<col width="30%"/>
+				<col width="34%"/>
 				<col width="*"/>
 			</colgroup>
 			<thead>
@@ -398,6 +151,9 @@ $(function() {
 				</tr>
 			</thead>
 			<tbody id="tblTargetDataBody">
+				<tr>
+					<td class="tdGrid Ct" colspan="2"><mc:msg key="I002"/></td>
+				</tr>
 			</tbody>
 		</table>
 		<div id="divTargetDataPagingArea"></div>

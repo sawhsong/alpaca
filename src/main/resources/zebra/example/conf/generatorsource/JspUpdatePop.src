@@ -19,7 +19,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<link rel="icon" type="image/png" href="<mc:cp key="imgIcon"/>/favicon.png">
+<link rel="icon" type="image/png" href="<mc:cp key="imgIcon"/>/faviconPerci.png">
 <title><mc:msg key="main.system.title"/></title>
 <%/************************************************************************************************
 * Stylesheet & Javascript
@@ -27,6 +27,7 @@
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
 </style>
+<script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
 $(function() {
 	/*!
@@ -37,9 +38,9 @@ $(function() {
 			$("#fmDefault").attr("enctype", "multipart/form-data");
 
 			commonJs.confirm({
-				contents:"<mc:msg key="Q001"/>",
+				contents:com.message.Q001,
 				buttons:[{
-					caption:"Yes",
+					caption:com.caption.yes,
 					callback:function() {
 						commonJs.doSubmit({
 							form:"fmDefault",
@@ -50,7 +51,7 @@ $(function() {
 						});
 					}
 				}, {
-					caption:"No",
+					caption:com.caption.no,
 					callback:function() {
 					}
 				}]
@@ -77,7 +78,7 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		parent.popup.setHeader("<mc:msg key="#THIS_MENU_ID#.title.popupTitleEdit"/>");
+		parent.popup.setHeader(com.header.popHeaderEdit);
 	});
 });
 </script>

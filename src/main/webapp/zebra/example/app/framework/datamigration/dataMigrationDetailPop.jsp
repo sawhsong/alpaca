@@ -10,6 +10,7 @@
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
 	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
 	DataSet resultDataSet = (DataSet)paramEntity.getObject("resultDataSet");
+	String totalRowCount = CommonUtil.toString((int)paramEntity.getObject("totalRowCount"), "#,##0");
 %>
 <%/************************************************************************************************
 * HTML
@@ -24,31 +25,11 @@
 * Stylesheet & Javascript
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCssJs.jsp"%>
+<style type="text/css">
+</style>
+<script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
-$(function() {
-	/*!
-	 * event
-	 */
-	$("#btnClose").click(function(event) {
-		parent.popup.close();
-	});
-
-	/*!
-	 * process
-	 */
-
-	/*!
-	 * load event (document / window)
-	 */
-	$(window).ready(function() {
-		setTimeout(function() {
-			$("#tblFixedHeaderTable").fixedHeaderTable({
-				baseDivElement:"divScrollablePanelPopup",
-				widthAdjust:-6
-			});
-		}, 1000);
-	});
-});
+var tableName = "<%=requestDataSet.getValue("tableName")%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -66,6 +47,7 @@ $(function() {
 <div id="divButtonArea" class="areaContainerPopup">
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
+		<ui:button id="btnGenerate" caption="button.com.generate" iconClass="fa-gears"/>
 		<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
 	</div>
 </div>
@@ -73,16 +55,20 @@ $(function() {
 <div id="divInformArea" class="areaContainerPopup">
 	<table class="tblEdit">
 		<colgroup>
-			<col width="15%"/>
-			<col width="35%"/>
-			<col width="15%"/>
-			<col width="35%"/>
+			<col width="10%"/>
+			<col width="18%"/>
+			<col width="12%"/>
+			<col width="10%"/>
+			<col width="12%"/>
+			<col width="*"/>
 		</colgroup>
 		<tr>
-			<th class="thEditRt"><mc:msg key="fwk.dtogenerator.dataGridHeader.tableName"/></th>
+			<th class="thEdit Rt"><mc:msg key="fwk.dtogenerator.dataGridHeader.tableName"/></th>
 			<td class="tdEdit"><%=requestDataSet.getValue("tableName")%></td>
-			<th class="thEditRt"><mc:msg key="fwk.dtogenerator.dataGridHeader.tableDesc"/></th>
-			<td class="tdEdit"><%=CommonUtil.abbreviate(resultDataSet.getValue("TABLE_DESCRIPTION"), 50)%></td>
+			<th class="thEdit Rt">Total Row Count</th>
+			<td class="tdEdit"><%=totalRowCount%></td>
+			<th class="thEdit Rt"><mc:msg key="fwk.dtogenerator.dataGridHeader.tableDesc"/></th>
+			<td class="tdEdit"><%=resultDataSet.getValue("TABLE_DESCRIPTION")%></td>
 		</tr>
 	</table>
 </div>
@@ -96,7 +82,7 @@ $(function() {
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
-	<table id="tblFixedHeaderTable" class="tblGrid sort">
+	<table id="tblGrid" class="tblGrid sort">
 		<colgroup>
 			<col width="25%"/>
 			<col width="10%"/>
@@ -124,12 +110,12 @@ $(function() {
 %>
 			<tr>
 				<td class="tdGrid"><%=resultDataSet.getValue(i, "COLUMN_NAME")%></td>
-				<td class="tdGridCt"><%=resultDataSet.getValue(i, "DATA_TYPE")%></td>
-				<td class="tdGridCt"><%=resultDataSet.getValue(i, "DATA_DEFAULT")%></td>
-				<td class="tdGridCt"><%=resultDataSet.getValue(i, "DATA_LENGTH")%></td>
-				<td class="tdGridCt"><%=resultDataSet.getValue(i, "NULLABLE")%></td>
-				<td class="tdGridCt"><%=resultDataSet.getValue(i, "CONSTRAINT_TYPE")%></td>
-				<td class="tdGrid"><%=CommonUtil.abbreviate(resultDataSet.getValue(i, "COMMENTS"), 35)%></td>
+				<td class="tdGrid Ct"><%=resultDataSet.getValue(i, "DATA_TYPE")%></td>
+				<td class="tdGrid Ct"><%=resultDataSet.getValue(i, "DATA_DEFAULT")%></td>
+				<td class="tdGrid Ct"><%=resultDataSet.getValue(i, "DATA_LENGTH")%></td>
+				<td class="tdGrid Ct"><%=resultDataSet.getValue(i, "NULLABLE")%></td>
+				<td class="tdGrid Ct"><%=resultDataSet.getValue(i, "CONSTRAINT_TYPE")%></td>
+				<td class="tdGrid" title="<%=resultDataSet.getValue(i, "COMMENTS")%>"><%=CommonUtil.abbreviate(resultDataSet.getValue(i, "COMMENTS"), 40)%></td>
 			</tr>
 <%
 			}

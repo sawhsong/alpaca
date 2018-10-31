@@ -14,9 +14,9 @@ CKEDITOR.editorConfig = function(config) {
 	config.uiColor = "#F8F8F8";
 	config.language = jsconfig.get("langCode");
 	config.height = 500;
-	config.skin = "alpaca";
+	config.skin = "hkaccounting";
 	config.title = false;
-	config.toolbar_Full=[
+	config.toolbar_full=[
 		{name:"document", items:["Source", "-", "Save", "NewPage", "DocProps", "Preview", "Print", "-", "Templates"]},
 		{name:"clipboard", items:["Cut", "Copy", "Paste", "PasteText", "PasteFromWord", "-", "Undo", "Redo"]},
 		{name:"editing", items:["Find", "Replace", "-", "SelectAll", "-", "SpellChecker", "Scayt"]},

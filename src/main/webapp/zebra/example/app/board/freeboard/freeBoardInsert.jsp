@@ -25,66 +25,9 @@
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
 </style>
+<script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
-$(function() {
-	/*!
-	 * event
-	 */
-	$("#btnSave").click(function(event) {
-		if (commonJs.doValidate("fmDefault")) {
-			$("#fmDefault").attr("enctype", "multipart/form-data");
-
-			commonJs.confirm({
-				contents:"<mc:msg key="Q001"/>",
-				buttons:[{
-					caption:"Yes",
-					callback:function() {
-						commonJs.doSubmit({
-							form:"fmDefault",
-							action:"/zebra/board/freeboard/exeInsert.do",
-							data:{
-								articleId:"<%=requestDataSet.getValue("articleId")%>"
-							}
-						});
-					}
-				}, {
-					caption:"No",
-					callback:function() {
-					}
-				}]
-			});
-		}
-	});
-
-	$("#btnBack").click(function(event) {
-		history.go(-1);
-	});
-
-	$("#btnAddFile").click(function(event) {
-		commonJs.addFileSelectObject({
-			appendToId:"divAttachedFile",
-			rowBreak:false
-		});
-	});
-
-	/*!
-	 * process
-	 */
-	setEditor = function() {
-		$("#articleContents").ckeditor({
-			height:450,
-			toolbar:"frameworkBasic"
-		});
-	};
-
-	/*!
-	 * load event (document / window)
-	 */
-	$(window).load(function() {
-		setEditor();
-		$("#writerName").focus();
-	});
-});
+var articleId = "<%=requestDataSet.getValue("articleId")%>";
 </script>
 </head>
 <%/************************************************************************************************

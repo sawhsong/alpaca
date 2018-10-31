@@ -27,59 +27,9 @@
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
 </style>
+<script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
-$(function() {
-	/*!
-	 * event
-	 */
-	$("#btnSave").click(function(event) {
-		if (commonJs.doValidate("fmDefault")) {
-			$("#fmDefault").attr("enctype", "multipart/form-data");
-
-			commonJs.confirm({
-				contents:"<mc:msg key="Q001"/>",
-				buttons:[{
-					caption:"Yes",
-					callback:function() {
-						commonJs.doSubmit({
-							form:"fmDefault",
-							action:"/zebra/board/notice/exeUpdate.do",
-							data:{
-								articleId:"<%=noticeBoard.getArticleId()%>"
-							}
-						});
-					}
-				}, {
-					caption:"No",
-					callback:function() {
-					}
-				}]
-			});
-		}
-	});
-
-	$("#btnClose").click(function(event) {
-		parent.popup.close();
-	});
-
-	$("#btnAddFile").click(function(event) {
-		commonJs.addFileSelectObject({
-			appendToId:"divAttachedFile",
-			rowBreak:false
-		});
-	});
-
-	/*!
-	 * process
-	 */
-
-	/*!
-	 * load event (document / window)
-	 */
-	$(window).load(function() {
-		parent.popup.setHeader("<mc:msg key="fwk.notice.title.popupTitleEdit"/>");
-	});
-});
+var articleId = "<%=noticeBoard.getArticleId()%>";
 </script>
 </head>
 <%/************************************************************************************************

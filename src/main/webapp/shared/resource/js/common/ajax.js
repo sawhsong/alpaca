@@ -24,23 +24,23 @@
 			params.formId = params.formId;
 			params.data = params.data || {};
 			params.blind = (params.blind == true) ? true : false;
-			params.blindMessage = params.blindMessage || framework.messages.loading;
+			params.blindMessage = params.blindMessage || com.message.loading;
 			var paramData = "";
 
 			if (params.blind) {
 				if (($(".nonyPopWinBase").length + $(".nonyDialogBase").length) == 0) {
-					$.nony.showProcMessage(framework.messages.loading);
+					$.nony.showProcMessage(com.message.loading);
 				}
 			}
 
 			if ($.nony.isEmpty(params.url)) {
-				throw new Error("URL" + framework.messages.required);
+				throw new Error("URL" + com.message.required);
 				return;
 			}
 
 			if (!$.nony.isEmpty(params.formId)) {
 				if (typeof(params.formId) == "object") {
-					throw new Error("Form Id" + framework.messages.invalid);
+					throw new Error("Form Id" + com.message.invalid);
 					return;
 				}
 			}
@@ -80,9 +80,9 @@
 				try {
 					if (xhr.responseText == "SessionTimedOut" || xhr.responseXML == "SessionTimedOut") {
 						commonJs.openDialog({
-							contents:framework.messages.sessionTimeOut,
+							contents:com.message.sessionTimeOut,
 							buttons:[{
-								caption:"Ok",
+								caption:com.caption.ok,
 								callback:function() {
 									location.replace("/index/index.do");
 								}
@@ -113,7 +113,7 @@
 					width:"400",
 					height:"400",
 					buttons:[{
-						caption:"Ok",
+						caption:com.caption.ok,
 						callback:function() {
 						}
 					}]

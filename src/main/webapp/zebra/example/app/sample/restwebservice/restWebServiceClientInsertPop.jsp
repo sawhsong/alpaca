@@ -26,59 +26,9 @@
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
 </style>
+<script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
-$(function() {
-	/*!
-	 * event
-	 */
-	$("#btnSave").click(function(event) {
-		if (commonJs.doValidate("fmDefault")) {
-			$("#fmDefault").attr("enctype", "multipart/form-data");
-
-			commonJs.confirm({
-				contents:"<mc:msg key="Q001"/>",
-				buttons:[{
-					caption:"Yes",
-					callback:function() {
-						commonJs.doSubmit({
-							form:"fmDefault",
-							action:"/zebra/sample/restwebservice/exeInsert.do",
-							data:{
-								articleId:"<%=dsRequest.getValue("articleId")%>"
-							}
-						});
-					}
-				}, {
-					caption:"No",
-					callback:function() {
-					}
-				}]
-			});
-		}
-	});
-
-	$("#btnClose").click(function(event) {
-		parent.popupNotice.close();
-	});
-
-	$("#btnAddFile").click(function(event) {
-		commonJs.addFileSelectObject({
-			appendToId:"divAttachedFile",
-			rowBreak:false
-		});
-	});
-
-	/*!
-	 * process
-	 */
-
-	/*!
-	 * load event (document / window)
-	 */
-	$(window).load(function() {
-		$("#writerName").focus();
-	});
-});
+var articleId = "<%=dsRequest.getValue("articleId")%>";
 </script>
 </head>
 <%/************************************************************************************************

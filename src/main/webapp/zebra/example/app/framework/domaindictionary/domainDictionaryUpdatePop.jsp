@@ -25,93 +25,11 @@
 * Stylesheet & Javascript
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCssJs.jsp"%>
+<style type="text/css">
+</style>
+<script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
-$(function() {
-	/*!
-	 * event
-	 */
-	$("#btnSave").click(function(event) {
-		if (!commonJs.doValidate("fmDefault")) {
-			return;
-		}
-
-		if ($("#dataType").val() == "VARCHAR2" && commonJs.isEmpty($("#dataLength").val())) {
-			commonJs.openDialog({
-				type:"warning",
-				contents:"Data Length" + framework.messages.mandatory,
-				buttons:[{
-					caption:"Ok",
-					callback:function() {
-						commonJs.getBootstrapSelectbox("dataLength").addClass("error");
-						return;
-					}
-				}]
-			});
-
-			return;
-		}
-
-		commonJs.confirm({
-			contents:"<mc:msg key="Q001"/>",
-			buttons:[{
-				caption:"Yes",
-				callback:function() {
-					exeSave();
-				}
-			}, {
-				caption:"No",
-				callback:function() {
-				}
-			}]
-		});
-
-	});
-
-	$("#btnClose").click(function(event) {
-		parent.popup.close();
-	});
-
-	/*!
-	 * process
-	 */
-	exeSave = function() {
-		commonJs.ajaxSubmit({
-			url:"/zebra/framework/domaindictionary/exeUpdate.do",
-			dataType:"json",
-			formId:"fmDefault",
-			data:{
-				domainId:"<%=zebraDomainDictionary.getDomainId()%>"
-			},
-			success:function(data, textStatus) {
-				var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-				if (result.isSuccess == true || result.isSuccess == "true") {
-					commonJs.openDialog({
-						type:"information",
-						contents:result.message,
-						blind:true,
-						buttons:[{
-							caption:"Ok",
-							callback:function() {
-								parent.popup.close();
-								parent.doSearch();
-							}
-						}]
-					});
-				} else {
-					commonJs.error(result.message);
-				}
-			}
-		});
-	};
-	/*!
-	 * load event (document / window)
-	 */
-	$(window).load(function() {
-		parent.popup.setHeader("<mc:msg key="fwk.domaindictionary.title.popupTitleEdit"/>");
-		$("#domainName").focus();
-	});
-});
+var domainId = "<%=zebraDomainDictionary.getDomainId()%>";
 </script>
 </head>
 <%/************************************************************************************************

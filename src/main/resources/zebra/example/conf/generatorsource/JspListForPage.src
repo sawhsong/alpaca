@@ -16,7 +16,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<link rel="icon" type="image/png" href="<mc:cp key="imgIcon"/>/favicon.png">
+<link rel="icon" type="image/png" href="<mc:cp key="imgIcon"/>/faviconPerci.png">
 <title><mc:msg key="main.system.title"/></title>
 <%/************************************************************************************************
 * Stylesheet & Javascript
@@ -24,7 +24,9 @@
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
 </style>
+<script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
+jsconfig.put("useJqTooltip", false);
 var popup = null;
 var searchResultDataCount = 0;
 var attchedFileContextMenu = [];
@@ -83,7 +85,7 @@ $(function() {
 		ctxMenu.commonExport[5].fun = function() {exeExport(ctxMenu.commonExport[5]);};
 
 		$("#btnExport").contextMenu(ctxMenu.commonExport, {
-			classPrefix:"actionButton",
+			classPrefix:com.constants.ctxClassPrefixButton,
 			effectDuration:300,
 			effect:"slide",
 			borderRadius:"bottom 4px",
@@ -122,6 +124,7 @@ $(function() {
 		var html = "";
 
 		searchResultDataCount = dataSet.getRowCnt();
+
 		$("#tblGridBody").html("");
 
 		if (dataSet.getRowCnt() > 0) {
@@ -165,7 +168,7 @@ $(function() {
 
 				var iconAction = new UiIcon();
 				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
-					.setScript("doAction(this)").addAttribute("title:"+"<mc:msg key="page.com.action"/>");
+					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
@@ -173,7 +176,7 @@ $(function() {
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:7").setText("<mc:msg key="I001"/>"));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:7").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
@@ -223,14 +226,14 @@ $(function() {
 
 	doDelete = function() {
 		if (commonJs.getCountChecked("chkForDel") == 0) {
-			commonJs.warn("<mc:msg key="I902"/>");
+			commonJs.warn(com.message.I902);
 			return;
 		}
 
 		commonJs.confirm({
-			contents:"<mc:msg key="Q002"/>",
+			contents:com.message.Q002,
 			buttons:[{
-				caption:"Yes",
+				caption:com.caption.yes,
 				callback:function() {
 					commonJs.ajaxSubmit({
 						url:"/#MENU_URL#/exeDelete.do",
@@ -241,11 +244,11 @@ $(function() {
 
 							if (result.isSuccess == true || result.isSuccess == "true") {
 								commonJs.openDialog({
-									type:"information",
+									type:com.message.I000,
 									contents:result.message,
 									blind:true,
 									buttons:[{
-										caption:"Ok",
+										caption:com.caption.ok,
 										callback:function() {
 											doSearch();
 										}
@@ -258,7 +261,7 @@ $(function() {
 					});
 				}
 			}, {
-				caption:"No",
+				caption:com.caption.no,
 				callback:function() {
 				}
 			}],
@@ -283,7 +286,7 @@ $(function() {
 		ctxMenu.boardAction[3].fun = function() {doDelete();};
 
 		$(img).contextMenu(ctxMenu.boardAction, {
-			classPrefix:"actionInGrid",
+			classPrefix:com.constants.ctxClassPrefixGrid,
 			displayAround:"trigger",
 			position:"bottom",
 			horAdjust:0,
@@ -296,14 +299,14 @@ $(function() {
 		$("[name=dataRange]").remove();
 
 		if (searchResultDataCount <= 0) {
-			commonJs.warn("<mc:msg key="I001"/>");
+			commonJs.warn(com.message.I001);
 			return;
 		}
 
 		commonJs.confirm({
-			contents:"<mc:msg key="Q003"/>",
+			contents:com.message.Q003,
 			buttons:[{
-				caption:"Yes",
+				caption:com.caption.yes,
 				callback:function() {
 					popup = commonJs.openPopup({
 						popupId:"exportFile",
@@ -320,7 +323,7 @@ $(function() {
 					setTimeout(function() {popup.close();}, 3000);
 				}
 			}, {
-				caption:"No",
+				caption:com.caption.no,
 				callback:function() {
 				}
 			}],

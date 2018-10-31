@@ -8,7 +8,7 @@
 
 			params.popupId = params.popupId || "popupDialog_"+$.nony.getTimeStamp();
 			params.popupMethod = "popupDialog";
-			params.type = params.type || "information";
+			params.type = params.type || com.message.I000;
 			params.header = params.header || params.type;
 			params.contents = params.contents || "";
 			params.width = params.width;
@@ -26,20 +26,20 @@
 			params.iframeName = params.iframeName || "popupDialogIframe_"+$.nony.getTimeStamp();
 
 			if ($.nony.isEmpty(params.buttons)) {
-				if ("information" == params.type) {
-					params.buttons = [{caption:framework.messages.ok, callback:function() {}}];
-				} else if ("question" == params.type || "confirm" == params.type) {
+				if (com.message.I000 == params.type) {
+					params.buttons = [{caption:com.caption.ok, callback:function() {}}];
+				} else if (com.message.Q000 == params.type || "Confirm" == params.type) {
 					params.buttons = [{
-						caption:framework.messages.ok, callback:function() {}
+						caption:com.caption.ok, callback:function() {}
 					}, {
-						caption:framework.messages.cancel, callback:function() {}
+						caption:com.caption.cancel, callback:function() {}
 					}];
-				} else if ("confirmation" == params.type) {
-					params.buttons = [{caption:framework.messages.ok, callback:function() {}}];
-				} else if ("warning" == params.type) {
-					params.buttons = [{caption:framework.messages.ok, callback:function() {}}];
-				} else if ("error" == params.type) {
-					params.buttons = [{caption:framework.messages.ok, callback:function() {}}];
+				} else if ("Confirmation" == params.type) {
+					params.buttons = [{caption:com.caption.ok, callback:function() {}}];
+				} else if (com.message.W000 == params.type) {
+					params.buttons = [{caption:com.caption.ok, callback:function() {}}];
+				} else if (com.message.E000 == params.type) {
+					params.buttons = [{caption:com.caption.ok, callback:function() {}}];
 				}
 			}
 
@@ -129,7 +129,7 @@
 			};
 		},
 		openPopup : function(params) {
-			if ($.nony.isEmpty(params) || $.nony.isEmpty(params.popupId)) {throw new Error("Popup Id" + framework.messages.required);}
+			if ($.nony.isEmpty(params) || $.nony.isEmpty(params.popupId)) {throw new Error("Popup Id" + com.message.required);}
 			if ($("#"+params.popupId).length > 0) {return;}
 
 			params.popupMethod = "popupWithIframe";
@@ -251,6 +251,7 @@
 			this.height = params.height;								// Popup height (Popup:[200], Dialog:[150])
 			this.limitHeightForMax = params.limitHeightForMax = 100;	// Size for height limited (for only Dialog. Not editable)
 			this.minWidth = params.minWidth = 250;						// Minimum width of dialog (for only Dialog. Not editable)
+			this.maxWidth = params.maxWidth = 800;						// Maximum width of dialog (for only Dialog. Not editable)
 			this.minHeight = params.minHeight = 35;						// Minimum height of dialog (for only Dialog. Not editable)
 			this.left = params.left;									// Left position ([center])
 			this.top = params.top;										// Top position ([middle])
@@ -303,7 +304,7 @@
 				$(this.popupHeaderHolder).css("cursor", "move");
 			}
 
-//			$(this.popupIframe).css("height", (this.height - correctionValueForHeight) + "px");
+			$(this.popupIframe).css("height", (this.height - correctionValueForHeight) + "px");
 
 			if (this.popupMethod == "popupWithIframe") {
 				$(this.popupIframe).corner("bottom 5px");
@@ -354,7 +355,7 @@
 			$(this.popupBase).appendTo("body");
 
 			if (this.popupMethod == "popupDialog") {
-				$(this.popupFooter).appendTo(this.popupBody);//.css("margin-top", "-2px");
+				$(this.popupFooter).appendTo(this.popupBody).css("margin-top", "-1px");
 			}
 
 			this.params.popupBase = $(this.popupBase);
@@ -378,36 +379,32 @@
 			else {$(this.popupBase).css("top", this.top);}
 		},
 		_checkContentsHeight : function(params) {
-			var html = "";
-			var divTemp = $("<div id='divTemp'></div>");
-			var table;
+			var html = "", htmlDiv = "", contentMessage = "", table, div, tableOnBody;
 
-			html += "<table><tr>";
+			contentMessage = $.nony.replace(params.contents, "\n", "<br/>");
+
+			html += "<table id='temp_checkContentsHeight'><tr>";
 			html += "<td style='vertical-align:top;padding-right:4px;'><img src='"+jsconfig.get("imgThemeCom")+"/"+params.type+".png"+"'/></td>";
-			html += "<td style='padding:2px 4px;line-height:16px;'>"+$.nony.replace(params.contents, "\n", "<br/>")+"</td>";
+			html += "<td style='padding:2px 4px;line-height:16px;white-space:nowrap;font-size:12px'>"+contentMessage+"</td>";
 			html += "</tr></table>";
 
 			table = $(html);
-			$(divTemp).html(html);
+			$("body").append($(table));
 
-			$("html").append($(divTemp));
-			$("html").append($(table));
-
-			params.dialogContentsHeight = ($(divTemp).outerHeight() + 6);
 			if ($.nony.isEmpty(params.width)) {
-//				console.log("dialog width : "+$(table).outerWidth()); // only for delay
-//				console.log("params.minWidth : "+params.minWidth); // only for delay
-
 				if ($(table).outerWidth() < params.minWidth) {
-					params.dialogContentsWidth = (params.minWidth + 30);
+					params.dialogContentsWidth = params.minWidth;
+				} else if ($(table).outerWidth() > params.maxWidth) {
+					params.dialogContentsWidth = params.maxWidth;
 				} else {
-					params.dialogContentsWidth = ($(table).outerWidth() + 30);
+					params.dialogContentsWidth = $(table).outerWidth();
 				}
 			} else {
 				params.dialogContentsWidth = (params.width);
 			}
 
-			$(divTemp).remove();
+			params.dialogContentsHeight = $(table).outerHeight();
+
 			$(table).remove();
 		},
 		_setEffect : function() {
@@ -476,7 +473,7 @@
 			else {heightAdjust = (params.heightAdjust + 2);}
 
 			$(params.popupIframe).height(dialogHeight + "px");
-			$(params.popupBase).height((($(params.popupIframe).outerHeight()) + heightSum + popupFooterHeight + heightAdjust + 1) + "px");
+			$(params.popupBase).height((($(params.popupIframe).outerHeight()) + heightSum + popupFooterHeight + heightAdjust) + "px");
 
 			$(params.popupIframe).width(dialogWidth + "px");
 			$(params.popupBase).width(dialogWidth + "px");

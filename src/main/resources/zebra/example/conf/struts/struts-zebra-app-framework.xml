@@ -46,12 +46,5 @@
 			<result name="insert" type="debugDispatcherResult">/zebra/example/app/framework/tablescript/tableScriptInsertPop.jsp</result>
 			<result name="update" type="debugDispatcherResult">/zebra/example/app/framework/tablescript/tableScriptUpdatePop.jsp</result>
 		</action>
-
-		<!--/* DataMigration */-->
-		<action name="datamigration/*" class="zebra.example.app.framework.datamigration.DataMigrationAction" method="{1}">
-			<result name="list" type="debugDispatcherResult">/zebra/example/app/framework/datamigration/dataMigrationList.jsp</result>
-			<result name="detail" type="debugDispatcherResult">/zebra/example/app/framework/datamigration/dataMigrationDetailPop.jsp</result>
-			<result name="info" type="debugDispatcherResult">/zebra/example/app/framework/datamigration/dataMigrationInfoPop.jsp</result>
-		</action>
 	</package>
 </struts>
