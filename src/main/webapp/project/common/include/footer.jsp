@@ -7,18 +7,10 @@
 	<div id="divCopyRight">
 		<table class="tblDefault" style="width:100%;">
 			<colgroup>
-				<col width="33%"/>
-				<col width="34%"/>
-				<col width="33%"/>
+				<col width="100%"/>
 			</colgroup>
 			<tr>
-				<td class="tdDefault">
-					(<mc:msg key="login.header.tel"/>)&nbsp;<mc:msg key="login.header.telValue"/>&nbsp;/
-					&nbsp;(<mc:msg key="login.header.fax"/>)&nbsp;<mc:msg key="login.header.faxValue"/>&nbsp;/
-					&nbsp;&nbsp;<a href="mailto:<mc:msg key="login.header.emailValue"/>" style="cursor:pointer;"><mc:msg key="login.header.emailValue"/></a>
-				</td>
-				<td class="tdDefaultCt">&copy; HKAccounting.com.au / <%=CommonUtil.getSysdate("yyyy")%></td>
-				<td class="tdDefaultRt"><mc:msg key="I990"/></td>
+				<td class="tdDefaultCt">PERCI / Entity Solutions</td>
 			</tr>
 		</table>
 	</div>
