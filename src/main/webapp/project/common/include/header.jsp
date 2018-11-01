@@ -208,7 +208,7 @@ $(function() {
 <%
 				if (CommonUtil.equals(userIdHeaderPage, "0") || CommonUtil.equals(userIdHeaderPage, "1")) {
 %>
-				<div class="divGblMenuBreak">&nbsp;</div>
+				<div class="divGblMenuBreak"></div>
 				<div id="divFrameworkMenu" class="headerGblMenus">
 					<a id="aFrameworkMenu">Framework Menu</a>
 				</div>
