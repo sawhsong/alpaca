@@ -21,10 +21,10 @@ public class SysCommonCode extends BaseDto implements Serializable {
 	private String CODE_TYPE;
 	private String commonCode;
 	private String COMMON_CODE;
-	private String codeMeaning;
-	private String CODE_MEANING;
 	private String programConstants;
 	private String PROGRAM_CONSTANTS;
+	private String codeMeaning;
+	private String CODE_MEANING;
 	private String descriptionEn;
 	private String DESCRIPTION_EN;
 	private String descriptionKo;
@@ -100,15 +100,6 @@ public class SysCommonCode extends BaseDto implements Serializable {
 		setValueFromAccessor("COMMON_CODE", commonCode);
 	}
 
-	public String getCodeMeaning() {
-		return codeMeaning;
-	}
-
-	public void setCodeMeaning(String codeMeaning) throws Exception {
-		this.codeMeaning = codeMeaning;
-		setValueFromAccessor("CODE_MEANING", codeMeaning);
-	}
-
 	public String getProgramConstants() {
 		return programConstants;
 	}
@@ -116,6 +107,15 @@ public class SysCommonCode extends BaseDto implements Serializable {
 	public void setProgramConstants(String programConstants) throws Exception {
 		this.programConstants = programConstants;
 		setValueFromAccessor("PROGRAM_CONSTANTS", programConstants);
+	}
+
+	public String getCodeMeaning() {
+		return codeMeaning;
+	}
+
+	public void setCodeMeaning(String codeMeaning) throws Exception {
+		this.codeMeaning = codeMeaning;
+		setValueFromAccessor("CODE_MEANING", codeMeaning);
 	}
 
 	public String getDescriptionEn() {
@@ -340,8 +340,8 @@ public class SysCommonCode extends BaseDto implements Serializable {
 
 		str += "codeType : "+codeType+"\n";
 		str += "commonCode : "+commonCode+"\n";
-		str += "codeMeaning : "+codeMeaning+"\n";
 		str += "programConstants : "+programConstants+"\n";
+		str += "codeMeaning : "+codeMeaning+"\n";
 		str += "descriptionEn : "+descriptionEn+"\n";
 		str += "descriptionKo : "+descriptionKo+"\n";
 		str += "insertDate : "+insertDate+"\n";
@@ -365,8 +365,8 @@ public class SysCommonCode extends BaseDto implements Serializable {
 
 		str += "<column name=\"codeType\" value=\""+codeType+"\">";
 		str += "<column name=\"commonCode\" value=\""+commonCode+"\">";
-		str += "<column name=\"codeMeaning\" value=\""+codeMeaning+"\">";
 		str += "<column name=\"programConstants\" value=\""+programConstants+"\">";
+		str += "<column name=\"codeMeaning\" value=\""+codeMeaning+"\">";
 		str += "<column name=\"descriptionEn\" value=\""+descriptionEn+"\">";
 		str += "<column name=\"descriptionKo\" value=\""+descriptionKo+"\">";
 		str += "<column name=\"insertDate\" value=\""+insertDate+"\">";
@@ -390,8 +390,8 @@ public class SysCommonCode extends BaseDto implements Serializable {
 
 		str += "\"codeType\":\""+codeType+"\", ";
 		str += "\"commonCode\":\""+commonCode+"\", ";
-		str += "\"codeMeaning\":\""+codeMeaning+"\", ";
 		str += "\"programConstants\":\""+programConstants+"\", ";
+		str += "\"codeMeaning\":\""+codeMeaning+"\", ";
 		str += "\"descriptionEn\":\""+descriptionEn+"\", ";
 		str += "\"descriptionKo\":\""+descriptionKo+"\", ";
 		str += "\"insertDate\":\""+insertDate+"\", ";

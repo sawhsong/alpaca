@@ -17,18 +17,18 @@ public class SysUser extends BaseDto implements Serializable {
 	/**
 	 * Columns
 	 */
-	private String userId;
-	private String USER_ID;
 	private String authGroupId;
 	private String AUTH_GROUP_ID;
-	private String isActive;
-	private String IS_ACTIVE;
-	private String language;
-	private String LANGUAGE;
+	private String userId;
+	private String USER_ID;
 	private String loginId;
 	private String LOGIN_ID;
 	private String loginPassword;
 	private String LOGIN_PASSWORD;
+	private String isActive;
+	private String IS_ACTIVE;
+	private String language;
+	private String LANGUAGE;
 	private double maxRowPerPage;
 	private String MAX_ROW_PER_PAGE;
 	private double pageNumPerPage;
@@ -122,15 +122,6 @@ public class SysUser extends BaseDto implements Serializable {
 	/**
 	 * Accessors
 	 */
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) throws Exception {
-		this.userId = userId;
-		setValueFromAccessor("USER_ID", userId);
-	}
-
 	public String getAuthGroupId() {
 		return authGroupId;
 	}
@@ -140,22 +131,13 @@ public class SysUser extends BaseDto implements Serializable {
 		setValueFromAccessor("AUTH_GROUP_ID", authGroupId);
 	}
 
-	public String getIsActive() {
-		return isActive;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setIsActive(String isActive) throws Exception {
-		this.isActive = isActive;
-		setValueFromAccessor("IS_ACTIVE", isActive);
-	}
-
-	public String getLanguage() {
-		return language;
-	}
-
-	public void setLanguage(String language) throws Exception {
-		this.language = language;
-		setValueFromAccessor("LANGUAGE", language);
+	public void setUserId(String userId) throws Exception {
+		this.userId = userId;
+		setValueFromAccessor("USER_ID", userId);
 	}
 
 	public String getLoginId() {
@@ -174,6 +156,24 @@ public class SysUser extends BaseDto implements Serializable {
 	public void setLoginPassword(String loginPassword) throws Exception {
 		this.loginPassword = loginPassword;
 		setValueFromAccessor("LOGIN_PASSWORD", loginPassword);
+	}
+
+	public String getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(String isActive) throws Exception {
+		this.isActive = isActive;
+		setValueFromAccessor("IS_ACTIVE", isActive);
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) throws Exception {
+		this.language = language;
+		setValueFromAccessor("LANGUAGE", language);
 	}
 
 	public double getMaxRowPerPage() {
@@ -548,12 +548,12 @@ public class SysUser extends BaseDto implements Serializable {
 	public String toString() {
 		String str = "";
 
-		str += "userId : "+userId+"\n";
 		str += "authGroupId : "+authGroupId+"\n";
-		str += "isActive : "+isActive+"\n";
-		str += "language : "+language+"\n";
+		str += "userId : "+userId+"\n";
 		str += "loginId : "+loginId+"\n";
 		str += "loginPassword : "+loginPassword+"\n";
+		str += "isActive : "+isActive+"\n";
+		str += "language : "+language+"\n";
 		str += "maxRowPerPage : "+maxRowPerPage+"\n";
 		str += "pageNumPerPage : "+pageNumPerPage+"\n";
 		str += "personId : "+personId+"\n";
@@ -593,12 +593,12 @@ public class SysUser extends BaseDto implements Serializable {
 	public String toXmlString() {
 		String str = "";
 
-		str += "<column name=\"userId\" value=\""+userId+"\">";
 		str += "<column name=\"authGroupId\" value=\""+authGroupId+"\">";
-		str += "<column name=\"isActive\" value=\""+isActive+"\">";
-		str += "<column name=\"language\" value=\""+language+"\">";
+		str += "<column name=\"userId\" value=\""+userId+"\">";
 		str += "<column name=\"loginId\" value=\""+loginId+"\">";
 		str += "<column name=\"loginPassword\" value=\""+loginPassword+"\">";
+		str += "<column name=\"isActive\" value=\""+isActive+"\">";
+		str += "<column name=\"language\" value=\""+language+"\">";
 		str += "<column name=\"maxRowPerPage\" value=\""+maxRowPerPage+"\">";
 		str += "<column name=\"pageNumPerPage\" value=\""+pageNumPerPage+"\">";
 		str += "<column name=\"personId\" value=\""+personId+"\">";
@@ -638,12 +638,12 @@ public class SysUser extends BaseDto implements Serializable {
 	public String toJsonString() {
 		String str = "";
 
-		str += "\"userId\":\""+userId+"\", ";
 		str += "\"authGroupId\":\""+authGroupId+"\", ";
-		str += "\"isActive\":\""+isActive+"\", ";
-		str += "\"language\":\""+language+"\", ";
+		str += "\"userId\":\""+userId+"\", ";
 		str += "\"loginId\":\""+loginId+"\", ";
 		str += "\"loginPassword\":\""+loginPassword+"\", ";
+		str += "\"isActive\":\""+isActive+"\", ";
+		str += "\"language\":\""+language+"\", ";
 		str += "\"maxRowPerPage\":\""+maxRowPerPage+"\", ";
 		str += "\"pageNumPerPage\":\""+pageNumPerPage+"\", ";
 		str += "\"personId\":\""+personId+"\", ";

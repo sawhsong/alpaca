@@ -11,10 +11,10 @@
 		<id name="userId" column="USER_ID" type="java.lang.String" length="30"></id>
 
 		<property name="authGroupId" column="AUTH_GROUP_ID" not-null="true" type="java.lang.String" length="30"/>
-		<property name="isActive" column="IS_ACTIVE" not-null="true" type="java.lang.String" length="1"/>
-		<property name="language" column="LANGUAGE" not-null="true" type="java.lang.String" length="30"/>
 		<property name="loginId" column="LOGIN_ID" not-null="true" type="java.lang.String" length="30"/>
 		<property name="loginPassword" column="LOGIN_PASSWORD" not-null="true" type="java.lang.String" length="30"/>
+		<property name="isActive" column="IS_ACTIVE" not-null="true" type="java.lang.String" length="1"/>
+		<property name="language" column="LANGUAGE" not-null="true" type="java.lang.String" length="30"/>
 		<property name="maxRowPerPage" column="MAX_ROW_PER_PAGE" not-null="true" type="java.lang.Double"/>
 		<property name="pageNumPerPage" column="PAGE_NUM_PER_PAGE" not-null="true" type="java.lang.Double"/>
 		<property name="personId" column="PERSON_ID" not-null="true" type="java.lang.String" length="30"/>
@@ -46,12 +46,12 @@
 
 	<sql-query name="sysUser.selectAll">
 	<![CDATA[
-		SELECT USER_ID,
-		       AUTH_GROUP_ID,
-		       IS_ACTIVE,
-		       LANGUAGE,
+		SELECT AUTH_GROUP_ID,
+		       USER_ID,
 		       LOGIN_ID,
 		       LOGIN_PASSWORD,
+		       IS_ACTIVE,
+		       LANGUAGE,
 		       MAX_ROW_PER_PAGE,
 		       PAGE_NUM_PER_PAGE,
 		       PERSON_ID,
@@ -91,12 +91,12 @@
 	<sql-query name="sysUser.insert">
 	<![CDATA[
 		INSERT INTO SYS_USER (
-		       USER_ID,
 		       AUTH_GROUP_ID,
-		       IS_ACTIVE,
-		       LANGUAGE,
+		       USER_ID,
 		       LOGIN_ID,
 		       LOGIN_PASSWORD,
+		       IS_ACTIVE,
+		       LANGUAGE,
 		       MAX_ROW_PER_PAGE,
 		       PAGE_NUM_PER_PAGE,
 		       PERSON_ID,
@@ -126,12 +126,12 @@
 		       UPDATE_USER_ID
 		       )
 		VALUES (
-		       ${USER_ID},
 		       ${AUTH_GROUP_ID},
-		       ${IS_ACTIVE},
-		       ${LANGUAGE},
+		       ${USER_ID},
 		       ${LOGIN_ID},
 		       ${LOGIN_PASSWORD},
+		       ${IS_ACTIVE},
+		       ${LANGUAGE},
 		       ${MAX_ROW_PER_PAGE},
 		       ${PAGE_NUM_PER_PAGE},
 		       ${PERSON_ID},
@@ -167,10 +167,10 @@
 	<![CDATA[
 		UPDATE SYS_USER
 		   SET AUTH_GROUP_ID = ${AUTH_GROUP_ID},
-		       IS_ACTIVE = ${IS_ACTIVE},
-		       LANGUAGE = ${LANGUAGE},
 		       LOGIN_ID = ${LOGIN_ID},
 		       LOGIN_PASSWORD = ${LOGIN_PASSWORD},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       LANGUAGE = ${LANGUAGE},
 		       MAX_ROW_PER_PAGE = ${MAX_ROW_PER_PAGE},
 		       PAGE_NUM_PER_PAGE = ${PAGE_NUM_PER_PAGE},
 		       PERSON_ID = ${PERSON_ID},
