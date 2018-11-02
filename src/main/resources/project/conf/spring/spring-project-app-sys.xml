@@ -23,4 +23,19 @@
     <!--Sys9904 - -->
     <bean class="${name.package.project}.app.sys.sys9904.Sys9904Action" id="sys9904Action" name="sys9904Action"/>
     <bean class="${name.package.project}.app.sys.sys9904.Sys9904BizImpl" id="sys9904Biz" name="sys9904Biz" parent="baseBiz"/>
+    <!--Sys0206 - -->
+    <bean class="${name.package.project}.app.sys.sys0206.Sys0206Action" id="sys0206Action" name="sys0206Action"/>
+    <bean class="${name.package.project}.app.sys.sys0206.Sys0206BizImpl" id="sys0206Biz" name="sys0206Biz" parent="baseBiz"/>
+    <!--Sys0208 - -->
+    <bean class="${name.package.project}.app.sys.sys0208.Sys0208Action" id="sys0208Action" name="sys0208Action"/>
+    <bean class="${name.package.project}.app.sys.sys0208.Sys0208BizImpl" id="sys0208Biz" name="sys0208Biz" parent="baseBiz"/>
+    <!--Sys0602 - -->
+    <bean class="${name.package.project}.app.sys.sys0602.Sys0602Action" id="sys0602Action" name="sys0602Action"/>
+    <bean class="${name.package.project}.app.sys.sys0602.Sys0602BizImpl" id="sys0602Biz" name="sys0602Biz" parent="baseBiz"/>
+    <!--Sys0604 - -->
+    <bean class="${name.package.project}.app.sys.sys0604.Sys0604Action" id="sys0604Action" name="sys0604Action"/>
+    <bean class="${name.package.project}.app.sys.sys0604.Sys0604BizImpl" id="sys0604Biz" name="sys0604Biz" parent="baseBiz"/>
+    <!--Sys0606 - -->
+    <bean class="${name.package.project}.app.sys.sys0606.Sys0606Action" id="sys0606Action" name="sys0606Action"/>
+    <bean class="${name.package.project}.app.sys.sys0606.Sys0606BizImpl" id="sys0606Biz" name="sys0606Biz" parent="baseBiz"/>
 </beans>

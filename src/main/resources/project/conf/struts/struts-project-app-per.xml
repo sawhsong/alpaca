@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package extends="default" name="per" namespace="/per" strict-method-invocation="false">
+        <default-interceptor-ref name="ZebraDefaultStack"/>
+        <!--Per0202 - -->
+        <action class="project.app.per.per0202.Per0202Action" method="{1}" name="0202/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0202/Per0202List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0202/Per0202DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0202/Per0202InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0202/Per0202UpdatePop.jsp</result>
+        </action>
+        <!--Per0204 - -->
+        <action class="project.app.per.per0204.Per0204Action" method="{1}" name="0204/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0204/Per0204List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0204/Per0204DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0204/Per0204InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0204/Per0204UpdatePop.jsp</result>
+        </action>
+        <!--Per0206 - -->
+        <action class="project.app.per.per0206.Per0206Action" method="{1}" name="0206/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0206/Per0206List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0206/Per0206DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0206/Per0206InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0206/Per0206UpdatePop.jsp</result>
+        </action>
+        <!--Per0208 - -->
+        <action class="project.app.per.per0208.Per0208Action" method="{1}" name="0208/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0208/Per0208List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0208/Per0208DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0208/Per0208InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0208/Per0208UpdatePop.jsp</result>
+        </action>
+        <!--Per0210 - -->
+        <action class="project.app.per.per0210.Per0210Action" method="{1}" name="0210/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0210/Per0210List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0210/Per0210DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0210/Per0210InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0210/Per0210UpdatePop.jsp</result>
+        </action>
+        <!--Per0402 - -->
+        <action class="project.app.per.per0402.Per0402Action" method="{1}" name="0402/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0402/Per0402List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0402/Per0402DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0402/Per0402InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0402/Per0402UpdatePop.jsp</result>
+        </action>
+        <!--Per0404 - -->
+        <action class="project.app.per.per0404.Per0404Action" method="{1}" name="0404/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0404/Per0404List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0404/Per0404DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0404/Per0404InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0404/Per0404UpdatePop.jsp</result>
+        </action>
+        <!--Per0406 - -->
+        <action class="project.app.per.per0406.Per0406Action" method="{1}" name="0406/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0406/Per0406List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0406/Per0406DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0406/Per0406InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0406/Per0406UpdatePop.jsp</result>
+        </action>
+        <!--Per0408 - -->
+        <action class="project.app.per.per0408.Per0408Action" method="{1}" name="0408/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0408/Per0408List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0408/Per0408DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0408/Per0408InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0408/Per0408UpdatePop.jsp</result>
+        </action>
+        <!--Per0410 - -->
+        <action class="project.app.per.per0410.Per0410Action" method="{1}" name="0410/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0410/Per0410List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0410/Per0410DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0410/Per0410InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0410/Per0410UpdatePop.jsp</result>
+        </action>
+        <!--Per0412 - -->
+        <action class="project.app.per.per0412.Per0412Action" method="{1}" name="0412/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0412/Per0412List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0412/Per0412DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0412/Per0412InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0412/Per0412UpdatePop.jsp</result>
+        </action>
+        <!--Per0414 - -->
+        <action class="project.app.per.per0414.Per0414Action" method="{1}" name="0414/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0414/Per0414List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0414/Per0414DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0414/Per0414InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0414/Per0414UpdatePop.jsp</result>
+        </action>
+        <!--Per0416 - -->
+        <action class="project.app.per.per0416.Per0416Action" method="{1}" name="0416/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0416/Per0416List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0416/Per0416DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0416/Per0416InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0416/Per0416UpdatePop.jsp</result>
+        </action>
+        <!--Per0602 - -->
+        <action class="project.app.per.per0602.Per0602Action" method="{1}" name="0602/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0602/Per0602List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0602/Per0602DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0602/Per0602InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0602/Per0602UpdatePop.jsp</result>
+        </action>
+        <!--Per0604 - -->
+        <action class="project.app.per.per0604.Per0604Action" method="{1}" name="0604/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0604/Per0604List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0604/Per0604DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0604/Per0604InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0604/Per0604UpdatePop.jsp</result>
+        </action>
+        <!--Per0606 - -->
+        <action class="project.app.per.per0606.Per0606Action" method="{1}" name="0606/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0606/Per0606List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0606/Per0606DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0606/Per0606InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0606/Per0606UpdatePop.jsp</result>
+        </action>
+        <!--Per0608 - -->
+        <action class="project.app.per.per0608.Per0608Action" method="{1}" name="0608/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0608/Per0608List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0608/Per0608DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0608/Per0608InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0608/Per0608UpdatePop.jsp</result>
+        </action>
+        <!--Per0802 - -->
+        <action class="project.app.per.per0802.Per0802Action" method="{1}" name="0802/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0802/Per0802List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0802/Per0802DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0802/Per0802InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0802/Per0802UpdatePop.jsp</result>
+        </action>
+        <!--Per0804 - -->
+        <action class="project.app.per.per0804.Per0804Action" method="{1}" name="0804/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0804/Per0804List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per0804/Per0804DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per0804/Per0804InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per0804/Per0804UpdatePop.jsp</result>
+        </action>
+        <!--Per1002 - -->
+        <action class="project.app.per.per1002.Per1002Action" method="{1}" name="1002/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per1002/Per1002List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/per/per1002/Per1002DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/per/per1002/Per1002InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/per/per1002/Per1002UpdatePop.jsp</result>
+        </action>
+    </package>
+</struts>

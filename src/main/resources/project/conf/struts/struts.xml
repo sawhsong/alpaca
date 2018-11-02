@@ -5,4 +5,12 @@
     <include file="project/conf/struts/struts-project-app-index.xml"/>
     <include file="project/conf/struts/struts-project-app-login.xml"/>
     <include file="project/conf/struts/struts-project-app-sys.xml"/>
+    <include file="project/conf/struts/struts-project-app-per.xml"/>
+    <include file="project/conf/struts/struts-project-app-org.xml"/>
+    <include file="project/conf/struts/struts-project-app-etc.xml"/>
+    <include file="project/conf/struts/struts-project-app-tms.xml"/>
+    <include file="project/conf/struts/struts-project-app-pay.xml"/>
+    <include file="project/conf/struts/struts-project-app-inv.xml"/>
+    <include file="project/conf/struts/struts-project-app-nav.xml"/>
+    <include file="project/conf/struts/struts-project-app-rpt.xml"/>
 </struts>

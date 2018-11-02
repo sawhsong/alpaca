@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <!--Per0202 - -->
+    <bean class="${name.package.project}.app.per.per0202.Per0202Action" id="per0202Action" name="per0202Action"/>
+    <bean class="${name.package.project}.app.per.per0202.Per0202BizImpl" id="per0202Biz" name="per0202Biz" parent="baseBiz"/>
+    <!--Per0204 - -->
+    <bean class="${name.package.project}.app.per.per0204.Per0204Action" id="per0204Action" name="per0204Action"/>
+    <bean class="${name.package.project}.app.per.per0204.Per0204BizImpl" id="per0204Biz" name="per0204Biz" parent="baseBiz"/>
+    <!--Per0206 - -->
+    <bean class="${name.package.project}.app.per.per0206.Per0206Action" id="per0206Action" name="per0206Action"/>
+    <bean class="${name.package.project}.app.per.per0206.Per0206BizImpl" id="per0206Biz" name="per0206Biz" parent="baseBiz"/>
+    <!--Per0208 - -->
+    <bean class="${name.package.project}.app.per.per0208.Per0208Action" id="per0208Action" name="per0208Action"/>
+    <bean class="${name.package.project}.app.per.per0208.Per0208BizImpl" id="per0208Biz" name="per0208Biz" parent="baseBiz"/>
+    <!--Per0210 - -->
+    <bean class="${name.package.project}.app.per.per0210.Per0210Action" id="per0210Action" name="per0210Action"/>
+    <bean class="${name.package.project}.app.per.per0210.Per0210BizImpl" id="per0210Biz" name="per0210Biz" parent="baseBiz"/>
+    <!--Per0402 - -->
+    <bean class="${name.package.project}.app.per.per0402.Per0402Action" id="per0402Action" name="per0402Action"/>
+    <bean class="${name.package.project}.app.per.per0402.Per0402BizImpl" id="per0402Biz" name="per0402Biz" parent="baseBiz"/>
+    <!--Per0404 - -->
+    <bean class="${name.package.project}.app.per.per0404.Per0404Action" id="per0404Action" name="per0404Action"/>
+    <bean class="${name.package.project}.app.per.per0404.Per0404BizImpl" id="per0404Biz" name="per0404Biz" parent="baseBiz"/>
+    <!--Per0406 - -->
+    <bean class="${name.package.project}.app.per.per0406.Per0406Action" id="per0406Action" name="per0406Action"/>
+    <bean class="${name.package.project}.app.per.per0406.Per0406BizImpl" id="per0406Biz" name="per0406Biz" parent="baseBiz"/>
+    <!--Per0408 - -->
+    <bean class="${name.package.project}.app.per.per0408.Per0408Action" id="per0408Action" name="per0408Action"/>
+    <bean class="${name.package.project}.app.per.per0408.Per0408BizImpl" id="per0408Biz" name="per0408Biz" parent="baseBiz"/>
+    <!--Per0410 - -->
+    <bean class="${name.package.project}.app.per.per0410.Per0410Action" id="per0410Action" name="per0410Action"/>
+    <bean class="${name.package.project}.app.per.per0410.Per0410BizImpl" id="per0410Biz" name="per0410Biz" parent="baseBiz"/>
+    <!--Per0412 - -->
+    <bean class="${name.package.project}.app.per.per0412.Per0412Action" id="per0412Action" name="per0412Action"/>
+    <bean class="${name.package.project}.app.per.per0412.Per0412BizImpl" id="per0412Biz" name="per0412Biz" parent="baseBiz"/>
+    <!--Per0414 - -->
+    <bean class="${name.package.project}.app.per.per0414.Per0414Action" id="per0414Action" name="per0414Action"/>
+    <bean class="${name.package.project}.app.per.per0414.Per0414BizImpl" id="per0414Biz" name="per0414Biz" parent="baseBiz"/>
+    <!--Per0416 - -->
+    <bean class="${name.package.project}.app.per.per0416.Per0416Action" id="per0416Action" name="per0416Action"/>
+    <bean class="${name.package.project}.app.per.per0416.Per0416BizImpl" id="per0416Biz" name="per0416Biz" parent="baseBiz"/>
+    <!--Per0602 - -->
+    <bean class="${name.package.project}.app.per.per0602.Per0602Action" id="per0602Action" name="per0602Action"/>
+    <bean class="${name.package.project}.app.per.per0602.Per0602BizImpl" id="per0602Biz" name="per0602Biz" parent="baseBiz"/>
+    <!--Per0604 - -->
+    <bean class="${name.package.project}.app.per.per0604.Per0604Action" id="per0604Action" name="per0604Action"/>
+    <bean class="${name.package.project}.app.per.per0604.Per0604BizImpl" id="per0604Biz" name="per0604Biz" parent="baseBiz"/>
+    <!--Per0606 - -->
+    <bean class="${name.package.project}.app.per.per0606.Per0606Action" id="per0606Action" name="per0606Action"/>
+    <bean class="${name.package.project}.app.per.per0606.Per0606BizImpl" id="per0606Biz" name="per0606Biz" parent="baseBiz"/>
+    <!--Per0608 - -->
+    <bean class="${name.package.project}.app.per.per0608.Per0608Action" id="per0608Action" name="per0608Action"/>
+    <bean class="${name.package.project}.app.per.per0608.Per0608BizImpl" id="per0608Biz" name="per0608Biz" parent="baseBiz"/>
+    <!--Per0802 - -->
+    <bean class="${name.package.project}.app.per.per0802.Per0802Action" id="per0802Action" name="per0802Action"/>
+    <bean class="${name.package.project}.app.per.per0802.Per0802BizImpl" id="per0802Biz" name="per0802Biz" parent="baseBiz"/>
+    <!--Per0804 - -->
+    <bean class="${name.package.project}.app.per.per0804.Per0804Action" id="per0804Action" name="per0804Action"/>
+    <bean class="${name.package.project}.app.per.per0804.Per0804BizImpl" id="per0804Biz" name="per0804Biz" parent="baseBiz"/>
+    <!--Per1002 - -->
+    <bean class="${name.package.project}.app.per.per1002.Per1002Action" id="per1002Action" name="per1002Action"/>
+    <bean class="${name.package.project}.app.per.per1002.Per1002BizImpl" id="per1002Biz" name="per1002Biz" parent="baseBiz"/>
+</beans>
