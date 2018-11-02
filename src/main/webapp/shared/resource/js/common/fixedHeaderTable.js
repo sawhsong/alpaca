@@ -34,7 +34,7 @@
 
 			var $scrollablePanel, attachToHeight = 0, isScrollbar = false, heightAdjustment = 0,
 				isPopup = $.nony.isPopup(), tableId = $(this).attr("id");
-			var systemGeneratedTableForFixedHeaderId = jsconfig.get("systemGeneratedTableForFixedHeaderId"+tableId) || "systemGeneratedTableForFixedHeader"+tableId+$.nony.getTimeStamp();
+			var systemGeneratedTableForFixedHeaderId = jsconfig.get("systemGeneratedTableForFixedHeaderId"+tableId) || "systemGeneratedTableForFixedHeader"+tableId;
 
 			$(options.attachTo).css("overflow", "auto");
 
@@ -295,7 +295,7 @@
 			}
 
 			/*!
-			 * Calculating height(pagingArea, attachTo
+			 * Calculating height(pagingArea, attachTo)
 			 */
 			var pagingAreaHeight = 0;
 			if ($(options.pagingArea).length > 0) {
