@@ -1,6 +1,8 @@
 /**
  * commonCodeInsertPop.js
  */
+var delimiter = jsconfig.get("dataDelimiter");
+
 $(function() {
 	/*!
 	 * event
@@ -16,8 +18,6 @@ $(function() {
 		}
 
 		$("#ulCommonCodeDetailHolder").find(".dummyDetail").each(function(groupIndex) {
-			var delimiter = jsconfig.get("dataDelimiter");
-
 			$(this).find(":input").each(function(index) {
 				var id = $(this).attr("id"), name = $(this).attr("name");
 
@@ -51,7 +51,7 @@ $(function() {
 	});
 
 	$("#btnAdd").click(function(event) {
-		var elem = $("#liDummy").clone(), delimiter = jsconfig.get("dataDelimiter"), elemId = $(elem).attr("id");
+		var elem = $("#liDummy").clone(), elemId = $(elem).attr("id");
 
 		$(elem).css("display", "block").appendTo($("#ulCommonCodeDetailHolder"));
 
@@ -95,6 +95,10 @@ $(function() {
 				}
 			});
 		});
+
+		$("#tblGrid").fixedHeaderTable({
+			attachTo:$("#divDataArea")
+		});
 	});
 
 	/*!
@@ -118,6 +122,7 @@ $(function() {
 						type:com.message.I000,
 						contents:result.message,
 						blind:true,
+						width:300,
 						buttons:[{
 							caption:com.caption.ok,
 							callback:function() {
@@ -140,7 +145,7 @@ $(function() {
 			stop:function() {
 				$("#ulCommonCodeDetailHolder").find(".dummyDetail").each(function(groupIndex) {
 					$(this).find("input").each(function(index) {
-						var id = $(this).attr("id"), name = $(this).attr("name"), delimiter = jsconfig.get("dataDelimiter");
+						var id = $(this).attr("id"), name = $(this).attr("name");
 
 						$(this).attr("id", id+delimiter+groupIndex).attr("name", name+delimiter+groupIndex);
 
@@ -165,6 +170,10 @@ $(function() {
 			$("#ulCommonCodeDetailHolder").find(".dummyDetail").each(function(index) {
 				if ($(this).attr("index") == $(obj).attr("index")) {
 					$(this).remove();
+
+					$("#tblGrid").fixedHeaderTable({
+						attachTo:$("#divDataArea")
+					});
 				}
 			});
 

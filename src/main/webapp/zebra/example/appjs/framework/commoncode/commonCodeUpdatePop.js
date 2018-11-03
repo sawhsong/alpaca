@@ -95,6 +95,10 @@ $(function() {
 				}
 			});
 		});
+
+		$("#tblGrid").fixedHeaderTable({
+			attachTo:$("#divDataArea")
+		});
 	});
 
 	/*!
@@ -119,6 +123,7 @@ $(function() {
 						type:com.message.I000,
 						contents:result.message,
 						blind:true,
+						width:300,
 						buttons:[{
 							caption:com.caption.ok,
 							callback:function() {
@@ -156,6 +161,23 @@ $(function() {
 		$("#ulCommonCodeDetailHolder").disableSelection();
 	};
 
+	addCodeDetails = function() {
+		for (var i=0; i<ds.getRowCnt(); i++) {
+			var rowIdx = 0;
+
+			if (i == masterRow) {continue;}
+
+			$("#btnAdd").trigger("click");
+			rowIdx = delimiter+(i-1);
+
+			$("[name=commonCodeDetail"+rowIdx+"]").val(ds.getValue(i, "COMMON_CODE"));
+			commonJs.setCheckboxValue("useYnDetail"+rowIdx, ds.getValue(i, "USE_YN"));
+			$("[name=descriptionEnDetail"+rowIdx+"]").val(ds.getValue(i, "DESCRIPTION_EN"));
+			$("[name=descriptionKoDetail"+rowIdx+"]").val(ds.getValue(i, "DESCRIPTION_KO"));
+			$("[name=sortOrderDetail"+rowIdx+"]").val(ds.getValue(i, "SORT_ORDER"));
+		}
+	};
+
 	/*!
 	 * load event (document / window)
 	 */
@@ -166,6 +188,10 @@ $(function() {
 			$("#ulCommonCodeDetailHolder").find(".dummyDetail").each(function(index) {
 				if ($(this).attr("index") == $(obj).attr("index")) {
 					$(this).remove();
+
+					$("#tblGrid").fixedHeaderTable({
+						attachTo:$("#divDataArea")
+					});
 				}
 			});
 
@@ -184,5 +210,23 @@ $(function() {
 		parent.popup.setHeader(framework.header.popHeaderEdit);
 		$("#codeTypeMaster").focus();
 		setSortable();
+
+		setTimeout(function() {
+			commonJs.showProcMessageOnElement("divScrollablePanelPopup");
+		}, 200);
+
+		setTimeout(function() {
+			$("#tblGrid").fixedHeaderTable({
+				attachTo:$("#divDataArea")
+			});
+		}, 400);
+
+		setTimeout(function() {
+			addCodeDetails();
+		}, 600);
+
+		setTimeout(function() {
+			commonJs.hideProcMessageOnElement("divScrollablePanelPopup");
+		}, 800);
 	});
 });
