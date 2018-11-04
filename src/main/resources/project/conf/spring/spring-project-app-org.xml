@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <!--Org0202 - Organisation Profile-->
+    <bean class="${name.package.project}.app.org.org0202.Org0202Action" id="org0202Action" name="org0202Action"/>
+    <bean class="${name.package.project}.app.org.org0202.Org0202BizImpl" id="org0202Biz" name="org0202Biz" parent="baseBiz"/>
+    <!--Org0204 - Contact-->
+    <bean class="${name.package.project}.app.org.org0204.Org0204Action" id="org0204Action" name="org0204Action"/>
+    <bean class="${name.package.project}.app.org.org0204.Org0204BizImpl" id="org0204Biz" name="org0204Biz" parent="baseBiz"/>
+    <!--Org0206 - Employee-->
+    <bean class="${name.package.project}.app.org.org0206.Org0206Action" id="org0206Action" name="org0206Action"/>
+    <bean class="${name.package.project}.app.org.org0206.Org0206BizImpl" id="org0206Biz" name="org0206Biz" parent="baseBiz"/>
+    <!--Org0208 - Document-->
+    <bean class="${name.package.project}.app.org.org0208.Org0208Action" id="org0208Action" name="org0208Action"/>
+    <bean class="${name.package.project}.app.org.org0208.Org0208BizImpl" id="org0208Biz" name="org0208Biz" parent="baseBiz"/>
+    <!--Org0210 - Communication-->
+    <bean class="${name.package.project}.app.org.org0210.Org0210Action" id="org0210Action" name="org0210Action"/>
+    <bean class="${name.package.project}.app.org.org0210.Org0210BizImpl" id="org0210Biz" name="org0210Biz" parent="baseBiz"/>
+    <!--Org0212 - Next Action-->
+    <bean class="${name.package.project}.app.org.org0212.Org0212Action" id="org0212Action" name="org0212Action"/>
+    <bean class="${name.package.project}.app.org.org0212.Org0212BizImpl" id="org0212Biz" name="org0212Biz" parent="baseBiz"/>
+    <!--Org0214 - Templated Document-->
+    <bean class="${name.package.project}.app.org.org0214.Org0214Action" id="org0214Action" name="org0214Action"/>
+    <bean class="${name.package.project}.app.org.org0214.Org0214BizImpl" id="org0214Biz" name="org0214Biz" parent="baseBiz"/>
+    <!--Org0216 - Portal-->
+    <bean class="${name.package.project}.app.org.org0216.Org0216Action" id="org0216Action" name="org0216Action"/>
+    <bean class="${name.package.project}.app.org.org0216.Org0216BizImpl" id="org0216Biz" name="org0216Biz" parent="baseBiz"/>
+    <!--Org0218 - Work Cover-->
+    <bean class="${name.package.project}.app.org.org0218.Org0218Action" id="org0218Action" name="org0218Action"/>
+    <bean class="${name.package.project}.app.org.org0218.Org0218BizImpl" id="org0218Biz" name="org0218Biz" parent="baseBiz"/>
+    <!--Org0220 - Payroll Tax-->
+    <bean class="${name.package.project}.app.org.org0220.Org0220Action" id="org0220Action" name="org0220Action"/>
+    <bean class="${name.package.project}.app.org.org0220.Org0220BizImpl" id="org0220Biz" name="org0220Biz" parent="baseBiz"/>
+    <!--Org0402 - Assignment-->
+    <bean class="${name.package.project}.app.org.org0402.Org0402Action" id="org0402Action" name="org0402Action"/>
+    <bean class="${name.package.project}.app.org.org0402.Org0402BizImpl" id="org0402Biz" name="org0402Biz" parent="baseBiz"/>
+    <!--Org0404 - Service-->
+    <bean class="${name.package.project}.app.org.org0404.Org0404Action" id="org0404Action" name="org0404Action"/>
+    <bean class="${name.package.project}.app.org.org0404.Org0404BizImpl" id="org0404Biz" name="org0404Biz" parent="baseBiz"/>
+    <!--Org0602 - Company Info-->
+    <bean class="${name.package.project}.app.org.org0602.Org0602Action" id="org0602Action" name="org0602Action"/>
+    <bean class="${name.package.project}.app.org.org0602.Org0602BizImpl" id="org0602Biz" name="org0602Biz" parent="baseBiz"/>
+    <!--Org0604 - Business Sponsorship-->
+    <bean class="${name.package.project}.app.org.org0604.Org0604Action" id="org0604Action" name="org0604Action"/>
+    <bean class="${name.package.project}.app.org.org0604.Org0604BizImpl" id="org0604Biz" name="org0604Biz" parent="baseBiz"/>
+    <!--Org0606 - DIMIA Contact-->
+    <bean class="${name.package.project}.app.org.org0606.Org0606Action" id="org0606Action" name="org0606Action"/>
+    <bean class="${name.package.project}.app.org.org0606.Org0606BizImpl" id="org0606Biz" name="org0606Biz" parent="baseBiz"/>
+    <!--Org0802 - GTM Stage-->
+    <bean class="${name.package.project}.app.org.org0802.Org0802Action" id="org0802Action" name="org0802Action"/>
+    <bean class="${name.package.project}.app.org.org0802.Org0802BizImpl" id="org0802Biz" name="org0802Biz" parent="baseBiz"/>
+    <!--Org0804 - GTM Contact-->
+    <bean class="${name.package.project}.app.org.org0804.Org0804Action" id="org0804Action" name="org0804Action"/>
+    <bean class="${name.package.project}.app.org.org0804.Org0804BizImpl" id="org0804Biz" name="org0804Biz" parent="baseBiz"/>
+</beans>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <!--Nav0202 - NAV Sync Log-->
+    <bean class="${name.package.project}.app.nav.nav0202.Nav0202Action" id="nav0202Action" name="nav0202Action"/>
+    <bean class="${name.package.project}.app.nav.nav0202.Nav0202BizImpl" id="nav0202Biz" name="nav0202Biz" parent="baseBiz"/>
+    <!--Nav0204 - SI/CR Status-->
+    <bean class="${name.package.project}.app.nav.nav0204.Nav0204Action" id="nav0204Action" name="nav0204Action"/>
+    <bean class="${name.package.project}.app.nav.nav0204.Nav0204BizImpl" id="nav0204Biz" name="nav0204Biz" parent="baseBiz"/>
+    <!--Nav0402 - Invoice/Resource-->
+    <bean class="${name.package.project}.app.nav.nav0402.Nav0402Action" id="nav0402Action" name="nav0402Action"/>
+    <bean class="${name.package.project}.app.nav.nav0402.Nav0402BizImpl" id="nav0402Biz" name="nav0402Biz" parent="baseBiz"/>
+    <!--Nav0602 - Invoice/Customer-->
+    <bean class="${name.package.project}.app.nav.nav0602.Nav0602Action" id="nav0602Action" name="nav0602Action"/>
+    <bean class="${name.package.project}.app.nav.nav0602.Nav0602BizImpl" id="nav0602Biz" name="nav0602Biz" parent="baseBiz"/>
+    <!--Nav0604 - GL Journal-->
+    <bean class="${name.package.project}.app.nav.nav0604.Nav0604Action" id="nav0604Action" name="nav0604Action"/>
+    <bean class="${name.package.project}.app.nav.nav0604.Nav0604BizImpl" id="nav0604Biz" name="nav0604Biz" parent="baseBiz"/>
+    <!--Nav0802 - Invoice/Resource/Customer/Vendor-->
+    <bean class="${name.package.project}.app.nav.nav0802.Nav0802Action" id="nav0802Action" name="nav0802Action"/>
+    <bean class="${name.package.project}.app.nav.nav0802.Nav0802BizImpl" id="nav0802Biz" name="nav0802Biz" parent="baseBiz"/>
+    <!--Nav1002 - Calculation-->
+    <bean class="${name.package.project}.app.nav.nav1002.Nav1002Action" id="nav1002Action" name="nav1002Action"/>
+    <bean class="${name.package.project}.app.nav.nav1002.Nav1002BizImpl" id="nav1002Biz" name="nav1002Biz" parent="baseBiz"/>
+    <!--Nav1004 - Summary-->
+    <bean class="${name.package.project}.app.nav.nav1004.Nav1004Action" id="nav1004Action" name="nav1004Action"/>
+    <bean class="${name.package.project}.app.nav.nav1004.Nav1004BizImpl" id="nav1004Biz" name="nav1004Biz" parent="baseBiz"/>
+</beans>

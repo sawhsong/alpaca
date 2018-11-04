@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package extends="default" name="org" namespace="/org" strict-method-invocation="false">
+        <default-interceptor-ref name="ZebraDefaultStack"/>
+        <!--Org0202 - Organisation Profile-->
+        <action class="project.app.org.org0202.Org0202Action" method="{1}" name="0202/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0202/Org0202List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0202/Org0202DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0202/Org0202InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0202/Org0202UpdatePop.jsp</result>
+        </action>
+        <!--Org0204 - Contact-->
+        <action class="project.app.org.org0204.Org0204Action" method="{1}" name="0204/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0204/Org0204List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0204/Org0204DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0204/Org0204InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0204/Org0204UpdatePop.jsp</result>
+        </action>
+        <!--Org0206 - Employee-->
+        <action class="project.app.org.org0206.Org0206Action" method="{1}" name="0206/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0206/Org0206List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0206/Org0206DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0206/Org0206InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0206/Org0206UpdatePop.jsp</result>
+        </action>
+        <!--Org0208 - Document-->
+        <action class="project.app.org.org0208.Org0208Action" method="{1}" name="0208/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0208/Org0208List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0208/Org0208DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0208/Org0208InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0208/Org0208UpdatePop.jsp</result>
+        </action>
+        <!--Org0210 - Communication-->
+        <action class="project.app.org.org0210.Org0210Action" method="{1}" name="0210/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0210/Org0210List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0210/Org0210DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0210/Org0210InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0210/Org0210UpdatePop.jsp</result>
+        </action>
+        <!--Org0212 - Next Action-->
+        <action class="project.app.org.org0212.Org0212Action" method="{1}" name="0212/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0212/Org0212List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0212/Org0212DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0212/Org0212InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0212/Org0212UpdatePop.jsp</result>
+        </action>
+        <!--Org0214 - Templated Document-->
+        <action class="project.app.org.org0214.Org0214Action" method="{1}" name="0214/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0214/Org0214List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0214/Org0214DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0214/Org0214InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0214/Org0214UpdatePop.jsp</result>
+        </action>
+        <!--Org0216 - Portal-->
+        <action class="project.app.org.org0216.Org0216Action" method="{1}" name="0216/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0216/Org0216List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0216/Org0216DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0216/Org0216InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0216/Org0216UpdatePop.jsp</result>
+        </action>
+        <!--Org0218 - Work Cover-->
+        <action class="project.app.org.org0218.Org0218Action" method="{1}" name="0218/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0218/Org0218List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0218/Org0218DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0218/Org0218InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0218/Org0218UpdatePop.jsp</result>
+        </action>
+        <!--Org0220 - Payroll Tax-->
+        <action class="project.app.org.org0220.Org0220Action" method="{1}" name="0220/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0220/Org0220List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0220/Org0220DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0220/Org0220InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0220/Org0220UpdatePop.jsp</result>
+        </action>
+        <!--Org0402 - Assignment-->
+        <action class="project.app.org.org0402.Org0402Action" method="{1}" name="0402/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0402/Org0402List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0402/Org0402DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0402/Org0402InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0402/Org0402UpdatePop.jsp</result>
+        </action>
+        <!--Org0404 - Service-->
+        <action class="project.app.org.org0404.Org0404Action" method="{1}" name="0404/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0404/Org0404List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0404/Org0404DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0404/Org0404InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0404/Org0404UpdatePop.jsp</result>
+        </action>
+        <!--Org0602 - Company Info-->
+        <action class="project.app.org.org0602.Org0602Action" method="{1}" name="0602/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0602/Org0602List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0602/Org0602DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0602/Org0602InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0602/Org0602UpdatePop.jsp</result>
+        </action>
+        <!--Org0604 - Business Sponsorship-->
+        <action class="project.app.org.org0604.Org0604Action" method="{1}" name="0604/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0604/Org0604List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0604/Org0604DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0604/Org0604InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0604/Org0604UpdatePop.jsp</result>
+        </action>
+        <!--Org0606 - DIMIA Contact-->
+        <action class="project.app.org.org0606.Org0606Action" method="{1}" name="0606/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0606/Org0606List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0606/Org0606DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0606/Org0606InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0606/Org0606UpdatePop.jsp</result>
+        </action>
+        <!--Org0802 - GTM Stage-->
+        <action class="project.app.org.org0802.Org0802Action" method="{1}" name="0802/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0802/Org0802List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0802/Org0802DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0802/Org0802InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0802/Org0802UpdatePop.jsp</result>
+        </action>
+        <!--Org0804 - GTM Contact-->
+        <action class="project.app.org.org0804.Org0804Action" method="{1}" name="0804/*">
+            <result name="list" type="debugDispatcherResult">/project/app/org/org0804/Org0804List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/org/org0804/Org0804DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/org/org0804/Org0804InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/org/org0804/Org0804UpdatePop.jsp</result>
+        </action>
+    </package>
+</struts>

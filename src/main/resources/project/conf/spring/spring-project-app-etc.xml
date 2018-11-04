@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <!--Etc0202 - Opportunity-->
+    <bean class="${name.package.project}.app.etc.etc0202.Etc0202Action" id="etc0202Action" name="etc0202Action"/>
+    <bean class="${name.package.project}.app.etc.etc0202.Etc0202BizImpl" id="etc0202Biz" name="etc0202Biz" parent="baseBiz"/>
+    <!--Etc0204 - Manage Opportunity-->
+    <bean class="${name.package.project}.app.etc.etc0204.Etc0204Action" id="etc0204Action" name="etc0204Action"/>
+    <bean class="${name.package.project}.app.etc.etc0204.Etc0204BizImpl" id="etc0204Biz" name="etc0204Biz" parent="baseBiz"/>
+    <!--Etc0206 - My Opportunity-->
+    <bean class="${name.package.project}.app.etc.etc0206.Etc0206Action" id="etc0206Action" name="etc0206Action"/>
+    <bean class="${name.package.project}.app.etc.etc0206.Etc0206BizImpl" id="etc0206Biz" name="etc0206Biz" parent="baseBiz"/>
+    <!--Etc0402 - My Next Action-->
+    <bean class="${name.package.project}.app.etc.etc0402.Etc0402Action" id="etc0402Action" name="etc0402Action"/>
+    <bean class="${name.package.project}.app.etc.etc0402.Etc0402BizImpl" id="etc0402Biz" name="etc0402Biz" parent="baseBiz"/>
+    <!--Etc0602 - Document Followup-->
+    <bean class="${name.package.project}.app.etc.etc0602.Etc0602Action" id="etc0602Action" name="etc0602Action"/>
+    <bean class="${name.package.project}.app.etc.etc0602.Etc0602BizImpl" id="etc0602Biz" name="etc0602Biz" parent="baseBiz"/>
+    <!--Etc0802 - TFN Declaration Reports-->
+    <bean class="${name.package.project}.app.etc.etc0802.Etc0802Action" id="etc0802Action" name="etc0802Action"/>
+    <bean class="${name.package.project}.app.etc.etc0802.Etc0802BizImpl" id="etc0802Biz" name="etc0802Biz" parent="baseBiz"/>
+    <!--Etc1002 - STP Pay Event-->
+    <bean class="${name.package.project}.app.etc.etc1002.Etc1002Action" id="etc1002Action" name="etc1002Action"/>
+    <bean class="${name.package.project}.app.etc.etc1002.Etc1002BizImpl" id="etc1002Biz" name="etc1002Biz" parent="baseBiz"/>
+    <!--Etc1004 - STP Update Event-->
+    <bean class="${name.package.project}.app.etc.etc1004.Etc1004Action" id="etc1004Action" name="etc1004Action"/>
+    <bean class="${name.package.project}.app.etc.etc1004.Etc1004BizImpl" id="etc1004Biz" name="etc1004Biz" parent="baseBiz"/>
+    <!--Etc1202 - GTM Commission-->
+    <bean class="${name.package.project}.app.etc.etc1202.Etc1202Action" id="etc1202Action" name="etc1202Action"/>
+    <bean class="${name.package.project}.app.etc.etc1202.Etc1202BizImpl" id="etc1202Biz" name="etc1202Biz" parent="baseBiz"/>
+    <!--Etc1402 - Portal Message-->
+    <bean class="${name.package.project}.app.etc.etc1402.Etc1402Action" id="etc1402Action" name="etc1402Action"/>
+    <bean class="${name.package.project}.app.etc.etc1402.Etc1402BizImpl" id="etc1402Biz" name="etc1402Biz" parent="baseBiz"/>
+    <!--Etc1404 - Timesheet-->
+    <bean class="${name.package.project}.app.etc.etc1404.Etc1404Action" id="etc1404Action" name="etc1404Action"/>
+    <bean class="${name.package.project}.app.etc.etc1404.Etc1404BizImpl" id="etc1404Biz" name="etc1404Biz" parent="baseBiz"/>
+    <!--Etc1406 - Person Setup-->
+    <bean class="${name.package.project}.app.etc.etc1406.Etc1406Action" id="etc1406Action" name="etc1406Action"/>
+    <bean class="${name.package.project}.app.etc.etc1406.Etc1406BizImpl" id="etc1406Biz" name="etc1406Biz" parent="baseBiz"/>
+    <!--Etc9902 - Announcement-->
+    <bean class="${name.package.project}.app.etc.etc9902.Etc9902Action" id="etc9902Action" name="etc9902Action"/>
+    <bean class="${name.package.project}.app.etc.etc9902.Etc9902BizImpl" id="etc9902Biz" name="etc9902Biz" parent="baseBiz"/>
+    <!--Etc9904 - Free Board-->
+    <bean class="${name.package.project}.app.etc.etc9904.Etc9904Action" id="etc9904Action" name="etc9904Action"/>
+    <bean class="${name.package.project}.app.etc.etc9904.Etc9904BizImpl" id="etc9904Biz" name="etc9904Biz" parent="baseBiz"/>
+</beans>

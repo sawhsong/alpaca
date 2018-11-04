@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package extends="default" name="etc" namespace="/etc" strict-method-invocation="false">
+        <default-interceptor-ref name="ZebraDefaultStack"/>
+        <!--Etc0202 - Opportunity-->
+        <action class="project.app.etc.etc0202.Etc0202Action" method="{1}" name="0202/*">
+            <result name="list" type="debugDispatcherResult">/project/app/etc/etc0202/Etc0202List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/etc/etc0202/Etc0202DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/etc/etc0202/Etc0202InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/etc/etc0202/Etc0202UpdatePop.jsp</result>
+        </action>
+        <!--Etc0204 - Manage Opportunity-->
+        <action class="project.app.etc.etc0204.Etc0204Action" method="{1}" name="0204/*">
+            <result name="list" type="debugDispatcherResult">/project/app/etc/etc0204/Etc0204List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/etc/etc0204/Etc0204DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/etc/etc0204/Etc0204InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/etc/etc0204/Etc0204UpdatePop.jsp</result>
+        </action>
+        <!--Etc0206 - My Opportunity-->
+        <action class="project.app.etc.etc0206.Etc0206Action" method="{1}" name="0206/*">
+            <result name="list" type="debugDispatcherResult">/project/app/etc/etc0206/Etc0206List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/etc/etc0206/Etc0206DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/etc/etc0206/Etc0206InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/etc/etc0206/Etc0206UpdatePop.jsp</result>
+        </action>
+        <!--Etc0402 - My Next Action-->
+        <action class="project.app.etc.etc0402.Etc0402Action" method="{1}" name="0402/*">
+            <result name="list" type="debugDispatcherResult">/project/app/etc/etc0402/Etc0402List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/etc/etc0402/Etc0402DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/etc/etc0402/Etc0402InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/etc/etc0402/Etc0402UpdatePop.jsp</result>
+        </action>
+        <!--Etc0602 - Document Followup-->
+        <action class="project.app.etc.etc0602.Etc0602Action" method="{1}" name="0602/*">
+            <result name="list" type="debugDispatcherResult">/project/app/etc/etc0602/Etc0602List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/etc/etc0602/Etc0602DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/etc/etc0602/Etc0602InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/etc/etc0602/Etc0602UpdatePop.jsp</result>
+        </action>
+        <!--Etc0802 - TFN Declaration Reports-->
+        <action class="project.app.etc.etc0802.Etc0802Action" method="{1}" name="0802/*">
+            <result name="list" type="debugDispatcherResult">/project/app/etc/etc0802/Etc0802List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/etc/etc0802/Etc0802DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/etc/etc0802/Etc0802InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/etc/etc0802/Etc0802UpdatePop.jsp</result>
+        </action>
+        <!--Etc1002 - STP Pay Event-->
+        <action class="project.app.etc.etc1002.Etc1002Action" method="{1}" name="1002/*">
+            <result name="list" type="debugDispatcherResult">/project/app/etc/etc1002/Etc1002List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/etc/etc1002/Etc1002DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/etc/etc1002/Etc1002InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/etc/etc1002/Etc1002UpdatePop.jsp</result>
+        </action>
+        <!--Etc1004 - STP Update Event-->
+        <action class="project.app.etc.etc1004.Etc1004Action" method="{1}" name="1004/*">
+            <result name="list" type="debugDispatcherResult">/project/app/etc/etc1004/Etc1004List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/etc/etc1004/Etc1004DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/etc/etc1004/Etc1004InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/etc/etc1004/Etc1004UpdatePop.jsp</result>
+        </action>
+        <!--Etc1202 - GTM Commission-->
+        <action class="project.app.etc.etc1202.Etc1202Action" method="{1}" name="1202/*">
+            <result name="list" type="debugDispatcherResult">/project/app/etc/etc1202/Etc1202List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/etc/etc1202/Etc1202DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/etc/etc1202/Etc1202InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/etc/etc1202/Etc1202UpdatePop.jsp</result>
+        </action>
+        <!--Etc1402 - Portal Message-->
+        <action class="project.app.etc.etc1402.Etc1402Action" method="{1}" name="1402/*">
+            <result name="list" type="debugDispatcherResult">/project/app/etc/etc1402/Etc1402List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/etc/etc1402/Etc1402DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/etc/etc1402/Etc1402InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/etc/etc1402/Etc1402UpdatePop.jsp</result>
+        </action>
+        <!--Etc1404 - Timesheet-->
+        <action class="project.app.etc.etc1404.Etc1404Action" method="{1}" name="1404/*">
+            <result name="list" type="debugDispatcherResult">/project/app/etc/etc1404/Etc1404List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/etc/etc1404/Etc1404DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/etc/etc1404/Etc1404InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/etc/etc1404/Etc1404UpdatePop.jsp</result>
+        </action>
+        <!--Etc1406 - Person Setup-->
+        <action class="project.app.etc.etc1406.Etc1406Action" method="{1}" name="1406/*">
+            <result name="list" type="debugDispatcherResult">/project/app/etc/etc1406/Etc1406List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/etc/etc1406/Etc1406DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/etc/etc1406/Etc1406InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/etc/etc1406/Etc1406UpdatePop.jsp</result>
+        </action>
+        <!--Etc9902 - Announcement-->
+        <action class="project.app.etc.etc9902.Etc9902Action" method="{1}" name="9902/*">
+            <result name="list" type="debugDispatcherResult">/project/app/etc/etc9902/Etc9902List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/etc/etc9902/Etc9902DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/etc/etc9902/Etc9902InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/etc/etc9902/Etc9902UpdatePop.jsp</result>
+        </action>
+        <!--Etc9904 - Free Board-->
+        <action class="project.app.etc.etc9904.Etc9904Action" method="{1}" name="9904/*">
+            <result name="list" type="debugDispatcherResult">/project/app/etc/etc9904/Etc9904List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/etc/etc9904/Etc9904DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/etc/etc9904/Etc9904InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/etc/etc9904/Etc9904UpdatePop.jsp</result>
+        </action>
+    </package>
+</struts>
