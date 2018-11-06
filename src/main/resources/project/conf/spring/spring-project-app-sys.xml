@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <!--Sys0202 - Common Code-->
+    <bean class="${name.package.project}.app.sys.sys0202.Sys0202Action" id="sys0202Action" name="sys0202Action"/>
+    <bean class="${name.package.project}.app.sys.sys0202.Sys0202BizImpl" id="sys0202Biz" name="sys0202Biz" parent="baseBiz"/>
+    <!--Sys0204 - Country / Currency-->
+    <bean class="${name.package.project}.app.sys.sys0204.Sys0204Action" id="sys0204Action" name="sys0204Action"/>
+    <bean class="${name.package.project}.app.sys.sys0204.Sys0204BizImpl" id="sys0204Biz" name="sys0204Biz" parent="baseBiz"/>
+    <!--Sys0402 - Menu-->
+    <bean class="${name.package.project}.app.sys.sys0402.Sys0402Action" id="sys0402Action" name="sys0402Action"/>
+    <bean class="${name.package.project}.app.sys.sys0402.Sys0402BizImpl" id="sys0402Biz" name="sys0402Biz" parent="baseBiz"/>
+</beans>

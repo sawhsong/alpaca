@@ -7,6 +7,12 @@ import zebra.data.QueryAdvisor;
 
 public interface SysCommonCodeDao extends IDao {
 	/**
+	 * Get all active code type
+	 * @return DataSet
+	 * @throws Exception
+	 */
+	public DataSet getActiveCodeTypeDataSetLikeCodeType(String codeType) throws Exception;
+	/**
 	 * Insert new CommonCode record
 	 * @param dto
 	 * @return int

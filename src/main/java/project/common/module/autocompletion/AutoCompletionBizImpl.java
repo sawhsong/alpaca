@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
+import project.conf.resource.ormapper.dao.SysCommonCode.SysCommonCodeDao;
 import project.conf.resource.ormapper.dao.SysCountryCurrency.SysCountryCurrencyDao;
 import project.conf.resource.ormapper.dao.SysUser.SysUserDao;
 import zebra.data.DataSet;
@@ -15,9 +16,24 @@ import zebra.util.CommonUtil;
 
 public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz {
 	@Autowired
+	private SysCommonCodeDao sysCommonCodeDao;
+	@Autowired
 	private SysUserDao sysUserDao;
 	@Autowired
 	private SysCountryCurrencyDao sysCountryCurrencyDao;
+
+	public ParamEntity getCommonCodeType(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		String inputValue = requestDataSet.getValue("inputValue");
+
+		try {
+			paramEntity.setAjaxResponseDataSet(sysCommonCodeDao.getActiveCodeTypeDataSetLikeCodeType(inputValue));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
 
 	public ParamEntity getUserId(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();

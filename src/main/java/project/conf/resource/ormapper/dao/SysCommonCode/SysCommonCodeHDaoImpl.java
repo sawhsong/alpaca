@@ -31,24 +31,24 @@ public class SysCommonCodeHDaoImpl extends BaseHDao implements SysCommonCodeDao 
 
 	public DataSet getAllActiveCommonCode() throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
-		SysCommonCode SysCommonCode = new SysCommonCode();
+		SysCommonCode sysCommonCode = new SysCommonCode();
 
 		queryAdvisor.addWhereClause("is_active = 'Y'");
 		queryAdvisor.addOrderByClause("code_type");
 		queryAdvisor.addOrderByClause("sort_order");
 
-		return selectAllAsDataSet(queryAdvisor, SysCommonCode);
+		return selectAllAsDataSet(queryAdvisor, sysCommonCode);
 	}
 
 	public DataSet getActiveCodeTypeDataSet() throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
-		SysCommonCode SysCommonCode = new SysCommonCode();
+		SysCommonCode sysCommonCode = new SysCommonCode();
 
 		queryAdvisor.addWhereClause("is_active = 'Y'");
 		queryAdvisor.addWhereClause("common_code = '0000000000'");
 		queryAdvisor.addOrderByClause("code_type");
 
-		return selectAllAsDataSet(queryAdvisor, SysCommonCode);
+		return selectAllAsDataSet(queryAdvisor, sysCommonCode);
 	}
 
 	public DataSet getActiveCommonCodeDataSet(QueryAdvisor queryAdvisor) throws Exception {
@@ -61,11 +61,23 @@ public class SysCommonCodeHDaoImpl extends BaseHDao implements SysCommonCodeDao 
 
 	public DataSet getCommonCodeDataSetByCodeType(String codeType) throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
-		SysCommonCode SysCommonCode = new SysCommonCode();
+		SysCommonCode sysCommonCode = new SysCommonCode();
 
 		queryAdvisor.addWhereClause("code_type = '"+codeType+"'");
 		queryAdvisor.addOrderByClause("sort_order");
 
-		return selectAllAsDataSet(queryAdvisor, SysCommonCode);
+		return selectAllAsDataSet(queryAdvisor, sysCommonCode);
+	}
+
+	public DataSet getActiveCodeTypeDataSetLikeCodeType(String codeType) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		SysCommonCode sysCommonCode = new SysCommonCode();
+
+		queryAdvisor.addWhereClause("is_active = 'Y'");
+		queryAdvisor.addWhereClause("lower(code_type) like lower('%"+codeType+"%')");
+		queryAdvisor.addWhereClause("common_code = '0000000000'");
+		queryAdvisor.addOrderByClause("code_type");
+
+		return selectAllAsDataSet(queryAdvisor, sysCommonCode);
 	}
 }
