@@ -20,11 +20,13 @@ var login = {
  * Sub System - sys
  */
 var sys = {
-	caption:{
-	},
-	header:{
-		popHeaderSort:"Edit Sort Order"
-	},
-	message:{
+	sys0402:{
+		caption:{
+		},
+		header:{
+			popHeaderSort:"Edit Sort Order"
+		},
+		message:{
+		}
 	}
 };

@@ -20,11 +20,13 @@ var login = {
  * Sub System - sys
  */
 var sys = {
-	caption:{
-	},
-	header:{
-		popHeaderSort:"정렬순서 수정"
-	},
-	message:{
+	sys0402:{
+		caption:{
+		},
+		header:{
+			popHeaderSort:"정렬순서 조정"
+		},
+		message:{
+		}
 	}
 };
