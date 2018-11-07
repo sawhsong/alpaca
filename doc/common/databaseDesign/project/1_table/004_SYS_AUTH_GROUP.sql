@@ -40,9 +40,9 @@ delete sys_auth_group;
 
 insert into sys_auth_group values('0', 'System Admin',         'System Administrator',          'Y',    '0',    sysdate,    null,     null);
 insert into sys_auth_group values('1', 'General Admin',        'General Administrator',         'Y',    '0',    sysdate,    null,     null);
-insert into sys_auth_group values('2', 'Dep Representative 1', 'Dep Representative 1',          'Y',    '0',    sysdate,    null,     null);
-insert into sys_auth_group values('3', 'Dep Representative 2', 'Dep Representative 2',          'Y',    '0',    sysdate,    null,     null);
-insert into sys_auth_group values('4', 'Dep Representative 3', 'Dep Representative 3',          'Y',    '0',    sysdate,    null,     null);
+insert into sys_auth_group values('2', 'Department Manager 1', 'Department Manager 1',          'Y',    '0',    sysdate,    null,     null);
+insert into sys_auth_group values('3', 'Department Manager 2', 'Department Manager 2',          'Y',    '0',    sysdate,    null,     null);
+insert into sys_auth_group values('4', 'Department Manager 3', 'Department Manager 3',          'Y',    '0',    sysdate,    null,     null);
 insert into sys_auth_group values('5', 'General User 1',       'General User 1',                'Y',    '0',    sysdate,    null,     null);
 insert into sys_auth_group values('6', 'General User 2',       'General User 2',                'Y',    '0',    sysdate,    null,     null);
 insert into sys_auth_group values('7', 'General User 3',       'General User 3',                'Y',    '0',    sysdate,    null,     null);
