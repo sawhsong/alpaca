@@ -60,24 +60,27 @@
 	</div>
 </div>
 <div id="divSearchCriteriaArea" class="areaContainer">
-	<table class="tblSearch">
-		<caption><mc:msg key="page.com.searchCriteria"/></caption>
-		<tr>
-			<td class="tdSearch">
-				<label for="searchMenu" class="lblEn hor"><mc:msg key="sys0402.search.searchType"/></label>
-				<ui:select name="searchMenu">
-					<ui:seloption value="" text="==Select=="/>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<table class="tblDefault">
+				<tr>
+					<td class="tdDefault">
+						<label for="searchMenu" class="lblEn hor"><mc:msg key="sys0402.search.searchType"/></label>
+						<ui:select name="searchMenu">
+							<ui:seloption value="" text="==Select=="/>
 <%
-				for (int i=0; i<menuDataSet.getRowCnt(); i++) {
+						for (int i=0; i<menuDataSet.getRowCnt(); i++) {
 %>
-					<option value="<%=menuDataSet.getValue(i, "MENU_ID")%>"><%=menuDataSet.getValue(i, "MENU_NAME_"+langCode)%>(<%=menuDataSet.getValue(i, "MENU_ID")%>)</option>
+							<option value="<%=menuDataSet.getValue(i, "MENU_ID")%>"><%=menuDataSet.getValue(i, "MENU_NAME_"+langCode)%>(<%=menuDataSet.getValue(i, "MENU_ID")%>)</option>
 <%
-				}
+						}
 %>
-				</ui:select>
-			</td>
-		</tr>
-	</table>
+						</ui:select>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </div>
 <div id="divInformArea"></div>
 <%/************************************************************************************************
