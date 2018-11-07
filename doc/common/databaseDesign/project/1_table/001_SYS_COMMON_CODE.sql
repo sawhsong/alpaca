@@ -56,6 +56,10 @@ insert into sys_common_code values('USE_YN', '0000000000', 'Is Used',    '사용
 insert into sys_common_code values('USE_YN', 'Y',          'Use',        '사용',     'Use',        'USE_YN_Y',          '001',   'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('USE_YN', 'N',          'Not in Use', '미사용',   'Not Use',    'USE_YN_N',          '002',   'Y', 'Y', '0', sysdate, null, null);
 
+insert into sys_common_code values('IS_ACTIVE', '0000000000', 'Is Active',    'Is Active', 'Is Active', 'IS_ACTIVE_0000000000', '000',   'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('IS_ACTIVE', 'Y',          'Active',       'Active',    'Active',    'IS_ACTIVE_Y',          '001',   'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('IS_ACTIVE', 'N',          'Inactive',     'Inactive',  'Inactive',  'IS_ACTIVE_N',          '002',   'Y', 'Y', '0', sysdate, null, null);
+
 insert into sys_common_code values('LANGUAGE_TYPE', '0000000000', 'Language Type', '언어타입',  'Language Type', 'LANGUAGE_TYPE_0000000000', '000', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('LANGUAGE_TYPE', 'EN',         'English',       '영어',      'English',       'LANGUAGE_TYPE_EN',         '001', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('LANGUAGE_TYPE', 'KO',         'Korean',        '한국어',    'Korean',        'LANGUAGE_TYPE_KO',         '002', 'Y', 'Y', '0', sysdate, null, null);
