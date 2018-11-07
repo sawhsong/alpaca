@@ -90,12 +90,11 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
 
 				var uiAnc = new UiAnchor();
-				uiAnc.setText(dataSet.getValue(i, "CODE_TYPE")).setScript("getDetail('"+dataSet.getValue(i, "CODE_TYPE")+"')");
+				uiAnc.setText(commonJs.abbreviate(dataSet.getValue(i, "CODE_TYPE"), 40)).setScript("getDetail('"+dataSet.getValue(i, "CODE_TYPE")+"')");
 				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(uiAnc));
 
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(dataSet.getValue(i, "code_meaning"), 60)));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(dataSet.getValue(i, "CODE_MEANING"), 60)));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(dataSet.getValue(i, "DESCRIPTION_"+langCode), 60)));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "PROGRAM_CONSTANTS")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "IS_ACTIVE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(isDefault));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(dataSet.getValue(i, "INSERT_DATE"), dateFormat)));
@@ -111,7 +110,7 @@ $(function() {
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:10").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:9").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
@@ -163,7 +162,7 @@ $(function() {
 			},
 			header:header,
 			blind:true,
-			width:1700,
+			width:1800,
 			height:height
 		};
 

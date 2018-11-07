@@ -68,16 +68,20 @@ var codeType = "<%=resultDataSet.getValue(masterRow, "CODE_TYPE")%>";
 	<table class="tblEdit">
 		<caption class="captionEdit"><mc:msg key="sys0202.searchHeader.codeType"/> : <%=resultDataSet.getValue(masterRow, "CODE_TYPE")%></caption>
 		<colgroup>
+			<col width="5%"/>
 			<col width="7%"/>
-			<col width="7%"/>
-			<col width="9%"/>
-			<col width="35%"/>
-			<col width="9%"/>
+			<col width="5%"/>
+			<col width="22%"/>
+			<col width="8%"/>
+			<col width="22%"/>
+			<col width="8%"/>
 			<col width="*"/>
 		</colgroup>
 		<tr>
 			<th class="thEdit Rt"><mc:msg key="sys0202.header.isActive"/></th>
 			<td class="tdEdit ct"><ui:ccradio name="rdoIsActiveMaster" codeType="SIMPLE_YN" selectedValue="<%=isActive%>" status="disabled"/></td>
+			<th class="thEdit Rt"><mc:msg key="sys0202.header.codeMeaning"/></th>
+			<td class="tdEdit"><%=resultDataSet.getValue(masterRow, "CODE_MEANING")%></td>
 			<th class="thEdit Rt"><mc:msg key="sys0202.header.descriptionEn"/></th>
 			<td class="tdEdit"><%=resultDataSet.getValue(masterRow, "DESCRIPTION_EN")%></td>
 			<th class="thEdit Rt"><mc:msg key="sys0202.header.descriptionKo"/></th>
@@ -97,16 +101,18 @@ var codeType = "<%=resultDataSet.getValue(masterRow, "CODE_TYPE")%>";
 <div id="divDataArea" class="areaContainerPopup">
 	<table id="tblGrid" class="tblGrid">
 		<colgroup>
-			<col width="21%"/>
-			<col width="7%"/>
-			<col width="33%"/>
-			<col width="33%"/>
+			<col width="17%"/>
+			<col width="6%"/>
+			<col width="24%"/>
+			<col width="24%"/>
+			<col width="24%"/>
 			<col width="*"/>
 		</colgroup>
 		<thead>
 			<tr>
 				<th class="thGrid"><mc:msg key="sys0202.header.commonCode"/></th>
 				<th class="thGrid"><mc:msg key="sys0202.header.isActive"/></th>
+				<th class="thGrid"><mc:msg key="sys0202.header.codeMeaning"/></th>
 				<th class="thGrid"><mc:msg key="sys0202.header.descriptionEn"/></th>
 				<th class="thGrid"><mc:msg key="sys0202.header.descriptionKo"/></th>
 				<th class="thGrid"><mc:msg key="sys0202.header.sortOrder"/></th>
@@ -128,6 +134,7 @@ var codeType = "<%=resultDataSet.getValue(masterRow, "CODE_TYPE")%>";
 			<tr>
 				<td class="tdGrid"><%=resultDataSet.getValue(i, "COMMON_CODE")%></td>
 				<td class="tdGrid ct"><ui:ccradio name="${rdoIsActiveName}" codeType="SIMPLE_YN" selectedValue="${isActive}" status="disabled"/></td>
+				<td class="tdGrid"><%=resultDataSet.getValue(i, "CODE_MEANING")%></td>
 				<td class="tdGrid"><%=resultDataSet.getValue(i, "DESCRIPTION_EN")%></td>
 				<td class="tdGrid"><%=resultDataSet.getValue(i, "DESCRIPTION_KO")%></td>
 				<td class="tdGrid ct"><%=resultDataSet.getValue(i, "SORT_ORDER")%></td>
@@ -137,7 +144,7 @@ var codeType = "<%=resultDataSet.getValue(masterRow, "CODE_TYPE")%>";
 		} else {
 %>
 			<tr>
-				<td class="tdGrid Ct" colspan="5"><mc:msg key="I002"/></td>
+				<td class="tdGrid Ct" colspan="6"><mc:msg key="I002"/></td>
 			</tr>
 <%
 		}

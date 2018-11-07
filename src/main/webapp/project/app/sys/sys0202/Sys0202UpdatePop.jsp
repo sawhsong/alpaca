@@ -76,11 +76,13 @@ var masterRow = <%=masterRow%>;
 	<table class="tblEdit">
 		<colgroup>
 			<col width="6%"/>
-			<col width="17%"/>
+			<col width="14%"/>
 			<col width="5%"/>
 			<col width="6%"/>
+			<col width="5%"/>
+			<col width="16%"/>
 			<col width="8%"/>
-			<col width="22%"/>
+			<col width="16%"/>
 			<col width="8%"/>
 			<col width="*"/>
 		</colgroup>
@@ -88,7 +90,9 @@ var masterRow = <%=masterRow%>;
 			<th class="thEdit rt mandatory"><mc:msg key="sys0202.header.codeType"/></th>
 			<td class="tdEdit"><ui:text name="codeTypeMaster" id="codeTypeMaster" value="<%=resultDataSet.getValue(masterRow, \"CODE_TYPE\")%>" className="defClass" style="text-transform:uppercase;" checkName="sys0202.header.codeType" options="mandatory"/></td>
 			<th class="thEdit rt mandatory"><mc:msg key="sys0202.header.isActive"/></th>
-			<td class="tdEdit"><ui:ccradio name="isActiveMaster" codeType="SIMPLE_YN" selectedValue="<%=resultDataSet.getValue(masterRow, \"IS_ACTIVE\")%>"/></td>
+			<td class="tdEdit ct"><ui:ccradio name="isActiveMaster" codeType="SIMPLE_YN" selectedValue="<%=resultDataSet.getValue(masterRow, \"IS_ACTIVE\")%>"/></td>
+			<th class="thEdit rt mandatory"><mc:msg key="sys0202.header.codeMeaning"/></th>
+			<td class="tdEdit"><ui:text name="codeMeaningMaster" id="codeMeaningMaster" value="<%=resultDataSet.getValue(masterRow, \"CODE_MEANING\")%>" className="defClass" checkName="sys0202.header.codeMeaning" options="mandatory"/></td>
 			<th class="thEdit rt mandatory"><mc:msg key="sys0202.header.descriptionEn"/></th>
 			<td class="tdEdit"><ui:text name="descriptionEnMaster" id="descriptionEnMaster" value="<%=resultDataSet.getValue(masterRow, \"DESCRIPTION_EN\")%>" className="defClass" checkName="sys0202.header.descriptionEn" options="mandatory"/></td>
 			<th class="thEdit rt mandatory"><mc:msg key="sys0202.header.descriptionKo"/></th>
@@ -119,10 +123,11 @@ var masterRow = <%=masterRow%>;
 		<colgroup>
 			<col width="2%"/>
 			<col width="2%"/>
-			<col width="20%"/>
-			<col width="6%"/>
-			<col width="32%"/>
-			<col width="32%"/>
+			<col width="17%"/>
+			<col width="7%"/>
+			<col width="22%"/>
+			<col width="22%"/>
+			<col width="22%"/>
 			<col width="*"/>
 		</colgroup>
 		<thead>
@@ -131,6 +136,7 @@ var masterRow = <%=masterRow%>;
 				<th class="thGrid"></th>
 				<th class="thGrid mandatory"><mc:msg key="sys0202.header.commonCode"/></th>
 				<th class="thGrid mandatory"><mc:msg key="sys0202.header.isActive"/></th>
+				<th class="thGrid mandatory"><mc:msg key="sys0202.header.codeMeaning"/></th>
 				<th class="thGrid mandatory"><mc:msg key="sys0202.header.descriptionEn"/></th>
 				<th class="thGrid mandatory"><mc:msg key="sys0202.header.descriptionKo"/></th>
 				<th class="thGrid mandatory"><mc:msg key="sys0202.header.sortOrder"/></th>
@@ -138,7 +144,7 @@ var masterRow = <%=masterRow%>;
 		</thead>
 		<tbody id="tblGridBody">
 			<tr>
-				<td colspan="7" style="padding:0px;border-top:0px"><ul id="ulCommonCodeDetailHolder"></ul></td>
+				<td colspan="8" style="padding:0px;border-top:0px"><ul id="ulCommonCodeDetailHolder"></ul></td>
 			</tr>
 		</tbody>
 	</table>
@@ -157,10 +163,11 @@ var masterRow = <%=masterRow%>;
 		<colgroup>
 			<col width="2%"/>
 			<col width="2%"/>
-			<col width="20%"/>
-			<col width="6%"/>
-			<col width="32%"/>
-			<col width="32%"/>
+			<col width="17%"/>
+			<col width="7%"/>
+			<col width="22%"/>
+			<col width="22%"/>
+			<col width="22%"/>
 			<col width="*"/>
 		</colgroup>
 		<tr class="noBorderAll">
@@ -168,6 +175,7 @@ var masterRow = <%=masterRow%>;
 			<th id="thDeleteButton" class="thGrid deleteButton" title="<mc:msg key="sys0202.msg.delete"/>"><ui:icon id="iDeleteButton" className="fa-lg fa-times"/></th>
 			<td class="tdGrid ct"><ui:text name="commonCodeDetail" id="commonCodeDetail" className="defClass" style="text-transform:uppercase" checkName="sys0202.header.commonCode" options="mandatory"/></td>
 			<td class="tdGrid ct"><ui:ccradio name="isActiveDetail" codeType="SIMPLE_YN" selectedValue="Y"/></td>
+			<td class="tdGrid ct"><ui:text name="codeMeaningDetail" id="codeMeaningDetail" className="defClass" checkName="sys0202.header.codeMeaning" options="mandatory"/></td>
 			<td class="tdGrid ct"><ui:text name="descriptionEnDetail" id="descriptionEnDetail" className="defClass" checkName="sys0202.header.descriptionEn" options="mandatory"/></td>
 			<td class="tdGrid ct"><ui:text name="descriptionKoDetail" id="descriptionKoDetail" className="defClass" checkName="sys0202.header.descriptionKo" options="mandatory"/></td>
 			<td class="tdGrid ct"><ui:text name="sortOrderDetail" id="sortOrderDetail" className="defClass ct" checkName="sys0202.header.sortOrder" option="numeric" options="mandatory"/></td>

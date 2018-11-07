@@ -98,6 +98,7 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 		try {
 			sysCommonCode.setCodeType(codeType);
 			sysCommonCode.setCommonCode("0000000000");
+			sysCommonCode.setCodeMeaning(requestDataSet.getValue("codeMeaningMaster"));
 			sysCommonCode.setDescriptionEn(requestDataSet.getValue("descriptionEnMaster"));
 			sysCommonCode.setDescriptionKo(requestDataSet.getValue("descriptionKoMaster"));
 			sysCommonCode.setProgramConstants(codeType + "_0000000000");
@@ -126,6 +127,7 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 				String commonCode = requestDataSet.getValue("commonCodeDetail" + delimiter + i);
 
 				sysCommonCode.setCommonCode(commonCode);
+				sysCommonCode.setCodeMeaning(requestDataSet.getValue("codeMeaningDetail" + delimiter + i));
 				sysCommonCode.setDescriptionEn(requestDataSet.getValue("descriptionEnDetail" + delimiter + i));
 				sysCommonCode.setDescriptionKo(requestDataSet.getValue("descriptionKoDetail" + delimiter + i));
 				sysCommonCode.setProgramConstants(codeType + "_" + CommonUtil.upperCase(commonCode));
@@ -213,7 +215,7 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 		try {
 			String pageTitle = "Common Code List";
 			String fileName = "CommonCodeList";
-			String[] columnHeader = {"code_type", "common_code", "description_en", "program_constants"};
+			String[] columnHeader = {"code_type", "common_code", "code_meaning", "description_en", "program_constants"};
 
 			exportHelper = ExportUtil.getExportHelper(requestDataSet.getValue("fileType"));
 			exportHelper.setPageTitle(pageTitle);

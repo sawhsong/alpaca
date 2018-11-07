@@ -56,23 +56,26 @@
 	</div>
 </div>
 <div id="divSearchCriteriaArea" class="areaContainer">
-	<table class="tblSearch">
-		<caption><mc:msg key="page.com.searchCriteria"/></caption>
-		<colgroup>
-			<col width="50%"/>
-			<col width="50%"/>
-		</colgroup>
-		<tr>
-			<td class="tdSearch">
-				<label for="currencyCode" class="lblEn hor"><mc:msg key="sys0204.search.currencyCode"/></label>
-				<ui:text name="currencyCode" id="currencyCode" className="defClass hor" style="text-transform:uppercase;width:300px"/>
-			</td>
-			<td class="tdSearch">
-				<label for="countryName" class="lblEn hor"><mc:msg key="sys0204.search.countryName"/></label>
-				<ui:text name="countryName" id="countryName" className="defClass hor" style="width:300px"/>
-			</td>
-		</tr>
-	</table>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<table class="tblDefault">
+				<colgroup>
+					<col width="50%"/>
+					<col width="50%"/>
+				</colgroup>
+				<tr>
+					<td class="tdDefault">
+						<label for="currencyCode" class="lblEn hor"><mc:msg key="sys0204.search.currencyCode"/></label>
+						<ui:text name="currencyCode" id="currencyCode" className="defClass hor" style="text-transform:uppercase;width:300px"/>
+					</td>
+					<td class="tdDefault">
+						<label for="countryName" class="lblEn hor"><mc:msg key="sys0204.search.countryName"/></label>
+						<ui:text name="countryName" id="countryName" className="defClass hor" style="width:300px"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </div>
 <div id="divInformArea"></div>
 <%/************************************************************************************************

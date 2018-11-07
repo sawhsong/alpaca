@@ -77,15 +77,14 @@
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
 			<col width="2%"/>
-			<col width="15%"/>
-			<col width="18%"/>
+			<col width="20%"/>
+			<col width="25%"/>
 			<col width="*"/>
-			<col width="18%"/>
+			<col width="5%"/>
+			<col width="5%"/>
 			<col width="7%"/>
 			<col width="7%"/>
-			<col width="9%"/>
-			<col width="9%"/>
-			<col width="4%"/>
+			<col width="3%"/>
 		</colgroup>
 		<thead>
 			<tr>
@@ -93,7 +92,6 @@
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0202.gridHeader.codeType"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0202.gridHeader.codeMeaning"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0202.gridHeader.description"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0202.gridHeader.programConstants"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0202.gridHeader.isActive"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0202.gridHeader.isDefault"/></th>
 				<th class="thGrid sortable:date"><mc:msg key="page.com.insertDate"/></th>
@@ -103,7 +101,7 @@
 		</thead>
 		<tbody id="tblGridBody">
 			<tr>
-				<td class="tdGrid Ct" colspan="10"><mc:msg key="I002"/></td>
+				<td class="tdGrid Ct" colspan="9"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
 	</table>
