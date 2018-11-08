@@ -11,4 +11,7 @@
     <!--Sys0404 - Authority Group-->
     <bean class="${name.package.project}.app.sys.sys0404.Sys0404Action" id="sys0404Action" name="sys0404Action"/>
     <bean class="${name.package.project}.app.sys.sys0404.Sys0404BizImpl" id="sys0404Biz" name="sys0404Biz" parent="baseBiz"/>
+    <!--Sys0408 - Menu - Authority Group-->
+    <bean class="${name.package.project}.app.sys.sys0408.Sys0408Action" id="sys0408Action" name="sys0408Action"/>
+    <bean class="${name.package.project}.app.sys.sys0408.Sys0408BizImpl" id="sys0408Biz" name="sys0408Biz" parent="baseBiz"/>
 </beans>
