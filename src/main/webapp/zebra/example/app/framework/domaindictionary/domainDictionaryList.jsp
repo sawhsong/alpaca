@@ -65,7 +65,7 @@
 				<tr>
 					<td class="tdDefault">
 						<label for="searchWord" class="lblEn hor"><mc:msg key="fwk.domaindictionary.searchHeader.domainName"/></label>
-						<ui:text name="searchWord" id="searchWord" className="defClass hor" style="width:280px"/>
+						<ui:text name="searchWord" className="hor" style="width:280px"/>
 					</td>
 				</tr>
 			</table>

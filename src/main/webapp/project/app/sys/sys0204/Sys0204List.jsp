@@ -66,11 +66,11 @@
 				<tr>
 					<td class="tdDefault">
 						<label for="currencyCode" class="lblEn hor"><mc:msg key="sys0204.search.currencyCode"/></label>
-						<ui:text name="currencyCode" id="currencyCode" className="defClass hor" style="text-transform:uppercase;width:300px"/>
+						<ui:text name="currencyCode" className="hor" style="text-transform:uppercase;width:300px"/>
 					</td>
 					<td class="tdDefault">
 						<label for="countryName" class="lblEn hor"><mc:msg key="sys0204.search.countryName"/></label>
-						<ui:text name="countryName" id="countryName" className="defClass hor" style="width:300px"/>
+						<ui:text name="countryName" className="hor" style="width:300px"/>
 					</td>
 				</tr>
 			</table>

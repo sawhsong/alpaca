@@ -124,9 +124,9 @@ var dsMenu2 = commonJs.getDataSetFromJavaDataSet("<%=dsMenu2.toStringForJs()%>")
 		</colgroup>
 		<tr>
 			<th id="thDragHander" class="thEdit Ct dragHandler" title="<mc:msg key="sys0402.msg.drag"/>"><ui:icon name="iDragHandler" className="fa-lg fa-sort"/></th>
-			<td class="tdEdit"><ui:text id="menuId" name="menuId" className="defClass" status="display"/></td>
-			<td class="tdEdit"><ui:text id="menuName" name="menuName" className="defClass" status="display"/></td>
-			<td class="tdEdit"><ui:text id="sortOrder" name="sortOrder" className="defClass" status="display"/></td>
+			<td class="tdEdit"><ui:text name="menuId" status="display"/></td>
+			<td class="tdEdit"><ui:text name="menuName" status="display"/></td>
+			<td class="tdEdit"><ui:text name="sortOrder" status="display"/></td>
 		</tr>
 	</table>
 </li>

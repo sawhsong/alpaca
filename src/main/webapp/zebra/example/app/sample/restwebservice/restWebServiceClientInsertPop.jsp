@@ -74,17 +74,17 @@ var articleId = "<%=dsRequest.getValue("articleId")%>";
 		<tr>
 			<th class="thEdit Rt mandatory"><mc:msg key="fwk.notice.header.writerName"/></th>
 			<td class="tdEdit">
-				<ui:text id="writerName" name="writerName" className="defClass" value="<%=sysUser.getUserName()%>" checkName="fwk.notice.header.writerName" options="mandatory"/>
+				<ui:text name="writerName" value="<%=sysUser.getUserName()%>" checkName="fwk.notice.header.writerName" options="mandatory"/>
 			</td>
 			<th class="thEdit Rt mandatory"><mc:msg key="fwk.notice.header.writerEmail"/></th>
 			<td class="tdEdit">
-				<ui:text id="writerEmail" name="writerEmail" className="defClass" value="<%=sysUser.getEmail()%>" checkName="fwk.notice.header.writerEmail" option="email" options="mandatory"/>
+				<ui:text name="writerEmail" value="<%=sysUser.getEmail()%>" checkName="fwk.notice.header.writerEmail" option="email" options="mandatory"/>
 			</td>
 		</tr>
 		<tr>
 			<th class="thEdit Rt mandatory"><mc:msg key="fwk.notice.header.articleSubject"/></th>
 			<td class="tdEdit" colspan="3">
-				<ui:text id="articleSubject" name="articleSubject" className="defClass" checkName="fwk.notice.header.articleSubject" options="mandatory"/>
+				<ui:text name="articleSubject" checkName="fwk.notice.header.articleSubject" options="mandatory"/>
 			</td>
 		</tr>
 		<tr>

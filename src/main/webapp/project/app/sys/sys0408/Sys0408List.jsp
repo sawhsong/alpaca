@@ -72,7 +72,7 @@
 %>
 							</ui:select>
 						</div>
-						<ui:text id="authGroupDesc" name="authGroupDesc" className="defClass hor" style="font-weight:bold;width:500px" status="display"/>
+						<ui:text name="authGroupDesc" className="hor" style="font-weight:bold;width:500px" status="display"/>
 					</td>
 				</tr>
 			</table>

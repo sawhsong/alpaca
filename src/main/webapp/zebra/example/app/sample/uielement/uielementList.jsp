@@ -224,7 +224,7 @@
 						<div class="horGap20"></div>
 	
 						<label for="txtTaglib" class="lblEn hor">Input text</label>
-						<ui:text id="txtTaglib" name="txtTaglib" className="defClass hor success" style="width:200px" checkName="txtTest1" maxlength="30" minlength="4" checkFlag="optional" options="mandatory" placeHolder="txtTaglib"/>
+						<ui:text name="txtTaglib" className="hor success" style="width:200px" checkName="txtTest1" maxlength="30" minlength="4" checkFlag="optional" options="mandatory" placeHolder="txtTaglib"/>
 						<ui:img id="imgTaglib" src="<mc:cp key=imgThemeCom/>/generate_Black.png" className="defClass hor" style="margin-top:6px" title="imgTaglib"/>
 						<ui:icon id="icnTaglib" className="fa-calendar fa-lg icnDis hor" style="margin-top:8px" title="icnTaglib"/>
 					</div>
@@ -347,15 +347,15 @@
 						<tr>
 							<th class="thEdit Rt">Taglib Text</th>
 							<td class="tdEdit">
-								<ui:text id="txtTaglibEn" name="txtTaglibEn" className="defClass" placeHolder="txtFormElementsEn"/>
+								<ui:text name="txtTaglibEn" placeHolder="txtFormElementsEn"/>
 							</td>
 							<th class="thEdit Rt">Taglib txtDis</th>
 							<td class="tdEdit">
-								<ui:text id="txtTaglibDis" name="txtTaglibDis" className="defClass" placeHolder="txtFormElementsDis" status="disabled"/>
+								<ui:text name="txtTaglibDis" placeHolder="txtFormElementsDis" status="disabled"/>
 							</td>
 							<th class="thEdit Rt">Taglib txtDpl</th>
 							<td class="tdEdit">
-								<ui:text id="txtTaglibDpl" name="txtTaglibDpl" className="defClass" placeHolder="txtFormElementsDpl" status="display"/>
+								<ui:text name="txtTaglibDpl" placeHolder="txtFormElementsDpl" status="display"/>
 							</td>
 						</tr>
 					</table>
@@ -551,7 +551,7 @@
 						<tr>
 							<th class="thEdit">Single Selection(Taglib)</th>
 							<td class="tdEdit">
-								<ui:text id="txtEnWithTaglibSelectbox" name="txtEnWithTaglibSelectbox" className="defClass inline" style="width:200px;" placeHolder="txtEnWithTaglibSelectbox"/>
+								<ui:text name="txtEnWithTaglibSelectbox" className="inline" style="width:200px;" placeHolder="txtEnWithTaglibSelectbox"/>
 								<ui:select id="selTaglibSingleSelection1" name="selTaglibSingleSelection1" className="hor default">
 									<ui:seloption value="SingleSelection1-0" text="SingleSelection1-0"/>
 									<ui:seloption value="SingleSelection1-1" text="SingleSelection1-1"/>
@@ -573,7 +573,7 @@
 									<ui:seloption value="SingleSelection2-3" text="SingleSelection2-3"/>
 									<ui:seloption value="SingleSelection2-4" text="SingleSelection2-4"/>
 								</ui:select>
-								<ui:text id="txtDisWithTaglibtSelectbox" name="txtDisWithTaglibSelectbox" className="defClass inline" style="width:200px;" options="disabled" placeHolder="txtDisWithTaglibSelectbox"/>
+								<ui:text name="txtDisWithTaglibSelectbox" className="inline" style="width:200px;" options="disabled" placeHolder="txtDisWithTaglibSelectbox"/>
 							</td>
 						</tr>
 						<tr>

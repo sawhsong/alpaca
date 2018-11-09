@@ -79,7 +79,7 @@
 					</td>
 					<td class="tdDefault">
 						<label for="tableName" class="lblEn hor"><mc:msg key="fwk.dtogenerator.tableName"/></label>
-						<ui:text id="tableName" name="tableName" className="defClass hor" style="width:280px"/>
+						<ui:text name="tableName" className="hor" style="width:280px"/>
 					</td>
 				</tr>
 			</table>

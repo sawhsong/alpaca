@@ -59,7 +59,7 @@
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<label for="commonCodeType" class="lblEn hor"><mc:msg key="sys0202.searchHeader.codeType"/></label>
-			<ui:text name="commonCodeType" id="commonCodeType" className="defClass hor" style="text-transform:uppercase;width:280px"/>
+			<ui:text name="commonCodeType" className="hor" style="text-transform:uppercase;width:280px"/>
 		</div>
 	</div>
 </div>

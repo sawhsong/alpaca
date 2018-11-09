@@ -72,11 +72,11 @@
 		<tr>
 			<th class="thEdit Rt mandatory"><mc:msg key="fwk.domaindictionary.header.name"/></th>
 			<td class="tdEdit">
-				<ui:text name="domainName" id="domainName" className="defClass" checkName="fwk.domaindictionary.header.name" options="mandatory"/>
+				<ui:text name="domainName" checkName="fwk.domaindictionary.header.name" options="mandatory"/>
 			</td>
 			<th class="thEdit Rt mandatory"><mc:msg key="fwk.domaindictionary.header.nameAbbrev"/></th>
 			<td class="tdEdit">
-				<ui:text name="nameAbbreviation" id="nameAbbreviation" className="defClass" checkName="fwk.domaindictionary.header.nameAbbrev" options="mandatory"/>
+				<ui:text name="nameAbbreviation" checkName="fwk.domaindictionary.header.nameAbbrev" options="mandatory"/>
 			</td>
 		</tr>
 		<tr>
