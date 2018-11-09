@@ -25,8 +25,6 @@ $(function() {
 						url:"/sys/0408/exeInsert.do",
 						dataType:"json",
 						formId:"fmDefault",
-						data:{
-						},
 						success:function(data, textStatus) {
 							var result = commonJs.parseAjaxResult(data, textStatus, "json");
 
@@ -39,10 +37,7 @@ $(function() {
 									buttons:[{
 										caption:com.caption.ok,
 										callback:function() {
-											commonJs.doSubmit({
-												formId:"fmDefault",
-												action:"/sys/0408/getList.do"
-											});
+											doSearch();
 										}
 									}]
 								});
@@ -226,6 +221,10 @@ $(function() {
 				}
 			});
 		}, 100);
+
+		setTimeout(function() {
+			setCheckbox();
+		}, 200);
 	};
 
 	renderDataGridTable = function(result) {
@@ -247,10 +246,10 @@ $(function() {
 					space += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 				}
 
-				paramValue = dataSet.getValue(i, "LEVEL")+delimiter+menuPath;
+				paramValue = dataSet.getValue(i, "LEVEL")+delimiter+menuPath+delimiter+menuId;
 
 				var uiChk = new UiCheckbox();
-				uiChk.setId("chkToAssign").setName("chkToAssign").setValue(menuId).addAttribute("paramValue:"+paramValue).addAttribute("groupId:"+groupId);
+				uiChk.setId("chkToAssign").setName("chkToAssign").setValue(paramValue).addAttribute("groupId:"+groupId);
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
 
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setStyle(style).setText(space+menuId));
@@ -288,7 +287,6 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		setCheckbox();
 		doSearch();
 	});
 });

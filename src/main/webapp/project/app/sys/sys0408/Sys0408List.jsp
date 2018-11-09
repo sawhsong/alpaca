@@ -57,7 +57,6 @@
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<table class="tblDefault">
-				<caption><mc:msg key="page.com.searchCriteria"/></caption>
 				<tr>
 					<td class="tdDefault">
 						<label for="authGroup" class="lblEn hor mandatory"><mc:msg key="sys0408.search.authGroup"/></label>

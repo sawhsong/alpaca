@@ -54,7 +54,8 @@ public class Sys0408BizImpl extends BaseBiz implements Sys0408Biz {
 		HttpSession session = paramEntity.getSession();
 		String authGroupId = requestDataSet.getValue("authGroup");
 		String chkToAssign = requestDataSet.getValue("chkToAssign");
-		String menuIds[] = CommonUtil.splitWithTrim(chkToAssign, ConfigUtil.getProperty("delimiter.record"));
+		String[] chkToAssignArray = CommonUtil.splitWithTrim(chkToAssign, ConfigUtil.getProperty("delimiter.record"));
+		String dataDelimiter = ConfigUtil.getProperty("delimiter.data");
 		SysMenuAuthLink sysMenuAuthLink = new SysMenuAuthLink();
 		int resultDelete = 0, resultInsert = 0;
 
@@ -62,9 +63,12 @@ public class Sys0408BizImpl extends BaseBiz implements Sys0408Biz {
 			resultDelete = sysMenuAuthLinkDao.deleteByAuthGroupId(authGroupId);
 
 			if (CommonUtil.isNotBlank(chkToAssign)) {
-				for (int i=0; i<menuIds.length; i++) {
+				for (int i=0; i<chkToAssignArray.length; i++) {
+					String[] chkValues = CommonUtil.split(chkToAssignArray[i], dataDelimiter);
+					String menuId = chkValues[2];
+
 					sysMenuAuthLink.setGroupId(authGroupId);
-					sysMenuAuthLink.setMenuId(menuIds[i]);
+					sysMenuAuthLink.setMenuId(menuId);
 					sysMenuAuthLink.setInsertUserId((String)session.getAttribute("UserId"));
 					sysMenuAuthLink.setInsertDate(CommonUtil.toDate(CommonUtil.getSysdate()));
 

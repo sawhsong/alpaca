@@ -7,21 +7,21 @@ import zebra.base.TaglibSupport;
 import zebra.util.CommonUtil;
 
 public class Text extends TaglibSupport {
-	private String id;
-	private String name;
-	private String className;
-	private String value;
-	private String style;
-	private String script;
-	private String title;
-	private String placeHolder;
-	private String checkName;
-	private String maxlength;
-	private String minlength;
-	private String checkFlag;
-	private String option;
-	private String options;
-	private String status;
+	private String id = "";
+	private String name = "";
+	private String className = "";
+	private String value = "";
+	private String style = "";
+	private String script = "";
+	private String title = "";
+	private String placeHolder = "";
+	private String checkName = "";
+	private String maxlength = "";
+	private String minlength = "";
+	private String checkFlag = "";
+	private String option = "";
+	private String options = "";
+	private String status = "";
 
 	public int doStartTag() {
 		try {
