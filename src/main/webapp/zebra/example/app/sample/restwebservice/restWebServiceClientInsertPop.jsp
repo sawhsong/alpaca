@@ -90,7 +90,7 @@ var articleId = "<%=dsRequest.getValue("articleId")%>";
 		<tr>
 			<th class="thEdit Rt"><mc:msg key="fwk.notice.header.articleContents"/></th>
 			<td class="tdEdit" colspan="3">
-				<ui:txa id="articleContents" name="articleContents" className="defClass" style="height:224px;"/>
+				<ui:txa name="articleContents" style="height:224px;"/>
 			</td>
 		</tr>
 		<tr>

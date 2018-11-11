@@ -96,7 +96,7 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg icnEn" title="fwk.domaindictionary.title.selectToDelete"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="fwk.domaindictionary.title.selectToDelete"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.domaindictionary.gridHeader.name"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.domaindictionary.gridHeader.nameAbbrev"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.domaindictionary.gridHeader.dataType"/></th>

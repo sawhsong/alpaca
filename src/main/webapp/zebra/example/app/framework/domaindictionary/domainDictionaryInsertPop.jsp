@@ -82,27 +82,27 @@
 		<tr>
 			<th class="thEdit Rt mandatory"><mc:msg key="fwk.domaindictionary.header.dataType"/></th>
 			<td class="tdEdit">
-				<ui:ccselect id="dataType" name="dataType" codeType="DOMAIN_DATA_TYPE" options="mandatory" source="framework"/>
+				<ui:ccselect name="dataType" codeType="DOMAIN_DATA_TYPE" options="mandatory" source="framework"/>
 			</td>
 			<th class="thEdit Rt"><mc:msg key="fwk.domaindictionary.header.dataLength"/></th>
 			<td class="tdEdit">
-				<ui:ccselect id="dataLength" name="dataLength" codeType="DOMAIN_DATA_LENGTH" caption="==Select==" source="framework"/>
+				<ui:ccselect name="dataLength" codeType="DOMAIN_DATA_LENGTH" caption="==Select==" source="framework"/>
 			</td>
 		</tr>
 		<tr>
 			<th class="thEdit Rt"><mc:msg key="fwk.domaindictionary.header.dataPrecision"/></th>
 			<td class="tdEdit">
-				<ui:ccselect id="dataPrecision" name="dataPrecision" codeType="DOMAIN_DATA_PRECISION" caption="==Select==" source="framework"/>
+				<ui:ccselect name="dataPrecision" codeType="DOMAIN_DATA_PRECISION" caption="==Select==" source="framework"/>
 			</td>
 			<th class="thEdit Rt"><mc:msg key="fwk.domaindictionary.header.dataScale"/></th>
 			<td class="tdEdit">
-				<ui:ccselect id="dataScale" name="dataScale" codeType="DOMAIN_DATA_SCALE" caption="==Select==" source="framework"/>
+				<ui:ccselect name="dataScale" codeType="DOMAIN_DATA_SCALE" caption="==Select==" source="framework"/>
 			</td>
 		</tr>
 		<tr>
 			<th class="thEdit Rt"><mc:msg key="fwk.domaindictionary.header.desc"/></th>
 			<td class="tdEdit" colspan="3" style="height:200px;vertical-align:top">
-				<ui:txa name="description" id="description" className="defClass" style="height:200px;"/>
+				<ui:txa name="description" style="height:200px;"/>
 			</td>
 		</tr>
 	</table>

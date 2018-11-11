@@ -172,6 +172,7 @@
 			</td>
 			<td class="tdEdit">
 				<ui:check name="createMessage" value="Y" text="fwk.sourcegenerator.header.generate" isChecked="true"/>
+			</td>
 		</tr>
 	</table>
 </div>

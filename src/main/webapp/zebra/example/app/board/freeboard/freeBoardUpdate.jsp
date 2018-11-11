@@ -94,7 +94,7 @@ var articleId = "<%=dsRequest.getValue("articleId")%>";
 		<tr>
 			<th class="thEdit Rt"><mc:msg key="fwk.bbs.header.articleContents"/></th>
 			<td class="tdEdit" colspan="3">
-				<ui:txa id="articleContents" name="articleContents" className="defClass" value="<%=freeBoard.getArticleContents()%>"/>
+				<ui:txa name="articleContents" value="<%=freeBoard.getArticleContents()%>"/>
 			</td>
 		</tr>
 		<tr>

@@ -61,7 +61,7 @@
 					<td class="tdDefault">
 						<label for="authGroup" class="lblEn hor mandatory"><mc:msg key="sys0408.search.authGroup"/></label>
 						<div style="float:left;padding-right:4px;">
-							<ui:select id="authGroup" name="authGroup" checkName="sys0408.search.authGroup" options="mandatory">
+							<ui:select name="authGroup" checkName="sys0408.search.authGroup" options="mandatory">
 								<ui:seloption value="" text="==Select=="/>
 <%
 							for (int i=0; i<authGroupDataSet.getRowCnt(); i++) {
@@ -102,7 +102,7 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg icnEn" title="sys0408.grid.selectToAssign"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="sys0408.grid.selectToAssign"/></th>
 				<th class="thGrid"><mc:msg key="sys0408.grid.menuId"/></th>
 				<th class="thGrid"><mc:msg key="sys0408.grid.menuName"/></th>
 				<th class="thGrid"><mc:msg key="sys0408.grid.menuUrl"/></th>

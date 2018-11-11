@@ -64,7 +64,7 @@ var dsMenu2 = commonJs.getDataSetFromJavaDataSet("<%=dsMenu2.toStringForJs()%>")
 		<div class="panel-body">
 			<div id="divMenuLevel" style="float:left;padding-right:4px;">
 				<label for="menuLevel" class="lblEn hor"><mc:msg key="sys0402.header.menuLevel"/></label>
-				<ui:ccselect id="menuLevel" name="menuLevel" codeType="MENU_LEVEL"/>
+				<ui:ccselect name="menuLevel" codeType="MENU_LEVEL"/>
 			</div>
 			<div class="horGap70"></div>
 			<div id="divLevel1" style="float:left;display:none;">
