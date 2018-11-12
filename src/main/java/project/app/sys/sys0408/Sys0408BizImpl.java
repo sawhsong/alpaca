@@ -41,7 +41,7 @@ public class Sys0408BizImpl extends BaseBiz implements Sys0408Biz {
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
 		try {
 			setAuthorityGroup(paramEntity);
-			paramEntity.setAjaxResponseDataSet((DataSet)MemoryBean.get("menuDataSet"));
+			paramEntity.setObject("resultDataSet", MemoryBean.get("menuDataSet"));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -54,8 +54,7 @@ public class Sys0408BizImpl extends BaseBiz implements Sys0408Biz {
 		HttpSession session = paramEntity.getSession();
 		String authGroupId = requestDataSet.getValue("authGroup");
 		String chkToAssign = requestDataSet.getValue("chkToAssign");
-		String[] chkToAssignArray = CommonUtil.splitWithTrim(chkToAssign, ConfigUtil.getProperty("delimiter.record"));
-		String dataDelimiter = ConfigUtil.getProperty("delimiter.data");
+		String menuIds[] = CommonUtil.splitWithTrim(chkToAssign, ConfigUtil.getProperty("delimiter.record"));
 		SysMenuAuthLink sysMenuAuthLink = new SysMenuAuthLink();
 		int resultDelete = 0, resultInsert = 0;
 
@@ -63,12 +62,9 @@ public class Sys0408BizImpl extends BaseBiz implements Sys0408Biz {
 			resultDelete = sysMenuAuthLinkDao.deleteByAuthGroupId(authGroupId);
 
 			if (CommonUtil.isNotBlank(chkToAssign)) {
-				for (int i=0; i<chkToAssignArray.length; i++) {
-					String[] chkValues = CommonUtil.split(chkToAssignArray[i], dataDelimiter);
-					String menuId = chkValues[2];
-
+				for (int i=0; i<menuIds.length; i++) {
 					sysMenuAuthLink.setGroupId(authGroupId);
-					sysMenuAuthLink.setMenuId(menuId);
+					sysMenuAuthLink.setMenuId(menuIds[i]);
 					sysMenuAuthLink.setInsertUserId((String)session.getAttribute("UserId"));
 					sysMenuAuthLink.setInsertDate(CommonUtil.toDate(CommonUtil.getSysdate()));
 

@@ -2,6 +2,7 @@
  * Framework Generated Javascript Source
  * - Sys0408List.js
  *************************************************************************************************/
+//jsconfig.put("scrollablePanelHeightAdjust", 4);
 var popup = null;
 var searchResultDataCount = 0;
 var langCode = commonJs.upperCase(jsconfig.get("langCode"));
@@ -37,7 +38,10 @@ $(function() {
 									buttons:[{
 										caption:com.caption.ok,
 										callback:function() {
-											doSearch();
+											commonJs.doSubmit({
+												formId:"fmDefault",
+												action:"/sys/0408/getList.do"
+											});
 										}
 									}]
 								});
@@ -60,14 +64,13 @@ $(function() {
 	});
 
 	$("[name=chkToAssign]").click(function(event) {
-		var thisChecked = $(this).prop("checked"), thisValue = $(this).val();
+		var thisChecked = $(this).prop("checked"), thisMenuId = $(this).val(), thisValue = $(this).attr("paramValue");
 		var thisValueItems = thisValue.split(delimiter);
 		var thisLevel = thisValueItems[0];
 		var thisPaths = thisValueItems[1].split("/");
-		var thisMenuId = thisValueItems[2];
 
 		$("[name=chkToAssign]").each(function(index) {
-			var val = $(this).val();
+			var val = $(this).attr("paramValue");
 			var valItems = val.split(delimiter);
 			var level = valItems[0];
 			var paths = valItems[1].split("/");
@@ -104,7 +107,7 @@ $(function() {
 		if (!thisChecked && thisLevel == "2") {
 			if (!hasChildChecked(thisLevel, thisPaths[0])) {
 				$("[name=chkToAssign]").each(function(index) {
-					var val = $(this).val();
+					var val = $(this).attr("paramValue");
 					var valItems = val.split(delimiter);
 					var level = valItems[0];
 					var paths = valItems[1].split("/");
@@ -120,7 +123,7 @@ $(function() {
 		if (!thisChecked && thisLevel == "3") {
 			if (!hasChildChecked(thisLevel, thisPaths[1])) {
 				$("[name=chkToAssign]").each(function(index) {
-					var val = $(this).val();
+					var val = $(this).attr("paramValue");
 					var valItems = val.split(delimiter);
 					var level = valItems[0];
 					var paths = valItems[1].split("/");
@@ -134,7 +137,7 @@ $(function() {
 
 			if (!hasChildChecked(2, thisPaths[0])) {
 				$("[name=chkToAssign]").each(function(index) {
-					var val = $(this).val();
+					var val = $(this).attr("paramValue");
 					var valItems = val.split(delimiter);
 					var level = valItems[0];
 					var paths = valItems[1].split("/");
@@ -166,6 +169,9 @@ $(function() {
 		var selectedAuthGroup = $("#authGroup").val(), groupId = "";
 
 		if (commonJs.isEmpty(selectedAuthGroup)) {
+			$("[name=chkToAssign]").each(function(index) {
+				$(this).prop("checked", false);
+			});
 			return;
 		}
 
@@ -184,7 +190,7 @@ $(function() {
 		var rtn = false;
 
 		$("[name=chkToAssign]:checked").each(function(index) {
-			var val = $(this).val();
+			var val = $(this).attr("paramValue");
 			var valItems = val.split(delimiter);
 			var level = valItems[0];
 			var paths = valItems[1].split("/");
@@ -204,89 +210,14 @@ $(function() {
 		return rtn;
 	};
 
-	doSearch = function() {
-		commonJs.showProcMessageOnElement("divScrollablePanel");
-
-		setTimeout(function() {
-			commonJs.ajaxSubmit({
-				url:"/sys/0408/getList.do",
-				dataType:"json",
-				formId:"fmDefault",
-				success:function(data, textStatus) {
-					var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-					if (result.isSuccess == true || result.isSuccess == "true") {
-						renderDataGridTable(result);
-					}
-				}
-			});
-		}, 100);
-
-		setTimeout(function() {
-			setCheckbox();
-		}, 200);
-	};
-
-	renderDataGridTable = function(result) {
-		var dataSet = result.dataSet;
-		var html = "";
-
-		searchResultDataCount = dataSet.getRowCnt();
-		$("#tblGridBody").html("");
-
-		if (dataSet.getRowCnt() > 0) {
-			for (var i=0; i<dataSet.getRowCnt(); i++) {
-				var menuPath = dataSet.getValue(i, "PATH"), menuId = dataSet.getValue(i, "MENU_ID"), menuName = dataSet.getValue(i, "MENU_NAME_"+langCode);
-				var groupId = dataSet.getValue(i, "GROUP_ID"), space = "", style = "", paramValue = "";
-				var iLevel = commonJs.toNumber(dataSet.getValue(i, "LEVEL")) - 1;
-				var gridTr = new UiGridTr();
-
-				style = (iLevel == 0 || iLevel == 1) ? "font-weight:bold;" : "";
-				for (var j=0; j<iLevel; j++) {
-					space += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-				}
-
-				paramValue = dataSet.getValue(i, "LEVEL")+delimiter+menuPath+delimiter+menuId;
-
-				var uiChk = new UiCheckbox();
-				uiChk.setId("chkToAssign").setName("chkToAssign").setValue(paramValue).addAttribute("groupId:"+groupId);
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
-
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setStyle(style).setText(space+menuId));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setStyle(style).setText(menuName));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "MENU_URL")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "SORT_ORDER")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "DESCRIPTION")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "IS_ACTIVE")));
-
-				html += gridTr.toHtmlString();
-			}
-		} else {
-			var gridTr = new UiGridTr();
-
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:7").setText(com.message.I001));
-			html += gridTr.toHtmlString();
-		}
-
-		$("#tblGridBody").append($(html));
-
-		$("#tblGrid").fixedHeaderTable({
-			attachTo:$("#divDataArea"),
-			pagingArea:$("#divPagingArea"),
-			isPageable:false,
-			isFilter:false,
-			filterColumn:[],
-			totalResultRows:result.totalResultRows,
-			script:"doSearch"
-		});
-
-		commonJs.hideProcMessageOnElement("divScrollablePanel");
-	};
-
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		doSearch();
+		$("#tblGrid").fixedHeaderTable({
+			attachTo:$("#divDataArea")
+		});
+
+		setCheckbox();
 	});
 });
