@@ -2,7 +2,6 @@
  * Framework Generated Javascript Source
  * - Sys0408List.js
  *************************************************************************************************/
-//jsconfig.put("scrollablePanelHeightAdjust", 4);
 var popup = null;
 var searchResultDataCount = 0;
 var langCode = commonJs.upperCase(jsconfig.get("langCode"));
