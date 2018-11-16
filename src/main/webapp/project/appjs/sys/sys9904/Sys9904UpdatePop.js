@@ -19,7 +19,7 @@ $(function() {
 							form:"fmDefault",
 							action:"/sys/9904/exeUpdate.do",
 							data:{
-								articleId:"<%=sysBoard.getArticleId()%>"
+								articleId:articleId
 							}
 						});
 					}
@@ -32,8 +32,8 @@ $(function() {
 		}
 	});
 
-	$("#btnClose").click(function(event) {
-		parent.popup.close();
+	$("#btnBack").click(function(event) {
+		history.go(-1);
 	});
 
 	$("#btnAddFile").click(function(event) {
@@ -52,11 +52,17 @@ $(function() {
 	/*!
 	 * process
 	 */
+	setEditor = function() {
+		$("#articleContents").ckeditor({
+			height:360,
+			toolbar:com.constants.toolbarDefault
+		});
+	};
 
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		parent.popup.setHeader(com.header.popHeaderEdit);
+		setEditor();
 	});
 });

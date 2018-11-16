@@ -8,6 +8,7 @@ package project.app.sys.sys9904;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseAction;
+import zebra.util.CommonUtil;
 
 public class Sys9904Action extends BaseAction {
 	@Autowired
@@ -63,6 +64,9 @@ public class Sys9904Action extends BaseAction {
 		} catch (Exception ex) {
 			paramEntity.setObject("script", "history.go(-1);");
 		} finally {
+			if (CommonUtil.isNotBlank(paramEntity.getRequestDataSet().getValue("articleContents"))) {
+				paramEntity.getRequestDataSet().setValue("articleContents", "");
+			}
 			paramEntity.setObject("messageCode", paramEntity.getMessageCode());
 			paramEntity.setObject("message", paramEntity.getMessage());
 		}
@@ -81,6 +85,9 @@ public class Sys9904Action extends BaseAction {
 		} catch (Exception ex) {
 			paramEntity.setObject("script", "history.go(-1);");
 		} finally {
+			if (CommonUtil.isNotBlank(paramEntity.getRequestDataSet().getValue("articleContents"))) {
+				paramEntity.getRequestDataSet().setValue("articleContents", "");
+			}
 			paramEntity.setObject("messageCode", paramEntity.getMessageCode());
 			paramEntity.setObject("message", paramEntity.getMessage());
 		}

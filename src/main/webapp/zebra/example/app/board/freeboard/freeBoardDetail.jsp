@@ -73,9 +73,9 @@ var articleId = "<%=freeBoard.getArticleId()%>";
 	<table class="tblEdit">
 		<colgroup>
 			<col width="12%"/>
-			<col width="37%"/>
+			<col width="38%"/>
 			<col width="12%"/>
-			<col width="37%"/>
+			<col width="38%"/>
 		</colgroup>
 		<tr>
 			<th class="thEdit Rt"><mc:msg key="fwk.bbs.header.writerName"/></th>
@@ -132,7 +132,7 @@ var articleId = "<%=freeBoard.getArticleId()%>";
 	<table class="tblDefault" style="width:100%;">
 		<tr>
 			<td class="tdDefault">
-				<textarea id="articleContents" name="articleContents" class="txaRead"><%=freeBoard.getArticleContents()%></textarea>
+				<ui:txa name="articleContents" style="height:280px;" value="<%=freeBoard.getArticleContents()%>"/>
 			</td>
 		</tr>
 	</table>
