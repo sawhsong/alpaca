@@ -47,8 +47,8 @@ $(function() {
 					var result = commonJs.parseAjaxResult(data, textStatus, "json");
 					if (result.isSuccess == true || result.isSuccess == "true") {
 						var dataSet = result.dataSet;
-						var actionString = "/index/dashboard.do";
-//						var actionString = dataSet.getValue(0, "DEFAULT_START_URL");
+//						var actionString = "/index/dashboard.do";
+						var actionString = dataSet.getValue(0, "DEFAULT_START_URL");
 
 						commonJs.openDialog({
 							type:com.message.I000,
