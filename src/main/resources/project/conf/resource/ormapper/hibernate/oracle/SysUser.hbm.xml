@@ -2,11 +2,11 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!--/*
  * Framework Generated Hibernate Config hbm Source
- * - SYS_USER - User Info
+ * - SYS_USER - User Info - Use Excel file to initialise data (SYS_USER_1.xlsx, SYS_USER_2.xlsx)
  */-->
 <hibernate-mapping>
 	<class name="project.conf.resource.ormapper.dto.oracle.SysUser" table="SYS_USER" lazy="false">
-		<meta attribute="class-description" inherit="false">User Info</meta>
+		<meta attribute="class-description" inherit="false">User Info - Use Excel file to initialise data (SYS_USER_1.xlsx, SYS_USER_2.xlsx)</meta>
 
 		<id name="userId" column="USER_ID" type="java.lang.String" length="30"></id>
 
@@ -22,6 +22,7 @@
 		<property name="userName" column="USER_NAME" not-null="true" type="java.lang.String" length="50"/>
 		<property name="userStatus" column="USER_STATUS" not-null="true" type="java.lang.String" length="30"/>
 		<property name="userType" column="USER_TYPE" not-null="true" type="java.lang.String" length="30"/>
+		<property name="defaultStartUrl" column="DEFAULT_START_URL" type="java.lang.String" length="100"/>
 		<property name="description" column="DESCRIPTION" type="java.lang.String" length="1000"/>
 		<property name="disabledDate" column="DISABLED_DATE" type="java.util.Date"/>
 		<property name="email" column="EMAIL" type="java.lang.String" length="100"/>
@@ -31,13 +32,13 @@
 		<property name="photoPath" column="PHOTO_PATH" type="java.lang.String" length="1000"/>
 		<property name="pin" column="PIN" type="java.lang.String" length="30"/>
 		<property name="portalOrgProfileId" column="PORTAL_ORG_PROFILE_ID" type="java.lang.String" length="30"/>
-		<property name="portalSecurityRole" column="PORTAL_SECURITY_ROLE" type="java.lang.String" length="60"/>
-		<property name="portalSkin" column="PORTAL_SKIN" type="java.lang.String" length="60"/>
+		<property name="portalSecurityRole" column="PORTAL_SECURITY_ROLE" type="java.lang.String" length="100"/>
+		<property name="portalSkin" column="PORTAL_SKIN" type="java.lang.String" length="100"/>
 		<property name="propToPortal" column="PROP_TO_PORTAL" type="java.lang.String" length="3"/>
 		<property name="resetPassword" column="RESET_PASSWORD" type="java.lang.String" length="30"/>
 		<property name="resetTermCondition" column="RESET_TERM_CONDITION" type="java.lang.String" length="30"/>
-		<property name="securityQuestion1" column="SECURITY_QUESTION_1" type="java.lang.String" length="60"/>
-		<property name="securityQuestion2" column="SECURITY_QUESTION_2" type="java.lang.String" length="60"/>
+		<property name="securityQuestion1" column="SECURITY_QUESTION_1" type="java.lang.String" length="100"/>
+		<property name="securityQuestion2" column="SECURITY_QUESTION_2" type="java.lang.String" length="100"/>
 		<property name="securityQuestionAnswer1" column="SECURITY_QUESTION_ANSWER_1" type="java.lang.String" length="500"/>
 		<property name="securityQuestionAnswer2" column="SECURITY_QUESTION_ANSWER_2" type="java.lang.String" length="500"/>
 		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
@@ -59,6 +60,7 @@
 		       USER_NAME,
 		       USER_STATUS,
 		       USER_TYPE,
+		       DEFAULT_START_URL,
 		       DESCRIPTION,
 		       TO_CHAR(DISABLED_DATE, 'yyyymmddhh24miss') AS DISABLED_DATE,
 		       EMAIL,
@@ -104,6 +106,7 @@
 		       USER_NAME,
 		       USER_STATUS,
 		       USER_TYPE,
+		       DEFAULT_START_URL,
 		       DESCRIPTION,
 		       DISABLED_DATE,
 		       EMAIL,
@@ -139,6 +142,7 @@
 		       ${USER_NAME},
 		       ${USER_STATUS},
 		       ${USER_TYPE},
+		       ${DEFAULT_START_URL},
 		       ${DESCRIPTION},
 		       ${DISABLED_DATE},
 		       ${EMAIL},
@@ -178,6 +182,7 @@
 		       USER_NAME = ${USER_NAME},
 		       USER_STATUS = ${USER_STATUS},
 		       USER_TYPE = ${USER_TYPE},
+		       DEFAULT_START_URL = ${DEFAULT_START_URL},
 		       DESCRIPTION = ${DESCRIPTION},
 		       DISABLED_DATE = ${DISABLED_DATE},
 		       EMAIL = ${EMAIL},

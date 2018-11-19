@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated DTO Source
- * - SYS_USER - User Info
+ * - SYS_USER - User Info - Use Excel file to initialise data (SYS_USER_1.xlsx, SYS_USER_2.xlsx)
  *************************************************************************************************/
 package project.conf.resource.ormapper.dto.oracle;
 
@@ -43,6 +43,8 @@ public class SysUser extends BaseDto implements Serializable {
 	private String USER_STATUS;
 	private String userType;
 	private String USER_TYPE;
+	private String defaultStartUrl;
+	private String DEFAULT_START_URL;
 	private String description;
 	private String DESCRIPTION;
 	private Date disabledDate;
@@ -237,6 +239,15 @@ public class SysUser extends BaseDto implements Serializable {
 	public void setUserType(String userType) throws Exception {
 		this.userType = userType;
 		setValueFromAccessor("USER_TYPE", userType);
+	}
+
+	public String getDefaultStartUrl() {
+		return defaultStartUrl;
+	}
+
+	public void setDefaultStartUrl(String defaultStartUrl) throws Exception {
+		this.defaultStartUrl = defaultStartUrl;
+		setValueFromAccessor("DEFAULT_START_URL", defaultStartUrl);
 	}
 
 	public String getDescription() {
@@ -561,6 +572,7 @@ public class SysUser extends BaseDto implements Serializable {
 		str += "userName : "+userName+"\n";
 		str += "userStatus : "+userStatus+"\n";
 		str += "userType : "+userType+"\n";
+		str += "defaultStartUrl : "+defaultStartUrl+"\n";
 		str += "description : "+description+"\n";
 		str += "disabledDate : "+disabledDate+"\n";
 		str += "email : "+email+"\n";
@@ -606,6 +618,7 @@ public class SysUser extends BaseDto implements Serializable {
 		str += "<column name=\"userName\" value=\""+userName+"\">";
 		str += "<column name=\"userStatus\" value=\""+userStatus+"\">";
 		str += "<column name=\"userType\" value=\""+userType+"\">";
+		str += "<column name=\"defaultStartUrl\" value=\""+defaultStartUrl+"\">";
 		str += "<column name=\"description\" value=\""+description+"\">";
 		str += "<column name=\"disabledDate\" value=\""+disabledDate+"\">";
 		str += "<column name=\"email\" value=\""+email+"\">";
@@ -651,6 +664,7 @@ public class SysUser extends BaseDto implements Serializable {
 		str += "\"userName\":\""+userName+"\", ";
 		str += "\"userStatus\":\""+userStatus+"\", ";
 		str += "\"userType\":\""+userType+"\", ";
+		str += "\"defaultStartUrl\":\""+defaultStartUrl+"\", ";
 		str += "\"description\":\""+description+"\", ";
 		str += "\"disabledDate\":\""+disabledDate+"\", ";
 		str += "\"email\":\""+email+"\", ";

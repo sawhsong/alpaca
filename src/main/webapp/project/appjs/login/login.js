@@ -48,6 +48,7 @@ $(function() {
 					if (result.isSuccess == true || result.isSuccess == "true") {
 						var dataSet = result.dataSet;
 						var actionString = "/index/dashboard.do";
+//						var actionString = dataSet.getValue(0, "DEFAULT_START_URL");
 
 						commonJs.openDialog({
 							type:com.message.I000,
