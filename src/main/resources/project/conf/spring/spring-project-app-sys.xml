@@ -20,4 +20,7 @@
     <!--Sys9904 - Free Board-->
     <bean class="${name.package.project}.app.sys.sys9904.Sys9904Action" id="sys9904Action" name="sys9904Action"/>
     <bean class="${name.package.project}.app.sys.sys9904.Sys9904BizImpl" id="sys9904Biz" name="sys9904Biz" parent="baseBiz"/>
+    <!--Sys0406 - User-->
+    <bean class="${name.package.project}.app.sys.sys0406.Sys0406Action" id="sys0406Action" name="sys0406Action"/>
+    <bean class="${name.package.project}.app.sys.sys0406.Sys0406BizImpl" id="sys0406Biz" name="sys0406Biz" parent="baseBiz"/>
 </beans>

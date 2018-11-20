@@ -53,5 +53,12 @@
             <result name="insert" type="debugDispatcherResult">/project/app/sys/sys9904/Sys9904InsertPop.jsp</result>
             <result name="update" type="debugDispatcherResult">/project/app/sys/sys9904/Sys9904UpdatePop.jsp</result>
         </action>
+        <!--Sys0406 - User-->
+        <action class="project.app.sys.sys0406.Sys0406Action" method="{1}" name="0406/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sys0406/Sys0406List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/sys/sys0406/Sys0406DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/sys/sys0406/Sys0406InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/sys/sys0406/Sys0406UpdatePop.jsp</result>
+        </action>
     </package>
 </struts>
