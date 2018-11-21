@@ -7,7 +7,17 @@ $(function() {
 	 * event
 	 */
 	$("#btnSave").click(function(event) {
+		var fileValue = $("#photoPath").val();
+
 		if (commonJs.doValidate("fmDefault")) {
+			if (!commonJs.isEmpty(fileValue)) {
+				fileValue = fileValue.substring(fileValue.lastIndexOf(".")+1);
+				if (!(fileValue.toLowerCase() == "png" || fileValue.toLowerCase() == "jpg" || fileValue.toLowerCase() == "gif" || fileValue.toLowerCase() == "jpeg")) {
+					commonJs.doValidatorMessage($("#photoPath"), "notUploadable");
+					return;
+				}
+			}
+
 			$("#fmDefault").attr("enctype", "multipart/form-data");
 
 			commonJs.confirm({
@@ -17,10 +27,7 @@ $(function() {
 					callback:function() {
 						commonJs.doSubmit({
 							form:"fmDefault",
-							action:"/sys/0406/exeInsert.do",
-							data:{
-								articleId:articleId
-							}
+							action:"/sys/0406/exeInsert.do"
 						});
 					}
 				}, {
@@ -34,13 +41,6 @@ $(function() {
 
 	$("#btnClose").click(function(event) {
 		parent.popup.close();
-	});
-
-	$("#btnAddFile").click(function(event) {
-		commonJs.addFileSelectObject({
-			appendToId:"divAttachedFile",
-			rowBreak:false
-		});
 	});
 
 	$(document).keypress(function(event) {
@@ -57,6 +57,6 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		$("#writerName").focus();
+		$("#photoPath").focus();
 	});
 });

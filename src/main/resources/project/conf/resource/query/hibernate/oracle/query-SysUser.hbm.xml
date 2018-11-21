@@ -11,7 +11,6 @@
 		       usr.user_name,
 		       usr.login_id,
 		       usr.login_password,
-		       (select legal_name from sys_org where org_id = usr.org_id) as org_name,
 		       usr.auth_group_id,
 		       (select group_name from sys_auth_group where group_id = usr.auth_group_id) as auth_group_name,
 		       usr.language,

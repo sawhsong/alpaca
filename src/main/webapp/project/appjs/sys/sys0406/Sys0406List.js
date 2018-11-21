@@ -3,7 +3,7 @@
  * - Sys0406List.js
  *************************************************************************************************/
 jsconfig.put("useJqTooltip", false);
-var popup = null, popupLookup = null;
+var popup = null;
 var searchResultDataCount = 0;
 var toDateFormat = jsconfig.get("dateFormatJs");
 
@@ -132,10 +132,13 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "LOGIN_ID")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "AUTH_GROUP_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "USER_TYPE_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "USER_STATUS_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "EMAIL")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "IS_ACTIVE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "INSERT_DATE")));
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
-					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("userId:"+ds.getValue(i, "USER_ID")).setScript("doAction(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
@@ -143,7 +146,7 @@ $(function() {
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:7").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:10").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
@@ -159,47 +162,67 @@ $(function() {
 			script:"doSearch"
 		});
 
-		$("[name=icnAttachedFile]").each(function(index) {
-			$(this).contextMenu(attchedFileContextMenu);
-		});
-
 		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.boardAction);
+			$(this).contextMenu(ctxMenu.commonAction);
 		});
 
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 
-	getDetail = function(articleId) {
-		openPopup({mode:"Detail", articleId:articleId});
+	getDetail = function(userId) {
+		openPopup({mode:"Detail", userId:userId});
 	};
 
 	openPopup = function(param) {
-		var url = "", header = "";
-		var height = 510;
+		var url = "", header = "", width = 940, height = 516;
 
 		if (param.mode == "Detail") {
 			url = "/sys/0406/getDetail.do";
 			header = com.header.popHeaderDetail;
-		} else if (param.mode == "New" || param.mode == "Reply") {
+			height = 446;
+		} else if (param.mode == "New") {
 			url = "/sys/0406/getInsert.do";
 			header = com.header.popHeaderEdit;
+			height = 620;
 		} else if (param.mode == "Edit") {
 			url = "/sys/0406/getUpdate.do";
 			header = com.header.popHeaderEdit;
-			height = 634;
+			height = 620;
+		} else if (param.mode == "UpdateAuthGroup") {
+			url = "/sys/0406/getActionContextMenu.do";
+			header = sys.sys0406.caption.auth;
+			width = 330; height = 240;
+		} else if (param.mode == "UpdateUserType") {
+			url = "/sys/0406/getActionContextMenu.do";
+			header = sys.sys0406.caption.type;
+			width = 330; height = 176;
+		} else if (param.mode == "UpdateUserStatus") {
+			url = "/sys/0406/getActionContextMenu.do";
+			header = sys.sys0406.caption.status;
+			width = 330; height = 220;
+		} else if (param.mode == "UpdateActiveStatus") {
+			url = "/sys/0406/getActionContextMenu.do";
+			header = sys.sys0406.caption.active;
+			width = 330; height = 176;
+		}
+
+		if (url.indexOf("getActionContextMenu") != -1) {
+			if (commonJs.getCountChecked("chkForDel") == 0) {
+				commonJs.warn(com.message.I902);
+				return;
+			}
 		}
 
 		var popParam = {
-			popupId:"notice"+param.mode,
+			popupId:"user"+param.mode,
 			url:url,
 			paramData:{
 				mode:param.mode,
-				articleId:commonJs.nvl(param.articleId, "")
+				userId:commonJs.nvl(param.userId, "")
 			},
 			header:header,
 			blind:true,
-			width:800,
+			width:width,
 			height:height
 		};
 
@@ -253,22 +276,21 @@ $(function() {
 	};
 
 	doAction = function(img) {
-		var articleId = $(img).attr("articleId");
+		var userId = $(img).attr("userId");
 
 		$("input:checkbox[name=chkForDel]").each(function(index) {
-			if (!$(this).is(":disabled") && $(this).val() == articleId) {
+			if (!$(this).is(":disabled") && $(this).val() == userId) {
 				$(this).prop("checked", true);
 			} else {
 				$(this).prop("checked", false);
 			}
 		});
 
-		ctxMenu.boardAction[0].fun = function() {getDetail(articleId);};
-		ctxMenu.boardAction[1].fun = function() {openPopup({mode:"Edit", articleId:articleId});};
-		ctxMenu.boardAction[2].fun = function() {openPopup({mode:"Reply", articleId:articleId});};
-		ctxMenu.boardAction[3].fun = function() {doDelete();};
+		ctxMenu.commonAction[0].fun = function() {getDetail(userId);};
+		ctxMenu.commonAction[1].fun = function() {openPopup({mode:"Edit", userId:userId});};
+		ctxMenu.commonAction[2].fun = function() {doDelete();};
 
-		$(img).contextMenu(ctxMenu.boardAction, {
+		$(img).contextMenu(ctxMenu.commonAction, {
 			classPrefix:com.constants.ctxClassPrefixGrid,
 			displayAround:"trigger",
 			position:"bottom",
@@ -314,14 +336,69 @@ $(function() {
 		});
 	};
 
+	exeActionContextMenu = function(param) {
+		commonJs.ajaxSubmit({
+			url:"/sys/0406/exeActionContextMenu.do",
+			dataType:"json",
+			formId:"fmDefault",
+			data:param,
+			success:function(data, textStatus) {
+				var result = commonJs.parseAjaxResult(data, textStatus, "json");
+
+				if (result.isSuccess == true || result.isSuccess == "true") {
+					commonJs.openDialog({
+						type:com.message.I000,
+						contents:result.message,
+						blind:true,
+						buttons:[{
+							caption:com.caption.yes,
+							callback:function() {
+								doSearch();
+							}
+						}]
+					});
+				} else {
+					commonJs.error(result.message);
+				}
+			}
+		});
+	};
+
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		commonJs.setFieldDateMask("fromDate");
-		commonJs.setFieldDateMask("toDate");
+		setActionButtonContextMenu();
 		commonJs.setExportButtonContextMenu($("#btnExport"));
-		$("#searchWord").focus();
+
+		commonJs.setAutoComplete($("#userName"), {
+			method:"getUserName",
+			label:"user_name",
+			value:"user_name",
+			focus: function(event, ui) {
+				$("#userName").val(ui.item.label);
+				return false;
+			},
+			select:function(event, ui) {
+				doSearch();
+			}
+		});
+
+		commonJs.setAutoComplete($("#loginId"), {
+			method:"getLoginId",
+			label:"login_id",
+			value:"login_id",
+			focus: function(event, ui) {
+				$("#loginId").val(ui.item.label);
+				return false;
+			},
+			select:function(event, ui) {
+				doSearch();
+			}
+		});
+
+		$("#userName").focus();
+
 		doSearch();
 	});
 });

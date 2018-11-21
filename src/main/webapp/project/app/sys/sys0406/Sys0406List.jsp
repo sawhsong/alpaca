@@ -60,7 +60,7 @@
 <div id="divSearchCriteriaArea" class="areaContainer">
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<table class="tblDefault">
+			<table class="tblDefault withPadding">
 				<colgroup>
 					<col width="10%"/>
 					<col width="23%"/>
@@ -127,14 +127,14 @@
 		<thead>
 			<tr>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sba0204.grid.userName"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sba0204.grid.loginId"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sba0204.grid.authGroup"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sba0204.grid.type"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sba0204.grid.status"/></th>
-				<th class="thGrid"><mc:msg key="sba0204.grid.email"/></th>
-				<th class="thGrid"><mc:msg key="sba0204.grid.active"/></th>
-				<th class="thGrid sortable:date"><mc:msg key="sba0204.grid.date"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0406.grid.userName"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0406.grid.loginId"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0406.grid.authGroup"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0406.grid.type"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0406.grid.status"/></th>
+				<th class="thGrid"><mc:msg key="sys0406.grid.email"/></th>
+				<th class="thGrid"><mc:msg key="sys0406.grid.active"/></th>
+				<th class="thGrid sortable:date"><mc:msg key="sys0406.grid.date"/></th>
 				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>

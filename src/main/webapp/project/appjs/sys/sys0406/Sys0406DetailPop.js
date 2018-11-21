@@ -10,10 +10,6 @@ $(function() {
 		doProcessByButton({mode:"Update"});
 	});
 
-	$("#btnReply").click(function(event) {
-		doProcessByButton({mode:"Reply"});
-	});
-
 	$("#btnDelete").click(function(event) {
 		doProcessByButton({mode:"Delete"});
 	});
@@ -32,29 +28,17 @@ $(function() {
 	 * process
 	 */
 	doProcessByButton = function(param) {
-		var articleId = "<%=sysBoard.getArticleId()%>";
-		var actionString = "";
+		var action = "";
 		var params = {};
 
 		if (param.mode == "Update") {
-			actionString = "/sys/0406/getUpdate.do";
-		} else if (param.mode == "Reply") {
-			actionString = "/sys/0406/getInsert.do";
+			action = "/sys/0406/getUpdate.do";
 		} else if (param.mode == "Delete") {
-			actionString = "/sys/0406/exeDelete.do";
+			action = "/sys/0406/exeDelete.do";
 		}
 
-		params = {
-			form:"fmDefault",
-			action:actionString,
-			data:{
-				mode:param.mode,
-				articleId:articleId
-			}
-		};
-
 		if (param.mode == "Update") {
-			parent.popup.resizeTo(0, 124);
+			parent.popup.resizeTo(0, 174);
 		}
 
 		if (param.mode == "Delete") {
@@ -64,11 +48,11 @@ $(function() {
 					caption:com.caption.yes,
 					callback:function() {
 						commonJs.ajaxSubmit({
-							url:actionString,
+							url:action,
 							dataType:"json",
 							formId:"fmDefault",
 							data:{
-								articleId:articleId
+								userId:userId
 							},
 							success:function(data, textStatus) {
 								var result = commonJs.parseAjaxResult(data, textStatus, "json");
@@ -100,7 +84,14 @@ $(function() {
 				}]
 			});
 		} else {
-			commonJs.doSubmit(params);
+			commonJs.doSubmit({
+				form:"fmDefault",
+				action:action,
+				data:{
+					mode:param.mode,
+					userId:userId
+				}
+			});
 		}
 	};
 
