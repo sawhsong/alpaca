@@ -72,9 +72,9 @@ public class File extends TaglibSupport {
 			html.append("<input type=\"file\"");
 			html.append(" id=\""+CommonUtil.nvl(id, name)+"\"");
 			html.append(" name=\""+name+"\"");
+			html.append(" value=\""+value+"\"");
 
 			if (CommonUtil.isNotBlank(className)) {html.append(" class=\""+className+"\"");}
-			if (CommonUtil.isNotBlank(value)) {html.append(" value=\""+value+"\"");}
 			if (CommonUtil.isNotBlank(style)) {html.append(" style=\""+style+"\"");}
 			if (CommonUtil.isNotBlank(scriptStr)) {html.append(" "+scriptStr+"");}
 			if (CommonUtil.isNotBlank(title)) {html.append(" title=\""+title+"\"");}
