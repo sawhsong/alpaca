@@ -191,11 +191,11 @@ $(function() {
 		} else if (param.mode == "UpdateAuthGroup") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.auth;
-			width = 330; height = 240;
+			width = 330; height = 324;
 		} else if (param.mode == "UpdateUserType") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.type;
-			width = 330; height = 176;
+			width = 330; height = 180;
 		} else if (param.mode == "UpdateUserStatus") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.status;
@@ -203,7 +203,7 @@ $(function() {
 		} else if (param.mode == "UpdateActiveStatus") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.active;
-			width = 330; height = 176;
+			width = 330; height = 180;
 		}
 
 		if (url.indexOf("getActionContextMenu") != -1) {
@@ -350,6 +350,7 @@ $(function() {
 						type:com.message.I000,
 						contents:result.message,
 						blind:true,
+						width:300,
 						buttons:[{
 							caption:com.caption.yes,
 							callback:function() {
