@@ -114,14 +114,14 @@
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
 			<col width="2%"/>
-			<col width="*"/>
-			<col width="8%"/>
 			<col width="11%"/>
-			<col width="7%"/>
-			<col width="7%"/>
-			<col width="16%"/>
+			<col width="11%"/>
+			<col width="20%"/>
+			<col width="8%"/>
+			<col width="8%"/>
+			<col width="*"/>
 			<col width="5%"/>
-			<col width="6%"/>
+			<col width="7%"/>
 			<col width="3%"/>
 		</colgroup>
 		<thead>

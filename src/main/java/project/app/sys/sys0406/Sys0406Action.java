@@ -42,6 +42,11 @@ public class Sys0406Action extends BaseAction {
 		return "update";
 	}
 
+	public String getActionContextMenu() throws Exception {
+		biz.getActionContextMenu(paramEntity);
+		return "actionContextMenu";
+	}
+
 	public String exeInsert() throws Exception {
 		try {
 			biz.exeInsert(paramEntity);
