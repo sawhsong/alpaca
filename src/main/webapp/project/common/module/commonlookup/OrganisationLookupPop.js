@@ -26,7 +26,7 @@ $(function() {
 					}
 				}
 			});
-		}, 100);
+		}, 200);
 	};
 
 	renderDataGridTable = function(result) {

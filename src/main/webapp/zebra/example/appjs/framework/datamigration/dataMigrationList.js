@@ -66,7 +66,7 @@ $(function() {
 					}
 				}
 			});
-		}, 100);
+		}, 200);
 	};
 
 	renderSourceDataTable = function(result) {
@@ -123,7 +123,7 @@ $(function() {
 					}
 				}
 			});
-		}, 100);
+		}, 200);
 	};
 
 	renderTargetDataTable = function(result) {
