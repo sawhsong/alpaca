@@ -8,6 +8,7 @@
 <%
 	SysUser sysUserHeaderPage = (SysUser)session.getAttribute("SysUser");
 	String authGroupIdHeaderPage = sysUserHeaderPage.getAuthGroupId();
+
 	String userNameHeaderPage = sysUserHeaderPage.getUserName();
 	String userIdHeaderPage = sysUserHeaderPage.getUserId();
 	String languageCodeHeaderPage = CommonUtil.upperCase((String)session.getAttribute("langCode"));
