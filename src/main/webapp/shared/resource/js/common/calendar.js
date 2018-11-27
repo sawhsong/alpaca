@@ -224,7 +224,7 @@
 
 			if (this.shadowEffect) {$(this.calendarBase).addClass("shadowForDivNonyCalendarBase");}
 		},
-		_setPosition : function() {
+		_setPosition : function(params) {
 			var correctionValueX = params.adjustX || 8, correctionValueY = params.adjustY || 18;
 
 			$(this.calendarBase).css("left", ($(this.clickedImg).offset().left + correctionValueX - this.width) + "px");
