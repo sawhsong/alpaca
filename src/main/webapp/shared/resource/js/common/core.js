@@ -533,7 +533,7 @@ var nony = {
 		$(jqObjectButton).contextMenu(ctxMenu.commonExport, {
 			classPrefix:com.constants.ctxClassPrefixButton,
 			effectDuration:300,
-			effect:"fade",
+			effect:"slide",
 			borderRadius:"bottom 4px",
 			displayAround:"trigger",
 			position:"bottom",
@@ -657,7 +657,6 @@ var nony = {
 			options.width = "auto";
 			options.container = "body";
 			options.style = $(this).attr("class");
-
 			$(this).selectpicker(options);
 		});
 	},
@@ -669,6 +668,17 @@ var nony = {
 			}
 		});
 		return element;
+	},
+	refreshBootstrapSelectbox : function(id) {
+		if ($.nony.isEmpty(id)) {
+			$("select.bootstrapSelect").each(function(index) {
+				$(this).selectpicker("refresh");
+				$(this).selectpicker("render");
+			});
+		} else {
+			$("#"+id).selectpicker("refresh");
+			$("#"+id).selectpicker("render");
+		}
 	},
 	/*!
 	 * Auto Completion
