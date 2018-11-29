@@ -94,28 +94,26 @@
 <div id="divDataArea" class="areaContainer">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="3%"/>
 			<col width="*"/>
 			<col width="5%"/>
-			<col width="15%"/>
+			<col width="20%"/>
+			<col width="10%"/>
 			<col width="10%"/>
 			<col width="8%"/>
-			<col width="5%"/>
 		</colgroup>
 		<thead>
 			<tr class="noBorderHor">
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="bbs0202.grid.articleSubject"/></th>
+				<th class="thGrid"><mc:msg key="bbs0202.grid.articleSubject"/></th>
 				<th class="thGrid"><mc:msg key="bbs0202.grid.file"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="bbs0202.grid.writerName"/></th>
-				<th class="thGrid sortable:date"><mc:msg key="page.com.insertDate"/></th>
-				<th class="thGrid sortable:numeric"><mc:msg key="bbs0202.grid.hitCount"/></th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
+				<th class="thGrid"><mc:msg key="bbs0202.grid.writerName"/></th>
+				<th class="thGrid"><mc:msg key="page.com.insertDate"/></th>
+				<th class="thGrid"><mc:msg key="page.com.updateDate"/></th>
+				<th class="thGrid"><mc:msg key="bbs0202.grid.hitCount"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
 			<tr class="noBorderHor noStripe">
-				<td class="tdGrid Ct" colspan="7"><mc:msg key="I002"/></td>
+				<td class="tdGrid Ct" colspan="6"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
 	</table>
