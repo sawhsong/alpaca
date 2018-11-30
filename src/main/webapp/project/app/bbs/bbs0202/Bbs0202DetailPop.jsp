@@ -47,9 +47,6 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnEdit" caption="button.com.edit" iconClass="fa-edit"/>
-			<ui:button id="btnReply" caption="button.com.reply" iconClass="fa-reply-all"/>
-			<ui:button id="btnDelete" caption="button.com.delete" iconClass="fa-save"/>
 			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
 		</ui:buttonGroup>
 	</div>
@@ -80,9 +77,9 @@
 			<td class="tdEdit"><%=sysBoard.getWriterEmail()%></td>
 		</tr>
 		<tr>
-			<th class="thEdit Rt"><mc:msg key="bbs0202.header.updateDate"/></th>
+			<th class="thEdit Rt"><mc:msg key="page.com.updateDate"/></th>
 			<td class="tdEdit"><%=CommonUtil.toViewDateString(sysBoard.getUpdateDate())%></td>
-			<th class="thEdit Rt"><mc:msg key="bbs0202.header.hitCount"/></th>
+			<th class="thEdit Rt"><mc:msg key="bbs0202.header.hitCnt"/></th>
 			<td class="tdEdit"><%=CommonUtil.getNumberMask(sysBoard.getHitCnt())%></td>
 		</tr>
 		<tr>
