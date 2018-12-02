@@ -1798,7 +1798,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean createMessageFile(DataSet dsRequest) throws Exception {
-		String compilePath = "/target/hkaccounting";
+		String compilePath = "/target/alpaca";
 		String isCreate = CommonUtil.nvl(dsRequest.getValue("createMessage"));
 		String targetPath = dsRequest.getValue("messageConfigPath");
 		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(dsRequest.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
