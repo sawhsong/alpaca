@@ -97,31 +97,5 @@ var ctxMenu = {
 		name:com.caption.ctxGenerate,
 		img:"fa-gears",
 		fun:function() {}
-	}],
-
-	// Data Entry Action context menu
-	dataEntrySalesAction : [{
-		name:com.caption.ctxEdit,
-		img:"fa-edit",
-		fun:function() {}
-	}, {
-		name:com.caption.ctxDelete,
-		img:"fa-trash",
-		fun:function() {}
-	}],
-
-	// Data Entry Action context menu
-	dataEntryAction : [{
-		name:com.caption.ctxSave,
-		img:"fa-save",
-		fun:function() {}
-	}, {
-		name:com.caption.ctxCancel,
-		img:"fa-refresh",
-		fun:function() {}
-	}, {
-		name:com.caption.ctxDelete,
-		img:"fa-trash",
-		fun:function() {}
 	}]
 };
