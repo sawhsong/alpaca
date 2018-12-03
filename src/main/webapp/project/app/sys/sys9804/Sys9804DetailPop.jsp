@@ -7,10 +7,8 @@
 * Declare objects & variables
 ************************************************************************************************/%>
 <%
-	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
-	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
-	SysBoard sysBoard = (SysBoard)paramEntity.getObject("sysBoard");
-	DataSet fileDataSet = (DataSet)paramEntity.getObject("fileDataSet");
+	ParamEntity pe = (ParamEntity)request.getAttribute("paramEntity");
+	DataSet detail = (DataSet)pe.getObject("invoiceDetailList");
 %>
 <%/************************************************************************************************
 * HTML
@@ -47,15 +45,39 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnEdit" caption="button.com.edit" iconClass="fa-edit"/>
-			<ui:button id="btnReply" caption="button.com.reply" iconClass="fa-reply-all"/>
-			<ui:button id="btnDelete" caption="button.com.delete" iconClass="fa-save"/>
 			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
 		</ui:buttonGroup>
 	</div>
 </div>
 <div id="divSearchCriteriaArea"></div>
-<div id="divInformArea"></div>
+<div id="divInformArea" class="areaContainerPopup">
+	<table class="tblEdit">
+		<colgroup>
+			<col width="18%"/>
+			<col width="32%"/>
+			<col width="18%"/>
+			<col width="32%"/>
+		</colgroup>
+		<tr>
+			<th class="thEdit rt">Invoice Number</th>
+			<td class="tdEdit"><%=pe.getObject("invoiceNumber")%></td>
+			<th class="thEdit rt">Invoice Date</th>
+			<td class="tdEdit"><%=pe.getObject("invoiceDate")%></td>
+		</tr>
+		<tr>
+			<th class="thEdit rt">Start Date</th>
+			<td class="tdEdit"><%=pe.getObject("startDate")%></td>
+			<th class="thEdit rt">End Date</th>
+			<td class="tdEdit"><%=pe.getObject("endDate")%></td>
+		</tr>
+		<tr>
+			<th class="thEdit rt">Gst Amount</th>
+			<td class="tdEdit"><%=CommonUtil.toString((double)pe.getObject("gstAmount"), "#,###.##")%></td>
+			<th class="thEdit rt">Total Billable</th>
+			<td class="tdEdit"><%=CommonUtil.toString((double)pe.getObject("totalBillable"), "#,###.##")%></td>
+		</tr>
+	</table>
+</div>
 <%/************************************************************************************************
 * End of fixed panel
 ************************************************************************************************/%>
@@ -66,65 +88,46 @@
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
-	<table class="tblEdit">
+	<table id="tblGrid" class="tblGrid">
 		<colgroup>
-			<col width="15%"/>
-			<col width="35%"/>
-			<col width="15%"/>
-			<col width="35%"/>
+			<col width="*"/>
+			<col width="12%"/>
+			<col width="25%"/>
+			<col width="16%"/>
+			<col width="20%"/>
 		</colgroup>
-		<tr>
-			<th class="thEdit Rt"><mc:msg key="sys9804.header.writerName"/></th>
-			<td class="tdEdit"><%=sysBoard.getWriterName()%>(<%=sysBoard.getWriterId()%>)</td>
-			<th class="thEdit Rt"><mc:msg key="sys9804.header.writerEmail"/></th>
-			<td class="tdEdit"><%=sysBoard.getWriterEmail()%></td>
-		</tr>
-		<tr>
-			<th class="thEdit Rt"><mc:msg key="sys9804.header.updateDate"/></th>
-			<td class="tdEdit"><%=CommonUtil.toViewDateString(sysBoard.getUpdateDate())%></td>
-			<th class="thEdit Rt"><mc:msg key="sys9804.header.hitCount"/></th>
-			<td class="tdEdit"><%=CommonUtil.getNumberMask(sysBoard.getHitCnt())%></td>
-		</tr>
-		<tr>
-			<th class="thEdit Rt"><mc:msg key="sys9804.header.articleSubject"/></th>
-			<td class="tdEdit" colspan="3"><%=sysBoard.getArticleSubject()%></td>
-		</tr>
-		<tr>
-			<th class="thEdit Rt"><mc:msg key="sys9804.header.articleContents"/></th>
-			<td class="tdEdit" colspan="3" style="height:226px;vertical-align:top">
-				<ui:txa style="height:214px;padding:0px 4px 0px 0px" value="<%=sysBoard.getArticleContents()%>" status="display"/>
-			</td>
-		</tr>
-		<tr>
-			<th class="thEdit Rt"><mc:msg key="sys9804.header.attachedFile"/></th>
-			<td class="tdEdit" colspan="3">
-				<div id="divAttachedFile" style="width:100%;height:100px;overflow-y:auto;">
-					<table class="tblDefault withPadding">
+		<thead>
+			<tr>
+				<th class="thGrid">Ipro Name</th>
+				<th class="thGrid">Cost Center</th>
+				<th class="thGrid">Reference</th>
+				<th class="thGrid">Billable Amount</th>
+				<th class="thGrid">State</th>
+			</tr>
+		</thead>
+		<tbody id="tblGridBody">
 <%
-					if (fileDataSet.getRowCnt() > 0) {
-						for (int i=0; i<fileDataSet.getRowCnt(); i++) {
-							String repositoryPath = fileDataSet.getValue(i, "REPOSITORY_PATH");
-							String originalName = fileDataSet.getValue(i, "ORIGINAL_NAME");
-							String newName = fileDataSet.getValue(i, "NEW_NAME");
-							String icon = fileDataSet.getValue(i, "FILE_ICON");
-							double fileSize = CommonUtil.toDouble(fileDataSet.getValue(i, "FILE_SIZE")) / 1024;
+		if (detail.getRowCnt() > 0) {
+			for (int i=0; i<detail.getRowCnt(); i++) {
 %>
-						<tr>
-							<td class="tdDefault">
-								<img src="<%=icon%>" style="margin-top:-4px;"/>
-								<a class="aEn" onclick="exeDownload('<%=repositoryPath%>', '<%=originalName%>', '<%=newName%>')">
-									<%=fileDataSet.getValue(i, "ORIGINAL_NAME")%> (<%=CommonUtil.getNumberMask(fileSize)%> KB)
-								</a>
-							</td>
-						</tr>
+			<tr>
+				<td class="tdGrid"><%=detail.getValue(i, "iproName")%></td>
+				<td class="tdGrid ct"><%=CommonUtil.replace(detail.getValue(i, "costCenter"), "null", "")%></td>
+				<td class="tdGrid"><%=detail.getValue(i, "reference")%></td>
+				<td class="tdGrid rt"><%=CommonUtil.toString(CommonUtil.toDouble(detail.getValue(i, "billableAmount")), "#,###.00")%></td>
+				<td class="tdGrid"><%=detail.getValue(i, "state")%></td>
+			</tr>
 <%
-						}
-					}
+			}
+		} else {
 %>
-					</table>
-				</div>
-			</td>
-		</tr>
+			<tr>
+				<td class="tdGrid Ct" colspan="5"><mc:msg key="I002"/></td>
+			</tr>
+<%
+		}
+%>
+		</tbody>
 	</table>
 </div>
 <div id="divPagingArea"></div>

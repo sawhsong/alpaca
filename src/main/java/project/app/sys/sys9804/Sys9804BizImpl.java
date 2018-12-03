@@ -7,35 +7,20 @@ package project.app.sys.sys9804;
 
 import java.util.Iterator;
 
-import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Response;
 
 import org.apache.cxf.jaxrs.client.WebClient;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 import project.common.extend.BaseBiz;
-import project.common.module.commoncode.CommonCodeManager;
-import project.conf.resource.ormapper.dao.SysBoard.SysBoardDao;
-import project.conf.resource.ormapper.dao.SysBoardFile.SysBoardFileDao;
-import project.conf.resource.ormapper.dto.oracle.SysBoard;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
-import zebra.data.QueryAdvisor;
 import zebra.exception.FrameworkException;
-import zebra.export.ExportHelper;
 import zebra.util.CommonUtil;
-import zebra.util.ConfigUtil;
-import zebra.util.ExportUtil;
 
 public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
-	@Autowired
-	private SysBoardDao sysBoardDao;
-	@Autowired
-	private SysBoardFileDao sysBoardFileDao;
-
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
 			paramEntity.setSuccess(true);
@@ -49,17 +34,14 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String providerUrl = "http://perci-test/rest/";
 		String result = "";
+		String orgId = requestDataSet.getValue("orgId");
 		String searchDateFrom = CommonUtil.remove(CommonUtil.nvl(requestDataSet.getValue("fromDate"), CommonUtil.getSysdate("ddMMyyyy")), "-");
 		String searchDateTo = CommonUtil.remove(CommonUtil.nvl(requestDataSet.getValue("toDate"), CommonUtil.getSysdate("ddMMyyyy")), "-");
+		String header[] = new String[] {"billableAmount", "contractorPaidDate", "customerPaidDate", "dueDate", "endDate", "groupInvoiceNumber", "invoiceDate", "invoiceNumber", "invoiceStatus", "startDate"};
 
 		try {
-//			paramEntity.setObject("requestDataSet", paramEntity.getRequestDataSet());
-//			paramEntity.setPagination(true);
-//			result = RestServiceSupport.post("zebraRestNoticeBoard/getList", "application/json", paramEntity);
-//			paramEntity.setObjectFromJsonString(result);
-
 			WebClient webClient = WebClient.create(providerUrl);
-			Response wsResponse = webClient.path("corporate/98997/invoices")
+			Response wsResponse = webClient.path("corporate/"+orgId+"/invoices")
 					.query("dateFrom", searchDateFrom)
 					.query("dateTo", searchDateTo)
 					.accept(new String[] {"application/json"}).get();
@@ -71,7 +53,7 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 			if (!paramEntity.isSuccess()) {
 				throw new FrameworkException(paramEntity.getMessageCode(), paramEntity.getMessage());
 			}
-			paramEntity.setAjaxResponseDataSet(getDataSet(paramEntity, "corporateInvoiceList"));
+			paramEntity.setAjaxResponseDataSet(getDataSet(paramEntity, "corporateInvoiceList", header));
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}
@@ -81,169 +63,20 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		String articleId = requestDataSet.getValue("articleId");
+		String invoiceNumber = requestDataSet.getValue("invoiceNumber");
+		String providerUrl = "http://perci-test/rest/";
+		String result = "";
+		String orgId = requestDataSet.getValue("orgId");
+		String header[] = new String[] {"iproName", "costCenter", "reference", "billableAmount", "state"};
 
 		try {
-			paramEntity.setObject("sysBoard", sysBoardDao.getBoardByArticleId(articleId));
-			paramEntity.setObject("fileDataSet", sysBoardFileDao.getBoardFileListDataSetByArticleId(articleId));
+			WebClient webClient = WebClient.create(providerUrl);
+			Response wsResponse = webClient.path("corporate/"+orgId+"/invoices/"+invoiceNumber).accept(new String[] {"application/json"}).get();
+			result = (String)wsResponse.readEntity(String.class);
 
-			sysBoardDao.updateVisitCountByArticleId(articleId);
-
+			paramEntity.setObjectFromJsonString(result);
+			paramEntity.setObject("invoiceDetailList", getDataSet(paramEntity, "invoiceDetailList", header));
 			paramEntity.setSuccess(true);
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
-
-	public ParamEntity getInsert(ParamEntity paramEntity) throws Exception {
-		try {
-			paramEntity.setSuccess(true);
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
-
-	public ParamEntity getUpdate(ParamEntity paramEntity) throws Exception {
-		try {
-			paramEntity = getDetail(paramEntity);
-			paramEntity.setSuccess(true);
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
-
-	public ParamEntity exeInsert(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		HttpSession session = paramEntity.getSession();
-		DataSet fileDataSet = paramEntity.getRequestFileDataSet();
-		SysBoard sysBoard = new SysBoard();
-		String uid = CommonUtil.uid();
-		String loggedInUserId = (String)session.getAttribute("UserId");
-		int result = -1;
-
-		try {
-			sysBoard.setArticleId(uid);
-			sysBoard.setBoardType(CommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
-			sysBoard.setWriterId(loggedInUserId);
-			sysBoard.setWriterName(requestDataSet.getValue("writerName"));
-			sysBoard.setWriterEmail(requestDataSet.getValue("writerEmail"));
-			sysBoard.setWriterIpAddress(paramEntity.getRequest().getRemoteAddr());
-			sysBoard.setArticleSubject(requestDataSet.getValue("articleSubject"));
-			sysBoard.setArticleContents(requestDataSet.getValue("articleContents"));
-			sysBoard.setInsertUserId(loggedInUserId);
-			sysBoard.setInsertDate(CommonUtil.toDate(CommonUtil.getSysdate()));
-			sysBoard.setParentArticleId(CommonUtil.nvl(requestDataSet.getValue("articleId"), "-1"));
-
-			result = sysBoardDao.insert(sysBoard, fileDataSet, "Y");
-			if (result <= 0) {
-				throw new FrameworkException("E801", getMessage("E801", paramEntity));
-			}
-
-			paramEntity.setSuccess(true);
-			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
-
-	public ParamEntity exeUpdate(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		HttpSession session = paramEntity.getSession();
-		DataSet fileDataSet = paramEntity.getRequestFileDataSet();
-		String chkForDel = requestDataSet.getValue("chkForDel");
-		String articleId = requestDataSet.getValue("articleId");
-		String fileIdsToDelete[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
-		String loggedInUserId = (String)session.getAttribute("UserId");
-		SysBoard sysBoard;
-		int result = 0;
-
-		try {
-			sysBoard = sysBoardDao.getBoardByArticleId(articleId);
-			sysBoard.setArticleId(articleId);
-			sysBoard.setWriterId(loggedInUserId);
-			sysBoard.setWriterName(requestDataSet.getValue("writerName"));
-			sysBoard.setWriterEmail(requestDataSet.getValue("writerEmail"));
-			sysBoard.setWriterIpAddress(paramEntity.getRequest().getRemoteAddr());
-			sysBoard.setArticleSubject(requestDataSet.getValue("articleSubject"));
-			sysBoard.setArticleContents(requestDataSet.getValue("articleContents"));
-			sysBoard.setUpdateUserId(loggedInUserId);
-			sysBoard.setUpdateDate(CommonUtil.toDate(CommonUtil.getSysdate()));
-
-			result = sysBoardDao.update(sysBoard, fileDataSet, "Y", fileIdsToDelete);
-			if (result <= 0) {
-				throw new FrameworkException("E801", getMessage("E801", paramEntity));
-			}
-
-			paramEntity.setSuccess(true);
-			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
-
-	public ParamEntity exeDelete(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		String articleId = requestDataSet.getValue("articleId");
-		String chkForDel = requestDataSet.getValue("chkForDel");
-		String articleIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
-		int result = 0;
-
-		try {
-			if (CommonUtil.isBlank(articleId)) {
-				result = sysBoardDao.delete(articleIds);
-			} else {
-				result = sysBoardDao.delete(articleId);
-			}
-
-			if (result <= 0) {
-				throw new FrameworkException("E801", getMessage("E801", paramEntity));
-			}
-
-			paramEntity.setSuccess(true);
-			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
-
-	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
-		ExportHelper exportHelper;
-		String columnHeader[];
-		String pageTitle, fileName;
-		String fileType = requestDataSet.getValue("fileType");
-		String dataRange = requestDataSet.getValue("dataRange");
-
-		try {
-			pageTitle = "Board List";
-			fileName = "BoardList";
-			columnHeader = new String[]{"article_id", "writer_name", "writer_email", "article_subject", "created_date"};
-
-			exportHelper = ExportUtil.getExportHelper(fileType);
-			exportHelper.setPageTitle(pageTitle);
-			exportHelper.setColumnHeader(columnHeader);
-			exportHelper.setFileName(fileName);
-			exportHelper.setPdfWidth(1000);
-
-			queryAdvisor.setRequestDataSet(requestDataSet);
-			if (CommonUtil.containsIgnoreCase(dataRange, "all"))
-				queryAdvisor.setPagination(false);
-			else {
-				queryAdvisor.setPagination(true);
-			}
-
-			exportHelper.setSourceDataSet(sysBoardDao.getNoticeBoardDataSetByCriteria(queryAdvisor));
-
-			paramEntity.setSuccess(true);
-			paramEntity.setFileToExport(exportHelper.createFile());
-			paramEntity.setFileNameToExport(exportHelper.getFileName());
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}
@@ -251,9 +84,8 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 	}
 
 	@SuppressWarnings({ "unchecked" })
-	private DataSet getDataSet(ParamEntity paramEntity, String objName) throws Exception {
+	private DataSet getDataSet(ParamEntity paramEntity, String objName, String[] header) throws Exception {
 		DataSet ds = new DataSet();
-		String header[] = new String[] {"billableAmount", "contractorPaidDate", "customerPaidDate", "dueDate", "endDate", "groupInvoiceNumber", "invoiceDate", "invoiceNumber", "invoiceStatus", "startDate"};
 		JSONArray jsonArray = (JSONArray)JSONSerializer.toJSON(paramEntity.getObject(objName));
 
 		ds.addName(header);

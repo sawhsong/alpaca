@@ -49,11 +49,8 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnNew" caption="button.com.new" iconClass="fa-plus-square"/>
-			<ui:button id="btnDelete" caption="button.com.delete" iconClass="fa-trash"/>
 			<ui:button id="btnSearch" caption="button.com.search" iconClass="fa-search"/>
 			<ui:button id="btnClear" caption="button.com.clear" iconClass="fa-refresh"/>
-			<ui:button id="btnExport" caption="button.com.export" iconClass="fa-download"/>
 		</ui:buttonGroup>
 	</div>
 </div>
@@ -65,6 +62,10 @@
 					<col width="*"/>
 				</colgroup>
 				<tr>
+					<td class="tdDefault">
+						<label for="orgId" class="lblEn hor">Organisation Number</label>
+						<ui:text name="orgId" className="Ct hor" style="width:200px"/>
+					</td>
 					<td class="tdDefault">
 						<label for="fromDate" class="lblEn hor"><mc:msg key="sys9804.search.searchPeriod"/></label>
 						<ui:text name="fromDate" className="Ct hor" value="<%=fromDate%>" style="width:100px" checkName="sys9804.search.searchDateFrom" option="date"/>
@@ -102,7 +103,6 @@
 			<col width="8%"/>
 			<col width="*"/>
 			<col width="8%"/>
-			<col width="4%"/>
 		</colgroup>
 		<thead>
 			<tr>
@@ -117,12 +117,11 @@
 				<th class="thGrid sortable:date">Invoice Date</th>
 				<th class="thGrid sortable:alphanumeric">Invoice Status</th>
 				<th class="thGrid sortable:date">Start Date</th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
 			<tr>
-				<td class="tdGrid Ct" colspan="12"><mc:msg key="I002"/></td>
+				<td class="tdGrid Ct" colspan="11"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
 	</table>
