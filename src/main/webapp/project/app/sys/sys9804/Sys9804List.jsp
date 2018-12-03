@@ -8,6 +8,8 @@
 ************************************************************************************************/%>
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
+	String fromDate = CommonUtil.getSysdate("ddMMyyyy");
+	String toDate = CommonUtil.getSysdate("ddMMyyyy");
 %>
 <%/************************************************************************************************
 * HTML
@@ -60,23 +62,15 @@
 		<div class="panel-body">
 			<table class="tblDefault">
 				<colgroup>
-					<col width="50%"/>
-					<col width="50%"/>
+					<col width="*"/>
 				</colgroup>
 				<tr>
 					<td class="tdDefault">
-						<label for="searchType" class="lblEn hor"><mc:msg key="sys9804.search.searchType"/></label>
-						<div style="float:left;padding-right:4px;">
-							<ui:ccselect name="searchType" codeType="BOARD_SEARCH_TYPE" caption="==Select=="/>
-						</div>
-						<ui:text name="searchWord" className="hor" style="width:280px"/>
-					</td>
-					<td class="tdDefault">
 						<label for="fromDate" class="lblEn hor"><mc:msg key="sys9804.search.searchPeriod"/></label>
-						<ui:text name="fromDate" className="Ct hor" style="width:100px" checkName="sys9804.search.searchDateFrom" option="date"/>
+						<ui:text name="fromDate" className="Ct hor" value="<%=fromDate%>" style="width:100px" checkName="sys9804.search.searchDateFrom" option="date"/>
 						<ui:icon id="icnFromDate" className="fa-calendar hor" title="sys9804.search.searchDateFrom"/>
 						<div class="horGap20" style="padding:6px 8px 6px 0px;">-</div>
-						<ui:text name="toDate" className="Ct hor" style="width:100px" checkName="sys9804.search.searchDateTo" option="date"/>
+						<ui:text name="toDate" className="Ct hor" value="<%=fromDate%>" style="width:100px" checkName="sys9804.search.searchDateTo" option="date"/>
 						<ui:icon id="icnToDate" className="fa-calendar hor" title="sys9804.search.searchDateTo"/>
 					</td>
 				</tr>
@@ -97,28 +91,38 @@
 <div id="divDataArea" class="areaContainer">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="3%"/>
-			<col width="*"/>
-			<col width="5%"/>
-			<col width="15%"/>
-			<col width="10%"/>
+			<col width="2%"/>
 			<col width="8%"/>
-			<col width="5%"/>
+			<col width="8%"/>
+			<col width="10%"/>
+			<col width="9%"/>
+			<col width="8%"/>
+			<col width="8%"/>
+			<col width="11%"/>
+			<col width="8%"/>
+			<col width="*"/>
+			<col width="8%"/>
+			<col width="4%"/>
 		</colgroup>
 		<thead>
-			<tr class="noBorderHor">
+			<tr>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9804.grid.subject"/></th>
-				<th class="thGrid"><mc:msg key="sys9804.grid.file"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9804.grid.writerName"/></th>
-				<th class="thGrid sortable:date"><mc:msg key="sys9804.grid.date"/></th>
-				<th class="thGrid sortable:numeric"><mc:msg key="sys9804.grid.hitCount"/></th>
+				<th class="thGrid sortable:numeric">Invoice Number</th>
+				<th class="thGrid">Billable Amount</th>
+				<th class="thGrid sortable:date">Contractor Paid Date</th>
+				<th class="thGrid sortable:date">Customer Paid Date</th>
+				<th class="thGrid sortable:date">Due Date</th>
+				<th class="thGrid sortable:date">End Date</th>
+				<th class="thGrid sortable:numeric">Group Invoice Number</th>
+				<th class="thGrid sortable:date">Invoice Date</th>
+				<th class="thGrid sortable:alphanumeric">Invoice Status</th>
+				<th class="thGrid sortable:date">Start Date</th>
 				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
-			<tr class="noBorderHor noStripe">
-				<td class="tdGrid Ct" colspan="7"><mc:msg key="I002"/></td>
+			<tr>
+				<td class="tdGrid Ct" colspan="12"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
 	</table>

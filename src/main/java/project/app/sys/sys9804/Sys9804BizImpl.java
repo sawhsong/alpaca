@@ -5,10 +5,22 @@
  *************************************************************************************************/
 package project.app.sys.sys9804;
 
-import javax.servlet.http.HttpSession;
+import java.util.Iterator;
 
+import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.Response;
+
+import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JSONSerializer;
+import project.common.extend.BaseBiz;
+import project.common.module.commoncode.CommonCodeManager;
+import project.conf.resource.ormapper.dao.SysBoard.SysBoardDao;
+import project.conf.resource.ormapper.dao.SysBoardFile.SysBoardFileDao;
+import project.conf.resource.ormapper.dto.oracle.SysBoard;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
 import zebra.data.QueryAdvisor;
@@ -17,12 +29,6 @@ import zebra.export.ExportHelper;
 import zebra.util.CommonUtil;
 import zebra.util.ConfigUtil;
 import zebra.util.ExportUtil;
-
-import project.common.extend.BaseBiz;
-import project.common.module.commoncode.CommonCodeManager;
-import project.conf.resource.ormapper.dao.SysBoard.SysBoardDao;
-import project.conf.resource.ormapper.dao.SysBoardFile.SysBoardFileDao;
-import project.conf.resource.ormapper.dto.oracle.SysBoard;
 
 public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 	@Autowired
@@ -41,18 +47,35 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String providerUrl = "http://perci-test/rest/";
+		String result = "";
+		String searchDateFrom = CommonUtil.remove(CommonUtil.nvl(requestDataSet.getValue("fromDate"), CommonUtil.getSysdate("ddMMyyyy")), "-");
+		String searchDateTo = CommonUtil.remove(CommonUtil.nvl(requestDataSet.getValue("toDate"), CommonUtil.getSysdate("ddMMyyyy")), "-");
 
 		try {
-			queryAdvisor.setRequestDataSet(requestDataSet);
-			queryAdvisor.setPagination(true);
+//			paramEntity.setObject("requestDataSet", paramEntity.getRequestDataSet());
+//			paramEntity.setPagination(true);
+//			result = RestServiceSupport.post("zebraRestNoticeBoard/getList", "application/json", paramEntity);
+//			paramEntity.setObjectFromJsonString(result);
 
-			paramEntity.setAjaxResponseDataSet(sysBoardDao.getNoticeBoardDataSetByCriteria(queryAdvisor));
-			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			WebClient webClient = WebClient.create(providerUrl);
+			Response wsResponse = webClient.path("corporate/98997/invoices")
+					.query("dateFrom", searchDateFrom)
+					.query("dateTo", searchDateTo)
+					.accept(new String[] {"application/json"}).get();
+			result = (String)wsResponse.readEntity(String.class);
+
+			paramEntity.setObjectFromJsonString(result);
 			paramEntity.setSuccess(true);
+
+			if (!paramEntity.isSuccess()) {
+				throw new FrameworkException(paramEntity.getMessageCode(), paramEntity.getMessage());
+			}
+			paramEntity.setAjaxResponseDataSet(getDataSet(paramEntity, "corporateInvoiceList"));
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}
+
 		return paramEntity;
 	}
 
@@ -225,5 +248,24 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 			throw new FrameworkException(paramEntity, ex);
 		}
 		return paramEntity;
+	}
+
+	@SuppressWarnings({ "unchecked" })
+	private DataSet getDataSet(ParamEntity paramEntity, String objName) throws Exception {
+		DataSet ds = new DataSet();
+		String header[] = new String[] {"billableAmount", "contractorPaidDate", "customerPaidDate", "dueDate", "endDate", "groupInvoiceNumber", "invoiceDate", "invoiceNumber", "invoiceStatus", "startDate"};
+		JSONArray jsonArray = (JSONArray)JSONSerializer.toJSON(paramEntity.getObject(objName));
+
+		ds.addName(header);
+		for (Iterator<String> iter = jsonArray.iterator(); iter.hasNext();) {
+			ds.addRow();
+			JSONObject jsonObject = (JSONObject)JSONSerializer.toJSON(iter.next());
+			for (Object keys : jsonObject.keySet()) {
+				String key = (String)keys;
+				Object value = jsonObject.get(key);
+				ds.setValue(ds.getRowCnt()-1, key, value);
+			}
+		}
+		return ds;
 	}
 }

@@ -5,7 +5,6 @@
 jsconfig.put("useJqTooltip", false);
 var popup = null;
 var searchResultDataCount = 0;
-var attchedFileContextMenu = [];
 
 $(function() {
 	/*!
@@ -43,7 +42,7 @@ $(function() {
 		if (event.which == 13) {
 			var element = event.target;
 
-			if ($(element).is("[name=searchWord]") || $(element).is("[name=fromDate]") || $(element).is("[name=toDate]")) {
+			if ($(element).is("[name=fromDate]") || $(element).is("[name=toDate]")) {
 				doSearch();
 			}
 		}
@@ -74,54 +73,36 @@ $(function() {
 	};
 
 	renderDataGridTable = function(result) {
-		var dataSet = result.dataSet;
+		var ds = result.dataSet;
 		var html = "";
 
-		searchResultDataCount = dataSet.getRowCnt();
+		searchResultDataCount = ds.getRowCnt();
 		$("#tblGridBody").html("");
 
-		if (dataSet.getRowCnt() > 0) {
-			for (var i=0; i<dataSet.getRowCnt(); i++) {
-				var space = "", iLength = 200;
-				var iLevel = parseInt(dataSet.getValue(i, "LEVEL")) - 1;
+		if (ds.getRowCnt() > 0) {
+			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				gridTr.setClassName("noBorderHor noStripe");
-
 				var uiChk = new UiCheckbox();
-				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "ARTICLE_ID"));
+				uiChk.setId("chkForDel").setName("chkForDel").setValue(ds.getValue(i, "invoiceNumber"));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
 
-				if (iLevel > 0) {
-					for (var j=0; j<iLevel; j++) {
-						space += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-						iLength -= - 2;
-					}
-					space += "<i class=\"fa fa-comments\"></i>";
-				} else {
-					space += "<i class=\"fa fa-comment\"></i>";
-				}
-
 				var uiAnc = new UiAnchor();
-				uiAnc.setText(commonJs.abbreviate(dataSet.getValue(i, "ARTICLE_SUBJECT"), iLength)).setScript("getDetail('"+dataSet.getValue(i, "ARTICLE_ID")+"')");
-				gridTr.addChild(new UiGridTd().addClassName("Lt").addTextBeforeChild(space+"&nbsp;&nbsp;").addChild(uiAnc).addAttribute("title:"+commonJs.htmlToString(dataSet.getValue(i, "ARTICLE_SUBJECT"))));
+				uiAnc.setText(ds.getValue(i, "invoiceNumber")).setScript("getDetail('"+ds.getValue(i, "invoiceNumber")+"')");
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiAnc));
 
-				var gridTd = new UiGridTd();
-				gridTd.addClassName("Ct");
-				if (dataSet.getValue(i, "FILE_CNT") > 0) {
-					var iconAttachFile = new UiIcon();
-					iconAttachFile.setId("icnAttachedFile").setName("icnAttachedFile").addClassName("glyphicon-paperclip").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"));
-					gridTd.addChild(iconAttachFile);
-				}
-				gridTr.addChild(gridTd);
-
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "WRITER_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "CREATED_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(dataSet.getValue(i, "HIT_CNT"), "#,###")));
+				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(ds.getValue(i, "billableAmount"), "#,###.##")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "contractorPaidDate")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "customerPaidDate")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "dueDate")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "endDate")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "groupInvoiceNumber")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "invoiceDate")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "invoiceStatus")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "startDate")));
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
-					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("invoiceNumber:"+ds.getValue(i, "invoiceNumber")).setScript("doAction(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
@@ -129,7 +110,7 @@ $(function() {
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:7").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:12").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
@@ -138,19 +119,16 @@ $(function() {
 		$("#tblGrid").fixedHeaderTable({
 			attachTo:$("#divDataArea"),
 			pagingArea:$("#divPagingArea"),
-			isPageable:true,
+			isPageable:false,
 			isFilter:false,
 			filterColumn:[],
-			totalResultRows:result.totalResultRows,
+			displayRowCount:true,
+			totalResultRows:ds.getRowCnt(),
 			script:"doSearch"
 		});
 
-		$("[name=icnAttachedFile]").each(function(index) {
-			$(this).contextMenu(attchedFileContextMenu);
-		});
-
 		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.boardAction);
+			$(this).contextMenu(ctxMenu.commonAction);
 		});
 
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
