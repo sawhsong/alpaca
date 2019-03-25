@@ -48,6 +48,8 @@ public class LoginAction extends BaseAction {
 				session.setAttribute("pageNumsPerPage", CommonUtil.toString(sysUser.getPageNumPerPage(), "###"));
 				session.setAttribute("SysUser", sysUser);
 
+				MemoryBean.set(session.getId(), session);
+
 				paramEntity.setAjaxResponseDataSet(sysUser.getDataSet());
 			}
 		} catch (Exception ex) {
@@ -85,15 +87,6 @@ public class LoginAction extends BaseAction {
 	}
 
 	public String exeUpdate() throws Exception {
-//		try {
-//			biz.exeUpdate(paramEntity);
-//		} catch (Exception ex) {
-//			return "ajaxResponse";
-//		} finally {
-//			setRequestAttribute("paramEntity", paramEntity);
-//		}
-//		return "ajaxResponse";
-
 		try {
 			biz.exeUpdate(paramEntity);
 

@@ -5,7 +5,6 @@
 <%
 	SysUser sysUserLocationPathArea = (SysUser)session.getAttribute("SysUser");
 	String authGroupIdLocationPath = sysUserLocationPathArea.getAuthGroupId();
-	String headerMenuIdLocationPath = (String)session.getAttribute("headerMenuId");
 	boolean isVisibleAdminToolLocationPath = CommonUtil.toBoolean((String)session.getAttribute("isVisibleAdminTool"));
 %>
 
@@ -51,8 +50,7 @@ $(function() {
 	</c:if>
 
 <%
-	if ((CommonUtil.equalsIgnoreCase(headerMenuIdLocationPath, "RKM") || CommonUtil.equalsIgnoreCase(headerMenuIdLocationPath, "CST") ||
-		CommonUtil.equalsIgnoreCase(headerMenuIdLocationPath, "RPT")) && (CommonUtil.equalsIgnoreCase(authGroupIdLocationPath, "0"))) {
+	if ((CommonUtil.equalsIgnoreCase(authGroupIdLocationPath, "0"))) {
 		if (isVisibleAdminToolLocationPath) {
 %>
 	<div style="float:right;">
