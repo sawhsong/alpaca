@@ -20,6 +20,9 @@
 
 	String quickMenuNameHeaderPage = dsQuickMenuHeaderPage.getValue("MENU_NAME_"+languageCodeHeaderPage);
 	String quickMenuIconHeaderPage = dsQuickMenuHeaderPage.getValue("MENU_ICON");
+
+	String dataSourceNamesHeaderPage[] = CommonUtil.split(ConfigUtil.getProperty("jdbc.multipleDatasource"), ConfigUtil.getProperty("delimiter.data"));
+	String databaseHeaderPage = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), dataSourceNamesHeaderPage[0]);
 %>
 <%/************************************************************************************************
 * Stylesheet & Javascript
@@ -203,6 +206,10 @@ $(function() {
 		</div>
 		<div id="divGlobalMenuRight">
 			<div id="divGblMenuArea">
+				<div id="divUsingUserAs" class="headerGblMenus" style="color:#D92E24;cursor:default;">
+					Database connected to : <%=databaseHeaderPage%>
+				</div>
+				<div class="divGblMenuBreak"></div>
 				<div id="divThemeSelector" class="headerGblMenus">
 					<a id="aThemeSelector">${sessionScope.themeName}</a>
 				</div>

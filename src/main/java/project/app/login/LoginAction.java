@@ -118,6 +118,29 @@ public class LoginAction extends BaseAction {
 		return "ajaxResponse";
 	}
 
+	public String setSessionValuesForAdminTool() throws Exception {
+		try {
+			biz.setSessionValuesForAdminTool(paramEntity);
+
+			if (paramEntity.isSuccess()) {
+				session.setAttribute("DatabaseForAdminTool", paramEntity.getRequestDataSet().getValue("databaseAdminTool"));
+			}
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String removeSessionValuesForAdminTool() throws Exception {
+		try {
+			session.removeAttribute("DatabaseForAdminTool");
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
 	public String logout() throws Exception {
 		MemoryBean.remove(session.getId());
 		session.invalidate();

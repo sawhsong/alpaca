@@ -224,4 +224,22 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 		}
 		return paramEntity;
 	}
+
+	public ParamEntity setSessionValuesForAdminTool(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		String database = requestDataSet.getValue("databaseAdminTool");
+		DataSet resultDataSet = new DataSet();
+
+		try {
+			resultDataSet.addName(new String[] {"database"});
+			resultDataSet.addRow();
+			resultDataSet.setValue("database", database);
+
+			paramEntity.setAjaxResponseDataSet(resultDataSet);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
 }
