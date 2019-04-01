@@ -36,14 +36,17 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 	}
 
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String codeType = requestDataSet.getValue("commonCodeType");
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			queryAdvisor.setPagination(true);
 			queryAdvisor.addAutoFillCriteria(codeType, "code_type = '"+codeType+"'");
 
+			sysCommonCodeDao.setDataSourceName(dataSource);
 			paramEntity.setAjaxResponseDataSet(sysCommonCodeDao.getActiveCommonCodeDataSet(queryAdvisor));
 			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
 			paramEntity.setSuccess(true);
