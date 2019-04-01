@@ -56,6 +56,19 @@ $(function() {
 
 						if (result.isSuccess == true || result.isSuccess == "true") {
 							renderDataGridTable(result);
+						} else {
+							commonJs.openDialog({
+								type:com.message.E000,
+								contents:result.message,
+								blind:true,
+								buttons:[{
+									caption:com.caption.ok,
+									callback:function() {
+									}
+								}]
+							});
+
+							commonJs.hideProcMessageOnElement("divScrollablePanel");
 						}
 					}
 				});
