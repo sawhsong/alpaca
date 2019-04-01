@@ -5,6 +5,8 @@
  *************************************************************************************************/
 package project.app.bbs.bbs0202;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
@@ -14,6 +16,8 @@ import zebra.data.DataSet;
 import zebra.data.ParamEntity;
 import zebra.data.QueryAdvisor;
 import zebra.exception.FrameworkException;
+import zebra.util.CommonUtil;
+import zebra.util.ConfigUtil;
 
 public class Bbs0202BizImpl extends BaseBiz implements Bbs0202Biz {
 	@Autowired
@@ -31,10 +35,14 @@ public class Bbs0202BizImpl extends BaseBiz implements Bbs0202Biz {
 	}
 
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysBoardDao.setDataSourceName(dataSource);
+
 			queryAdvisor.setRequestDataSet(requestDataSet);
 			queryAdvisor.setPagination(true);
 
@@ -48,10 +56,15 @@ public class Bbs0202BizImpl extends BaseBiz implements Bbs0202Biz {
 	}
 
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String articleId = requestDataSet.getValue("articleId");
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysBoardDao.setDataSourceName(dataSource);
+			sysBoardFileDao.setDataSourceName(dataSource);
+
 			paramEntity.setObject("sysBoard", sysBoardDao.getBoardByArticleId(articleId));
 			paramEntity.setObject("fileDataSet", sysBoardFileDao.getBoardFileListDataSetByArticleId(articleId));
 
@@ -65,9 +78,13 @@ public class Bbs0202BizImpl extends BaseBiz implements Bbs0202Biz {
 	}
 
 	public ParamEntity getAttachedFile(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysBoardFileDao.setDataSourceName(dataSource);
+
 			paramEntity.setAjaxResponseDataSet(sysBoardFileDao.getBoardFileListDataSetByArticleId(requestDataSet.getValue("articleId")));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {

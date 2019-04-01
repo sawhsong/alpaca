@@ -43,10 +43,11 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			queryAdvisor.setPagination(true);
-			queryAdvisor.addAutoFillCriteria(codeType, "code_type = '"+codeType+"'");
-
 			sysCommonCodeDao.setDataSourceName(dataSource);
+
+			queryAdvisor.setPagination(true);
+			queryAdvisor.addAutoFillCriteria(codeType, "code_type = '"+CommonUtil.upperCase(codeType)+"'");
+
 			paramEntity.setAjaxResponseDataSet(sysCommonCodeDao.getActiveCommonCodeDataSet(queryAdvisor));
 			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
 			paramEntity.setSuccess(true);
@@ -57,9 +58,12 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 	}
 
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysCommonCodeDao.setDataSourceName(dataSource);
 			paramEntity.setObject("resultDataSet", sysCommonCodeDao.getCommonCodeDataSetByCodeType(requestDataSet.getValue("codeType")));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
@@ -97,8 +101,11 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 		int detailLength = CommonUtil.toInt(requestDataSet.getValue("detailLength"));
 		int result = -1, masterDataRow = -1;
 		SysCommonCode sysCommonCode = new SysCommonCode();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysCommonCodeDao.setDataSourceName(dataSource);
+
 			sysCommonCode.setCodeType(codeType);
 			sysCommonCode.setCommonCode("0000000000");
 			sysCommonCode.setCodeMeaning(requestDataSet.getValue("codeMeaningMaster"));
@@ -153,13 +160,17 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 	}
 
 	public ParamEntity exeUpdate(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String codeType = CommonUtil.upperCase(requestDataSet.getValue("codeTypeMaster"));
 		DataSet detailDataSet;
 		int result = -1;
 		int masterDataRow = -1;
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysCommonCodeDao.setDataSourceName(dataSource);
+
 			detailDataSet = sysCommonCodeDao.getCommonCodeDataSetByCodeType(codeType);
 			masterDataRow = detailDataSet.getRowIndex("COMMON_CODE", "0000000000");
 
@@ -183,13 +194,17 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 	}
 
 	public ParamEntity exeDelete(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String codeType = requestDataSet.getValue("codeType");
 		String chkForDel = requestDataSet.getValue("chkForDel");
 		String[] codeTypes = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
 		int result = -1;
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysCommonCodeDao.setDataSourceName(dataSource);
+
 			if (CommonUtil.isBlank(codeType)) {
 				result = sysCommonCodeDao.delete(codeTypes);
 			} else {
@@ -209,16 +224,20 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 	}
 
 	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		ExportHelper exportHelper;
 		String dataRange = requestDataSet.getValue("dataRange");
 		String codeType = requestDataSet.getValue("commonCodeType");
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			String pageTitle = "Common Code List";
 			String fileName = "CommonCodeList";
 			String[] columnHeader = {"code_type", "common_code", "code_meaning", "description_en", "program_constants"};
+
+			sysCommonCodeDao.setDataSourceName(dataSource);
 
 			exportHelper = ExportUtil.getExportHelper(requestDataSet.getValue("fileType"));
 			exportHelper.setPageTitle(pageTitle);

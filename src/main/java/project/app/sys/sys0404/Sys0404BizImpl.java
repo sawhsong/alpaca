@@ -42,10 +42,14 @@ public class Sys0404BizImpl extends BaseBiz implements Sys0404Biz {
 	}
 
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysAuthGroupDao.setDataSourceName(dataSource);
+
 			queryAdvisor.setRequestDataSet(requestDataSet);
 			queryAdvisor.setPagination(false);
 
@@ -59,11 +63,15 @@ public class Sys0404BizImpl extends BaseBiz implements Sys0404Biz {
 	}
 
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String groupId = requestDataSet.getValue("groupId");
 		SysAuthGroup sysAuthGroup = new SysAuthGroup();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysAuthGroupDao.setDataSourceName(dataSource);
+
 			sysAuthGroup = sysAuthGroupDao.getAuthGroupByGroupId(groupId);
 			sysAuthGroup.setInsertUserName(DataHelper.getUserNameById(sysAuthGroup.getInsertUserId()));
 			sysAuthGroup.setUpdateUserName(DataHelper.getUserNameById(sysAuthGroup.getUpdateUserId()));
@@ -101,8 +109,11 @@ public class Sys0404BizImpl extends BaseBiz implements Sys0404Biz {
 		String groupId = CommonUtil.uid();
 		int result = -1;
 		SysAuthGroup sysAuthGroup = new SysAuthGroup();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysAuthGroupDao.setDataSourceName(dataSource);
+
 			sysAuthGroup.setGroupId(groupId);
 			sysAuthGroup.setGroupName(requestDataSet.getValue("groupName"));
 			sysAuthGroup.setIsActive(requestDataSet.getValue("isActive"));
@@ -129,8 +140,11 @@ public class Sys0404BizImpl extends BaseBiz implements Sys0404Biz {
 		String groupId = requestDataSet.getValue("groupId");
 		int result = -1;
 		SysAuthGroup sysAuthGroup = new SysAuthGroup();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysAuthGroupDao.setDataSourceName(dataSource);
+
 			sysAuthGroup = sysAuthGroupDao.getAuthGroupByGroupId(groupId);
 
 			sysAuthGroup.setGroupName(requestDataSet.getValue("groupName"));
@@ -153,13 +167,19 @@ public class Sys0404BizImpl extends BaseBiz implements Sys0404Biz {
 	}
 
 	public ParamEntity exeDelete(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String groupId = requestDataSet.getValue("groupId");
 		String chkForDel = requestDataSet.getValue("chkForDel");
 		String groupIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
 		int result = -1;
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysAuthGroupDao.setDataSourceName(dataSource);
+			sysMenuAuthLinkDao.setDataSourceName(dataSource);
+			sysUserDao.setDataSourceName(dataSource);
+
 			if (CommonUtil.isBlank(groupId)) {
 				result = sysAuthGroupDao.delete(groupIds);
 				result += sysMenuAuthLinkDao.deleteByAuthGroupIds(groupIds);
@@ -183,14 +203,18 @@ public class Sys0404BizImpl extends BaseBiz implements Sys0404Biz {
 	}
 
 	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		ExportHelper exportHelper;
 		String dataRange = requestDataSet.getValue("dataRange");
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			String pageTitle = "Authority Group List";
 			String fileName = "AuthorityGroupList";
+
+			sysAuthGroupDao.setDataSourceName(dataSource);
 
 			exportHelper = ExportUtil.getExportHelper(requestDataSet.getValue("fileType"));
 			exportHelper.setPageTitle(pageTitle);

@@ -46,6 +46,7 @@ $(function() {
 								});
 							} else {
 								commonJs.error(result.message);
+								commonJs.hideProcMessageOnElement("divScrollablePanel");
 							}
 						}
 					});

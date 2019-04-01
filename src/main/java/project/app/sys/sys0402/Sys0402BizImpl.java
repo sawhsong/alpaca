@@ -37,11 +37,15 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 	}
 
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		DataSet resultDataSet;
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysMenuDao.setDataSourceName(dataSource);
+
 			queryAdvisor.setRequestDataSet(requestDataSet);
 			queryAdvisor.setPagination(false);
 
@@ -72,6 +76,7 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 	}
 
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String delimiter = ConfigUtil.getProperty("delimiter.data");
 		String menuId = requestDataSet.getValue("menuId");
@@ -80,8 +85,11 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 		String menuPath = CommonUtil.split(paramValue, delimiter)[1];
 		String deletable = CommonUtil.split(paramValue, delimiter)[2];
 		SysMenu sysMenu = new SysMenu();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysMenuDao.setDataSourceName(dataSource);
+
 			sysMenu = sysMenuDao.getMenuByMenuId(menuId);
 			sysMenu.setInsertUserName(DataHelper.getUserNameById(sysMenu.getInsertUserId()));
 			sysMenu.setUpdateUserName(DataHelper.getUserNameById(sysMenu.getUpdateUserId()));
@@ -134,8 +142,11 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 		String level2MenuId = requestDataSet.getValue("level2");
 		int result = -1;
 		SysMenu sysMenu = new SysMenu();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysMenuDao.setDataSourceName(dataSource);
+
 			sysMenu = sysMenuDao.getMenuByMenuId(menuId);
 			if (CommonUtil.isNotBlank(sysMenu.getMenuId())) {
 				throw new FrameworkException("E910", getMessage("E910", paramEntity));
@@ -181,8 +192,11 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 		String menuId = requestDataSet.getValue("menuId");
 		int result = -1;
 		SysMenu sysMenu = new SysMenu();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysMenuDao.setDataSourceName(dataSource);
+
 			sysMenu = sysMenuDao.getMenuByMenuId(menuId);
 
 			sysMenu.setMenuUrl(CommonUtil.nvl(requestDataSet.getValue("menuUrl"), "#"));
@@ -208,13 +222,17 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 	}
 
 	public ParamEntity exeDelete(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String menuId = requestDataSet.getValue("menuId");
 		String chkForDel = requestDataSet.getValue("chkForDel");
 		String menuIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
 		int result = -1;
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysMenuDao.setDataSourceName(dataSource);
+
 			if (CommonUtil.isBlank(menuId)) {
 				result = sysMenuDao.delete(menuIds);
 			} else {
@@ -240,8 +258,11 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 		String delimiter = ConfigUtil.getProperty("delimiter.data");
 		int dataLength = CommonUtil.toInt(requestDataSet.getValue("dataLength"));
 		int result = 0;
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			sysMenuDao.setDataSourceName(dataSource);
+
 			for (int i=0; i<dataLength; i++) {
 				SysMenu sysMenu = new SysMenu();
 				String menuId = requestDataSet.getValue("menuId"+delimiter+i);
@@ -268,14 +289,18 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 	}
 
 	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		ExportHelper exportHelper;
 		String dataRange = requestDataSet.getValue("dataRange");
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			String pageTitle = "Menu List";
 			String fileName = "MenuList";
+
+			sysMenuDao.setDataSourceName(dataSource);
 
 			exportHelper = ExportUtil.getExportHelper(requestDataSet.getValue("fileType"));
 			exportHelper.setPageTitle(pageTitle);

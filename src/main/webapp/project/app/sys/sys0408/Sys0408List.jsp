@@ -57,6 +57,7 @@
 		</ui:buttonGroup>
 	</div>
 </div>
+<div id="divAdminToolArea"><%@ include file="/project/common/include/bodyAdminToolArea.jsp"%></div>
 <div id="divSearchCriteriaArea" class="areaContainer">
 	<div class="panel panel-default">
 		<div class="panel-body">
