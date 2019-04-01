@@ -146,4 +146,16 @@
 	<bean id="txManagerForHibernate" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="hibernateLocalSessionFactory"/>
 	</bean>
+
+
+	<!-- Multiple Datasource Transaction -->
+	<bean id="txManagerForHibernate_alpaca" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="hibernateLocalSessionFactory_alpaca"/>
+	</bean>
+	<bean id="txManagerForHibernate_perciTest" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="hibernateLocalSessionFactory_perciTest"/>
+	</bean>
+	<bean id="txManagerForHibernate_perciProd" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="hibernateLocalSessionFactory_perciProd"/>
+	</bean>
 </beans>
