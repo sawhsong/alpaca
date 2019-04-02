@@ -32,7 +32,7 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		String providerUrl = "http://perci-test/rest/";
+		String providerUrl = "http://localhost:8989/rest/";
 		String result = "";
 		String orgId = requestDataSet.getValue("orgId");
 		String searchDateFrom = CommonUtil.remove(CommonUtil.nvl(requestDataSet.getValue("fromDate"), CommonUtil.getSysdate("ddMMyyyy")), "-");
@@ -64,7 +64,7 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String invoiceNumber = requestDataSet.getValue("invoiceNumber");
-		String providerUrl = "http://perci-test/rest/";
+		String providerUrl = "http://localhost:8989/rest/";
 		String result = "";
 		String orgId = requestDataSet.getValue("orgId");
 		String header[] = new String[] {"iproName", "costCenter", "reference", "billableAmount", "state"};
