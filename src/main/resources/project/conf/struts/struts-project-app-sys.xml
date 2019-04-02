@@ -68,5 +68,12 @@
             <result name="insert" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804InsertPop.jsp</result>
             <result name="update" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804UpdatePop.jsp</result>
         </action>
+        <!--Sys9802 - Unlock PRT-->
+        <action class="project.app.sys.sys9802.Sys9802Action" method="{1}" name="9802/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802DetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802InsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802UpdatePop.jsp</result>
+        </action>
     </package>
 </struts>
