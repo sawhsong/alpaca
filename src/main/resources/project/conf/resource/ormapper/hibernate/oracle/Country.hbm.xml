@@ -8,11 +8,12 @@
 	<class name="project.conf.resource.ormapper.dto.oracle.Country" table="COUNTRY" lazy="false">
 		<meta attribute="class-description" inherit="false"></meta>
 
-		<id column="ROWID" type="java.lang.String"/>
+<!-- 		<id column="countryId" type="java.lang.String"/> -->
+		<id name="countryId" column="COUNTRY_ID" type="java.lang.Double"/>
 
 		<property name="alpha2Code" column="ALPHA_2_CODE" type="java.lang.String" length="2"/>
 		<property name="alpha3Code" column="ALPHA_3_CODE" type="java.lang.String" length="3"/>
-		<property name="countryId" column="COUNTRY_ID" type="java.lang.Double"/>
+<!-- 		<property name="countryId" column="COUNTRY_ID" type="java.lang.Double"/> -->
 		<property name="countryName" column="COUNTRY_NAME" type="java.lang.String" length="500"/>
 		<property name="iso31662SubdivisionCode" column="ISO_3166_2_SUBDIVISION_CODE" type="java.lang.String" length="50"/>
 		<property name="numericCode" column="NUMERIC_CODE" type="java.lang.Double"/>
