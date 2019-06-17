@@ -74,13 +74,21 @@
 					<th class="thDefault rt"><mc:msg key="per0202.search.name"/></th>
 					<td class="tdDefault"><ui:text name="name" style="width:280px"/></td>
 					<th class="thDefault rt"><mc:msg key="per0202.search.personType"/></th>
-					<td class="tdDefault"><ui:text name="personType" style="width:280px"/></td>
+					<td class="tdDefault">
+						<ui:hidden name="personTypeId"/>
+						<ui:text name="personTypeName" className="hor" style="width:280px"/>
+						<ui:icon id="icnPersonTypeSearch" className="fa-search hor"/>
+					</td>
 				</tr>
 				<tr>
 					<th class="thDefault rt"><mc:msg key="per0202.search.email"/></th>
 					<td class="tdDefault"><ui:text name="email" style="width:280px"/></td>
 					<th class="thDefault rt"><mc:msg key="per0202.search.empOrg"/></th>
-					<td class="tdDefault"><ui:text name="empOrg" style="width:280px"/></td>
+					<td class="tdDefault">
+						<ui:hidden name="empOrgId"/>
+						<ui:text name="empOrgName" className="hor" style="width:280px"/>
+						<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/>
+					</td>
 				</tr>
 			</table>
 		</div>

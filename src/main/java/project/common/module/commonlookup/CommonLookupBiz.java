@@ -4,5 +4,5 @@ import zebra.data.ParamEntity;
 
 public interface CommonLookupBiz {
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception;
-	public ParamEntity getOrganisationLookup(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getEmploymentOrganisationLookup(ParamEntity paramEntity) throws Exception;
 }

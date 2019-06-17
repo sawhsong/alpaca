@@ -42,3 +42,22 @@ var sys = {
 		}
 	}
 };
+
+/*!
+ * Sub System - per
+ */
+var per = {
+	per0202:{
+		caption:{
+			auth:"Update Authority Group",
+			type:"Update User Type",
+			status:"Update User Status",
+			active:"Update Active Status"
+		},
+		header:{
+			popEmpOrgLookup:"Employee Organisation Lookup"
+		},
+		message:{
+		}
+	}
+};

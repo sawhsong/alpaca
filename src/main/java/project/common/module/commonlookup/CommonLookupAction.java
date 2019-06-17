@@ -17,17 +17,17 @@ public class CommonLookupAction extends BaseAction {
 
 		try {
 			biz.getDefault(paramEntity);
-			if (CommonUtil.equalsIgnoreCase(lookupType, "organisationName")) {
-				returnString = "organisation";
+			if (CommonUtil.equalsIgnoreCase(lookupType, "EmploymentOrg")) {
+				returnString = "employmentOrg";
 			}
 		} catch (Exception ex) {
 		}
 		return returnString;
 	}
 
-	public String getOrganisationLookup() throws Exception {
+	public String getEmploymentOrganisationLookup() throws Exception {
 		try {
-			biz.getOrganisationLookup(paramEntity);
+			biz.getEmploymentOrganisationLookup(paramEntity);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

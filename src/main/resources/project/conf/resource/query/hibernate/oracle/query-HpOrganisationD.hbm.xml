@@ -5,4 +5,17 @@
  * - HP_ORGANISATION_D - 
  */-->
 <hibernate-mapping>
+	<sql-query name="query.HpOrganisationD.getEmploymentOrganisationLookup">
+	<![CDATA[
+		select organisation_id,
+		       organisation_name,
+		       abn
+		  from hp_organisation_d
+		 where organisation_id in (select employment_company_org_id from hp_person_d)
+		 where 1 = 1
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
 </hibernate-mapping>

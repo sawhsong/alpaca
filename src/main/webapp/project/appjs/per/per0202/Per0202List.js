@@ -3,7 +3,7 @@
  * - Per0202List.js
  *************************************************************************************************/
 jsconfig.put("useJqTooltip", false);
-var popup = null;
+var popup = null, popupLookup = null;
 var searchResultDataCount = 0;
 var attchedFileContextMenu = [];
 
@@ -27,12 +27,22 @@ $(function() {
 		commonJs.clearSearchCriteria();
 	});
 
-	$("#icnFromDate").click(function(event) {
-		commonJs.openCalendar(event, "fromDate");
-	});
-
-	$("#icnToDate").click(function(event) {
-		commonJs.openCalendar(event, "toDate");
+	$("#icnEmpOrgSearch").click(function(event) {
+		popupLookup = commonJs.openPopup({
+			popupId:"EmpOrgLookup",
+			url:"/common/lookup/getDefault.do",
+			paramData:{
+				lookupType:"EmploymentOrg",
+				keyFieldId:"empOrgId",
+				valueFieldId:"empOrgName",
+				popupToSetValue:"parent.popup",
+				popupName:"parent.popupLookup",
+				lookupValue:$("#empOrgName").val()
+			},
+			header:per.per0202.header.popEmpOrgLookup,
+			width:880,
+			height:680
+		});
 	});
 
 	$("#icnCheck").click(function(event) {
@@ -42,10 +52,6 @@ $(function() {
 	$(document).keypress(function(event) {
 		if (event.which == 13) {
 			var element = event.target;
-
-			if ($(element).is("[name=searchWord]") || $(element).is("[name=fromDate]") || $(element).is("[name=toDate]")) {
-				doSearch();
-			}
 		}
 	});
 
@@ -304,10 +310,7 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		commonJs.setFieldDateMask("fromDate");
-		commonJs.setFieldDateMask("toDate");
 		commonJs.setExportButtonContextMenu($("#btnExport"));
-		$("#searchWord").focus();
 		doSearch();
 	});
 });
