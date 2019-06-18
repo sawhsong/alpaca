@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
+import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
 import project.conf.resource.ormapper.dao.SysCommonCode.SysCommonCodeDao;
 import project.conf.resource.ormapper.dao.SysCountryCurrency.SysCountryCurrencyDao;
 import project.conf.resource.ormapper.dao.SysUser.SysUserDao;
@@ -13,6 +14,7 @@ import zebra.data.ParamEntity;
 import zebra.data.QueryAdvisor;
 import zebra.exception.FrameworkException;
 import zebra.util.CommonUtil;
+import zebra.util.ConfigUtil;
 
 public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz {
 	@Autowired
@@ -21,6 +23,8 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 	private SysUserDao sysUserDao;
 	@Autowired
 	private SysCountryCurrencyDao sysCountryCurrencyDao;
+	@Autowired
+	private HpOrganisationDDao hpOrganisationDDao;
 
 	public ParamEntity getCommonCodeType(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
@@ -70,11 +74,9 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 	public ParamEntity getUserName(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
-		String inputValue = requestDataSet.getValue("inputValue");
 
 		try {
-			queryAdvisor.addAutoFillCriteria(inputValue, "lower(user_name) like lower('"+inputValue+"%')");
-			queryAdvisor.addOrderByClause("user_name");
+			queryAdvisor.setRequestDataSet(requestDataSet);
 			paramEntity.setAjaxResponseDataSet(sysUserDao.getUserNameDataSetForAutoCompletion(queryAdvisor));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
@@ -115,10 +117,16 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			queryAdvisor.addAutoFillCriteria(inputValue, "(lower(legal_name) like lower('"+inputValue+"%') or lower(trading_name) like lower('"+inputValue+"%'))");
-			queryAdvisor.addOrderByClause("legal_name");
+			hpOrganisationDDao.setDataSourceName(dataSource);
+
+			queryAdvisor.addAutoFillCriteria(inputValue, "lower(organisation_name) like lower('"+inputValue+"%')");
+			queryAdvisor.addOrderByClause("organisation_name asc");
+
+			paramEntity.setAjaxResponseDataSet(hpOrganisationDDao.getOrgNameDataSetForAutoCompletion(queryAdvisor));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -130,10 +138,16 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			queryAdvisor.addAutoFillCriteria(inputValue, "abn like '"+inputValue+"%'");
-			queryAdvisor.addOrderByClause("abn");
+			hpOrganisationDDao.setDataSourceName(dataSource);
+
+			queryAdvisor.addAutoFillCriteria(inputValue, "abn like ('"+inputValue+"%')");
+			queryAdvisor.addOrderByClause("abn asc");
+
+			paramEntity.setAjaxResponseDataSet(hpOrganisationDDao.getAbnDataSetForAutoCompletion(queryAdvisor));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);

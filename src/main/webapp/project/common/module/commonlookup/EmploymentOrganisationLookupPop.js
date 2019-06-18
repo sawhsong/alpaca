@@ -1,17 +1,38 @@
 /**
  * EmploymentOrganisationLookupPop.js
  */
-var popupObject = eval(popupName);
+var searchResultDataCount = 0;
 
 $(function() {
 	/*!
 	 * event
 	 */
+	$("#btnSearch").click(function(event) {
+		doSearch();
+	});
+
+	$("#btnClear").click(function(event) {
+		commonJs.clearSearchCriteria();
+	});
+
+	$("#btnClose").click(function(event) {
+		popupObject.close();
+	});
 	/*!
 	 * process
 	 */
+	setGridTable = function(totalResultRows) {
+		$("#tblGrid").fixedHeaderTable({
+			attachTo:$("#divDataArea"),
+			pagingArea:$("#divPagingArea"),
+			isPageable:true,
+			totalResultRows:totalResultRows,
+			script:"doSearch"
+		});
+	};
+
 	doSearch = function() {
-		commonJs.showProcMessageOnElement("tblGrid");
+		commonJs.showProcMessageOnElement("divScrollablePanelPopup");
 
 		setTimeout(function() {
 			commonJs.ajaxSubmit({
@@ -23,6 +44,9 @@ $(function() {
 
 					if (result.isSuccess == true || result.isSuccess == "true") {
 						renderDataGridTable(result);
+					} else {
+						commonJs.error(result.message);
+						commonJs.hideProcMessageOnElement("divScrollablePanelPopup");
 					}
 				}
 			});
@@ -30,58 +54,44 @@ $(function() {
 	};
 
 	renderDataGridTable = function(result) {
-		var ds = result.dataSet;
-		var html = "";
+		var ds = result.dataSet, html = "";
 
 		searchResultDataCount = ds.getRowCnt();
 		$("#tblGridBody").html("");
 
 		if (ds.getRowCnt() > 0) {
 			for (var i=0; i<ds.getRowCnt(); i++) {
-				html += "<tr>";
-				html += "<td class=\"tdGridCt\">"+ds.getValue(i, "ORGANISATION_ID")+"</td>";
-				html += "<td class=\"tdGrid\"><a onclick=\"setValue('"+ds.getValue(i, "ORGANISATION_ID")+"', '"+ds.getValue(i, "ORGANISATION_NAME")+"')\" class=\"aEn\">"+commonJs.abbreviate(ds.getValue(i, "ORGANISATION_NAME"), 60)+"</a></td>";
-				html += "<td class=\"tdGridCt\">"+commonJs.getFormatString(ds.getValue(i, "ABN"), "??-???-???-???")+"</td>";
-				html += "</tr>";
+				var gridTr = new UiGridTr();
+
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ORGANISATION_ID")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(commonJs.abbreviate(ds.getValue(i, "ORGANISATION_NAME"), 60)).setScript("setValue('"+ds.getValue(i, "ORGANISATION_ID")+"', '"+ds.getValue(i, "ORGANISATION_NAME")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ABN")));
+
+				html += gridTr.toHtmlString();
 			}
 		} else {
-			html += "<tr>";
-			html += "<td class=\"tdGridCt\" colspan=\"3\">com.message.I001</td>";
-			html += "</tr>";
+			var gridTr = new UiGridTr();
+
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:3").setText(com.message.I001));
+			html += gridTr.toHtmlString();
 		}
 
 		$("#tblGridBody").append($(html));
-		if (commonJs.browser.FireFox) {
-			gridWidthAdjust = -34;
-		} else {
-			gridWidthAdjust = -38;
-		}
+		setGridTable(result.totalResultRows);
 
-		$("#tblGrid").fixedHeaderTable({
-			baseDivElement:"divScrollablePanelPopup",
-			attachedPagingArea:true,
-			blockElementId:"tblGrid",
-			pagingAreaId:"divPagingArea",
-			totalResultRows:result.totalResultRows,
-			script:"doSearch",
-			widthAdjust:gridWidthAdjust
-		});
-
-		commonJs.hideProcMessageOnElement("tblGrid");
+		commonJs.hideProcMessageOnElement("divScrollablePanelPopup");
 	};
 
 	setValue = function(id, name) {
-		var targetDocument, keyField, valueField;
+		var keyField, valueField;
 
-		if (popupToSetValue != null) {
-			targetDocument = $(popupToSetValue.popupIframe).contents();
-			keyField = $(targetDocument).find("#"+keyFieldId);
-			valueField = $(targetDocument).find("#"+valueFieldId);
-
-			$(keyField).val(id);
-			$(valueField).val(name);
-		} else {
+		if (docTypeToSetValue == "page") {
+			keyField = parent.$("#"+keyFieldId);
+			valueField = parent.$("#"+valueFieldId);
 		}
+
+		$(keyField).val(id);
+		$(valueField).val(name);
 
 		popupObject.close();
 	};
@@ -90,15 +100,15 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		$("#orgName").val(lookupValue);
-		$("#orgName").focus();
+		$("#empOrgName").val(lookupValue);
+		$("#empOrgName").focus();
 
-		commonJs.setAutoComplete($("#orgName"), {
+		commonJs.setAutoComplete($("#empOrgName"), {
 			method:"getOrgName",
-			label:"org_name",
-			value:"org_name",
+			label:"organisation_name",
+			value:"organisation_name",
 			focus: function(event, ui) {
-				$("#orgName").val(ui.item.label);
+				$("#empOrgName").val(ui.item.label);
 				return false;
 			},
 			select:function(event, ui) {
@@ -119,8 +129,6 @@ $(function() {
 			}
 		});
 
-		setTimeout(function() {
-			doSearch();
-		}, 400);
+		doSearch();
 	});
 });

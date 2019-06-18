@@ -9,15 +9,15 @@ import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 
 public class HpOrganisationDHDaoImpl extends BaseHDao implements HpOrganisationDDao {
+	public DataSet getOrgNameDataSetForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception {
+		return selectAsDataSet(queryAdvisor, "query.HpOrganisationD.getOrgNameDataSetForAutoCompletion");
+	}
+
+	public DataSet getAbnDataSetForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception {
+		return selectAsDataSet(queryAdvisor, "query.HpOrganisationD.getOrgNameDataSetForAutoCompletion");
+	}
+
 	public DataSet getEmploymentOrganisationLookup(QueryAdvisor queryAdvisor) throws Exception {
-		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
-		String empOrgName = requestDataSet.getValue("empOrgName");
-		String abn = requestDataSet.getValue("abn");
-
-		queryAdvisor.addAutoFillCriteria(empOrgName, "lower(organisation_name) like lower('%"+empOrgName+"%')");
-		queryAdvisor.addAutoFillCriteria(abn, "abn like '%"+abn+"%'");
-		queryAdvisor.addOrderByClause("organisation_name asc");
-
 		return selectAsDataSet(queryAdvisor, "query.HpOrganisationD.getEmploymentOrganisationLookup");
 	}
 }

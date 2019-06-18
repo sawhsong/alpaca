@@ -10,7 +10,7 @@
 	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
 	String keyFieldId = requestDataSet.getValue("keyFieldId");
 	String valueFieldId = requestDataSet.getValue("valueFieldId");
-	String popupToSetValue = requestDataSet.getValue("popupToSetValue");
+	String docTypeToSetValue = requestDataSet.getValue("docTypeToSetValue");
 	String popupName = requestDataSet.getValue("popupName");
 	String lookupValue = requestDataSet.getValue("lookupValue");
 %>
@@ -29,12 +29,12 @@
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
 </style>
-<script type="text/javascript" src="<mc:cp key="viewPageName"/>.js"></script>
+<script type="text/javascript" src="<mc:cp key="commonModuleViewPageJsName"/>"></script>
 <script type="text/javascript">
 var keyFieldId = "<%=keyFieldId%>";
 var valueFieldId = "<%=valueFieldId%>";
-var popupName = "<%=popupName%>";
-var popupToSetValue = eval("<%=popupToSetValue%>");
+var popupObject = eval("<%=popupName%>");
+var docTypeToSetValue = "<%=docTypeToSetValue%>";
 var lookupValue = "<%=lookupValue%>";
 </script>
 </head>
@@ -50,9 +50,15 @@ var lookupValue = "<%=lookupValue%>";
 * Real Contents - fixed panel(tab, button, search, information)
 ************************************************************************************************/%>
 <div id="divTabArea"></div>
-<div id="divButtonArea">
+<div id="divButtonArea" class="areaContainerPopup">
 	<div id="divButtonAreaLeft"></div>
-	<div id="divButtonAreaRight"></div>
+	<div id="divButtonAreaRight">
+		<ui:buttonGroup id="buttonGroup">
+			<ui:button id="btnSearch" caption="button.com.search" iconClass="fa-search"/>
+			<ui:button id="btnClear" caption="button.com.clear" iconClass="fa-refresh"/>
+			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
+		</ui:buttonGroup>
+	</div>
 </div>
 <div id="divSearchCriteriaArea" class="areaContainerPopup">
 	<table class="tblSearch">
@@ -63,11 +69,11 @@ var lookupValue = "<%=lookupValue%>";
 		</colgroup>
 		<tr>
 			<td class="tdSearch">
-				<label for="empOrgName" class="lblEn hor"><mc:msg key="orglookup.search.orgName"/></label>
+				<label for="empOrgName" class="lblEn hor"><mc:msg key="empOrgLookup.search.orgName"/></label>
 				<input type="text" id="empOrgName" name="empOrgName" class="txtEn" style="width:250px;"/>
 			</td>
 			<td class="tdSearch">
-				<label for="abn" class="lblEn hor"><mc:msg key="orglookup.search.abn"/></label>
+				<label for="abn" class="lblEn hor"><mc:msg key="empOrgLookup.search.abn"/></label>
 				<input type="text" id="abn" name="abn" class="txtEn" style="width:250px;"/>
 			</td>
 		</tr>
@@ -88,13 +94,13 @@ var lookupValue = "<%=lookupValue%>";
 		<colgroup>
 			<col width="13%"/>
 			<col width="*"/>
-			<col width="13%"/>
+			<col width="15%"/>
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid Ct"><mc:msg key="orglookup.grid.id"/></th>
-				<th class="thGrid"><mc:msg key="orglookup.grid.name"/></th>
-				<th class="thGrid"><mc:msg key="orglookup.grid.abn"/></th>
+				<th class="thGrid Ct"><mc:msg key="empOrgLookup.grid.id"/></th>
+				<th class="thGrid"><mc:msg key="empOrgLookup.grid.name"/></th>
+				<th class="thGrid"><mc:msg key="empOrgLookup.grid.abn"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

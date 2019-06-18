@@ -28,15 +28,20 @@ public class CommonLookupBizImpl extends BaseBiz implements CommonLookupBiz {
 
 	public ParamEntity getEmploymentOrganisationLookup(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		HttpSession session = paramEntity.getSession();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String empOrgName = requestDataSet.getValue("empOrgName");
+		String abn = requestDataSet.getValue("abn");
+		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpOrganisationDDao.setDataSourceName(dataSource);
 
-			queryAdvisor.setRequestDataSet(requestDataSet);
 			queryAdvisor.setPagination(true);
+
+			queryAdvisor.addAutoFillCriteria(empOrgName, "lower(organisation_name) like lower('"+empOrgName+"%')");
+			queryAdvisor.addAutoFillCriteria(abn, "abn like '%"+abn+"%'");
+			queryAdvisor.addOrderByClause("organisation_name asc");
 
 			paramEntity.setAjaxResponseDataSet(hpOrganisationDDao.getEmploymentOrganisationLookup(queryAdvisor));
 			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());

@@ -3,9 +3,8 @@
  * - Per0202List.js
  *************************************************************************************************/
 jsconfig.put("useJqTooltip", false);
-var popup = null, popupLookup = null;
+var popupLookup = null;
 var searchResultDataCount = 0;
-var attchedFileContextMenu = [];
 
 $(function() {
 	/*!
@@ -35,8 +34,8 @@ $(function() {
 				lookupType:"EmploymentOrg",
 				keyFieldId:"empOrgId",
 				valueFieldId:"empOrgName",
-				popupToSetValue:"parent.popup",
 				popupName:"parent.popupLookup",
+				docTypeToSetValue:"page",
 				lookupValue:$("#empOrgName").val()
 			},
 			header:per.per0202.header.popEmpOrgLookup,
@@ -49,9 +48,22 @@ $(function() {
 		commonJs.toggleCheckboxes("chkForDel");
 	});
 
-	$(document).keypress(function(event) {
-		if (event.which == 13) {
-			var element = event.target;
+	$("#empOrgName").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#empOrgId").val("");
+		}
+	});
+
+	$(document).keydown(function(event) {
+		var code = event.keyCode || event.which, element = event.target;
+
+		if (code == 13) {
+		}
+
+		if (code == 9) {
+			if ($(element).is("[name=empOrgName]")) {
+				$("#icnEmpOrgSearch").trigger("click");
+			}
 		}
 	});
 
@@ -151,9 +163,9 @@ $(function() {
 			script:"doSearch"
 		});
 
-		$("[name=icnAttachedFile]").each(function(index) {
-			$(this).contextMenu(attchedFileContextMenu);
-		});
+//		$("[name=icnAttachedFile]").each(function(index) {
+//			$(this).contextMenu(attchedFileContextMenu);
+//		});
 
 		$("[name=icnAction]").each(function(index) {
 			$(this).contextMenu(ctxMenu.boardAction);
@@ -311,6 +323,31 @@ $(function() {
 	 */
 	$(window).load(function() {
 		commonJs.setExportButtonContextMenu($("#btnExport"));
+
+		commonJs.setAutoComplete($("#empOrgName"), {
+			method:"getOrgName",
+			label:"organisation_name",
+			value:"organisation_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#empOrgId").val(ui.item.value);
+				$("#empOrgName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#empOrgName").val())) {
+					$("#empOrgId").val("");
+					$("#empOrgName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#empOrgId").val(ui.item.value);
+				$("#empOrgName").val(ui.item.label);
+				doSearch();
+				return false;
+			}
+		});
+
 		doSearch();
 	});
 });

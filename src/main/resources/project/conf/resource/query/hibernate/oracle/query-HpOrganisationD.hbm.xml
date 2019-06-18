@@ -5,14 +5,29 @@
  * - HP_ORGANISATION_D - 
  */-->
 <hibernate-mapping>
+	<sql-query name="query.HpOrganisationD.getOrgNameDataSetForAutoCompletion">
+	<![CDATA[
+		select organisation_id,
+		       organisation_name,
+		       abn
+		  from hp_organisation_d
+		 where 1 = 1
+		   and organisation_id <> '0'
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+
 	<sql-query name="query.HpOrganisationD.getEmploymentOrganisationLookup">
 	<![CDATA[
 		select organisation_id,
 		       organisation_name,
 		       abn
 		  from hp_organisation_d
-		 where organisation_id in (select employment_company_org_id from hp_person_d)
 		 where 1 = 1
+		   and organisation_id <> '0'
+		   and organisation_id in (select employment_company_org_id from hp_person_d)
 		${auto_fill}
 		${where_clause}
 		${order_by_clause}

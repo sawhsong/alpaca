@@ -118,6 +118,11 @@ public class SysUserHDaoImpl extends BaseHDao implements SysUserDao {
 	}
 
 	public DataSet getUserNameDataSetForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception {
+		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
+		String inputValue = requestDataSet.getValue("inputValue");
+
+		queryAdvisor.addAutoFillCriteria(inputValue, "lower(user_name) like lower('"+inputValue+"%')");
+		queryAdvisor.addOrderByClause("user_name");
 		return selectAsDataSet(queryAdvisor, "query.SysUser.getUserNameDataSetForAutoCompletion");
 	}
 
