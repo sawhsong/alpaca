@@ -61,7 +61,7 @@ $(function() {
 		}
 
 		if (code == 9) {
-			if ($(element).is("[name=empOrgName]")) {
+			if ($(element).is("[name=empOrgName]") && !commonJs.isEmpty($(this).val())) {
 				$("#icnEmpOrgSearch").trigger("click");
 			}
 		}
@@ -324,6 +324,36 @@ $(function() {
 	$(window).load(function() {
 		commonJs.setExportButtonContextMenu($("#btnExport"));
 
+		commonJs.setAutoComplete($("#personNumber"), {
+			method:"getPersonNumber",
+			label:"person_number",
+			value:"person_number",
+			minLength:3,
+			focus: function(event, ui) {
+				$("#personNumber").val(ui.item.label);
+				return false;
+			},
+			select:function(event, ui) {
+				$("#personNumber").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#name"), {
+			method:"getPersonName",
+			label:"full_name",
+			value:"full_name",
+			minLength:3,
+			focus: function(event, ui) {
+				$("#name").val(ui.item.label);
+				return false;
+			},
+			select:function(event, ui) {
+				$("#name").val(ui.item.label);
+				return false;
+			}
+		});
+
 		commonJs.setAutoComplete($("#empOrgName"), {
 			method:"getOrgName",
 			label:"organisation_name",
@@ -343,7 +373,6 @@ $(function() {
 			select:function(event, ui) {
 				$("#empOrgId").val(ui.item.value);
 				$("#empOrgName").val(ui.item.label);
-				doSearch();
 				return false;
 			}
 		});

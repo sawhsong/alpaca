@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
 import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
+import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
 import project.conf.resource.ormapper.dao.SysCommonCode.SysCommonCodeDao;
 import project.conf.resource.ormapper.dao.SysCountryCurrency.SysCountryCurrencyDao;
 import project.conf.resource.ormapper.dao.SysUser.SysUserDao;
@@ -25,6 +26,8 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 	private SysCountryCurrencyDao sysCountryCurrencyDao;
 	@Autowired
 	private HpOrganisationDDao hpOrganisationDDao;
+	@Autowired
+	private HpPersonDDao hpPersonDDao;
 
 	public ParamEntity getCommonCodeType(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
@@ -155,14 +158,20 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		return paramEntity;
 	}
 
-	public ParamEntity getOrgId(ParamEntity paramEntity) throws Exception {
+	public ParamEntity getPersonNumber(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			queryAdvisor.addAutoFillCriteria(inputValue, "(lower(legal_name) like lower('"+inputValue+"%') or lower(trading_name) like lower('"+inputValue+"%'))");
-			queryAdvisor.addOrderByClause("legal_name");
+			hpPersonDDao.setDataSourceName(dataSource);
+
+			queryAdvisor.addAutoFillCriteria(inputValue, "lower(person_number) like lower('"+inputValue+"%')");
+			queryAdvisor.addOrderByClause("person_number");
+
+			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getPersonBasicInfoForAutoCompletion(queryAdvisor));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -170,35 +179,20 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		return paramEntity;
 	}
 
-	public ParamEntity getEmployeeSurname(ParamEntity paramEntity) throws Exception {
+	public ParamEntity getPersonName(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String orgId = CommonUtil.nvl((String)session.getAttribute("OrgIdForAdminTool"), (String)session.getAttribute("OrgId"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			queryAdvisor.addAutoFillCriteria(orgId, "org_id = '"+orgId+"'");
-			queryAdvisor.addAutoFillCriteria(inputValue, "lower(surname) like lower('%"+inputValue+"%')");
-			queryAdvisor.addOrderByClause("surname");
-			paramEntity.setSuccess(true);
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
+			hpPersonDDao.setDataSourceName(dataSource);
 
-	public ParamEntity getEmployeeGivenName(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
-		String inputValue = requestDataSet.getValue("inputValue");
-		HttpSession session = paramEntity.getSession();
-		String orgId = CommonUtil.nvl((String)session.getAttribute("OrgIdForAdminTool"), (String)session.getAttribute("OrgId"));
+			queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('"+inputValue+"%')");
+			queryAdvisor.addOrderByClause("full_name");
 
-		try {
-			queryAdvisor.addAutoFillCriteria(orgId, "org_id = '"+orgId+"'");
-			queryAdvisor.addAutoFillCriteria(inputValue, "lower(given_name) like lower('%"+inputValue+"%')");
-			queryAdvisor.addOrderByClause("given_name");
+			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getPersonBasicInfoForAutoCompletion(queryAdvisor));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);

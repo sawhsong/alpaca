@@ -690,7 +690,7 @@ var nony = {
 		var options = {};
 
 		$("select.bootstrapSelect").each(function(index) {
-			options.width = "auto";
+//			options.width = "auto";
 			options.container = "body";
 			options.style = $(this).attr("class");
 			$(this).selectpicker(options);

@@ -5,4 +5,16 @@
  * - HP_PERSON_D - 
  */-->
 <hibernate-mapping>
+	<sql-query name="query.HpPersonD.getPersonNumberForAutoCompletion">
+	<![CDATA[
+		select person_id,
+		       person_number,
+		       full_name
+		  from hp_person_d
+		 where 1 = 1
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
 </hibernate-mapping>

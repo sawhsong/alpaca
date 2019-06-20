@@ -78,6 +78,7 @@
 						<ui:hidden name="personTypeId"/>
 						<ui:text name="personTypeName" className="hor" style="width:280px"/>
 						<ui:icon id="icnPersonTypeSearch" className="fa-search hor"/>
+<%-- 						<ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:10;data-width:280px"/> --%>
 					</td>
 				</tr>
 				<tr>
