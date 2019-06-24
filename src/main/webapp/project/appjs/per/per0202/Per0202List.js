@@ -61,7 +61,7 @@ $(function() {
 		}
 
 		if (code == 9) {
-			if ($(element).is("[name=empOrgName]") && !commonJs.isEmpty($(this).val())) {
+			if ($(element).is("[name=empOrgName]") && !commonJs.isEmpty($("#empOrgName").val())) {
 				$("#icnEmpOrgSearch").trigger("click");
 			}
 		}
