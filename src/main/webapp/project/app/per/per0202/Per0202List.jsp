@@ -84,12 +84,7 @@
 						<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/>
 					</td>
 					<th class="thDefault rt"><mc:msg key="per0202.search.personType"/></th>
-					<td class="tdDefault" colspan="3">
-<%-- 						<ui:hidden name="personTypeId"/> --%>
-<%-- 						<ui:text name="personTypeName" className="hor" style="width:280px"/> --%>
-<%-- 						<ui:icon id="icnPersonTypeSearch" className="fa-search hor"/> --%>
-						<ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/>
-					</td>
+					<td class="tdDefault" colspan="3"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/></td>
 				</tr>
 			</table>
 		</div>
@@ -117,7 +112,7 @@
 			<col width="5%"/>
 		</colgroup>
 		<thead>
-			<tr class="noBorderHor">
+			<tr>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.subject"/></th>
 				<th class="thGrid"><mc:msg key="per0202.grid.file"/></th>
@@ -128,7 +123,7 @@
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
-			<tr class="noBorderHor noStripe">
+			<tr>
 				<td class="tdGrid Ct" colspan="7"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
