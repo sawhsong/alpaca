@@ -5,6 +5,7 @@
 jsconfig.put("useJqTooltip", false);
 var popupLookup = null;
 var searchResultDataCount = 0;
+jsconfig.put("scrollablePanelHeightAdjust", -30);
 
 $(function() {
 	/*!
@@ -70,6 +71,16 @@ $(function() {
 	/*!
 	 * process
 	 */
+	setGridTable = function(totalResultRows) {
+		$("#tblGrid").fixedHeaderTable({
+			attachTo:$("#divDataArea"),
+			pagingArea:$("#divPagingArea"),
+			isPageable:true,
+			totalResultRows:totalResultRows,
+			script:"doSearch"
+		});
+	};
+
 	doSearch = function() {
 		commonJs.showProcMessageOnElement("divScrollablePanel");
 
@@ -83,7 +94,9 @@ $(function() {
 						var result = commonJs.parseAjaxResult(data, textStatus, "json");
 
 						if (result.isSuccess == true || result.isSuccess == "true") {
-							renderDataGridTable(result);
+							renderGridData(result);
+						} else {
+							commonJs.error(result.message);
 						}
 					}
 				});
@@ -91,55 +104,26 @@ $(function() {
 		}
 	};
 
-	renderDataGridTable = function(result) {
-		var dataSet = result.dataSet;
-		var html = "";
+	renderGridData = function(result) {
+		var ds = result.dataSet, html = "";
 
-		searchResultDataCount = dataSet.getRowCnt();
+		searchResultDataCount = ds.getRowCnt();
 		$("#tblGridBody").html("");
 
-		if (dataSet.getRowCnt() > 0) {
-			for (var i=0; i<dataSet.getRowCnt(); i++) {
-				var space = "", iLength = 200;
-				var iLevel = parseInt(dataSet.getValue(i, "LEVEL")) - 1;
+		if (ds.getRowCnt() > 0) {
+			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				gridTr.setClassName("noBorderHor noStripe");
-
-				var uiChk = new UiCheckbox();
-				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "ARTICLE_ID"));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
-
-				if (iLevel > 0) {
-					for (var j=0; j<iLevel; j++) {
-						space += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-						iLength -= - 2;
-					}
-					space += "<i class=\"fa fa-comments\"></i>";
-				} else {
-					space += "<i class=\"fa fa-comment\"></i>";
-				}
-
-				var uiAnc = new UiAnchor();
-				uiAnc.setText(commonJs.abbreviate(dataSet.getValue(i, "ARTICLE_SUBJECT"), iLength)).setScript("getDetail('"+dataSet.getValue(i, "ARTICLE_ID")+"')");
-				gridTr.addChild(new UiGridTd().addClassName("Lt").addTextBeforeChild(space+"&nbsp;&nbsp;").addChild(uiAnc).addAttribute("title:"+commonJs.htmlToString(dataSet.getValue(i, "ARTICLE_SUBJECT"))));
-
-				var gridTd = new UiGridTd();
-				gridTd.addClassName("Ct");
-				if (dataSet.getValue(i, "FILE_CNT") > 0) {
-					var iconAttachFile = new UiIcon();
-					iconAttachFile.setId("icnAttachedFile").setName("icnAttachedFile").addClassName("glyphicon-paperclip").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"));
-					gridTd.addChild(iconAttachFile);
-				}
-				gridTr.addChild(gridTd);
-
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "WRITER_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "CREATED_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(dataSet.getValue(i, "HIT_CNT"), "#,###")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setId("chkForDel").setName("chkForDel").setValue(ds.getValue(i, "PERSON_ID"))));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_NUMBER")).setScript("getDetail('"+ds.getValue(i, "PERSON_ID")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "SURNAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "FIRST_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "PERSON_TYPE"), 50)));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "EMPLOYMENT_ORG_NAME"), 50)));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYSLIP_EMAIL")));
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
-					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("personId:"+ds.getValue(i, "PERSON_ID")).setScript("doAction(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
@@ -147,25 +131,12 @@ $(function() {
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:7").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:8").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
 		$("#tblGridBody").append($(html));
-
-		$("#tblGrid").fixedHeaderTable({
-			attachTo:$("#divDataArea"),
-			pagingArea:$("#divPagingArea"),
-			isPageable:true,
-			isFilter:false,
-			filterColumn:[],
-			totalResultRows:result.totalResultRows,
-			script:"doSearch"
-		});
-
-//		$("[name=icnAttachedFile]").each(function(index) {
-//			$(this).contextMenu(attchedFileContextMenu);
-//		});
+		setGridTable(result.totalResultRows);
 
 		$("[name=icnAction]").each(function(index) {
 			$(this).contextMenu(ctxMenu.boardAction);

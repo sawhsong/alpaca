@@ -10,6 +10,13 @@ import zebra.data.QueryAdvisor;
 
 public interface HpPersonDDao extends IDao {
 	/**
+	 * HpPersonD DataSet by QueryAdvisor
+	 * @param queryAdvisor
+	 * @return
+	 * @throws Exception
+	 */
+	public DataSet getPersonDataSetByCriteria(QueryAdvisor queryAdvisor) throws Exception;
+	/**
 	 * Person Id, Number, fullName for auto completion
 	 * @param queryAdvisor
 	 * @return

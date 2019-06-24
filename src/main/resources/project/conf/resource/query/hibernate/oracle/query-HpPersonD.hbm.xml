@@ -5,6 +5,23 @@
  * - HP_PERSON_D - 
  */-->
 <hibernate-mapping>
+	<sql-query name="query.HpPersonD.getPersonDataSetByCriteria">
+	<![CDATA[
+		select person_id,
+		       person_number,
+		       surname,
+		       first_name,
+		       person_type,
+		       (select organisation_name from hp_organisation_d where organisation_id = hp_person_d.employment_company_org_id) as employment_org_name,
+		       payslip_email
+		  from hp_person_d
+		 where 1 = 1
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+
 	<sql-query name="query.HpPersonD.getPersonNumberForAutoCompletion">
 	<![CDATA[
 		select person_id,

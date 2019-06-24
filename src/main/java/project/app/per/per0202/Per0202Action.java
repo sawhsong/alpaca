@@ -26,7 +26,7 @@ public class Per0202Action extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
-
+/*
 	public String getDetail() throws Exception {
 		biz.getDetail(paramEntity);
 		return "detail";
@@ -74,4 +74,5 @@ public class Per0202Action extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "export";
 	}
+*/
 }
