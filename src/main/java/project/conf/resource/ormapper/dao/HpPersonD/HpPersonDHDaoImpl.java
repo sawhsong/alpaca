@@ -5,7 +5,6 @@
 package project.conf.resource.ormapper.dao.HpPersonD;
 
 import project.common.extend.BaseHDao;
-import project.common.module.commoncode.CommonCodeManager;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 import zebra.util.CommonUtil;
@@ -25,6 +24,14 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 		queryAdvisor.addAutoFillCriteria(name, "full_name = '"+name+"'");
 		queryAdvisor.addAutoFillCriteria(email, "payslip_email like '"+email+"%'");
 		queryAdvisor.addAutoFillCriteria(empOrgId, "employment_company_org_id = '"+empOrgId+"'");
+		if (CommonUtil.isNotBlank(personType)) {
+			String personTypes[] = CommonUtil.split(CommonUtil.trimToEmpty(personType), "\\s*,\\s*");
+			String personTypeWhere = "";
+			for (int i=0; i<personTypes.length; i++) {
+				personTypeWhere += (CommonUtil.isNotBlank(personTypeWhere)) ? ", '"+personTypes[i]+"'" : "'"+personTypes[i]+"'";
+			}
+			queryAdvisor.addAutoFillCriteria(personTypeWhere, "person_type in ("+personTypeWhere+")");
+		}
 		queryAdvisor.addVariable("dateFormat", dateFormat);
 		queryAdvisor.addOrderByClause("full_name");
 
