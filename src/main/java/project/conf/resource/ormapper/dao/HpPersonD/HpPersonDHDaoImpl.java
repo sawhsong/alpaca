@@ -25,7 +25,8 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 		queryAdvisor.addAutoFillCriteria(email, "payslip_email like '"+email+"%'");
 		queryAdvisor.addAutoFillCriteria(empOrgId, "employment_company_org_id = '"+empOrgId+"'");
 		if (CommonUtil.isNotBlank(personType)) {
-			String personTypes[] = CommonUtil.split(CommonUtil.trimToEmpty(personType), "\\s*,\\s*");
+			String delimiter = ConfigUtil.getProperty("delimiter.record");
+			String personTypes[] = CommonUtil.split(CommonUtil.trimToEmpty(personType), "\\s*"+delimiter+"\\s*");
 			String personTypeWhere = "";
 			for (int i=0; i<personTypes.length; i++) {
 				personTypeWhere += (CommonUtil.isNotBlank(personTypeWhere)) ? ", '"+personTypes[i]+"'" : "'"+personTypes[i]+"'";
