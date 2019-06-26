@@ -18,7 +18,7 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 		String name = requestDataSet.getValue("name");
 		String email = requestDataSet.getValue("email");
 		String empOrgId = requestDataSet.getValue("empOrgId");
-		String personType = requestDataSet.getValue("personType");
+		String personType = CommonUtil.lowerCase(requestDataSet.getValue("personType"));
 
 		queryAdvisor.addAutoFillCriteria(personNumber, "person_number = '"+personNumber+"'");
 		queryAdvisor.addAutoFillCriteria(name, "full_name = '"+name+"'");
@@ -31,7 +31,7 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 			for (int i=0; i<personTypes.length; i++) {
 				personTypeWhere += (CommonUtil.isNotBlank(personTypeWhere)) ? ", '"+personTypes[i]+"'" : "'"+personTypes[i]+"'";
 			}
-			queryAdvisor.addAutoFillCriteria(personTypeWhere, "person_type in ("+personTypeWhere+")");
+			queryAdvisor.addAutoFillCriteria(personTypeWhere, "lower(person_type) in lower("+personTypeWhere+")");
 		}
 		queryAdvisor.addVariable("dateFormat", dateFormat);
 		queryAdvisor.addOrderByClause("full_name");

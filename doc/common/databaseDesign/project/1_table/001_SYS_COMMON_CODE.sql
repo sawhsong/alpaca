@@ -115,12 +115,13 @@ select lookup_type as code_type,
        'Y' as is_active,
        'N' as is_default,
        '0' as insert_user_id,
-       to_char(sysdate, 'yyyymmdd') as insert_date,
+       sysdate as insert_date,
        null as update_user_id,
        null as update_date
   from sys_common_lookups@perci
  where enabled_flag = 'Y'
    and lookup_type not in ('ORG_RELATIONSHIP', 'EXTENSION_CHANGES') -- Duplicated codes
+   and meaning not in ('EB Customer', 'EMA Prospect')
 union
 select lookup_type as code_type,
        lookup_code as common_code,
@@ -128,61 +129,18 @@ select lookup_type as code_type,
        description as description_ko,
        description as description_en,
        lookup_type||'_'||lookup_code as program_constants,
-       lpad(to_char(row_number() over (partition by lookup_type order by lookup_type, lookup_code)), 3, '0') as sort_order,
+       '' as sort_order,
        'Y' as is_active,
        'N' as is_default,
        '0' as insert_user_id,
-       to_char(sysdate, 'yyyymmdd') as insert_date,
+       sysdate as insert_date,
        null as update_user_id,
        null as update_date
   from sys_common_lookups@perci
  where enabled_flag = 'Y'
    and lookup_type not in ('ORG_RELATIONSHIP', 'EXTENSION_CHANGES') -- Duplicated codes
- order by code_type,
-       sort_order,
-       common_code
-;
-*/
--- Insert Duplicated data from PERCI
-/*
-insert into sys_common_code
-select distinct lookup_type as code_type,
-       '0000000000' as common_code,
-       initcap(replace(lookup_type, '_', ' ')) as code_meaning,
-       initcap(replace(lookup_type, '_', ' ')) as description_ko,
-       initcap(replace(lookup_type, '_', ' ')) as description_en,
-       lookup_type||'_'||'0000000000' as program_constants,
-       '000' as sort_order,
-       'Y' as is_active,
-       'N' as is_default,
-       '0' as insert_user_id,
-       to_char(sysdate, 'yyyymmdd') as insert_date,
-       null as update_user_id,
-       null as update_date
-  from sys_common_lookups@perci
- where enabled_flag = 'Y'
-   and lookup_type in ('ORG_RELATIONSHIP', 'EXTENSION_CHANGES')
-   and meaning not in ('EB Customer', 'EMA Prospect')
-union
-select distinct lookup_type as code_type,
-       lookup_code as common_code,
-       meaning as description_ko,
-       description as description_ko,
-       description as description_en,
-       lookup_type||'_'||lookup_code as program_constants,
-       lpad(to_char(row_number() over (partition by lookup_type order by lookup_type, lookup_code)), 3, '0') as sort_order,
-       'Y' as is_active,
-       'N' as is_default,
-       '0' as insert_user_id,
-       to_char(sysdate, 'yyyymmdd') as insert_date,
-       null as update_user_id,
-       null as update_date
-  from sys_common_lookups@perci
- where enabled_flag = 'Y'
-   and lookup_type in ('ORG_RELATIONSHIP', 'EXTENSION_CHANGES')
    and meaning not in ('EB Customer', 'EMA Prospect')
  order by code_type,
        sort_order,
        common_code
-;
 */
