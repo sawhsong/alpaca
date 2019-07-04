@@ -30,7 +30,7 @@
 <style type="text/css">
 </style>
 <script type="text/javascript">
-var popupUserProfile;
+var popupUserProfile, popupQuickMenu;
 var authGroupIdHeaderPage = "<%=authGroupIdHeaderPage%>";
 
 $(function() {
@@ -130,7 +130,8 @@ $(function() {
 					fun:function() {
 						var index = $(this).index();
 
-						alert(ctxMenu[index].menuUrl);
+// 						alert(ctxMenu[index].img);
+						doQuickMenu(ctxMenu[index].name, ctxMenu[index].menuId, ctxMenu[index].menuUrl);
 					}
 				});
 			}
@@ -174,6 +175,20 @@ $(function() {
 				userId:userId
 			},
 			header:"User Profile Detail",
+			blind:true,
+			width:720,
+			height:340
+		});
+	};
+
+	doQuickMenu = function(menuName, menuId, menuUrl) {
+		popupQuickMenu = commonJs.openPopup({
+			popupId:menuId,
+			url:menuUrl,
+			paramData:{
+				menuId:menuId
+			},
+			header:menuName,
 			blind:true,
 			width:720,
 			height:340
