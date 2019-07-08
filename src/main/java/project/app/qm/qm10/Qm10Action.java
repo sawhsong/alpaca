@@ -18,9 +18,14 @@ public class Qm10Action extends BaseAction {
 		return "list";
 	}
 
-	public String getList() throws Exception {
+	public String exeSave() throws Exception {
 		try {
-			biz.getList(paramEntity);
+			biz.exeSave(paramEntity);
+
+			if (paramEntity.isSuccess()) {
+				session.setAttribute("DatabaseForAdminTool", paramEntity.getRequestDataSet().getValue("dataSource"));
+				session.setAttribute("DatabaseQuickSearch", paramEntity.getRequestDataSet().getValue("dataSource"));
+			}
 		} catch (Exception ex) {
 		}
 		setRequestAttribute("paramEntity", paramEntity);

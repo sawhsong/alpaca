@@ -5,23 +5,11 @@
  *************************************************************************************************/
 package project.app.qm.qm10;
 
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import project.common.extend.BaseBiz;
-import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
-import zebra.data.DataSet;
 import zebra.data.ParamEntity;
-import zebra.data.QueryAdvisor;
 import zebra.exception.FrameworkException;
-import zebra.util.CommonUtil;
-import zebra.util.ConfigUtil;
 
 public class Qm10BizImpl extends BaseBiz implements Qm10Biz {
-	@Autowired
-	private HpPersonDDao hpPersonDDao;
-
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
 			paramEntity.setSuccess(true);
@@ -31,21 +19,10 @@ public class Qm10BizImpl extends BaseBiz implements Qm10Biz {
 		return paramEntity;
 	}
 
-	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
-		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
-
+	public ParamEntity exeSave(ParamEntity paramEntity) throws Exception {
 		try {
-			hpPersonDDao.setDataSourceName(dataSource);
-
-			queryAdvisor.setRequestDataSet(requestDataSet);
-			queryAdvisor.setPagination(true);
-
-			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getPersonDataSetByCriteria(queryAdvisor));
-			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
 			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}

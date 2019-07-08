@@ -17,7 +17,7 @@ $(function() {
 				caption:com.caption.yes,
 				callback:function() {
 					commonJs.ajaxSubmit({
-						url:"/sys/0404/exeInsert.do",
+						url:"/qm/10/exeSave",
 						dataType:"json",
 						formId:"fmDefault",
 						data:{
@@ -34,8 +34,7 @@ $(function() {
 									buttons:[{
 										caption:com.caption.ok,
 										callback:function() {
-											parent.popup.close();
-											parent.doSearch();
+											parent.popupQuickMenu.close();
 										}
 									}]
 								});
@@ -54,7 +53,7 @@ $(function() {
 	});
 
 	$("#btnClose").click(function(event) {
-		parent.popup.close();
+		parent.popupQuickMenu.close();
 	});
 
 	$(document).keypress(function(event) {
@@ -71,6 +70,5 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		$("#groupName").focus();
 	});
 });

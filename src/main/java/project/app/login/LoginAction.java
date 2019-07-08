@@ -124,6 +124,7 @@ public class LoginAction extends BaseAction {
 
 			if (paramEntity.isSuccess()) {
 				session.setAttribute("DatabaseForAdminTool", paramEntity.getRequestDataSet().getValue("databaseAdminTool"));
+				session.setAttribute("DatabaseQuickSearch", paramEntity.getRequestDataSet().getValue("databaseAdminTool"));
 			}
 		} catch (Exception ex) {
 		}

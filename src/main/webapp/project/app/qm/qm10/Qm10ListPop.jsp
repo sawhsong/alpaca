@@ -9,6 +9,8 @@
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
 	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
+	String dataSourceNames[] = CommonUtil.split(ConfigUtil.getProperty("jdbc.multipleDatasource"), ConfigUtil.getProperty("delimiter.data"));
+	String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), dataSourceNames[0]);
 %>
 <%/************************************************************************************************
 * HTML
@@ -45,7 +47,7 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnSave" caption="button.com.save" iconClass="fa-save"/>
+			<ui:button id="btnSave" caption="qm.button.saveToSession" iconClass="fa-save"/>
 			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
 		</ui:buttonGroup>
 	</div>
@@ -64,28 +66,23 @@
 <div id="divDataArea" class="areaContainerPopup">
 	<table class="tblEdit">
 		<colgroup>
-			<col width="15%"/>
-			<col width="35%"/>
-			<col width="15%"/>
-			<col width="35%"/>
+			<col width="50%"/>
+			<col width="*"/>
 		</colgroup>
 		<tr>
-			<th class="thEdit Rt mandatory"><mc:msg key="sys0404.header.isActive"/></th>
-			<td class="tdEdit" colspan="3"><ui:ccradio name="isActive" codeType="IS_ACTIVE" selectedValue="Y" options="mandatory"/></td>
-		</tr>
-		<tr>
-			<th class="thEdit Rt mandatory"><mc:msg key="sys0404.header.groupName"/></th>
-			<td class="tdEdit" colspan="3"><ui:text name="groupName" checkName="sys0404.header.groupName" options="mandatory"/></td>
-		</tr>
-		<tr>
-			<th class="thEdit Rt"><mc:msg key="sys0404.header.description"/></th>
-			<td class="tdEdit" colspan="3"><ui:text name="description" checkName="sys0404.header.description" options="mandatory"/></td>
-		</tr>
-		<tr>
-			<th class="thEdit rt"><mc:msg key="page.com.insertUser"/></th>
-			<td class="tdEdit"><ui:text name="insertUser" value="<%=sysUser.getUserName()%>" status="display"/></td>
-			<th class="thEdit rt"><mc:msg key="page.com.insertDate"/></th>
-			<td class="tdEdit"><ui:text name="insertDate" value="<%=CommonUtil.getSysdate(dateFormat)%>" status="display"/></td>
+			<th class="thEdit Rt"><mc:msg key="qm.label.dataSource"/></th>
+			<td class="tdEdit">
+				<ui:select name="dataSource" options="mandatory">
+<%
+				for (int i=0; i<dataSourceNames.length; i++) {
+					String selected = (CommonUtil.equalsIgnoreCase(dataSourceNames[i], dataSource)) ? "selected" : "";
+%>
+					<option value="<%=dataSourceNames[i]%>" <%=selected%>><%=dataSourceNames[i]%></option>
+<%
+				}
+%>
+				</ui:select>
+			</td>
 		</tr>
 	</table>
 </div>

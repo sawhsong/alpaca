@@ -182,6 +182,11 @@ $(function() {
 	};
 
 	doQuickMenu = function(menuName, menuId, menuUrl) {
+		var width = 0, height = 0;
+
+		if (menuId == "QM10") {
+			width = 400, height = 230;
+		}
 		popupQuickMenu = commonJs.openPopup({
 			popupId:menuId,
 			url:menuUrl,
@@ -190,8 +195,8 @@ $(function() {
 			},
 			header:menuName,
 			blind:true,
-			width:720,
-			height:340
+			width:width,
+			height:height
 		});
 	};
 
