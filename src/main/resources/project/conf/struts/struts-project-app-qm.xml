@@ -3,7 +3,7 @@
 <struts>
     <package extends="default" name="qm" namespace="/qm" strict-method-invocation="false">
         <default-interceptor-ref name="ZebraDefaultStack"/>
-        <!--Qm10 - Select Dtabase-->
+        <!--Qm10 - Select Database-->
         <action class="project.app.qm.qm10.Qm10Action" method="{1}" name="10/*">
             <result name="list" type="debugDispatcherResult">/project/app/qm/qm10/Qm10ListPop.jsp</result>
         </action>
