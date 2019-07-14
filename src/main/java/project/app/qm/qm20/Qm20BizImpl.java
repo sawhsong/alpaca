@@ -36,7 +36,65 @@ public class Qm20BizImpl extends BaseBiz implements Qm20Biz {
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
-
+/*
+select per.person_id,
+       per.person_number,
+       usr.user_name,
+       usr.email as user_email,
+       per.payslip_email,
+       per.surname,
+       per.first_name,
+       per.member_since,
+       per.date_of_birth,
+       per.person_type,
+       per.employment_company_org_id,
+       (select organisation_name from hp_organisation_d where organisation_id = per.employment_company_org_id) as emp_org_name,
+       usr.portal_security_role,
+       (select billing_organisation_id from hp_assignments_d where preferred = 'Y' and person_id = per.person_id) as curr_billing_org_id,
+       (select organisation_name from hp_organisation_d where organisation_id = (select billing_organisation_id from hp_assignments_d where preferred = 'Y' and person_id = per.person_id)) as curr_billing_org_name,
+       (select count(assignment_id) from hp_assignments_d where asg_active = 'Y' and person_id = per.person_id)||' / '||(select count(assignment_id) from hp_assignments_d where person_id = per.person_id) as asg_count,
+       nvl(inv.cnt, 0) as invoice_count,
+       nvl(pay.cnt, 0) as payment_count
+  from hp_person_d per,
+       sys_users usr,
+       (select person_id,
+               sum(cnt) as cnt
+          from (select src.assignment_id,
+                       (select person_id from hp_assignments_d where assignment_id = src.assignment_id) as person_id,
+                       src.cnt
+                  from (select inv.source_id as assignment_id,
+                               count(*) as cnt
+                          from hp_invoice inv,
+                               hp_assignments_d asg
+                         where inv.source = 'ASSIGNMENT'
+                           and inv.source_id = asg.assignment_id(+)
+                         group by inv.source_id
+                       ) src
+               )
+         group by person_id
+       ) inv,
+       (select person_id,
+               sum(cnt) as cnt
+          from (select src.assignment_id,
+                       (select person_id from hp_assignments_d where assignment_id = src.assignment_id) as person_id,
+                       src.cnt
+                  from (select pay.assignment_id as assignment_id,
+                               count(*) as cnt
+                          from hp_balance pay,
+                               hp_assignments_d asg
+                         where pay.assignment_id = asg.assignment_id(+)
+                         group by pay.assignment_id
+                       ) src
+               )
+         group by person_id
+       ) pay
+ where per.person_id = usr.person_id(+)
+   and per.person_id = inv.person_id(+)
+   and per.person_id = pay.person_id(+)
+ order by per.surname,
+       per.first_name
+;
+ */
 		try {
 			hpPersonDDao.setDataSourceName(dataSource);
 
