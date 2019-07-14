@@ -39,6 +39,34 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 		return selectAsDataSet(queryAdvisor, "query.HpPersonD.getPersonDataSetByCriteria");
 	}
 
+	public DataSet getPersonDataSetForQuickMenu(QueryAdvisor queryAdvisor) throws Exception {
+		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
+		String dateFormat = ConfigUtil.getProperty("format.date.java");
+		String personNumber = requestDataSet.getValue("personNumber");
+		String name = requestDataSet.getValue("name");
+		String email = requestDataSet.getValue("email");
+		String empOrgId = requestDataSet.getValue("empOrgId");
+		String personType = CommonUtil.lowerCase(requestDataSet.getValue("personType"));
+
+		queryAdvisor.addAutoFillCriteria(personNumber, "per.person_number = '"+personNumber+"'");
+		queryAdvisor.addAutoFillCriteria(name, "per.full_name = '"+name+"'");
+		queryAdvisor.addAutoFillCriteria(email, "per.payslip_email like '"+email+"%'");
+		queryAdvisor.addAutoFillCriteria(empOrgId, "per.employment_company_org_id = '"+empOrgId+"'");
+		if (CommonUtil.isNotBlank(personType)) {
+			String delimiter = ConfigUtil.getProperty("delimiter.record");
+			String personTypes[] = CommonUtil.split(CommonUtil.trimToEmpty(personType), delimiter);
+			String personTypeWhere = "";
+			for (int i=0; i<personTypes.length; i++) {
+				personTypeWhere += (CommonUtil.isNotBlank(personTypeWhere)) ? ", '"+personTypes[i]+"'" : "'"+personTypes[i]+"'";
+			}
+			queryAdvisor.addAutoFillCriteria(personTypeWhere, "lower(per.person_type) in ("+personTypeWhere+")");
+		}
+		queryAdvisor.addVariable("dateFormat", dateFormat);
+		queryAdvisor.addOrderByClause("per.surname, per.first_name");
+
+		return selectAsDataSet(queryAdvisor, "query.HpPersonD.getPersonDataSetForQuickMenu");
+	}
+
 	public DataSet getPersonBasicInfoForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception {
 		return selectAsDataSet(queryAdvisor, "query.HpPersonD.getPersonNumberForAutoCompletion");
 	}

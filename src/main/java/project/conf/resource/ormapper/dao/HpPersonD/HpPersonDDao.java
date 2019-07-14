@@ -17,6 +17,13 @@ public interface HpPersonDDao extends IDao {
 	 */
 	public DataSet getPersonDataSetByCriteria(QueryAdvisor queryAdvisor) throws Exception;
 	/**
+	 * For Quick search menu(QM20)
+	 * @param queryAdvisor
+	 * @return
+	 * @throws Exception
+	 */
+	public DataSet getPersonDataSetForQuickMenu(QueryAdvisor queryAdvisor) throws Exception;
+	/**
 	 * Person Id, Number, fullName for auto completion
 	 * @param queryAdvisor
 	 * @return

@@ -45,6 +45,8 @@
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
 			<ui:button id="btnSave" caption="qm.button.saveToSession" iconClass="fa-save"/>
+			<ui:button id="btnSearch" caption="button.com.search" iconClass="fa-search"/>
+			<ui:button id="btnClear" caption="button.com.clear" iconClass="fa-refresh"/>
 			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
 		</ui:buttonGroup>
 	</div>
@@ -62,21 +64,21 @@
 					<col width="24%"/>
 				</colgroup>
 				<tr>
-					<th class="thDefault rt"><mc:msg key="per0202.search.personNumber"/></th>
+					<th class="thDefault rt"><mc:msg key="qm.search.personNumber"/></th>
 					<td class="tdDefault"><ui:text name="personNumber" style="width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.name"/></th>
+					<th class="thDefault rt"><mc:msg key="qm.search.name"/></th>
 					<td class="tdDefault"><ui:text name="name" style="width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.email"/></th>
+					<th class="thDefault rt"><mc:msg key="qm.search.email"/></th>
 					<td class="tdDefault"><ui:text name="email" style="width:280px"/></td>
 				</tr>
 				<tr>
-					<th class="thDefault rt"><mc:msg key="per0202.search.empOrg"/></th>
+					<th class="thDefault rt"><mc:msg key="qm.search.empOrg"/></th>
 					<td class="tdDefault">
 						<ui:hidden name="empOrgId"/>
 						<ui:text name="empOrgName" className="hor" style="width:280px"/>
 						<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/>
 					</td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.personType"/></th>
+					<th class="thDefault rt"><mc:msg key="qm.search.personType"/></th>
 					<td class="tdDefault" colspan="3"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/></td>
 				</tr>
 			</table>
@@ -94,32 +96,50 @@
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
-	<table id="tblGrid" class="tblGrid sort autosort">
+	<table id="tblGrid" class="tblGrid sort autosort" style="width:1200px">
 		<colgroup>
 			<col width="2%"/>
-			<col width="7%"/>
-			<col width="13%"/>
-			<col width="13%"/>
+			<col width="5%"/>
+			<col width="5%"/>
+			<col width="6%"/>
+			<col width="9%"/>
+			<col width="9%"/>
+			<col width="9%"/>
+			<col width="9%"/>
+			<col width="5%"/>
+			<col width="5%"/>
+			<col width="9%"/>
 			<col width="*"/>
-			<col width="21%"/>
-			<col width="16%"/>
+			<col width="8%"/>
+			<col width="12%"/>
 			<col width="4%"/>
+			<col width="4%"/>
+			<col width="2%"/>
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.personNumber"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.surname"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.firstName"/></th>
-				<th class="thGrid"><mc:msg key="per0202.grid.personType"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.empOrg"/></th>
-				<th class="thGrid"><mc:msg key="per0202.grid.payslipEmail"/></th>
+				<th class="thGrid"></th>
+				<th class="thGrid sortable:numeric"><mc:msg key="qm.grid.id"/></th>
+				<th class="thGrid sortable:numeric"><mc:msg key="qm.grid.number"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.userName"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.userEmail"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.payslipEmail"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.surname"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.firstName"/></th>
+				<th class="thGrid sortable:date"><mc:msg key="qm.grid.memberSince"/></th>
+				<th class="thGrid sortable:date"><mc:msg key="qm.grid.dateOfBirth"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.personType"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.empOrg"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.securityRole"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.currBillingOrg"/></th>
+				<th class="thGrid"><mc:msg key="qm.grid.asgCount"/></th>
+				<th class="thGrid"><mc:msg key="qm.grid.paymentCount"/></th>
 				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
 			<tr>
-				<td class="tdGrid Ct" colspan="8"><mc:msg key="I002"/></td>
+				<td class="tdGrid Ct" colspan="18"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
 	</table>
