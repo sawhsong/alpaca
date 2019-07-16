@@ -2,6 +2,8 @@
  * Framework Generated Javascript Source
  * - Qm20ListPop.js
  *************************************************************************************************/
+var dateFormat = jsconfig.get("dateFormatJs");
+
 $(function() {
 	/*!
 	 * event
@@ -114,6 +116,10 @@ $(function() {
 		});
 	};
 
+	doSave = function(personId) {
+		alert(personId);
+	};
+
 	doSearch = function() {
 		commonJs.showProcMessageOnElement("divScrollablePanel");
 
@@ -147,13 +153,22 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setId("chkForDel").setName("chkForDel").setValue(ds.getValue(i, "PERSON_ID"))));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_NUMBER")).setScript("getDetail('"+ds.getValue(i, "PERSON_ID")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiRadio().setName("rdoForSave").setValue(ds.getValue(i, "PERSON_ID"))));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_ID")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_NUMBER")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "USER_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "USER_EMAIL")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYSLIP_EMAIL")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "SURNAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "FIRST_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(ds.getValue(i, "MEMBER_SINCE"), dateFormat)));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(ds.getValue(i, "DATE_OF_BIRTH"), dateFormat)));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "PERSON_TYPE"), 50)));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "EMPLOYMENT_ORG_NAME"), 50)));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYSLIP_EMAIL")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "EMP_ORG_NAME"), 50)));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PORTAL_SECURITY_ROLE")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "CURR_BILLING_ORG_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ASG_COUNT")));
+				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(ds.getValue(i, "PAYMENT_COUNT")));
 
 				var iconAction = new UiIcon();
 				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("personId:"+ds.getValue(i, "PERSON_ID")).setScript("doAction(this)");
@@ -164,7 +179,7 @@ $(function() {
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:8").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:18").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
@@ -172,7 +187,7 @@ $(function() {
 		setGridTable(result.totalResultRows);
 
 		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.boardAction);
+			$(this).contextMenu(ctxMenu.commonQmAction);
 		});
 
 		commonJs.hideProcMessageOnElement("divScrollablePanel");

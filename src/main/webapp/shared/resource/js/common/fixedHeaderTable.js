@@ -381,6 +381,10 @@
 					$fixedTable.show();
 				}
 			});
+
+			$(options.attachTo).bind("scroll", function() {
+				$fixedTable.css("left", $(options.attachTo).offset().left);
+			});
 		});
 	};
 })(jQuery);
