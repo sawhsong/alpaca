@@ -95,7 +95,8 @@
 <%/************************************************************************************************
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
-<div id="divDataArea" class="areaContainerPopup" style="border:1px solid red;">
+<div id="divDataArea" class="areaContainerPopup">
+	<div id="divTest">
 	<table id="tblGrid" class="tblGrid sort autosort" style="width:4000px">
 		<colgroup>
 			<col width="2%"/>
@@ -143,6 +144,7 @@
 			</tr>
 		</tbody>
 	</table>
+	</div>
 </div>
 <div id="divPagingArea" class="areaContainerPopup"></div>
 <%/************************************************************************************************
