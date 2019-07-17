@@ -34,6 +34,7 @@ $(function() {
 									buttons:[{
 										caption:com.caption.ok,
 										callback:function() {
+											parent.$("#divUsingUserAs").html("Database connected to : "+$("#dataSource").val());
 											parent.popupQuickMenu.close();
 										}
 									}]

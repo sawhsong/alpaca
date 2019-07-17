@@ -8,6 +8,8 @@ package project.app.qm.qm20;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseAction;
+import project.conf.resource.ormapper.dto.oracle.HpPersonD;
+import project.conf.resource.ormapper.dto.oracle.SysUsers;
 
 public class Qm20Action extends BaseAction {
 	@Autowired
@@ -32,8 +34,23 @@ public class Qm20Action extends BaseAction {
 			biz.exeSave(paramEntity);
 
 			if (paramEntity.isSuccess()) {
-				session.setAttribute("DatabaseForAdminTool", paramEntity.getRequestDataSet().getValue("dataSource"));
-				session.setAttribute("DatabaseQuickSearch", paramEntity.getRequestDataSet().getValue("dataSource"));
+				HpPersonD hpPersonD = (HpPersonD)paramEntity.getObject("hpPersonD");
+				SysUsers sysUsers = (SysUsers)paramEntity.getObject("sysUsers");
+
+				session.setAttribute("PersonIdForAdminTool", hpPersonD.getPersonId());
+				session.setAttribute("PersonNumberForAdminTool", hpPersonD.getPersonNumber());
+				session.setAttribute("PersonFullNameForAdminTool", hpPersonD.getFullName());
+				session.setAttribute("HpPersonDForAdminTool", hpPersonD);
+
+				session.setAttribute("PersonIdQuickSearch", hpPersonD.getPersonId());
+				session.setAttribute("PersonNumberQuickSearch", hpPersonD.getPersonNumber());
+				session.setAttribute("PersonFullNameQuickSearch", hpPersonD.getFullName());
+				session.setAttribute("HpPersonDQuickSearch", hpPersonD);
+
+				if (sysUsers != null) {
+					session.setAttribute("SysUsersForAdminTool", sysUsers);
+					session.setAttribute("SysUsersDQuickSearch", sysUsers);
+				}
 			}
 		} catch (Exception ex) {
 		}

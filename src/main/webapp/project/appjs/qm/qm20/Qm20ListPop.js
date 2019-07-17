@@ -14,14 +14,14 @@ $(function() {
 			return;
 		}
 
-		var personId = commonJs.getCheckedValueFromRadio("rdoForSave");
+		var val = commonJs.getCheckedValueFromRadio("rdoForSave");
 
-		if (commonJs.isEmpty(personId)) {
+		if (commonJs.isEmpty(val)) {
 			commonJs.warn(com.message.I902);
 			return;
 		}
 
-		doSave(personId);
+		doSave(val);
 	});
 
 	$("#btnSearch").click(function(event) {
@@ -86,7 +86,8 @@ $(function() {
 		});
 	};
 
-	doSave = function(personId) {
+	doSave = function(keyValues) {
+alert(keyValues);
 		commonJs.confirm({
 			contents:com.message.Q001,
 			buttons:[{
@@ -97,12 +98,13 @@ $(function() {
 						dataType:"json",
 //						formId:"fmDefault",
 						data:{
-							personId:personId
+							keyValues:keyValues
 						},
 						success:function(data, textStatus) {
 							var result = commonJs.parseAjaxResult(data, textStatus, "json");
 
 							if (result.isSuccess == true || result.isSuccess == "true") {
+								var ds = result.dataSet;
 								commonJs.openDialog({
 									type:com.message.I000,
 									contents:result.message,
@@ -111,6 +113,10 @@ $(function() {
 									buttons:[{
 										caption:com.caption.ok,
 										callback:function() {
+											parent.$("#divUsingUserAs").html(
+												parent.$("#divUsingUserAs").html()+" / "+
+												"Person Searched : "+ds.getValue(0, "FULL_NAME")+" ("+ds.getValue(0, "PERSON_NUMBER")+")"
+											);
 											parent.popupQuickMenu.close();
 										}
 									}]
@@ -155,16 +161,15 @@ $(function() {
 	renderGridData = function(result) {
 		var ds = result.dataSet, html = "";
 
-		searchResultDataCount = ds.getRowCnt();
 		$("#tblGridBody").html("");
 
 		if (ds.getRowCnt() > 0) {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiRadio().setName("rdoForSave").setValue(ds.getValue(i, "PERSON_ID"))));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_ID")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"')")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_NUMBER")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiRadio().setName("rdoForSave").setValue(ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID"))));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_ID")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_NUMBER")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "USER_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "USER_EMAIL")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYSLIP_EMAIL")));
@@ -180,7 +185,7 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(ds.getValue(i, "PAYMENT_COUNT")));
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("personId:"+ds.getValue(i, "PERSON_ID")).setScript("doAction(this)");
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("keyValues:"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")).setScript("doAction(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
@@ -203,17 +208,17 @@ $(function() {
 	};
 
 	doAction = function(img) {
-		var personId = $(img).attr("personId");
+		var keyValues = $(img).attr("keyValues");
 
 		$("input:radio[name=rdoForSave]").each(function(index) {
-			if (!$(this).is(":disabled") && $(this).val() == personId) {
+			if (!$(this).is(":disabled") && $(this).val() == keyValues) {
 				$(this).prop("checked", true);
 			} else {
 				$(this).prop("checked", false);
 			}
 		});
 
-		ctxMenu.commonQmAction[0].fun = function() {doSave(personId);};
+		ctxMenu.commonQmAction[0].fun = function() {doSave(keyValues);};
 
 		$(img).contextMenu(ctxMenu.commonQmAction, {
 			classPrefix:com.constants.ctxClassPrefixGrid,
@@ -240,6 +245,7 @@ $(function() {
 			select:function(event, ui) {
 				$("#personNumber").val(ui.item.label);
 				doSearch();
+				return false;
 			}
 		});
 
@@ -255,6 +261,7 @@ $(function() {
 			select:function(event, ui) {
 				$("#name").val(ui.item.label);
 				doSearch();
+				return false;
 			}
 		});
 
@@ -278,6 +285,7 @@ $(function() {
 				$("#empOrgId").val(ui.item.value);
 				$("#empOrgName").val(ui.item.label);
 				doSearch();
+				return false;
 			}
 		});
 

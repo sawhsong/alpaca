@@ -26,6 +26,7 @@
 	<![CDATA[
 		select per.person_id,
 		       per.person_number,
+		       usr.user_id,
 		       usr.user_name,
 		       usr.email as user_email,
 		       per.payslip_email,

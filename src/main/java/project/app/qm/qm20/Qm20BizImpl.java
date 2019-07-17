@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
 import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
+import project.conf.resource.ormapper.dao.SysUsers.SysUsersDao;
 import project.conf.resource.ormapper.dto.oracle.HpPersonD;
+import project.conf.resource.ormapper.dto.oracle.SysUsers;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
 import zebra.data.QueryAdvisor;
@@ -22,6 +24,8 @@ import zebra.util.ConfigUtil;
 public class Qm20BizImpl extends BaseBiz implements Qm20Biz {
 	@Autowired
 	private HpPersonDDao hpPersonDDao;
+	@Autowired
+	private SysUsersDao sysUsersDao;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -57,15 +61,28 @@ public class Qm20BizImpl extends BaseBiz implements Qm20Biz {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
-		String personId = requestDataSet.getValue("personId");
+		String keyValues[] = CommonUtil.split(requestDataSet.getValue("keyValues"), "_");
+		String personId = "", userId = "";
 		HpPersonD hpPersonD = new HpPersonD();
+		SysUsers sysUsers = new SysUsers();
 
 		try {
+			personId = keyValues[0];
+			if (keyValues.length == 2) {
+				userId = keyValues[1];
+			}
+
 			hpPersonDDao.setDataSourceName(dataSource);
+			sysUsersDao.setDataSourceName(dataSource);
 
 			hpPersonD = hpPersonDDao.getPersonByPersonId(personId);
+			if (CommonUtil.isNotBlank(userId)) {
+				sysUsers = sysUsersDao.getUserByUserId(userId);
+			}
 
 			paramEntity.setObject("hpPersonD", hpPersonD);
+			paramEntity.setObject("sysUsers", sysUsers);
+			paramEntity.setAjaxResponseDataSet(hpPersonD.getDataSet());
 			paramEntity.setSuccess(true);
 			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
 		} catch (Exception ex) {

@@ -307,6 +307,7 @@ $(function() {
 			select:function(event, ui) {
 				$("#personNumber").val(ui.item.label);
 				doSearch();
+				return false;
 			}
 		});
 
@@ -322,6 +323,7 @@ $(function() {
 			select:function(event, ui) {
 				$("#name").val(ui.item.label);
 				doSearch();
+				return false;
 			}
 		});
 
@@ -345,6 +347,7 @@ $(function() {
 				$("#empOrgId").val(ui.item.value);
 				$("#empOrgName").val(ui.item.label);
 				doSearch();
+				return false;
 			}
 		});
 
