@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
 import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
+import project.conf.resource.ormapper.dto.oracle.HpPersonD;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
 import zebra.data.QueryAdvisor;
@@ -46,6 +47,27 @@ public class Qm20BizImpl extends BaseBiz implements Qm20Biz {
 			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getPersonDataSetForQuickMenu(queryAdvisor));
 			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
 			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity exeSave(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String personId = requestDataSet.getValue("personId");
+		HpPersonD hpPersonD = new HpPersonD();
+
+		try {
+			hpPersonDDao.setDataSourceName(dataSource);
+
+			hpPersonD = hpPersonDDao.getPersonByPersonId(personId);
+
+			paramEntity.setObject("hpPersonD", hpPersonD);
+			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}

@@ -4,11 +4,19 @@
  *************************************************************************************************/
 package project.conf.resource.ormapper.dao.HpPersonD;
 
+import project.conf.resource.ormapper.dto.oracle.HpPersonD;
 import zebra.base.IDao;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 
 public interface HpPersonDDao extends IDao {
+	/**
+	 * Select HpPersonD object by personId
+	 * @param personId
+	 * @return
+	 * @throws Exception
+	 */
+	public HpPersonD getPersonByPersonId(String personId) throws Exception;
 	/**
 	 * HpPersonD DataSet by QueryAdvisor
 	 * @param queryAdvisor

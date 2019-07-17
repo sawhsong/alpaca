@@ -96,54 +96,54 @@
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
-	<div id="divTest">
-	<table id="tblGrid" class="tblGrid sort autosort" style="width:4000px">
-		<colgroup>
-			<col width="2%"/>
-			<col width="5%"/>
-			<col width="5%"/>
-			<col width="6%"/>
-			<col width="9%"/>
-			<col width="9%"/>
-			<col width="9%"/>
-			<col width="9%"/>
-			<col width="5%"/>
-			<col width="5%"/>
-			<col width="9%"/>
-			<col width="*"/>
-			<col width="8%"/>
-			<col width="12%"/>
-			<col width="4%"/>
-			<col width="4%"/>
-			<col width="2%"/>
-		</colgroup>
-		<thead>
-			<tr>
-				<th class="thGrid"></th>
-				<th class="thGrid sortable:numeric"><mc:msg key="qm.grid.id"/></th>
-				<th class="thGrid sortable:numeric"><mc:msg key="qm.grid.number"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.userName"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.userEmail"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.payslipEmail"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.surname"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.firstName"/></th>
-				<th class="thGrid sortable:date"><mc:msg key="qm.grid.memberSince"/></th>
-				<th class="thGrid sortable:date"><mc:msg key="qm.grid.dateOfBirth"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.personType"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.empOrg"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.securityRole"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.currBillingOrg"/></th>
-				<th class="thGrid"><mc:msg key="qm.grid.asgCount"/></th>
-				<th class="thGrid"><mc:msg key="qm.grid.paymentCount"/></th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
-			</tr>
-		</thead>
-		<tbody id="tblGridBody">
-			<tr>
-				<td class="tdGrid Ct" colspan="18"><mc:msg key="I002"/></td>
-			</tr>
-		</tbody>
-	</table>
+	<div id="divGridWrapper">
+		<table id="tblGrid" class="tblGrid sort autosort" style="width:3500px">
+			<colgroup>
+				<col width="1%"/>
+				<col width="3%"/>
+				<col width="3%"/>
+				<col width="4%"/>
+				<col width="9%"/>
+				<col width="9%"/>
+				<col width="7%"/>
+				<col width="7%"/>
+				<col width="4%"/>
+				<col width="3%"/>
+				<col width="10%"/>
+				<col width="*"/>
+				<col width="6%"/>
+				<col width="11%"/>
+				<col width="4%"/>
+				<col width="4%"/>
+				<col width="2%"/>
+			</colgroup>
+			<thead>
+				<tr>
+					<th class="thGrid"></th>
+					<th class="thGrid sortable:numeric"><mc:msg key="qm.grid.id"/></th>
+					<th class="thGrid sortable:numeric"><mc:msg key="qm.grid.number"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.userName"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.userEmail"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.payslipEmail"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.surname"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.firstName"/></th>
+					<th class="thGrid sortable:date"><mc:msg key="qm.grid.memberSince"/></th>
+					<th class="thGrid sortable:date"><mc:msg key="qm.grid.dateOfBirth"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.personType"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.empOrg"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.securityRole"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.currBillingOrg"/></th>
+					<th class="thGrid"><mc:msg key="qm.grid.asgCount"/></th>
+					<th class="thGrid"><mc:msg key="qm.grid.paymentCount"/></th>
+					<th class="thGrid"><mc:msg key="page.com.action"/></th>
+				</tr>
+			</thead>
+			<tbody id="tblGridBody">
+				<tr>
+					<td class="tdGrid Ct" colspan="18"><mc:msg key="I002"/></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
 <div id="divPagingArea" class="areaContainerPopup"></div>

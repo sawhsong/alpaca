@@ -3,6 +3,7 @@
  * - Qm20ListPop.js
  *************************************************************************************************/
 var dateFormat = jsconfig.get("dateFormatJs");
+jsconfig.put("scrollablePanelHeightAdjust", 8);
 
 $(function() {
 	/*!
@@ -13,45 +14,14 @@ $(function() {
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q001,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					commonJs.ajaxSubmit({
-						url:"/qm/20/exeSave",
-						dataType:"json",
-						formId:"fmDefault",
-						data:{
-						},
-						success:function(data, textStatus) {
-							var result = commonJs.parseAjaxResult(data, textStatus, "json");
+		var personId = commonJs.getCheckedValueFromRadio("rdoForSave");
 
-							if (result.isSuccess == true || result.isSuccess == "true") {
-								commonJs.openDialog({
-									type:com.message.I000,
-									contents:result.message,
-									blind:true,
-									width:300,
-									buttons:[{
-										caption:com.caption.ok,
-										callback:function() {
-											parent.popupQuickMenu.close();
-										}
-									}]
-								});
-							} else {
-								commonJs.error(result.message);
-							}
-						}
-					});
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}]
-		});
+		if (commonJs.isEmpty(personId)) {
+			commonJs.warn(com.message.I902);
+			return;
+		}
+
+		doSave(personId);
 	});
 
 	$("#btnSearch").click(function(event) {
@@ -108,7 +78,7 @@ $(function() {
 	 */
 	setGridTable = function(totalResultRows) {
 		$("#tblGrid").fixedHeaderTable({
-			attachTo:$("#divTest"),
+			attachTo:$("#divGridWrapper"),
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
 			totalResultRows:totalResultRows,
@@ -117,7 +87,46 @@ $(function() {
 	};
 
 	doSave = function(personId) {
-		alert(personId);
+		commonJs.confirm({
+			contents:com.message.Q001,
+			buttons:[{
+				caption:com.caption.yes,
+				callback:function() {
+					commonJs.ajaxSubmit({
+						url:"/qm/20/exeSave",
+						dataType:"json",
+//						formId:"fmDefault",
+						data:{
+							personId:personId
+						},
+						success:function(data, textStatus) {
+							var result = commonJs.parseAjaxResult(data, textStatus, "json");
+
+							if (result.isSuccess == true || result.isSuccess == "true") {
+								commonJs.openDialog({
+									type:com.message.I000,
+									contents:result.message,
+									blind:true,
+									width:300,
+									buttons:[{
+										caption:com.caption.ok,
+										callback:function() {
+											parent.popupQuickMenu.close();
+										}
+									}]
+								});
+							} else {
+								commonJs.error(result.message);
+							}
+						}
+					});
+				}
+			}, {
+				caption:com.caption.no,
+				callback:function() {
+				}
+			}]
+		});
 	};
 
 	doSearch = function() {
@@ -166,7 +175,7 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "PERSON_TYPE"), 50)));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "EMP_ORG_NAME"), 50)));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PORTAL_SECURITY_ROLE")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "CURR_BILLING_ORG_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "CURR_BILLING_ORG_NAME"), 50)));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ASG_COUNT")));
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(ds.getValue(i, "PAYMENT_COUNT")));
 
@@ -194,17 +203,17 @@ $(function() {
 	};
 
 	doAction = function(img) {
-		var articleId = $(img).attr("articleId");
+		var personId = $(img).attr("personId");
 
-		$("input:checkbox[name=chkForDel]").each(function(index) {
-			if (!$(this).is(":disabled") && $(this).val() == articleId) {
+		$("input:radio[name=rdoForSave]").each(function(index) {
+			if (!$(this).is(":disabled") && $(this).val() == personId) {
 				$(this).prop("checked", true);
 			} else {
 				$(this).prop("checked", false);
 			}
 		});
 
-		ctxMenu.commonQmAction[0].fun = function() {exeSave(articleId);};
+		ctxMenu.commonQmAction[0].fun = function() {doSave(personId);};
 
 		$(img).contextMenu(ctxMenu.commonQmAction, {
 			classPrefix:com.constants.ctxClassPrefixGrid,

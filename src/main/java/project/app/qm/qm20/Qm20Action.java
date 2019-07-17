@@ -26,4 +26,18 @@ public class Qm20Action extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
+
+	public String exeSave() throws Exception {
+		try {
+			biz.exeSave(paramEntity);
+
+			if (paramEntity.isSuccess()) {
+				session.setAttribute("DatabaseForAdminTool", paramEntity.getRequestDataSet().getValue("dataSource"));
+				session.setAttribute("DatabaseQuickSearch", paramEntity.getRequestDataSet().getValue("dataSource"));
+			}
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }
