@@ -87,7 +87,6 @@ $(function() {
 	};
 
 	doSave = function(keyValues) {
-alert(keyValues);
 		commonJs.confirm({
 			contents:com.message.Q001,
 			buttons:[{
@@ -113,8 +112,11 @@ alert(keyValues);
 									buttons:[{
 										caption:com.caption.ok,
 										callback:function() {
+											var text = parent.$("#divUsingUserAs").html(), index = text.indexOf("/");
+
+											text = (index != -1) ? text.substring(0, text.indexOf("/")) : text;
 											parent.$("#divUsingUserAs").html(
-												parent.$("#divUsingUserAs").html()+" / "+
+												text+" / "+
 												"Person Searched : "+ds.getValue(0, "FULL_NAME")+" ("+ds.getValue(0, "PERSON_NUMBER")+")"
 											);
 											parent.popupQuickMenu.close();
