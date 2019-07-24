@@ -297,15 +297,15 @@ $(function() {
 
 		commonJs.setAutoComplete($("#personNumber"), {
 			method:"getPersonNumber",
-			label:"person_number",
+			label:"full_name_with_person_number",
 			value:"person_number",
 			minLength:3,
 			focus: function(event, ui) {
-				$("#personNumber").val(ui.item.label);
+				$("#personNumber").val(ui.item.value);
 				return false;
 			},
 			select:function(event, ui) {
-				$("#personNumber").val(ui.item.label);
+				$("#personNumber").val(ui.item.value);
 				doSearch();
 				return false;
 			}
