@@ -188,7 +188,10 @@ $(function() {
 			width = 400, height = 230;
 		} else if (menuId == "QM20") {
 			width = 1800, height = 940;
+		} else if (menuId == "QM30") {
+			width = 1800, height = 940;
 		}
+
 		popupQuickMenu = commonJs.openPopup({
 			popupId:menuId,
 			url:menuUrl,

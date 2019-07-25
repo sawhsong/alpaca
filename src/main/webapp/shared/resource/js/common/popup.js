@@ -321,7 +321,7 @@
 							zIndex:"500",
 							cursor:"wait",
 							background:"#FFFFFF",
-							opacity:"0.0",
+							opacity:"0",
 							fadeIn:100,
 							fadeOut:100
 						}
@@ -337,8 +337,8 @@
 						overlayCSS:{
 							zIndex:"500",
 							cursor:"wait",
-							backgroundColor:"#000000",
-							opacity:"0.1",
+							backgroundColor:"#f5f5f5",
+							opacity:"0.8",
 							fadeIn:100,
 							fadeOut:100
 						}

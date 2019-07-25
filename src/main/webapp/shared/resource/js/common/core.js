@@ -879,7 +879,7 @@ var nony = {
 			overlayCSS:{
 				cursor:"wait",
 				backgroundColor:"#888888",
-				opacity:"0.1"
+				opacity:"0"
 			}
 		});
 	},
@@ -902,7 +902,7 @@ var nony = {
 			overlayCSS:{
 				cursor:"wait",
 				backgroundColor:"#888888",
-				opacity:"0.1"
+				opacity:"0"
 			}
 		});
 	},

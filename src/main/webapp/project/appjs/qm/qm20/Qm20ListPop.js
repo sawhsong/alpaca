@@ -3,7 +3,7 @@
  * - Qm20ListPop.js
  *************************************************************************************************/
 var dateFormat = jsconfig.get("dateFormatJs");
-jsconfig.put("scrollablePanelHeightAdjust", 8);
+jsconfig.put("scrollablePanelHeightAdjust", 0);
 
 $(function() {
 	/*!
@@ -138,7 +138,7 @@ $(function() {
 	};
 
 	doSearch = function() {
-		commonJs.showProcMessageOnElement("divScrollablePanel");
+		commonJs.showProcMessageOnElement("divScrollablePanelPopup");
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			setTimeout(function() {
@@ -156,7 +156,7 @@ $(function() {
 						}
 					}
 				});
-			}, 200);
+			}, 400);
 		}
 	};
 
@@ -206,7 +206,7 @@ $(function() {
 			$(this).contextMenu(ctxMenu.commonQmAction);
 		});
 
-		commonJs.hideProcMessageOnElement("divScrollablePanel");
+		commonJs.hideProcMessageOnElement("divScrollablePanelPopup");
 	};
 
 	doAction = function(img) {

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
+import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
 import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
@@ -20,7 +21,7 @@ import zebra.util.ConfigUtil;
 
 public class Qm30BizImpl extends BaseBiz implements Qm30Biz {
 	@Autowired
-	private HpPersonDDao hpPersonDDao;
+	private HpOrganisationDDao hpOrganisationDDao;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -38,12 +39,12 @@ public class Qm30BizImpl extends BaseBiz implements Qm30Biz {
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			hpPersonDDao.setDataSourceName(dataSource);
+//			hpPersonDDao.setDataSourceName(dataSource);
 
 			queryAdvisor.setRequestDataSet(requestDataSet);
 			queryAdvisor.setPagination(true);
 
-			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getPersonDataSetByCriteria(queryAdvisor));
+//			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getPersonDataSetByCriteria(queryAdvisor));
 			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
