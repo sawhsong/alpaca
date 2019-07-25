@@ -37,9 +37,6 @@ $(function() {
 				if (result.isSuccess == true || result.isSuccess == "true") {
 					var ds = result.dataSet;
 
-// 					$("#databaseAdminTool").val(ds.getValue(0, "database"));
-// 					$("#divUsingUserAs").html("Database connected to : "+ds.getValue(0, "database"));
-
 					try {
 						goMenu('${sessionScope.headerMenuId}', '${sessionScope.headerMenuName}', '${sessionScope.headerMenuUrl}', '${sessionScope.leftMenuId}', '${sessionScope.leftMenuName}', '${sessionScope.leftMenuUrl}');
 					} catch(e) {}

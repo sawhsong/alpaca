@@ -112,13 +112,7 @@ $(function() {
 									buttons:[{
 										caption:com.caption.ok,
 										callback:function() {
-											var text = parent.$("#divUsingUserAs").html(), index = text.indexOf("/");
-
-											text = (index != -1) ? text.substring(0, text.indexOf("/")) : text;
-											parent.$("#divUsingUserAs").html(
-												text+" / "+
-												"Person Searched : "+ds.getValue(0, "FULL_NAME")+" ("+ds.getValue(0, "PERSON_NUMBER")+")"
-											);
+											parent.$("#divPersonInfo").html("&nbsp;/&nbsp;Person : "+ds.getValue(0, "FULL_NAME")+" ("+ds.getValue(0, "PERSON_NUMBER")+")");
 											parent.popupQuickMenu.close();
 										}
 									}]

@@ -135,6 +135,16 @@ public class LoginAction extends BaseAction {
 	public String removeSessionValuesForAdminTool() throws Exception {
 		try {
 			session.removeAttribute("DatabaseForAdminTool");
+			session.removeAttribute("PersonIdForAdminTool");
+			session.removeAttribute("PersonNumberForAdminTool");
+			session.removeAttribute("PersonFullNameForAdminTool");
+			session.removeAttribute("HpPersonDForAdminTool");
+
+			session.removeAttribute("DatabaseQuickSearch");
+			session.removeAttribute("PersonIdQuickSearch");
+			session.removeAttribute("PersonNumberQuickSearch");
+			session.removeAttribute("PersonFullNameQuickSearch");
+			session.removeAttribute("HpPersonDQuickSearch");
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 		}

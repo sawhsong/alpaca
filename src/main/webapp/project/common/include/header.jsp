@@ -23,11 +23,21 @@
 
 	String dataSourceNamesHeaderPage[] = CommonUtil.split(ConfigUtil.getProperty("jdbc.multipleDatasource"), ConfigUtil.getProperty("delimiter.data"));
 	String databaseHeaderPage = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), dataSourceNamesHeaderPage[0]);
+	String personNumberHeaderPage = CommonUtil.nvl((String)session.getAttribute("PersonNumberForAdminTool"));
+	String personInfoHeaderPage = "";
+	if (CommonUtil.isNotBlank(personNumberHeaderPage)) {personInfoHeaderPage = (String)session.getAttribute("PersonFullNameForAdminTool")+" ("+personNumberHeaderPage+")";}
+	String organisationIdHeaderPage = CommonUtil.nvl((String)session.getAttribute("OrganisationIdForAdminTool"));
+	String organisationInfoHeaderPage = "";
+	if (CommonUtil.isNotBlank(organisationIdHeaderPage)) {organisationInfoHeaderPage = (String)session.getAttribute("OrganisationNameForAdminTool")+" ("+organisationIdHeaderPage+")";}
+	String assignmentHeaderPage = CommonUtil.nvl((String)session.getAttribute("AssignmentIdForAdminTool"));
+	String assignmentInfoHeaderPage = "";
+	if (CommonUtil.isNotBlank(organisationIdHeaderPage)) {assignmentInfoHeaderPage = (String)session.getAttribute("AssignmentNumberForAdminTool");}
 %>
 <%/************************************************************************************************
 * Stylesheet & Javascript
 ************************************************************************************************/%>
 <style type="text/css">
+.sessionDesc {float:left;}
 </style>
 <script type="text/javascript">
 var popupUserProfile, popupQuickMenu;
@@ -59,6 +69,26 @@ $(function() {
 	$("#aQuickMenu").click(function() {
 		$("#divQuickMenu").addClass("selected");
 		$("#divQuickMenu").trigger("click");
+	});
+
+	$("#aDeleteSessionDesc").click(function() {
+		commonJs.ajaxSubmit({
+			url:"/login/removeSessionValuesForAdminTool",
+			dataType:"json",
+			data:{
+			},
+			success:function(data, textStatus) {
+				var result = commonJs.parseAjaxResult(data, textStatus, "json");
+				if (result.isSuccess == true || result.isSuccess == "true") {
+					$("#divDbInfo").html("Database : <%=dataSourceNamesHeaderPage[0]%>");
+					$("#divPersonInfo").html("");
+					$("#divOrgInfo").html("");
+					$("#divAssignmentInfo").html("");
+				} else {
+					commonJs.error(result.message);
+				}
+			}
+		});
 	});
 
 	$("#aLoggedInUser").click(function() {
@@ -206,7 +236,7 @@ $(function() {
 	};
 
 	logout = function() {
-		commonJs.doSubmit({form:$("form:eq(0)"), action:"/login/logout.do"});
+		commonJs.doSubmit({form:$("form:eq(0)"), action:"/login/logout"});
 	};
 
 	$(window).load(function() {
@@ -232,8 +262,13 @@ $(function() {
 		<div id="divGlobalMenuRight">
 			<div id="divGblMenuArea">
 				<div id="divUsingUserAs" class="headerGblMenus" style="color:#D92E24;cursor:default;">
-					Database connected to : <%=databaseHeaderPage%>
+					<div id="divDbInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(databaseHeaderPage)) {%>Database : <%=databaseHeaderPage%><%}%></div>
+					<div id="divPersonInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(personInfoHeaderPage)) {%> / Person : <%=personInfoHeaderPage%><%}%></div>
+					<div id="divOrgInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(organisationInfoHeaderPage)) {%> / Org : <%=organisationInfoHeaderPage%><%}%></div>
+					<div id="divAssignmentInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(assignmentInfoHeaderPage)) {%> / Assignment : <%=assignmentInfoHeaderPage%><%}%></div>
 				</div>
+				<div class="divGblMenuBreak"></div>
+				<div class="headerGblMenus" style="margin-top:-1px;"><a id="aDeleteSessionDesc" class="fa fa-trash fa-lg aEn" title="Delete all quick menu session values"></a></div>
 				<div class="divGblMenuBreak"></div>
 				<div id="divThemeSelector" class="headerGblMenus">
 					<a id="aThemeSelector">${sessionScope.themeName}</a>
