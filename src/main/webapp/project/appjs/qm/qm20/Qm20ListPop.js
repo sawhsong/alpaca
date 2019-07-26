@@ -166,11 +166,11 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiRadio().setName("rdoForSave").setValue(ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID"))));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_ID")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_NUMBER")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "SURNAME")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "FIRST_NAME")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "USER_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "USER_EMAIL")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYSLIP_EMAIL")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "SURNAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "FIRST_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(ds.getValue(i, "MEMBER_SINCE"), dateFormat)));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(ds.getValue(i, "DATE_OF_BIRTH"), dateFormat)));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "PERSON_TYPE"), 50)));

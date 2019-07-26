@@ -53,6 +53,12 @@ $(function() {
 		});
 	});
 
+	$("#dataSource").change(function() {
+		if (!commonJs.isEmpty($("#dataSource").val())) {
+			$("#btnSave").trigger("click");
+		}
+	});
+
 	$("#btnClose").click(function(event) {
 		parent.popupQuickMenu.close();
 	});

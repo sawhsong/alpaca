@@ -102,11 +102,11 @@
 				<col width="1%"/>
 				<col width="3%"/>
 				<col width="3%"/>
+				<col width="7%"/>
+				<col width="7%"/>
 				<col width="4%"/>
 				<col width="9%"/>
 				<col width="9%"/>
-				<col width="7%"/>
-				<col width="7%"/>
 				<col width="4%"/>
 				<col width="3%"/>
 				<col width="10%"/>
@@ -122,11 +122,11 @@
 					<th class="thGrid"></th>
 					<th class="thGrid sortable:numeric"><mc:msg key="qm.grid.id"/></th>
 					<th class="thGrid sortable:numeric"><mc:msg key="qm.grid.number"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.surname"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.firstName"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.userName"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.userEmail"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.payslipEmail"/></th>
-					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.surname"/></th>
-					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.firstName"/></th>
 					<th class="thGrid sortable:date"><mc:msg key="qm.grid.memberSince"/></th>
 					<th class="thGrid sortable:date"><mc:msg key="qm.grid.dateOfBirth"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.personType"/></th>
