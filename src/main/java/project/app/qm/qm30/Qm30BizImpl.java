@@ -39,12 +39,12 @@ public class Qm30BizImpl extends BaseBiz implements Qm30Biz {
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-//			hpPersonDDao.setDataSourceName(dataSource);
+			hpOrganisationDDao.setDataSourceName(dataSource);
 
 			queryAdvisor.setRequestDataSet(requestDataSet);
 			queryAdvisor.setPagination(true);
 
-//			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getPersonDataSetByCriteria(queryAdvisor));
+//			paramEntity.setAjaxResponseDataSet(hpOrganisationDDao.getOrganisationDataSetForQuickMenu(queryAdvisor));
 			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
