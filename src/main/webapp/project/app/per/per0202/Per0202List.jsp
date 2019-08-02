@@ -8,6 +8,12 @@
 ************************************************************************************************/%>
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
+	HpPersonD hpPersonD = (HpPersonD)session.getAttribute("HpPersonDQuickSearch");
+	String personNumber = "", personName = "";
+	if (hpPersonD != null) {
+		personNumber = hpPersonD.getPersonNumber();
+		personName = hpPersonD.getFullName();
+	}
 %>
 <%/************************************************************************************************
 * HTML
@@ -70,9 +76,9 @@
 				</colgroup>
 				<tr>
 					<th class="thDefault rt"><mc:msg key="per0202.search.personNumber"/></th>
-					<td class="tdDefault"><ui:text name="personNumber" style="width:280px"/></td>
+					<td class="tdDefault"><ui:text name="personNumber" value="<%=personNumber%>" style="width:280px"/></td>
 					<th class="thDefault rt"><mc:msg key="per0202.search.name"/></th>
-					<td class="tdDefault"><ui:text name="name" style="width:280px"/></td>
+					<td class="tdDefault"><ui:text name="name" value="<%=personName%>" style="width:280px"/></td>
 					<th class="thDefault rt"><mc:msg key="per0202.search.email"/></th>
 					<td class="tdDefault"><ui:text name="email" style="width:280px"/></td>
 				</tr>

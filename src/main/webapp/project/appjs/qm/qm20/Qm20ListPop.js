@@ -112,6 +112,8 @@ $(function() {
 									buttons:[{
 										caption:com.caption.ok,
 										callback:function() {
+											commonJs.copyToClipboard(ds.getValue(0, "PERSON_NUMBER"));
+
 											parent.$("#divPersonInfo").html("&nbsp;/&nbsp;Person : "+ds.getValue(0, "FULL_NAME")+" ("+ds.getValue(0, "PERSON_NUMBER")+")");
 											parent.popupQuickMenu.close();
 										}
