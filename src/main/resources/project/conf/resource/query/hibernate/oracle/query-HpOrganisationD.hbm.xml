@@ -34,7 +34,7 @@
 	]]>
 	</sql-query>
 
-	<sql-query name="query.HpOrganisationD.getOrgDataSetForQuickMenu">
+	<sql-query name="query.HpOrganisationD.getOrganisationDataSetForQuickMenu">
 	<![CDATA[
 		select organisation_id,
 		       organisation_name,
@@ -44,8 +44,13 @@
 		       abn,
 		       acn,
 		       state,
+		       (select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = state) as state_meaning,
 		       country,
-		       address_line||', '||suburb||', '||(select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = state)||', '||post_code||', '||country as address,
+		       decode(
+		            address_line||', '||suburb||', '||(select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = state)||', '||post_code||', '||country,
+		            ', , , , ', '',
+		            address_line||', '||suburb||', '||(select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = state)||', '||post_code||', '||country
+		       ) as address,
 		       to_char(first_contact_date, 'dd/mm/yyyy') as first_contact_date,
 		       es_payroll_consultant as csc,
 		       (select full_name from hp_person_d where person_id = es_payroll_consultant) as csc_name,

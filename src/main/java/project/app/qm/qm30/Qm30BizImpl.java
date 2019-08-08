@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
 import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
-import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
 import zebra.data.QueryAdvisor;
@@ -44,7 +43,7 @@ public class Qm30BizImpl extends BaseBiz implements Qm30Biz {
 			queryAdvisor.setRequestDataSet(requestDataSet);
 			queryAdvisor.setPagination(true);
 
-//			paramEntity.setAjaxResponseDataSet(hpOrganisationDDao.getOrganisationDataSetForQuickMenu(queryAdvisor));
+			paramEntity.setAjaxResponseDataSet(hpOrganisationDDao.getOrganisationDataSetForQuickMenu(queryAdvisor));
 			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {

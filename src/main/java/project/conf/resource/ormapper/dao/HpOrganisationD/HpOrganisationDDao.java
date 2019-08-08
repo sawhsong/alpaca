@@ -10,6 +10,13 @@ import zebra.data.QueryAdvisor;
 
 public interface HpOrganisationDDao extends IDao {
 	/**
+	 * For Quick Menu
+	 * @param queryAdvisor
+	 * @return
+	 * @throws Exception
+	 */
+	public DataSet getOrganisationDataSetForQuickMenu(QueryAdvisor queryAdvisor) throws Exception;
+	/**
 	 * Select Org Id, Org Name for auto completion
 	 * @param queryAdvisor
 	 * @return
