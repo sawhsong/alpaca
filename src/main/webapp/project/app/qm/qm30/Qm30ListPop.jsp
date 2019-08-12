@@ -56,42 +56,42 @@
 		<div class="panel-body">
 			<table class="tblDefault withPadding">
 				<colgroup>
-					<col width="11%"/>
-					<col width="14%"/>
-					<col width="11%"/>
-					<col width="14%"/>
-					<col width="10%"/>
+					<col width="12%"/>
+					<col width="15%"/>
+					<col width="13%"/>
 					<col width="15%"/>
 					<col width="10%"/>
 					<col width="15%"/>
+					<col width="8%"/>
+					<col width="*"/>
 				</colgroup>
 				<tr>
 					<th class="thDefault rt"><mc:msg key="qm.search.orgId"/></th>
-					<td class="tdDefault"><ui:text name="orgId" style="width:200px"/></td>
+					<td class="tdDefault"><ui:text name="orgId" style="width:210px"/></td>
 					<th class="thDefault rt"><mc:msg key="qm.search.orgName"/></th>
-					<td class="tdDefault"><ui:text name="orgName" style="width:200px"/></td>
+					<td class="tdDefault"><ui:text name="orgName" style="width:210px"/></td>
 					<th class="thDefault rt"><mc:msg key="qm.search.orgType"/></th>
 					<td class="tdDefault"><ui:ccselect name="orgType" caption="==Select==" codeType="ORGANISATION_TYPES"/></td>
 					<th class="thDefault rt"><mc:msg key="qm.search.orgRelationship"/></th>
-					<td class="tdDefault"><ui:text name="orgRelationship" style="width:200px"/></td>
+					<td class="tdDefault"><ui:text name="orgRelationship" style="width:210px"/></td>
 				</tr>
 				<tr>
 					<th class="thDefault rt"><mc:msg key="qm.search.csc"/></th>
 					<td class="tdDefault">
 						<ui:hidden name="cscId"/>
-						<ui:text name="cscName" className="hor" style="width:200px"/>
+						<ui:text name="cscName" className="hor" style="width:210px"/>
 						<ui:icon id="icnCscSearch" className="fa-search hor"/>
 					</td>
 					<th class="thDefault rt"><mc:msg key="qm.search.crm"/></th>
 					<td class="tdDefault">
 						<ui:hidden name="crmId"/>
-						<ui:text name="crmName" className="hor" style="width:200px"/>
+						<ui:text name="crmName" className="hor" style="width:210px"/>
 						<ui:icon id="icnCrmSearch" className="fa-search hor"/>
 					</td>
 					<th class="thDefault rt"><mc:msg key="qm.search.orgCountry"/></th>
 					<td class="tdDefault">
 						<ui:hidden name="orgCountry"/>
-						<ui:text name="orgCountryName" className="hor" style="width:200px"/>
+						<ui:text name="orgCountryName" className="hor" style="width:210px"/>
 						<ui:icon id="icnOrgCountrySearch" className="fa-search hor"/>
 					</td>
 					<th class="thDefault rt"><mc:msg key="qm.search.orgState"/></th>
@@ -113,27 +113,27 @@
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
 	<div id="divGridWrapper">
-		<table id="tblGrid" class="tblGrid sort autosort" style="width:3500px">
+		<table id="tblGrid" class="tblGrid sort autosort" style="width:3700px">
 			<colgroup>
 				<col width="1%"/>
-				<col width="5%"/>
+				<col width="2%"/>
 				<col width="*"/>
+				<col width="6%"/>
+				<col width="6%"/>
+				<col width="3%"/>
+				<col width="3%"/>
+				<col width="5%"/>
+				<col width="4%"/>
+				<col width="10%"/>
+				<col width="4%"/>
+				<col width="6%"/>
+				<col width="6%"/>
+				<col width="6%"/>
+				<col width="6%"/>
+				<col width="6%"/>
 				<col width="5%"/>
 				<col width="5%"/>
-				<col width="5%"/>
-				<col width="5%"/>
-				<col width="5%"/>
-				<col width="5%"/>
-				<col width="5%"/>
-				<col width="5%"/>
-				<col width="5%"/>
-				<col width="5%"/>
-				<col width="5%"/>
-				<col width="5%"/>
-				<col width="5%"/>
-				<col width="5%"/>
-				<col width="5%"/>
-				<col width="5%"/>
+				<col width="6%"/>
 				<col width="2%"/>
 			</colgroup>
 			<thead>
