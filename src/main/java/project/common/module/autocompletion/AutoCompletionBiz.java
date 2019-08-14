@@ -9,8 +9,12 @@ public interface AutoCompletionBiz {
 	public ParamEntity getUserName(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getCurrencyCode(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getCountryName(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getOrgById(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getOrgByName(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getOrgName(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getAbn(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getPersonNumber(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getPersonName(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getEsEmployeeByPersonNumber(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getEsEmployeeByName(ParamEntity paramEntity) throws Exception;
 }

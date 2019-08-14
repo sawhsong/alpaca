@@ -8,6 +8,8 @@ package project.app.qm.qm30;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseAction;
+import project.conf.resource.ormapper.dto.oracle.HpOrganisationD;
+import zebra.util.CommonUtil;
 
 public class Qm30Action extends BaseAction {
 	@Autowired
@@ -21,6 +23,27 @@ public class Qm30Action extends BaseAction {
 	public String getList() throws Exception {
 		try {
 			biz.getList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String exeSave() throws Exception {
+		try {
+			biz.exeSave(paramEntity);
+
+			if (paramEntity.isSuccess()) {
+				HpOrganisationD hpOrganisationD = (HpOrganisationD)paramEntity.getObject("hpOrganisationD");
+
+				session.setAttribute("OrganisationIdForAdminTool", CommonUtil.toString(hpOrganisationD.getOrganisationId()));
+				session.setAttribute("OrganisationNameForAdminTool", hpOrganisationD.getOrganisationName());
+				session.setAttribute("HpOrganisationDForAdminTool", hpOrganisationD);
+
+				session.setAttribute("OrganisationIdQuickSearch", CommonUtil.toString(hpOrganisationD.getOrganisationId()));
+				session.setAttribute("OrganisationNameQuickSearch", hpOrganisationD.getOrganisationName());
+				session.setAttribute("HpOrganisationDQuickSearch", hpOrganisationD);
+			}
 		} catch (Exception ex) {
 		}
 		setRequestAttribute("paramEntity", paramEntity);

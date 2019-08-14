@@ -72,8 +72,8 @@
 					<td class="tdDefault"><ui:text name="orgName" style="width:210px"/></td>
 					<th class="thDefault rt"><mc:msg key="qm.search.orgType"/></th>
 					<td class="tdDefault"><ui:ccselect name="orgType" caption="==Select==" codeType="ORGANISATION_TYPES"/></td>
-					<th class="thDefault rt"><mc:msg key="qm.search.orgRelationship"/></th>
-					<td class="tdDefault"><ui:text name="orgRelationship" style="width:210px"/></td>
+					<th class="thDefault rt"><mc:msg key="qm.search.orgState"/></th>
+					<td class="tdDefault"><ui:ccselect name="orgState" caption="==Select==" codeType="STATES"/></td>
 				</tr>
 				<tr>
 					<th class="thDefault rt"><mc:msg key="qm.search.csc"/></th>
@@ -90,12 +90,11 @@
 					</td>
 					<th class="thDefault rt"><mc:msg key="qm.search.orgCountry"/></th>
 					<td class="tdDefault">
-						<ui:hidden name="orgCountry"/>
 						<ui:text name="orgCountryName" className="hor" style="width:210px"/>
 						<ui:icon id="icnOrgCountrySearch" className="fa-search hor"/>
 					</td>
-					<th class="thDefault rt"><mc:msg key="qm.search.orgState"/></th>
-					<td class="tdDefault"><ui:ccselect name="orgState" caption="==Select==" codeType="STATES"/></td>
+					<th class="thDefault rt"></th>
+					<td class="tdDefault"></td>
 				</tr>
 			</table>
 		</div>

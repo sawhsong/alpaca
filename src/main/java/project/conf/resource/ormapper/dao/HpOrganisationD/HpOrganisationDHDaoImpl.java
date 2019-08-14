@@ -5,11 +5,18 @@
 package project.conf.resource.ormapper.dao.HpOrganisationD;
 
 import project.common.extend.BaseHDao;
+import project.conf.resource.ormapper.dto.oracle.HpOrganisationD;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 import zebra.util.CommonUtil;
 
 public class HpOrganisationDHDaoImpl extends BaseHDao implements HpOrganisationDDao {
+	public HpOrganisationD getOrganisationByOrganisationId(String organisationId) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		queryAdvisor.addWhereClause("organisation_id = '"+organisationId+"'");
+		return (HpOrganisationD)selectAllToDto(queryAdvisor, new HpOrganisationD());
+	}
+
 	public DataSet getOrganisationDataSetForQuickMenu(QueryAdvisor queryAdvisor) throws Exception {
 		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
 		String orgId = requestDataSet.getValue("orgId");
@@ -19,7 +26,7 @@ public class HpOrganisationDHDaoImpl extends BaseHDao implements HpOrganisationD
 		String cscId = requestDataSet.getValue("cscId");
 		String crmId = requestDataSet.getValue("crmId");
 		String orgState = requestDataSet.getValue("orgState");
-		String orgCountry = requestDataSet.getValue("orgCountry");
+		String orgCountry = requestDataSet.getValue("orgCountryName");
 
 		queryAdvisor.addAutoFillCriteria(orgId, "organisation_id = '"+orgId+"'");
 		queryAdvisor.addAutoFillCriteria(orgName, "lower(organisation_name) like '%"+orgName+"%'");
@@ -33,6 +40,10 @@ public class HpOrganisationDHDaoImpl extends BaseHDao implements HpOrganisationD
 		queryAdvisor.addOrderByClause("organisation_name");
 
 		return selectAsDataSet(queryAdvisor, "query.HpOrganisationD.getOrganisationDataSetForQuickMenu");
+	}
+
+	public DataSet getOrgInfoDataSetForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception {
+		return selectAsDataSet(queryAdvisor, "query.HpOrganisationD.getOrgInfoDataSetForAutoCompletion");
 	}
 
 	public DataSet getOrgNameDataSetForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception {

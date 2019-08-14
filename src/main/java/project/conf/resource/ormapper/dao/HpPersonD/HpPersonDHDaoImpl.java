@@ -77,4 +77,12 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 	public DataSet getPersonBasicInfoForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception {
 		return selectAsDataSet(queryAdvisor, "query.HpPersonD.getPersonNumberForAutoCompletion");
 	}
+
+	public DataSet getEsEmployeeByNameForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception {
+		return selectAsDataSet(queryAdvisor, "query.HpPersonD.getEsEmployeeByNameForAutoCompletion");
+	}
+
+	public DataSet getEsEmployeeLookup(QueryAdvisor queryAdvisor) throws Exception {
+		return selectAsDataSet(queryAdvisor, "query.HpPersonD.getEsEmployeeLookup");
+	}
 }

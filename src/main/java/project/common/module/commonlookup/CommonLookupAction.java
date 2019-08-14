@@ -19,6 +19,8 @@ public class CommonLookupAction extends BaseAction {
 			biz.getDefault(paramEntity);
 			if (CommonUtil.equalsIgnoreCase(lookupType, "EmploymentOrg")) {
 				returnString = "employmentOrg";
+			} else if (CommonUtil.equalsIgnoreCase(lookupType, "EsEmployee")) {
+				returnString = "esEmployee";
 			}
 		} catch (Exception ex) {
 		}
@@ -28,6 +30,16 @@ public class CommonLookupAction extends BaseAction {
 	public String getEmploymentOrganisationLookup() throws Exception {
 		try {
 			biz.getEmploymentOrganisationLookup(paramEntity);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getEsEmployeeLookup() throws Exception {
+		try {
+			biz.getEsEmployeeLookup(paramEntity);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

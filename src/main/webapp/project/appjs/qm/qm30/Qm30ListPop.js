@@ -36,27 +36,51 @@ $(function() {
 		parent.popupQuickMenu.close();
 	});
 
-	$("#icnEmpOrgSearch").click(function(event) {
+	$("#icnCscSearch").click(function(event) {
 		popupLookup = commonJs.openPopup({
-			popupId:"EmpOrgLookup",
-			url:"/common/lookup/getDefault.do",
+			popupId:"ESEmployeeLookup",
+			url:"/common/lookup/getDefault",
 			paramData:{
-				lookupType:"EmploymentOrg",
-				keyFieldId:"empOrgId",
-				valueFieldId:"empOrgName",
+				lookupType:"EsEmployee",
+				keyFieldId:"cscId",
+				valueFieldId:"cscName",
 				popupName:"parent.popupLookup",
 				docTypeToSetValue:"page",
-				lookupValue:$("#empOrgName").val()
+				lookupValue:$("#cscName").val()
 			},
-			header:per.per0202.header.popEmpOrgLookup,
+			header:"ES Employee Lookup",
 			width:880,
 			height:680
 		});
 	});
 
-	$("#empOrgName").blur(function() {
+	$("#icnCrmSearch").click(function(event) {
+		popupLookup = commonJs.openPopup({
+			popupId:"ESEmployeeLookup",
+			url:"/common/lookup/getDefault",
+			paramData:{
+				lookupType:"EsEmployee",
+				keyFieldId:"crmId",
+				valueFieldId:"crmName",
+				popupName:"parent.popupLookup",
+				docTypeToSetValue:"page",
+				lookupValue:$("#crmName").val()
+			},
+			header:"ES Employee Lookup",
+			width:880,
+			height:680
+		});
+	});
+
+	$("#cscName").blur(function() {
 		if (commonJs.isEmpty($(this).val())) {
-			$("#empOrgId").val("");
+			$("#cscId").val("");
+		}
+	});
+
+	$("#crmName").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#crmId").val("");
 		}
 	});
 
@@ -67,8 +91,10 @@ $(function() {
 		}
 
 		if (code == 9) {
-			if ($(element).is("[name=empOrgName]") && !commonJs.isEmpty($("#empOrgName").val())) {
-				$("#icnEmpOrgSearch").trigger("click");
+			if ($(element).is("[name=cscName]") && !commonJs.isEmpty($("#cscName").val())) {
+				$("#icnCscSearch").trigger("click");
+			} else if ($(element).is("[name=crmName]") && !commonJs.isEmpty($("#crmName").val())) {
+				$("#icnCrmSearch").trigger("click");
 			}
 		}
 	});
@@ -86,73 +112,33 @@ $(function() {
 		});
 	};
 
-	doSave = function(keyValues) {
-		commonJs.confirm({
-			contents:com.message.Q001,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					commonJs.ajaxSubmit({
-						url:"/qm/30/exeSave",
-						dataType:"json",
-//						formId:"fmDefault",
-						data:{
-							keyValues:keyValues
-						},
-						success:function(data, textStatus) {
-							var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-							if (result.isSuccess == true || result.isSuccess == "true") {
-								var ds = result.dataSet;
-								commonJs.openDialog({
-									type:com.message.I000,
-									contents:result.message,
-									blind:true,
-									width:300,
-									buttons:[{
-										caption:com.caption.ok,
-										callback:function() {
-											commonJs.copyToClipboard(ds.getValue(0, "PERSON_NUMBER"));
-
-											parent.$("#divPersonInfo").html("&nbsp;/&nbsp;Person : "+ds.getValue(0, "FULL_NAME")+" ("+ds.getValue(0, "PERSON_NUMBER")+")");
-											parent.popupQuickMenu.close();
-										}
-									}]
-								});
-							} else {
-								commonJs.error(result.message);
-							}
-						}
-					});
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}]
+	doSave = function(orgId) {
+		commonJs.doSave({
+			url:"/qm/30/exeSave",
+			data:{orgId:orgId},
+			noFor:true,
+			showPostMessage:true,
+			callback:saveCallback
 		});
+	};
+
+	saveCallback = function(result) {
+		var ds = result.dataSet;
+		commonJs.copyToClipboard(ds.getValue(0, "ORGANISATION_ID"));
+
+		parent.$("#divOrgInfo").html("&nbsp;/&nbsp;Org : "+commonJs.abbreviate(ds.getValue(i, "ORGANISATION_NAME"), 50)+" ("+ds.getValue(0, "ORGANISATION_ID")+")");
+		parent.popupQuickMenu.close();
 	};
 
 	doSearch = function() {
 		commonJs.showProcMessageOnElement("divScrollablePanelPopup");
 
 		if (commonJs.doValidate($("#fmDefault"))) {
-			setTimeout(function() {
-				commonJs.ajaxSubmit({
-					url:"/qm/30/getList",
-					dataType:"html",
-					formId:"fmDefault",
-					success:function(data, textStatus) {
-						var result = commonJs.parseAjaxResult(data, textStatus, "html");
-
-						if (result.isSuccess == true || result.isSuccess == "true") {
-							renderGridData(result);
-						} else {
-							commonJs.error(result.message);
-						}
-					}
-				});
-			}, 400);
+			commonJs.doSearch({
+				url:"/qm/30/getList",
+				dataType:"xml",
+				callback:renderGridData
+			});
 		}
 	};
 
@@ -209,17 +195,17 @@ $(function() {
 	};
 
 	doAction = function(img) {
-		var keyValues = $(img).attr("keyValues");
+		var orgId = $(img).attr("organisationId");
 
 		$("input:radio[name=rdoForSave]").each(function(index) {
-			if (!$(this).is(":disabled") && $(this).val() == keyValues) {
+			if (!$(this).is(":disabled") && $(this).val() == orgId) {
 				$(this).prop("checked", true);
 			} else {
 				$(this).prop("checked", false);
 			}
 		});
 
-		ctxMenu.commonQmAction[0].fun = function() {doSave(keyValues);};
+		ctxMenu.commonQmAction[0].fun = function() {doSave(orgId);};
 
 		$(img).contextMenu(ctxMenu.commonQmAction, {
 			classPrefix:com.constants.ctxClassPrefixGrid,
@@ -234,57 +220,97 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		commonJs.setAutoComplete($("#personNumber"), {
-			method:"getPersonNumber",
-			label:"full_name_with_person_number",
-			value:"person_number",
-			minLength:3,
-			focus: function(event, ui) {
-				$("#personNumber").val(ui.item.value);
-				return false;
-			},
-			select:function(event, ui) {
-				$("#personNumber").val(ui.item.value);
-				doSearch();
-				return false;
-			}
-		});
-
-		commonJs.setAutoComplete($("#name"), {
-			method:"getPersonName",
-			label:"full_name",
-			value:"full_name",
-			minLength:3,
-			focus: function(event, ui) {
-				$("#name").val(ui.item.label);
-				return false;
-			},
-			select:function(event, ui) {
-				$("#name").val(ui.item.label);
-				doSearch();
-				return false;
-			}
-		});
-
-		commonJs.setAutoComplete($("#empOrgName"), {
-			method:"getOrgName",
-			label:"organisation_name",
+		commonJs.setAutoComplete($("#orgId"), {
+			method:"getOrgById",
+			label:"org_name_with_org_id",
 			value:"organisation_id",
 			minLength:2,
 			focus: function(event, ui) {
-				$("#empOrgId").val(ui.item.value);
-				$("#empOrgName").val(ui.item.label);
+				$("#orgId").val(ui.item.value);
+				return false;
+			},
+			select:function(event, ui) {
+				$("#orgId").val(ui.item.value);
+				doSearch();
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#orgName"), {
+			method:"getOrgByName",
+			label:"org_name_with_org_id",
+			value:"organisation_name",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#orgName").val(ui.item.value);
+				return false;
+			},
+			select:function(event, ui) {
+				$("#orgName").val(ui.item.value);
+				doSearch();
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#cscName"), {
+			method:"getEsEmployeeByName",
+			label:"person_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#cscId").val(ui.item.value);
+				$("#cscName").val(ui.item.label);
 				return false;
 			},
 			change:function(event, ui) {
-				if (commonJs.isEmpty($("#empOrgName").val())) {
-					$("#empOrgId").val("");
-					$("#empOrgName").val("");
+				if (commonJs.isEmpty($("#cscName").val())) {
+					$("#cscId").val("");
+					$("#cscName").val("");
 				}
 			},
 			select:function(event, ui) {
-				$("#empOrgId").val(ui.item.value);
-				$("#empOrgName").val(ui.item.label);
+				$("#cscId").val(ui.item.value);
+				$("#cscName").val(ui.item.label);
+				doSearch();
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#crmName"), {
+			method:"getEsEmployeeByName",
+			label:"person_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#crmId").val(ui.item.value);
+				$("#crmName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#crmName").val())) {
+					$("#crmId").val("");
+					$("#crmName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#crmId").val(ui.item.value);
+				$("#crmName").val(ui.item.label);
+				doSearch();
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#orgCountryName"), {
+			method:"getCountryName",
+			label:"country_name",
+			value:"country_name",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#orgCountryName").val(ui.item.label);
+				return false;
+			},
+			select:function(event, ui) {
+				$("#orgCountryName").val(ui.item.value);
 				doSearch();
 				return false;
 			}

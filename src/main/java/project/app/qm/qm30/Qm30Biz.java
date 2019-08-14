@@ -10,4 +10,5 @@ import zebra.data.ParamEntity;
 public interface Qm30Biz {
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception;
+	public ParamEntity exeSave(ParamEntity paramEntity) throws Exception;
 }
