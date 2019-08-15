@@ -89,10 +89,7 @@
 						<ui:icon id="icnCrmSearch" className="fa-search hor"/>
 					</td>
 					<th class="thDefault rt"><mc:msg key="qm.search.orgCountry"/></th>
-					<td class="tdDefault">
-						<ui:text name="orgCountryName" className="hor" style="width:210px"/>
-						<ui:icon id="icnOrgCountrySearch" className="fa-search hor"/>
-					</td>
+					<td class="tdDefault"><ui:text name="orgCountryName" className="hor"/></td>
 					<th class="thDefault rt"></th>
 					<td class="tdDefault"></td>
 				</tr>

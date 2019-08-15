@@ -92,8 +92,8 @@ var lookupValue = "<%=lookupValue%>";
 <div id="divDataArea" class="areaContainerPopup">
 	<table id="tblGrid" class="tblGrid sort">
 		<colgroup>
-			<col width="13%"/>
-			<col width="20%"/>
+			<col width="14%"/>
+			<col width="35%"/>
 			<col width="*"/>
 		</colgroup>
 		<thead>

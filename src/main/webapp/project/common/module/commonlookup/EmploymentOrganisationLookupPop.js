@@ -63,7 +63,7 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ORGANISATION_ID")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "ORGANISATION_ID")).setScript("setValue('"+ds.getValue(i, "ORGANISATION_ID")+"', '"+ds.getValue(i, "ORGANISATION_NAME")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(commonJs.abbreviate(ds.getValue(i, "ORGANISATION_NAME"), 60)).setScript("setValue('"+ds.getValue(i, "ORGANISATION_ID")+"', '"+ds.getValue(i, "ORGANISATION_NAME")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ABN")));
 

@@ -84,7 +84,7 @@ $(function() {
 		}
 	});
 
-	$(document).keyup(function(event) {
+	$(document).keydown(function(event) {
 		var code = event.keyCode || event.which, element = event.target;
 
 		if (code == 13) {
@@ -116,7 +116,7 @@ $(function() {
 		commonJs.doSave({
 			url:"/qm/30/exeSave",
 			data:{orgId:orgId},
-			noFor:true,
+			noForm:true,
 			showPostMessage:true,
 			callback:saveCallback
 		});
@@ -126,7 +126,7 @@ $(function() {
 		var ds = result.dataSet;
 		commonJs.copyToClipboard(ds.getValue(0, "ORGANISATION_ID"));
 
-		parent.$("#divOrgInfo").html("&nbsp;/&nbsp;Org : "+commonJs.abbreviate(ds.getValue(i, "ORGANISATION_NAME"), 50)+" ("+ds.getValue(0, "ORGANISATION_ID")+")");
+		parent.$("#divOrgInfo").html("&nbsp;/&nbsp;Org : "+commonJs.abbreviate(ds.getValue(0, "ORGANISATION_NAME"), 50)+" ("+ds.getValue(0, "ORGANISATION_ID")+")");
 		parent.popupQuickMenu.close();
 	};
 
@@ -254,7 +254,7 @@ $(function() {
 
 		commonJs.setAutoComplete($("#cscName"), {
 			method:"getEsEmployeeByName",
-			label:"person_name_with_person_number",
+			label:"full_name_with_person_number",
 			value:"person_id",
 			minLength:2,
 			focus: function(event, ui) {
@@ -278,7 +278,7 @@ $(function() {
 
 		commonJs.setAutoComplete($("#crmName"), {
 			method:"getEsEmployeeByName",
-			label:"person_name_with_person_number",
+			label:"full_name_with_person_number",
 			value:"person_id",
 			minLength:2,
 			focus: function(event, ui) {

@@ -36,11 +36,11 @@ public class Qm30Action extends BaseAction {
 			if (paramEntity.isSuccess()) {
 				HpOrganisationD hpOrganisationD = (HpOrganisationD)paramEntity.getObject("hpOrganisationD");
 
-				session.setAttribute("OrganisationIdForAdminTool", CommonUtil.toString(hpOrganisationD.getOrganisationId()));
+				session.setAttribute("OrganisationIdForAdminTool", CommonUtil.toString(hpOrganisationD.getOrganisationId(), "####"));
 				session.setAttribute("OrganisationNameForAdminTool", hpOrganisationD.getOrganisationName());
 				session.setAttribute("HpOrganisationDForAdminTool", hpOrganisationD);
 
-				session.setAttribute("OrganisationIdQuickSearch", CommonUtil.toString(hpOrganisationD.getOrganisationId()));
+				session.setAttribute("OrganisationIdQuickSearch", CommonUtil.toString(hpOrganisationD.getOrganisationId(), "####"));
 				session.setAttribute("OrganisationNameQuickSearch", hpOrganisationD.getOrganisationName());
 				session.setAttribute("HpOrganisationDQuickSearch", hpOrganisationD);
 			}

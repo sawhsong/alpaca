@@ -34,7 +34,7 @@ $(function() {
 
 		commonJs.doSearch({
 			url:"/common/lookup/getEsEmployeeLookup",
-			calback:renderDataGridTable
+			callback:renderDataGridTable
 		});
 	};
 
@@ -47,7 +47,7 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "PERSON_NUMBER")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_NUMBER")).setScript("setValue('"+ds.getValue(i, "PERSON_ID")+"', '"+ds.getValue(i, "FULL_NAME")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(commonJs.abbreviate(ds.getValue(i, "FULL_NAME"), 60)).setScript("setValue('"+ds.getValue(i, "PERSON_ID")+"', '"+ds.getValue(i, "FULL_NAME")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "TITLE")));
 

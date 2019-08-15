@@ -17,11 +17,9 @@ public class CommonLookupAction extends BaseAction {
 
 		try {
 			biz.getDefault(paramEntity);
-			if (CommonUtil.equalsIgnoreCase(lookupType, "EmploymentOrg")) {
-				returnString = "employmentOrg";
-			} else if (CommonUtil.equalsIgnoreCase(lookupType, "EsEmployee")) {
-				returnString = "esEmployee";
-			}
+
+			if (CommonUtil.equalsIgnoreCase(lookupType, "EmploymentOrg")) {returnString = "employmentOrg";}
+			else if (CommonUtil.equalsIgnoreCase(lookupType, "EsEmployee")) {returnString = "esEmployee";}
 		} catch (Exception ex) {
 		}
 		return returnString;

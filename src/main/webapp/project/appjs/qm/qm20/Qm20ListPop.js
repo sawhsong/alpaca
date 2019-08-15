@@ -60,7 +60,7 @@ $(function() {
 		}
 	});
 
-	$(document).keyup(function(event) {
+	$(document).keydown(function(event) {
 		var code = event.keyCode || event.which, element = event.target;
 
 		if (code == 13) {
