@@ -29,9 +29,6 @@
 	String organisationIdHeaderPage = CommonUtil.nvl((String)session.getAttribute("OrganisationIdForAdminTool"));
 	String organisationInfoHeaderPage = "";
 	if (CommonUtil.isNotBlank(organisationIdHeaderPage)) {organisationInfoHeaderPage = (String)session.getAttribute("OrganisationNameForAdminTool")+" ("+organisationIdHeaderPage+")";}
-	String assignmentHeaderPage = CommonUtil.nvl((String)session.getAttribute("AssignmentIdForAdminTool"));
-	String assignmentInfoHeaderPage = "";
-	if (CommonUtil.isNotBlank(organisationIdHeaderPage)) {assignmentInfoHeaderPage = (String)session.getAttribute("AssignmentNumberForAdminTool");}
 %>
 <%/************************************************************************************************
 * Stylesheet & Javascript
@@ -83,7 +80,6 @@ $(function() {
 					$("#divDbInfo").html("Database : <%=dataSourceNamesHeaderPage[0]%>");
 					$("#divPersonInfo").html("");
 					$("#divOrgInfo").html("");
-					$("#divAssignmentInfo").html("");
 				} else {
 					commonJs.error(result.message);
 				}
@@ -265,7 +261,6 @@ $(function() {
 					<div id="divDbInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(databaseHeaderPage)) {%>Database : <%=databaseHeaderPage%><%}%></div>
 					<div id="divPersonInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(personInfoHeaderPage)) {%> / Person : <%=personInfoHeaderPage%><%}%></div>
 					<div id="divOrgInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(organisationInfoHeaderPage)) {%> / Org : <%=organisationInfoHeaderPage%><%}%></div>
-					<div id="divAssignmentInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(assignmentInfoHeaderPage)) {%> / Assignment : <%=assignmentInfoHeaderPage%><%}%></div>
 				</div>
 				<div class="divGblMenuBreak"></div>
 				<div class="headerGblMenus" style="margin-top:-1px;"><a id="aDeleteSessionDesc" class="fa fa-trash fa-lg aEn" title="Delete all quick menu session values"></a></div>
