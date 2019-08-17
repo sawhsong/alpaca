@@ -39,36 +39,28 @@ $(function() {
 				return;
 			}
 
-			commonJs.ajaxSubmit({
+			commonJs.doSimpleProcess({
 				url:"/login/login.do",
-				dataType:"json",
-				formId:"fmDefault",
-				success:function(data, textStatus) {
-					var result = commonJs.parseAjaxResult(data, textStatus, "json");
-					if (result.isSuccess == true || result.isSuccess == "true") {
-						var dataSet = result.dataSet;
-//						var actionString = "/index/dashboard.do";
-						var actionString = dataSet.getValue(0, "DEFAULT_START_URL");
+				callback:function(result) {
+					var dataSet = result.dataSet;
+					var actionString = dataSet.getValue(0, "DEFAULT_START_URL");
 
-						commonJs.openDialog({
-							type:com.message.I000,
-							contents:result.message+" "+dataSet.getValue(0, "USER_NAME")+"!",
-							blind:true,
-							draggable:false,
-							width:350,
-							buttons:[{
-								caption:com.caption.ok,
-								callback:function() {
-									commonJs.doSubmit({
-										formId:"fmDefault",
-										action:actionString
-									});
-								}
-							}]
-						});
-					} else {
-						commonJs.error(result.message);
-					}
+					commonJs.openDialog({
+						type:com.message.I000,
+						contents:result.message+" "+dataSet.getValue(0, "USER_NAME")+"!",
+						blind:true,
+						draggable:false,
+						width:350,
+						buttons:[{
+							caption:com.caption.ok,
+							callback:function() {
+								commonJs.doSubmit({
+									formId:"fmDefault",
+									action:actionString
+								});
+							}
+						}]
+					});
 				}
 			});
 		} else {

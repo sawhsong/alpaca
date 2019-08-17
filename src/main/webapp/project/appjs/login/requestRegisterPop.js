@@ -27,28 +27,21 @@ $(function() {
 		if ($("#password").val() != $("#passwordConfirm").val()) {
 			commonJs.error(login.message.confirmPassword);
 		} else {
-			commonJs.ajaxSubmit({
+			commonJs.doSimpleProcess({
 				url:"/login/exeRequestRegister.do",
-				dataType:"json",
-				formId:"fmDefault",
-				success:function(data, textStatus) {
-					var result = commonJs.parseAjaxResult(data, textStatus, "json");
-					if (result.isSuccess == true || result.isSuccess == "true") {
-						popup = commonJs.openDialog({
-							type:com.message.I000,
-							contents:result.message,
-							blind:true,
-							width:300,
-							buttons:[{
-								caption:com.caption.ok,
-								callback:function() {
-									parent.popup.close();
-								}
-							}]
-						});
-					} else {
-						commonJs.error(result.message);
-					}
+				callback:function(result) {
+					popup = commonJs.openDialog({
+						type:com.message.I000,
+						contents:result.message,
+						blind:true,
+						width:300,
+						buttons:[{
+							caption:com.caption.ok,
+							callback:function() {
+								parent.popup.close();
+							}
+						}]
+					});
 				}
 			});
 		}

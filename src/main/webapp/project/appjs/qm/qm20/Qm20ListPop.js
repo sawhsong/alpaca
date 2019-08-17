@@ -87,73 +87,27 @@ $(function() {
 	};
 
 	doSave = function(keyValues) {
-		commonJs.confirm({
-			contents:com.message.Q001,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					commonJs.ajaxSubmit({
-						url:"/qm/20/exeSave",
-						dataType:"json",
-//						formId:"fmDefault",
-						data:{
-							keyValues:keyValues
-						},
-						success:function(data, textStatus) {
-							var result = commonJs.parseAjaxResult(data, textStatus, "json");
+		commonJs.doSave({
+			url:"/qm/20/exeSave.do",
+			noForm:true,
+			data:{keyValues:keyValues},
+			callback:function(result) {
+				var ds = result.dataSet;
 
-							if (result.isSuccess == true || result.isSuccess == "true") {
-								var ds = result.dataSet;
-								commonJs.openDialog({
-									type:com.message.I000,
-									contents:result.message,
-									blind:true,
-									width:300,
-									buttons:[{
-										caption:com.caption.ok,
-										callback:function() {
-											commonJs.copyToClipboard(ds.getValue(0, "PERSON_NUMBER"));
-
-											parent.$("#divPersonInfo").html("&nbsp;/&nbsp;Person : "+ds.getValue(0, "FULL_NAME")+" ("+ds.getValue(0, "PERSON_NUMBER")+")");
-											parent.popupQuickMenu.close();
-										}
-									}]
-								});
-							} else {
-								commonJs.error(result.message);
-							}
-						}
-					});
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}]
+				commonJs.copyToClipboard(ds.getValue(0, "PERSON_NUMBER"));
+				parent.$("#divPersonInfo").html("&nbsp;/&nbsp;Person : "+ds.getValue(0, "FULL_NAME")+" ("+ds.getValue(0, "PERSON_NUMBER")+")");
+				parent.popupQuickMenu.close();
+			}
 		});
 	};
 
 	doSearch = function() {
 		commonJs.showProcMessageOnElement("divScrollablePanelPopup");
 
-		if (commonJs.doValidate($("#fmDefault"))) {
-			setTimeout(function() {
-				commonJs.ajaxSubmit({
-					url:"/qm/20/getList",
-					dataType:"json",
-					formId:"fmDefault",
-					success:function(data, textStatus) {
-						var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-						if (result.isSuccess == true || result.isSuccess == "true") {
-							renderGridData(result);
-						} else {
-							commonJs.error(result.message);
-						}
-					}
-				});
-			}, 400);
-		}
+		commonJs.doSearch({
+			url:"/qm/20/getList.do",
+			callback:renderGridData
+		});
 	};
 
 	renderGridData = function(result) {

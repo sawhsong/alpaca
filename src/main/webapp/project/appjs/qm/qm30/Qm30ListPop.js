@@ -39,7 +39,7 @@ $(function() {
 	$("#icnCscSearch").click(function(event) {
 		popupLookup = commonJs.openPopup({
 			popupId:"ESEmployeeLookup",
-			url:"/common/lookup/getDefault",
+			url:"/common/lookup/getDefault.do",
 			paramData:{
 				lookupType:"EsEmployee",
 				keyFieldId:"cscId",
@@ -57,7 +57,7 @@ $(function() {
 	$("#icnCrmSearch").click(function(event) {
 		popupLookup = commonJs.openPopup({
 			popupId:"ESEmployeeLookup",
-			url:"/common/lookup/getDefault",
+			url:"/common/lookup/getDefault.do",
 			paramData:{
 				lookupType:"EsEmployee",
 				keyFieldId:"crmId",
@@ -114,20 +114,18 @@ $(function() {
 
 	doSave = function(orgId) {
 		commonJs.doSave({
-			url:"/qm/30/exeSave",
+			url:"/qm/30/exeSave.do",
 			data:{orgId:orgId},
 			noForm:true,
 			showPostMessage:true,
-			callback:saveCallback
+			callback:function(result) {
+				var ds = result.dataSet;
+				commonJs.copyToClipboard(ds.getValue(0, "ORGANISATION_ID"));
+
+				parent.$("#divOrgInfo").html("&nbsp;/&nbsp;Org : "+commonJs.abbreviate(ds.getValue(0, "ORGANISATION_NAME"), 50)+" ("+ds.getValue(0, "ORGANISATION_ID")+")");
+				parent.popupQuickMenu.close();
+			}
 		});
-	};
-
-	saveCallback = function(result) {
-		var ds = result.dataSet;
-		commonJs.copyToClipboard(ds.getValue(0, "ORGANISATION_ID"));
-
-		parent.$("#divOrgInfo").html("&nbsp;/&nbsp;Org : "+commonJs.abbreviate(ds.getValue(0, "ORGANISATION_NAME"), 50)+" ("+ds.getValue(0, "ORGANISATION_ID")+")");
-		parent.popupQuickMenu.close();
 	};
 
 	doSearch = function() {
@@ -135,7 +133,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/qm/30/getList",
+				url:"/qm/30/getList.do",
 				dataType:"xml",
 				callback:renderGridData
 			});

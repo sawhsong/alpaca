@@ -11,45 +11,13 @@ $(function() {
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q001,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					commonJs.ajaxSubmit({
-						url:"/qm/10/exeSave",
-						dataType:"json",
-						formId:"fmDefault",
-						data:{
-						},
-						success:function(data, textStatus) {
-							var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-							if (result.isSuccess == true || result.isSuccess == "true") {
-								commonJs.openDialog({
-									type:com.message.I000,
-									contents:result.message,
-									blind:true,
-									width:300,
-									buttons:[{
-										caption:com.caption.ok,
-										callback:function() {
-											parent.$("#divDbInfo").html("Database : "+$("#dataSource").val());
-											parent.popupQuickMenu.close();
-										}
-									}]
-								});
-							} else {
-								commonJs.error(result.message);
-							}
-						}
-					});
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}]
+		commonJs.doSave({
+			url:"/qm/10/exeSave.do",
+			showPostMessage:true,
+			callback:function(result) {
+				parent.$("#divDbInfo").html("Database : "+$("#dataSource").val());
+				parent.popupQuickMenu.close();
+			}
 		});
 	});
 

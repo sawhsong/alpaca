@@ -70,7 +70,7 @@ $(function() {
 
 	$("#aDeleteSessionDesc").click(function() {
 		commonJs.ajaxSubmit({
-			url:"/login/removeSessionValuesForAdminTool",
+			url:"/login/removeSessionValuesForAdminTool.do",
 			dataType:"json",
 			data:{
 			},
@@ -232,7 +232,7 @@ $(function() {
 	};
 
 	logout = function() {
-		commonJs.doSubmit({form:$("form:eq(0)"), action:"/login/logout"});
+		commonJs.doSubmit({form:$("form:eq(0)"), action:"/login/logout.do"});
 	};
 
 	$(window).load(function() {
