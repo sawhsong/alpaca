@@ -21,46 +21,20 @@ $(function() {
 		commonJs.toggleCheckboxes("chkForAction");
 	});
 
-	$("#icnBillingCodeSearch").click(function(event) {
-		popup = commonJs.openPopup({
-			popupId:"BillingCodeLookup",
-			url:"/common/lookup/getDefault.do",
-			paramData:{
-				lookupType:"BillingCode",
-				keyFieldId:"billingCodeId",
-				valueFieldId:"billingCode",
-				popupName:"parent.popup",
-				docTypeToSetValue:"page",
-				lookupValue:$("#billingCode").val()
-			},
-			header:sys.sys9802.header.popBillingCodeLookup,
-			width:880,
-			height:680
-		});
-	});
-
-	$("#icnBillingOrgSearch").click(function(event) {
-		popup = commonJs.openPopup({
-			popupId:"BillingOrgLookup",
-			url:"/common/lookup/getDefault.do",
-			paramData:{
-				lookupType:"BillingOrg",
-				keyFieldId:"billingOrgId",
-				valueFieldId:"billingOrgName",
-				popupName:"parent.popup",
-				docTypeToSetValue:"page",
-				lookupValue:$("#billingOrgName").val()
-			},
-			header:sys.sys9802.header.popBillingOrgLookup,
-			width:880,
-			height:680
-		});
-	});
-
-	$(document).keypress(function(event) {
-		if (event.which == 13) {
-			var element = event.target;
+	$("#billingCode").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#billingCodeId").val("");
 		}
+	});
+
+	$("#billingOrgName").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#billingOrgId").val("");
+		}
+	});
+
+	$(document).keydown(function(event) {
+		var code = event.keyCode || event.which, element = event.target;
 	});
 
 	/*!
@@ -68,16 +42,16 @@ $(function() {
 	 */
 	setActionButtonContextMenu = function() {
 		var ctxMenu = [{
-			name:sys.sys0406.caption.auth,
-			fun:function() {openPopup({mode:"UpdateAuthGroup"});}
+			name:sys.sys9802.caption.unlockPrt,
+			fun:function() {openPopup({mode:"UnlockPRT"});}
 		}, {
-			name:sys.sys0406.caption.type,
-			fun:function() {openPopup({mode:"UpdateUserType"});}
+			name:sys.sys9802.caption.updateWorkingState,
+			fun:function() {openPopup({mode:"UpdateWorkingState"});}
 		}, {
-			name:sys.sys0406.caption.status,
+			name:sys.sys9802.caption.status,
 			fun:function() {openPopup({mode:"UpdateUserStatus"});}
 		}, {
-			name:sys.sys0406.caption.active,
+			name:sys.sys9802.caption.active,
 			fun:function() {openPopup({mode:"UpdateActiveStatus"});}
 		}];
 
@@ -128,8 +102,8 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "PERSON_NAME"), 50)));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ASSIGNMENT_START_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ASSIGNMENT_END_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "BILLING_ORGANISATION_NAME"), 60)));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "EU_ORGANISATION_NAME"), 60)));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "BILLING_ORGANISATION_NAME"), 70)));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "EU_ORGANISATION_NAME"), 50)));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ASG_ACTIVE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "PREFERRED")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "WORKING_STATE")));
@@ -246,6 +220,103 @@ $(function() {
 	$(window).load(function() {
 		setActionButtonContextMenu();
 		commonJs.setExportButtonContextMenu($("#btnExport"));
+
+		commonJs.setAutoComplete($("#personNumber"), {
+			method:"getPersonNumber",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#personId").val(ui.item.value);
+				$("#personNumber").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#personNumber").val())) {
+					$("#personId").val("");
+					$("#personNumber").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#personId").val(ui.item.value);
+				$("#personNumber").val(ui.item.label);
+				doSearch();
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#personName"), {
+			method:"getPersonName",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#personId").val(ui.item.value);
+				$("#personName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#personName").val())) {
+					$("#personId").val("");
+					$("#personName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#personId").val(ui.item.value);
+				$("#personName").val(ui.item.label);
+				doSearch();
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#billingCode"), {
+			method:"getBillingCodeByCode",
+			label:"display_column",
+			value:"billing_code_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#billingCodeId").val(ui.item.value);
+				$("#billingCode").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#billingCode").val())) {
+					$("#billingCodeId").val("");
+					$("#billingCode").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#billingCodeId").val(ui.item.value);
+				$("#billingCode").val(ui.item.label);
+				doSearch();
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#billingOrgName"), {
+			method:"getBillingOrgByName",
+			label:"org_name_with_org_id",
+			value:"organisation_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#billingOrgId").val(ui.item.value);
+				$("#billingOrgName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#billingOrgName").val())) {
+					$("#billingOrgId").val("");
+					$("#billingOrgName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#billingOrgId").val(ui.item.value);
+				$("#billingOrgName").val(ui.item.label);
+				doSearch();
+				return false;
+			}
+		});
+
 		doSearch();
 	});
 });

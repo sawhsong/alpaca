@@ -74,18 +74,18 @@
 				<ui:text name="personNumber"/>
 			</td>
 			<th class="thSearch rt"><mc:msg key="sys9802.search.personName"/></th>
-			<td class="tdSearch"><ui:text name="personName"/></td>
+			<td class="tdSearch">
+				<ui:text name="personName"/>
+			</td>
 			<th class="thSearch rt"><mc:msg key="sys9802.search.billingCode"/></th>
 			<td class="tdSearch">
 				<ui:hidden name="billingCodeId"/>
-				<ui:text name="billingCode" className="hor" style="width:90%"/>
-				<ui:icon id="icnBillingCodeSearch" className="fa-search hor"/>
+				<ui:text name="billingCode" className="hor"/>
 			</td>
 			<th class="thSearch rt"><mc:msg key="sys9802.search.billingOrg"/></th>
 			<td class="tdSearch">
 				<ui:hidden name="billingOrgId"/>
-				<ui:text name="billingOrgName" className="hor" style="width:90%"/>
-				<ui:icon id="icnBillingOrgSearch" className="fa-search hor"/>
+				<ui:text name="billingOrgName" className="hor"/>
 			</td>
 		</tr>
 	</table>

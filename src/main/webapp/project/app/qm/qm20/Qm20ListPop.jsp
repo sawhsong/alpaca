@@ -94,7 +94,7 @@
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
 	<div id="divGridWrapper">
-		<table id="tblGrid" class="tblGrid sort autosort" style="width:3500px">
+		<table id="tblGrid" class="tblGrid sort autosort" style="width:3400px">
 			<colgroup>
 				<col width="1%"/>
 				<col width="3%"/>

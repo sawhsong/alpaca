@@ -13,6 +13,7 @@ public interface HpOrganisationDDao extends IDao {
 	public HpOrganisationD getOrganisationByOrganisationId(String organisationId) throws Exception;
 	public DataSet getOrganisationDataSetForQuickMenu(QueryAdvisor queryAdvisor) throws Exception;
 	public DataSet getOrgInfoDataSetForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception;
+	public DataSet getBillingOrgByNameForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception;
 	public DataSet getOrgNameDataSetForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception;
 	public DataSet getAbnDataSetForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception;
 	public DataSet getEmploymentOrganisationLookup(QueryAdvisor queryAdvisor) throws Exception;

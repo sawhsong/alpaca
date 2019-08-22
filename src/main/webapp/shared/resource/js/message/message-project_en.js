@@ -43,14 +43,12 @@ var sys = {
 	},
 	sys9802:{
 		caption:{
-			auth:"Update Authority Group",
-			type:"Update User Type",
+			unlockPrt:"Unlock PRT",
+			updateWorkingState:"Update Working State",
 			status:"Update User Status",
 			active:"Update Active Status"
 		},
 		header:{
-			popBillingOrgLookup:"Billing Organisation Lookup",
-			popBillingCodeLookup:"Billing Code Lookup"
 		},
 		message:{
 		}

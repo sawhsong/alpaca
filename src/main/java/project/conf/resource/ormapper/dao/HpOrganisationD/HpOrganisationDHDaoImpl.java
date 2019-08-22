@@ -46,6 +46,10 @@ public class HpOrganisationDHDaoImpl extends BaseHDao implements HpOrganisationD
 		return selectAsDataSet(queryAdvisor, "query.HpOrganisationD.getOrgInfoDataSetForAutoCompletion");
 	}
 
+	public DataSet getBillingOrgByNameForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception {
+		return selectAsDataSet(queryAdvisor, "query.HpOrganisationD.getBillingOrgByNameForAutoCompletion");
+	}
+
 	public DataSet getOrgNameDataSetForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception {
 		return selectAsDataSet(queryAdvisor, "query.HpOrganisationD.getOrgNameDataSetForAutoCompletion");
 	}

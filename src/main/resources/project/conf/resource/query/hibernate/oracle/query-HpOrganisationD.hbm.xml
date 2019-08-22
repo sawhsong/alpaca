@@ -21,6 +21,22 @@
 	]]>
 	</sql-query>
 
+	<sql-query name="query.HpOrganisationD.getBillingOrgByNameForAutoCompletion">
+	<![CDATA[
+		select organisation_id,
+		       organisation_name,
+		       abn,
+		       acn,
+		       organisation_name||' ('||organisation_id||')' as org_name_with_org_id
+		  from hp_organisation_d
+		 where 1 = 1
+		   and organisation_type in (select lookup_code from sys_common_lookups where lookup_type = 'ORGANISATION_TYPES')
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
+
 	<sql-query name="query.HpOrganisationD.getOrgNameDataSetForAutoCompletion">
 	<![CDATA[
 		select organisation_id,

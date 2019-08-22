@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
+import project.conf.resource.ormapper.dao.HpBillingCode.HpBillingCodeDao;
 import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
 import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
 import project.conf.resource.ormapper.dao.SysCommonCode.SysCommonCodeDao;
@@ -28,6 +29,8 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 	private HpOrganisationDDao hpOrganisationDDao;
 	@Autowired
 	private HpPersonDDao hpPersonDDao;
+	@Autowired
+	private HpBillingCodeDao hpBillingCodeDao;
 
 	public ParamEntity getCommonCodeType(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
@@ -158,6 +161,27 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		return paramEntity;
 	}
 
+	public ParamEntity getBillingOrgByName(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpOrganisationDDao.setDataSourceName(dataSource);
+
+			queryAdvisor.addAutoFillCriteria(inputValue, "lower(organisation_name) like lower('"+inputValue+"%')");
+			queryAdvisor.addOrderByClause("organisation_name asc");
+
+			paramEntity.setAjaxResponseDataSet(hpOrganisationDDao.getBillingOrgByNameForAutoCompletion(queryAdvisor));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
 	public ParamEntity getOrgName(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
@@ -277,6 +301,27 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 			queryAdvisor.addOrderByClause("full_name");
 
 			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getEsEmployeeByNameForAutoCompletion(queryAdvisor));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getBillingCodeByCode(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpBillingCodeDao.setDataSourceName(dataSource);
+
+			queryAdvisor.addAutoFillCriteria(inputValue, "lower(billing_code) like lower('"+inputValue+"%')");
+			queryAdvisor.addOrderByClause("billing_code");
+
+			paramEntity.setAjaxResponseDataSet(hpBillingCodeDao.getBillingCodeByCodeForAutoCompletion(queryAdvisor));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);

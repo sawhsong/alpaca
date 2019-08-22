@@ -8,6 +8,9 @@ public class AutoCompletionAction extends BaseAction {
 	@Autowired
 	private AutoCompletionBiz biz;
 
+	/*!
+	 * Sys, User, CommonCode, Login, Country, Currency
+	 */
 	public String getCommonCodeType() throws Exception {
 		try {
 			biz.getCommonCodeType(paramEntity);
@@ -64,6 +67,9 @@ public class AutoCompletionAction extends BaseAction {
 		return "ajaxResponse";
 	}
 
+	/*!
+	 * Org
+	 */
 	public String getOrgById() throws Exception {
 		try {
 			biz.getOrgById(paramEntity);
@@ -76,6 +82,15 @@ public class AutoCompletionAction extends BaseAction {
 	public String getOrgByName() throws Exception {
 		try {
 			biz.getOrgByName(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getBillingOrgByName() throws Exception {
+		try {
+			biz.getBillingOrgByName(paramEntity);
 		} catch (Exception ex) {
 		}
 		setRequestAttribute("paramEntity", paramEntity);
@@ -100,6 +115,9 @@ public class AutoCompletionAction extends BaseAction {
 		return "ajaxResponse";
 	}
 
+	/*!
+	 * Person, Employee
+	 */
 	public String getPersonNumber() throws Exception {
 		try {
 			biz.getPersonNumber(paramEntity);
@@ -130,6 +148,18 @@ public class AutoCompletionAction extends BaseAction {
 	public String getEsEmployeeByName() throws Exception {
 		try {
 			biz.getEsEmployeeByName(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	/*!
+	 * Billing Dode
+	 */
+	public String getBillingCodeByCode() throws Exception {
+		try {
+			biz.getBillingCodeByCode(paramEntity);
 		} catch (Exception ex) {
 		}
 		setRequestAttribute("paramEntity", paramEntity);
