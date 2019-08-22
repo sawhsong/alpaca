@@ -19,6 +19,7 @@ import zebra.util.ConfigUtil;
 import zebra.util.ExportUtil;
 
 import project.common.extend.BaseBiz;
+import project.common.module.bizservice.assignment.AssignmentBizService;
 import project.common.module.commoncode.CommonCodeManager;
 import project.conf.resource.ormapper.dao.SysBoard.SysBoardDao;
 import project.conf.resource.ormapper.dao.SysBoardFile.SysBoardFileDao;
@@ -29,6 +30,8 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 	private SysBoardDao sysBoardDao;
 	@Autowired
 	private SysBoardFileDao sysBoardFileDao;
+	@Autowired
+	private AssignmentBizService assignmentBS;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -40,15 +43,22 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 	}
 
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			queryAdvisor.setRequestDataSet(requestDataSet);
-			queryAdvisor.setPagination(true);
+			qa.setObject("dataSource", dataSource);
+			qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
+			qa.addAutoFillCriteria(dsReq.getValue("personId"), "person_id = '"+dsReq.getValue("personId")+"'");
+			qa.addAutoFillCriteria(dsReq.getValue("billingCodeId"), "billing_code_id = '"+dsReq.getValue("billingCodeId")+"'");
+			qa.addAutoFillCriteria(dsReq.getValue("billingOrgId"), "billing_organisation_id = '"+dsReq.getValue("billingOrgId")+"'");
+			qa.addOrderByClause("person_name, assignment_id desc");
+			qa.setPagination(true);
 
-			paramEntity.setAjaxResponseDataSet(sysBoardDao.getNoticeBoardDataSetByCriteria(queryAdvisor));
-			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setAjaxResponseDataSet(assignmentBS.getAssignmentList(qa));
+			paramEntity.setTotalResultRows(qa.getTotalResultRows());
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);

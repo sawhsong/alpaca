@@ -52,38 +52,35 @@
 	</div>
 </div>
 <div id="divSearchCriteriaArea" class="areaContainerPopup">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<table class="tblDefault withPadding">
-				<colgroup>
-					<col width="10%"/>
-					<col width="23%"/>
-					<col width="10%"/>
-					<col width="23%"/>
-					<col width="10%"/>
-					<col width="24%"/>
-				</colgroup>
-				<tr>
-					<th class="thDefault rt"><mc:msg key="qm.search.personNumber"/></th>
-					<td class="tdDefault"><ui:text name="personNumber" style="width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="qm.search.personName"/></th>
-					<td class="tdDefault"><ui:text name="name" style="width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="qm.search.personEmail"/></th>
-					<td class="tdDefault"><ui:text name="email" style="width:280px"/></td>
-				</tr>
-				<tr>
-					<th class="thDefault rt"><mc:msg key="qm.search.empOrg"/></th>
-					<td class="tdDefault">
-						<ui:hidden name="empOrgId"/>
-						<ui:text name="empOrgName" className="hor" style="width:280px"/>
-						<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/>
-					</td>
-					<th class="thDefault rt"><mc:msg key="qm.search.personType"/></th>
-					<td class="tdDefault" colspan="3"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/></td>
-				</tr>
-			</table>
-		</div>
-	</div>
+	<table class="tblSearch">
+		<caption><mc:msg key="page.com.searchCriteria"/></caption>
+		<colgroup>
+			<col width="10%"/>
+			<col width="23%"/>
+			<col width="10%"/>
+			<col width="23%"/>
+			<col width="10%"/>
+			<col width="24%"/>
+		</colgroup>
+		<tr>
+			<th class="thSearch rt"><mc:msg key="qm.search.personNumber"/></th>
+			<td class="tdSearch"><ui:text name="personNumber" style="width:280px"/></td>
+			<th class="thSearch rt"><mc:msg key="qm.search.personName"/></th>
+			<td class="tdSearch"><ui:text name="name" style="width:280px"/></td>
+			<th class="thSearch rt"><mc:msg key="qm.search.personEmail"/></th>
+			<td class="tdSearch"><ui:text name="email" style="width:280px"/></td>
+		</tr>
+		<tr>
+			<th class="thSearch rt"><mc:msg key="qm.search.empOrg"/></th>
+			<td class="tdSearch">
+				<ui:hidden name="empOrgId"/>
+				<ui:text name="empOrgName" className="hor" style="width:280px"/>
+				<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/>
+			</td>
+			<th class="thSearch rt"><mc:msg key="qm.search.personType"/></th>
+			<td class="tdSearch" colspan="3"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/></td>
+		</tr>
+	</table>
 </div>
 <div id="divInformArea"></div>
 <%/************************************************************************************************

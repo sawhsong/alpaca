@@ -47,8 +47,7 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnNew" caption="button.com.new" iconClass="fa-plus-square"/>
-			<ui:button id="btnDelete" caption="button.com.delete" iconClass="fa-trash"/>
+			<ui:button id="btnAction" caption="button.com.action" iconClass="fa-caret-down"/>
 			<ui:button id="btnSearch" caption="button.com.search" iconClass="fa-search"/>
 			<ui:button id="btnClear" caption="button.com.clear" iconClass="fa-refresh"/>
 			<ui:button id="btnExport" caption="button.com.export" iconClass="fa-download"/>
@@ -56,33 +55,40 @@
 	</div>
 </div>
 <div id="divSearchCriteriaArea" class="areaContainer">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<table class="tblDefault">
-				<colgroup>
-					<col width="50%"/>
-					<col width="50%"/>
-				</colgroup>
-				<tr>
-					<td class="tdDefault">
-						<label for="searchType" class="lblEn hor"><mc:msg key="sys9802.search.searchType"/></label>
-						<div style="float:left;padding-right:4px;">
-							<ui:ccselect name="searchType" codeType="BOARD_SEARCH_TYPE" caption="==Select=="/>
-						</div>
-						<ui:text name="searchWord" className="hor" style="width:280px"/>
-					</td>
-					<td class="tdDefault">
-						<label for="fromDate" class="lblEn hor"><mc:msg key="sys9802.search.searchPeriod"/></label>
-						<ui:text name="fromDate" className="Ct hor" style="width:100px" checkName="sys9802.search.searchDateFrom" option="date"/>
-						<ui:icon id="icnFromDate" className="fa-calendar hor" title="sys9802.search.searchDateFrom"/>
-						<div class="horGap20" style="padding:6px 8px 6px 0px;">-</div>
-						<ui:text name="toDate" className="Ct hor" style="width:100px" checkName="sys9802.search.searchDateTo" option="date"/>
-						<ui:icon id="icnToDate" className="fa-calendar hor" title="sys9802.search.searchDateTo"/>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
+	<table class="tblSearch">
+		<caption><mc:msg key="page.com.searchCriteria"/></caption>
+		<colgroup>
+			<col width="7%"/>
+			<col width="15%"/>
+			<col width="7%"/>
+			<col width="16%"/>
+			<col width="7%"/>
+			<col width="18%"/>
+			<col width="9%"/>
+			<col width="*"/>
+		</colgroup>
+		<tr>
+			<th class="thSearch rt"><mc:msg key="sys9802.search.personNumber"/></th>
+			<td class="tdSearch">
+				<ui:hidden name="personId"/>
+				<ui:text name="personNumber"/>
+			</td>
+			<th class="thSearch rt"><mc:msg key="sys9802.search.personName"/></th>
+			<td class="tdSearch"><ui:text name="personName"/></td>
+			<th class="thSearch rt"><mc:msg key="sys9802.search.billingCode"/></th>
+			<td class="tdSearch">
+				<ui:hidden name="billingCodeId"/>
+				<ui:text name="billingCode" className="hor" style="width:90%"/>
+				<ui:icon id="icnBillingCodeSearch" className="fa-search hor"/>
+			</td>
+			<th class="thSearch rt"><mc:msg key="sys9802.search.billingOrg"/></th>
+			<td class="tdSearch">
+				<ui:hidden name="billingOrgId"/>
+				<ui:text name="billingOrgName" className="hor" style="width:90%"/>
+				<ui:icon id="icnBillingOrgSearch" className="fa-search hor"/>
+			</td>
+		</tr>
+	</table>
 </div>
 <div id="divInformArea"></div>
 <%/************************************************************************************************
@@ -95,33 +101,51 @@
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainer">
-	<table id="tblGrid" class="tblGrid sort autosort">
-		<colgroup>
-			<col width="3%"/>
-			<col width="*"/>
-			<col width="5%"/>
-			<col width="15%"/>
-			<col width="10%"/>
-			<col width="8%"/>
-			<col width="5%"/>
-		</colgroup>
-		<thead>
-			<tr class="noBorderHor">
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.subject"/></th>
-				<th class="thGrid"><mc:msg key="sys9802.grid.file"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.writerName"/></th>
-				<th class="thGrid sortable:date"><mc:msg key="sys9802.grid.date"/></th>
-				<th class="thGrid sortable:numeric"><mc:msg key="sys9802.grid.hitCount"/></th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
-			</tr>
-		</thead>
-		<tbody id="tblGridBody">
-			<tr class="noBorderHor noStripe">
-				<td class="tdGrid Ct" colspan="7"><mc:msg key="I002"/></td>
-			</tr>
-		</tbody>
-	</table>
+	<div id="divGridWrapper">
+		<table id="tblGrid" class="tblGrid sort autosort" style="width:2600px">
+			<colgroup>
+				<col width="2%"/>
+				<col width="10%"/>
+				<col width="12%"/>
+				<col width="5%"/>
+				<col width="5%"/>
+				<col width="*"/>
+				<col width="14%"/>
+				<col width="3%"/>
+				<col width="4%"/>
+				<col width="4%"/>
+				<col width="3%"/>
+				<col width="3%"/>
+				<col width="8%"/>
+				<col width="4%"/>
+				<col width="4%"/>
+			</colgroup>
+			<thead>
+				<tr>
+					<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.asgNumber"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.personName"/></th>
+					<th class="thGrid sortable:date"><mc:msg key="sys9802.grid.asgStartDate"/></th>
+					<th class="thGrid sortable:date"><mc:msg key="sys9802.grid.asgEndDate"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.billingOrg"/></th>
+					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.euOrg"/></th>
+					<th class="thGrid"><mc:msg key="sys9802.grid.isActive"/></th>
+					<th class="thGrid"><mc:msg key="sys9802.grid.isPreferred"/></th>
+					<th class="thGrid"><mc:msg key="sys9802.grid.workingState"/></th>
+					<th class="thGrid"><mc:msg key="sys9802.grid.hasPrt"/></th>
+					<th class="thGrid"><mc:msg key="sys9802.grid.hasWc"/></th>
+					<th class="thGrid"><mc:msg key="sys9802.grid.payMethod"/></th>
+					<th class="thGrid"><mc:msg key="sys9802.grid.lastInv"/></th>
+					<th class="thGrid"><mc:msg key="sys9802.grid.lastPay"/></th>
+				</tr>
+			</thead>
+			<tbody id="tblGridBody">
+				<tr>
+					<td class="tdGrid Ct" colspan="15"><mc:msg key="I002"/></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
 <div id="divPagingArea" class="areaContainer"></div>
 <%/************************************************************************************************

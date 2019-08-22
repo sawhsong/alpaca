@@ -2,23 +2,13 @@
  * Framework Generated Javascript Source
  * - Sys9802List.js
  *************************************************************************************************/
-jsconfig.put("useJqTooltip", false);
 var popup = null;
 var searchResultDataCount = 0;
-var attchedFileContextMenu = [];
 
 $(function() {
 	/*!
 	 * event
 	 */
-	$("#btnNew").click(function(event) {
-		openPopup({mode:"New"});
-	});
-
-	$("#btnDelete").click(function(event) {
-		doDelete();
-	});
-
 	$("#btnSearch").click(function(event) {
 		doSearch();
 	});
@@ -27,27 +17,79 @@ $(function() {
 		commonJs.clearSearchCriteria();
 	});
 
-	$("#icnFromDate").click(function(event) {
-		commonJs.openCalendar(event, "fromDate");
-	});
-
-	$("#icnToDate").click(function(event) {
-		commonJs.openCalendar(event, "toDate");
-	});
-
 	$("#icnCheck").click(function(event) {
-		commonJs.toggleCheckboxes("chkForDel");
+		commonJs.toggleCheckboxes("chkForAction");
+	});
+
+	$("#icnBillingCodeSearch").click(function(event) {
+		popup = commonJs.openPopup({
+			popupId:"BillingCodeLookup",
+			url:"/common/lookup/getDefault.do",
+			paramData:{
+				lookupType:"BillingCode",
+				keyFieldId:"billingCodeId",
+				valueFieldId:"billingCode",
+				popupName:"parent.popup",
+				docTypeToSetValue:"page",
+				lookupValue:$("#billingCode").val()
+			},
+			header:sys.sys9802.header.popBillingCodeLookup,
+			width:880,
+			height:680
+		});
+	});
+
+	$("#icnBillingOrgSearch").click(function(event) {
+		popup = commonJs.openPopup({
+			popupId:"BillingOrgLookup",
+			url:"/common/lookup/getDefault.do",
+			paramData:{
+				lookupType:"BillingOrg",
+				keyFieldId:"billingOrgId",
+				valueFieldId:"billingOrgName",
+				popupName:"parent.popup",
+				docTypeToSetValue:"page",
+				lookupValue:$("#billingOrgName").val()
+			},
+			header:sys.sys9802.header.popBillingOrgLookup,
+			width:880,
+			height:680
+		});
 	});
 
 	$(document).keypress(function(event) {
 		if (event.which == 13) {
 			var element = event.target;
-
-			if ($(element).is("[name=searchWord]") || $(element).is("[name=fromDate]") || $(element).is("[name=toDate]")) {
-				doSearch();
-			}
 		}
 	});
+
+	/*!
+	 * context menus
+	 */
+	setActionButtonContextMenu = function() {
+		var ctxMenu = [{
+			name:sys.sys0406.caption.auth,
+			fun:function() {openPopup({mode:"UpdateAuthGroup"});}
+		}, {
+			name:sys.sys0406.caption.type,
+			fun:function() {openPopup({mode:"UpdateUserType"});}
+		}, {
+			name:sys.sys0406.caption.status,
+			fun:function() {openPopup({mode:"UpdateUserStatus"});}
+		}, {
+			name:sys.sys0406.caption.active,
+			fun:function() {openPopup({mode:"UpdateActiveStatus"});}
+		}];
+
+		$("#btnAction").contextMenu(ctxMenu, {
+			classPrefix:com.constants.ctxClassPrefixButton,
+			effectDuration:300,
+			effect:"slide",
+			borderRadius:"bottom 4px",
+			displayAround:"trigger",
+			position:"bottom"
+		});
+	};
 
 	/*!
 	 * process
@@ -56,97 +98,66 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanel");
 
 		if (commonJs.doValidate($("#fmDefault"))) {
-			setTimeout(function() {
-				commonJs.ajaxSubmit({
-					url:"/sys/9802/getList.do",
-					dataType:"json",
-					formId:"fmDefault",
-					success:function(data, textStatus) {
-						var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-						if (result.isSuccess == true || result.isSuccess == "true") {
-							renderDataGridTable(result);
-						}
-					}
-				});
-			}, 200);
+			commonJs.doSearch({
+				url:"/sys/9802/getList.do",
+				dataType:"xml",
+				callback:renderDataGridTable
+			});
 		}
 	};
 
 	renderDataGridTable = function(result) {
-		var dataSet = result.dataSet;
+		var ds = result.dataSet;
 		var html = "";
 
-		searchResultDataCount = dataSet.getRowCnt();
+		searchResultDataCount = ds.getRowCnt();
 		$("#tblGridBody").html("");
 
-		if (dataSet.getRowCnt() > 0) {
-			for (var i=0; i<dataSet.getRowCnt(); i++) {
-				var space = "", iLength = 200;
-				var iLevel = parseInt(dataSet.getValue(i, "LEVEL")) - 1;
+		if (ds.getRowCnt() > 0) {
+			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				gridTr.setClassName("noBorderHor noStripe");
-
 				var uiChk = new UiCheckbox();
-				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "ARTICLE_ID"));
+				uiChk.setId("chkForAction").setName("chkForAction").setValue(ds.getValue(i, "ASSIGNMENT_ID"));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
 
-				if (iLevel > 0) {
-					for (var j=0; j<iLevel; j++) {
-						space += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-						iLength -= - 2;
-					}
-					space += "<i class=\"fa fa-comments\"></i>";
-				} else {
-					space += "<i class=\"fa fa-comment\"></i>";
-				}
-
 				var uiAnc = new UiAnchor();
-				uiAnc.setText(commonJs.abbreviate(dataSet.getValue(i, "ARTICLE_SUBJECT"), iLength)).setScript("getDetail('"+dataSet.getValue(i, "ARTICLE_ID")+"')");
-				gridTr.addChild(new UiGridTd().addClassName("Lt").addTextBeforeChild(space+"&nbsp;&nbsp;").addChild(uiAnc).addAttribute("title:"+commonJs.htmlToString(dataSet.getValue(i, "ARTICLE_SUBJECT"))));
+				uiAnc.setText(ds.getValue(i, "ASSIGNMENT_NUMBER")).setScript("getDetail('"+ds.getValue(i, "ASSIGNMENT_ID")+"')");
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(uiAnc));
 
-				var gridTd = new UiGridTd();
-				gridTd.addClassName("Ct");
-				if (dataSet.getValue(i, "FILE_CNT") > 0) {
-					var iconAttachFile = new UiIcon();
-					iconAttachFile.setId("icnAttachedFile").setName("icnAttachedFile").addClassName("glyphicon-paperclip").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"));
-					gridTd.addChild(iconAttachFile);
-				}
-				gridTr.addChild(gridTd);
-
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "WRITER_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "CREATED_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(dataSet.getValue(i, "HIT_CNT"), "#,###")));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
-					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "PERSON_NAME"), 50)));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ASSIGNMENT_START_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ASSIGNMENT_END_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "BILLING_ORGANISATION_NAME"), 60)));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "EU_ORGANISATION_NAME"), 60)));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ASG_ACTIVE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "PREFERRED")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "WORKING_STATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "HAS_PRT")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "HAS_WC")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYMENT_METHOD")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "LAST_INVOICE_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "LAST_PAID_DATE")));
 
 				html += gridTr.toHtmlString();
 			}
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:7").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:15").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
 		$("#tblGridBody").append($(html));
 
 		$("#tblGrid").fixedHeaderTable({
-			attachTo:$("#divDataArea"),
+			attachTo:$("#divGridWrapper"),
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
 			isFilter:false,
 			filterColumn:[],
 			totalResultRows:result.totalResultRows,
 			script:"doSearch"
-		});
-
-		$("[name=icnAttachedFile]").each(function(index) {
-			$(this).contextMenu(attchedFileContextMenu);
 		});
 
 		$("[name=icnAction]").each(function(index) {
@@ -156,8 +167,8 @@ $(function() {
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 
-	getDetail = function(articleId) {
-		openPopup({mode:"Detail", articleId:articleId});
+	getDetail = function(assignmentId) {
+		openPopup({mode:"Detail", assignmentId:assignmentId});
 	};
 
 	openPopup = function(param) {
@@ -190,77 +201,6 @@ $(function() {
 		};
 
 		popup = commonJs.openPopup(popParam);
-	};
-
-	doDelete = function() {
-		if (commonJs.getCountChecked("chkForDel") == 0) {
-			commonJs.warn(com.message.I902);
-			return;
-		}
-
-		commonJs.confirm({
-			contents:com.message.Q002,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					commonJs.ajaxSubmit({
-						url:"/sys/9802/exeDelete.do",
-						dataType:"json",
-						formId:"fmDefault",
-						success:function(data, textStatus) {
-							var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-							if (result.isSuccess == true || result.isSuccess == "true") {
-								commonJs.openDialog({
-									type:com.message.I000,
-									contents:result.message,
-									blind:true,
-									width:300,
-									buttons:[{
-										caption:com.caption.ok,
-										callback:function() {
-											doSearch();
-										}
-									}]
-								});
-							} else {
-								commonJs.error(result.message);
-							}
-						}
-					});
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}],
-			blind:true
-		});
-	};
-
-	doAction = function(img) {
-		var articleId = $(img).attr("articleId");
-
-		$("input:checkbox[name=chkForDel]").each(function(index) {
-			if (!$(this).is(":disabled") && $(this).val() == articleId) {
-				$(this).prop("checked", true);
-			} else {
-				$(this).prop("checked", false);
-			}
-		});
-
-		ctxMenu.boardAction[0].fun = function() {getDetail(articleId);};
-		ctxMenu.boardAction[1].fun = function() {openPopup({mode:"Edit", articleId:articleId});};
-		ctxMenu.boardAction[2].fun = function() {openPopup({mode:"Reply", articleId:articleId});};
-		ctxMenu.boardAction[3].fun = function() {doDelete();};
-
-		$(img).contextMenu(ctxMenu.boardAction, {
-			classPrefix:com.constants.ctxClassPrefixGrid,
-			displayAround:"trigger",
-			position:"bottom",
-			horAdjust:0,
-			verAdjust:2
-		});
 	};
 
 	exeExport = function(menuObject) {
@@ -304,10 +244,8 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		commonJs.setFieldDateMask("fromDate");
-		commonJs.setFieldDateMask("toDate");
+		setActionButtonContextMenu();
 		commonJs.setExportButtonContextMenu($("#btnExport"));
-		$("#searchWord").focus();
 		doSearch();
 	});
 });

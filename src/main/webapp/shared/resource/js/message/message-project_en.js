@@ -40,6 +40,20 @@ var sys = {
 		},
 		message:{
 		}
+	},
+	sys9802:{
+		caption:{
+			auth:"Update Authority Group",
+			type:"Update User Type",
+			status:"Update User Status",
+			active:"Update Active Status"
+		},
+		header:{
+			popBillingOrgLookup:"Billing Organisation Lookup",
+			popBillingCodeLookup:"Billing Code Lookup"
+		},
+		message:{
+		}
 	}
 };
 

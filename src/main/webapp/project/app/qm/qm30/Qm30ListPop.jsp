@@ -52,50 +52,46 @@
 	</div>
 </div>
 <div id="divSearchCriteriaArea" class="areaContainerPopup">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<table class="tblDefault withPadding">
-				<colgroup>
-					<col width="12%"/>
-					<col width="15%"/>
-					<col width="13%"/>
-					<col width="15%"/>
-					<col width="10%"/>
-					<col width="15%"/>
-					<col width="8%"/>
-					<col width="*"/>
-				</colgroup>
-				<tr>
-					<th class="thDefault rt"><mc:msg key="qm.search.orgId"/></th>
-					<td class="tdDefault"><ui:text name="orgId" style="width:210px"/></td>
-					<th class="thDefault rt"><mc:msg key="qm.search.orgName"/></th>
-					<td class="tdDefault"><ui:text name="orgName" style="width:210px"/></td>
-					<th class="thDefault rt"><mc:msg key="qm.search.orgType"/></th>
-					<td class="tdDefault"><ui:ccselect name="orgType" caption="==Select==" codeType="ORGANISATION_TYPES"/></td>
-					<th class="thDefault rt"><mc:msg key="qm.search.orgState"/></th>
-					<td class="tdDefault"><ui:ccselect name="orgState" caption="==Select==" codeType="STATES"/></td>
-				</tr>
-				<tr>
-					<th class="thDefault rt"><mc:msg key="qm.search.csc"/></th>
-					<td class="tdDefault">
-						<ui:hidden name="cscId"/>
-						<ui:text name="cscName" className="hor" style="width:210px"/>
-						<ui:icon id="icnCscSearch" className="fa-search hor"/>
-					</td>
-					<th class="thDefault rt"><mc:msg key="qm.search.crm"/></th>
-					<td class="tdDefault">
-						<ui:hidden name="crmId"/>
-						<ui:text name="crmName" className="hor" style="width:210px"/>
-						<ui:icon id="icnCrmSearch" className="fa-search hor"/>
-					</td>
-					<th class="thDefault rt"><mc:msg key="qm.search.orgCountry"/></th>
-					<td class="tdDefault"><ui:text name="orgCountryName" className="hor"/></td>
-					<th class="thDefault rt"></th>
-					<td class="tdDefault"></td>
-				</tr>
-			</table>
-		</div>
-	</div>
+	<table class="tblSearch withPadding">
+		<colgroup>
+			<col width="12%"/>
+			<col width="15%"/>
+			<col width="13%"/>
+			<col width="15%"/>
+			<col width="10%"/>
+			<col width="15%"/>
+			<col width="8%"/>
+			<col width="*"/>
+		</colgroup>
+		<tr>
+			<th class="thSearch rt"><mc:msg key="qm.search.orgId"/></th>
+			<td class="tdSearch"><ui:text name="orgId" style="width:210px"/></td>
+			<th class="thSearch rt"><mc:msg key="qm.search.orgName"/></th>
+			<td class="tdSearch"><ui:text name="orgName" style="width:210px"/></td>
+			<th class="thSearch rt"><mc:msg key="qm.search.orgType"/></th>
+			<td class="tdSearch"><ui:ccselect name="orgType" caption="==Select==" codeType="ORGANISATION_TYPES"/></td>
+			<th class="thSearch rt"><mc:msg key="qm.search.orgState"/></th>
+			<td class="tdSearch"><ui:ccselect name="orgState" caption="==Select==" codeType="STATES"/></td>
+		</tr>
+		<tr>
+			<th class="thSearch rt"><mc:msg key="qm.search.csc"/></th>
+			<td class="tdSearch">
+				<ui:hidden name="cscId"/>
+				<ui:text name="cscName" className="hor" style="width:210px"/>
+				<ui:icon id="icnCscSearch" className="fa-search hor"/>
+			</td>
+			<th class="thSearch rt"><mc:msg key="qm.search.crm"/></th>
+			<td class="tdSearch">
+				<ui:hidden name="crmId"/>
+				<ui:text name="crmName" className="hor" style="width:210px"/>
+				<ui:icon id="icnCrmSearch" className="fa-search hor"/>
+			</td>
+			<th class="thSearch rt"><mc:msg key="qm.search.orgCountry"/></th>
+			<td class="tdSearch"><ui:text name="orgCountryName" className="hor"/></td>
+			<th class="thSearch rt"></th>
+			<td class="tdSearch"></td>
+		</tr>
+	</table>
 </div>
 <div id="divInformArea"></div>
 <%/************************************************************************************************
