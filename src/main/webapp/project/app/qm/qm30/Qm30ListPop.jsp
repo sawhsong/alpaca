@@ -130,7 +130,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th class="thGrid"></th>
+					<th class="thGrid"><ui:icon id="icnRdo" className="fa-dot-circle-o fa-lg" status="display"/></th>
 					<th class="thGrid sortable:numeric"><mc:msg key="qm.grid.id"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.orgName"/></th>
 					<th class="thGrid"><mc:msg key="qm.grid.orgType"/></th>

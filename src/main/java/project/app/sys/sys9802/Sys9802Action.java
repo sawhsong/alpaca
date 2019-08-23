@@ -32,41 +32,14 @@ public class Sys9802Action extends BaseAction {
 		return "detail";
 	}
 
-	public String getInsert() throws Exception {
-		biz.getInsert(paramEntity);
-		return "insert";
+	public String getUnlockPrt() throws Exception {
+		biz.getUnlockPrt(paramEntity);
+		return "unlockPrt";
 	}
 
-	public String getUpdate() throws Exception {
-		biz.getUpdate(paramEntity);
-		return "update";
-	}
-
-	public String exeInsert() throws Exception {
-		try {
-			biz.exeInsert(paramEntity);
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
-	}
-
-	public String exeUpdate() throws Exception {
-		try {
-			biz.exeUpdate(paramEntity);
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
-	}
-
-	public String exeDelete() throws Exception {
-		try {
-			biz.exeDelete(paramEntity);
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
+	public String getUpdateWorkingState() throws Exception {
+		biz.getUpdateWorkingState(paramEntity);
+		return "updateWorkingState";
 	}
 
 	public String exeExport() throws Exception {

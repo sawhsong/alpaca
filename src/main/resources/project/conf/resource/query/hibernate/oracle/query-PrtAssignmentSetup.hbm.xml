@@ -5,4 +5,22 @@
  * - PRT_ASSIGNMENT_SETUP - 
  */-->
 <hibernate-mapping>
+<sql-query name="query.PrtAssignmentSetup.getByAssignmentId">
+	<![CDATA[
+		select prt_assignment_setup_id,
+		       assignment_id,
+		       prt_organisation_id,
+		       prt_document_id,
+		       prt_coh_scenario_id,
+		       prt_working_state,
+		       created_by,
+		       to_char(creation_date, '${dateFormat}') as creation_date,
+		       is_active
+		  from prt_assignment_setup
+		 where 1 = 1
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
 </hibernate-mapping>

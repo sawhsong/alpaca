@@ -17,10 +17,6 @@ $(function() {
 		commonJs.clearSearchCriteria();
 	});
 
-	$("#icnCheck").click(function(event) {
-		commonJs.toggleCheckboxes("chkForAction");
-	});
-
 	$("#billingCode").blur(function() {
 		if (commonJs.isEmpty($(this).val())) {
 			$("#billingCodeId").val("");
@@ -43,16 +39,12 @@ $(function() {
 	setActionButtonContextMenu = function() {
 		var ctxMenu = [{
 			name:sys.sys9802.caption.unlockPrt,
-			fun:function() {openPopup({mode:"UnlockPRT"});}
+			img:"fa-unlock-alt",
+			fun:function() {openPopup({mode:"UnlockPrt"});}
 		}, {
 			name:sys.sys9802.caption.updateWorkingState,
+			img:"fa-map",
 			fun:function() {openPopup({mode:"UpdateWorkingState"});}
-		}, {
-			name:sys.sys9802.caption.status,
-			fun:function() {openPopup({mode:"UpdateUserStatus"});}
-		}, {
-			name:sys.sys9802.caption.active,
-			fun:function() {openPopup({mode:"UpdateActiveStatus"});}
 		}];
 
 		$("#btnAction").contextMenu(ctxMenu, {
@@ -91,9 +83,7 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				var uiChk = new UiCheckbox();
-				uiChk.setId("chkForAction").setName("chkForAction").setValue(ds.getValue(i, "ASSIGNMENT_ID"));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiRadio().setName("rdoForAction").setValue(ds.getValue(i, "ASSIGNMENT_ID"))));
 
 				var uiAnc = new UiAnchor();
 				uiAnc.setText(ds.getValue(i, "ASSIGNMENT_NUMBER")).setScript("getDetail('"+ds.getValue(i, "ASSIGNMENT_ID")+"')");
@@ -146,31 +136,35 @@ $(function() {
 	};
 
 	openPopup = function(param) {
-		var url = "", header = "";
-		var height = 510;
+		var url = "", header = com.header.popHeaderDetail, width = 0, height = 0;
+		var val = commonJs.getCheckedValueFromRadio("rdoForAction");
+
+		if (commonJs.isEmpty(val)) {
+			commonJs.warn(com.message.I902);
+			return;
+		}
 
 		if (param.mode == "Detail") {
 			url = "/sys/9802/getDetail.do";
-			header = com.header.popHeaderDetail;
-		} else if (param.mode == "New" || param.mode == "Reply") {
-			url = "/sys/9802/getInsert.do";
-			header = com.header.popHeaderEdit;
-		} else if (param.mode == "Edit") {
-			url = "/sys/9802/getUpdate.do";
-			header = com.header.popHeaderEdit;
-			height = 634;
+			width = 1200, height = 900;
+		} else if (param.mode == "UnlockPrt") {
+			url = "/sys/9802/getUnlockPrt.do";
+			width = 1480, height = 500;
+		} else if (param.mode == "UpdateWorkingState") {
+			url = "/sys/9802/getUpdateWorkingState.do";
+			width = 500, height = 300;
 		}
 
 		var popParam = {
-			popupId:"notice"+param.mode,
+			popupId:"Sys9802"+param.mode,
 			url:url,
 			paramData:{
 				mode:param.mode,
-				articleId:commonJs.nvl(param.articleId, "")
+				assignmentId:val
 			},
 			header:header,
 			blind:true,
-			width:800,
+			width:width,
 			height:height
 		};
 

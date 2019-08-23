@@ -61,19 +61,19 @@
             <result name="update" type="debugDispatcherResult">/project/app/sys/sys0406/Sys0406UpdatePop.jsp</result>
             <result name="actionContextMenu" type="debugDispatcherResult">/project/app/sys/sys0406/Sys0406ActionContextMenuPop.jsp</result>
         </action>
+        <!--Sys9802 - Unlock PRT-->
+        <action class="project.app.sys.sys9802.Sys9802Action" method="{1}" name="9802/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802DetailPop.jsp</result>
+            <result name="unlockPrt" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802UnlockPrtPop.jsp</result>
+            <result name="updateWorkingState" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802UpdateWorkingStatePop.jsp</result>
+        </action>
         <!--Sys9804 - WebService Consumer-PERCI-->
         <action class="project.app.sys.sys9804.Sys9804Action" method="{1}" name="9804/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804List.jsp</result>
             <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804DetailPop.jsp</result>
             <result name="insert" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804InsertPop.jsp</result>
             <result name="update" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804UpdatePop.jsp</result>
-        </action>
-        <!--Sys9802 - Unlock PRT-->
-        <action class="project.app.sys.sys9802.Sys9802Action" method="{1}" name="9802/*">
-            <result name="list" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802List.jsp</result>
-            <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802DetailPop.jsp</result>
-            <result name="insert" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802InsertPop.jsp</result>
-            <result name="update" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802UpdatePop.jsp</result>
         </action>
     </package>
 </struts>

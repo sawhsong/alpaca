@@ -59,15 +59,19 @@
 		<caption><mc:msg key="page.com.searchCriteria"/></caption>
 		<colgroup>
 			<col width="7%"/>
-			<col width="15%"/>
+			<col width="8%"/>
 			<col width="7%"/>
+			<col width="8%"/>
+			<col width="6%"/>
 			<col width="16%"/>
-			<col width="7%"/>
-			<col width="18%"/>
+			<col width="6%"/>
+			<col width="16%"/>
 			<col width="9%"/>
 			<col width="*"/>
 		</colgroup>
 		<tr>
+			<th class="thSearch rt"><mc:msg key="sys9802.search.asgId"/></th>
+			<td class="tdSearch"><ui:text name="asgId"/></td>
 			<th class="thSearch rt"><mc:msg key="sys9802.search.personNumber"/></th>
 			<td class="tdSearch">
 				<ui:hidden name="personId"/>
@@ -122,7 +126,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+					<th class="thGrid"><ui:icon id="icnRdo" className="fa-dot-circle-o fa-lg" status="display"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.asgNumber"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.personName"/></th>
 					<th class="thGrid sortable:date"><mc:msg key="sys9802.grid.asgStartDate"/></th>

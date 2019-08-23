@@ -9,6 +9,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import project.common.extend.BaseBiz;
+import project.common.module.bizservice.assignment.AssignmentBizService;
+import project.conf.resource.ormapper.dao.PrtAssignmentSetup.PrtAssignmentSetupDao;
+import project.conf.resource.ormapper.dao.SysBoard.SysBoardDao;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
 import zebra.data.QueryAdvisor;
@@ -18,20 +22,13 @@ import zebra.util.CommonUtil;
 import zebra.util.ConfigUtil;
 import zebra.util.ExportUtil;
 
-import project.common.extend.BaseBiz;
-import project.common.module.bizservice.assignment.AssignmentBizService;
-import project.common.module.commoncode.CommonCodeManager;
-import project.conf.resource.ormapper.dao.SysBoard.SysBoardDao;
-import project.conf.resource.ormapper.dao.SysBoardFile.SysBoardFileDao;
-import project.conf.resource.ormapper.dto.oracle.SysBoard;
-
 public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 	@Autowired
 	private SysBoardDao sysBoardDao;
 	@Autowired
-	private SysBoardFileDao sysBoardFileDao;
-	@Autowired
 	private AssignmentBizService assignmentBS;
+	@Autowired
+	private PrtAssignmentSetupDao prtAssignmentSetupDao;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -51,6 +48,7 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 		try {
 			qa.setObject("dataSource", dataSource);
 			qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
+			qa.addAutoFillCriteria(dsReq.getValue("asgId"), "assignment_id like '"+dsReq.getValue("asgId")+"%'");
 			qa.addAutoFillCriteria(dsReq.getValue("personId"), "person_id = '"+dsReq.getValue("personId")+"'");
 			qa.addAutoFillCriteria(dsReq.getValue("billingCodeId"), "billing_code_id = '"+dsReq.getValue("billingCodeId")+"'");
 			qa.addAutoFillCriteria(dsReq.getValue("billingOrgId"), "billing_organisation_id = '"+dsReq.getValue("billingOrgId")+"'");
@@ -67,23 +65,6 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 	}
 
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		String articleId = requestDataSet.getValue("articleId");
-
-		try {
-			paramEntity.setObject("sysBoard", sysBoardDao.getBoardByArticleId(articleId));
-			paramEntity.setObject("fileDataSet", sysBoardFileDao.getBoardFileListDataSetByArticleId(articleId));
-
-			sysBoardDao.updateVisitCountByArticleId(articleId);
-
-			paramEntity.setSuccess(true);
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
-
-	public ParamEntity getInsert(ParamEntity paramEntity) throws Exception {
 		try {
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
@@ -92,107 +73,24 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 		return paramEntity;
 	}
 
-	public ParamEntity getUpdate(ParamEntity paramEntity) throws Exception {
-		try {
-			paramEntity = getDetail(paramEntity);
-			paramEntity.setSuccess(true);
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
-
-	public ParamEntity exeInsert(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
+	public ParamEntity getUnlockPrt(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
 		HttpSession session = paramEntity.getSession();
-		DataSet fileDataSet = paramEntity.getRequestFileDataSet();
-		SysBoard sysBoard = new SysBoard();
-		String uid = CommonUtil.uid();
-		String loggedInUserId = (String)session.getAttribute("UserId");
-		int result = -1;
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysBoard.setArticleId(uid);
-			sysBoard.setBoardType(CommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
-			sysBoard.setWriterId(loggedInUserId);
-			sysBoard.setWriterName(requestDataSet.getValue("writerName"));
-			sysBoard.setWriterEmail(requestDataSet.getValue("writerEmail"));
-			sysBoard.setWriterIpAddress(paramEntity.getRequest().getRemoteAddr());
-			sysBoard.setArticleSubject(requestDataSet.getValue("articleSubject"));
-			sysBoard.setArticleContents(requestDataSet.getValue("articleContents"));
-			sysBoard.setInsertUserId(loggedInUserId);
-			sysBoard.setInsertDate(CommonUtil.toDate(CommonUtil.getSysdate()));
-			sysBoard.setParentArticleId(CommonUtil.nvl(requestDataSet.getValue("articleId"), "-1"));
-
-			result = sysBoardDao.insert(sysBoard, fileDataSet, "Y");
-			if (result <= 0) {
-				throw new FrameworkException("E801", getMessage("E801", paramEntity));
-			}
-
+			prtAssignmentSetupDao.setDataSourceName(dataSource);
+			paramEntity.setObject("prtSetup", prtAssignmentSetupDao.getByAssignmentId(dsReq.getValue("assignmentId")));
 			paramEntity.setSuccess(true);
-			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}
 		return paramEntity;
 	}
 
-	public ParamEntity exeUpdate(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		HttpSession session = paramEntity.getSession();
-		DataSet fileDataSet = paramEntity.getRequestFileDataSet();
-		String chkForDel = requestDataSet.getValue("chkForDel");
-		String articleId = requestDataSet.getValue("articleId");
-		String fileIdsToDelete[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
-		String loggedInUserId = (String)session.getAttribute("UserId");
-		SysBoard sysBoard;
-		int result = 0;
-
+	public ParamEntity getUpdateWorkingState(ParamEntity paramEntity) throws Exception {
 		try {
-			sysBoard = sysBoardDao.getBoardByArticleId(articleId);
-			sysBoard.setArticleId(articleId);
-			sysBoard.setWriterId(loggedInUserId);
-			sysBoard.setWriterName(requestDataSet.getValue("writerName"));
-			sysBoard.setWriterEmail(requestDataSet.getValue("writerEmail"));
-			sysBoard.setWriterIpAddress(paramEntity.getRequest().getRemoteAddr());
-			sysBoard.setArticleSubject(requestDataSet.getValue("articleSubject"));
-			sysBoard.setArticleContents(requestDataSet.getValue("articleContents"));
-			sysBoard.setUpdateUserId(loggedInUserId);
-			sysBoard.setUpdateDate(CommonUtil.toDate(CommonUtil.getSysdate()));
-
-			result = sysBoardDao.update(sysBoard, fileDataSet, "Y", fileIdsToDelete);
-			if (result <= 0) {
-				throw new FrameworkException("E801", getMessage("E801", paramEntity));
-			}
-
 			paramEntity.setSuccess(true);
-			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
-
-	public ParamEntity exeDelete(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		String articleId = requestDataSet.getValue("articleId");
-		String chkForDel = requestDataSet.getValue("chkForDel");
-		String articleIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
-		int result = 0;
-
-		try {
-			if (CommonUtil.isBlank(articleId)) {
-				result = sysBoardDao.delete(articleIds);
-			} else {
-				result = sysBoardDao.delete(articleId);
-			}
-
-			if (result <= 0) {
-				throw new FrameworkException("E801", getMessage("E801", paramEntity));
-			}
-
-			paramEntity.setSuccess(true);
-			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}
