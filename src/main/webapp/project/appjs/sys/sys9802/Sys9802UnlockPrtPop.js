@@ -8,6 +8,12 @@ $(function() {
 	 */
 	$("#btnUnlock").click(function(event) {
 		if (commonJs.doValidate("fmDefault")) {
+			commonJs.doDelete({
+				url:"sys/9802/",
+				callback:function() {
+					parent.popup.close();
+				}
+			});
 		}
 	});
 
