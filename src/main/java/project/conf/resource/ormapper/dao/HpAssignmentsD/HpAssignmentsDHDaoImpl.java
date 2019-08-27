@@ -10,11 +10,8 @@ import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 
 public class HpAssignmentsDHDaoImpl extends BaseHDao implements HpAssignmentsDDao {
-	public int updateColumn(String assignmentId, HpAssignmentsD hpAssignmentsD) throws Exception {
-		QueryAdvisor qa = new QueryAdvisor();
-
-		qa.addWhereClause("assignment_id = '"+assignmentId+"'");
-		return updateColumns(qa, hpAssignmentsD);
+	public int updateAssignmentByColumn(QueryAdvisor queryAdvisor, HpAssignmentsD hpAssignmentsD) throws Exception {
+		return updateColumns(queryAdvisor, hpAssignmentsD);
 	}
 
 	public DataSet getAssignmentList(QueryAdvisor queryAdvisor) throws Exception {

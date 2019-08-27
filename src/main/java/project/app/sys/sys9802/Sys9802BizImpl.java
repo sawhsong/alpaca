@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
 import project.common.module.bizservice.assignment.AssignmentBizService;
-import project.conf.resource.ormapper.dao.HpAssignmentsD.HpAssignmentsDDao;
 import project.conf.resource.ormapper.dao.PrtAssignmentSetup.PrtAssignmentSetupDao;
-import project.conf.resource.ormapper.dto.oracle.HpAssignmentsD;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
 import zebra.data.QueryAdvisor;
@@ -28,8 +26,6 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 	private AssignmentBizService assignmentBS;
 	@Autowired
 	private PrtAssignmentSetupDao prtAssignmentSetupDao;
-	@Autowired
-	private HpAssignmentsDDao hpAssignmentsDDao;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -91,12 +87,14 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 
 	public ParamEntity getUpdateWorkingState(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
+		QueryAdvisor qa = paramEntity.getQueryAdvisor();
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			hpAssignmentsDDao.setDataSourceName(dataSource);
-			paramEntity.setObject("assignment", hpAssignmentsDDao.getByAssignmentId(dsReq.getValue("assignmentId")));
+			qa.setObject("dataSource", dataSource);
+
+			paramEntity.setObject("assignment", assignmentBS.getAssignmentByAssignmentId(qa, dsReq.getValue("assignmentId")));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -128,18 +126,17 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 
 	public ParamEntity doUpdateWorkingState(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
+		QueryAdvisor qa = paramEntity.getQueryAdvisor();
 		String assignmentId = dsReq.getValue("assignmentId");
 		String workingStateTo = dsReq.getValue("workingStateTo");
-		HpAssignmentsD hpAssignmentsD = new HpAssignmentsD();
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 		int result = 0;
 
 		try {
-			hpAssignmentsDDao.setDataSourceName(dataSource);
-			hpAssignmentsD.addUpdateColumn("working_state", workingStateTo);
+			qa.setObject("dataSource", dataSource);
 
-			result = hpAssignmentsDDao.updateColumn(assignmentId, hpAssignmentsD);
+			result = assignmentBS.updateWorkingState(qa, assignmentId, workingStateTo);
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
 			}

@@ -3,10 +3,10 @@ package project.common.module.bizservice.assignment;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.conf.resource.ormapper.dao.HpAssignmentsD.HpAssignmentsDDao;
+import project.conf.resource.ormapper.dto.oracle.HpAssignmentsD;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 import zebra.example.common.extend.BaseBiz;
-import zebra.exception.FrameworkException;
 
 public class AssignmentBizServiceImpl extends BaseBiz implements AssignmentBizService {
 	@Autowired
@@ -15,12 +15,27 @@ public class AssignmentBizServiceImpl extends BaseBiz implements AssignmentBizSe
 	public DataSet getAssignmentList(QueryAdvisor queryAdvisor) throws Exception {
 		DataSet ds = new DataSet();
 
-		try {
-			hpAssignmentsDDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
-			ds = hpAssignmentsDDao.getAssignmentList(queryAdvisor);
-		} catch (Exception ex) {
-			throw new FrameworkException(ex);
-		}
+		hpAssignmentsDDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
+		ds = hpAssignmentsDDao.getAssignmentList(queryAdvisor);
 		return ds;
+	}
+
+	public HpAssignmentsD getAssignmentByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception {
+		hpAssignmentsDDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
+		return hpAssignmentsDDao.getByAssignmentId(assignmentId);
+	}
+
+	public int updateWorkingState(QueryAdvisor queryAdvisor, String assignmentId, String toWorkingState) throws Exception {
+		HpAssignmentsD hpAssignmentsD = new HpAssignmentsD();
+
+		hpAssignmentsD.addUpdateColumn("working_state", toWorkingState);
+		hpAssignmentsD.addUpdateColumn("last_updated_by", "1");
+		hpAssignmentsD.addUpdateColumn("last_update_date", "sysdate", "Date");
+
+		queryAdvisor.addWhereClause("assignment_id = '"+assignmentId+"'");
+
+		hpAssignmentsDDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
+
+		return hpAssignmentsDDao.updateAssignmentByColumn(queryAdvisor, hpAssignmentsD);
 	}
 }
