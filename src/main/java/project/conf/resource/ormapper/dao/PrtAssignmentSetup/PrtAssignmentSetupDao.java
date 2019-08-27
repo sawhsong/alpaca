@@ -9,4 +9,5 @@ import zebra.data.DataSet;
 
 public interface PrtAssignmentSetupDao extends IDao {
 	public DataSet getByAssignmentId(String assignmentId) throws Exception;
+	public int deleteByAssignmentId(String assignmentId) throws Exception;
 }

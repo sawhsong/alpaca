@@ -42,6 +42,15 @@ public class Sys9802Action extends BaseAction {
 		return "updateWorkingState";
 	}
 
+	public String doUnlockPrt() throws Exception {
+		try {
+			biz.doUnlockPrt(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
 	public String exeExport() throws Exception {
 		biz.exeExport(paramEntity);
 		setRequestAttribute("paramEntity", paramEntity);

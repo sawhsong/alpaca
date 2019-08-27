@@ -97,6 +97,25 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 		return paramEntity;
 	}
 
+	public ParamEntity doUnlockPrt(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		String assignmentId = dsReq.getValue("rdoForAction");
+		int result = 0;
+
+		try {
+			result = prtAssignmentSetupDao.deleteByAssignmentId(assignmentId);
+			if (result <= 0) {
+				throw new FrameworkException("E801", getMessage("E801", paramEntity));
+			}
+
+			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
 	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();

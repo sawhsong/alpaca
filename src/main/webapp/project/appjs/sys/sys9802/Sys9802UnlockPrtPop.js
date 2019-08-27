@@ -7,14 +7,19 @@ $(function() {
 	 * event
 	 */
 	$("#btnUnlock").click(function(event) {
-		if (commonJs.doValidate("fmDefault")) {
-			commonJs.doDelete({
-				url:"sys/9802/",
-				callback:function() {
-					parent.popup.close();
-				}
-			});
+		var val = commonJs.getCheckedValueFromRadio("rdoForAction");
+
+		if (commonJs.isEmpty(val)) {
+			commonJs.warn(com.message.I902);
+			return;
 		}
+
+		commonJs.doDelete({
+			url:"/sys/9802/doUnlockPrt.do",
+			callback:function() {
+				parent.popup.close();
+			}
+		});
 	});
 
 	$("#btnClose").click(function(event) {

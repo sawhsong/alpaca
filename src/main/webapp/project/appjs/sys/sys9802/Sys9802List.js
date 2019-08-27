@@ -33,6 +33,15 @@ $(function() {
 		var code = event.keyCode || event.which, element = event.target;
 	});
 
+	$(document).keypress(function(event) {
+		var code = event.keyCode || event.which, element = event.target;
+		if (code == 13) {
+			if ($(element).is("[name=asgId]")) {
+				doSearch();
+			}
+		}
+	});
+
 	/*!
 	 * context menus
 	 */
