@@ -161,7 +161,7 @@ $(function() {
 			width = 1480, height = 500;
 		} else if (param.mode == "UpdateWorkingState") {
 			url = "/sys/9802/getUpdateWorkingState.do";
-			width = 500, height = 300;
+			width = 700, height = 400;
 		}
 
 		var popParam = {

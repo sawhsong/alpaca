@@ -11,8 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
 import project.common.module.bizservice.assignment.AssignmentBizService;
+import project.conf.resource.ormapper.dao.HpAssignmentsD.HpAssignmentsDDao;
 import project.conf.resource.ormapper.dao.PrtAssignmentSetup.PrtAssignmentSetupDao;
-import project.conf.resource.ormapper.dao.SysBoard.SysBoardDao;
+import project.conf.resource.ormapper.dto.oracle.HpAssignmentsD;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
 import zebra.data.QueryAdvisor;
@@ -24,11 +25,11 @@ import zebra.util.ExportUtil;
 
 public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 	@Autowired
-	private SysBoardDao sysBoardDao;
-	@Autowired
 	private AssignmentBizService assignmentBS;
 	@Autowired
 	private PrtAssignmentSetupDao prtAssignmentSetupDao;
+	@Autowired
+	private HpAssignmentsDDao hpAssignmentsDDao;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -89,7 +90,13 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 	}
 
 	public ParamEntity getUpdateWorkingState(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+
 		try {
+			hpAssignmentsDDao.setDataSourceName(dataSource);
+			paramEntity.setObject("assignment", hpAssignmentsDDao.getByAssignmentId(dsReq.getValue("assignmentId")));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -100,9 +107,12 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 	public ParamEntity doUnlockPrt(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		String assignmentId = dsReq.getValue("rdoForAction");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 		int result = 0;
 
 		try {
+			prtAssignmentSetupDao.setDataSourceName(dataSource);
 			result = prtAssignmentSetupDao.deleteByAssignmentId(assignmentId);
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
@@ -116,34 +126,74 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 		return paramEntity;
 	}
 
-	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
-		ExportHelper exportHelper;
-		String columnHeader[];
-		String pageTitle, fileName;
-		String fileType = requestDataSet.getValue("fileType");
-		String dataRange = requestDataSet.getValue("dataRange");
+	public ParamEntity doUpdateWorkingState(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		String assignmentId = dsReq.getValue("assignmentId");
+		String workingStateTo = dsReq.getValue("workingStateTo");
+		HpAssignmentsD hpAssignmentsD = new HpAssignmentsD();
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		int result = 0;
 
 		try {
-			pageTitle = "Board List";
-			fileName = "BoardList";
-			columnHeader = new String[]{"article_id", "writer_name", "writer_email", "article_subject", "created_date"};
+			hpAssignmentsDDao.setDataSourceName(dataSource);
+			hpAssignmentsD.addUpdateColumn("working_state", workingStateTo);
+
+			result = hpAssignmentsDDao.updateColumn(assignmentId, hpAssignmentsD);
+			if (result <= 0) {
+				throw new FrameworkException("E801", getMessage("E801", paramEntity));
+			}
+
+			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		DataSet dsResult = new DataSet();
+		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		ExportHelper exportHelper;
+		String fileHeader[];
+		String pageTitle, fileName;
+		String fileType = dsReq.getValue("fileType");
+		String dataRange = dsReq.getValue("dataRange");
+
+		try {
+			pageTitle = "Assignment List";
+			fileName = "AssignmentList";
+			fileHeader = new String[]{"Assignment Id", "Assignment Number", "Person Id", "Person Name", "Billing Org Id", "Billing Org Name", "EU Org Id", "EU Org Name",
+					"Is Active", "Assignment Start Date", "Assignment End Date", "Billing Code", "Billing Code Id", "Pay Method Id", "Pay Method", "Is Preferred", "Has Workcover",
+					"Has PRT", "Working State", "Last Invoice Date", "Last Paid Date"};
+
+			qa.setObject("dataSource", dataSource);
+			qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
+			qa.addAutoFillCriteria(dsReq.getValue("asgId"), "assignment_id like '"+dsReq.getValue("asgId")+"%'");
+			qa.addAutoFillCriteria(dsReq.getValue("personId"), "person_id = '"+dsReq.getValue("personId")+"'");
+			qa.addAutoFillCriteria(dsReq.getValue("billingCodeId"), "billing_code_id = '"+dsReq.getValue("billingCodeId")+"'");
+			qa.addAutoFillCriteria(dsReq.getValue("billingOrgId"), "billing_organisation_id = '"+dsReq.getValue("billingOrgId")+"'");
+			qa.addOrderByClause("person_name, assignment_id desc");
+
+			if (CommonUtil.containsIgnoreCase(dataRange, "all")) {
+				qa.setPagination(false);
+			} else {
+				qa.setPagination(true);
+			}
+
+			dsResult = assignmentBS.getAssignmentList(qa);
 
 			exportHelper = ExportUtil.getExportHelper(fileType);
 			exportHelper.setPageTitle(pageTitle);
-			exportHelper.setColumnHeader(columnHeader);
+			exportHelper.setColumnHeader(dsResult.getNames());
+			exportHelper.setFileHeader(fileHeader);
 			exportHelper.setFileName(fileName);
 			exportHelper.setPdfWidth(1000);
-
-			queryAdvisor.setRequestDataSet(requestDataSet);
-			if (CommonUtil.containsIgnoreCase(dataRange, "all"))
-				queryAdvisor.setPagination(false);
-			else {
-				queryAdvisor.setPagination(true);
-			}
-
-			exportHelper.setSourceDataSet(sysBoardDao.getNoticeBoardDataSetByCriteria(queryAdvisor));
+			exportHelper.setSourceDataSet(dsResult);
 
 			paramEntity.setSuccess(true);
 			paramEntity.setFileToExport(exportHelper.createFile());

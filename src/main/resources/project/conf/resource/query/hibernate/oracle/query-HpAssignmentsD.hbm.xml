@@ -8,35 +8,40 @@
 	<sql-query name="query.HpAssignmentsD.getAssignmentList">
 	<![CDATA[
 		with src as (
-		select assignment_id,
-		       assignment_number,
-		       person_id,
-		       (select full_name from hp_person_d where person_id = hp_assignments_d.person_id) as person_name,
-		       billing_organisation_id,
-		       (select organisation_name from hp_organisation_d where organisation_id = hp_assignments_d.billing_organisation_id) as billing_organisation_name,
-		       eu_organisation_id,
-		       (select organisation_name from hp_organisation_d where organisation_id = hp_assignments_d.eu_organisation_id) as eu_organisation_name,
-		       asg_active,
-		       to_char(assignment_start_date, '${dateFormat}') as assignment_start_date,
-		       to_char(assignment_end_date, '${dateFormat}') as assignment_end_date,
-		       billing_code,
-		       billing_code_id,
-		       pay_method_id,
-		       (select name from hp_payment_methods where pay_method_id = hp_assignments_d.pay_method_id) as payment_method,
-		       preferred,
-		       decode(wc_org_code_rate_link_id, null, 'N', 'Y') as has_wc,
-		       (select decode(nvl(count(*), 0), null, 'N', 0, 'N', 'Y') from prt_assignment_setup where assignment_id = hp_assignments_d.assignment_id) as has_prt,
-		       working_state,
-		       (select to_char(max(invoice_date), '${dateFormat}')
+		select asg.assignment_id,
+		       asg.assignment_number,
+		       asg.person_id,
+		       (select full_name from hp_person_d where person_id = asg.person_id) as person_name,
+		       asg.billing_organisation_id,
+		       (select organisation_name from hp_organisation_d where organisation_id = asg.billing_organisation_id) as billing_organisation_name,
+		       asg.eu_organisation_id,
+		       (select organisation_name from hp_organisation_d where organisation_id = asg.eu_organisation_id) as eu_organisation_name,
+		       asg.asg_active,
+		       to_char(asg.assignment_start_date, 'dd-MM-yyyy') as assignment_start_date,
+		       to_char(asg.assignment_end_date, 'dd-MM-yyyy') as assignment_end_date,
+		       asg.billing_code,
+		       asg.billing_code_id,
+		       asg.pay_method_id,
+		       (select name from hp_payment_methods where pay_method_id = asg.pay_method_id) as payment_method,
+		       asg.preferred,
+		       decode(asg.wc_org_code_rate_link_id, null, 'N', 'Y') as has_wc,
+		       (select decode(nvl(count(*), 0), null, 'N', 0, 'N', 'Y') from prt_assignment_setup where assignment_id = asg.assignment_id) as has_prt,
+		       asg.working_state,
+		       inv.invoice_date as last_invoice_date,
+		       pay.date_earned as last_paid_date
+		  from hp_assignments_d asg,
+		       (select source_id as assignment_id,
+		               to_char(max(invoice_date), 'dd-MM-yyyy') as invoice_date
 		          from hp_invoice
 		         where source = 'ASSIGNMENT'
-		           and source_id = hp_assignments_d.assignment_id
-		       ) as last_invoice_date,
-		       (select to_char(max(date_earned), '${dateFormat}')
+		         group by source_id
+		       ) inv,
+		       (select assignment_id, to_char(max(date_earned), 'dd-MM-yyyy') as date_earned
 		          from hp_balance
-		         where assignment_id = hp_assignments_d.assignment_id
-		       ) as last_paid_date
-		  from hp_assignments_d
+		         group by assignment_id
+		       ) pay
+		 where asg.assignment_id = inv.assignment_id(+)
+		   and asg.assignment_id = pay.assignment_id(+)
 		)
 		select *
 		  from src

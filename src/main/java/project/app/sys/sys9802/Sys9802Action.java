@@ -51,6 +51,15 @@ public class Sys9802Action extends BaseAction {
 		return "ajaxResponse";
 	}
 
+	public String doUpdateWorkingState() throws Exception {
+		try {
+			biz.doUpdateWorkingState(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
 	public String exeExport() throws Exception {
 		biz.exeExport(paramEntity);
 		setRequestAttribute("paramEntity", paramEntity);
