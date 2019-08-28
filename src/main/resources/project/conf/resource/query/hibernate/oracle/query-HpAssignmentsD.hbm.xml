@@ -11,6 +11,7 @@
 		select asg.assignment_id,
 		       asg.assignment_number,
 		       asg.person_id,
+		       (select person_number from hp_person_d where person_id = asg.person_id) as person_number,
 		       (select full_name from hp_person_d where person_id = asg.person_id) as person_name,
 		       asg.billing_organisation_id,
 		       (select organisation_name from hp_organisation_d where organisation_id = asg.billing_organisation_id) as billing_organisation_name,

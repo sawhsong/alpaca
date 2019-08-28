@@ -164,9 +164,9 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 		try {
 			pageTitle = "Assignment List";
 			fileName = "AssignmentList";
-			fileHeader = new String[]{"Assignment Id", "Assignment Number", "Person Id", "Person Name", "Billing Org Id", "Billing Org Name", "EU Org Id", "EU Org Name",
-					"Is Active", "Assignment Start Date", "Assignment End Date", "Billing Code", "Billing Code Id", "Pay Method Id", "Pay Method", "Is Preferred", "Has Workcover",
-					"Has PRT", "Working State", "Last Invoice Date", "Last Paid Date"};
+			fileHeader = new String[]{"Assignment Id", "Assignment Number", "Person Id", "Person Number", "Person Name", "Billing Org Id", "Billing Org Name",
+					"EU Org Id", "EU Org Name", "Is Active", "Assignment Start Date", "Assignment End Date", "Billing Code", "Billing Code Id", "Pay Method Id", "Pay Method",
+					"Is Preferred", "Has Workcover", "Has PRT", "Working State", "Last Invoice Date", "Last Paid Date"};
 
 			qa.setObject("dataSource", dataSource);
 			qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
