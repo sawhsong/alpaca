@@ -156,7 +156,7 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 		ExportHelper exportHelper;
-		String fileHeader[];
+		String columnHeader[], fileHeader[];
 		String pageTitle, fileName;
 		String fileType = dsReq.getValue("fileType");
 		String dataRange = dsReq.getValue("dataRange");
@@ -164,9 +164,12 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 		try {
 			pageTitle = "Assignment List";
 			fileName = "AssignmentList";
-			fileHeader = new String[]{"Assignment Id", "Assignment Number", "Person Id", "Person Name", "Billing Org Id", "Billing Org Name", "EU Org Id", "EU Org Name",
-					"Is Active", "Assignment Start Date", "Assignment End Date", "Billing Code", "Billing Code Id", "Pay Method Id", "Pay Method", "Is Preferred", "Has Workcover",
-					"Has PRT", "Working State", "Last Invoice Date", "Last Paid Date"};
+			columnHeader = new String[]{"ASSIGNMENT_ID", "ASSIGNMENT_NUMBER", "PERSON_ID", "PERSON_NUMBER", "PERSON_NAME", "BILLING_ORGANISATION_ID", "BILLING_ORGANISATION_NAME",
+					"EU_ORGANISATION_ID", "EU_ORGANISATION_NAME", "ASG_ACTIVE", "ASSIGNMENT_START_DATE", "ASSIGNMENT_END_DATE", "BILLING_CODE", "BILLING_CODE_ID", "PAY_METHOD_ID", "PAYMENT_METHOD",
+					"PREFERRED", "HAS_WC", "HAS_PRT", "WORKING_STATE", "LAST_INVOICE_DATE", "LAST_PAID_DATE"};
+			fileHeader = new String[]{"Assignment Id", "Assignment Number", "Person Id", "Person Number", "Person Name", "Billing Org Id", "Billing Org Name",
+					"EU Org Id", "EU Org Name", "Is Active", "Assignment Start Date", "Assignment End Date", "Billing Code", "Billing Code Id", "Pay Method Id", "Pay Method",
+					"Is Preferred", "Has Workcover", "Has PRT", "Working State", "Last Invoice Date", "Last Paid Date"};
 
 			qa.setObject("dataSource", dataSource);
 			qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
@@ -186,7 +189,7 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 
 			exportHelper = ExportUtil.getExportHelper(fileType);
 			exportHelper.setPageTitle(pageTitle);
-			exportHelper.setColumnHeader(dsResult.getNames());
+			exportHelper.setColumnHeader(columnHeader);
 			exportHelper.setFileHeader(fileHeader);
 			exportHelper.setFileName(fileName);
 			exportHelper.setPdfWidth(1000);

@@ -41,7 +41,7 @@
 	$.fn.contextMenu.defaults = {
 		// Dustin modified
 		effect:"fade", // Dustin : slide / fade
-		effectDuration:200, // Dustin : 'blind', 'fade', 'slide', 'drop'
+		effectDuration:10, // Dustin : 'blind', 'fade', 'slide', 'drop'
 		classPrefix:"iw", // Dustin : to use various class
 		widthAdjust:0, // Dustin : width adjustment
 		heightAdjust:0, // Dustin : height adjustment

@@ -12,6 +12,7 @@ $(function() {
 			data:{assignmentId:assignmentId},
 			callback:function() {
 				parent.popup.close();
+				parent.doSearch();
 			}
 		});
 	});

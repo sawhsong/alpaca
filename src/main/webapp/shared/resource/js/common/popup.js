@@ -138,7 +138,7 @@
 			params.height = params.height || "350";
 			params.left = params.left || "center";
 			params.top = params.top || "center";
-			params.effect = params.effect || "fade";
+			params.effect = params.effect;// || "fade";
 			params.draggable = (params.draggable == false) ? false : true;
 			params.modal = (params.modal == false) ? false : true;
 			params.blind = (params.blind == false) ? false : true;

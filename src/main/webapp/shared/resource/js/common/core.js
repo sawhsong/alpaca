@@ -875,8 +875,8 @@ var nony = {
 
 		$(jqObjectButton).contextMenu(ctxMenu.commonExport, {
 			classPrefix:com.constants.ctxClassPrefixButton,
-			effectDuration:300,
-			effect:"slide",
+			effectDuration:100,
+			effect:"fade",
 			borderRadius:"bottom 4px",
 			displayAround:"trigger",
 			position:"bottom",

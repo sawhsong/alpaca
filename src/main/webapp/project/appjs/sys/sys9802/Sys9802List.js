@@ -58,8 +58,8 @@ $(function() {
 
 		$("#btnAction").contextMenu(ctxMenu, {
 			classPrefix:com.constants.ctxClassPrefixButton,
-			effectDuration:300,
-			effect:"slide",
+			effectDuration:100,
+			effect:"fade",
 			borderRadius:"bottom 4px",
 			displayAround:"trigger",
 			position:"bottom"
@@ -189,31 +189,10 @@ $(function() {
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q003,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					popup = commonJs.openPopup({
-						popupId:"exportFile",
-						url:"/sys/9802/exeExport.do",
-						paramData:{
-							fileType:menuObject.fileType,
-							dataRange:menuObject.dataRange
-						},
-						header:"exportFile",
-						blind:false,
-						width:200,
-						height:100
-					});
-					setTimeout(function() {popup.close();}, 3000);
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}],
-			blind:true
+		commonJs.doExport({
+			url:"/sys/9802/exeExport.do",
+			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
+			menuObject:menuObject
 		});
 	};
 

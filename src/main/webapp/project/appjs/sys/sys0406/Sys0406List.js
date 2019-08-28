@@ -82,7 +82,7 @@ $(function() {
 			borderRadius:"bottom 4px",
 			displayAround:"trigger",
 			position:"bottom",
-			horAdjust:-157
+			horAdjust:0
 		});
 	};
 
@@ -194,7 +194,7 @@ $(function() {
 		} else if (param.mode == "UpdateAuthGroup") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.auth;
-			width = 330; height = 324;
+			width = 350; height = 400;
 		} else if (param.mode == "UpdateUserType") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.type;

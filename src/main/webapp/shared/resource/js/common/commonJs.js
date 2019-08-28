@@ -195,10 +195,10 @@ var commonJs = {
 				west__initHidden:true,
 				west__size:0,
 				onresize_end:function() {
-//					$(window).trigger("resize");
-//					try {
-//						doSearch();
-//					} catch(e) {}
+					$(window).trigger("resize");
+					try {
+						doSearch();
+					} catch(e) {}
 				}
 			};
 		} else {
@@ -222,10 +222,10 @@ var commonJs = {
 				west__size:250,
 				west__minSize:0,
 				onresize_end:function() {
-//					$(window).trigger("resize");
-//					try {
-//						doSearch();
-//					} catch(e) {}
+					$(window).trigger("resize");
+					try {
+						doSearch();
+					} catch(e) {}
 				}
 			};
 		}

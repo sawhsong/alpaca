@@ -108,7 +108,7 @@ jsconfig.put("customFileObject", "<mc:cp key="customFileObject"/>");
 jsconfig.put("recordDelimiter", "<mc:cp key="recordDelimiter"/>");
 jsconfig.put("dataDelimiter", "<mc:cp key="dataDelimiter"/>");
 jsconfig.put("dataSetHeaderDelimiter", "<mc:cp key="dataSetHeaderDelimiter"/>");
-jsconfig.put("effectDuration", 400);
+jsconfig.put("effectDuration", 100);
 jsconfig.put("pagehandlerActionType", "<mc:cp key="pagehandlerActionType"/>");
 jsconfig.put("webServiceProviderUrl", "<mc:cp key="webService.provider.url"/>");
 jsconfig.put("maxRowsPerPageArray", "<mc:cp key="view.data.maxRowsPerPage"/>");
