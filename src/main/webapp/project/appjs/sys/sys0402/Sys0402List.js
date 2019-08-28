@@ -182,7 +182,7 @@ $(function() {
 			url = "/sys/0402/getUpdateSortOrder.do";
 			header = sys.sys0402.header.popHeaderSort;
 			width = 900;
-			height = 710;
+			height = 730;
 		}
 
 		var popParam = {
@@ -321,7 +321,6 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		$("#searchWord").focus();
 		commonJs.setExportButtonContextMenu($("#btnExport"));
 		doSearch();
 	});

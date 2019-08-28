@@ -26,7 +26,7 @@
     <!--Sys9804 - WebService Consumer-PERCI-->
     <bean class="${name.package.project}.app.sys.sys9804.Sys9804Action" id="sys9804Action" name="sys9804Action"/>
     <bean class="${name.package.project}.app.sys.sys9804.Sys9804BizImpl" id="sys9804Biz" name="sys9804Biz" parent="baseBiz"/>
-    <!--Sys9802 - Unlock PRT-->
+    <!--Sys9802 - Assignment-->
     <bean class="${name.package.project}.app.sys.sys9802.Sys9802Action" id="sys9802Action" name="sys9802Action"/>
     <bean class="${name.package.project}.app.sys.sys9802.Sys9802BizImpl" id="sys9802Biz" name="sys9802Biz" parent="baseBiz"/>
 </beans>

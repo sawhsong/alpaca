@@ -130,8 +130,8 @@ $(function() {
 
 		$("#aThemeSelector").contextMenu(themeMenu, {
 			classPrefix:com.constants.ctxClassPrefixTheme,
-			effectDuration:300,
-			effect:"slide",
+			effectDuration:100,
+			effect:"fade",
 			borderRadius:"bottom 5px",
 			displayAround:"trigger",
 			position:"bottom",
@@ -165,8 +165,8 @@ $(function() {
 
 		$("#divQuickMenu").contextMenu(ctxMenu, {
 			classPrefix:com.constants.ctxClassPrefixHeader,
-			effectDuration:300,
-			effect:"slide",
+			effectDuration:100,
+			effect:"fade",
 			borderRadius:"bottom 3px",
 			displayAround:"trigger",
 			position:"bottom",
@@ -181,8 +181,8 @@ $(function() {
 		ctxMenu.loggedInUser[1].fun = function() {logout();};
 		$("#divLoggedInUser").contextMenu(ctxMenu.loggedInUser, {
 			classPrefix:com.constants.ctxClassPrefixHeader,
-			effectDuration:300,
-			effect:"slide",
+			effectDuration:100,
+			effect:"fade",
 			borderRadius:"bottom 3px",
 			displayAround:"trigger",
 			position:"bottom",

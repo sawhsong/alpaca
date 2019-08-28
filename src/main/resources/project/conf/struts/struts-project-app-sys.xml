@@ -61,7 +61,7 @@
             <result name="update" type="debugDispatcherResult">/project/app/sys/sys0406/Sys0406UpdatePop.jsp</result>
             <result name="actionContextMenu" type="debugDispatcherResult">/project/app/sys/sys0406/Sys0406ActionContextMenuPop.jsp</result>
         </action>
-        <!--Sys9802 - Unlock PRT-->
+        <!--Sys9802 - Assignment-->
         <action class="project.app.sys.sys9802.Sys9802Action" method="{1}" name="9802/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802List.jsp</result>
             <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802DetailPop.jsp</result>

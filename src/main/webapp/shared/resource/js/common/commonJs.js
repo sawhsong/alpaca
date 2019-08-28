@@ -150,8 +150,8 @@ var commonJs = {
 	getPageLayoutOptions : function() {
 		var defaultOuterLayoutOption = {
 			name:"defaultOuterLayoutOption",
-			fxName:"slide",
-			fxSpeed:"slow",
+			fxName:"fade",
+			fxSpeed:"fast",
 			spacing_open:0,
 			spacing_closed:0,
 //			spacing_open:4,
@@ -177,7 +177,7 @@ var commonJs = {
 			defaultInnerLayoutOption = {
 				name:"defaultInnerLayoutOption",
 				fxName:"fade",
-				fxSpeed:"slow",
+				fxSpeed:"fast",
 //				spacing_open:0,
 //				spacing_closed:0,
 				spacing_open:4,
@@ -205,7 +205,7 @@ var commonJs = {
 			defaultInnerLayoutOption = {
 				name:"defaultInnerLayoutOption",
 				fxName:"fade",
-				fxSpeed:"slow",
+				fxSpeed:"fast",
 //				spacing_open:0,
 //				spacing_closed:0,
 				spacing_open:4,

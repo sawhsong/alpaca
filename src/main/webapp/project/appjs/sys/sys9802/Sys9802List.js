@@ -94,23 +94,24 @@ $(function() {
 
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiRadio().setName("rdoForAction").setValue(ds.getValue(i, "ASSIGNMENT_ID"))));
 
-				var uiAnc = new UiAnchor();
-				uiAnc.setText(ds.getValue(i, "ASSIGNMENT_NUMBER")).setScript("getDetail('"+ds.getValue(i, "ASSIGNMENT_ID")+"')");
-				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(uiAnc));
+//				var uiAnc = new UiAnchor();
+//				uiAnc.setText(ds.getValue(i, "ASSIGNMENT_NUMBER")).setScript("getDetail('"+ds.getValue(i, "ASSIGNMENT_ID")+"')");
+//				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(uiAnc));
 
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ASSIGNMENT_NUMBER")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "PERSON_NAME"), 50)));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "HAS_PRT")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "HAS_WC")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "LAST_INVOICE_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "LAST_PAID_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "WORKING_STATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ASSIGNMENT_START_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ASSIGNMENT_END_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "BILLING_ORGANISATION_NAME"), 70)));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "EU_ORGANISATION_NAME"), 50)));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ASG_ACTIVE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "PREFERRED")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "WORKING_STATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "HAS_PRT")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "HAS_WC")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYMENT_METHOD")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "LAST_INVOICE_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "LAST_PAID_DATE")));
 
 				html += gridTr.toHtmlString();
 			}
@@ -148,14 +149,16 @@ $(function() {
 		var url = "", header = com.header.popHeaderDetail, width = 0, height = 0;
 		var val = commonJs.getCheckedValueFromRadio("rdoForAction");
 
-		if (commonJs.isEmpty(val)) {
-			commonJs.warn(com.message.I902);
-			return;
+		if (param.mode != "Detail") {
+			if (commonJs.isEmpty(val)) {
+				commonJs.warn(com.message.I902);
+				return;
+			}
 		}
 
 		if (param.mode == "Detail") {
 			url = "/sys/9802/getDetail.do";
-			width = 1200, height = 900;
+			width = 1900, height = 990;
 		} else if (param.mode == "UnlockPrt") {
 			url = "/sys/9802/getUnlockPrt.do";
 			width = 1480, height = 500;

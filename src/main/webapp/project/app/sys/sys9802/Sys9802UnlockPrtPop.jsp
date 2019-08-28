@@ -9,6 +9,7 @@
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
 	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
+	DataSet assignment = (DataSet)paramEntity.getObject("assignment");
 	DataSet prtSetup = (DataSet)paramEntity.getObject("prtSetup");
 	String mode = requestDataSet.getValue("mode");
 %>
@@ -54,7 +55,29 @@ var mode = "<%=mode%>";
 	</div>
 </div>
 <div id="divSearchCriteriaArea"></div>
-<div id="divInformArea"></div>
+<div id="divInformArea" class="areaContainerPopup">
+	<table class="tblInform">
+		<caption class="captionInform"><mc:msg key="sys9802.caption.asgInfo"/></caption>
+		<colgroup>
+			<col width="18%"/>
+			<col width="20%"/>
+			<col width="25%"/>
+			<col width="*"/>
+		</colgroup>
+		<tr>
+			<th class="thInform Rt"><mc:msg key="sys9802.header.asgId"/></th>
+			<td class="tdInform"><%=CommonUtil.getNumberMask(assignment.getValue("ASSIGNMENT_ID"), "####")%></td>
+			<th class="thInform Rt"><mc:msg key="sys9802.header.asgNumber"/></th>
+			<td class="tdInform"><%=assignment.getValue("ASSIGNMENT_NUMBER")%></td>
+		</tr>
+		<tr>
+			<th class="thInform Rt"><mc:msg key="sys9802.header.lastInvoiceDate"/></th>
+			<td class="tdInform"><%=assignment.getValue("LAST_INVOICE_DATE")%></td>
+			<th class="thInform Rt"><mc:msg key="sys9802.header.lastPaidDate"/></th>
+			<td class="tdInform"><%=assignment.getValue("LAST_PAID_DATE")%></td>
+		</tr>
+	</table>
+</div>
 <%/************************************************************************************************
 * End of fixed panel
 ************************************************************************************************/%>

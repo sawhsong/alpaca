@@ -111,36 +111,36 @@
 				<col width="2%"/>
 				<col width="10%"/>
 				<col width="12%"/>
+				<col width="3%"/>
+				<col width="3%"/>
+				<col width="4%"/>
+				<col width="4%"/>
+				<col width="4%"/>
 				<col width="5%"/>
 				<col width="5%"/>
 				<col width="*"/>
 				<col width="14%"/>
 				<col width="3%"/>
 				<col width="4%"/>
-				<col width="4%"/>
-				<col width="3%"/>
-				<col width="3%"/>
 				<col width="8%"/>
-				<col width="4%"/>
-				<col width="4%"/>
 			</colgroup>
 			<thead>
 				<tr>
 					<th class="thGrid"><ui:icon id="icnRdo" className="fa-dot-circle-o fa-lg" status="display"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.asgNumber"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.personName"/></th>
+					<th class="thGrid"><mc:msg key="sys9802.grid.hasPrt"/></th>
+					<th class="thGrid"><mc:msg key="sys9802.grid.hasWc"/></th>
+					<th class="thGrid"><mc:msg key="sys9802.grid.lastInv"/></th>
+					<th class="thGrid"><mc:msg key="sys9802.grid.lastPay"/></th>
+					<th class="thGrid"><mc:msg key="sys9802.grid.workingState"/></th>
 					<th class="thGrid sortable:date"><mc:msg key="sys9802.grid.asgStartDate"/></th>
 					<th class="thGrid sortable:date"><mc:msg key="sys9802.grid.asgEndDate"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.billingOrg"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.euOrg"/></th>
 					<th class="thGrid"><mc:msg key="sys9802.grid.isActive"/></th>
 					<th class="thGrid"><mc:msg key="sys9802.grid.isPreferred"/></th>
-					<th class="thGrid"><mc:msg key="sys9802.grid.workingState"/></th>
-					<th class="thGrid"><mc:msg key="sys9802.grid.hasPrt"/></th>
-					<th class="thGrid"><mc:msg key="sys9802.grid.hasWc"/></th>
 					<th class="thGrid"><mc:msg key="sys9802.grid.payMethod"/></th>
-					<th class="thGrid"><mc:msg key="sys9802.grid.lastInv"/></th>
-					<th class="thGrid"><mc:msg key="sys9802.grid.lastPay"/></th>
 				</tr>
 			</thead>
 			<tbody id="tblGridBody">

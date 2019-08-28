@@ -71,7 +71,8 @@ $(function() {
 			expandAll:false,
 			active:0,
 			icons:null,
-			multipleExpand:false
+			multipleExpand:false,
+			animate:100
 		});
 
 		setActive();
