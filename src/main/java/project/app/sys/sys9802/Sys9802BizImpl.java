@@ -164,9 +164,12 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 		try {
 			pageTitle = "Assignment List";
 			fileName = "AssignmentList";
+<<<<<<< HEAD
 			columnHeader = new String[]{"ASSIGNMENT_ID", "ASSIGNMENT_NUMBER", "PERSON_ID", "PERSON_NUMBER", "PERSON_NAME", "BILLING_ORGANISATION_ID", "BILLING_ORGANISATION_NAME",
 					"EU_ORGANISATION_ID", "EU_ORGANISATION_NAME", "ASG_ACTIVE", "ASSIGNMENT_START_DATE", "ASSIGNMENT_END_DATE", "BILLING_CODE", "BILLING_CODE_ID", "PAY_METHOD_ID", "PAYMENT_METHOD",
 					"PREFERRED", "HAS_WC", "HAS_PRT", "WORKING_STATE", "LAST_INVOICE_DATE", "LAST_PAID_DATE"};
+=======
+>>>>>>> refs/remotes/origin/master
 			fileHeader = new String[]{"Assignment Id", "Assignment Number", "Person Id", "Person Number", "Person Name", "Billing Org Id", "Billing Org Name",
 					"EU Org Id", "EU Org Name", "Is Active", "Assignment Start Date", "Assignment End Date", "Billing Code", "Billing Code Id", "Pay Method Id", "Pay Method",
 					"Is Preferred", "Has Workcover", "Has PRT", "Working State", "Last Invoice Date", "Last Paid Date"};
