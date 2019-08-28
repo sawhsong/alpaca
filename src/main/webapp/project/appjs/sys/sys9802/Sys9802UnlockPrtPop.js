@@ -18,6 +18,7 @@ $(function() {
 			url:"/sys/9802/doUnlockPrt.do",
 			callback:function() {
 				parent.popup.close();
+				parent.doSearch();
 			}
 		});
 	});
