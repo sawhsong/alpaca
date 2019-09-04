@@ -33,7 +33,7 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanelPopup");
 
 		commonJs.doSearch({
-			url:"/common/lookup/getEsEmployeeLookup",
+			url:"/common/lookup/getEsEmployeeLookup.do",
 			callback:renderDataGridTable
 		});
 	};

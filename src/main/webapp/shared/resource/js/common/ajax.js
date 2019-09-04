@@ -84,7 +84,7 @@
 							buttons:[{
 								caption:com.caption.ok,
 								callback:function() {
-									location.replace("/index/index");
+									location.replace("/index/index.do");
 								}
 							}],
 							width:330,
@@ -196,7 +196,7 @@
 							buttons:[{
 								caption:com.caption.ok,
 								callback:function() {
-									location.replace("/index/index");
+									location.replace("/index/index.do");
 								}
 							}],
 							width:330,
