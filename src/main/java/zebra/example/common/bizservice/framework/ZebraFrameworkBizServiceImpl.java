@@ -362,7 +362,6 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 			qrySelectAll += "\t\t "+autoFillString+"\n";
 			qrySelectAll += "\t\t "+whereString+"\n";
 			qrySelectAll += "\t\t "+orderByString+"\n";
-			qrySelectAll += "\t\t "+"FOR UPDATE";
 
 			qryInsertColumn += "\t\t       )\n";
 			qryInsertValues += "\t\t       )";
@@ -557,7 +556,6 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 			qrySelectAll += "\t\t "+autoFillString+"\n";
 			qrySelectAll += "\t\t "+whereString+"\n";
 			qrySelectAll += "\t\t "+orderByString+"\n";
-			qrySelectAll += "\t\t "+"FOR UPDATE";
 
 			qryInsertColumn += "\t\t       )\n";
 			qryInsertValues += "\t\t       )";
