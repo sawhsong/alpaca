@@ -31,4 +31,47 @@ public class Sys9804Action extends BaseAction {
 		biz.getDetail(paramEntity);
 		return "detail";
 	}
+
+	public String getUpdateStatus() throws Exception {
+		biz.getUpdateStatus(paramEntity);
+		return "updateStatus";
+	}
+
+	public String getUpdateInvoiceSubTotal() throws Exception {
+		biz.getUpdateInvoiceSubTotal(paramEntity);
+		return "updateInvoiceSubTotal";
+	}
+
+	public String doUpdateStatus() throws Exception {
+		try {
+			biz.doUpdateStatus(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String doUpdateInvoiceSubTotal() throws Exception {
+		try {
+			biz.doUpdateInvoiceSubTotal(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String doCalculateAmount() throws Exception {
+		try {
+			biz.doCalculateAmount(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String exeExport() throws Exception {
+		biz.exeExport(paramEntity);
+		setRequestAttribute("paramEntity", paramEntity);
+		return "export";
+	}
 }

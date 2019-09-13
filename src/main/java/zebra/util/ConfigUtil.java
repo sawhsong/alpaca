@@ -56,7 +56,6 @@ public class ConfigUtil {
 			else if (CommonUtil.equalsIgnoreCase(key, "jsAppFwk")) {rtnString = ConfigUtil.getProperty("path.web.fwkAppJs");}
 			else if (CommonUtil.equalsIgnoreCase(key, "jsCommon")) {rtnString = ConfigUtil.getProperty("path.js.common");}
 			else if (CommonUtil.equalsIgnoreCase(key, "jsJq")) {rtnString = ConfigUtil.getProperty("path.js.jquery");}
-			else if (CommonUtil.equalsIgnoreCase(key, "jsNg")) {rtnString = ConfigUtil.getProperty("path.js.angular");}
 			else if (CommonUtil.equalsIgnoreCase(key, "jsJqPlugin")) {rtnString = ConfigUtil.getProperty("path.js.jquery.plugin");}
 			else if (CommonUtil.equalsIgnoreCase(key, "jsMessage")) {rtnString = ConfigUtil.getProperty("path.js.message");}
 

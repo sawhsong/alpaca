@@ -366,13 +366,13 @@ public class CommonUtil extends StringUtils {
 
 	public static Calendar getCalendarFromString(String value) throws Exception {
 		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat format = new SimpleDateFormat(ConfigUtil.getProperty("format.date.java"));
 		cal.setTime(format.parse(value));
 		return cal;
 	}
 
 	public static String getStringFromCalendar(Calendar cal) throws Exception {
-		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat format = new SimpleDateFormat(ConfigUtil.getProperty("format.date.java"));
 		return format.format(cal.getTime());
 	}
 	/**

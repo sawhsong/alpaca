@@ -72,8 +72,8 @@
         <action class="project.app.sys.sys9804.Sys9804Action" method="{1}" name="9804/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804List.jsp</result>
             <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804DetailPop.jsp</result>
-            <result name="insert" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804InsertPop.jsp</result>
-            <result name="update" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804UpdatePop.jsp</result>
+            <result name="updateStatus" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804UpdateStatusPop.jsp</result>
+            <result name="updateInvoiceSubTotal" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804UpdateInvoiceSubTotalPop.jsp</result>
         </action>
     </package>
 </struts>

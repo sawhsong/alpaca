@@ -44,9 +44,17 @@ var sys = {
 	sys9802:{
 		caption:{
 			unlockPrt:"Unlock PRT",
-			updateWorkingState:"Update Working State",
-			status:"Update User Status",
-			active:"Update Active Status"
+			updateWorkingState:"Update Working State"
+		},
+		header:{
+		},
+		message:{
+		}
+	},
+	sys9804:{
+		caption:{
+			updateStatus:"Update Invoice Status",
+			updateInvoiceSubTotal:"Update Invoice Sub Total"
 		},
 		header:{
 		},

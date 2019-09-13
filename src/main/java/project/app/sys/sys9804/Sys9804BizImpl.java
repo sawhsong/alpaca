@@ -5,22 +5,25 @@
  *************************************************************************************************/
 package project.app.sys.sys9804;
 
-import java.util.Iterator;
+import javax.servlet.http.HttpSession;
 
-import javax.ws.rs.core.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import org.apache.cxf.jaxrs.client.WebClient;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
 import project.common.extend.BaseBiz;
+import project.common.module.bizservice.invoice.InvoiceBizService;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
+import zebra.data.QueryAdvisor;
 import zebra.exception.FrameworkException;
+import zebra.export.ExportHelper;
 import zebra.util.CommonUtil;
+import zebra.util.ConfigUtil;
+import zebra.util.ExportUtil;
 
 public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
+	@Autowired
+	private InvoiceBizService invoiceBS;
+
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
 			paramEntity.setSuccess(true);
@@ -31,51 +34,36 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 	}
 
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		String providerUrl = "http://localhost:8989/rest/";
-		String result = "";
-		String orgId = requestDataSet.getValue("orgId");
-		String searchDateFrom = CommonUtil.remove(CommonUtil.nvl(requestDataSet.getValue("fromDate"), CommonUtil.getSysdate("ddMMyyyy")), "-");
-		String searchDateTo = CommonUtil.remove(CommonUtil.nvl(requestDataSet.getValue("toDate"), CommonUtil.getSysdate("ddMMyyyy")), "-");
-		String header[] = new String[] {"billableAmount", "contractorPaidDate", "customerPaidDate", "dueDate", "endDate", "groupInvoiceNumber", "invoiceDate", "invoiceNumber", "invoiceStatus", "startDate"};
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dateFormat = ConfigUtil.getProperty("format.date.java");
 
 		try {
-			WebClient webClient = WebClient.create(providerUrl);
-			Response wsResponse = webClient.path("corporate/"+orgId+"/invoices")
-					.query("dateFrom", searchDateFrom)
-					.query("dateTo", searchDateTo)
-					.accept(new String[] {"application/json"}).get();
-			result = (String)wsResponse.readEntity(String.class);
+			qa.setObject("dataSource", dataSource);
+			qa.addVariable("dateFormat", dateFormat);
+			qa.addAutoFillCriteria(dsReq.getValue("invoiceId"), "inv.invoice_id like '"+dsReq.getValue("invoiceId")+"%'");
+			qa.addAutoFillCriteria(dsReq.getValue("dateFrom"), "trunc(inv.invoice_date) >= to_date('"+dsReq.getValue("dateFrom")+"', '"+dateFormat+"')");
+			qa.addAutoFillCriteria(dsReq.getValue("dateTo"), "trunc(inv.invoice_date) <= to_date('"+dsReq.getValue("dateTo")+"', '"+dateFormat+"')");
+			qa.addAutoFillCriteria(dsReq.getValue("billingOrgId"), "hbc.billing_organization_id = '"+dsReq.getValue("billingOrgId")+"'");
+			qa.addAutoFillCriteria(dsReq.getValue("personId"), "inv.person_id = '"+dsReq.getValue("personId")+"'");
+			qa.addAutoFillCriteria(dsReq.getValue("status"), "inv.status = '"+dsReq.getValue("status")+"'");
+			qa.addAutoFillCriteria(dsReq.getValue("genType"), "inv.inv_cr_status = '"+dsReq.getValue("genType")+"'");
+			qa.addOrderByClause("inv.invoice_id desc");
+			qa.setPagination(true);
 
-			paramEntity.setObjectFromJsonString(result);
+			paramEntity.setAjaxResponseDataSet(invoiceBS.getInvoiceList(qa));
+			paramEntity.setTotalResultRows(qa.getTotalResultRows());
 			paramEntity.setSuccess(true);
-
-			if (!paramEntity.isSuccess()) {
-				throw new FrameworkException(paramEntity.getMessageCode(), paramEntity.getMessage());
-			}
-			paramEntity.setAjaxResponseDataSet(getDataSet(paramEntity, "corporateInvoiceList", header));
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}
-
 		return paramEntity;
 	}
 
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		String invoiceNumber = requestDataSet.getValue("invoiceNumber");
-		String providerUrl = "http://localhost:8989/rest/";
-		String result = "";
-		String orgId = requestDataSet.getValue("orgId");
-		String header[] = new String[] {"iproName", "costCenter", "reference", "billableAmount", "state"};
-
 		try {
-			WebClient webClient = WebClient.create(providerUrl);
-			Response wsResponse = webClient.path("corporate/"+orgId+"/invoices/"+invoiceNumber).accept(new String[] {"application/json"}).get();
-			result = (String)wsResponse.readEntity(String.class);
-
-			paramEntity.setObjectFromJsonString(result);
-			paramEntity.setObject("invoiceDetailList", getDataSet(paramEntity, "invoiceDetailList", header));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -83,21 +71,166 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 		return paramEntity;
 	}
 
-	@SuppressWarnings({ "unchecked" })
-	private DataSet getDataSet(ParamEntity paramEntity, String objName, String[] header) throws Exception {
-		DataSet ds = new DataSet();
-		JSONArray jsonArray = (JSONArray)JSONSerializer.toJSON(paramEntity.getObject(objName));
+	public ParamEntity getUpdateStatus(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
 
-		ds.addName(header);
-		for (Iterator<String> iter = jsonArray.iterator(); iter.hasNext();) {
-			ds.addRow();
-			JSONObject jsonObject = (JSONObject)JSONSerializer.toJSON(iter.next());
-			for (Object keys : jsonObject.keySet()) {
-				String key = (String)keys;
-				Object value = jsonObject.get(key);
-				ds.setValue(ds.getRowCnt()-1, key, value);
-			}
+		try {
+			qa.setObject("dataSource", dataSource);
+
+			paramEntity.setObject("invoice", invoiceBS.getInvoiceByInvoiceId(qa, dsReq.getValue("invoiceId")));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
 		}
-		return ds;
+		return paramEntity;
+	}
+
+	public ParamEntity getUpdateInvoiceSubTotal(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			qa.setObject("dataSource", dataSource);
+
+			paramEntity.setObject("invoice", invoiceBS.getInvoiceByInvoiceId(qa, dsReq.getValue("invoiceId")));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity doUpdateStatus(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		String invoiceId = dsReq.getValue("invoiceId");
+		String statusTo = dsReq.getValue("statusTo");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		int result = 0;
+
+		try {
+			qa.setObject("dataSource", dataSource);
+
+			result = invoiceBS.updateStatus(qa, invoiceId, statusTo);
+			if (result <= 0) {
+				throw new FrameworkException("E801", getMessage("E801", paramEntity));
+			}
+
+			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity doUpdateInvoiceSubTotal(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		String invoiceId = dsReq.getValue("invoiceId");
+		String gstAmountTo = dsReq.getValue("gstAmountTo");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		int result = 0;
+
+		try {
+			qa.setObject("dataSource", dataSource);
+
+			result = invoiceBS.updateInvoiceSubTotal(qa, invoiceId, gstAmountTo);
+			if (result <= 0) {
+				throw new FrameworkException("E801", getMessage("E801", paramEntity));
+			}
+
+			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity doCalculateAmount(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		double gstAmountTo = CommonUtil.toDouble(dsReq.getValue("gstAmountTo"));
+		double invoiceAmount = CommonUtil.toDouble(dsReq.getValue("invoiceAmount"));
+		double total = 0;
+		DataSet result = new DataSet();
+
+		try {
+			total = invoiceAmount - gstAmountTo;
+
+			result.addColumn("total", CommonUtil.toString(total, "#,##0.#####"));
+
+			paramEntity.setAjaxResponseDataSet(result);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		DataSet dsResult = new DataSet();
+		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		ExportHelper exportHelper;
+		String columnHeader[], fileHeader[];
+		String pageTitle, fileName;
+		String fileType = dsReq.getValue("fileType");
+		String dataRange = dsReq.getValue("dataRange");
+		String dateFormat = ConfigUtil.getProperty("format.date.java");
+
+		try {
+			pageTitle = "Invoice List";
+			fileName = "InvoiceList";
+			columnHeader = new String[]{"INVOICE_ID", "INVOICE_NUMBER", "PARENT_INVOICE_ID", "CNT_GROUPING", "INVOICE_DATE", "INVOICE_AMOUNT", "GST_AMOUNT",
+					"INVOICE_TYPE", "STATUS_MEANING", "PAY_TO_ORG_ID", "PAY_TO_ORG_NAME", "PERSON_NUMBER", "PERSON_NAME", "CON_PERIOD_START_DATE", "CON_PERIOD_END_DATE",
+					"GENERATION_TYPE_MEANING", "CREATION_DATE", "CREATED_BY", "LAST_UPDATE_DATE", "LAST_UPDATED_BY", "SOURCE", "SOURCE_ID"};
+			fileHeader = new String[]{"Invoice Id", "Invoice Number", "Group Invoice Id", "Grouping Count", "Invoice Date", "Invoice Amount", "GST Amount",
+					"Invoice Type", "Status", "Pay To Org Id", "Pay To Org Name", "Person Numnber", "Person Name", "Period Start", "Period End",
+					"Generation Type", "Created Date", "Created By", "Updated Date", "Updated By", "Source", "Source Id"};
+
+			qa.setObject("dataSource", dataSource);
+			qa.addVariable("dateFormat", dateFormat);
+			qa.addAutoFillCriteria(dsReq.getValue("invoiceId"), "inv.invoice_id like '"+dsReq.getValue("invoiceId")+"%'");
+			qa.addAutoFillCriteria(dsReq.getValue("dateFrom"), "trunc(inv.invoice_date) >= to_date('"+dsReq.getValue("dateFrom")+"', '"+dateFormat+"')");
+			qa.addAutoFillCriteria(dsReq.getValue("dateTo"), "trunc(inv.invoice_date) <= to_date('"+dsReq.getValue("dateTo")+"', '"+dateFormat+"')");
+			qa.addAutoFillCriteria(dsReq.getValue("billingOrgId"), "hbc.billing_organization_id = '"+dsReq.getValue("billingOrgId")+"'");
+			qa.addAutoFillCriteria(dsReq.getValue("personId"), "inv.person_id = '"+dsReq.getValue("personId")+"'");
+			qa.addAutoFillCriteria(dsReq.getValue("status"), "inv.status = '"+dsReq.getValue("status")+"'");
+			qa.addAutoFillCriteria(dsReq.getValue("genType"), "inv.inv_cr_status = '"+dsReq.getValue("genType")+"'");
+			qa.addOrderByClause("inv.invoice_id desc");
+
+			if (CommonUtil.containsIgnoreCase(dataRange, "all")) {
+				qa.setPagination(false);
+			} else {
+				qa.setPagination(true);
+			}
+
+			dsResult = invoiceBS.getInvoiceList(qa);
+
+			exportHelper = ExportUtil.getExportHelper(fileType);
+			exportHelper.setPageTitle(pageTitle);
+			exportHelper.setColumnHeader(columnHeader);
+			exportHelper.setFileHeader(fileHeader);
+			exportHelper.setFileName(fileName);
+			exportHelper.setPdfWidth(1000);
+			exportHelper.setSourceDataSet(dsResult);
+
+			paramEntity.setSuccess(true);
+			paramEntity.setFileToExport(exportHelper.createFile());
+			paramEntity.setFileNameToExport(exportHelper.getFileName());
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
 	}
 }

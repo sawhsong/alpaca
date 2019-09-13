@@ -195,9 +195,9 @@ var commonJs = {
 				west__initHidden:true,
 				west__size:0,
 				onresize_end:function() {
-					$(window).trigger("resize");
+//					$(window).trigger("resize");
 					try {
-						doSearch();
+//						doSearch();
 					} catch(e) {}
 				}
 			};
@@ -222,9 +222,9 @@ var commonJs = {
 				west__size:250,
 				west__minSize:0,
 				onresize_end:function() {
-					$(window).trigger("resize");
+//					$(window).trigger("resize");
 					try {
-						doSearch();
+//						doSearch();
 					} catch(e) {}
 				}
 			};
