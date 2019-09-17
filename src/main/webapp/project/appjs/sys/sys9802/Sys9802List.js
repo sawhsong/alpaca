@@ -129,8 +129,16 @@ $(function() {
 			script:"doSearch"
 		});
 
-		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.boardAction);
+		$("[name=rdoForAction]").each(function(index) {
+			$(this).bind("click", function() {
+				$("#tblGridBody tr").each(function(rowIdx) {
+					if (index == rowIdx) {
+						$(this).attr("style", "background:#FEFAE5");
+					} else {
+						$(this).removeAttr("style");
+					}
+				});
+			});
 		});
 
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
