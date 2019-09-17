@@ -87,7 +87,7 @@ var invoiceId = "<%=requestDataSet.getValue("invoiceId")%>";
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
-	<table class="tblEdit withPadding">
+	<table class="tblEdit">
 		<caption class="captionDefault"><mc:msg key="sys9804.header.gstAmount"/></caption>
 		<colgroup>
 			<col width="25%"/>

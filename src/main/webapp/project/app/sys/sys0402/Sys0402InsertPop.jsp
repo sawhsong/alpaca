@@ -40,7 +40,7 @@ var dsMenu2 = commonJs.getDataSetFromJavaDataSet("<%=dsMenu2.toStringForJs()%>")
 <%/************************************************************************************************
 * Page & Header
 ************************************************************************************************/%>
-<body>
+<body style="overflow:hidden;">
 <form id="fmDefault" name="fmDefault" method="post" action="">
 <div id="divPopupWindowHolder">
 <div id="divFixedPanelPopup">
@@ -62,12 +62,11 @@ var dsMenu2 = commonJs.getDataSetFromJavaDataSet("<%=dsMenu2.toStringForJs()%>")
 <div id="divInformArea" class="areaContainerPopup">
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<div id="divMenuLevel" style="float:left;padding-right:4px;">
+			<div id="divMenuLevel" style="float:left;width:30%;">
 				<label for="menuLevel" class="lblEn hor"><mc:msg key="sys0402.header.menuLevel"/></label>
-				<ui:ccselect name="menuLevel" codeType="MENU_LEVEL"/>
+				<ui:ccselect name="menuLevel" codeType="MENU_LEVEL" style="border:1px solid red"/>
 			</div>
-			<div class="horGap70"></div>
-			<div id="divLevel1" style="float:left;display:none;">
+			<div id="divLevel1" style="float:left;width:30%;display:none;">
 				<label for="level1" class="lblEn hor"><mc:msg key="sys0402.header.level1"/></label>
 				<ui:select name="level1">
 <%
@@ -81,8 +80,7 @@ var dsMenu2 = commonJs.getDataSetFromJavaDataSet("<%=dsMenu2.toStringForJs()%>")
 %>
 				</ui:select>
 			</div>
-			<div class="horGap30"></div>
-			<div id="divLevel2" style="float:left;display:none;">
+			<div id="divLevel2" style="float:left;width:*;display:none;">
 				<label for="level2" class="lblEn hor"><mc:msg key="sys0402.header.level2"/></label>
 				<select id="level2" name="level2" class="bootstrapSelect"></select>
 			</div>

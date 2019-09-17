@@ -82,7 +82,7 @@ var assignmentId = "<%=requestDataSet.getValue("assignmentId")%>";
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
-	<table class="tblEdit withPadding">
+	<table class="tblEdit">
 		<caption class="captionDefault"><mc:msg key="sys9802.header.workingState"/></caption>
 		<colgroup>
 			<col width="50%"/>
