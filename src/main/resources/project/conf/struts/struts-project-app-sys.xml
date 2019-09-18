@@ -68,12 +68,16 @@
             <result name="unlockPrt" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802UnlockPrtPop.jsp</result>
             <result name="updateWorkingState" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802UpdateWorkingStatePop.jsp</result>
         </action>
-        <!--Sys9804 - WebService Consumer-PERCI-->
+        <!--Sys9804 - Invoice-->
         <action class="project.app.sys.sys9804.Sys9804Action" method="{1}" name="9804/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804List.jsp</result>
             <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804DetailPop.jsp</result>
             <result name="updateStatus" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804UpdateStatusPop.jsp</result>
             <result name="updateInvoiceSubTotal" type="debugDispatcherResult">/project/app/sys/sys9804/Sys9804UpdateInvoiceSubTotalPop.jsp</result>
+        </action>
+        <!--Sys9806 - ETC-->
+        <action class="project.app.sys.sys9806.Sys9806Action" method="{1}" name="9806/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sys9806/Sys9806List.jsp</result>
         </action>
     </package>
 </struts>
