@@ -11,6 +11,12 @@ import zebra.data.QueryAdvisor;
 import zebra.util.CommonUtil;
 
 public class HpOrganisationDHDaoImpl extends BaseHDao implements HpOrganisationDDao {
+	public int updateColumns(String organisationId, HpOrganisationD hpOrganisationD) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		queryAdvisor.addWhereClause("organisation_id = '"+organisationId+"'");
+		return updateColumns(queryAdvisor, hpOrganisationD);
+	}
+
 	public HpOrganisationD getOrganisationByOrganisationId(String organisationId) throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		queryAdvisor.addWhereClause("organisation_id = '"+organisationId+"'");

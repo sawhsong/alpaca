@@ -26,4 +26,40 @@ public class Sys9806Action extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
+
+	public String getOrgInfo() throws Exception {
+		try {
+			biz.getOrgInfo(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getBillingCodeInfo() throws Exception {
+		try {
+			biz.getBillingCodeInfo(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String doSaveOrg() throws Exception {
+		try {
+			biz.doSaveOrg(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String doSaveBillingCodeCreationType() throws Exception {
+		try {
+			biz.doSaveBillingCodeCreationType(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }

@@ -23,6 +23,7 @@
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
+.search {background:#f2f5f9;border-color:#cfdae9}
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
@@ -43,61 +44,16 @@
 * Real Contents - fixed panel(tab, button, search, information)
 ************************************************************************************************/%>
 <div id="divTabArea"></div>
-<div id="divButtonArea" class="areaContainer">
+<div id="divButtonArea">
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
-		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnAction" caption="button.com.action" iconClass="fa-caret-down"/>
-			<ui:button id="btnSearch" caption="button.com.search" iconClass="fa-search"/>
-			<ui:button id="btnClear" caption="button.com.clear" iconClass="fa-refresh"/>
-			<ui:button id="btnExport" caption="button.com.export" iconClass="fa-download"/>
-		</ui:buttonGroup>
+		<ui:buttonGroup id="buttonGroup"></ui:buttonGroup>
 	</div>
 </div>
-<div id="divSearchCriteriaArea" class="areaContainer">
-	<table class="tblSearch">
-		<caption><mc:msg key="page.com.searchCriteria"/></caption>
-		<colgroup>
-			<col width="6%"/>
-			<col width="8%"/>
-			<col width="6%"/>
-			<col width="*"/>
-			<col width="5%"/>
-			<col width="11%"/>
-			<col width="6%"/>
-			<col width="11%"/>
-			<col width="7%"/>
-			<col width="8%"/>
-			<col width="7%"/>
-			<col width="8%"/>
-		</colgroup>
-		<tr>
-			<th class="thSearch rt"><mc:msg key="sys9804.search.invoiceId"/></th>
-			<td class="tdSearch"><ui:text name="invoiceId"/></td>
-			<th class="thSearch rt"><mc:msg key="sys9804.search.invoiceDate"/></th>
-			<td class="tdSearch">
-				<ui:text name="dateFrom" className="Ct hor" style="width:90px" option="date"/><ui:icon id="icnDateFrom" className="fa-calendar hor"/>
-				<div class="horGap20" style="padding:6px 6px 6px 0px;">-</div>
-				<ui:text name="dateTo" className="Ct hor" style="width:90px" option="date"/><ui:icon id="icnDateTo" className="fa-calendar hor"/>
-			</td>
-			<th class="thSearch rt"><mc:msg key="sys9804.search.billingOrg"/></th>
-			<td class="tdSearch">
-				<ui:hidden name="billingOrgId"/>
-				<ui:text name="billingOrgName" className="hor"/>
-			</td>
-			<th class="thSearch rt"><mc:msg key="sys9804.search.personName"/></th>
-			<td class="tdSearch">
-				<ui:hidden name="personId"/>
-				<ui:text name="personName"/>
-			</td>
-			<th class="thSearch rt"><mc:msg key="sys9804.search.status"/></th>
-			<td class="tdSearch"><ui:ccselect name="status" codeType="INVOICE_STATUS" caption="==Select=="/></td>
-			<th class="thSearch rt"><mc:msg key="sys9804.search.genType"/></th>
-			<td class="tdSearch"><ui:ccselect name="genType" codeType="INVOICE_GENERATE_TYPE" caption="==Select=="/></td>
-		</tr>
-	</table>
+<div id="divSearchCriteriaArea">
 </div>
-<div id="divInformArea"></div>
+<div id="divInformArea">
+</div>
 <%/************************************************************************************************
 * End of fixed panel
 ************************************************************************************************/%>
@@ -108,67 +64,111 @@
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainer">
-	<div id="divGridWrapper">
-		<table id="tblGrid" class="tblGrid sort autosort" style="width:3200px">
-			<colgroup>
-				<col width="1%"/>
-				<col width="3%"/>
-				<col width="4%"/>
-				<col width="4%"/>
-				<col width="4%"/>
-				<col width="4%"/>
-				<col width="4%"/>
-				<col width="4%"/>
-				<col width="4%"/>
-				<col width="3%"/>
-				<col width="6%"/>
-				<col width="*"/>
-				<col width="8%"/>
-				<col width="3%"/>
-				<col width="3%"/>
-				<col width="4%"/>
-				<col width="4%"/>
-				<col width="8%"/>
-				<col width="4%"/>
-				<col width="8%"/>
-				<col width="4%"/>
-				<col width="3%"/>
-			</colgroup>
-			<thead>
-				<tr>
-					<th class="thGrid"><ui:icon id="icnRdo" className="fa-dot-circle-o fa-lg" status="display"/></th>
-					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9804.grid.id"/></th>
-					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9804.grid.number"/></th>
-					<th class="thGrid"><mc:msg key="sys9804.grid.groupInvoiceId"/></th>
-					<th class="thGrid"><mc:msg key="sys9804.grid.groupingCnt"/></th>
-					<th class="thGrid sortable:date"><mc:msg key="sys9804.grid.invoiceDate"/></th>
-					<th class="thGrid"><mc:msg key="sys9804.grid.invoiceAmount"/></th>
-					<th class="thGrid"><mc:msg key="sys9804.grid.gstAmount"/></th>
-					<th class="thGrid"><mc:msg key="sys9804.grid.total"/></th>
-					<th class="thGrid"><mc:msg key="sys9804.grid.type"/></th>
-					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9804.grid.status"/></th>
-					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9804.grid.payToOrgName"/></th>
-					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9804.grid.personName"/></th>
-					<th class="thGrid sortable:date"><mc:msg key="sys9804.grid.periodStart"/></th>
-					<th class="thGrid sortable:date"><mc:msg key="sys9804.grid.periodEnd"/></th>
-					<th class="thGrid"><mc:msg key="sys9804.grid.genType"/></th>
-					<th class="thGrid"><mc:msg key="sys9804.grid.createdDate"/></th>
-					<th class="thGrid"><mc:msg key="sys9804.grid.createdBy"/></th>
-					<th class="thGrid"><mc:msg key="sys9804.grid.updatedDate"/></th>
-					<th class="thGrid"><mc:msg key="sys9804.grid.updatedBy"/></th>
-					<th class="thGrid"><mc:msg key="sys9804.grid.source"/></th>
-					<th class="thGrid"><mc:msg key="sys9804.grid.sourceId"/></th>
-				</tr>
-			</thead>
-			<tbody id="tblGridBody">
-				<tr>
-					<td class="tdGrid Ct" colspan="21"><mc:msg key="I002"/></td>
-				</tr>
-			</tbody>
-		</table>
+	<div id="divAccordionContainer" class="accordionContainer">
+		<div class="accordionGroup">
+			<h3><mc:msg key="sys9806.caption.cap1"/></h3>
+			<div class="accordionContents">
+				<div id="divOrg" style="float:left;width:50%">
+					<table class="tblEdit">
+						<caption class="captionEdit"><mc:msg key="sys9806.caption.org"/></caption>
+						<colgroup>
+							<col width="15%"/>
+							<col width="20%"/>
+							<col width="15%"/>
+							<col width="*"/>
+						</colgroup>
+						<tr>
+							<td class="tdEdit" colspan="4">
+								<div class="divButtonArea">
+									<div class="divButtonAreaRight">
+										<ui:buttonGroup>
+											<ui:button id="btnSaveOrg" caption="button.com.save" iconClass="fa-save"/>
+										</ui:buttonGroup>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="thEdit rt search"><mc:msg key="sys9806.search.orgId"/></th>
+							<td class="tdEdit search"><ui:text name="orgId"/></td>
+							<th class="thEdit rt search"><mc:msg key="sys9806.search.orgName"/></th>
+							<td class="tdEdit search"><ui:text name="orgName"/></td>
+						</tr>
+						<tr>
+							<td class="tdEdit ct" colspan="4">
+								<table class="tblEdit">
+									<colgroup>
+										<col width="30%"/>
+										<col width="*"/>
+									</colgroup>
+									<tr>
+										<th class="thEdit rt mandatory"><mc:msg key="sys9806.header.orgName"/></th>
+										<td class="tdEdit"><ui:text name="orgNameTo" options="mandatory"/></td>
+									</tr>
+									<tr>
+										<th class="thEdit rt"><mc:msg key="sys9806.header.abn"/></th>
+										<td class="tdEdit"><ui:text name="abnTo"/></td>
+									</tr>
+									<tr>
+										<th class="thEdit rt"><mc:msg key="sys9806.header.acn"/></th>
+										<td class="tdEdit"><ui:text name="acnTo"/></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="divBillingCode" style="float:right;width:49%">
+					<table class="tblEdit">
+						<caption class="captionEdit"><mc:msg key="sys9806.caption.billingCode"/></caption>
+						<colgroup>
+							<col width="15%"/>
+							<col width="20%"/>
+							<col width="15%"/>
+							<col width="*"/>
+						</colgroup>
+						<tr>
+							<td class="tdEdit" colspan="4">
+								<div class="divButtonArea">
+									<div class="divButtonAreaRight">
+										<ui:buttonGroup>
+											<ui:button id="btnSaveBillingCodeCreationType" caption="button.com.save" iconClass="fa-save"/>
+										</ui:buttonGroup>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="thEdit rt search"><mc:msg key="sys9806.search.billingCodeId"/></th>
+							<td class="tdEdit search"><ui:text name="billingCodeId"/></td>
+							<th class="thEdit rt search"><mc:msg key="sys9806.search.billingCode"/></th>
+							<td class="tdEdit search"><ui:text name="billingCode"/></td>
+						</tr>
+						<tr>
+							<td class="tdEdit ct" colspan="4">
+								<table class="tblEdit">
+									<colgroup>
+										<col width="50%"/>
+										<col width="*"/>
+									</colgroup>
+									<tr>
+										<th class="thEdit ct"><mc:msg key="sys9806.header.typeFrom"/></th>
+										<th class="thEdit ct mandatory"><mc:msg key="sys9806.header.typeTo"/></th>
+									</tr>
+									<tr>
+										<td class="tdEdit ct"><ui:ccselect name="billingCodeCreationTypeFrom" codeType="BILLING_CODE_PERIODS_CREATION_TYPE" caption="==Select==" status="disabled"/></td>
+										<td class="tdEdit ct"><ui:ccselect name="billingCodeCreationTypeTo" codeType="BILLING_CODE_PERIODS_CREATION_TYPE" caption="==Select==" options="mandatory"/></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
-<div id="divPagingArea" class="areaContainer"></div>
+<div id="divPagingArea"></div>
 <%/************************************************************************************************
 * Right & Footer
 ************************************************************************************************/%>

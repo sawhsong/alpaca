@@ -3,278 +3,236 @@
  * - Sys9806List.js
  *************************************************************************************************/
 var popup = null;
-var searchResultDataCount = 0;
 
 $(function() {
 	/*!
 	 * event
 	 */
-	$("#btnSearch").click(function(event) {
-		doSearch();
-	});
-
-	$("#btnClear").click(function(event) {
-		commonJs.clearSearchCriteria();
-	});
-
-	$("#icnDateFrom").click(function(event) {
-		commonJs.openCalendar(event, "dateFrom");
-	});
-
-	$("#icnDateTo").click(function(event) {
-		commonJs.openCalendar(event, "dateTo");
-	});
-
-	$("#personName").blur(function() {
-		if (commonJs.isEmpty($(this).val())) {
-			$("#personId").val("");
+	$("#btnSaveOrg").click(function(event) {
+		if (!commonJs.doValidate($("#orgNameTo"))) {
+			return false;
 		}
-	});
 
-	$("#billingOrgName").blur(function() {
-		if (commonJs.isEmpty($(this).val())) {
-			$("#billingOrgId").val("");
-		}
-	});
-
-	$(document).keydown(function(event) {
-		var code = event.keyCode || event.which, element = event.target;
-	});
-
-	$(document).keypress(function(event) {
-		var code = event.keyCode || event.which, element = event.target;
-		if (code == 13) {
-			if ($(element).is("[name=invoiceId]")) {
-				doSearch();
+		commonJs.doSave({
+			url:"/sys/9806/doSaveOrg.do",
+			data:{},
+			callback:function() {
+				commonJs.showProcMessageOnElement("divOrg");
+				setOrgInfo();
+				setTimeout(function() {
+					commonJs.hideProcMessageOnElement("divOrg");
+				}, 500);
 			}
+		});
+	});
+
+	$("#btnSaveBillingCodeCreationType").click(function(event) {
+		if (!commonJs.doValidate($("#billingCodeCreationTypeTo"))) {
+			return false;
+		}
+
+		commonJs.doSave({
+			url:"/sys/9806/doSaveBillingCodeCreationType.do",
+			data:{},
+			callback:function() {
+				commonJs.showProcMessageOnElement("divBillingCode");
+				setBillingCodeInfo();
+				setTimeout(function() {
+					commonJs.hideProcMessageOnElement("divBillingCode");
+				}, 500);
+			}
+		});
+	});
+
+	$("#orgId").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#orgName").val("");
+			setOrgInfo();
+		}
+	});
+
+	$("#orgName").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#orgId").val("");
+			setOrgInfo();
+		}
+	});
+
+	$("#billingCodeId").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#billingCode").val("");
+			setBillingCodeInfo();
+		}
+	});
+
+	$("#billingCode").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#billingCodeId").val("");
+			setBillingCodeInfo();
 		}
 	});
 
 	/*!
 	 * context menus
 	 */
-	setActionButtonContextMenu = function() {
-		var ctxMenu = [{
-			name:sys.sys9804.caption.updateStatus,
-			img:"fa-list-alt",
-			fun:function() {openPopup({mode:"UpdateStatus"});}
-		}, {
-			name:sys.sys9804.caption.updateInvoiceSubTotal,
-			img:"fa-usd",
-			fun:function() {openPopup({mode:"UpdateInvoiceSubTotal"});}
-		}];
-
-		$("#btnAction").contextMenu(ctxMenu, {
-			classPrefix:com.constants.ctxClassPrefixButton,
-			effectDuration:100,
-			effect:"fade",
-			borderRadius:"bottom 4px",
-			displayAround:"trigger",
-			position:"bottom"
-		});
-	};
 
 	/*!
 	 * process
 	 */
-	doSearch = function() {
-		commonJs.showProcMessageOnElement("divScrollablePanel");
-
-		if (commonJs.doValidate($("#fmDefault"))) {
-			commonJs.doSearch({
-				url:"/sys/9804/getList.do",
-				dataType:"xml",
-				callback:renderDataGridTable
-			});
-		}
-	};
-
-	renderDataGridTable = function(result) {
-		var ds = result.dataSet;
-		var html = "";
-
-		searchResultDataCount = ds.getRowCnt();
-		$("#tblGridBody").html("");
-
-		if (ds.getRowCnt() > 0) {
-			for (var i=0; i<ds.getRowCnt(); i++) {
-				var gridTr = new UiGridTr();
-
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiRadio().setName("rdoForAction").setValue(ds.getValue(i, "INVOICE_ID"))));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "INVOICE_ID")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "INVOICE_NUMBER")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "PARENT_INVOICE_ID")));
-				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(ds.getValue(i, "CNT_GROUPING"), "#,##0")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "INVOICE_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(ds.getValue(i, "INVOICE_AMOUNT"), "#,##0.00")));
-				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(ds.getValue(i, "GST_AMOUNT"), "#,##0.00")));
-				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(commonJs.toNumber(ds.getValue(i, "INVOICE_AMOUNT"))-commonJs.toNumber(ds.getValue(i, "GST_AMOUNT")), "#,##0.00")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "INVOICE_TYPE")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "STATUS_MEANING")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "PAY_TO_ORG_NAME"), 50)));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "PERSON_NAME"), 50)));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "CON_PERIOD_START_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "CON_PERIOD_END_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "GENERATION_TYPE_MEANING")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "CREATION_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "CREATED_BY")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "LAST_UPDATE_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "LAST_UPDATED_BY")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "SOURCE")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "SOURCE_ID")));
-
-				html += gridTr.toHtmlString();
-			}
+	setOrgInfo = function() {
+		var val = $("#orgId").val();
+		if (commonJs.isEmpty(val)) {
+			$("#orgNameTo").val("");
+			$("#abnTo").val("");
+			$("#acnTo").val("");
 		} else {
-			var gridTr = new UiGridTr();
-
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:21").setText(com.message.I001));
-			html += gridTr.toHtmlString();
-		}
-
-		$("#tblGridBody").append($(html));
-
-		$("#tblGrid").fixedHeaderTable({
-			attachTo:$("#divGridWrapper"),
-			pagingArea:$("#divPagingArea"),
-			isPageable:true,
-			isFilter:false,
-			filterColumn:[],
-			totalResultRows:result.totalResultRows,
-			script:"doSearch"
-		});
-
-		$("[name=rdoForAction]").each(function(index) {
-			$(this).bind("click", function() {
-				$("#tblGridBody tr").each(function(rowIdx) {
-					if (index == rowIdx) {
-						$(this).attr("style", "background:#FEFAE5");
-					} else {
-						$(this).removeAttr("style");
-					}
-				});
+			commonJs.doSimpleProcess({
+				url:"/sys/9806/getOrgInfo.do",
+				data:{organisationId:val},
+				noForm:true,
+				callback:function(result) {
+					var ds = result.dataSet;
+					$("#orgNameTo").val(ds.getValue(0, "organisationName"));
+					$("#abnTo").val(ds.getValue(0, "abn"));
+					$("#acnTo").val(ds.getValue(0, "acn"));
+				}
 			});
-		});
-
-		commonJs.hideProcMessageOnElement("divScrollablePanel");
+		}
 	};
 
-	getDetail = function(invoiceId) {
-		openPopup({mode:"Detail", invoiceId:invoiceId});
-	};
-
-	openPopup = function(param) {
-		var url = "", header = com.header.popHeaderEdit, width = 0, height = 0;
-		var val = commonJs.getCheckedValueFromRadio("rdoForAction");
-
-		if (param.mode != "Detail") {
-			if (commonJs.isEmpty(val)) {
-				commonJs.warn(com.message.I902);
-				return;
-			}
+	setBillingCodeInfo = function() {
+		var val = $("#billingCodeId").val();
+		if (commonJs.isEmpty(val)) {
+			$("#billingCodeCreationTypeFrom").val("");
+			commonJs.refreshBootstrapSelectbox("billingCodeCreationTypeFrom");
+			$("#billingCodeCreationTypeTo").val("");
+			commonJs.refreshBootstrapSelectbox("billingCodeCreationTypeTo");
+		} else {
+			commonJs.doSimpleProcess({
+				url:"/sys/9806/getBillingCodeInfo.do",
+				data:{billingCodeId:val},
+				noForm:true,
+				callback:function(result) {
+					var ds = result.dataSet;
+					$("#billingCodeCreationTypeFrom").val(ds.getValue(0, "periodsCreationType"));
+					commonJs.refreshBootstrapSelectbox("billingCodeCreationTypeFrom");
+					$("#billingCodeCreationTypeTo").val(ds.getValue(0, "periodsCreationType"));
+					commonJs.refreshBootstrapSelectbox("billingCodeCreationTypeTo");
+				}
+			});
 		}
-
-		if (param.mode == "Detail") {
-			url = "/sys/9804/getDetail.do";
-			width = 1900, height = 990;
-		} else if (param.mode == "UpdateStatus") {
-			url = "/sys/9804/getUpdateStatus.do";
-			width = 700, height = 500;
-		} else if (param.mode == "UpdateInvoiceSubTotal") {
-			url = "/sys/9804/getUpdateInvoiceSubTotal.do";
-			width = 700, height = 400;
-		}
-
-		var popParam = {
-			popupId:"Sys9804"+param.mode,
-			url:url,
-			paramData:{
-				mode:param.mode,
-				invoiceId:val
-			},
-			header:header,
-			blind:true,
-			width:width,
-			height:height
-		};
-
-		popup = commonJs.openPopup(popParam);
-	};
-
-	exeExport = function(menuObject) {
-		$("[name=fileType]").remove();
-		$("[name=dataRange]").remove();
-
-		if (searchResultDataCount <= 0) {
-			commonJs.warn(com.message.I001);
-			return;
-		}
-
-		commonJs.doExport({
-			url:"/sys/9804/exeExport.do",
-			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
-			menuObject:menuObject
-		});
 	};
 
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		setActionButtonContextMenu();
-		commonJs.setExportButtonContextMenu($("#btnExport"));
-
-		commonJs.setFieldDateMask("dateFrom");
-		commonJs.setFieldDateMask("dateTo");
-
-		commonJs.setAutoComplete($("#personName"), {
-			method:"getPersonName",
-			label:"full_name_with_person_number",
-			value:"person_id",
-			minLength:2,
-			focus: function(event, ui) {
-				$("#personId").val(ui.item.value);
-				$("#personName").val(ui.item.label);
-				return false;
-			},
-			change:function(event, ui) {
-				if (commonJs.isEmpty($("#personName").val())) {
-					$("#personId").val("");
-					$("#personName").val("");
-				}
-			},
-			select:function(event, ui) {
-				$("#personId").val(ui.item.value);
-				$("#personName").val(ui.item.label);
-				doSearch();
-				return false;
-			}
+		commonJs.setAccordion({
+			containerClass:"accordionContainer",
+			expandAll:true,
+			active:0,
+			icons:null,
+			multipleExpand:true,
+			animate:100
 		});
 
-		commonJs.setAutoComplete($("#billingOrgName"), {
-			method:"getBillingOrgByName",
+		commonJs.setAutoComplete($("#orgId"), {
+			method:"getOrgById",
 			label:"org_name_with_org_id",
 			value:"organisation_id",
 			minLength:2,
 			focus: function(event, ui) {
-				$("#billingOrgId").val(ui.item.value);
-				$("#billingOrgName").val(ui.item.label);
+				$("#orgId").val(ui.item.value);
+				$("#orgName").val(ui.item.label);
 				return false;
 			},
 			change:function(event, ui) {
-				if (commonJs.isEmpty($("#billingOrgName").val())) {
-					$("#billingOrgId").val("");
-					$("#billingOrgName").val("");
+				if (commonJs.isEmpty($("#orgName").val())) {
+					$("#orgId").val("");
+					$("#orgName").val("");
 				}
 			},
 			select:function(event, ui) {
-				$("#billingOrgId").val(ui.item.value);
-				$("#billingOrgName").val(ui.item.label);
-				doSearch();
+				$("#orgId").val(ui.item.value);
+				$("#orgName").val(ui.item.label);
+				setOrgInfo();
 				return false;
 			}
 		});
 
-		doSearch();
+		commonJs.setAutoComplete($("#orgName"), {
+			method:"getOrgByName",
+			label:"org_name_with_org_id",
+			value:"organisation_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#orgId").val(ui.item.value);
+				$("#orgName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#orgName").val())) {
+					$("#orgId").val("");
+					$("#orgName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#orgId").val(ui.item.value);
+				$("#orgName").val(ui.item.label);
+				setOrgInfo();
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#billingCodeId"), {
+			method:"getBillingCodeById",
+			label:"display_column",
+			value:"billing_code_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#billingCodeId").val(ui.item.value);
+				$("#billingCode").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#billingCode").val())) {
+					$("#billingCodeId").val("");
+					$("#billingCode").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#billingCodeId").val(ui.item.value);
+				$("#billingCode").val(ui.item.label);
+				setBillingCodeInfo();
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#billingCode"), {
+			method:"getBillingCodeByCode",
+			label:"display_column",
+			value:"billing_code_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#billingCodeId").val(ui.item.value);
+				$("#billingCode").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#billingCode").val())) {
+					$("#billingCodeId").val("");
+					$("#billingCode").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#billingCodeId").val(ui.item.value);
+				$("#billingCode").val(ui.item.label);
+				setBillingCodeInfo();
+				return false;
+			}
+		});
+
+		commonJs.setFieldNumberMask("abnTo", "99-999-999-999");
+		commonJs.setFieldNumberMask("acnTo", "999-999-999");
 	});
 });

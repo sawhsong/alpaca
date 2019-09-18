@@ -10,4 +10,8 @@ import zebra.data.ParamEntity;
 public interface Sys9806Biz {
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getOrgInfo(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getBillingCodeInfo(ParamEntity paramEntity) throws Exception;
+	public ParamEntity doSaveOrg(ParamEntity paramEntity) throws Exception;
+	public ParamEntity doSaveBillingCodeCreationType(ParamEntity paramEntity) throws Exception;
 }

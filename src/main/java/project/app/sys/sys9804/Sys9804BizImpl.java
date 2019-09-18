@@ -25,7 +25,15 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 	private InvoiceBizService invoiceBS;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
+		String dateFormat = ConfigUtil.getProperty("format.date.java");
+		String defaultDateFrom = "", defaultDateTo = "";
+
 		try {
+			defaultDateFrom = CommonUtil.getCalcDate("M", CommonUtil.getSysdate(dateFormat), dateFormat, -3);
+			defaultDateTo = CommonUtil.getSysdate(dateFormat);
+
+			paramEntity.setObject("defaultDateFrom", defaultDateFrom);
+			paramEntity.setObject("defaultDateTo", defaultDateTo);
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);

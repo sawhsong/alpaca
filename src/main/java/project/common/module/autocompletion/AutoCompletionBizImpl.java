@@ -308,6 +308,27 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		return paramEntity;
 	}
 
+	public ParamEntity getBillingCodeById(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpBillingCodeDao.setDataSourceName(dataSource);
+
+			queryAdvisor.addAutoFillCriteria(inputValue, "lower(billing_code_id) like lower('"+inputValue+"%')");
+			queryAdvisor.addOrderByClause("billing_code");
+
+			paramEntity.setAjaxResponseDataSet(hpBillingCodeDao.getBillingCodeByIdForAutoCompletion(queryAdvisor));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
 	public ParamEntity getBillingCodeByCode(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();

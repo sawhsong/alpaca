@@ -8,6 +8,8 @@
 ************************************************************************************************/%>
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
+	String defaultDateFrom = (String)paramEntity.getObject("defaultDateFrom");
+	String defaultDateTo = (String)paramEntity.getObject("defaultDateTo");
 %>
 <%/************************************************************************************************
 * HTML
@@ -76,9 +78,9 @@
 			<td class="tdSearch"><ui:text name="invoiceId"/></td>
 			<th class="thSearch rt"><mc:msg key="sys9804.search.invoiceDate"/></th>
 			<td class="tdSearch">
-				<ui:text name="dateFrom" className="Ct hor" style="width:90px" option="date"/><ui:icon id="icnDateFrom" className="fa-calendar hor"/>
+				<ui:text name="dateFrom" className="Ct hor" value="<%=defaultDateFrom%>" style="width:90px" option="date"/><ui:icon id="icnDateFrom" className="fa-calendar hor"/>
 				<div class="horGap20" style="padding:6px 6px 6px 0px;">-</div>
-				<ui:text name="dateTo" className="Ct hor" style="width:90px" option="date"/><ui:icon id="icnDateTo" className="fa-calendar hor"/>
+				<ui:text name="dateTo" className="Ct hor" value="<%=defaultDateTo%>" style="width:90px" option="date"/><ui:icon id="icnDateTo" className="fa-calendar hor"/>
 			</td>
 			<th class="thSearch rt"><mc:msg key="sys9804.search.billingOrg"/></th>
 			<td class="tdSearch">
@@ -162,7 +164,7 @@
 			</thead>
 			<tbody id="tblGridBody">
 				<tr>
-					<td class="tdGrid Ct" colspan="21"><mc:msg key="I002"/></td>
+					<td class="tdGrid Ct" colspan="22"><mc:msg key="I002"/></td>
 				</tr>
 			</tbody>
 		</table>

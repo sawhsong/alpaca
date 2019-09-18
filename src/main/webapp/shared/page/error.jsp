@@ -16,7 +16,6 @@
 * Stylesheet & Javascript
 ************************************************************************************************/%>
 <script type="text/javascript" src="/shared/resource/js/jquery/jquery-2.1.4.js"></script>
-<script type="text/javascript" src="/shared/resource/js/angularjs/angular.js"></script>
 <style type="text/css">
 body {
 	padding:10px 10px;

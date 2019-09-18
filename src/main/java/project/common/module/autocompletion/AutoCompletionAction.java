@@ -155,8 +155,17 @@ public class AutoCompletionAction extends BaseAction {
 	}
 
 	/*!
-	 * Billing Dode
+	 * Billing Code
 	 */
+	public String getBillingCodeById() throws Exception {
+		try {
+			biz.getBillingCodeById(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
 	public String getBillingCodeByCode() throws Exception {
 		try {
 			biz.getBillingCodeByCode(paramEntity);

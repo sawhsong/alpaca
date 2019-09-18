@@ -10,6 +10,7 @@ import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 
 public interface HpOrganisationDDao extends IDao {
+	public int updateColumns(String organisationId, HpOrganisationD hpOrganisationD) throws Exception;
 	public HpOrganisationD getOrganisationByOrganisationId(String organisationId) throws Exception;
 	public DataSet getOrganisationDataSetForQuickMenu(QueryAdvisor queryAdvisor) throws Exception;
 	public DataSet getOrgInfoDataSetForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception;

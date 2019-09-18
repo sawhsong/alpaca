@@ -18,5 +18,6 @@ public interface AutoCompletionBiz {
 	public ParamEntity getPersonName(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getEsEmployeeByPersonNumber(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getEsEmployeeByName(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getBillingCodeById(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getBillingCodeByCode(ParamEntity paramEntity) throws Exception;
 }
