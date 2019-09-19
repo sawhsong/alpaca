@@ -33,7 +33,46 @@ $(function() {
 		$("#hdnLeftMenuUrl").val(leftMenuUrl);
 
 		commonJs.doSubmit({form:$("form:eq(0)"), action:leftMenuUrl});
-	}
+	};
+
+	doSearchNotice = function() {
+		commonJs.showProcMessageOnElement("divNotice");
+		commonJs.doSearch({
+			url:"/index/getNoticeList.do",
+			dataType:"xml",
+			callback:function(result) {
+				var ds = result.dataSet;
+				var html = "";
+
+				$("#tbodyGridNotice").html("");
+
+				if (ds.getRowCnt() > 0) {
+					for (var i=0; i<ds.getRowCnt(); i++) {
+						var gridTr = new UiGridTr();
+
+						gridTr.setClassName("noBorderAll noStripe");
+
+						gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "ARTICLE_SUBJECT")).setScript("doSave('"+ds.getValue(i, "ARTICLE_ID")+"')")));
+						gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "WRITER_NAME")));
+						gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.nvl(ds.getValue(i, "UPDATE_DATE"), ds.getValue(i, "INSERT_DATE"))));
+
+						html += gridTr.toHtmlString();
+					}
+				} else {
+					var gridTr = new UiGridTr();
+
+					gridTr.setClassName("noBorderAll noStripe");
+
+					gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:3").setText(com.message.I001));
+					html += gridTr.toHtmlString();
+				}
+
+				$("#tbodyGridNotice").append($(html));
+
+				commonJs.hideProcMessageOnElement("divNotice");
+			}
+		});
+	};
 	/*!
 	 * load event (document / window)
 	 */
@@ -44,5 +83,7 @@ $(function() {
 			expandAll:true,
 			icons:null
 		});
+
+		doSearchNotice();
 	});
 });

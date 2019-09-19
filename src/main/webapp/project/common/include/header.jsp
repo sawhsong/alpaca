@@ -8,6 +8,7 @@
 <%
 	SysUser sysUserHeaderPage = (SysUser)session.getAttribute("SysUser");
 	String authGroupIdHeaderPage = sysUserHeaderPage.getAuthGroupId();
+	String defaultStartUrlHeaderPage = sysUserHeaderPage.getDefaultStartUrl();
 
 	String userNameHeaderPage = sysUserHeaderPage.getUserName();
 	String userIdHeaderPage = sysUserHeaderPage.getUserId();
@@ -49,7 +50,7 @@ $(function() {
 		$("#hdnLeftMenuName").val("");
 		$("#hdnLeftMenuUrl").val("");
 
-		commonJs.doSubmit({form:$("form:eq(0)"), action:"/index.do"});
+		commonJs.doSubmit({form:$("form:eq(0)"), action:"<%=defaultStartUrlHeaderPage%>"});
 	});
 
 	$("#aFrameworkMenu").click(function() {

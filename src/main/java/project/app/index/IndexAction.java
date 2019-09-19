@@ -22,4 +22,13 @@ public class IndexAction extends BaseAction {
 		biz.dashboard(paramEntity);
 		return "dashboard";
 	}
+
+	public String getNoticeList() throws Exception {
+		try {
+			biz.getNoticeList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }
