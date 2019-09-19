@@ -8,6 +8,31 @@ $(function() {
 	/*!
 	 * event
 	 */
+	$("#btnClearOrg").click(function(event) {
+		$(document).find("#divOrg").find(":input").each(function() {
+			if ($(this).prop("type") == "checkbox" || $(this).prop("type") == "radio") {
+				$(this).attr("checked", false);
+			} else {
+				$(this).val("");
+			}
+		});
+	});
+
+	$("#btnClearBillingCodeCreationType").click(function(event) {
+		$(document).find("#divBillingCode").find(":input").each(function() {
+			if ($(this).prop("type") == "checkbox" || $(this).prop("type") == "radio") {
+				$(this).attr("checked", false);
+			} else {
+				$(this).val("");
+			}
+		});
+
+		$("#billingCodeCreationTypeFrom").val("");
+		commonJs.refreshBootstrapSelectbox("billingCodeCreationTypeFrom");
+		$("#billingCodeCreationTypeTo").val("");
+		commonJs.refreshBootstrapSelectbox("billingCodeCreationTypeTo");
+	});
+
 	$("#btnSaveOrg").click(function(event) {
 		if (!commonJs.doValidate($("#orgNameTo"))) {
 			return false;

@@ -82,6 +82,7 @@
 								<div class="divButtonArea">
 									<div class="divButtonAreaRight">
 										<ui:buttonGroup>
+											<ui:button id="btnClearOrg" caption="button.com.clear" iconClass="fa-refresh"/>
 											<ui:button id="btnSaveOrg" caption="button.com.save" iconClass="fa-save"/>
 										</ui:buttonGroup>
 									</div>
@@ -132,6 +133,7 @@
 								<div class="divButtonArea">
 									<div class="divButtonAreaRight">
 										<ui:buttonGroup>
+											<ui:button id="btnClearBillingCodeCreationType" caption="button.com.clear" iconClass="fa-refresh"/>
 											<ui:button id="btnSaveBillingCodeCreationType" caption="button.com.save" iconClass="fa-save"/>
 										</ui:buttonGroup>
 									</div>
