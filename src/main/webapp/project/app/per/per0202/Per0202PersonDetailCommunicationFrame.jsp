@@ -8,9 +8,12 @@
 ************************************************************************************************/%>
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
-	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
-	SysBoard sysBoard = (SysBoard)paramEntity.getObject("sysBoard");
-	DataSet fileDataSet = (DataSet)paramEntity.getObject("fileDataSet");
+	HpPersonD hpPersonD = (HpPersonD)session.getAttribute("HpPersonDQuickSearch");
+	String personNumber = "", personName = "";
+	if (hpPersonD != null) {
+		personNumber = hpPersonD.getPersonNumber();
+		personName = hpPersonD.getFullName();
+	}
 %>
 <%/************************************************************************************************
 * HTML
@@ -38,7 +41,6 @@
 <form id="fmDefault" name="fmDefault" method="post" action="">
 <div id="divPopupWindowHolder">
 <div id="divFixedPanelPopup">
-<div id="divLocationPathArea"><%@ include file="/project/common/include/bodyLocationPathArea.jsp"%></div>
 <%/************************************************************************************************
 * Real Contents - fixed panel(tab, button, search, information)
 ************************************************************************************************/%>
@@ -52,7 +54,42 @@
 		</ui:buttonGroup>
 	</div>
 </div>
-<div id="divSearchCriteriaArea"></div>
+<div id="divSearchCriteriaArea" class="areaContainerPopup">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<table class="tblDefault withPadding">
+				<colgroup>
+					<col width="10%"/>
+					<col width="23%"/>
+					<col width="10%"/>
+					<col width="23%"/>
+					<col width="10%"/>
+					<col width="24%"/>
+				</colgroup>
+				<tr>
+					<th class="thDefault rt"><mc:msg key="per0202.search.personNumber"/></th>
+					<td class="tdDefault"><ui:text name="personNumber" value="<%=personNumber%>" style="width:280px"/></td>
+					<th class="thDefault rt"><mc:msg key="per0202.search.name"/></th>
+					<td class="tdDefault"><ui:text name="name" value="<%=personName%>" style="width:280px"/></td>
+					<th class="thDefault rt"><mc:msg key="per0202.search.email"/></th>
+					<td class="tdDefault"><ui:text name="email" style="width:280px"/></td>
+				</tr>
+				<tr>
+					<th class="thDefault rt"><mc:msg key="per0202.search.empOrg"/></th>
+					<td class="tdDefault">
+						<ui:hidden name="empOrgId"/>
+						<ui:text name="empOrgName" className="hor" style="width:280px"/>
+<%-- 						<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/> --%>
+					</td>
+					<th class="thDefault rt"><mc:msg key="per0202.search.personType"/></th>
+					<td class="tdDefault"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/></td>
+					<th class="thDefault rt"><mc:msg key="per0202.search.mobile"/></th>
+					<td class="tdDefault"><ui:text name="mobile" style="width:280px"/></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
 <div id="divInformArea"></div>
 <%/************************************************************************************************
 * End of fixed panel
@@ -64,79 +101,39 @@
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
-	<table class="tblEdit">
+	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="15%"/>
-			<col width="35%"/>
-			<col width="15%"/>
-			<col width="35%"/>
+			<col width="2%"/>
+			<col width="5%"/>
+			<col width="13%"/>
+			<col width="13%"/>
+			<col width="*"/>
+			<col width="21%"/>
+			<col width="16%"/>
+			<col width="8%"/>
+			<col width="4%"/>
 		</colgroup>
-		<tr>
-			<th class="thEdit Rt mandatory"><mc:msg key="per0202.header.writerName"/></th>
-			<td class="tdEdit">
-				<ui:text name="writerName" value="<%=sysBoard.getWriterName()%>" checkName="per0202.header.writerName" options="mandatory"/>
-			</td>
-			<th class="thEdit Rt mandatory"><mc:msg key="per0202.header.writerEmail"/></th>
-			<td class="tdEdit">
-				<ui:text name="writerEmail" value="<%=sysBoard.getWriterEmail()%>" checkName="per0202.header.writerEmail" option="email" options="mandatory"/>
-			</td>
-		</tr>
-		<tr>
-			<th class="thEdit Rt mandatory"><mc:msg key="per0202.header.articleSubject"/></th>
-			<td class="tdEdit" colspan="3">
-				<ui:text name="articleSubject" value="<%=sysBoard.getArticleSubject()%>" checkName="per0202.header.articleSubject" options="mandatory"/>
-			</td>
-		</tr>
-		<tr>
-			<th class="thEdit Rt"><mc:msg key="per0202.header.articleContents"/></th>
-			<td class="tdEdit" colspan="3">
-				<ui:txa name="articleContents" style="height:224px;" value="<%=sysBoard.getArticleContents()%>"/>
-			</td>
-		</tr>
-		<tr>
-			<th class="thEdit Rt">
-				<mc:msg key="per0202.header.attachedFile"/><br/>
-			</th>
-			<td class="tdEdit" colspan="3">
-				<div id="divAttachedFileList" style="width:100%;height:100px;overflow-y:auto;">
-					<table class="tblDefault withPadding">
-<%
-					if (fileDataSet.getRowCnt() > 0) {
-						for (int i=0; i<fileDataSet.getRowCnt(); i++) {
-							double fileSize = CommonUtil.toDouble(fileDataSet.getValue(i, "FILE_SIZE")) / 1024;
-%>
-						<tr>
-							<td class="tdDefault">
-								<label class="lblCheckEn">
-									<input type="checkbox" id="chkForDel_<%=i%>" name="chkForDel" class="chkEn" value="<%=fileDataSet.getValue(i, "FILE_ID")%>" title="Select to Delete"/>
-									<img src="<%=fileDataSet.getValue(i, "FILE_ICON")%>" style="margin-top:-4px;"/>
-									<%=fileDataSet.getValue(i, "ORIGINAL_NAME")%> (<%=CommonUtil.getNumberMask(fileSize)%> KB)
-								</label>
-							</td>
-						</tr>
-<%
-						}
-					}
-%>
-					</table>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<th class="thEdit Rt">
-				<mc:msg key="per0202.header.attachedFile"/><br/>
-				<div id="divButtonAreaRight">
-					<ui:button id="btnAddFile" caption="button.com.add" iconClass="fa-plus"/>
-				</div>
-			</th>
-			<td class="tdEdit" colspan="3">
-				<div id="divAttachedFile" style="width:100%;height:100px;overflow-y:auto;">
-				</div>
-			</td>
-		</tr>
+		<thead>
+			<tr>
+				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.personNumber"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.surname"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.firstName"/></th>
+				<th class="thGrid"><mc:msg key="per0202.grid.personType"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.empOrg"/></th>
+				<th class="thGrid"><mc:msg key="per0202.grid.payslipEmail"/></th>
+				<th class="thGrid"><mc:msg key="per0202.grid.mobile"/></th>
+				<th class="thGrid"><mc:msg key="page.com.action"/></th>
+			</tr>
+		</thead>
+		<tbody id="tblGridBody">
+			<tr>
+				<td class="tdGrid Ct" colspan="9"><mc:msg key="I002"/></td>
+			</tr>
+		</tbody>
 	</table>
 </div>
-<div id="divPagingArea"></div>
+<div id="divPagingArea" class="areaContainerPopup"></div>
 <%/************************************************************************************************
 * Right & Footer
 ************************************************************************************************/%>

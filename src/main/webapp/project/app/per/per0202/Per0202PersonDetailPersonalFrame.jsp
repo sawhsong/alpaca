@@ -23,7 +23,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <link rel="icon" type="image/png" href="<mc:cp key="imgIcon"/>/faviconPerci.png">
-<title><mc:msg key="main.system.title"/></title>
 <%/************************************************************************************************
 * Stylesheet & Javascript
 ************************************************************************************************/%>
@@ -39,30 +38,22 @@
 ************************************************************************************************/%>
 <body>
 <form id="fmDefault" name="fmDefault" method="post" action="">
-<div id="divHeaderHolder" class="ui-layout-north"><%@ include file="/project/common/include/header.jsp"%></div>
-<div id="divBodyHolder" class="ui-layout-center">
-<div id="divBodyLeft" class="ui-layout-west"><%@ include file="/project/common/include/bodyLeft.jsp"%></div>
-<div id="divBodyCenter" class="ui-layout-center">
-<div id="divFixedPanel">
-<div id="divLocationPathArea"><%@ include file="/project/common/include/bodyLocationPathArea.jsp"%></div>
+<div id="divFrameWindowHolder">
+<div id="divFixedPanelFrame">
 <%/************************************************************************************************
 * Real Contents - fixed panel(tab, button, search, information)
 ************************************************************************************************/%>
 <div id="divTabArea"></div>
-<div id="divButtonArea" class="areaContainer">
+<div id="divButtonArea" class="areaContainerFrame">
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnNew" caption="button.com.new" iconClass="fa-plus-square"/>
-			<ui:button id="btnDelete" caption="button.com.delete" iconClass="fa-trash"/>
-			<ui:button id="btnSearch" caption="button.com.search" iconClass="fa-search"/>
-			<ui:button id="btnClear" caption="button.com.clear" iconClass="fa-refresh"/>
-			<ui:button id="btnExport" caption="button.com.export" iconClass="fa-download"/>
+			<ui:button id="btnSave" caption="button.com.save" iconClass="fa-save"/>
+			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
 		</ui:buttonGroup>
 	</div>
 </div>
-<div id="divAdminToolArea"><%@ include file="/project/common/include/bodyAdminToolArea.jsp"%></div>
-<div id="divSearchCriteriaArea" class="areaContainer">
+<div id="divSearchCriteriaArea" class="areaContainerFrame">
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<table class="tblDefault withPadding">
@@ -104,11 +95,11 @@
 ************************************************************************************************/%>
 <div class="breaker"></div>
 </div>
-<div id="divScrollablePanel">
+<div id="divScrollablePanelFrame" style="padding-bottom:0px;">
 <%/************************************************************************************************
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
-<div id="divDataArea" class="areaContainer">
+<div id="divDataArea" class="areaContainerFrame">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
 			<col width="2%"/>
@@ -141,15 +132,12 @@
 		</tbody>
 	</table>
 </div>
-<div id="divPagingArea" class="areaContainer"></div>
+<div id="divPagingArea" class="areaContainerFrame"></div>
 <%/************************************************************************************************
 * Right & Footer
 ************************************************************************************************/%>
 </div>
 </div>
-<div id="divBodyRight" class="ui-layout-east"><%@ include file="/project/common/include/bodyRight.jsp"%></div>
-</div>
-<div id="divFooterHolder" class="ui-layout-south"><%@ include file="/project/common/include/footer.jsp"%></div>
 <%/************************************************************************************************
 * Additional Elements
 ************************************************************************************************/%>

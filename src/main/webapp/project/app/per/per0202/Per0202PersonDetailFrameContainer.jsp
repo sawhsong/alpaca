@@ -8,12 +8,6 @@
 ************************************************************************************************/%>
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
-	HpPersonD hpPersonD = (HpPersonD)session.getAttribute("HpPersonDQuickSearch");
-	String personNumber = "", personName = "";
-	if (hpPersonD != null) {
-		personNumber = hpPersonD.getPersonNumber();
-		personName = hpPersonD.getFullName();
-	}
 %>
 <%/************************************************************************************************
 * HTML
@@ -48,56 +42,24 @@
 <%/************************************************************************************************
 * Real Contents - fixed panel(tab, button, search, information)
 ************************************************************************************************/%>
-<div id="divTabArea"></div>
-<div id="divButtonArea" class="areaContainer">
+<div id="divTabArea" class="areaContainer">
+	<ui:tab id="tabCategory">
+		<ui:tabList caption="Personal" isActive="true" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Contact" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Document" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Additional Service" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Communication" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Next Actions" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="ECMS/EBO" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Portal" iconClass="" iconPosition="left"/>
+	</ui:tab>
+</div>
+<div id="divButtonArea">
 	<div id="divButtonAreaLeft"></div>
-	<div id="divButtonAreaRight">
-		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnNew" caption="button.com.new" iconClass="fa-plus-square"/>
-			<ui:button id="btnDelete" caption="button.com.delete" iconClass="fa-trash"/>
-			<ui:button id="btnSearch" caption="button.com.search" iconClass="fa-search"/>
-			<ui:button id="btnClear" caption="button.com.clear" iconClass="fa-refresh"/>
-			<ui:button id="btnExport" caption="button.com.export" iconClass="fa-download"/>
-		</ui:buttonGroup>
-	</div>
+	<div id="divButtonAreaRight"></div>
 </div>
 <div id="divAdminToolArea"><%@ include file="/project/common/include/bodyAdminToolArea.jsp"%></div>
-<div id="divSearchCriteriaArea" class="areaContainer">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<table class="tblDefault withPadding">
-				<colgroup>
-					<col width="10%"/>
-					<col width="23%"/>
-					<col width="10%"/>
-					<col width="23%"/>
-					<col width="10%"/>
-					<col width="24%"/>
-				</colgroup>
-				<tr>
-					<th class="thDefault rt"><mc:msg key="per0202.search.personNumber"/></th>
-					<td class="tdDefault"><ui:text name="personNumber" value="<%=personNumber%>" style="width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.name"/></th>
-					<td class="tdDefault"><ui:text name="name" value="<%=personName%>" style="width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.email"/></th>
-					<td class="tdDefault"><ui:text name="email" style="width:280px"/></td>
-				</tr>
-				<tr>
-					<th class="thDefault rt"><mc:msg key="per0202.search.empOrg"/></th>
-					<td class="tdDefault">
-						<ui:hidden name="empOrgId"/>
-						<ui:text name="empOrgName" className="hor" style="width:280px"/>
-<%-- 						<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/> --%>
-					</td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.personType"/></th>
-					<td class="tdDefault"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.mobile"/></th>
-					<td class="tdDefault"><ui:text name="mobile" style="width:280px"/></td>
-				</tr>
-			</table>
-		</div>
-	</div>
-</div>
+<div id="divSearchCriteriaArea"></div>
 <div id="divInformArea"></div>
 <%/************************************************************************************************
 * End of fixed panel
@@ -108,40 +70,35 @@
 <%/************************************************************************************************
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
-<div id="divDataArea" class="areaContainer">
-	<table id="tblGrid" class="tblGrid sort autosort">
-		<colgroup>
-			<col width="2%"/>
-			<col width="5%"/>
-			<col width="13%"/>
-			<col width="13%"/>
-			<col width="*"/>
-			<col width="21%"/>
-			<col width="16%"/>
-			<col width="8%"/>
-			<col width="4%"/>
-		</colgroup>
-		<thead>
-			<tr>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.personNumber"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.surname"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.firstName"/></th>
-				<th class="thGrid"><mc:msg key="per0202.grid.personType"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.empOrg"/></th>
-				<th class="thGrid"><mc:msg key="per0202.grid.payslipEmail"/></th>
-				<th class="thGrid"><mc:msg key="per0202.grid.mobile"/></th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
-			</tr>
-		</thead>
-		<tbody id="tblGridBody">
-			<tr>
-				<td class="tdGrid Ct" colspan="9"><mc:msg key="I002"/></td>
-			</tr>
-		</tbody>
-	</table>
+<div id="divDataArea">
+	<div id="divFrameContainer" class="frameContainer">
+		<div id="div0" style="">
+			<iframe id="ifPersonal" class="iframeInFrameContainer"></iframe>
+		</div>
+		<div id="div1" style="display:none">
+			<iframe id="ifContact" class="iframeInFrameContainer"></iframe>
+		</div>
+		<div id="div2" style="display:none">
+			<iframe id="ifDocument" class="iframeInFrameContainer"></iframe>
+		</div>
+		<div id="div3" style="display:none">
+			<iframe id="ifAdditionalService" class="iframeInFrameContainer"></iframe>
+		</div>
+		<div id="div4" style="display:none">
+			<iframe id="ifCommunication" class="iframeInFrameContainer"></iframe>
+		</div>
+		<div id="div5" style="display:none">
+			<iframe id="ifNextActions" class="iframeInFrameContainer"></iframe>
+		</div>
+		<div id="div6" style="display:none">
+			<iframe id="ifECMSEBO" class="iframeInFrameContainer"></iframe>
+		</div>
+		<div id="div7" style="display:none">
+			<iframe id="ifPortal" class="iframeInFrameContainer"></iframe>
+		</div>
+	</div>
 </div>
-<div id="divPagingArea" class="areaContainer"></div>
+<div id="divPagingArea"></div>
 <%/************************************************************************************************
 * Right & Footer
 ************************************************************************************************/%>

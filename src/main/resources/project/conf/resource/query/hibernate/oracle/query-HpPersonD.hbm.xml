@@ -13,7 +13,8 @@
 		       first_name,
 		       person_type,
 		       (select organisation_name from hp_organisation_d where organisation_id = hp_person_d.employment_company_org_id) as employment_org_name,
-		       payslip_email
+		       payslip_email,
+		       (select telephone_mobile from hp_address_contact_d where person_id = hp_person_d.person_id) as mobile
 		  from hp_person_d
 		 where 1 = 1
 		${auto_fill}

@@ -25,12 +25,14 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 		String name = requestDataSet.getValue("name");
 		String email = requestDataSet.getValue("email");
 		String empOrgId = requestDataSet.getValue("empOrgId");
+		String mobile = CommonUtil.removeString(requestDataSet.getValue("mobile"), " ", "-");
 		String personType = CommonUtil.lowerCase(requestDataSet.getValue("personType"));
 
 		queryAdvisor.addAutoFillCriteria(personNumber, "person_number = '"+personNumber+"'");
 		queryAdvisor.addAutoFillCriteria(name, "full_name = '"+name+"'");
 		queryAdvisor.addAutoFillCriteria(email, "payslip_email like '"+email+"%'");
 		queryAdvisor.addAutoFillCriteria(empOrgId, "employment_company_org_id = '"+empOrgId+"'");
+		queryAdvisor.addAutoFillCriteria(mobile, "person_id in (select person_id from hp_address_contact_d where telephone_mobile like '"+mobile+"%')");
 		if (CommonUtil.isNotBlank(personType)) {
 			String delimiter = ConfigUtil.getProperty("delimiter.record");
 			String personTypes[] = CommonUtil.split(CommonUtil.trimToEmpty(personType), delimiter);

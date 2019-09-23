@@ -253,7 +253,7 @@ $(function() {
 				return false;
 			}
 		});
-console.log($("#divScrollablePanelPopup").height());
+
 		doSearch();
 	});
 });
