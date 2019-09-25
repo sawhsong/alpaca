@@ -2,7 +2,6 @@
  * Framework Generated Javascript Source
  * - Per0202List.js
  *************************************************************************************************/
-//jsconfig.put("scrollablePanelHeightAdjust", -26);
 $(function() {
 	/*!
 	 * event
@@ -20,7 +19,7 @@ $(function() {
 	 */
 	setIframeSize = function() {
 		$("iframe").each(function(index) {
-			$(this).css("height", $("#divScrollablePanel").height()-2);
+			$(this).css("height", $("#divScrollablePanel").height());
 		});
 	};
 

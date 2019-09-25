@@ -36,7 +36,7 @@
 <%/************************************************************************************************
 * Page & Header
 ************************************************************************************************/%>
-<body>
+<body class="bodyFrame">
 <form id="fmDefault" name="fmDefault" method="post" action="">
 <div id="divFrameWindowHolder">
 <div id="divFixedPanelFrame">

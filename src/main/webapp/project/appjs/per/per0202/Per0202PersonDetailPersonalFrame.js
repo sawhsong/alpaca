@@ -2,7 +2,7 @@
  * Framework Generated Javascript Source
  * - Per0202List.js
  *************************************************************************************************/
-jsconfig.put("scrollablePanelHeightAdjust", -26);
+jsconfig.put("scrollablePanelHeightAdjust", -28);
 
 $(function() {
 	/*!
