@@ -42,7 +42,8 @@
 		       (select billing_organisation_id from hp_assignments_d where preferred = 'Y' and person_id = per.person_id) as curr_billing_org_id,
 		       (select organisation_name from hp_organisation_d where organisation_id = (select billing_organisation_id from hp_assignments_d where preferred = 'Y' and person_id = per.person_id)) as curr_billing_org_name,
 		       (select count(assignment_id) from hp_assignments_d where asg_active = 'Y' and person_id = per.person_id)||' / '||(select count(assignment_id) from hp_assignments_d where person_id = per.person_id) as asg_count,
-		       nvl(pay.cnt, 0) as payment_count
+		       nvl(pay.cnt, 0) as payment_count,
+		       (select telephone_mobile from hp_address_contact_d where person_id = per.person_id) as mobile
 		  from hp_person_d per,
 		       sys_users usr,
 		       (select person_id,

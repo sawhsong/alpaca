@@ -78,7 +78,9 @@
 				<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/>
 			</td>
 			<th class="thSearch rt"><mc:msg key="qm.search.personType"/></th>
-			<td class="tdSearch" colspan="3"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/></td>
+			<td class="tdSearch"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/></td>
+			<th class="thSearch rt"><mc:msg key="per0202.search.mobile"/></th>
+			<td class="tdSearch"><ui:text name="mobile" style="width:280px"/></td>
 		</tr>
 	</table>
 </div>
@@ -102,6 +104,7 @@
 				<col width="7%"/>
 				<col width="7%"/>
 				<col width="4%"/>
+				<col width="4%"/>
 				<col width="9%"/>
 				<col width="9%"/>
 				<col width="4%"/>
@@ -121,6 +124,7 @@
 					<th class="thGrid sortable:numeric"><mc:msg key="qm.grid.number"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.surname"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.firstName"/></th>
+					<th class="thGrid"><mc:msg key="qm.grid.mobile"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.userName"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.userEmail"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.payslipEmail"/></th>

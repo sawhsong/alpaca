@@ -104,8 +104,8 @@ $(function() {
 		$("#empOrgName").focus();
 
 		commonJs.setAutoComplete($("#empOrgName"), {
-			method:"getOrgName",
-			label:"organisation_name",
+			method:"getOrgByName",
+			label:"org_name_with_org_id",
 			value:"organisation_name",
 			focus: function(event, ui) {
 				$("#empOrgName").val(ui.item.label);

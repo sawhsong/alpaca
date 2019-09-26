@@ -125,6 +125,7 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_NUMBER")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "SURNAME")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "FIRST_NAME")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "MOBILE")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "USER_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "USER_EMAIL")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYSLIP_EMAIL")));
@@ -146,7 +147,7 @@ $(function() {
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:18").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:19").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 

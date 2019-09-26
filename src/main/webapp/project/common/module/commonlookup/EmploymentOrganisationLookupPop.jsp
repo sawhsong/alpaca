@@ -73,8 +73,8 @@ var lookupValue = "<%=lookupValue%>";
 				<input type="text" id="empOrgName" name="empOrgName" class="txtEn" style="width:250px;"/>
 			</td>
 			<td class="tdSearch">
-				<label for="abn" class="lblEn hor"><mc:msg key="empOrgLookup.search.abn"/></label>
-				<input type="text" id="abn" name="abn" class="txtEn" style="width:250px;"/>
+<%-- 				<label for="abn" class="lblEn hor"><mc:msg key="empOrgLookup.search.abn"/></label> --%>
+<!-- 				<input type="text" id="abn" name="abn" class="txtEn" style="width:250px;"/> -->
 			</td>
 		</tr>
 	</table>
