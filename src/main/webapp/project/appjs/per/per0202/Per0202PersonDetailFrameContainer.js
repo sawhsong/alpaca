@@ -11,13 +11,16 @@ $(function() {
 			action = commonJs.replace(commonJs.replace($(this).text(), " ", ""), "/", ""),
 			actionString = "/per/0202/get"+action+".do";
 
-		$("#if"+action).attr("src", actionString);
+		$("#if"+action).attr("src", "");
+		setTimeout(function() {
+			$("#if"+action).attr("src", actionString);
+		}, 200); // important
 	});
 
 	/*!
 	 * process
 	 */
-	setIframeSize = function() {
+	setAllIframeSize = function() {
 		$("iframe").each(function(index) {
 			$(this).css("height", $("#divScrollablePanel").height());
 		});
@@ -27,7 +30,7 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		setIframeSize();
+		setAllIframeSize();
 		$("#tabCategory li:eq(0) a").trigger("click");
 	});
 });

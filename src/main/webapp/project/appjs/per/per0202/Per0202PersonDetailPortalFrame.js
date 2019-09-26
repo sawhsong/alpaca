@@ -2,7 +2,7 @@
  * Framework Generated Javascript Source
  * - Per0202List.js
  *************************************************************************************************/
-jsconfig.put("scrollablePanelHeightAdjust", -26);
+jsconfig.put("scrollablePanelHeightAdjust", -28);
 
 $(function() {
 	/*!
@@ -12,6 +12,10 @@ $(function() {
 	/*!
 	 * process
 	 */
+	setSize = function() {
+		$(document).css("height", $("#divScrollablePanel").height());
+	};
+
 	setGridTable = function(totalResultRows) {
 		$("#tblGrid").fixedHeaderTable({
 			attachTo:$("#divDataArea"),
@@ -23,7 +27,7 @@ $(function() {
 	};
 
 	doSearch = function() {
-		commonJs.showProcMessageOnElement("divScrollablePanel");
+		commonJs.showProcMessageOnElement("divScrollablePanelFrame");
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
@@ -72,7 +76,7 @@ $(function() {
 			$(this).contextMenu(ctxMenu.boardAction);
 		});
 
-		commonJs.hideProcMessageOnElement("divScrollablePanel");
+		commonJs.hideProcMessageOnElement("divScrollablePanelFrame");
 	};
 
 	/*!

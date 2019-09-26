@@ -23,7 +23,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <link rel="icon" type="image/png" href="<mc:cp key="imgIcon"/>/faviconPerci.png">
-<title><mc:msg key="main.system.title"/></title>
 <%/************************************************************************************************
 * Stylesheet & Javascript
 ************************************************************************************************/%>
@@ -37,15 +36,15 @@
 <%/************************************************************************************************
 * Page & Header
 ************************************************************************************************/%>
-<body>
+<body class="bodyFrame">
 <form id="fmDefault" name="fmDefault" method="post" action="">
-<div id="divPopupWindowHolder">
-<div id="divFixedPanelPopup">
+<div id="divFrameWindowHolder">
+<div id="divFixedPanelFrame">
 <%/************************************************************************************************
 * Real Contents - fixed panel(tab, button, search, information)
 ************************************************************************************************/%>
 <div id="divTabArea"></div>
-<div id="divButtonArea" class="areaContainerPopup">
+<div id="divButtonArea" class="areaContainerFrame">
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
@@ -54,7 +53,7 @@
 		</ui:buttonGroup>
 	</div>
 </div>
-<div id="divSearchCriteriaArea" class="areaContainerPopup">
+<div id="divSearchCriteriaArea" class="areaContainerFrame">
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<table class="tblDefault withPadding">
@@ -96,11 +95,11 @@
 ************************************************************************************************/%>
 <div class="breaker"></div>
 </div>
-<div id="divScrollablePanelPopup">
+<div id="divScrollablePanelFrame">
 <%/************************************************************************************************
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
-<div id="divDataArea" class="areaContainerPopup">
+<div id="divDataArea" class="areaContainerFrame">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
 			<col width="2%"/>
@@ -133,7 +132,7 @@
 		</tbody>
 	</table>
 </div>
-<div id="divPagingArea" class="areaContainerPopup"></div>
+<div id="divPagingArea" class="areaContainerFrame"></div>
 <%/************************************************************************************************
 * Right & Footer
 ************************************************************************************************/%>

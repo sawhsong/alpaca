@@ -12,6 +12,10 @@ $(function() {
 	/*!
 	 * process
 	 */
+	setSize = function() {
+		$(document).css("height", $("#divScrollablePanel").height());
+	};
+
 	setGridTable = function(totalResultRows) {
 		$("#tblGrid").fixedHeaderTable({
 			attachTo:$("#divDataArea"),
