@@ -10,7 +10,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
+import project.conf.resource.ormapper.dao.HpComments.HpCommentsDao;
+import project.conf.resource.ormapper.dao.HpContactHistory.HpContactHistoryDao;
+import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
 import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
+import project.conf.resource.ormapper.dto.oracle.HpComments;
+import project.conf.resource.ormapper.dto.oracle.HpOrganisationD;
+import project.conf.resource.ormapper.dto.oracle.HpPersonD;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
 import zebra.data.QueryAdvisor;
@@ -21,6 +27,12 @@ import zebra.util.ConfigUtil;
 public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	@Autowired
 	private HpPersonDDao hpPersonDDao;
+	@Autowired
+	private HpOrganisationDDao hpOrganisationDDao;
+	@Autowired
+	private HpCommentsDao hpCommentsDao;
+	@Autowired
+	private HpContactHistoryDao hpContactHistoryDao;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -32,7 +44,7 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	}
 
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		DataSet dsRequest = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
@@ -40,7 +52,7 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 		try {
 			hpPersonDDao.setDataSourceName(dataSource);
 
-			queryAdvisor.setRequestDataSet(requestDataSet);
+			queryAdvisor.setRequestDataSet(dsRequest);
 			queryAdvisor.setPagination(true);
 
 			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getPersonDataSetByCriteria(queryAdvisor));
@@ -52,7 +64,7 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 		return paramEntity;
 	}
 
-	public ParamEntity getPersonDetail(ParamEntity paramEntity) throws Exception {
+	public ParamEntity getPersonDetailFrameContainer(ParamEntity paramEntity) throws Exception {
 		try {
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
@@ -62,7 +74,97 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	}
 
 	public ParamEntity getPersonal(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		String personId = dsRequest.getValue("personId");
+		HpPersonD hpPersonD;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+
 		try {
+			hpPersonDDao.setDataSourceName(dataSource);
+			hpPersonD = hpPersonDDao.getPersonByPersonId(personId);
+
+			paramEntity.setObject("hpPersonD", hpPersonD);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getPersonDetail(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		String personId = dsRequest.getValue("personId");
+		HpPersonD hpPersonD, referral;
+		HpOrganisationD hpOrganisationD, referralOrg;
+		DataSet personDataSet;
+		String dateFormatFrom = ConfigUtil.getProperty("format.default.dateTime"), dateFormatTo = ConfigUtil.getProperty("format.date.java");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpPersonDDao.setDataSourceName(dataSource);
+			hpOrganisationDDao.setDataSourceName(dataSource);
+
+			hpPersonD = hpPersonDDao.getPersonByPersonId(personId);
+			referral = hpPersonDDao.getPersonByPersonId(CommonUtil.toString(hpPersonD.getReferralId()));
+			hpOrganisationD = hpOrganisationDDao.getOrganisationByOrganisationId(CommonUtil.toString(hpPersonD.getEmploymentCompanyOrgId()));
+			referralOrg = hpOrganisationDDao.getOrganisationByOrganisationId(CommonUtil.toString(hpPersonD.getReferralOrganisationId()));
+
+			personDataSet = hpPersonD.getDataSet();
+			personDataSet.setValue("DATE_OF_BIRTH", CommonUtil.changeDateFormat(personDataSet.getValue("DATE_OF_BIRTH"), dateFormatFrom, dateFormatTo));
+			personDataSet.setValue("FIRST_CONTACT", CommonUtil.changeDateFormat(personDataSet.getValue("FIRST_CONTACT"), dateFormatFrom, dateFormatTo));
+			personDataSet.addColumn("EMPLOYMENT_COMPANY_ORG_NAME", CommonUtil.nvl(hpOrganisationD.getOrganisationName())+" ("+CommonUtil.nvl(CommonUtil.toString(hpOrganisationD.getOrganisationId()))+")");
+			personDataSet.addColumn("REFERRAL_NAME", CommonUtil.isBlank(referral.getFullName()) ? "" : CommonUtil.nvl(referral.getFullName())+" ("+CommonUtil.nvl(referral.getPersonNumber())+")");
+			personDataSet.addColumn("REFERRAL_ORGANISATION_NAME", CommonUtil.isBlank(referralOrg.getOrganisationName()) ? "" : CommonUtil.nvl(referralOrg.getOrganisationName())+" ("+CommonUtil.nvl(CommonUtil.toString(referralOrg.getOrganisationId()))+")");
+
+			paramEntity.setAjaxResponseDataSet(personDataSet);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getPersonalComment(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		String personId = dsRequest.getValue("personId");
+		HpPersonD hpPersonD;
+		HpComments hpComments;
+		DataSet commentDataSet;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpPersonDDao.setDataSourceName(dataSource);
+			hpCommentsDao.setDataSourceName(dataSource);
+
+			hpPersonD = hpPersonDDao.getPersonByPersonId(personId);
+			hpComments = hpCommentsDao.getCommentsByCommentId(CommonUtil.toString(hpPersonD.getPersonalCommentId()));
+
+			commentDataSet = hpComments.getDataSet();
+
+			paramEntity.setAjaxResponseDataSet(commentDataSet);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getCommsHistory(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		String personId = dsRequest.getValue("personId");
+		DataSet commsHistoryDataSet;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpContactHistoryDao.setDataSourceName(dataSource);
+
+			commsHistoryDataSet = hpContactHistoryDao.getContactHistoryForPersonalInfoByPersonId(personId);
+
+			paramEntity.setAjaxResponseDataSet(commsHistoryDataSet);
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);

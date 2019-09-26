@@ -91,6 +91,7 @@ $(function() {
 		commonJs.doSave({
 			url:"/qm/20/exeSave.do",
 			noForm:true,
+			showPostMessage:false,
 			data:{keyValues:keyValues},
 			callback:function(result) {
 				var ds = result.dataSet;
@@ -217,23 +218,23 @@ $(function() {
 
 		commonJs.setAutoComplete($("#name"), {
 			method:"getPersonName",
-			label:"full_name",
+			label:"full_name_with_person_number",
 			value:"full_name",
 			minLength:3,
 			focus: function(event, ui) {
-				$("#name").val(ui.item.label);
+				$("#name").val(ui.item.value);
 				return false;
 			},
 			select:function(event, ui) {
-				$("#name").val(ui.item.label);
+				$("#name").val(ui.item.value);
 				doSearch();
 				return false;
 			}
 		});
 
 		commonJs.setAutoComplete($("#empOrgName"), {
-			method:"getOrgName",
-			label:"organisation_name",
+			method:"getOrgByName",
+			label:"org_name_with_org_id",
 			value:"organisation_id",
 			minLength:2,
 			focus: function(event, ui) {

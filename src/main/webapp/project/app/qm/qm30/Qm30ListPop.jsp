@@ -78,13 +78,13 @@
 			<td class="tdSearch">
 				<ui:hidden name="cscId"/>
 				<ui:text name="cscName" className="hor" style="width:210px"/>
-				<ui:icon id="icnCscSearch" className="fa-search hor"/>
+<%-- 				<ui:icon id="icnCscSearch" className="fa-search hor"/> --%>
 			</td>
 			<th class="thSearch rt"><mc:msg key="qm.search.crm"/></th>
 			<td class="tdSearch">
 				<ui:hidden name="crmId"/>
 				<ui:text name="crmName" className="hor" style="width:210px"/>
-				<ui:icon id="icnCrmSearch" className="fa-search hor"/>
+<%-- 				<ui:icon id="icnCrmSearch" className="fa-search hor"/> --%>
 			</td>
 			<th class="thSearch rt"><mc:msg key="qm.search.orgCountry"/></th>
 			<td class="tdSearch"><ui:text name="orgCountryName" className="hor"/></td>

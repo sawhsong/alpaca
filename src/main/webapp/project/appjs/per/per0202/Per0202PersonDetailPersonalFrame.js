@@ -2,143 +2,138 @@
  * Framework Generated Javascript Source
  * - Per0202List.js
  *************************************************************************************************/
-jsconfig.put("scrollablePanelHeightAdjust", -28);
-
 $(function() {
 	/*!
 	 * event
 	 */
+	$("#icnDateOfBirth").click(function(event) {
+		commonJs.openCalendar(event, "dateOfBirth");
+	});
+
+	$("#icnFirstContact").click(function(event) {
+		commonJs.openCalendar(event, "firstContact");
+	});
 
 	/*!
 	 * process
 	 */
-	setSize = function() {
-		$(document).css("height", $("#divScrollablePanel").height());
+	setFieldPersonTypeValues = function(ds) {
+		var personType = ds.getValue(0, "PERSON_TYPE").toUpperCase().split(",");
+
+		$("#personNumber").val(ds.getValue(0, "PERSON_NUMBER"));
+		$("[name=prefix]").filter("[value="+ds.getValue(0, "PREFIX")+"]").attr("checked", true);
+		$("#surname").val(ds.getValue(0, "SURNAME"));
+		$("#firstName").val(ds.getValue(0, "FIRST_NAME"));
+		$("#middleName").val(ds.getValue(0, "MIDDLE_NAME"));
+		$("#preferredName").val(ds.getValue(0, "PREFERRED_NAME"));
+		$("#dateOfBirth").val(ds.getValue(0, "DATE_OF_BIRTH"));
+		$("#firstContact").val(ds.getValue(0, "FIRST_CONTACT"));
+		$("[name=maritalStatus]").filter("[value="+ds.getValue(0, "MARITAL_STATUS")+"]").attr("checked", true);
+		$("[name=gender]").filter("[value="+ds.getValue(0, "GENDER")+"]").attr("checked", true);
+		$("#employmentCompanyOrgId").val(ds.getValue(0, "EMPLOYMENT_COMPANY_ORG_ID"));
+		$("#employmentCompanyOrgName").val(ds.getValue(0, "EMPLOYMENT_COMPANY_ORG_NAME"));
+		$("#title").val(ds.getValue(0, "TITLE"));
+		$("#referralId").val(ds.getValue(0, "REFERRAL_ID"));
+		$("#referralName").val(ds.getValue(0, "REFERRAL_NAME"));
+		$("#referralOrganisationId").val(ds.getValue(0, "REFERRAL_ORGANISATION_ID"));
+		$("#referralOrganisationName").val(ds.getValue(0, "REFERRAL_ORGANISATION_NAME"));
+		setTimeout(function() {
+			setPersonType(personType);
+		}, 500);
 	};
 
-	setGridTable = function(totalResultRows) {
-		$("#tblGrid").fixedHeaderTable({
-			attachTo:$("#divDataArea"),
-			pagingArea:$("#divPagingArea"),
-			isPageable:true,
-			totalResultRows:totalResultRows,
-			script:"doSearch"
-		});
+	setPersonType = function(personType) {
+		$("#personType").selectpicker("val", personType);
+		$("#personType").selectpicker("refresh");
 	};
 
-	doSearch = function() {
-		commonJs.showProcMessageOnElement("divScrollablePanelFrame");
+	setPersonalCommentFieldValues = function(ds) {
+		$("#personalComment").val(ds.getValue(0, "DESCRIPTION"));
+	};
 
-		if (commonJs.doValidate($("#fmDefault"))) {
-			commonJs.doSearch({
-				url:"/per/0202/getList.do",
-				callback:renderGridData
-			});
+	setCommsHistoryFieldValues = function(ds) {
+		var html = "";
+
+		for (var i=0; i<ds.getRowCnt(); i++) {
+			html += commonJs.htmlToString(ds.getValue(i, "CON_DATE"))+"\n";
+			html += "-------------------------------------------------------------------------------\n";
+			html += commonJs.htmlToString(ds.getValue(i, "COMMENTS"))+"\n";
+			html += "----------------------------------------------------------------------------------------------------------------------------------------\n";
 		}
+
+		$("#commsHistory").val(html);
 	};
 
-	renderGridData = function(result) {
-		var ds = result.dataSet, html = "";
+	getPersonDetail = function() {
+		commonJs.showProcMessageOnElement("divPersonDetails");
 
-		searchResultDataCount = ds.getRowCnt();
-		$("#tblGridBody").html("");
-
-		if (ds.getRowCnt() > 0) {
-			for (var i=0; i<ds.getRowCnt(); i++) {
-				var gridTr = new UiGridTr();
-
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setId("chkForDel").setName("chkForDel").setValue(ds.getValue(i, "PERSON_ID"))));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_NUMBER")).setScript("getPersonDetail('"+ds.getValue(i, "PERSON_ID")+"')")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "SURNAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "FIRST_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "PERSON_TYPE"), 50)));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "EMPLOYMENT_ORG_NAME"), 50)));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYSLIP_EMAIL")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "MOBILE")));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("personId:"+ds.getValue(i, "PERSON_ID")).setScript("doAction(this)");
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
-
-				html += gridTr.toHtmlString();
+		commonJs.doSimpleProcess({
+			url:"/per/0202/getPersonDetail.do",
+			noForm:true,
+			data:{personId:personId},
+			callback:function(result) {
+				var ds = result.dataSet;
+				setFieldPersonTypeValues(ds);
 			}
-		} else {
-			var gridTr = new UiGridTr();
-
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:9").setText(com.message.I001));
-			html += gridTr.toHtmlString();
-		}
-
-		$("#tblGridBody").append($(html));
-		setGridTable(result.totalResultRows);
-
-		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.boardAction);
 		});
 
-		commonJs.hideProcMessageOnElement("divScrollablePanelFrame");
+		setTimeout(function() {
+			commonJs.hideProcMessageOnElement("divPersonDetails");
+		}, 300);
+	};
+
+	getPersonalComment = function() {
+		commonJs.showProcMessageOnElement("divPersonalComment");
+
+		commonJs.doSimpleProcess({
+			url:"/per/0202/getPersonalComment.do",
+			noForm:true,
+			data:{personId:personId},
+			callback:function(result) {
+				var ds = result.dataSet;
+				setPersonalCommentFieldValues(ds);
+			}
+		});
+
+		setTimeout(function() {
+			commonJs.hideProcMessageOnElement("divPersonalComment");
+		}, 300);
+	};
+
+	getCommsHistory = function() {
+		commonJs.showProcMessageOnElement("divCommsHistory");
+
+		commonJs.doSimpleProcess({
+			url:"/per/0202/getCommsHistory.do",
+			noForm:true,
+			dataType:"html",
+			data:{personId:personId},
+			callback:function(result) {
+				var ds = result.dataSet;
+				setCommsHistoryFieldValues(ds);
+			}
+		});
+
+		setTimeout(function() {
+			commonJs.hideProcMessageOnElement("divCommsHistory");
+		}, 300);
 	};
 
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		commonJs.setAutoComplete($("#personNumber"), {
-			method:"getPersonNumber",
-			label:"full_name_with_person_number",
-			value:"person_number",
-			minLength:3,
-			focus: function(event, ui) {
-				$("#personNumber").val(ui.item.value);
-				return false;
-			},
-			select:function(event, ui) {
-				$("#personNumber").val(ui.item.value);
-				doSearch();
-				return false;
-			}
+		commonJs.setAccordion({
+			containerClass:"accordion",
+			multipleExpand:true,
+			expandAll:true,
+			icons:null
 		});
 
-		commonJs.setAutoComplete($("#name"), {
-			method:"getPersonName",
-			label:"full_name",
-			value:"full_name",
-			minLength:3,
-			focus: function(event, ui) {
-				$("#name").val(ui.item.label);
-				return false;
-			},
-			select:function(event, ui) {
-				$("#name").val(ui.item.label);
-				doSearch();
-				return false;
-			}
-		});
-
-		commonJs.setAutoComplete($("#empOrgName"), {
-			method:"getOrgByName",
-			label:"org_name_with_org_id",
-			value:"organisation_id",
-			minLength:2,
-			focus: function(event, ui) {
-				$("#empOrgId").val(ui.item.value);
-				$("#orgName").val(ui.item.label);
-				return false;
-			},
-			change:function(event, ui) {
-				if (commonJs.isEmpty($("#empOrgName").val())) {
-					$("#empOrgId").val("");
-					$("#empOrgName").val("");
-				}
-			},
-			select:function(event, ui) {
-				$("#empOrgId").val(ui.item.value);
-				$("#empOrgName").val(ui.item.label);
-				doSearch();
-				return false;
-			}
-		});
-
-		doSearch();
+		setTimeout(function() {
+			getPersonDetail();
+			getPersonalComment();
+			getCommsHistory();
+		}, 400);
 	});
 });

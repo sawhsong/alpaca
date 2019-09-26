@@ -9,7 +9,7 @@ $(function() {
 	$("#tabCategory li a").click(function() {
 		var index = $(this).parent().index(),
 			action = commonJs.replace(commonJs.replace($(this).text(), " ", ""), "/", ""),
-			actionString = "/per/0202/get"+action+".do";
+			actionString = "/per/0202/get"+action+".do"+"?personId="+personId;
 
 		$("#if"+action).attr("src", "");
 		setTimeout(function() {

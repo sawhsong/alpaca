@@ -8,6 +8,8 @@
 ************************************************************************************************/%>
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
+	DataSet dsRequest = (DataSet)paramEntity.getRequestDataSet();
+	String personId = dsRequest.getValue("personId");
 %>
 <%/************************************************************************************************
 * HTML
@@ -26,6 +28,7 @@
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
+var personId = "<%=personId%>";
 </script>
 </head>
 <%/************************************************************************************************

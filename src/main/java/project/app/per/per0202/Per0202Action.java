@@ -27,14 +27,41 @@ public class Per0202Action extends BaseAction {
 		return "ajaxResponse";
 	}
 
-	public String getPersonDetail() throws Exception {
-		biz.getPersonDetail(paramEntity);
-		return "personDetail";
+	public String getPersonDetailFrameContainer() throws Exception {
+		biz.getPersonDetailFrameContainer(paramEntity);
+		return "personDetailFrameContainer";
 	}
 
 	public String getPersonal() throws Exception {
 		biz.getPersonal(paramEntity);
 		return "personal";
+	}
+
+	public String getPersonDetail() throws Exception {
+		try {
+			biz.getPersonDetail(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getPersonalComment() throws Exception {
+		try {
+			biz.getPersonalComment(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getCommsHistory() throws Exception {
+		try {
+			biz.getCommsHistory(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
 	}
 
 	public String getContact() throws Exception {

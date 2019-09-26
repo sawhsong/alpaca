@@ -162,7 +162,8 @@ public class CommonUtil extends StringUtils {
 	}
 
 	public static String toString(double val) {
-		return Double.valueOf(val).toString();
+		DecimalFormat form = new DecimalFormat("####");
+		return form.format(Double.valueOf(val)).toString();
 	}
 
 	public static String toString(double val, String format) {
@@ -208,6 +209,11 @@ public class CommonUtil extends StringUtils {
 	public static String toString(Date date, String formatTo) throws Exception {
 		if (date == null) {return "";}
 		return new SimpleDateFormat(formatTo).format(date);
+	}
+
+	public static String changeDateFormat(String src, String fromFormat, String toFormat) throws Exception {
+		Date date = toDate(src, fromFormat);
+		return toString(date, toFormat);
 	}
 
 	public static String toViewDateString(Date date) throws Exception {

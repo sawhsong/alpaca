@@ -136,7 +136,7 @@ $(function() {
 
 	getPersonDetail = function(personId) {
 		commonJs.doSubmit({
-			action:"/per/0202/getPersonDetail.do",
+			action:"/per/0202/getPersonDetailFrameContainer.do",
 			data:{personId:personId}
 		});
 	};
@@ -146,7 +146,7 @@ $(function() {
 		var height = 510;
 
 		if (param.mode == "Detail") {
-			url = "/per/0202/getPersonDetail.do";
+			url = "/per/0202/getPersonDetailFrameContainer.do";
 			header = com.header.popHeaderDetail;
 		} else if (param.mode == "New" || param.mode == "Reply") {
 			url = "/per/0202/getInsert.do";
@@ -250,15 +250,15 @@ $(function() {
 
 		commonJs.setAutoComplete($("#name"), {
 			method:"getPersonName",
-			label:"full_name",
+			label:"full_name_with_person_number",
 			value:"full_name",
 			minLength:3,
 			focus: function(event, ui) {
-				$("#name").val(ui.item.label);
+				$("#name").val(ui.item.value);
 				return false;
 			},
 			select:function(event, ui) {
-				$("#name").val(ui.item.label);
+				$("#name").val(ui.item.value);
 				doSearch();
 				return false;
 			}

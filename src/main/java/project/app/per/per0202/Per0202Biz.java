@@ -10,8 +10,11 @@ import zebra.data.ParamEntity;
 public interface Per0202Biz {
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception;
-	public ParamEntity getPersonDetail(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getPersonDetailFrameContainer(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getPersonal(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getPersonDetail(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getPersonalComment(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getCommsHistory(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getContact(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getDocument(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getAdditionalService(ParamEntity paramEntity) throws Exception;

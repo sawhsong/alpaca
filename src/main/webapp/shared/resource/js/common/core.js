@@ -681,7 +681,7 @@ var nony = {
 		if ($.nony.isEmpty(val)) {
 			val = "";
 		} else {
-//			val = $.nony.replace(val, "&amp;", "&");
+			val = $.nony.replace(val, "&amp;", "&");
 //			val = $.nony.replace(val, "&#35;", "#");
 //			val = $.nony.replace(val, "&lt;", "<");
 //			val = $.nony.replace(val, "&gt;", ">");
@@ -690,6 +690,7 @@ var nony = {
 			val = $.nony.replace(val, "&#39;", "'");
 //			val = $.nony.replace(val, "&nbsp;", " ");
 			val = $.nony.replace(val, "<br/>", "\n");
+			val = $.nony.replace(val, "<br>", "\n");
 		}
 		return val;
 	},

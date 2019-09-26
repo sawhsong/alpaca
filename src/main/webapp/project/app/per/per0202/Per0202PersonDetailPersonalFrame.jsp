@@ -8,12 +8,9 @@
 ************************************************************************************************/%>
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
-	HpPersonD hpPersonD = (HpPersonD)session.getAttribute("HpPersonDQuickSearch");
-	String personNumber = "", personName = "";
-	if (hpPersonD != null) {
-		personNumber = hpPersonD.getPersonNumber();
-		personName = hpPersonD.getFullName();
-	}
+	DataSet dsRequest = (DataSet)paramEntity.getRequestDataSet();
+	HpPersonD hpPersonD = (HpPersonD)paramEntity.getObject("hpPersonD");
+	String personId = dsRequest.getValue("personId");
 %>
 <%/************************************************************************************************
 * HTML
@@ -28,9 +25,11 @@
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
+.alert {padding:8px;margin-bottom:0px;font-weight:bold;}
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
+var personId = "<%=personId%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -48,48 +47,16 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
+			<ui:button id="btnNew" caption="button.com.new" iconClass="fa-plus-square"/>
 			<ui:button id="btnSave" caption="button.com.save" iconClass="fa-save"/>
-			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
 		</ui:buttonGroup>
 	</div>
 </div>
-<div id="divSearchCriteriaArea" class="areaContainerFrame">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<table class="tblDefault withPadding">
-				<colgroup>
-					<col width="10%"/>
-					<col width="23%"/>
-					<col width="10%"/>
-					<col width="23%"/>
-					<col width="10%"/>
-					<col width="24%"/>
-				</colgroup>
-				<tr>
-					<th class="thDefault rt"><mc:msg key="per0202.search.personNumber"/></th>
-					<td class="tdDefault"><ui:text name="personNumber" value="<%=personNumber%>" style="width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.name"/></th>
-					<td class="tdDefault"><ui:text name="name" value="<%=personName%>" style="width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.email"/></th>
-					<td class="tdDefault"><ui:text name="email" style="width:280px"/></td>
-				</tr>
-				<tr>
-					<th class="thDefault rt"><mc:msg key="per0202.search.empOrg"/></th>
-					<td class="tdDefault">
-						<ui:hidden name="empOrgId"/>
-						<ui:text name="empOrgName" className="hor" style="width:280px"/>
-<%-- 						<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/> --%>
-					</td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.personType"/></th>
-					<td class="tdDefault"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.mobile"/></th>
-					<td class="tdDefault"><ui:text name="mobile" style="width:280px"/></td>
-				</tr>
-			</table>
-		</div>
-	</div>
+<div id="divSearchCriteriaArea">
 </div>
-<div id="divInformArea"></div>
+<div id="divInformArea" class="areaContainerFrame">
+	<div id="divPersonHeader" class="alert alert-info"><%=hpPersonD.getFullName()%> (<%=hpPersonD.getPersonNumber()%>)</div>
+</div>
 <%/************************************************************************************************
 * End of fixed panel
 ************************************************************************************************/%>
@@ -100,39 +67,103 @@
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerFrame">
-	<table id="tblGrid" class="tblGrid sort autosort">
-		<colgroup>
-			<col width="2%"/>
-			<col width="5%"/>
-			<col width="13%"/>
-			<col width="13%"/>
-			<col width="*"/>
-			<col width="21%"/>
-			<col width="16%"/>
-			<col width="8%"/>
-			<col width="4%"/>
-		</colgroup>
-		<thead>
-			<tr>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.personNumber"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.surname"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.firstName"/></th>
-				<th class="thGrid"><mc:msg key="per0202.grid.personType"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.empOrg"/></th>
-				<th class="thGrid"><mc:msg key="per0202.grid.payslipEmail"/></th>
-				<th class="thGrid"><mc:msg key="per0202.grid.mobile"/></th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
-			</tr>
-		</thead>
-		<tbody id="tblGridBody">
-			<tr>
-				<td class="tdGrid Ct" colspan="9"><mc:msg key="I002"/></td>
-			</tr>
-		</tbody>
-	</table>
+	<div id="divLeft" class="accordion" style="width:54%;float:left">
+		<div class="accordionGroup">
+			<h3 id="hPersonDetails">Person Details</h3>
+			<div id="divPersonDetails" class="accordionContents">
+				<table id="tblPersonDetails" class="tblEdit">
+					<colgroup>
+						<col width="19%"/>
+						<col width="33%"/>
+						<col width="15%"/>
+						<col width="*"/>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th class="thEdit rt">Person Number</th>
+							<td class="tdEdit" colspan="3"><ui:text name="personNumber" status="display"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Prefix</th>
+							<td class="tdEdit" colspan="3"><ui:ccradio name="prefix" codeType="PREFIX"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt mandatory">Surname</th>
+							<td class="tdEdit"><ui:text name="surname" options="mandatory" checkName="Surname"/></td>
+							<th class="thEdit rt">First Name</th>
+							<td class="tdEdit"><ui:text name="firstName"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Middle Name</th>
+							<td class="tdEdit"><ui:text name="middleName"/></td>
+							<th class="thEdit rt mandatory">Preferred Name</th>
+							<td class="tdEdit"><ui:text name="preferredName" options="mandatory" checkName="Preferred Name"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Date of Birth</th>
+							<td class="tdEdit"><ui:text name="dateOfBirth" className="Ct hor" style="width:90px" option="date"/><ui:icon id="icnDateOfBirth" className="fa-calendar hor"/></td>
+							<th class="thEdit rt">First Contact</th>
+							<td class="tdEdit"><ui:text name="firstContact" className="Ct hor" style="width:90px" option="date"/><ui:icon id="icnFirstContact" className="fa-calendar hor"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Marital Status</th>
+							<td class="tdEdit" colspan="3"><ui:ccradio name="maritalStatus" codeType="MARITAL_STATUS"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Gender</th>
+							<td class="tdEdit" colspan="3"><ui:ccradio name="gender" codeType="GENDER"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt mandatory">Person Type</th>
+							<td class="tdEdit" colspan="3"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-width:100%" options="mandatory" checkName="Person Type"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt mandatory">Employment Company</th>
+							<td class="tdEdit" colspan="3"><ui:hidden name="employmentCompanyOrgId"/><ui:text name="employmentCompanyOrgName" options="mandatory" checkName="Employment Company"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Title</th>
+							<td class="tdEdit" colspan="3"><ui:text name="title"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Referral</th>
+							<td class="tdEdit" colspan="3"><ui:hidden name="referralId"/><ui:text name="referralName"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Referral Organisation</th>
+							<td class="tdEdit" colspan="3"><ui:hidden name="referralOrganisationId"/><ui:text name="referralOrganisationName"/></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="divRight" class="accordion" style="width:45%;float:right">
+		<div class="accordionGroup">
+			<h3 id="hPersonalComment">Personal Comments</h3>
+			<div id="divPersonalComment" class="accordionContents">
+				<ui:txa name="personalComment" style="height:299px"/>
+			</div>
+		</div>
+		<div class="accordionGroup">
+			<h3 id="hCommsHistory">Communication History - Latest 50</h3>
+			<div id="divCommsHistory" class="accordionContents">
+				<div class="divButtonArea">
+					<div class="divButtonAreaLeft"></div>
+					<div class="divButtonAreaRight">
+						<ui:buttonGroup>
+							<ui:button id="btnAddComms" caption="button.com.add" iconClass="fa-plus-square"/>
+							<ui:button id="btnDownloadComms" caption="Download" iconClass="fa-download"/>
+						</ui:buttonGroup>
+					</div>
+				</div>
+				<div class="verGap4"></div>
+				<ui:txa name="commsHistory" style="height:299px" status="display"/>
+			</div>
+		</div>
+	</div>
 </div>
-<div id="divPagingArea" class="areaContainerFrame"></div>
+<div id="divPagingArea"></div>
 <%/************************************************************************************************
 * Right & Footer
 ************************************************************************************************/%>

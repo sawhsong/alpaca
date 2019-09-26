@@ -75,7 +75,7 @@
 			<td class="tdSearch">
 				<ui:hidden name="empOrgId"/>
 				<ui:text name="empOrgName" className="hor" style="width:280px"/>
-				<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/>
+<%-- 				<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/> --%>
 			</td>
 			<th class="thSearch rt"><mc:msg key="qm.search.personType"/></th>
 			<td class="tdSearch"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/></td>

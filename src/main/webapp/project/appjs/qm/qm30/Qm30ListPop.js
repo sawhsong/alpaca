@@ -117,7 +117,7 @@ $(function() {
 			url:"/qm/30/exeSave.do",
 			data:{orgId:orgId},
 			noForm:true,
-			showPostMessage:true,
+			showPostMessage:false,
 			callback:function(result) {
 				var ds = result.dataSet;
 				commonJs.copyToClipboard(ds.getValue(0, "ORGANISATION_ID"));
