@@ -33,17 +33,20 @@ $(function() {
 	});
 
 	$("#btnDownloadComms").click(function() {
-		commonJs.downloadContentAsFile("CommunicationHistory.txt", $("#commsHistory").val());
+		var val = commonJs.htmlToString($("#commsHistory").html());
+		val = commonJs.replace(val, "<strong>");
+		val = commonJs.replace(val, "</strong>");
+		commonJs.downloadContentAsFile("CommunicationHistory.txt", val);
 	});
 
 	/*!
 	 * process
 	 */
 	setEditor = function() {
-		$("#personalComment").ckeditor({
-			height:246,
-			toolbar:com.constants.toolbarSimple
-		});
+//		$("#personalComment").ckeditor({
+//			height:246,
+//			toolbar:com.constants.toolbarSimple
+//		});
 	};
 
 	setFieldPersonTypeValues = function(ds) {
@@ -83,14 +86,22 @@ $(function() {
 	setCommsHistoryFieldValues = function(ds) {
 		var html = "";
 
-		for (var i=0; i<ds.getRowCnt(); i++) {
-			html += commonJs.htmlToString(ds.getValue(i, "CON_DATE"))+"\n";
-			html += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
-			html += commonJs.htmlToString(ds.getValue(i, "COMMENTS"))+"\n";
-			html += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\n";
-		}
+//		for (var i=0; i<ds.getRowCnt(); i++) {
+//			html += commonJs.htmlToString(ds.getValue(i, "CON_DATE"))+"\n";
+//			html += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
+//			html += commonJs.htmlToString(ds.getValue(i, "COMMENTS"))+"\n";
+//			html += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\n";
+//		}
+//
+//		$("#commsHistory").val(html);
 
-		$("#commsHistory").val(html);
+		for (var i=0; i<ds.getRowCnt(); i++) {
+			html += "<strong>"+commonJs.stringToHtml(ds.getValue(i, "CON_DATE"))+"</strong>"+"<br/>";
+			html += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>";
+			html += commonJs.stringToHtml(ds.getValue(i, "COMMENTS"))+"<br/>";
+			html += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/><br/>";
+		}
+		$("#commsHistory").html(html);
 	};
 
 	getPersonDetail = function() {

@@ -694,6 +694,23 @@ var nony = {
 		}
 		return val;
 	},
+	stringToHtml : function(val) {
+		if ($.nony.isEmpty(val)) {
+			val = "";
+		} else {
+			val = $.nony.replace(val, "&", "&amp;");
+//			val = $.nony.replace(val, "#", "&#35;");
+//			val = $.nony.replace(val, "<", "&lt;");
+//			val = $.nony.replace(val, ">", "&gt;");
+//			val = $.nony.replace(val, "%", "&#37;");
+			val = $.nony.replace(val, "\"", "&quot;");
+			val = $.nony.replace(val, "'", "&#39;");
+//			val = $.nony.replace(val, " ", "&nbsp;");
+			val = $.nony.replace(val, "\n", "<br/>");
+//			val = $.nony.replace(val, "<br>", "\n");
+		}
+		return val;
+	},
 	/*!
 	 * date utilities(use moment.js)
 	 */

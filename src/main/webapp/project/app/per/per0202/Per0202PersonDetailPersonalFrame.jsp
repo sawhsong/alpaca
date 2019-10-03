@@ -25,7 +25,7 @@
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
-.alert {padding:8px;margin-bottom:0px;font-weight:bold;}
+#divPersonHeader {padding:8px;margin-bottom:0px;font-weight:bold;}
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
@@ -146,7 +146,7 @@ var personId = "<%=personId%>";
 		<div class="accordionGroup">
 			<h3 id="hPersonalComment">Personal Comments</h3>
 			<div id="divPersonalComment" class="accordionContents">
-				<ui:txa name="personalComment"/>
+				<ui:txa name="personalComment" style="height:250px;"/>
 			</div>
 		</div>
 		<div class="accordionGroup">
@@ -162,7 +162,8 @@ var personId = "<%=personId%>";
 					</div>
 				</div>
 				<div class="verGap4"></div>
-				<ui:txa name="commsHistory" style="height:299px;border:1px solid #cccccc;border-radius:3px" status="display"/>
+<%-- 				<ui:txa name="commsHistory" style="height:299px;border:1px solid #cccccc;border-radius:3px" status="display"/> --%>
+				<div id="commsHistory" style="padding:6px;height:340px;border:1px solid #cccccc;border-radius:3px;overflow:auto;"></div>
 			</div>
 		</div>
 	</div>

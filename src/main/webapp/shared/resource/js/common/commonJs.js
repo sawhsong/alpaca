@@ -54,6 +54,7 @@ var commonJs = {
 	abbreviate : function(val, length) {return $.nony.abbreviate(val, length);},
 	toBoolean : function(val) {return $.nony.toBoolean(val);},
 	htmlToString : function(val) {return $.nony.htmlToString(val);},
+	stringToHtml : function(val) {return $.nony.stringToHtml(val);},
 	/*!
 	 * date utilities(use moment.js)
 	 */
