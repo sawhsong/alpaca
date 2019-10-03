@@ -67,82 +67,86 @@ var personId = "<%=personId%>";
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerFrame">
-	<div id="divLeft" class="accordion" style="width:54%;float:left">
+	<div id="divLeft" class="accordion" style="width:45%;float:left">
 		<div class="accordionGroup">
 			<h3 id="hPersonDetails">Person Details</h3>
 			<div id="divPersonDetails" class="accordionContents">
 				<table id="tblPersonDetails" class="tblEdit">
 					<colgroup>
-						<col width="19%"/>
-						<col width="33%"/>
-						<col width="15%"/>
+						<col width="25%"/>
 						<col width="*"/>
 					</colgroup>
 					<tbody>
 						<tr>
 							<th class="thEdit rt">Person Number</th>
-							<td class="tdEdit" colspan="3"><ui:text name="personNumber" status="display"/></td>
+							<td class="tdEdit"><ui:text name="personNumber" status="display"/></td>
 						</tr>
 						<tr>
 							<th class="thEdit rt">Prefix</th>
-							<td class="tdEdit" colspan="3"><ui:ccradio name="prefix" codeType="PREFIX"/></td>
+							<td class="tdEdit"><ui:ccradio name="prefix" codeType="PREFIX"/></td>
 						</tr>
 						<tr>
 							<th class="thEdit rt mandatory">Surname</th>
 							<td class="tdEdit"><ui:text name="surname" options="mandatory" checkName="Surname"/></td>
+						</tr>
+						<tr>
 							<th class="thEdit rt">First Name</th>
 							<td class="tdEdit"><ui:text name="firstName"/></td>
 						</tr>
 						<tr>
 							<th class="thEdit rt">Middle Name</th>
 							<td class="tdEdit"><ui:text name="middleName"/></td>
+						</tr>
+						<tr>
 							<th class="thEdit rt mandatory">Preferred Name</th>
 							<td class="tdEdit"><ui:text name="preferredName" options="mandatory" checkName="Preferred Name"/></td>
 						</tr>
 						<tr>
 							<th class="thEdit rt">Date of Birth</th>
 							<td class="tdEdit"><ui:text name="dateOfBirth" className="Ct hor" style="width:90px" option="date"/><ui:icon id="icnDateOfBirth" className="fa-calendar hor"/></td>
+						</tr>
+						<tr>
 							<th class="thEdit rt">First Contact</th>
 							<td class="tdEdit"><ui:text name="firstContact" className="Ct hor" style="width:90px" option="date"/><ui:icon id="icnFirstContact" className="fa-calendar hor"/></td>
 						</tr>
 						<tr>
 							<th class="thEdit rt">Marital Status</th>
-							<td class="tdEdit" colspan="3"><ui:ccradio name="maritalStatus" codeType="MARITAL_STATUS"/></td>
+							<td class="tdEdit"><ui:ccradio name="maritalStatus" codeType="MARITAL_STATUS"/></td>
 						</tr>
 						<tr>
 							<th class="thEdit rt">Gender</th>
-							<td class="tdEdit" colspan="3"><ui:ccradio name="gender" codeType="GENDER"/></td>
+							<td class="tdEdit"><ui:ccradio name="gender" codeType="GENDER"/></td>
 						</tr>
 						<tr>
 							<th class="thEdit rt mandatory">Person Type</th>
-							<td class="tdEdit" colspan="3"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-width:100%" options="mandatory" checkName="Person Type"/></td>
+							<td class="tdEdit"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-width:100%" options="mandatory" checkName="Person Type"/></td>
 						</tr>
 						<tr>
 							<th class="thEdit rt mandatory">Employment Company</th>
-							<td class="tdEdit" colspan="3"><ui:hidden name="employmentCompanyOrgId"/><ui:text name="employmentCompanyOrgName" options="mandatory" checkName="Employment Company"/></td>
+							<td class="tdEdit"><ui:hidden name="employmentCompanyOrgId"/><ui:text name="employmentCompanyOrgName" options="mandatory" checkName="Employment Company"/></td>
 						</tr>
 						<tr>
 							<th class="thEdit rt">Title</th>
-							<td class="tdEdit" colspan="3"><ui:text name="title"/></td>
+							<td class="tdEdit"><ui:text name="title"/></td>
 						</tr>
 						<tr>
 							<th class="thEdit rt">Referral</th>
-							<td class="tdEdit" colspan="3"><ui:hidden name="referralId"/><ui:text name="referralName"/></td>
+							<td class="tdEdit"><ui:hidden name="referralId"/><ui:text name="referralName"/></td>
 						</tr>
 						<tr>
 							<th class="thEdit rt">Referral Organisation</th>
-							<td class="tdEdit" colspan="3"><ui:hidden name="referralOrganisationId"/><ui:text name="referralOrganisationName"/></td>
+							<td class="tdEdit"><ui:hidden name="referralOrganisationId"/><ui:text name="referralOrganisationName"/></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-	<div id="divRight" class="accordion" style="width:45%;float:right">
+	<div id="divRight" class="accordion" style="width:54%;float:right">
 		<div class="accordionGroup">
 			<h3 id="hPersonalComment">Personal Comments</h3>
 			<div id="divPersonalComment" class="accordionContents">
-				<ui:txa name="personalComment" style="height:299px"/>
+				<ui:txa name="personalComment"/>
 			</div>
 		</div>
 		<div class="accordionGroup">
@@ -158,7 +162,7 @@ var personId = "<%=personId%>";
 					</div>
 				</div>
 				<div class="verGap4"></div>
-				<ui:txa name="commsHistory" style="height:299px" status="display"/>
+				<ui:txa name="commsHistory" style="height:299px;border:1px solid #cccccc;border-radius:3px" status="display"/>
 			</div>
 		</div>
 	</div>

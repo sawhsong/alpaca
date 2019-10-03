@@ -129,7 +129,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		try {
 			hpOrganisationDDao.setDataSourceName(dataSource);
 
-			queryAdvisor.addAutoFillCriteria(inputValue, "lower(organisation_id) like lower('"+inputValue+"%')");
+			queryAdvisor.addAutoFillCriteria(inputValue, "organisation_id like '"+inputValue+"%'");
 			queryAdvisor.addOrderByClause("organisation_name asc");
 
 			paramEntity.setAjaxResponseDataSet(hpOrganisationDDao.getOrgInfoDataSetForAutoCompletion(queryAdvisor));
@@ -151,6 +151,31 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 			hpOrganisationDDao.setDataSourceName(dataSource);
 
 			queryAdvisor.addAutoFillCriteria(inputValue, "lower(organisation_name) like lower('"+inputValue+"%')");
+			queryAdvisor.addOrderByClause("organisation_name asc");
+
+			paramEntity.setAjaxResponseDataSet(hpOrganisationDDao.getOrgInfoDataSetForAutoCompletion(queryAdvisor));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getOrgByNameOrId(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpOrganisationDDao.setDataSourceName(dataSource);
+
+			if (CommonUtil.isNumeric(inputValue)) {
+				queryAdvisor.addAutoFillCriteria(inputValue, "organisation_id like '"+inputValue+"%'");
+			} else {
+				queryAdvisor.addAutoFillCriteria(inputValue, "lower(organisation_name) like lower('"+inputValue+"%')");
+			}
 			queryAdvisor.addOrderByClause("organisation_name asc");
 
 			paramEntity.setAjaxResponseDataSet(hpOrganisationDDao.getOrgInfoDataSetForAutoCompletion(queryAdvisor));
@@ -256,6 +281,73 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 			hpPersonDDao.setDataSourceName(dataSource);
 
 			queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('"+inputValue+"%')");
+			queryAdvisor.addOrderByClause("full_name");
+
+			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getPersonBasicInfoForAutoCompletion(queryAdvisor));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getPersonByPersonNumber(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpPersonDDao.setDataSourceName(dataSource);
+
+			queryAdvisor.addAutoFillCriteria(inputValue, "person_number like '"+inputValue+"%'");
+			queryAdvisor.addOrderByClause("full_name");
+
+			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getPersonBasicInfoForAutoCompletion(queryAdvisor));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getPersonByName(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpPersonDDao.setDataSourceName(dataSource);
+
+			queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('"+inputValue+"%')");
+			queryAdvisor.addOrderByClause("full_name");
+
+			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getPersonBasicInfoForAutoCompletion(queryAdvisor));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getPersonByNameOrPersonNumber(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpPersonDDao.setDataSourceName(dataSource);
+
+			if (CommonUtil.isNumeric(inputValue)) {
+				queryAdvisor.addAutoFillCriteria(inputValue, "person_number like '"+inputValue+"%'");
+			} else {
+				queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('"+inputValue+"%')");
+			}
 			queryAdvisor.addOrderByClause("full_name");
 
 			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getPersonBasicInfoForAutoCompletion(queryAdvisor));

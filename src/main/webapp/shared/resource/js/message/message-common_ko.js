@@ -15,7 +15,8 @@ var com = {
 		 * CKEditor Toolbar
 		 */
 		toolbarDefault:"frameworkBasic",
-		toolbarFull:"full"
+		toolbarFull:"full",
+		toolbarSimple:"simple"
 	},
 	caption : {
 		/*!

@@ -88,6 +88,15 @@ public class AutoCompletionAction extends BaseAction {
 		return "ajaxResponse";
 	}
 
+	public String getOrgByNameOrId() throws Exception {
+		try {
+			biz.getOrgByNameOrId(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
 	public String getBillingOrgByName() throws Exception {
 		try {
 			biz.getBillingOrgByName(paramEntity);
@@ -130,6 +139,33 @@ public class AutoCompletionAction extends BaseAction {
 	public String getPersonName() throws Exception {
 		try {
 			biz.getPersonName(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getPersonByPersonNumber() throws Exception {
+		try {
+			biz.getPersonByPersonNumber(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getPersonByName() throws Exception {
+		try {
+			biz.getPersonByName(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getPersonByNameOrPersonNumber() throws Exception {
+		try {
+			biz.getPersonByNameOrPersonNumber(paramEntity);
 		} catch (Exception ex) {
 		}
 		setRequestAttribute("paramEntity", paramEntity);

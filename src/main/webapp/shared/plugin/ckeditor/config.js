@@ -46,4 +46,7 @@ CKEDITOR.editorConfig = function(config) {
 		{name:"colors", items:["TextColor", "BGColor"]},
 		{name:"tools", items:["Maximize", "ShowBlocks"]}
 	];
+	config.toolbar_simple = [
+		{name:"document", items:["Source", "Preview", "Print", "-", "Styles", "Format", "Font", "FontSize", "-", "Bold", "Italic", "TextColor", "BGColor", "-", "NumberedList", "BulletedList", "Outdent", "Indent", "JustifyLeft", "JustifyCenter", "JustifyRight"]}
+	];
 };

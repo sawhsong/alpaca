@@ -14,9 +14,38 @@ $(function() {
 		commonJs.openCalendar(event, "firstContact");
 	});
 
+	$("#employmentCompanyOrgName").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#employmentCompanyOrgId").val("");
+		}
+	});
+
+	$("#referralName").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#referralId").val("");
+		}
+	});
+
+	$("#referralOrganisationName").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#referralOrganisationId").val("");
+		}
+	});
+
+	$("#btnDownloadComms").click(function() {
+		commonJs.downloadContentAsFile("CommunicationHistory.txt", $("#commsHistory").val());
+	});
+
 	/*!
 	 * process
 	 */
+	setEditor = function() {
+		$("#personalComment").ckeditor({
+			height:246,
+			toolbar:com.constants.toolbarSimple
+		});
+	};
+
 	setFieldPersonTypeValues = function(ds) {
 		var personType = ds.getValue(0, "PERSON_TYPE").toUpperCase().split(",");
 
@@ -56,9 +85,9 @@ $(function() {
 
 		for (var i=0; i<ds.getRowCnt(); i++) {
 			html += commonJs.htmlToString(ds.getValue(i, "CON_DATE"))+"\n";
-			html += "-------------------------------------------------------------------------------\n";
+			html += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
 			html += commonJs.htmlToString(ds.getValue(i, "COMMENTS"))+"\n";
-			html += "----------------------------------------------------------------------------------------------------------------------------------------\n";
+			html += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\n";
 		}
 
 		$("#commsHistory").val(html);
@@ -79,7 +108,7 @@ $(function() {
 
 		setTimeout(function() {
 			commonJs.hideProcMessageOnElement("divPersonDetails");
-		}, 300);
+		}, 1000);
 	};
 
 	getPersonalComment = function() {
@@ -97,7 +126,7 @@ $(function() {
 
 		setTimeout(function() {
 			commonJs.hideProcMessageOnElement("divPersonalComment");
-		}, 300);
+		}, 1000);
 	};
 
 	getCommsHistory = function() {
@@ -116,11 +145,11 @@ $(function() {
 
 		setTimeout(function() {
 			commonJs.hideProcMessageOnElement("divCommsHistory");
-		}, 300);
+		}, 1000);
 	};
 
-	/*!
-	 * load event (document / window)
+	/*
+	 * ! load event (document / window)
 	 */
 	$(window).load(function() {
 		commonJs.setAccordion({
@@ -128,6 +157,79 @@ $(function() {
 			multipleExpand:true,
 			expandAll:true,
 			icons:null
+		});
+
+		commonJs.setFieldDateMask("dateOfBirth");
+		commonJs.setFieldDateMask("firstContact");
+		setEditor();
+
+		commonJs.setAutoComplete($("#employmentCompanyOrgName"), {
+			method:"getOrgByNameOrId",
+			label:"org_name_with_org_id",
+			value:"organisation_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#employmentCompanyOrgId").val(ui.item.value);
+				$("#employmentCompanyOrgName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#employmentCompanyOrgName").val())) {
+					$("#employmentCompanyOrgId").val("");
+					$("#employmentCompanyOrgName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#employmentCompanyOrgId").val(ui.item.value);
+				$("#employmentCompanyOrgName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#referralName"), {
+			method:"getPersonByNameOrPersonNumber",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#referralId").val(ui.item.value);
+				$("#referralName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#referralName").val())) {
+					$("#referralId").val("");
+					$("#referralName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#referralId").val(ui.item.value);
+				$("#referralName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#referralOrganisationName"), {
+			method:"getOrgByNameOrId",
+			label:"org_name_with_org_id",
+			value:"organisation_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#referralOrganisationId").val(ui.item.value);
+				$("#referralOrganisationName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#referralOrganisationName").val())) {
+					$("#referralOrganisationId").val("");
+					$("#referralOrganisationName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#referralOrganisationId").val(ui.item.value);
+				$("#referralOrganisationName").val(ui.item.label);
+				return false;
+			}
 		});
 
 		setTimeout(function() {
