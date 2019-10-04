@@ -146,7 +146,7 @@ var personId = "<%=personId%>";
 		<div class="accordionGroup">
 			<h3 id="hPersonalComment">Personal Comments</h3>
 			<div id="divPersonalComment" class="accordionContents">
-				<ui:txa name="personalComment" style="height:250px;"/>
+				<ui:txa name="personalComment" style="height:270px;"/>
 			</div>
 		</div>
 		<div class="accordionGroup">
@@ -163,7 +163,7 @@ var personId = "<%=personId%>";
 				</div>
 				<div class="verGap4"></div>
 <%-- 				<ui:txa name="commsHistory" style="height:299px;border:1px solid #cccccc;border-radius:3px" status="display"/> --%>
-				<div id="commsHistory" style="padding:6px;height:340px;border:1px solid #cccccc;border-radius:3px;overflow:auto;"></div>
+				<div id="commsHistory" style="padding:6px;height:350px;border:1px solid #cccccc;border-radius:3px;overflow:auto;"></div>
 			</div>
 		</div>
 	</div>

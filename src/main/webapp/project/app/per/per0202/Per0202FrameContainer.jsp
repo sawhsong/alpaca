@@ -10,6 +10,25 @@
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
 	DataSet dsRequest = (DataSet)paramEntity.getRequestDataSet();
 	String personId = dsRequest.getValue("personId");
+	String captionEcmsEbo = "";
+	HpPersonD person = (HpPersonD)paramEntity.getObject("hpPersonD");
+	String personType = person.getPersonType();
+	String personTypeForPortalTab[] = {"ECMS IPro","ECMS IC","ECMS Sponsored IPro","ECMS Prospect", "BO Employee", "EST ECMS Sponsored IPro","NZ IC", "NZ IPro",
+			"NZ Prospect", "ECMS Elite Premium IC","ECMS EES IPro","ECMS EES IC", "ECMS ESSG Contractor", "ECMS ESSG Pte Ltd Contractor", "ECMS ESSG SPass Contractor",
+			"ECMS ESUK IPro", "ECMS ESUK IC", "ECMS ESMY Contractor", "ECMS EES IPro", "ECMS EES IC", "ECMS ESHK Ltd Co Contractor"};
+	boolean isEcmsEboTabAvailable = false, isPortalTabAvailable = false;
+
+	if (CommonUtil.contains(personType, "ECMS", "NZ")) {
+		isEcmsEboTabAvailable = true;
+		captionEcmsEbo = "ECMS";
+	} else if (CommonUtil.contains(personType, "EBO", "EES")) {
+		isEcmsEboTabAvailable = true;
+		captionEcmsEbo = "EBO";
+	}
+
+	if (CommonUtil.isIn(personType, personTypeForPortalTab)) {
+		isPortalTabAvailable = true;
+	}
 %>
 <%/************************************************************************************************
 * HTML
@@ -53,8 +72,19 @@ var personId = "<%=personId%>";
 		<ui:tabList caption="Additional Service" iconClass="" iconPosition="left"/>
 		<ui:tabList caption="Communication" iconClass="" iconPosition="left"/>
 		<ui:tabList caption="Next Actions" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="ECMS/EBO" iconClass="" iconPosition="left"/>
+<%
+	if (isEcmsEboTabAvailable) {
+%>
+		<ui:tabList caption="<%=captionEcmsEbo%>" iconClass="" iconPosition="left"/>
+<%
+	}
+
+	if (isPortalTabAvailable) {
+%>
 		<ui:tabList caption="Portal" iconClass="" iconPosition="left"/>
+<%
+	}
+%>
 	</ui:tab>
 </div>
 <div id="divButtonArea">

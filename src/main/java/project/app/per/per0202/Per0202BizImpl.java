@@ -65,7 +65,17 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	}
 
 	public ParamEntity getPersonDetailFrameContainer(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		String personId = dsRequest.getValue("personId");
+		HpPersonD hpPersonD;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+
 		try {
+			hpPersonDDao.setDataSourceName(dataSource);
+			hpPersonD = hpPersonDDao.getPersonByPersonId(personId);
+
+			paramEntity.setObject("hpPersonD", hpPersonD);
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
