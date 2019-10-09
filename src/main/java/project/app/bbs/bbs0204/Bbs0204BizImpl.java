@@ -43,7 +43,7 @@ public class Bbs0204BizImpl extends BaseBiz implements Bbs0204Biz {
 		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysBoardDao.setDataSourceName(dataSource);
@@ -64,7 +64,7 @@ public class Bbs0204BizImpl extends BaseBiz implements Bbs0204Biz {
 		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String articleId = requestDataSet.getValue("articleId");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysBoardDao.setDataSourceName(dataSource);
@@ -109,7 +109,7 @@ public class Bbs0204BizImpl extends BaseBiz implements Bbs0204Biz {
 		String uid = CommonUtil.uid();
 		String loggedInUserId = (String)session.getAttribute("UserId");
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysBoardDao.setDataSourceName(dataSource);
@@ -149,7 +149,7 @@ public class Bbs0204BizImpl extends BaseBiz implements Bbs0204Biz {
 		String loggedInUserId = (String)session.getAttribute("UserId");
 		SysBoard sysBoard;
 		int result = 0;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysBoardDao.setDataSourceName(dataSource);
@@ -185,7 +185,7 @@ public class Bbs0204BizImpl extends BaseBiz implements Bbs0204Biz {
 		String chkForDel = requestDataSet.getValue("chkForDel");
 		String articleIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
 		int result = 0;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysBoardDao.setDataSourceName(dataSource);
@@ -217,7 +217,7 @@ public class Bbs0204BizImpl extends BaseBiz implements Bbs0204Biz {
 		String pageTitle, fileName;
 		String fileType = requestDataSet.getValue("fileType");
 		String dataRange = requestDataSet.getValue("dataRange");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			pageTitle = "Board List";

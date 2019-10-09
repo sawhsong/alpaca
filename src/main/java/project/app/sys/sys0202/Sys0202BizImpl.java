@@ -40,7 +40,7 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String codeType = requestDataSet.getValue("commonCodeType");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysCommonCodeDao.setDataSourceName(dataSource);
@@ -60,7 +60,7 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception {
 		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysCommonCodeDao.setDataSourceName(dataSource);
@@ -101,7 +101,7 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 		int detailLength = CommonUtil.toInt(requestDataSet.getValue("detailLength"));
 		int result = -1, masterDataRow = -1;
 		SysCommonCode sysCommonCode = new SysCommonCode();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysCommonCodeDao.setDataSourceName(dataSource);
@@ -166,7 +166,7 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 		DataSet detailDataSet;
 		int result = -1;
 		int masterDataRow = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysCommonCodeDao.setDataSourceName(dataSource);
@@ -200,7 +200,7 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 		String chkForDel = requestDataSet.getValue("chkForDel");
 		String[] codeTypes = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysCommonCodeDao.setDataSourceName(dataSource);
@@ -230,7 +230,7 @@ public class Sys0202BizImpl extends BaseBiz implements Sys0202Biz {
 		ExportHelper exportHelper;
 		String dataRange = requestDataSet.getValue("dataRange");
 		String codeType = requestDataSet.getValue("commonCodeType");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			String pageTitle = "Common Code List";

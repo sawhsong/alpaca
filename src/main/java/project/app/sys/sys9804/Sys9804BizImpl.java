@@ -45,7 +45,7 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		QueryAdvisor qa = paramEntity.getQueryAdvisor();
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		String dateFormat = ConfigUtil.getProperty("format.date.java");
 
 		try {
@@ -83,7 +83,7 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		QueryAdvisor qa = paramEntity.getQueryAdvisor();
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			qa.setObject("dataSource", dataSource);
@@ -100,7 +100,7 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		QueryAdvisor qa = paramEntity.getQueryAdvisor();
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			qa.setObject("dataSource", dataSource);
@@ -119,7 +119,7 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 		String invoiceId = dsReq.getValue("invoiceId");
 		String statusTo = dsReq.getValue("statusTo");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		int result = 0;
 
 		try {
@@ -144,7 +144,7 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 		String invoiceId = dsReq.getValue("invoiceId");
 		String gstAmountTo = dsReq.getValue("gstAmountTo");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		int result = 0;
 
 		try {
@@ -188,7 +188,7 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 		DataSet dsResult = new DataSet();
 		QueryAdvisor qa = paramEntity.getQueryAdvisor();
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		ExportHelper exportHelper;
 		String columnHeader[], fileHeader[];
 		String pageTitle, fileName;

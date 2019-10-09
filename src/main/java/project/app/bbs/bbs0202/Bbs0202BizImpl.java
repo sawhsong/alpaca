@@ -38,7 +38,7 @@ public class Bbs0202BizImpl extends BaseBiz implements Bbs0202Biz {
 		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysBoardDao.setDataSourceName(dataSource);
@@ -59,7 +59,7 @@ public class Bbs0202BizImpl extends BaseBiz implements Bbs0202Biz {
 		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String articleId = requestDataSet.getValue("articleId");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysBoardDao.setDataSourceName(dataSource);
@@ -80,7 +80,7 @@ public class Bbs0202BizImpl extends BaseBiz implements Bbs0202Biz {
 	public ParamEntity getAttachedFile(ParamEntity paramEntity) throws Exception {
 		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysBoardFileDao.setDataSourceName(dataSource);

@@ -49,26 +49,28 @@ $(function() {
 //		});
 	};
 
-	setFieldPersonTypeValues = function(ds) {
+	setFieldPersonDetailValues = function(ds) {
 		var personType = ds.getValue(0, "PERSON_TYPE").toUpperCase().split(",");
 
-		$("#personNumber").val(ds.getValue(0, "PERSON_NUMBER"));
-		$("[name=prefix]").filter("[value="+ds.getValue(0, "PREFIX")+"]").attr("checked", true);
-		$("#surname").val(ds.getValue(0, "SURNAME"));
-		$("#firstName").val(ds.getValue(0, "FIRST_NAME"));
-		$("#middleName").val(ds.getValue(0, "MIDDLE_NAME"));
-		$("#preferredName").val(ds.getValue(0, "PREFERRED_NAME"));
-		$("#dateOfBirth").val(ds.getValue(0, "DATE_OF_BIRTH"));
-		$("#firstContact").val(ds.getValue(0, "FIRST_CONTACT"));
-		$("[name=maritalStatus]").filter("[value="+ds.getValue(0, "MARITAL_STATUS")+"]").attr("checked", true);
-		$("[name=gender]").filter("[value="+ds.getValue(0, "GENDER")+"]").attr("checked", true);
-		$("#employmentCompanyOrgId").val(ds.getValue(0, "EMPLOYMENT_COMPANY_ORG_ID"));
-		$("#employmentCompanyOrgName").val(ds.getValue(0, "EMPLOYMENT_COMPANY_ORG_NAME"));
-		$("#title").val(ds.getValue(0, "TITLE"));
-		$("#referralId").val(ds.getValue(0, "REFERRAL_ID"));
-		$("#referralName").val(ds.getValue(0, "REFERRAL_NAME"));
-		$("#referralOrganisationId").val(ds.getValue(0, "REFERRAL_ORGANISATION_ID"));
-		$("#referralOrganisationName").val(ds.getValue(0, "REFERRAL_ORGANISATION_NAME"));
+		try {
+			$("#personNumber").val(ds.getValue(0, "PERSON_NUMBER"));
+			$("[name=prefix]").filter("[value="+ds.getValue(0, "PREFIX")+"]").attr("checked", true);
+			$("#surname").val(ds.getValue(0, "SURNAME"));
+			$("#firstName").val(ds.getValue(0, "FIRST_NAME"));
+			$("#middleName").val(ds.getValue(0, "MIDDLE_NAME"));
+			$("#preferredName").val(ds.getValue(0, "PREFERRED_NAME"));
+			$("#dateOfBirth").val(ds.getValue(0, "DATE_OF_BIRTH"));
+			$("#firstContact").val(ds.getValue(0, "FIRST_CONTACT"));
+			$("[name=maritalStatus]").filter("[value="+ds.getValue(0, "MARITAL_STATUS")+"]").attr("checked", true);
+			$("[name=gender]").filter("[value="+ds.getValue(0, "GENDER")+"]").attr("checked", true);
+			$("#employmentCompanyOrgId").val(ds.getValue(0, "EMPLOYMENT_COMPANY_ORG_ID"));
+			$("#employmentCompanyOrgName").val(ds.getValue(0, "EMPLOYMENT_COMPANY_ORG_NAME"));
+			$("#title").val(ds.getValue(0, "TITLE"));
+			$("#referralId").val(ds.getValue(0, "REFERRAL_ID"));
+			$("#referralName").val(ds.getValue(0, "REFERRAL_NAME"));
+			$("#referralOrganisationId").val(ds.getValue(0, "REFERRAL_ORGANISATION_ID"));
+			$("#referralOrganisationName").val(ds.getValue(0, "REFERRAL_ORGANISATION_NAME"));
+		} catch(e) {}
 		setTimeout(function() {
 			setPersonType(personType);
 		}, 500);
@@ -113,7 +115,7 @@ $(function() {
 			data:{personId:personId},
 			callback:function(result) {
 				var ds = result.dataSet;
-				setFieldPersonTypeValues(ds);
+				setFieldPersonDetailValues(ds);
 			}
 		});
 

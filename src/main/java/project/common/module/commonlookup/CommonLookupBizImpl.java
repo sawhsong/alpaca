@@ -36,7 +36,7 @@ public class CommonLookupBizImpl extends BaseBiz implements CommonLookupBiz {
 		String empOrgName = requestDataSet.getValue("empOrgName");
 		String abn = requestDataSet.getValue("abn");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpOrganisationDDao.setDataSourceName(dataSource);
@@ -63,7 +63,7 @@ public class CommonLookupBizImpl extends BaseBiz implements CommonLookupBiz {
 		String personName = requestDataSet.getValue("personName");
 
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpPersonDDao.setDataSourceName(dataSource);

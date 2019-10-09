@@ -41,7 +41,7 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		DataSet resultDataSet;
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysMenuDao.setDataSourceName(dataSource);
@@ -85,7 +85,7 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 		String menuPath = CommonUtil.split(paramValue, delimiter)[1];
 		String deletable = CommonUtil.split(paramValue, delimiter)[2];
 		SysMenu sysMenu = new SysMenu();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysMenuDao.setDataSourceName(dataSource);
@@ -142,7 +142,7 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 		String level2MenuId = requestDataSet.getValue("level2");
 		int result = -1;
 		SysMenu sysMenu = new SysMenu();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysMenuDao.setDataSourceName(dataSource);
@@ -192,7 +192,7 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 		String menuId = requestDataSet.getValue("menuId");
 		int result = -1;
 		SysMenu sysMenu = new SysMenu();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysMenuDao.setDataSourceName(dataSource);
@@ -228,7 +228,7 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 		String chkForDel = requestDataSet.getValue("chkForDel");
 		String menuIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysMenuDao.setDataSourceName(dataSource);
@@ -258,7 +258,7 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 		String delimiter = ConfigUtil.getProperty("delimiter.data");
 		int dataLength = CommonUtil.toInt(requestDataSet.getValue("dataLength"));
 		int result = 0;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysMenuDao.setDataSourceName(dataSource);
@@ -294,7 +294,7 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		ExportHelper exportHelper;
 		String dataRange = requestDataSet.getValue("dataRange");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			String pageTitle = "Menu List";

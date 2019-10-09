@@ -39,7 +39,7 @@ public class Sys0204BizImpl extends BaseBiz implements Sys0204Biz {
 		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysCountryCurrencyDao.setDataSourceName(dataSource);
@@ -61,7 +61,7 @@ public class Sys0204BizImpl extends BaseBiz implements Sys0204Biz {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String countryCurrencyId = requestDataSet.getValue("countryCurrencyId");
 		SysCountryCurrency sysCountryCurrency;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysCountryCurrencyDao.setDataSourceName(dataSource);
@@ -102,7 +102,7 @@ public class Sys0204BizImpl extends BaseBiz implements Sys0204Biz {
 		String countryCurrencyId = CommonUtil.uid();
 		SysCountryCurrency sysCountryCurrency = new SysCountryCurrency();
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysCountryCurrencyDao.setDataSourceName(dataSource);
@@ -139,7 +139,7 @@ public class Sys0204BizImpl extends BaseBiz implements Sys0204Biz {
 		String countryCurrencyId = requestDataSet.getValue("countryCurrencyId");
 		SysCountryCurrency sysCountryCurrency = new SysCountryCurrency();
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysCountryCurrencyDao.setDataSourceName(dataSource);
@@ -178,7 +178,7 @@ public class Sys0204BizImpl extends BaseBiz implements Sys0204Biz {
 		String chkForDel = requestDataSet.getValue("chkForDel");
 		String countryCurrencyIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysCountryCurrencyDao.setDataSourceName(dataSource);
@@ -207,7 +207,7 @@ public class Sys0204BizImpl extends BaseBiz implements Sys0204Biz {
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		ExportHelper exportHelper;
 		String dataRange = requestDataSet.getValue("dataRange");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			String pageTitle = "Country Currency Code List";

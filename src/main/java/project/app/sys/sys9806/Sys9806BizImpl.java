@@ -47,7 +47,7 @@ public class Sys9806BizImpl extends BaseBiz implements Sys9806Biz {
 	public ParamEntity getOrgInfo(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		String organisationId = dsReq.getValue("organisationId");
 		DataSet result = new DataSet();
 		HpOrganisationD hpOrganisationD;
@@ -71,7 +71,7 @@ public class Sys9806BizImpl extends BaseBiz implements Sys9806Biz {
 	public ParamEntity getBillingCodeInfo(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		String billingCodeId = dsReq.getValue("billingCodeId");
 		DataSet result = new DataSet();
 		HpBillingCode hpBillingCode;
@@ -97,7 +97,7 @@ public class Sys9806BizImpl extends BaseBiz implements Sys9806Biz {
 		String abnTo = dsReq.getValue("abnTo");
 		String acnTo = CommonUtil.removeString(dsReq.getValue("acnTo"), "-");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		HpOrganisationD hpOrganisationD = new HpOrganisationD();
 		int result = 0;
 
@@ -128,7 +128,7 @@ public class Sys9806BizImpl extends BaseBiz implements Sys9806Biz {
 		String billingCodeId = dsReq.getValue("billingCodeId");
 		String billingCodeCreationTypeTo = dsReq.getValue("billingCodeCreationTypeTo");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		HpBillingCode hpBillingCode = new HpBillingCode();
 		int result = 0;
 

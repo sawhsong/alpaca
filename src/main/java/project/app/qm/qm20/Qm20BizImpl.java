@@ -40,7 +40,7 @@ public class Qm20BizImpl extends BaseBiz implements Qm20Biz {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpPersonDDao.setDataSourceName(dataSource);
@@ -60,7 +60,7 @@ public class Qm20BizImpl extends BaseBiz implements Qm20Biz {
 	public ParamEntity exeSave(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		String keyValues[] = CommonUtil.split(requestDataSet.getValue("keyValues"), "_");
 		String personId = "", userId = "";
 		HpPersonD hpPersonD = new HpPersonD();

@@ -13,5 +13,12 @@
             <result name="communication" type="debugDispatcherResult">/project/app/per/per0202/Per0202CommunicationFrame.jsp</result>
             <result name="nextActions" type="debugDispatcherResult">/project/app/per/per0202/Per0202NextActionsFrame.jsp</result>
         </action>
+        <!--Per0204 - Document-->
+        <action class="project.app.per.per0204.Per0204Action" method="{1}" name="0204/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/per0204/Per0204List.jsp</result>
+            <result name="documentFrameContainer" type="debugDispatcherResult">/project/app/per/per0204/Per0204DocumentFrameContainer.jsp</result>
+            <result name="outstanding" type="debugDispatcherResult">/project/app/per/per0204/Per0204OutstandingDocumentFrame.jsp</result>
+            <result name="received" type="debugDispatcherResult">/project/app/per/per0204/Per0204ReceivedDocumentFrame.jsp</result>
+        </action>
     </package>
 </struts>

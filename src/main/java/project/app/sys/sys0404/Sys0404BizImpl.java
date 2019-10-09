@@ -45,7 +45,7 @@ public class Sys0404BizImpl extends BaseBiz implements Sys0404Biz {
 		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysAuthGroupDao.setDataSourceName(dataSource);
@@ -67,7 +67,7 @@ public class Sys0404BizImpl extends BaseBiz implements Sys0404Biz {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String groupId = requestDataSet.getValue("groupId");
 		SysAuthGroup sysAuthGroup = new SysAuthGroup();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysAuthGroupDao.setDataSourceName(dataSource);
@@ -109,7 +109,7 @@ public class Sys0404BizImpl extends BaseBiz implements Sys0404Biz {
 		String groupId = CommonUtil.uid();
 		int result = -1;
 		SysAuthGroup sysAuthGroup = new SysAuthGroup();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysAuthGroupDao.setDataSourceName(dataSource);
@@ -140,7 +140,7 @@ public class Sys0404BizImpl extends BaseBiz implements Sys0404Biz {
 		String groupId = requestDataSet.getValue("groupId");
 		int result = -1;
 		SysAuthGroup sysAuthGroup = new SysAuthGroup();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysAuthGroupDao.setDataSourceName(dataSource);
@@ -173,7 +173,7 @@ public class Sys0404BizImpl extends BaseBiz implements Sys0404Biz {
 		String chkForDel = requestDataSet.getValue("chkForDel");
 		String groupIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysAuthGroupDao.setDataSourceName(dataSource);
@@ -208,7 +208,7 @@ public class Sys0404BizImpl extends BaseBiz implements Sys0404Biz {
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		ExportHelper exportHelper;
 		String dataRange = requestDataSet.getValue("dataRange");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			String pageTitle = "Authority Group List";

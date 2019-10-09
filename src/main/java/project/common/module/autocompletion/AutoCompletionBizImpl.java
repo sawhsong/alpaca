@@ -124,7 +124,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpOrganisationDDao.setDataSourceName(dataSource);
@@ -145,7 +145,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpOrganisationDDao.setDataSourceName(dataSource);
@@ -166,7 +166,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpOrganisationDDao.setDataSourceName(dataSource);
@@ -191,7 +191,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpOrganisationDDao.setDataSourceName(dataSource);
@@ -212,7 +212,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpOrganisationDDao.setDataSourceName(dataSource);
@@ -233,7 +233,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpOrganisationDDao.setDataSourceName(dataSource);
@@ -254,7 +254,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpPersonDDao.setDataSourceName(dataSource);
@@ -275,7 +275,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpPersonDDao.setDataSourceName(dataSource);
@@ -296,7 +296,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpPersonDDao.setDataSourceName(dataSource);
@@ -317,7 +317,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpPersonDDao.setDataSourceName(dataSource);
@@ -338,7 +338,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpPersonDDao.setDataSourceName(dataSource);
@@ -363,7 +363,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpPersonDDao.setDataSourceName(dataSource);
@@ -384,7 +384,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpPersonDDao.setDataSourceName(dataSource);
@@ -405,7 +405,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpBillingCodeDao.setDataSourceName(dataSource);
@@ -426,7 +426,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String inputValue = requestDataSet.getValue("inputValue");
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			hpBillingCodeDao.setDataSourceName(dataSource);

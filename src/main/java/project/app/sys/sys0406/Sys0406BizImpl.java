@@ -46,7 +46,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String langCode = (String)session.getAttribute("langCode");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysUserDao.setDataSourceName(dataSource);
@@ -71,7 +71,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String userId = requestDataSet.getValue("userId");
 		SysUser sysUser = new SysUser();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysUserDao.setDataSourceName(dataSource);
@@ -94,7 +94,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		String[] pageNumPerPage = CommonUtil.split(ConfigUtil.getProperty("view.data.pageNumsPerPage"), ConfigUtil.getProperty("delimiter.data"));
 		String photoPath = ConfigUtil.getProperty("path.image.photo")+"/"+"DefaultUser_128_Black.png";
 		String defaultAuthGroup = "Z";
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysUserDao.setDataSourceName(dataSource);
@@ -118,7 +118,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		String[] pageNumPerPage = CommonUtil.split(ConfigUtil.getProperty("view.data.pageNumsPerPage"), ConfigUtil.getProperty("delimiter.data"));
 		String photoPath = ConfigUtil.getProperty("path.image.photo")+"/"+"DefaultUser_128_Black.png";
 		String defaultAuthGroup = "Z";
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysUserDao.setDataSourceName(dataSource);
@@ -157,7 +157,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		String pathToSave = ConfigUtil.getProperty("path.image.photo");
 		SysUser sysUser = new SysUser();
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysUserDao.setDataSourceName(dataSource);
@@ -214,7 +214,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		String pathToSave = ConfigUtil.getProperty("path.image.photo");
 		SysUser sysUser = new SysUser();
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysUserDao.setDataSourceName(dataSource);
@@ -269,7 +269,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		String chkForDel = requestDataSet.getValue("chkForDel");
 		String userIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysUserDao.setDataSourceName(dataSource);
@@ -300,7 +300,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		String userIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
 		SysUser sysUser = new SysUser();
 		int result = 0;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			sysUserDao.setDataSourceName(dataSource);
@@ -337,7 +337,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		ExportHelper exportHelper;
 		String dataRange = requestDataSet.getValue("dataRange");
 		String langCode = (String)session.getAttribute("langCode");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			String pageTitle = "User List";
@@ -373,7 +373,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 
 	private void setAuthorityGroup(ParamEntity paramEntity) throws Exception {
 		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), ConfigUtil.getProperty("jdbc.user.name"));
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		QueryAdvisor qaAuth = paramEntity.getQueryAdvisor();
 		qaAuth.addOrderByClause("group_id");
 		sysAuthGroupDao.setDataSourceName(dataSource);

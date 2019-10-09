@@ -23,7 +23,7 @@
 	String quickMenuIconHeaderPage = dsQuickMenuHeaderPage.getValue("MENU_ICON");
 
 	String dataSourceNamesHeaderPage[] = CommonUtil.split(ConfigUtil.getProperty("jdbc.multipleDatasource"), ConfigUtil.getProperty("delimiter.data"));
-	String databaseHeaderPage = CommonUtil.nvl((String)session.getAttribute("DatabaseForAdminTool"), dataSourceNamesHeaderPage[0]);
+	String databaseHeaderPage = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), dataSourceNamesHeaderPage[0]);
 	String personNumberHeaderPage = CommonUtil.nvl((String)session.getAttribute("PersonNumberForAdminTool"));
 	String personInfoHeaderPage = "";
 	if (CommonUtil.isNotBlank(personNumberHeaderPage)) {personInfoHeaderPage = (String)session.getAttribute("PersonFullNameForAdminTool")+" ("+personNumberHeaderPage+")";}
@@ -264,7 +264,7 @@ $(function() {
 					<div id="divOrgInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(organisationInfoHeaderPage)) {%> / Org : <%=organisationInfoHeaderPage%><%}%></div>
 				</div>
 				<div class="divGblMenuBreak"></div>
-				<div class="headerGblMenus" style="margin-top:-1px;"><a id="aDeleteSessionDesc" class="fa fa-trash fa-lg aEn" title="Delete all quick menu session values"></a></div>
+				<div class="headerGblMenus" style="margin-top:-1px;"><a id="aDeleteSessionDesc" class="fa fa-trash fa-lg aEn" title="Delete all session values"></a></div>
 				<div class="divGblMenuBreak"></div>
 				<div id="divThemeSelector" class="headerGblMenus">
 					<a id="aThemeSelector">${sessionScope.themeName}</a>
