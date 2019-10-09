@@ -69,11 +69,6 @@ public class Per0202Action extends BaseAction {
 		return "contact";
 	}
 
-	public String getDocument() throws Exception {
-		biz.getDocument(paramEntity);
-		return "document";
-	}
-
 	public String getAdditionalService() throws Exception {
 		biz.getAdditionalService(paramEntity);
 		return "additionalService";
@@ -89,15 +84,6 @@ public class Per0202Action extends BaseAction {
 		return "nextActions";
 	}
 
-	public String getECMSEBO() throws Exception {
-		biz.getEcmsEbo(paramEntity);
-		return "ecmsEbo";
-	}
-
-	public String getPortal() throws Exception {
-		biz.getPortal(paramEntity);
-		return "portal";
-	}
 /*
 	public String getDetail() throws Exception {
 		biz.getDetail(paramEntity);

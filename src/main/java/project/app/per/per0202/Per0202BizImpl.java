@@ -191,15 +191,6 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 		return paramEntity;
 	}
 
-	public ParamEntity getDocument(ParamEntity paramEntity) throws Exception {
-		try {
-			paramEntity.setSuccess(true);
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
-
 	public ParamEntity getAdditionalService(ParamEntity paramEntity) throws Exception {
 		try {
 			paramEntity.setSuccess(true);
@@ -219,24 +210,6 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	}
 
 	public ParamEntity getNextActions(ParamEntity paramEntity) throws Exception {
-		try {
-			paramEntity.setSuccess(true);
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
-
-	public ParamEntity getEcmsEbo(ParamEntity paramEntity) throws Exception {
-		try {
-			paramEntity.setSuccess(true);
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
-
-	public ParamEntity getPortal(ParamEntity paramEntity) throws Exception {
 		try {
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {

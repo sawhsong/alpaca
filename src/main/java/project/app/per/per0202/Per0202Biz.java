@@ -16,12 +16,9 @@ public interface Per0202Biz {
 	public ParamEntity getPersonalComment(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getCommsHistory(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getContact(ParamEntity paramEntity) throws Exception;
-	public ParamEntity getDocument(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getAdditionalService(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getCommunication(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getNextActions(ParamEntity paramEntity) throws Exception;
-	public ParamEntity getEcmsEbo(ParamEntity paramEntity) throws Exception;
-	public ParamEntity getPortal(ParamEntity paramEntity) throws Exception;
 /*
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getInsert(ParamEntity paramEntity) throws Exception;

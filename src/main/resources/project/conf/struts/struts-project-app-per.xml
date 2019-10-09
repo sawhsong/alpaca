@@ -6,15 +6,12 @@
         <!--Per0202 - Person Profile-->
         <action class="project.app.per.per0202.Per0202Action" method="{1}" name="0202/*">
             <result name="list" type="debugDispatcherResult">/project/app/per/per0202/Per0202List.jsp</result>
-            <result name="personDetailFrameContainer" type="debugDispatcherResult">/project/app/per/per0202/Per0202FrameContainer.jsp</result>
+            <result name="personDetailFrameContainer" type="debugDispatcherResult">/project/app/per/per0202/Per0202PersonDetailFrameContainer.jsp</result>
             <result name="personal" type="debugDispatcherResult">/project/app/per/per0202/Per0202PersonalFrame.jsp</result>
             <result name="contact" type="debugDispatcherResult">/project/app/per/per0202/Per0202ContactFrame.jsp</result>
-            <result name="document" type="debugDispatcherResult">/project/app/per/per0202/Per0202DocumentFrame.jsp</result>
             <result name="additionalService" type="debugDispatcherResult">/project/app/per/per0202/Per0202AdditionalServiceFrame.jsp</result>
             <result name="communication" type="debugDispatcherResult">/project/app/per/per0202/Per0202CommunicationFrame.jsp</result>
             <result name="nextActions" type="debugDispatcherResult">/project/app/per/per0202/Per0202NextActionsFrame.jsp</result>
-            <result name="ecmsEbo" type="debugDispatcherResult">/project/app/per/per0202/Per0202EcmsEboFrame.jsp</result>
-            <result name="portal" type="debugDispatcherResult">/project/app/per/per0202/Per0202PortalFrame.jsp</result>
         </action>
     </package>
 </struts>
