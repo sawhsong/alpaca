@@ -8,12 +8,10 @@
 ************************************************************************************************/%>
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
-	HpPersonD hpPersonD = (HpPersonD)session.getAttribute("HpPersonDQuickSearch");
-	String personNumber = "", personName = "";
-	if (hpPersonD != null) {
-		personNumber = hpPersonD.getPersonNumber();
-		personName = hpPersonD.getFullName();
-	}
+	DataSet dsRequest = (DataSet)paramEntity.getRequestDataSet();
+	String personId = dsRequest.getValue("personId");
+	HpPersonD person = (HpPersonD)paramEntity.getObject("hpPersonD");
+	HpAddressContactD address = (HpAddressContactD)paramEntity.getObject("hpAddressContactD");
 %>
 <%/************************************************************************************************
 * HTML
@@ -28,9 +26,15 @@
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
+#divPersonHeader {padding:8px;margin-bottom:0px;font-weight:bold;}
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
+var personId = "<%=personId%>";
+var preferredEmail = "<%=address.getPreferred()%>";
+var excludeFromBulkEmail = "<%=address.getExclFrmBulkEmail()%>";
+var executiveRelationship = "<%=address.getExecutiveRelation()%>";
+var operationalRelationship = "<%=address.getOperationalRelation()%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -49,47 +53,14 @@
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
 			<ui:button id="btnSave" caption="button.com.save" iconClass="fa-save"/>
-			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
 		</ui:buttonGroup>
 	</div>
 </div>
-<div id="divSearchCriteriaArea" class="areaContainerFrame">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<table class="tblDefault withPadding">
-				<colgroup>
-					<col width="10%"/>
-					<col width="23%"/>
-					<col width="10%"/>
-					<col width="23%"/>
-					<col width="10%"/>
-					<col width="24%"/>
-				</colgroup>
-				<tr>
-					<th class="thDefault rt"><mc:msg key="per0202.search.personNumber"/></th>
-					<td class="tdDefault"><ui:text name="personNumber" value="<%=personNumber%>" style="width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.name"/></th>
-					<td class="tdDefault"><ui:text name="name" value="<%=personName%>" style="width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.email"/></th>
-					<td class="tdDefault"><ui:text name="email" style="width:280px"/></td>
-				</tr>
-				<tr>
-					<th class="thDefault rt"><mc:msg key="per0202.search.empOrg"/></th>
-					<td class="tdDefault">
-						<ui:hidden name="empOrgId"/>
-						<ui:text name="empOrgName" className="hor" style="width:280px"/>
-<%-- 						<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/> --%>
-					</td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.personType"/></th>
-					<td class="tdDefault"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.mobile"/></th>
-					<td class="tdDefault"><ui:text name="mobile" style="width:280px"/></td>
-				</tr>
-			</table>
-		</div>
-	</div>
+<div id="divSearchCriteriaArea">
 </div>
-<div id="divInformArea"></div>
+<div id="divInformArea" class="areaContainerFrame">
+	<div id="divPersonHeader" class="alert alert-info"><%=person.getFullName()%> (<%=person.getPersonNumber()%>)</div>
+</div>
 <%/************************************************************************************************
 * End of fixed panel
 ************************************************************************************************/%>
@@ -100,39 +71,240 @@
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerFrame">
-	<table id="tblGrid" class="tblGrid sort autosort">
-		<colgroup>
-			<col width="2%"/>
-			<col width="5%"/>
-			<col width="13%"/>
-			<col width="13%"/>
-			<col width="*"/>
-			<col width="21%"/>
-			<col width="16%"/>
-			<col width="8%"/>
-			<col width="4%"/>
-		</colgroup>
-		<thead>
-			<tr>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.personNumber"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.surname"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.firstName"/></th>
-				<th class="thGrid"><mc:msg key="per0202.grid.personType"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.empOrg"/></th>
-				<th class="thGrid"><mc:msg key="per0202.grid.payslipEmail"/></th>
-				<th class="thGrid"><mc:msg key="per0202.grid.mobile"/></th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
-			</tr>
-		</thead>
-		<tbody id="tblGridBody">
-			<tr>
-				<td class="tdGrid Ct" colspan="9"><mc:msg key="I002"/></td>
-			</tr>
-		</tbody>
-	</table>
+	<div id="divLeft" class="accordion" style="width:50%;float:left">
+		<div class="accordionGroup">
+			<h3 id="hHomeAddress">Postal Address</h3>
+			<div id="divHomeAddress" class="accordionContents">
+				<table id="tblHomeAddress" class="tblEdit">
+					<colgroup>
+						<col width="14%"/>
+						<col width="36%"/>
+						<col width="14%"/>
+						<col width="*"/>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th class="thEdit rt">Address Search</th>
+							<td class="tdEdit" colspan="3">
+								<ui:text name="homeAddressSearch" className="hor" style="width:83%" placeHolder="Enter a location"/>
+								<ui:check name="editHomeAddress" labelClassName="withElem" value="Y" text="Edit Address"/>
+							</td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Address Line</th>
+							<td class="tdEdit" colspan="3"><ui:text name="homeAddressLine" status="display" value="<%=address.getHomeAddressLine()%>"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Suburb</th>
+							<td class="tdEdit"><ui:text name="homeSuburb" status="display" value="<%=address.getHomeSuburb()%>"/></td>
+							<th class="thEdit rt">State</th>
+							<td class="tdEdit"><ui:ccselect name="homeState" codeType="STATES" caption="==Select==" selectedValue="<%=address.getHomeState()%>" status="disabled"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Post Code</th>
+							<td class="tdEdit"><ui:text name="homePostCode" status="display" value="<%=address.getHomePostCode()%>"/></td>
+							<th class="thEdit rt">Country</th>
+							<td class="tdEdit"><ui:text name="homeCountry" status="display" value="<%=address.getHomeCountry()%>"/></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="accordionGroup">
+			<h3 id="hOtherAddress">Other Address</h3>
+			<div id="divOtherAddress" class="accordionContents">
+				<table id="tblOtherAddress" class="tblEdit">
+					<colgroup>
+						<col width="14%"/>
+						<col width="36%"/>
+						<col width="14%"/>
+						<col width="*"/>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th class="thEdit rt">Address Search</th>
+							<td class="tdEdit" colspan="3">
+								<ui:text name="otherAddressSearch" className="hor" style="width:83%" placeHolder="Enter a location"/>
+								<ui:check name="editOtherAddress" labelClassName="withElem" value="Y" text="Edit Address"/>
+							</td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Address Line</th>
+							<td class="tdEdit" colspan="3"><ui:text name="otherAddressLine" status="display" value="<%=address.getOtherAddressLine()%>"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Suburb</th>
+							<td class="tdEdit"><ui:text name="otherSuburb" status="display" value="<%=address.getOtherSuburb()%>"/></td>
+							<th class="thEdit rt">State</th>
+							<td class="tdEdit"><ui:ccselect name="otherState" codeType="STATES" caption="==Select==" selectedValue="<%=address.getOtherState()%>" status="disabled"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Post Code</th>
+							<td class="tdEdit"><ui:text name="otherPostCode" status="display" value="<%=address.getOtherPostCode()%>"/></td>
+							<th class="thEdit rt">Country</th>
+							<td class="tdEdit"><ui:text name="otherCountry" status="display" value="<%=address.getOtherCountry()%>"/></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="accordionGroup">
+			<h3 id="hEmerAddress">Living Away From Home</h3>
+			<div id="divEmerAddress" class="accordionContents">
+				<table id="tblEmerAddress" class="tblEdit">
+					<colgroup>
+						<col width="14%"/>
+						<col width="36%"/>
+						<col width="14%"/>
+						<col width="*"/>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th class="thEdit rt">Address Search</th>
+							<td class="tdEdit" colspan="3">
+								<ui:text name="emerAddressSearch" className="hor" style="width:83%" placeHolder="Enter a location"/>
+								<ui:check name="editEmerAddress" labelClassName="withElem" value="Y" text="Edit Address"/>
+							</td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Address Line</th>
+							<td class="tdEdit" colspan="3"><ui:text name="emerAddressLine" status="display" value="<%=address.getEmerContactAddressLine()%>"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Suburb</th>
+							<td class="tdEdit"><ui:text name="emerSuburb" status="display" value="<%=address.getEmerContactSuburb()%>"/></td>
+							<th class="thEdit rt">State</th>
+							<td class="tdEdit"><ui:ccselect name="emerState" codeType="STATES" caption="==Select==" selectedValue="<%=address.getEmerContactState()%>" status="disabled"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Post Code</th>
+							<td class="tdEdit"><ui:text name="emerPostCode" status="display" value="<%=address.getEmerContactPostCode()%>"/></td>
+							<th class="thEdit rt">Country</th>
+							<td class="tdEdit"><ui:text name="emerCountry" status="display" value="<%=address.getEmerContactCountry()%>"/></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="accordionGroup">
+			<h3 id="hCorporateRelationship">Corporate Customer Employee Details</h3>
+			<div id="divCorporateRelationship" class="accordionContents">
+				<ui:check name="executiveRelationship" displayType="block" value="Y" text="Executive relationship ?"/>
+				<ui:check name="operationalRelationship" displayType="block" value="Y" text="Operational relationship ?"/>
+			</div>
+		</div>
+	</div>
+	<div id="divRight" class="accordion" style="width:49%;float:right">
+		<div class="accordionGroup">
+			<h3 id="hEmail">Email</h3>
+			<div id="divEmail" class="accordionContents">
+				<table id="tblEmail" class="tblEdit">
+					<colgroup>
+						<col width="15%"/>
+						<col width="*"/>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th class="thEdit rt">Home</th>
+							<td class="tdEdit"><ui:text name="emailHome" className="hor" style="width:95%" value="<%=address.getEmailHome()%>"/><ui:icon className="fa-envelope fa-5x hor"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Work</th>
+							<td class="tdEdit"><ui:text name="emailWork" className="hor" style="width:95%" value="<%=address.getEmailWork()%>"/><ui:icon className="fa-envelope fa-5x hor"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Preferred</th>
+							<td class="tdEdit">
+								<ui:radio name="preferredEmail" value="N" text="None"/>
+								<ui:radio name="preferredEmail" value="B" text="Both"/>
+								<ui:radio name="preferredEmail" value="H" text="Home"/>
+								<ui:radio name="preferredEmail" value="W" text="Work"/>
+							</td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Bulk Email</th>
+							<td class="tdEdit"><ui:check name="excludeFromBulkEmail" value="Y" text="Exclude From Bulk Email"/></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="accordionGroup">
+			<h3 id="hPhoneFax">Phone / Fax</h3>
+			<div id="divPhoneFax" class="accordionContents">
+				<table id="tblPhone" class="tblEdit">
+					<caption class="captionEdit">Phone</caption>
+					<colgroup>
+						<col width="15%"/>
+						<col width="*"/>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th class="thEdit rt">Mobile</th>
+							<td class="tdEdit"><ui:text name="phoneMobile" value="<%=address.getTelephoneMobile()%>"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Home</th>
+							<td class="tdEdit"><ui:text name="phoneHome" value="<%=address.getTelephoneHome()%>"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Work</th>
+							<td class="tdEdit"><ui:text name="phoneWork" value="<%=address.getTelephoneWork()%>"/></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="verGap4"></div>
+				<table id="tblFax" class="tblEdit">
+					<caption class="captionEdit">Fax</caption>
+					<colgroup>
+						<col width="15%"/>
+						<col width="*"/>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th class="thEdit rt">Home</th>
+							<td class="tdEdit"><ui:text name="faxHome" value="<%=address.getFaxHome()%>"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Work</th>
+							<td class="tdEdit"><ui:text name="faxWork" value="<%=address.getFaxWork()%>"/></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="accordionGroup">
+			<h3 id="hEmerContact">Emergency Contact</h3>
+			<div id="divEmerContact" class="accordionContents">
+				<table id="tblEmerContact" class="tblEdit">
+					<colgroup>
+						<col width="15%"/>
+						<col width="*"/>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th class="thEdit rt">Name</th>
+							<td class="tdEdit"><ui:text name="emerName" value="<%=address.getEmerContactName()%>"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Relationship</th>
+							<td class="tdEdit"><ui:text name="emerRelationship" value="<%=address.getEmerContactRelationship()%>"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Phone</th>
+							<td class="tdEdit"><ui:text name="emerPhone" value="<%=address.getEmerContactPhone()%>"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt">Email</th>
+							<td class="tdEdit"><ui:text name="emerEmail" value="<%=address.getEmerContactEmail()%>"/></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
-<div id="divPagingArea" class="areaContainerFrame"></div>
+<div id="divPagingArea"></div>
 <%/************************************************************************************************
 * Right & Footer
 ************************************************************************************************/%>

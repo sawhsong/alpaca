@@ -2,7 +2,4 @@
     <!--Per0202 - Person Profile-->
     <bean class="${name.package.project}.app.per.per0202.Per0202Action" id="per0202Action" name="per0202Action"/>
     <bean class="${name.package.project}.app.per.per0202.Per0202BizImpl" id="per0202Biz" name="per0202Biz" parent="baseBiz"/>
-    <!--Per0204 - Document-->
-    <bean class="${name.package.project}.app.per.per0204.Per0204Action" id="per0204Action" name="per0204Action"/>
-    <bean class="${name.package.project}.app.per.per0204.Per0204BizImpl" id="per0204Biz" name="per0204Biz" parent="baseBiz"/>
 </beans>

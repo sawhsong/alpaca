@@ -10,10 +10,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
+import project.conf.resource.ormapper.dao.HpAddressContactD.HpAddressContactDDao;
 import project.conf.resource.ormapper.dao.HpComments.HpCommentsDao;
 import project.conf.resource.ormapper.dao.HpContactHistory.HpContactHistoryDao;
 import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
 import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
+import project.conf.resource.ormapper.dto.oracle.HpAddressContactD;
 import project.conf.resource.ormapper.dto.oracle.HpComments;
 import project.conf.resource.ormapper.dto.oracle.HpOrganisationD;
 import project.conf.resource.ormapper.dto.oracle.HpPersonD;
@@ -33,6 +35,8 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	private HpCommentsDao hpCommentsDao;
 	@Autowired
 	private HpContactHistoryDao hpContactHistoryDao;
+	@Autowired
+	private HpAddressContactDDao hpAddressContactDDao;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -184,6 +188,30 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	}
 
 	public ParamEntity getContact(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		String personId = dsRequest.getValue("personId");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+		HpPersonD hpPersonD;
+		HpAddressContactD hpAddressContactD;
+
+		try {
+			hpPersonDDao.setDataSourceName(dataSource);
+			hpAddressContactDDao.setDataSourceName(dataSource);
+
+			hpPersonD = hpPersonDDao.getPersonByPersonId(personId);
+			hpAddressContactD = hpAddressContactDDao.getAddressContactByPersonId(personId);
+
+			paramEntity.setObject("hpPersonD", hpPersonD);
+			paramEntity.setObject("hpAddressContactD", hpAddressContactD);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getDocument(ParamEntity paramEntity) throws Exception {
 		try {
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {

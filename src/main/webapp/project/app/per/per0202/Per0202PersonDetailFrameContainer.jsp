@@ -64,8 +64,8 @@ var personId = "<%=personId%>";
 <%/************************************************************************************************
 * Real Contents - fixed panel(tab, button, search, information)
 ************************************************************************************************/%>
-<div id="divTabArea" class="areaContainer">
-	<ui:tab id="tabCategory">
+<div id="divTabAreaPersonDetail" class="divTabArea areaContainer">
+	<ui:tab id="tabCategoryPersonDetail">
 		<ui:tabList caption="Personal" isActive="true" iconClass="" iconPosition="left"/>
 		<ui:tabList caption="Contact" iconClass="" iconPosition="left"/>
 		<ui:tabList caption="Document" iconClass="" iconPosition="left"/>
@@ -85,6 +85,41 @@ var personId = "<%=personId%>";
 <%
 	}
 %>
+	</ui:tab>
+</div>
+<div id="divTabAreaDocument" class="divTabArea areaContainer" style="display:none">
+	<ui:tab id="tabCategoryDocument">
+		<ui:tabList caption="Outstanding" isActive="true" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Received" iconClass="" iconPosition="left"/>
+	</ui:tab>
+</div>
+<div id="divTabAreaEcmsEbo" class="divTabArea areaContainer" style="display:none">
+	<ui:tab id="tabCategoryEcmsEbo">
+		<ui:tabList caption="General" isActive="true" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Opportunities" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Assignments" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Payslips" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Superannuation" iconClass="" iconPosition="left"/>
+	</ui:tab>
+</div>
+<div id="divTabAreaPortal" class="divTabArea areaContainer" style="display:none">
+	<ui:tab id="tabCategoryPortal">
+		<ui:tabList caption="Account" isActive="true" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Task Flow" iconClass="" iconPosition="left"/>
+	</ui:tab>
+</div>
+<div id="divTabAreaAssignments" class="divTabArea areaContainer" style="display:none">
+	<ui:tab id="tabCategoryAssignments">
+		<ui:tabList caption="Assignment List" isActive="true" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Assignment" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Rate Calculator" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Deduction" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Invoice" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Tax" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Banking" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Leave" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Templated Documents" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="PERCI NAR" iconClass="" iconPosition="left"/>
 	</ui:tab>
 </div>
 <div id="divButtonArea">

@@ -84,6 +84,11 @@ public class Per0202Action extends BaseAction {
 		return "contact";
 	}
 
+	public String getDocument() throws Exception {
+		biz.getDocument(paramEntity);
+		return "document";
+	}
+
 	public String getAdditionalService() throws Exception {
 		biz.getAdditionalService(paramEntity);
 		return "additionalService";
