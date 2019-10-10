@@ -8,66 +8,152 @@ $(function() {
 	 */
 	$("#tabCategoryPersonDetail li a").click(function() {
 		var index = $(this).parent().index(),
-			action = commonJs.replace(commonJs.replace($(this).text(), " ", ""), "/", ""),
+			action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
 			actionString = "/per/0202/get"+action+".do"+"?personId="+personId;
 
-		$("#divTabAreaAssignments").css("display", "none");
+		hideSubTabs("PersonDetail");
+		changeTabSelection($(this));
 
 		if (action == "Document") {
-			$("#divTabAreaDocument").css("display", "block");
-		} else {
-			$("#divTabAreaDocument").css("display", "none");
+			showSubTabs("Document");
+			return;
 		}
 
 		if (action == "ECMS" || action == "EBO") {
-			$("#divTabAreaEcmsEbo").css("display", "block");
-		} else {
-			$("#divTabAreaEcmsEbo").css("display", "none");
+			showSubTabs("EcmsEbo");
+			return;
 		}
 
 		if (action == "Portal") {
-			$("#divTabAreaPortal").css("display", "block");
-		} else {
-			$("#divTabAreaPortal").css("display", "none");
+			showSubTabs("Portal");
+			return;
 		}
 
-		$("#if"+action).attr("src", "");
-		setTimeout(function() {
-			$("#if"+action).attr("src", actionString);
-		}, 200); // important
+		setFrame(actionString);
+	});
+
+	$("#tabCategoryDocument li a").click(function() {
+		var index = $(this).parent().index(),
+			action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
+			actionString = "/per/0202/getDocument"+action+".do"+"?personId="+personId;
+
+		hideSubTabs("Document");
+		changeTabSelection($(this));
+		setFrame(actionString);
 	});
 
 	$("#tabCategoryEcmsEbo li a").click(function() {
 		var index = $(this).parent().index(),
-			action = commonJs.replace(commonJs.replace($(this).text(), " ", ""), "/", ""),
+			action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
 			actionString = "/per/0202/get"+action+".do"+"?personId="+personId;
 
+		hideSubTabs("EcmsEbo");
+		changeTabSelection($(this));
+
 		if (action == "Assignments") {
-			$("#divTabAreaAssignments").css("display", "block");
-		} else {
-			$("#divTabAreaAssignments").css("display", "none");
+			showSubTabs("Assignments");
+			return;
 		}
 
-		$("#if"+action).attr("src", "");
-		setTimeout(function() {
-			$("#if"+action).attr("src", actionString);
-		}, 200); // important
+		setFrame(actionString);
+	});
+
+	$("#tabCategoryAssignments li a").click(function() {
+		var index = $(this).parent().index(),
+			action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
+			actionString = "/per/0202/get"+action+".do"+"?personId="+personId;
+
+		hideSubTabs("Assignments");
+		changeTabSelection($(this));
+		setFrame(actionString);
+	});
+
+	$("#tabCategoryPortal li a").click(function() {
+		var index = $(this).parent().index(),
+			action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
+			actionString = "/per/0202/get"+action+".do"+"?personId="+personId;
+
+		hideSubTabs("Assignments");
+		changeTabSelection($(this));
+		setFrame(actionString);
 	});
 
 	/*!
 	 * process
 	 */
-	setAllIframeSize = function() {
-		$("iframe").each(function(index) {
-			$(this).css("height", $("#divScrollablePanel").height());
+	setIframeSize = function() {
+		$("#ifFrame").css("height", $("#divScrollablePanel").height());
+	};
+
+	changeTabSelection = function(object) {
+		var $parentUl = $(object).closest("ul");
+		var $parentLi = $(object).closest("li");
+
+		if ($parentLi.attr("class").indexOf("disabled") != -1) {return;}
+
+		$parentUl.find("li").each(function(index) {
+			var thisSelected = $(this).has($(object)).length;
+
+			if (thisSelected <= 0) {
+				if ($(this).attr("class").indexOf("disabled") != -1) {
+				} else {
+					$(this).removeClass("active");
+				}
+			}
+
+			if (thisSelected > 0) {
+				if ($(this).attr("class").indexOf("disabled") != -1) {
+				} else {
+					$(this).addClass("active");
+				}
+			}
 		});
+	};
+
+	showSubTabs = function(parentTabName) {
+		if (parentTabName == "Document") {
+			$("#divTabAreaDocument").stop().animate({opacity:"show"}, jsconfig.get("effectDuration"));
+			$("#tabCategoryDocument li:eq(0) a").trigger("click");
+		} else if (parentTabName == "EcmsEbo") {
+			$("#divTabAreaEcmsEbo").stop().animate({opacity:"show"}, jsconfig.get("effectDuration"));
+			$("#tabCategoryEcmsEbo li:eq(0) a").trigger("click");
+		} else if (parentTabName == "Portal") {
+			$("#divTabAreaPortal").stop().animate({opacity:"show"}, jsconfig.get("effectDuration"));
+			$("#tabCategoryPortal li:eq(0) a").trigger("click");
+		} else if (parentTabName == "Assignments") {
+			$("#divTabAreaAssignments").stop().animate({opacity:"show"}, jsconfig.get("effectDuration"));
+			$("#tabCategoryAssignments li:eq(0) a").trigger("click");
+		}
+	};
+
+	hideSubTabs = function(parentTabName) {
+		if (parentTabName == "PersonDetail") {
+			$("#divTabAreaDocument").stop().animate({opacity:"hide"}, jsconfig.get("effectDuration"));
+			$("#divTabAreaEcmsEbo").stop().animate({opacity:"hide"}, jsconfig.get("effectDuration"));
+			$("#divTabAreaPortal").stop().animate({opacity:"hide"}, jsconfig.get("effectDuration"));
+			$("#divTabAreaAssignments").stop().animate({opacity:"hide"}, jsconfig.get("effectDuration"));
+		} else if (parentTabName == "EcmsEbo") {
+			$("#divTabAreaAssignments").stop().animate({opacity:"hide"}, jsconfig.get("effectDuration"));
+		}
+	};
+
+	setFrame = function(actionString) {
+		$("#ifFrame").attr("src", "");
+		setTimeout(function() {
+			$("#ifFrame").attr("src", actionString);
+		}, 200); // important
+
+		$("#divFrame").stop().animate({opacity:"hide"}, jsconfig.get("effectDuration"));
+		setTimeout(function() {
+			$("#divFrame").stop().animate({opacity:"show"}, jsconfig.get("effectDuration"));
+		}, 400);
 	};
 
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		setAllIframeSize();
+		setIframeSize();
 		$("#tabCategoryPersonDetail li:eq(0) a").trigger("click");
 	});
 });

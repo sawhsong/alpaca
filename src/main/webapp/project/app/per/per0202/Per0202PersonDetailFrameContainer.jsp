@@ -66,22 +66,22 @@ var personId = "<%=personId%>";
 ************************************************************************************************/%>
 <div id="divTabAreaPersonDetail" class="divTabArea areaContainer">
 	<ui:tab id="tabCategoryPersonDetail">
-		<ui:tabList caption="Personal" isActive="true" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Contact" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Document" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Additional Service" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Communication" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Next Actions" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Personal" isActive="true" iconClass="fa-user" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Contact" iconClass="fa-address-book" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Document" iconClass="fa-folder" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Additional Service" iconClass="fa-archive" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Communication" iconClass="fa-comments" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Next Actions" iconClass="fa-tasks" iconPosition="left" useAutoScript="false"/>
 <%
 	if (isEcmsEboTabAvailable) {
 %>
-		<ui:tabList caption="<%=captionEcmsEbo%>" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="<%=captionEcmsEbo%>" iconClass="fa-street-view" iconPosition="left" useAutoScript="false"/>
 <%
 	}
 
 	if (isPortalTabAvailable) {
 %>
-		<ui:tabList caption="Portal" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Portal" iconClass="fa-users" iconPosition="left" useAutoScript="false"/>
 <%
 	}
 %>
@@ -89,37 +89,37 @@ var personId = "<%=personId%>";
 </div>
 <div id="divTabAreaDocument" class="divTabArea areaContainer" style="display:none">
 	<ui:tab id="tabCategoryDocument">
-		<ui:tabList caption="Outstanding" isActive="true" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Received" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Outstanding" iconClass="fa-file" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Received" iconClass="fa-file-text" iconPosition="left" useAutoScript="false"/>
 	</ui:tab>
 </div>
 <div id="divTabAreaEcmsEbo" class="divTabArea areaContainer" style="display:none">
 	<ui:tab id="tabCategoryEcmsEbo">
-		<ui:tabList caption="General" isActive="true" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Opportunities" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Assignments" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Payslips" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Superannuation" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="General" iconClass="fa-user" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Opportunities" iconClass="fa-folder-open" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Assignments" iconClass="fa-id-card" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Payslips" iconClass="fa-money" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Superannuation" iconClass="fa-calculator" iconPosition="left" useAutoScript="false"/>
 	</ui:tab>
 </div>
 <div id="divTabAreaPortal" class="divTabArea areaContainer" style="display:none">
 	<ui:tab id="tabCategoryPortal">
-		<ui:tabList caption="Account" isActive="true" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Task Flow" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Account" iconClass="fa-users" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Task Flow" iconClass="fa-sitemap" iconPosition="left" useAutoScript="false"/>
 	</ui:tab>
 </div>
 <div id="divTabAreaAssignments" class="divTabArea areaContainer" style="display:none">
 	<ui:tab id="tabCategoryAssignments">
-		<ui:tabList caption="Assignment List" isActive="true" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Assignment" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Rate Calculator" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Deduction" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Invoice" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Tax" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Banking" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Leave" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="Templated Documents" iconClass="" iconPosition="left"/>
-		<ui:tabList caption="PERCI NAR" iconClass="" iconPosition="left"/>
+		<ui:tabList caption="Assignment List" iconClass="fa-bars" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Assignment" iconClass="fa-id-card-o" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Rate Calculator" iconClass="fa-calculator" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Deduction" iconClass="fa-minus-square" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Invoice" iconClass="fa-desktop" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Tax" iconClass="fa-usd" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Banking" iconClass="fa-university" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Leave" iconClass="fa-plane" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="Templated Documents" iconClass="fa-clone" iconPosition="left" useAutoScript="false"/>
+		<ui:tabList caption="PERCI NAR" iconClass="fa-list-alt" iconPosition="left" useAutoScript="false"/>
 	</ui:tab>
 </div>
 <div id="divButtonArea">
@@ -140,29 +140,8 @@ var personId = "<%=personId%>";
 ************************************************************************************************/%>
 <div id="divDataArea">
 	<div id="divFrameContainer" class="frameContainer">
-		<div id="div0" style="">
-			<iframe id="ifPersonal" class="iframeInFrameContainer"></iframe>
-		</div>
-		<div id="div1" style="display:none">
-			<iframe id="ifContact" class="iframeInFrameContainer"></iframe>
-		</div>
-		<div id="div2" style="display:none">
-			<iframe id="ifDocument" class="iframeInFrameContainer"></iframe>
-		</div>
-		<div id="div3" style="display:none">
-			<iframe id="ifAdditionalService" class="iframeInFrameContainer"></iframe>
-		</div>
-		<div id="div4" style="display:none">
-			<iframe id="ifCommunication" class="iframeInFrameContainer"></iframe>
-		</div>
-		<div id="div5" style="display:none">
-			<iframe id="ifNextActions" class="iframeInFrameContainer"></iframe>
-		</div>
-		<div id="div6" style="display:none">
-			<iframe id="ifECMSEBO" class="iframeInFrameContainer"></iframe>
-		</div>
-		<div id="div7" style="display:none">
-			<iframe id="ifPortal" class="iframeInFrameContainer"></iframe>
+		<div id="divFrame" style="">
+			<iframe id="ifFrame" class="iframeInFrameContainer"></iframe>
 		</div>
 	</div>
 </div>

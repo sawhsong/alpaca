@@ -9,7 +9,8 @@
             <result name="personDetailFrameContainer" type="debugDispatcherResult">/project/app/per/per0202/Per0202PersonDetailFrameContainer.jsp</result>
             <result name="personal" type="debugDispatcherResult">/project/app/per/per0202/Per0202PersonalFrame.jsp</result>
             <result name="contact" type="debugDispatcherResult">/project/app/per/per0202/Per0202ContactFrame.jsp</result>
-            <result name="document" type="debugDispatcherResult">/project/app/per/per0202/Per0202DocumentFrame.jsp</result>
+            <result name="documentOutstanding" type="debugDispatcherResult">/project/app/per/per0202/Per0202DocumentOutstandingFrame.jsp</result>
+            <result name="documentReceived" type="debugDispatcherResult">/project/app/per/per0202/Per0202DocumentReceivedFrame.jsp</result>
             <result name="additionalService" type="debugDispatcherResult">/project/app/per/per0202/Per0202AdditionalServiceFrame.jsp</result>
             <result name="communication" type="debugDispatcherResult">/project/app/per/per0202/Per0202CommunicationFrame.jsp</result>
             <result name="nextActions" type="debugDispatcherResult">/project/app/per/per0202/Per0202NextActionsFrame.jsp</result>

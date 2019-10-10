@@ -211,7 +211,16 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 		return paramEntity;
 	}
 
-	public ParamEntity getDocument(ParamEntity paramEntity) throws Exception {
+	public ParamEntity getDocumentOutstanding(ParamEntity paramEntity) throws Exception {
+		try {
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getDocumentReceived(ParamEntity paramEntity) throws Exception {
 		try {
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
