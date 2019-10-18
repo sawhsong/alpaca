@@ -17,17 +17,9 @@ public interface Per0202Biz {
 	public ParamEntity getCommsHistory(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getContact(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getDocumentOutstanding(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getDocumentOutstandingList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getDocumentReceived(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getAdditionalService(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getCommunication(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getNextActions(ParamEntity paramEntity) throws Exception;
-/*
-	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception;
-	public ParamEntity getInsert(ParamEntity paramEntity) throws Exception;
-	public ParamEntity getUpdate(ParamEntity paramEntity) throws Exception;
-	public ParamEntity exeInsert(ParamEntity paramEntity) throws Exception;
-	public ParamEntity exeUpdate(ParamEntity paramEntity) throws Exception;
-	public ParamEntity exeDelete(ParamEntity paramEntity) throws Exception;
-	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception;
-*/
 }

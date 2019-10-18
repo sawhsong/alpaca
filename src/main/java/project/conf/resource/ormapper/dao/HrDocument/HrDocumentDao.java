@@ -5,6 +5,9 @@
 package project.conf.resource.ormapper.dao.HrDocument;
 
 import zebra.base.IDao;
+import zebra.data.DataSet;
+import zebra.data.QueryAdvisor;
 
 public interface HrDocumentDao extends IDao {
+	public DataSet getPersonOutstandingDocumentByPersonId(QueryAdvisor queryAdvisor, String personId) throws Exception;
 }

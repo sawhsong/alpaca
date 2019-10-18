@@ -59,7 +59,7 @@
 		<property name="username" value="${jdbc.user.name_alpaca}"/>
 		<property name="password" value="${jdbc.user.pass_alpaca}"/>
 	</bean>
-
+<!--
 	<bean id="driverManager_perciTest" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.driver.driverClassName}"/>
 		<property name="url" value="${jdbc.driver.url_perciTest}"/>
@@ -76,7 +76,7 @@
 		<property name="username" value="${jdbc.user.name_perciTest}"/>
 		<property name="password" value="${jdbc.user.pass_perciTest}"/>
 	</bean>
-
+-->
 	<bean id="driverManager_perciProd" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.driver.driverClassName}"/>
 		<property name="url" value="${jdbc.driver.url_perciProd}"/>
@@ -152,9 +152,11 @@
 	<bean id="txManagerForHibernate_alpaca" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="hibernateLocalSessionFactory_alpaca"/>
 	</bean>
+<!--
 	<bean id="txManagerForHibernate_perciTest" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="hibernateLocalSessionFactory_perciTest"/>
 	</bean>
+-->
 	<bean id="txManagerForHibernate_perciProd" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="hibernateLocalSessionFactory_perciProd"/>
 	</bean>

@@ -39,7 +39,7 @@
 		<aop:advisor advice-ref="txAdviceForHibernate" pointcut-ref="txPointcut"/>
 		<!-- For Multiple Datasource -->
 		<aop:advisor advice-ref="txAdviceForHibernate_alpaca" pointcut-ref="txPointcut"/>
-		<aop:advisor advice-ref="txAdviceForHibernate_perciTest" pointcut-ref="txPointcut"/>
+<!-- 		<aop:advisor advice-ref="txAdviceForHibernate_perciTest" pointcut-ref="txPointcut"/> -->
 		<aop:advisor advice-ref="txAdviceForHibernate_perciProd" pointcut-ref="txPointcut"/>
 	</aop:config>
 	<!-- Transaction Advice -->
@@ -86,18 +86,18 @@
 			<tx:method name="delete*" propagation="REQUIRED" timeout="600" rollback-for="Exception"/>
 		</tx:attributes>
 	</tx:advice>
-	<tx:advice id="txAdviceForHibernate_perciTest" transaction-manager="txManagerForHibernate_perciTest">
-		<tx:attributes>
-			<tx:method name="get*" read-only="true"/>
-			<tx:method name="select*" read-only="true"/>
-			<tx:method name="save*" propagation="REQUIRED" timeout="600" rollback-for="Exception"/>
-			<tx:method name="exe*" propagation="REQUIRED" timeout="600" rollback-for="Exception"/>
-			<tx:method name="do*" propagation="REQUIRED" timeout="600" rollback-for="Exception"/>
-			<tx:method name="insert*" propagation="REQUIRED" timeout="600" rollback-for="Exception"/>
-			<tx:method name="update*" propagation="REQUIRED" timeout="600" rollback-for="Exception"/>
-			<tx:method name="delete*" propagation="REQUIRED" timeout="600" rollback-for="Exception"/>
-		</tx:attributes>
-	</tx:advice>
+<!-- 	<tx:advice id="txAdviceForHibernate_perciTest" transaction-manager="txManagerForHibernate_perciTest"> -->
+<!-- 		<tx:attributes> -->
+<!-- 			<tx:method name="get*" read-only="true"/> -->
+<!-- 			<tx:method name="select*" read-only="true"/> -->
+<!-- 			<tx:method name="save*" propagation="REQUIRED" timeout="600" rollback-for="Exception"/> -->
+<!-- 			<tx:method name="exe*" propagation="REQUIRED" timeout="600" rollback-for="Exception"/> -->
+<!-- 			<tx:method name="do*" propagation="REQUIRED" timeout="600" rollback-for="Exception"/> -->
+<!-- 			<tx:method name="insert*" propagation="REQUIRED" timeout="600" rollback-for="Exception"/> -->
+<!-- 			<tx:method name="update*" propagation="REQUIRED" timeout="600" rollback-for="Exception"/> -->
+<!-- 			<tx:method name="delete*" propagation="REQUIRED" timeout="600" rollback-for="Exception"/> -->
+<!-- 		</tx:attributes> -->
+<!-- 	</tx:advice> -->
 	<tx:advice id="txAdviceForHibernate_perciProd" transaction-manager="txManagerForHibernate_perciProd">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true"/>

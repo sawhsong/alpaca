@@ -53,7 +53,7 @@
 			</list>
 		</property>
 	</bean>
-
+<!--
 	<bean id="hibernateLocalSessionFactory_perciTest" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="${jdbc.using.dataSource_perciTest}"/>
 		<property name="hibernateProperties">
@@ -76,7 +76,7 @@
 			</list>
 		</property>
 	</bean>
-
+-->
 	<bean id="hibernateLocalSessionFactory_perciProd" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="${jdbc.using.dataSource_perciProd}"/>
 		<property name="hibernateProperties">

@@ -89,6 +89,15 @@ public class Per0202Action extends BaseAction {
 		return "documentOutstanding";
 	}
 
+	public String getDocumentOutstandingList() throws Exception {
+		try {
+			biz.getDocumentOutstandingList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
 	public String getDocumentReceived() throws Exception {
 		biz.getDocumentReceived(paramEntity);
 		return "documentReceived";
@@ -108,54 +117,4 @@ public class Per0202Action extends BaseAction {
 		biz.getNextActions(paramEntity);
 		return "nextActions";
 	}
-
-/*
-	public String getDetail() throws Exception {
-		biz.getDetail(paramEntity);
-		return "detail";
-	}
-
-	public String getInsert() throws Exception {
-		biz.getInsert(paramEntity);
-		return "insert";
-	}
-
-	public String getUpdate() throws Exception {
-		biz.getUpdate(paramEntity);
-		return "update";
-	}
-
-	public String exeInsert() throws Exception {
-		try {
-			biz.exeInsert(paramEntity);
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
-	}
-
-	public String exeUpdate() throws Exception {
-		try {
-			biz.exeUpdate(paramEntity);
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
-	}
-
-	public String exeDelete() throws Exception {
-		try {
-			biz.exeDelete(paramEntity);
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
-	}
-
-	public String exeExport() throws Exception {
-		biz.exeExport(paramEntity);
-		setRequestAttribute("paramEntity", paramEntity);
-		return "export";
-	}
-*/
 }
