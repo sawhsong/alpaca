@@ -16,7 +16,7 @@
 		       hrd.document_name as document_name,
 		       hrd.description as document_description,
 		       to_char(hrd.due_date, '${dateFormat}') as due_date,
-		       'Opp : <a onclick=''showOpportunity('||nvl(to_char(opp.opportunity_id), '--')||')'' class=''aEn''>'||nvl(to_char(opp.opportunity_id), '--')||'</a>, Assignment : <a onclick=''showAssignment('||nvl(to_char(had.assignment_id), '--')||')'' class=''aEn''>'||nvl(to_char(had.assignment_id), '--')||'</a>' as opp_asg_id,
+		       'Opp : <a onclick=''showOpportunity('||nvl(to_char(opp.opportunity_id), '--')||')'' class=''aEn''>'||nvl(to_char(opp.opportunity_id), '--')||'</a>, Asg : <a onclick=''showAssignment('||nvl(to_char(had.assignment_id), '--')||')'' class=''aEn''>'||nvl(to_char(had.assignment_id), '--')||'</a>' as opp_asg_id,
 		       opp.opportunity_type as opportunity_type,
 		       (select meaning from sys_common_lookups where lookup_type = 'OPPORTUNITY_TYPE' and lookup_code = opp.opportunity_type) as opportunity_type_meaning,
 		       had.billing_organisation_id as billing_org_id,
@@ -87,6 +87,43 @@
 		   and opp.opportunity_id = opp_task_flow.source_id(+)
 		   and had.assignment_id = asg_task_flow.source_id(+)
 		 order by hrd.person_id desc, hrd.follow_up_date asc, hrd.due_date asc, hrd.document_name asc
+	]]>
+	</sql-query>
+
+	<sql-query name="query.HrDocument.getPersonReceivedDocumentByPersonId">
+	<![CDATA[
+		select hrd.person_id as person_id,
+		       hrd.document_id as document_id,
+		       hrd.document_name as document_name,
+		       hrd.organisation_id as copy_to_org_id,
+		       (select organisation_name from hp_organisation_d where organisation_id = hrd.organisation_id) as copy_to_org_name,
+		       hrd.receive_comments as receive_comments,
+		       hrd.received_by as received_by_id,
+		       hpd.full_name as received_by_name,
+		       'Opp : <a onclick=''showOpportunity('||nvl(to_char(opp.opportunity_id), '--')||')'' class=''aEn''>'||nvl(to_char(opp.opportunity_id), '--')||'</a>, Asg : <a onclick=''showAssignment('||nvl(to_char(had.assignment_id), '--')||')'' class=''aEn''>'||nvl(to_char(had.assignment_id), '--')||'</a>' as opp_asg_id,
+		       had.billing_organisation_id as billing_org_id,
+		       (select organisation_name from hp_organisation_d where organisation_id = had.billing_organisation_id) as billing_org_name,
+		       to_char(hrd.expiry_date, '${dateFormat}') as expiry_date,
+		       'Received by '||hpd.full_name||' on '||to_char(hrd.received_date, '${dateFormat}')||' '||replace((select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_RECIEVED_STATUS_DETAIL' and lookup_code = hrd.status_detail), 'Received', '') as document_status_meaning,
+		       decode(hrd.is_active, 'Y', 'Y', 'N', 'N', 'N') as is_active,
+		       case when hrd.document_sub_type in (select lookup_code from sys_common_lookups where lookup_type = 'UCM_DOC_SUB_TYPES') then 'Y'
+		            else 'N'
+		       end as is_available_on_eo
+		  from hr_document hrd,
+		       opportunity opp,
+		       opportunity_docs_link odl,
+		       hp_assignments_d had,
+		       assignment_document_link adl,
+		       hp_person_d hpd
+		 where hrd.person_id = '${personId}'
+		   ${auto_fill}
+		   and hrd.status in ('RECEIVED', 'PR')
+		   and hrd.document_id = odl.document_id(+)
+		   and odl.opportunity_id = opp.opportunity_id(+)
+		   and hrd.document_id = adl.document_id(+)
+		   and adl.assignment_id = had.assignment_id(+)
+		   and hrd.received_by = hpd.person_id(+)
+		 order by hrd.person_id desc, hrd.received_date desc, hrd.document_name asc
 	]]>
 	</sql-query>
 </hibernate-mapping>

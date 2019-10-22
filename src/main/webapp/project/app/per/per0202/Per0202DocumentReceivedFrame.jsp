@@ -8,12 +8,9 @@
 ************************************************************************************************/%>
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
-	HpPersonD hpPersonD = (HpPersonD)session.getAttribute("HpPersonDQuickSearch");
-	String personNumber = "", personName = "";
-	if (hpPersonD != null) {
-		personNumber = hpPersonD.getPersonNumber();
-		personName = hpPersonD.getFullName();
-	}
+	DataSet dsRequest = paramEntity.getRequestDataSet();
+	HpPersonD person = (HpPersonD)session.getAttribute("HpPersonDQuickSearch");
+	String personId = dsRequest.getValue("personId");
 %>
 <%/************************************************************************************************
 * HTML
@@ -28,9 +25,11 @@
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
+#divPersonHeader {padding:8px;margin-bottom:0px;font-weight:bold;}
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
+var personId = "<%=personId%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -48,49 +47,37 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnSave" caption="button.com.save" iconClass="fa-save"/>
-			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
+			<ui:button id="btnNew" caption="New Document" iconClass="fa-plus"/>
+			<ui:button id="btnSearch" caption="button.com.search" iconClass="fa-search"/>
+			<ui:button id="btnClear" caption="button.com.clear" iconClass="fa-refresh"/>
 		</ui:buttonGroup>
 	</div>
+</div>
+<div id="divInformArea" class="areaContainerFrame">
+	<div id="divPersonHeader" class="alert alert-info"><%=person.getFullName()%> (<%=person.getPersonNumber()%>) <%=person.getPersonType()%></div>
 </div>
 <div id="divSearchCriteriaArea" class="areaContainerFrame">
 	<div class="panel panel-default">
 		<div class="panel-body">
-			DocumentReceived
 			<table class="tblDefault withPadding">
 				<colgroup>
-					<col width="10%"/>
-					<col width="23%"/>
-					<col width="10%"/>
-					<col width="23%"/>
-					<col width="10%"/>
-					<col width="24%"/>
+					<col width="5%"/>
+					<col width="*"/>
 				</colgroup>
 				<tr>
-					<th class="thDefault rt"><mc:msg key="per0202.search.personNumber"/></th>
-					<td class="tdDefault"><ui:text name="personNumber" value="<%=personNumber%>" style="width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.name"/></th>
-					<td class="tdDefault"><ui:text name="name" value="<%=personName%>" style="width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.email"/></th>
-					<td class="tdDefault"><ui:text name="email" style="width:280px"/></td>
-				</tr>
-				<tr>
-					<th class="thDefault rt"><mc:msg key="per0202.search.empOrg"/></th>
+					<th class="thDefault rt">Status</th>
 					<td class="tdDefault">
-						<ui:hidden name="empOrgId"/>
-						<ui:text name="empOrgName" className="hor" style="width:280px"/>
-<%-- 						<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/> --%>
+						<ui:select id="status" name="status">
+							<ui:seloption value="Y" text="Active"/>
+							<ui:seloption value="N" text="Inactive"/>
+							<ui:seloption value="" text="All"/>
+						</ui:select>
 					</td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.personType"/></th>
-					<td class="tdDefault"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.mobile"/></th>
-					<td class="tdDefault"><ui:text name="mobile" style="width:280px"/></td>
 				</tr>
 			</table>
 		</div>
 	</div>
 </div>
-<div id="divInformArea"></div>
 <%/************************************************************************************************
 * End of fixed panel
 ************************************************************************************************/%>
@@ -103,26 +90,26 @@
 <div id="divDataArea" class="areaContainerFrame">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="2%"/>
-			<col width="5%"/>
-			<col width="13%"/>
-			<col width="13%"/>
+			<col width="17%"/>
+			<col width="17%"/>
 			<col width="*"/>
-			<col width="21%"/>
 			<col width="16%"/>
-			<col width="8%"/>
+			<col width="11%"/>
+			<col width="5%"/>
+			<col width="4%"/>
+			<col width="7%"/>
 			<col width="4%"/>
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.personNumber"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.surname"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.firstName"/></th>
-				<th class="thGrid"><mc:msg key="per0202.grid.personType"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.empOrg"/></th>
-				<th class="thGrid"><mc:msg key="per0202.grid.payslipEmail"/></th>
-				<th class="thGrid"><mc:msg key="per0202.grid.mobile"/></th>
+				<th class="thGrid">Document Name</th>
+				<th class="thGrid">Copy To Organisation</th>
+				<th class="thGrid">Description</th>
+				<th class="thGrid">Received</th>
+				<th class="thGrid">Opportunity / Assignment</th>
+				<th class="thGrid">Expiry Date</th>
+				<th class="thGrid">Acive</th>
+				<th class="thGrid">Available on EO</th>
 				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>

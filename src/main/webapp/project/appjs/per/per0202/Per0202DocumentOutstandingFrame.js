@@ -3,20 +3,33 @@
  * - Per0202DocumentOutstanding.js
  *************************************************************************************************/
 var searchResultDataCount = 0;
+jsconfig.put("useJqTooltip", true);
+jsconfig.put("scrollablePanelHeightAdjust", 40);
 var gridAction = [{
-		name:"Manage Document",
-		img:"fa-cogs",
-		fun:function() {}
-	}, {
-		name:"Receive Document",
-		img:"fa-upload",
-		fun:function() {}
-	}];
+	name:"Manage Document",
+	img:"fa-cogs",
+	fun:function() {}
+}, {
+	name:"Receive Document",
+	img:"fa-upload",
+	fun:function() {}
+}];
 
 $(function() {
 	/*!
 	 * event
 	 */
+	$("#btnSearch").click(function(event) {
+		doSearch();
+	});
+
+	showOpportunity = function(opportunityId) {
+		alert(opportunityId);
+	};
+
+	showAssignment = function(assignmentId) {
+		alert(assignmentId);
+	};
 
 	/*!
 	 * process
@@ -53,16 +66,14 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-//				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setId("chkForDel").setName("chkForDel").setValue(ds.getValue(i, "PERSON_ID"))));
-//				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_NUMBER")).setScript("getPersonDetail('"+ds.getValue(i, "PERSON_ID")+"')")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DOCUMENT_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DOCUMENT_DESCRIPTION")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "DOCUMENT_NAME"), 38)).setAttribute("title:"+ds.getValue(i, "DOCUMENT_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "DOCUMENT_DESCRIPTION"), 36)).setAttribute("title:"+ds.getValue(i, "DOCUMENT_DESCRIPTION")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "DUE_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ASSIGNED_TO_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "OPP_ASG_ID")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "TASK_FLOW")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "TASK_FLOW"), 38)).setAttribute("title:"+ds.getValue(i, "TASK_FLOW")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "FOLLOW_UP_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DOCUMENT_STATUS_MEANING")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "DOCUMENT_STATUS_MEANING"), 41)).setAttribute("title:"+ds.getValue(i, "DOCUMENT_STATUS_MEANING")));
 
 				var iconAction = new UiIcon();
 				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("documentId:"+ds.getValue(i, "DOCUMENT_ID")).setScript("doAction(this)");
@@ -79,10 +90,6 @@ $(function() {
 
 		$("#tblGridBody").append($(html));
 		setGridTable(result.totalResultRows);
-
-		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.boardAction);
-		});
 
 		commonJs.hideProcMessageOnElement("divScrollablePanelFrame");
 	};

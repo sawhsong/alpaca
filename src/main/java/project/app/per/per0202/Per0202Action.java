@@ -103,6 +103,15 @@ public class Per0202Action extends BaseAction {
 		return "documentReceived";
 	}
 
+	public String getDocumentReceivedList() throws Exception {
+		try {
+			biz.getDocumentReceivedList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
 	public String getAdditionalService() throws Exception {
 		biz.getAdditionalService(paramEntity);
 		return "additionalService";

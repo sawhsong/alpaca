@@ -55,7 +55,7 @@ var personId = "<%=personId%>";
 <div id="divSearchCriteriaArea">
 </div>
 <div id="divInformArea" class="areaContainerFrame">
-	<div id="divPersonHeader" class="alert alert-info"><%=hpPersonD.getFullName()%> (<%=hpPersonD.getPersonNumber()%>)</div>
+	<div id="divPersonHeader" class="alert alert-info"><%=hpPersonD.getFullName()%> (<%=hpPersonD.getPersonNumber()%>) <%=hpPersonD.getPersonType()%></div>
 </div>
 <%/************************************************************************************************
 * End of fixed panel

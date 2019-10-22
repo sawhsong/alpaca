@@ -18,4 +18,16 @@ public class HrDocumentHDaoImpl extends BaseHDao implements HrDocumentDao {
 
 		return selectAsDataSet(queryAdvisor, "query.HrDocument.getPersonOutstandingDocumentByPersonId");
 	}
+
+	public DataSet getPersonReceivedDocumentByPersonId(QueryAdvisor queryAdvisor, String personId) throws Exception {
+		DataSet dsRequest = queryAdvisor.getRequestDataSet();
+		String status = dsRequest.getValue("status");
+		String dateFormat = ConfigUtil.getProperty("format.date.java");
+
+		queryAdvisor.addAutoFillCriteria(status, "hrd.is_active = '"+status+"'");
+		queryAdvisor.addVariable("dateFormat", dateFormat);
+		queryAdvisor.addVariable("personId", personId);
+
+		return selectAsDataSet(queryAdvisor, "query.HrDocument.getPersonReceivedDocumentByPersonId");
+	}
 }

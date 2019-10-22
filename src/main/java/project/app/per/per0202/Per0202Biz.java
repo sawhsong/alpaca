@@ -19,6 +19,7 @@ public interface Per0202Biz {
 	public ParamEntity getDocumentOutstanding(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getDocumentOutstandingList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getDocumentReceived(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getDocumentReceivedList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getAdditionalService(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getCommunication(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getNextActions(ParamEntity paramEntity) throws Exception;

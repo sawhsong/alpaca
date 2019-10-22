@@ -59,7 +59,7 @@ var operationalRelationship = "<%=address.getOperationalRelation()%>";
 <div id="divSearchCriteriaArea">
 </div>
 <div id="divInformArea" class="areaContainerFrame">
-	<div id="divPersonHeader" class="alert alert-info"><%=person.getFullName()%> (<%=person.getPersonNumber()%>)</div>
+	<div id="divPersonHeader" class="alert alert-info"><%=person.getFullName()%> (<%=person.getPersonNumber()%>) <%=person.getPersonType()%></div>
 </div>
 <%/************************************************************************************************
 * End of fixed panel

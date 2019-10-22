@@ -11,7 +11,6 @@
 	DataSet dsRequest = paramEntity.getRequestDataSet();
 	HpPersonD person = (HpPersonD)session.getAttribute("HpPersonDQuickSearch");
 	String personId = dsRequest.getValue("personId");
-	DataSet dsDoc = (DataSet)paramEntity.getObject("dsDoc");
 	String profileHtmlString = (String)paramEntity.getObject("profileHtmlString");
 %>
 <%/************************************************************************************************
@@ -48,16 +47,20 @@ var personId = "<%=personId%>";
 <div id="divButtonArea" class="areaContainerFrame">
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
+		<div style="folat:left">
+			<div style="margin-top:3px;padding:0px 4px 0px 20px;"><%=profileHtmlString%></div>
+			<ui:button id="btnAddProfile" caption="Add Profile" iconClass="fa-folder"/>
+		</div>
+		<div class="horGap20"></div>
 		<ui:buttonGroup id="buttonGroup">
 			<ui:button id="btnAddAdHocDocument" caption="Add Ad Hoc Document" iconClass="fa-file-text"/>
+			<ui:button id="btnSearch" caption="button.com.search" iconClass="fa-search"/>
 		</ui:buttonGroup>
-		<div style="margin-top:3px;padding:0px 4px 0px 20px;"><%=profileHtmlString%></div>
-		<ui:button id="btnAddProfile" caption="Add Profile" iconClass="fa-folder"/>
 	</div>
 </div>
 <div id="divSearchCriteriaArea"></div>
 <div id="divInformArea" class="areaContainerFrame">
-	<div id="divPersonHeader" class="alert alert-info"><%=person.getFullName()%> (<%=person.getPersonNumber()%>)</div>
+	<div id="divPersonHeader" class="alert alert-info"><%=person.getFullName()%> (<%=person.getPersonNumber()%>) <%=person.getPersonType()%></div>
 </div>
 <%/************************************************************************************************
 * End of fixed panel
@@ -71,15 +74,15 @@ var personId = "<%=personId%>";
 <div id="divDataArea" class="areaContainerFrame">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="20%"></col>
-			<col width="20%"></col>
-			<col width="20%"></col>
-			<col width="20%"></col>
-			<col width="20%"></col>
-			<col width="20%"></col>
-			<col width="20%"></col>
-			<col width="20%"></col>
+			<col width="16%"></col>
+			<col width="16%"></col>
+			<col width="5%"></col>
+			<col width="11%"></col>
+			<col width="11%"></col>
+			<col width="16%"></col>
+			<col width="5%"></col>
 			<col width="*"></col>
+			<col width="4%"></col>
 		</colgroup>
 		<thead>
 			<tr>
@@ -89,9 +92,9 @@ var personId = "<%=personId%>";
 				<th class="thGrid">Assigned To</th>
 				<th class="thGrid">Opportunity / Assignment</th>
 				<th class="thGrid">Task Flow</th>
-				<th class="thGrid">Followup Date</th>
+				<th class="thGrid">Followup</th>
 				<th class="thGrid">Document Status</th>
-				<th class="thGrid">Action</th>
+				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

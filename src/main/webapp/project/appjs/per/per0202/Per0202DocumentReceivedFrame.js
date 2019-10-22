@@ -1,21 +1,51 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202List.js
+ * - Per0202DocumentReceivedFrame.js
  *************************************************************************************************/
-jsconfig.put("scrollablePanelHeightAdjust", -28);
+var searchResultDataCount = 0;
+jsconfig.put("useJqTooltip", true);
+jsconfig.put("scrollablePanelHeightAdjust", 100);
+var gridAction = [{
+	name:"Add File",
+	img:"fa-plus",
+	fun:function() {}
+}, {
+	name:"Edit File",
+	img:"fa-edit",
+	fun:function() {}
+}, {
+	name:"View File",
+	img:"fa-search",
+	fun:function() {}
+}];
 
 $(function() {
 	/*!
 	 * event
 	 */
+	$("#btnSearch").click(function(event) {
+		doSearch();
+	});
+
+	$("#btnClear").click(function(event) {
+		commonJs.clearSearchCriteria();
+	});
+
+	$("#status").change(function(event) {
+		doSearch();
+	});
+
+	showOpportunity = function(opportunityId) {
+		alert(opportunityId);
+	};
+
+	showAssignment = function(assignmentId) {
+		alert(assignmentId);
+	};
 
 	/*!
 	 * process
 	 */
-	setSize = function() {
-		$(document).css("height", $("#divScrollablePanel").height());
-	};
-
 	setGridTable = function(totalResultRows) {
 		$("#tblGrid").fixedHeaderTable({
 			attachTo:$("#divDataArea"),
@@ -31,7 +61,8 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/per/0202/getList.do",
+				url:"/per/0202/getDocumentReceivedList.do",
+				data:{personId:personId},
 				callback:renderGridData
 			});
 		}
@@ -47,17 +78,17 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setId("chkForDel").setName("chkForDel").setValue(ds.getValue(i, "PERSON_ID"))));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_NUMBER")).setScript("getPersonDetail('"+ds.getValue(i, "PERSON_ID")+"')")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "SURNAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "FIRST_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "PERSON_TYPE"), 50)));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "EMPLOYMENT_ORG_NAME"), 50)));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYSLIP_EMAIL")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "MOBILE")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "DOCUMENT_NAME"), 40)).setAttribute("title:"+ds.getValue(i, "DOCUMENT_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "COPY_TO_ORG_NAME"), 38)).setAttribute("title:"+ds.getValue(i, "COPY_TO_ORG_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "RECEIVE_COMMENTS"), 46)).setAttribute("title:"+ds.getValue(i, "RECEIVE_COMMENTS")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "DOCUMENT_STATUS_MEANING"), 38)).setAttribute("title:"+ds.getValue(i, "DOCUMENT_STATUS_MEANING")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "OPP_ASG_ID")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "EXPIRY_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "IS_ACTIVE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "IS_AVAILABLE_ON_EO")));
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("personId:"+ds.getValue(i, "PERSON_ID")).setScript("doAction(this)");
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("documentId:"+ds.getValue(i, "DOCUMENT_ID")).setScript("doAction(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
@@ -72,73 +103,29 @@ $(function() {
 		$("#tblGridBody").append($(html));
 		setGridTable(result.totalResultRows);
 
-		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.boardAction);
-		});
-
 		commonJs.hideProcMessageOnElement("divScrollablePanelFrame");
+	};
+
+	doAction = function(img) {
+		var documentId = $(img).attr("documentId");
+
+		gridAction[0].fun = function() {alert("Add File : "+documentId);};
+		gridAction[1].fun = function() {alert("Edit File : "+documentId);};
+		gridAction[2].fun = function() {alert("View File : "+documentId);};
+
+		$(img).contextMenu(gridAction, {
+			classPrefix:com.constants.ctxClassPrefixGrid,
+			displayAround:"trigger",
+			position:"bottom",
+			horAdjust:0,
+			verAdjust:2
+		});
 	};
 
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		commonJs.setAutoComplete($("#personNumber"), {
-			method:"getPersonNumber",
-			label:"full_name_with_person_number",
-			value:"person_number",
-			minLength:3,
-			focus: function(event, ui) {
-				$("#personNumber").val(ui.item.value);
-				return false;
-			},
-			select:function(event, ui) {
-				$("#personNumber").val(ui.item.value);
-				doSearch();
-				return false;
-			}
-		});
-
-		commonJs.setAutoComplete($("#name"), {
-			method:"getPersonName",
-			label:"full_name",
-			value:"full_name",
-			minLength:3,
-			focus: function(event, ui) {
-				$("#name").val(ui.item.label);
-				return false;
-			},
-			select:function(event, ui) {
-				$("#name").val(ui.item.label);
-				doSearch();
-				return false;
-			}
-		});
-
-		commonJs.setAutoComplete($("#empOrgName"), {
-			method:"getOrgByName",
-			label:"org_name_with_org_id",
-			value:"organisation_id",
-			minLength:2,
-			focus: function(event, ui) {
-				$("#empOrgId").val(ui.item.value);
-				$("#orgName").val(ui.item.label);
-				return false;
-			},
-			change:function(event, ui) {
-				if (commonJs.isEmpty($("#empOrgName").val())) {
-					$("#empOrgId").val("");
-					$("#empOrgName").val("");
-				}
-			},
-			select:function(event, ui) {
-				$("#empOrgId").val(ui.item.value);
-				$("#empOrgName").val(ui.item.label);
-				doSearch();
-				return false;
-			}
-		});
-
 		doSearch();
 	});
 });
