@@ -1442,6 +1442,7 @@ var nony = {
 				heightWindow = $(parent.document).find(".frameContainer").height();
 				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 2;
 				$("#divScrollablePanelFrame").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection))+"px");
+//commonJs.printLog({message:"heightWindow(core.js) : "+heightWindow});
 			}
 		} else {
 			if (fixedScrollablePanelHeight > 0) {
@@ -1451,7 +1452,8 @@ var nony = {
 				$("#divScrollablePanel").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection))+"px");
 			}
 		}
-
+//commonJs.printLog({message:"isTabFrame(core.js) : "+isTabFrame});
+//commonJs.printLog({message:"$(#divScrollablePanelFrame).height(core.js) : "+$("#divScrollablePanelFrame").height()});
 		if (!jsconfig.get("isResizeScrollablePanelFuntionRegisteredInResizeEvent")) {
 			$(window).resize(function() {
 				setTimeout(function() {

@@ -91,6 +91,10 @@ $(function() {
 		$("#tblGridBody").append($(html));
 		setGridTable(result.totalResultRows);
 
+		$("[name=icnAction]").each(function(index) {
+			$(this).contextMenu(gridAction);
+		});
+
 		commonJs.hideProcMessageOnElement("divScrollablePanelFrame");
 	};
 

@@ -152,9 +152,9 @@ $(function() {
 	$(window).load(function() {
 		commonJs.changeTabSelection($("#tabCategory li:eq(0) a"));
 
-		$("#divDataGrid").height(300);
 		$("#tblFixedHeaderTable2").fixedHeaderTable({
 			attachTo:$("#divDataGrid"),
+			attachToHeight:300,
 			pagingArea:$("#divPagingArea"),
 			isPageable:false,
 			isFilter:false,

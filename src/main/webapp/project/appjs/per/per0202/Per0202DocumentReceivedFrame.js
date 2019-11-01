@@ -4,7 +4,6 @@
  *************************************************************************************************/
 var searchResultDataCount = 0;
 jsconfig.put("useJqTooltip", true);
-jsconfig.put("scrollablePanelHeightAdjust", 100);
 var gridAction = [{
 	name:"Add File",
 	img:"fa-plus",
@@ -49,6 +48,7 @@ $(function() {
 	setGridTable = function(totalResultRows) {
 		$("#tblGrid").fixedHeaderTable({
 			attachTo:$("#divDataArea"),
+			attachToHeight:618,
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
 			totalResultRows:totalResultRows,
@@ -102,6 +102,10 @@ $(function() {
 
 		$("#tblGridBody").append($(html));
 		setGridTable(result.totalResultRows);
+
+		$("[name=icnAction]").each(function(index) {
+			$(this).contextMenu(gridAction);
+		});
 
 		commonJs.hideProcMessageOnElement("divScrollablePanelFrame");
 	};

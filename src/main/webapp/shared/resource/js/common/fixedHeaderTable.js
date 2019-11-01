@@ -321,16 +321,27 @@
 			/*!
 			 * Return if the data table is smaller than attachTo height
 			 */
-			attachToHeight = options.attachToHeight || $(options.attachTo).height();
+//			attachToHeight = options.attachToHeight || $(options.attachTo).height();
 
 			if (($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment)) >= attachToHeight) {
 //				$(options.attachTo).height($(this).height() + heightAdjustment);
 			} else {
 //				$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment));
 			}
-			$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment));
-commonJs.printLog({message:"$(options.attachTo).height() : "+$(options.attachTo).height()});
-commonJs.printLog({message:"$(this).height() : "+$(this).height()});
+//commonJs.printLog({message:"$(options.attachTo).height(1) : "+$(options.attachTo).height()});
+//commonJs.printLog({message:"$scrollablePanel.height() : "+$scrollablePanel.height()});
+//commonJs.printLog({message:"pagingAreaHeight : "+pagingAreaHeight});
+//commonJs.printLog({message:"options.attachToHeight : "+options.attachToHeight});
+			if (!$.nony.isEmpty(options.attachToHeight) || options.attachToHeight > 0) {
+				$(options.attachTo).height(options.attachToHeight);
+			} else {
+				$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment));
+			}
+//			$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment));
+
+//commonJs.printLog({message:"attachToHeight : "+attachToHeight});
+//commonJs.printLog({message:"$(options.attachTo).height(2) : "+$(options.attachTo).height()});
+//commonJs.printLog({message:"$(this).height() : "+$(this).height()});
 			if ($(this).height() <= $(options.attachTo).height()) {
 				$(options.attachTo).height($(this).height() + (heightAdjustment - 4));
 			}
