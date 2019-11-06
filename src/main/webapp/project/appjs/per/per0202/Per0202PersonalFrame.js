@@ -82,7 +82,8 @@ $(function() {
 	};
 
 	setPersonalCommentFieldValues = function(ds) {
-		$("#personalComment").val(ds.getValue(0, "DESCRIPTION"));
+//		$("#personalComment").val(ds.getValue(0, "DESCRIPTION"));
+		$("#personalComment").html(commonJs.stringToHtml(ds.getValue(0, "DESCRIPTION")));
 	};
 
 	setCommsHistoryFieldValues = function(ds) {
@@ -129,6 +130,7 @@ $(function() {
 
 		commonJs.doSimpleProcess({
 			url:"/per/0202/getPersonalComment.do",
+			dataType:"html",
 			noForm:true,
 			data:{personId:personId},
 			callback:function(result) {

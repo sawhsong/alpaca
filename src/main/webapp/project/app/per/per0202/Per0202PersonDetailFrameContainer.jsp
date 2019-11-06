@@ -85,6 +85,7 @@ var personId = "<%=personId%>";
 <%
 	}
 %>
+		<ui:tabList caption="Summary" iconClass="fa-id-card" iconPosition="left" useAutoScript="false"/>
 	</ui:tab>
 </div>
 <div id="divTabAreaDocument" class="divTabArea areaContainer" style="display:none">

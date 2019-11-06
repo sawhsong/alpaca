@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
 import project.conf.resource.ormapper.dao.DocumentProfile.DocumentProfileDao;
+import project.conf.resource.ormapper.dao.HpAdditionalServices.HpAdditionalServicesDao;
 import project.conf.resource.ormapper.dao.HpAddressContactD.HpAddressContactDDao;
 import project.conf.resource.ormapper.dao.HpComments.HpCommentsDao;
 import project.conf.resource.ormapper.dao.HpContactHistory.HpContactHistoryDao;
@@ -43,6 +44,8 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	private HrDocumentDao hrDocumentDao;
 	@Autowired
 	private DocumentProfileDao documentProfileDao;
+	@Autowired
+	private HpAdditionalServicesDao hpAdditionalServicesDao;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -296,6 +299,31 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 
 	public ParamEntity getAdditionalService(ParamEntity paramEntity) throws Exception {
 		try {
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getAdditionalServiceList(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String personId = dsRequest.getValue("personId");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+		DataSet dataSet;
+
+		try {
+			hpAdditionalServicesDao.setDataSourceName(dataSource);
+
+			queryAdvisor.setPagination(true);
+			queryAdvisor.setRequestDataSet(dsRequest);
+
+			dataSet = hpAdditionalServicesDao.getAdditionalServiceByPersonId(queryAdvisor, personId);
+
+			paramEntity.setAjaxResponseDataSet(dataSet);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);

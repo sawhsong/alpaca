@@ -117,6 +117,15 @@ public class Per0202Action extends BaseAction {
 		return "additionalService";
 	}
 
+	public String getAdditionalServiceList() throws Exception {
+		try {
+			biz.getAdditionalServiceList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
 	public String getCommunication() throws Exception {
 		biz.getCommunication(paramEntity);
 		return "communication";
