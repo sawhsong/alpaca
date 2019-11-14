@@ -67,104 +67,106 @@ var personId = "<%=personId%>";
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerFrame">
-	<div id="divLeft" class="accordion" style="width:45%;float:left">
-		<div class="accordionGroup">
-			<h3 id="hPersonDetails">Person Details</h3>
-			<div id="divPersonDetails" class="accordionContents">
-				<table id="tblPersonDetails" class="tblEdit">
-					<colgroup>
-						<col width="25%"/>
-						<col width="*"/>
-					</colgroup>
-					<tbody>
-						<tr>
-							<th class="thEdit rt">Person Number</th>
-							<td class="tdEdit"><ui:text name="personNumber" status="display"/></td>
-						</tr>
-						<tr>
-							<th class="thEdit rt">Prefix</th>
-							<td class="tdEdit"><ui:ccradio name="prefix" codeType="PREFIX"/></td>
-						</tr>
-						<tr>
-							<th class="thEdit rt mandatory">Surname</th>
-							<td class="tdEdit"><ui:text name="surname" options="mandatory" checkName="Surname"/></td>
-						</tr>
-						<tr>
-							<th class="thEdit rt">First Name</th>
-							<td class="tdEdit"><ui:text name="firstName"/></td>
-						</tr>
-						<tr>
-							<th class="thEdit rt">Middle Name</th>
-							<td class="tdEdit"><ui:text name="middleName"/></td>
-						</tr>
-						<tr>
-							<th class="thEdit rt mandatory">Preferred Name</th>
-							<td class="tdEdit"><ui:text name="preferredName" options="mandatory" checkName="Preferred Name"/></td>
-						</tr>
-						<tr>
-							<th class="thEdit rt">Date of Birth</th>
-							<td class="tdEdit"><ui:text name="dateOfBirth" className="Ct hor" style="width:90px" option="date"/><ui:icon id="icnDateOfBirth" className="fa-calendar hor"/></td>
-						</tr>
-						<tr>
-							<th class="thEdit rt">First Contact</th>
-							<td class="tdEdit"><ui:text name="firstContact" className="Ct hor" style="width:90px" option="date"/><ui:icon id="icnFirstContact" className="fa-calendar hor"/></td>
-						</tr>
-						<tr>
-							<th class="thEdit rt">Marital Status</th>
-							<td class="tdEdit"><ui:ccradio name="maritalStatus" codeType="MARITAL_STATUS"/></td>
-						</tr>
-						<tr>
-							<th class="thEdit rt">Gender</th>
-							<td class="tdEdit"><ui:ccradio name="gender" codeType="GENDER"/></td>
-						</tr>
-						<tr>
-							<th class="thEdit rt mandatory">Person Type</th>
-							<td class="tdEdit"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-width:100%" options="mandatory" checkName="Person Type"/></td>
-						</tr>
-						<tr>
-							<th class="thEdit rt mandatory">Employment Company</th>
-							<td class="tdEdit"><ui:hidden name="employmentCompanyOrgId"/><ui:text name="employmentCompanyOrgName" options="mandatory" checkName="Employment Company"/></td>
-						</tr>
-						<tr>
-							<th class="thEdit rt">Title</th>
-							<td class="tdEdit"><ui:text name="title"/></td>
-						</tr>
-						<tr>
-							<th class="thEdit rt">Referral</th>
-							<td class="tdEdit"><ui:hidden name="referralId"/><ui:text name="referralName"/></td>
-						</tr>
-						<tr>
-							<th class="thEdit rt">Referral Organisation</th>
-							<td class="tdEdit"><ui:hidden name="referralOrganisationId"/><ui:text name="referralOrganisationName"/></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div id="divRight" class="accordion" style="width:54%;float:right">
-		<div class="accordionGroup">
-			<h3 id="hPersonalComment">Personal Comments</h3>
-			<div id="divPersonalComment" class="accordionContents">
-<%-- 				<ui:txa name="personalComment" style="height:270px;"/> --%>
-				<div id="personalComment" style="padding:6px;height:270px;border:1px solid #cccccc;border-radius:3px;overflow:auto;"></div>
-			</div>
-		</div>
-		<div class="accordionGroup">
-			<h3 id="hCommsHistory">Communication History - Latest 50</h3>
-			<div id="divCommsHistory" class="accordionContents">
-				<div class="divButtonArea">
-					<div class="divButtonAreaLeft"></div>
-					<div class="divButtonAreaRight">
-						<ui:buttonGroup>
-							<ui:button id="btnAddComms" caption="button.com.add" iconClass="fa-plus-square"/>
-							<ui:button id="btnDownloadComms" caption="Download" iconClass="fa-download"/>
-						</ui:buttonGroup>
-					</div>
+	<div id="divFrameDataAreaWrapper" style="overflow:auto">
+		<div id="divLeft" class="accordion" style="width:45%;float:left">
+			<div class="accordionGroup">
+				<h3 id="hPersonDetails">Person Details</h3>
+				<div id="divPersonDetails" class="accordionContents">
+					<table id="tblPersonDetails" class="tblEdit">
+						<colgroup>
+							<col width="25%"/>
+							<col width="*"/>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th class="thEdit rt">Person Number</th>
+								<td class="tdEdit"><ui:text name="personNumber" status="display"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Prefix</th>
+								<td class="tdEdit"><ui:ccradio name="prefix" codeType="PREFIX"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt mandatory">Surname</th>
+								<td class="tdEdit"><ui:text name="surname" options="mandatory" checkName="Surname"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">First Name</th>
+								<td class="tdEdit"><ui:text name="firstName"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Middle Name</th>
+								<td class="tdEdit"><ui:text name="middleName"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt mandatory">Preferred Name</th>
+								<td class="tdEdit"><ui:text name="preferredName" options="mandatory" checkName="Preferred Name"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Date of Birth</th>
+								<td class="tdEdit"><ui:text name="dateOfBirth" className="Ct hor" style="width:90px" option="date"/><ui:icon id="icnDateOfBirth" className="fa-calendar hor"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">First Contact</th>
+								<td class="tdEdit"><ui:text name="firstContact" className="Ct hor" style="width:90px" option="date"/><ui:icon id="icnFirstContact" className="fa-calendar hor"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Marital Status</th>
+								<td class="tdEdit"><ui:ccradio name="maritalStatus" codeType="MARITAL_STATUS"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Gender</th>
+								<td class="tdEdit"><ui:ccradio name="gender" codeType="GENDER"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt mandatory">Person Type</th>
+								<td class="tdEdit"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-width:100%" options="mandatory" checkName="Person Type"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt mandatory">Employment Company</th>
+								<td class="tdEdit"><ui:hidden name="employmentCompanyOrgId"/><ui:text name="employmentCompanyOrgName" options="mandatory" checkName="Employment Company"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Title</th>
+								<td class="tdEdit"><ui:text name="title"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Referral</th>
+								<td class="tdEdit"><ui:hidden name="referralId"/><ui:text name="referralName"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Referral Organisation</th>
+								<td class="tdEdit"><ui:hidden name="referralOrganisationId"/><ui:text name="referralOrganisationName"/></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
-				<div class="verGap4"></div>
-<%-- 				<ui:txa name="commsHistory" style="height:299px;border:1px solid #cccccc;border-radius:3px" status="display"/> --%>
-				<div id="commsHistory" style="padding:6px;height:349px;border:1px solid #cccccc;border-radius:3px;overflow:auto;"></div>
+			</div>
+		</div>
+		<div id="divRight" class="accordion" style="width:54%;float:right">
+			<div class="accordionGroup">
+				<h3 id="hPersonalComment">Personal Comments</h3>
+				<div id="divPersonalComment" class="accordionContents">
+<%-- 					<ui:txa name="personalComment" style="height:270px;"/> --%>
+					<div id="personalComment" style="padding:6px;height:270px;border:1px solid #cccccc;border-radius:3px;overflow:auto;"></div>
+				</div>
+			</div>
+			<div class="accordionGroup">
+				<h3 id="hCommsHistory">Communication History - Latest 50</h3>
+				<div id="divCommsHistory" class="accordionContents">
+					<div class="divButtonArea">
+						<div class="divButtonAreaLeft"></div>
+						<div class="divButtonAreaRight">
+							<ui:buttonGroup>
+								<ui:button id="btnAddComms" caption="button.com.add" iconClass="fa-plus-square"/>
+								<ui:button id="btnDownloadComms" caption="Download" iconClass="fa-download"/>
+							</ui:buttonGroup>
+						</div>
+					</div>
+					<div class="verGap4"></div>
+<%-- 					<ui:txa name="commsHistory" style="height:299px;border:1px solid #cccccc;border-radius:3px" status="display"/> --%>
+					<div id="commsHistory" style="padding:6px;height:349px;border:1px solid #cccccc;border-radius:3px;overflow:auto;"></div>
+				</div>
 			</div>
 		</div>
 	</div>

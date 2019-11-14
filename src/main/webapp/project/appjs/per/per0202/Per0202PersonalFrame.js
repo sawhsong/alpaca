@@ -49,6 +49,11 @@ $(function() {
 //		});
 	};
 
+	setWrapperSize = function() {
+		$("#divDataArea").height(722);
+		$("#divFrameDataAreaWrapper").height($("#divScrollablePanelFrame").height());
+	};
+
 	setFieldPersonDetailValues = function(ds) {
 		var personType = ds.getValue(0, "PERSON_TYPE").toUpperCase().split(",");
 
@@ -246,6 +251,8 @@ $(function() {
 				return false;
 			}
 		});
+
+		setWrapperSize();
 
 		setTimeout(function() {
 			getPersonDetail();

@@ -20,6 +20,11 @@ $(function() {
 		}, 1000);
 	};
 
+	setWrapperSize = function() {
+		$("#divDataArea").height(722);
+		$("#divFrameDataAreaWrapper").height($("#divScrollablePanelFrame").height());
+	};
+
 	setRadioCheckValues = function() {
 		try {
 			$("[name=preferredEmail]").filter("[value="+preferredEmail+"]").attr("checked", true);
@@ -42,5 +47,6 @@ $(function() {
 
 		setRadioCheckValues();
 		setBlind();
+		setWrapperSize();
 	});
 });
