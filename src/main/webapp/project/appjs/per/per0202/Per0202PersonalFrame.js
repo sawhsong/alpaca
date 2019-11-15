@@ -50,6 +50,9 @@ $(function() {
 	};
 
 	setWrapperSize = function() {
+//console.log("divFrameWindowHolder : "+$("#divFrameWindowHolder").height());
+//console.log("divFixedPanelFrame : "+$("#divFixedPanelFrame").height());
+//console.log("divScrollablePanelFrame : "+$("#divScrollablePanelFrame").height());
 		$("#divDataArea").height(722);
 		$("#divFrameDataAreaWrapper").height($("#divScrollablePanelFrame").height());
 	};
