@@ -141,12 +141,12 @@ $(function() {
 		$("#ifFrame").attr("src", "");
 		setTimeout(function() {
 			$("#ifFrame").attr("src", actionString);
-		}, 200); // important
+		}, 30); // important
 
 		$("#divFrame").stop().animate({opacity:"hide"}, jsconfig.get("effectDuration"));
 		setTimeout(function() {
 			$("#divFrame").stop().animate({opacity:"show"}, jsconfig.get("effectDuration"));
-		}, 400);
+		}, 100);
 	};
 
 	/*!

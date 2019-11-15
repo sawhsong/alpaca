@@ -50,9 +50,9 @@ $(function() {
 	};
 
 	setWrapperSize = function() {
-//console.log("divFrameWindowHolder : "+$("#divFrameWindowHolder").height());
-//console.log("divFixedPanelFrame : "+$("#divFixedPanelFrame").height());
-//console.log("divScrollablePanelFrame : "+$("#divScrollablePanelFrame").height());
+//commonJs.printLog({message:"divFrameWindowHolder : "+$("#divFrameWindowHolder").height()});
+//commonJs.printLog({message:"divFixedPanelFrame : "+$("#divFixedPanelFrame").height()});
+//commonJs.printLog({message:"divScrollablePanelFrame : "+$("#divScrollablePanelFrame").height()});
 		$("#divDataArea").height(722);
 		$("#divFrameDataAreaWrapper").height($("#divScrollablePanelFrame").height());
 	};

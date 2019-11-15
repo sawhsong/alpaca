@@ -26,7 +26,7 @@ $(function() {
 	setGridTable = function(totalResultRows) {
 		$("#tblGrid").fixedHeaderTable({
 			attachTo:$("#divDataArea"),
-			attachToHeight:722,
+//			attachToHeight:722,
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
 			totalResultRows:totalResultRows,

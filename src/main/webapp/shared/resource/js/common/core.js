@@ -1380,7 +1380,8 @@ var nony = {
 		var heightWindow = $(window).innerHeight();
 		var mainDivId;
 		var heightSum = 0, heightHeader = 0, heightFooter = 0, heightCorrection = 0;
-
+//commonJs.printLog({message:"heightWindow in core.js : "+heightWindow});
+//commonJs.printLog({message:"divFrameWindowHolder in core.js : "+$("#divFrameWindowHolder").outerHeight(true)});
 		if (isPopup) {
 			if ($("#divScrollablePanelPopup").length <= 0) {return;}
 		} else if (isTabFrame) {
