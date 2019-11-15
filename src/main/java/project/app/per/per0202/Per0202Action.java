@@ -131,6 +131,15 @@ public class Per0202Action extends BaseAction {
 		return "communication";
 	}
 
+	public String getCommunicationList() throws Exception {
+		try {
+			biz.getCommunicationList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
 	public String getNextActions() throws Exception {
 		biz.getNextActions(paramEntity);
 		return "nextActions";

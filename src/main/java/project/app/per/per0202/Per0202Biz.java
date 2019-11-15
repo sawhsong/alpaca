@@ -23,5 +23,6 @@ public interface Per0202Biz {
 	public ParamEntity getAdditionalService(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getAdditionalServiceList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getCommunication(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getCommunicationList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getNextActions(ParamEntity paramEntity) throws Exception;
 }

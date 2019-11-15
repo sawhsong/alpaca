@@ -1,8 +1,9 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202List.js
+ * - Per0202CommunicationFrame.js
  *************************************************************************************************/
-jsconfig.put("scrollablePanelHeightAdjust", -28);
+//jsconfig.put("scrollablePanelHeightAdjust", -28);
+var searchResultDataCount = 0;
 
 $(function() {
 	/*!
@@ -12,9 +13,13 @@ $(function() {
 	/*!
 	 * process
 	 */
-	setSize = function() {
-		$(document).css("height", $("#divScrollablePanel").height());
-	};
+	$("#btnSearch").click(function(event) {
+		doSearch();
+	});
+
+	$("#btnClear").click(function(event) {
+		commonJs.clearSearchCriteria();
+	});
 
 	setGridTable = function(totalResultRows) {
 		$("#tblGrid").fixedHeaderTable({
@@ -31,7 +36,9 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/per/0202/getList.do",
+				url:"/per/0202/getCommunicationList.do",
+				dataType:"html",
+				data:{personId:personId},
 				callback:renderGridData
 			});
 		}
@@ -47,17 +54,14 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setId("chkForDel").setName("chkForDel").setValue(ds.getValue(i, "PERSON_ID"))));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_NUMBER")).setScript("getPersonDetail('"+ds.getValue(i, "PERSON_ID")+"')")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "SURNAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "FIRST_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "PERSON_TYPE"), 50)));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "EMPLOYMENT_ORG_NAME"), 50)));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYSLIP_EMAIL")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "MOBILE")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "CONTACT_TYPE_MEANING")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ACTIVITY_TYPE_MEANING")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "CONTACT_DATE_TIME")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(commonJs.abbreviate(ds.getValue(i, "COMMENTS"), 100)).setScript("getDetail('"+ds.getValue(i, "CONTACT_ID")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ENTITY_EMPLOYEE_NAME")));
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("personId:"+ds.getValue(i, "PERSON_ID")).setScript("doAction(this)");
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("contactId:"+ds.getValue(i, "CONTACT_ID")).setScript("doAction(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
@@ -65,7 +69,7 @@ $(function() {
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:9").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:6").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
@@ -73,72 +77,52 @@ $(function() {
 		setGridTable(result.totalResultRows);
 
 		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.boardAction);
+			$(this).contextMenu(ctxMenu.commonSimpleAction);
 		});
 
 		commonJs.hideProcMessageOnElement("divScrollablePanelFrame");
+	};
+
+	doAction = function(img) {
+		var contactId = $(img).attr("contactId");
+
+		ctxMenu.commonSimpleAction[0].fun = function() {alert("Edit : "+contactId);};
+		ctxMenu.commonSimpleAction[1].fun = function() {alert("Delete : "+contactId);};
+
+		$(img).contextMenu(ctxMenu.commonSimpleAction, {
+			classPrefix:com.constants.ctxClassPrefixGrid,
+			displayAround:"trigger",
+			position:"bottom",
+			horAdjust:0,
+			verAdjust:2
+		});
+	};
+
+	getDetail = function(contactId) {
+		commonJs.alert("Edit : "+contactId);
+	};
+
+	exeExport = function(menuObject) {
+		$("[name=fileType]").remove();
+		$("[name=dataRange]").remove();
+
+		if (searchResultDataCount <= 0) {
+			commonJs.warn(com.message.I001);
+			return;
+		}
+
+		commonJs.doExport({
+			url:"/per/0202/exeExport.do",
+			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
+			menuObject:menuObject
+		});
 	};
 
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		commonJs.setAutoComplete($("#personNumber"), {
-			method:"getPersonNumber",
-			label:"full_name_with_person_number",
-			value:"person_number",
-			minLength:3,
-			focus: function(event, ui) {
-				$("#personNumber").val(ui.item.value);
-				return false;
-			},
-			select:function(event, ui) {
-				$("#personNumber").val(ui.item.value);
-				doSearch();
-				return false;
-			}
-		});
-
-		commonJs.setAutoComplete($("#name"), {
-			method:"getPersonName",
-			label:"full_name",
-			value:"full_name",
-			minLength:3,
-			focus: function(event, ui) {
-				$("#name").val(ui.item.label);
-				return false;
-			},
-			select:function(event, ui) {
-				$("#name").val(ui.item.label);
-				doSearch();
-				return false;
-			}
-		});
-
-		commonJs.setAutoComplete($("#empOrgName"), {
-			method:"getOrgByName",
-			label:"org_name_with_org_id",
-			value:"organisation_id",
-			minLength:2,
-			focus: function(event, ui) {
-				$("#empOrgId").val(ui.item.value);
-				$("#orgName").val(ui.item.label);
-				return false;
-			},
-			change:function(event, ui) {
-				if (commonJs.isEmpty($("#empOrgName").val())) {
-					$("#empOrgId").val("");
-					$("#empOrgName").val("");
-				}
-			},
-			select:function(event, ui) {
-				$("#empOrgId").val(ui.item.value);
-				$("#empOrgName").val(ui.item.label);
-				doSearch();
-				return false;
-			}
-		});
-
+		commonJs.setExportButtonContextMenu($("#btnExport"));
 		doSearch();
 	});
 });

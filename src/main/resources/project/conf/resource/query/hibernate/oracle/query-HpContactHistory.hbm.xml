@@ -77,4 +77,42 @@
 		 where rownum <= 50
 	]]>
 	</sql-query>
+
+	<sql-query name="query.HpContactHistory.getContactHistoryForCommunicationListByPersonId">
+	<![CDATA[
+		with src as (
+			select mst.contact_id,
+			       hch.contact_type,
+			       (select meaning from sys_common_lookups where lookup_type = 'CONTACT_TYPE' and lookup_code = hch.contact_type) as contact_type_meaning,
+			       hch.activity_type,
+			       (select meaning from sys_common_lookups where lookup_type = 'ACTIVITY_TYPE' and lookup_code = hch.activity_type) as activity_type_meaning,
+			       to_char(hch.contact_date, '${dateFormat}') || ' ' || nvl(hch.contact_time, '00:00') as contact_date_time,
+			       hp_contact_history_api.getlongvalue(mst.contact_id) as comments,
+			       hch.entity_employee_id,
+			       (select full_name from hp_person_d where person_id = hch.entity_employee_id) as entity_employee_name
+			  from hp_comms_person_link mst,
+			       hp_contact_history hch
+			 where 1 = 1
+			   and mst.contact_id = hch.contact_id
+			   and mst.person_id = '${personId}'
+			union
+			select hch.contact_id,
+			       hch.contact_type,
+			       (select meaning from sys_common_lookups where lookup_type = 'CONTACT_TYPE' and lookup_code = hch.contact_type) as contact_type_meaning,
+			       hch.activity_type,
+			       (select meaning from sys_common_lookups where lookup_type = 'ACTIVITY_TYPE' and lookup_code = hch.activity_type) as activity_type_meaning,
+			       to_char(hch.contact_date, '${dateFormat}') || ' ' || nvl(hch.contact_time, '00:00') as contact_date_time,
+			       hp_contact_history_api.getlongvalue(hch.contact_id) as comments,
+			       hch.entity_employee_id,
+			       (select full_name from hp_person_d where person_id = hch.entity_employee_id) as entity_employee_name
+			  from hp_contact_history hch
+			 where 1 = 1
+			   and entity_employee_id = '${personId}'
+		)
+		select *
+		  from src
+		 order by to_date(contact_date_time, '${dateFormat} hh24:mi') desc,
+		       contact_id desc
+	]]>
+	</sql-query>
 </hibernate-mapping>

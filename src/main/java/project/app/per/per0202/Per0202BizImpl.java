@@ -340,6 +340,31 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 		return paramEntity;
 	}
 
+	public ParamEntity getCommunicationList(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String personId = dsRequest.getValue("personId");
+		DataSet dataSet;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpContactHistoryDao.setDataSourceName(dataSource);
+
+			queryAdvisor.setPagination(true);
+			queryAdvisor.setRequestDataSet(dsRequest);
+
+			dataSet = hpContactHistoryDao.getContactHistoryForCommunicationListByPersonId(queryAdvisor, personId);
+
+			paramEntity.setAjaxResponseDataSet(dataSet);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
 	public ParamEntity getNextActions(ParamEntity paramEntity) throws Exception {
 		try {
 			paramEntity.setSuccess(true);
