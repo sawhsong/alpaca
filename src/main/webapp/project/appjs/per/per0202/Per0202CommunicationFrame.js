@@ -2,16 +2,12 @@
  * Framework Generated Javascript Source
  * - Per0202CommunicationFrame.js
  *************************************************************************************************/
-//jsconfig.put("scrollablePanelHeightAdjust", -28);
+jsconfig.put("scrollablePanelHeightAdjust", -1);
 var searchResultDataCount = 0;
 
 $(function() {
 	/*!
 	 * event
-	 */
-
-	/*!
-	 * process
 	 */
 	$("#btnSearch").click(function(event) {
 		doSearch();
@@ -21,6 +17,9 @@ $(function() {
 		commonJs.clearSearchCriteria();
 	});
 
+	/*!
+	 * process
+	 */
 	setGridTable = function(totalResultRows) {
 		$("#tblGrid").fixedHeaderTable({
 			attachTo:$("#divDataArea"),
@@ -57,7 +56,7 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "CONTACT_TYPE_MEANING")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ACTIVITY_TYPE_MEANING")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "CONTACT_DATE_TIME")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(commonJs.abbreviate(ds.getValue(i, "COMMENTS"), 100)).setScript("getDetail('"+ds.getValue(i, "CONTACT_ID")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(commonJs.abbreviate(ds.getValue(i, "COMMENTS"), 90)).setScript("getDetail('"+ds.getValue(i, "CONTACT_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ENTITY_EMPLOYEE_NAME")));
 
 				var iconAction = new UiIcon();

@@ -144,4 +144,18 @@ public class Per0202Action extends BaseAction {
 		biz.getNextActions(paramEntity);
 		return "nextActions";
 	}
+
+	public String getNextActionsList() throws Exception {
+		try {
+			biz.getNextActionsList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getGeneral() throws Exception {
+		biz.getGeneral(paramEntity);
+		return "general";
+	}
 }

@@ -15,6 +15,7 @@ import project.conf.resource.ormapper.dao.HpAdditionalServices.HpAdditionalServi
 import project.conf.resource.ormapper.dao.HpAddressContactD.HpAddressContactDDao;
 import project.conf.resource.ormapper.dao.HpComments.HpCommentsDao;
 import project.conf.resource.ormapper.dao.HpContactHistory.HpContactHistoryDao;
+import project.conf.resource.ormapper.dao.HpNextActions.HpNextActionsDao;
 import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
 import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
 import project.conf.resource.ormapper.dao.HrDocument.HrDocumentDao;
@@ -46,6 +47,8 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	private DocumentProfileDao documentProfileDao;
 	@Autowired
 	private HpAdditionalServicesDao hpAdditionalServicesDao;
+	@Autowired
+	private HpNextActionsDao hpNextActionsDao;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -366,6 +369,40 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	}
 
 	public ParamEntity getNextActions(ParamEntity paramEntity) throws Exception {
+		try {
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getNextActionsList(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String personId = dsRequest.getValue("personId");
+		DataSet dataSet;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpNextActionsDao.setDataSourceName(dataSource);
+
+			queryAdvisor.setPagination(true);
+			queryAdvisor.setRequestDataSet(dsRequest);
+
+			dataSet = hpNextActionsDao.getNextActionsForNextActionsListByPersonId(queryAdvisor, personId);
+
+			paramEntity.setAjaxResponseDataSet(dataSet);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getGeneral(ParamEntity paramEntity) throws Exception {
 		try {
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {

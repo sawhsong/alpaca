@@ -5,7 +5,7 @@
  * - HP_ADDITIONAL_SERVICES - 
  */-->
 <hibernate-mapping>
-<sql-query name="query.HpAdditionalServices.getAdditionalServiceByPersonId">
+	<sql-query name="query.HpAdditionalServices.getAdditionalServiceByPersonId">
 	<![CDATA[
 		select has.add_service_id as service_id,
 		       per.full_name as person_name,

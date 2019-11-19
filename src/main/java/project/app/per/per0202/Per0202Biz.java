@@ -25,4 +25,6 @@ public interface Per0202Biz {
 	public ParamEntity getCommunication(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getCommunicationList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getNextActions(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getNextActionsList(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getGeneral(ParamEntity paramEntity) throws Exception;
 }
