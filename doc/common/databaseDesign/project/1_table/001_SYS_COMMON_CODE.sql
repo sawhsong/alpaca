@@ -118,7 +118,7 @@ select lookup_type as code_type,
        sysdate as insert_date,
        null as update_user_id,
        null as update_date
-  from sys_common_lookups@perci
+  from sys_common_lookups@perci_live
  where enabled_flag = 'Y'
    and lookup_type not in ('ORG_RELATIONSHIP', 'EXTENSION_CHANGES') -- Duplicated codes
    and meaning not in ('EB Customer', 'EMA Prospect')
@@ -129,18 +129,19 @@ select lookup_type as code_type,
        description as description_ko,
        description as description_en,
        lookup_type||'_'||lookup_code as program_constants,
-       '' as sort_order,
+       lpad(to_char(display_order), 3, '0') as sort_order,
        'Y' as is_active,
        'N' as is_default,
        '0' as insert_user_id,
        sysdate as insert_date,
        null as update_user_id,
        null as update_date
-  from sys_common_lookups@perci
+  from sys_common_lookups@perci_live
  where enabled_flag = 'Y'
    and lookup_type not in ('ORG_RELATIONSHIP', 'EXTENSION_CHANGES') -- Duplicated codes
    and meaning not in ('EB Customer', 'EMA Prospect')
  order by code_type,
        sort_order,
        common_code
+;
 */

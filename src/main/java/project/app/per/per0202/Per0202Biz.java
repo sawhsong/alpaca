@@ -27,4 +27,7 @@ public interface Per0202Biz {
 	public ParamEntity getNextActions(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getNextActionsList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getGeneral(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getGeneralInfo(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getWorkingRightsStatusList(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getScheduledPayrollNotiList(ParamEntity paramEntity) throws Exception;
 }

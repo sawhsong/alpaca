@@ -897,6 +897,9 @@ var nony = {
 		});
 		return checkValue;
 	},
+	setRadioValue : function(radioName, value) {
+		$("[name="+radioName+"]").filter("[value="+value+"]").attr("checked", true);
+	},
 	setExportButtonContextMenu : function(jqObjectButton) {
 		if ($(jqObjectButton).length <= 0) {return;}
 
@@ -1073,6 +1076,10 @@ var nony = {
 			$("#"+id).selectpicker("refresh");
 			$("#"+id).selectpicker("render");
 		}
+	},
+	setSelectpickerValue : function(elementId, selectedValue) {
+		$("#"+elementId).selectpicker("val", selectedValue);
+		$("#"+elementId).selectpicker("refresh");
 	},
 	/*!
 	 * Auto Completion

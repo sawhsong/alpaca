@@ -158,4 +158,31 @@ public class Per0202Action extends BaseAction {
 		biz.getGeneral(paramEntity);
 		return "general";
 	}
+
+	public String getGeneralInfo() throws Exception {
+		try {
+			biz.getGeneralInfo(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getWorkingRightsStatusList() throws Exception {
+		try {
+			biz.getWorkingRightsStatusList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getScheduledPayrollNotiList() throws Exception {
+		try {
+			biz.getScheduledPayrollNotiList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }

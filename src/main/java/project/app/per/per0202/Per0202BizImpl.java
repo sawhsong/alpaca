@@ -19,6 +19,8 @@ import project.conf.resource.ormapper.dao.HpNextActions.HpNextActionsDao;
 import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
 import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
 import project.conf.resource.ormapper.dao.HrDocument.HrDocumentDao;
+import project.conf.resource.ormapper.dao.ScheduledPayrollNotes.ScheduledPayrollNotesDao;
+import project.conf.resource.ormapper.dao.WorkingRightsStatus.WorkingRightsStatusDao;
 import project.conf.resource.ormapper.dto.oracle.HpAddressContactD;
 import project.conf.resource.ormapper.dto.oracle.HpComments;
 import project.conf.resource.ormapper.dto.oracle.HpOrganisationD;
@@ -49,6 +51,10 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	private HpAdditionalServicesDao hpAdditionalServicesDao;
 	@Autowired
 	private HpNextActionsDao hpNextActionsDao;
+	@Autowired
+	private WorkingRightsStatusDao workingRightsStatusDao;
+	@Autowired
+	private ScheduledPayrollNotesDao scheduledPayrollNotesDao;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -404,6 +410,76 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 
 	public ParamEntity getGeneral(ParamEntity paramEntity) throws Exception {
 		try {
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getGeneralInfo(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String personId = dsRequest.getValue("personId");
+		DataSet ecmsGeneralInfo;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpPersonDDao.setDataSourceName(dataSource);
+
+			ecmsGeneralInfo = hpPersonDDao.getEcmsGeneralInfoByPersonId(queryAdvisor, personId);
+
+			ecmsGeneralInfo.setValue("EMPLOYMENT_COMPANY_NAME", CommonUtil.nvl(ecmsGeneralInfo.getValue("EMPLOYMENT_COMPANY_NAME"))+" ("+CommonUtil.nvl(ecmsGeneralInfo.getValue("EMPLOYMENT_COMPANY_ID"))+")");
+			ecmsGeneralInfo.setValue("CRM_NAME", CommonUtil.nvl(ecmsGeneralInfo.getValue("CRM_NAME"))+" ("+CommonUtil.nvl(ecmsGeneralInfo.getValue("CRM_ID"))+")");
+			ecmsGeneralInfo.setValue("CSM_NAME", CommonUtil.nvl(ecmsGeneralInfo.getValue("CSM_NAME"))+" ("+CommonUtil.nvl(ecmsGeneralInfo.getValue("CSM_ID"))+")");
+			ecmsGeneralInfo.setValue("CSA_NAME", CommonUtil.nvl(ecmsGeneralInfo.getValue("CSA_NAME"))+" ("+CommonUtil.nvl(ecmsGeneralInfo.getValue("CSA_ID"))+")");
+
+			paramEntity.setAjaxResponseDataSet(ecmsGeneralInfo);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getWorkingRightsStatusList(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String personId = dsRequest.getValue("personId");
+		DataSet dataSet;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			workingRightsStatusDao.setDataSourceName(dataSource);
+
+			dataSet = workingRightsStatusDao.getWorkingRightsStatusListByPersonId(queryAdvisor, personId);
+
+			paramEntity.setAjaxResponseDataSet(dataSet);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getScheduledPayrollNotiList(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String personId = dsRequest.getValue("personId");
+		DataSet dataSet;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			scheduledPayrollNotesDao.setDataSourceName(dataSource);
+
+			dataSet = scheduledPayrollNotesDao.getScheduledPayrollNotiListByPersonId(queryAdvisor, personId);
+
+			paramEntity.setAjaxResponseDataSet(dataSet);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);

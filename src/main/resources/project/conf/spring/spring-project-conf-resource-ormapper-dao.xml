@@ -643,4 +643,6 @@
     <bean class="${name.package.project}.conf.resource.ormapper.dao.Wso2ApiConfig.Wso2ApiConfigHDaoImpl" id="wso2ApiConfigDao" init-method="init" name="wso2ApiConfigDao" parent="baseHDao" scope="prototype"/>
     <!--Wso2ApiOrganisationLink DAO-->
     <bean class="${name.package.project}.conf.resource.ormapper.dao.Wso2ApiOrganisationLink.Wso2ApiOrganisationLinkHDaoImpl" id="wso2ApiOrganisationLinkDao" init-method="init" name="wso2ApiOrganisationLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--WorkingRightsStatus DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WorkingRightsStatus.WorkingRightsStatusHDaoImpl" id="workingRightsStatusDao" init-method="init" name="workingRightsStatusDao" parent="baseHDao" scope="prototype"/>
 </beans>

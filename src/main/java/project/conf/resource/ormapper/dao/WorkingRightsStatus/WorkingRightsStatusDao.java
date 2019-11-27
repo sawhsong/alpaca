@@ -1,13 +1,13 @@
 /**************************************************************************************************
  * Framework Generated DAO Source
- * - SCHEDULED_PAYROLL_NOTES - 
+ * - WORKING_RIGHTS_STATUS - 
  *************************************************************************************************/
-package project.conf.resource.ormapper.dao.ScheduledPayrollNotes;
+package project.conf.resource.ormapper.dao.WorkingRightsStatus;
 
 import zebra.base.IDao;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 
-public interface ScheduledPayrollNotesDao extends IDao {
-	public DataSet getScheduledPayrollNotiListByPersonId(QueryAdvisor queryAdvisor, String personId) throws Exception;
+public interface WorkingRightsStatusDao extends IDao {
+	public DataSet getWorkingRightsStatusListByPersonId(QueryAdvisor queryAdvisor, String personId) throws Exception;
 }

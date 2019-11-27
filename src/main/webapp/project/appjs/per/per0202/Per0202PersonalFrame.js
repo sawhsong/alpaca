@@ -53,7 +53,7 @@ $(function() {
 //commonJs.printLog({message:"divFrameWindowHolder : "+$("#divFrameWindowHolder").height()});
 //commonJs.printLog({message:"divFixedPanelFrame : "+$("#divFixedPanelFrame").height()});
 //commonJs.printLog({message:"divScrollablePanelFrame : "+$("#divScrollablePanelFrame").height()});
-		$("#divDataArea").height(722);
+		$("#divDataArea").height(722); // divFrameWindowHolder - divFixedPanelFrame - additional height
 		$("#divFrameDataAreaWrapper").height($("#divScrollablePanelFrame").height());
 	};
 
@@ -79,6 +79,7 @@ $(function() {
 			$("#referralOrganisationId").val(ds.getValue(0, "REFERRAL_ORGANISATION_ID"));
 			$("#referralOrganisationName").val(ds.getValue(0, "REFERRAL_ORGANISATION_NAME"));
 		} catch(e) {}
+
 		setTimeout(function() {
 			setPersonType(personType);
 		}, 500);

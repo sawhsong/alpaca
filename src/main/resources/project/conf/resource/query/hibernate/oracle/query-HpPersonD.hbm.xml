@@ -110,4 +110,40 @@
 		${order_by_clause}
 	]]>
 	</sql-query>
+
+	<sql-query name="query.HpPersonD.getEcmsGeneralInfoByPersonId">
+	<![CDATA[
+		select per.employment_company_org_id as employment_company_id,
+		       (select organisation_name from hp_organisation_d where organisation_id = per.employment_company_org_id) as employment_company_name,
+		       per.service_status,
+		       per.service_type,
+		       to_char(per.member_since, '${dateFormat}') as member_since,
+		       to_char(per.resignation_date, '${dateFormat}') as resignation_date,
+		       per.reference_no_2,
+		       per.reference_no_3,
+		       per.employment_type,
+		       per.ecms_account_mgr_id as crm_id,
+		       (select full_name from hp_person_d where person_id = per.ecms_account_mgr_id) as crm_name,
+		       per.ecms_cs_consultant_id as csm_id,
+		       (select full_name from hp_person_d where person_id = per.ecms_cs_consultant_id) as csm_name,
+		       per.customer_support as csa_id,
+		       (select full_name from hp_person_d where person_id = per.customer_support) as csa_name,
+		       per.ecms_payroll_consultant_id,
+		       per.resignation_reason,
+		       per.resignation_comment_id,
+		       (select long_to_varchar('hp_comments', 'description', rowid) from hp_comments where comment_id = per.resignation_comment_id) as resignation_comment_desc,
+		       per.lafha_eligible,
+		       per.lafha_amount,
+		       per.attribute8 as is_verified,
+		       per.payslip_email,
+		       pap.email_yn,
+		       pap.online_yn,
+		       pap.other_yn,
+		       pap.oth_desc
+		  from hp_person_d per,
+		       hp_pay_adv_prefrence pap
+		 where per.person_id = '${personId}'
+		   and per.person_id = pap.person_id(+)
+	]]>
+	</sql-query>
 </hibernate-mapping>

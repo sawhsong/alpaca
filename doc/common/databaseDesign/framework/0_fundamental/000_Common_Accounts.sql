@@ -10,8 +10,12 @@ grant create synonym, create view, create database link, create public synonym, 
  * Create DB Link
  * 	Login as alpaca
  */
+select *
+  from user_db_links
+;
+
 drop database link perci;
-create database link perci connect to PERCI_0613 identified by welcome1 using '192.168.1.3:1521/pdb1.616281599.oraclecloud.internal';
+create database link perci_live connect to PERCI identified by WELCOME1 using '192.168.1.2:1521/pdb1.616281599.oraclecloud.internal';
 
 /**
  * Table space(Index, Data)
