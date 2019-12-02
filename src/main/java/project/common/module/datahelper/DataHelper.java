@@ -4,8 +4,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import project.common.extend.BaseBiz;
+import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
+import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
 import project.conf.resource.ormapper.dao.SysAuthGroup.SysAuthGroupDao;
 import project.conf.resource.ormapper.dao.SysUser.SysUserDao;
+import project.conf.resource.ormapper.dto.oracle.HpOrganisationD;
+import project.conf.resource.ormapper.dto.oracle.HpPersonD;
 import project.conf.resource.ormapper.dto.oracle.SysAuthGroup;
 import project.conf.resource.ormapper.dto.oracle.SysUser;
 import zebra.data.DataSet;
@@ -17,6 +21,8 @@ public class DataHelper extends BaseBiz {
 	private static Logger logger = LogManager.getLogger(DataHelper.class);
 	private static SysUserDao sysUserDao;
 	private static SysAuthGroupDao sysAuthGroupDao;
+	private static HpPersonDDao hpPersonDDao;
+	private static HpOrganisationDDao hpOrganisationDDao;
 
 	public static SysUserDao getSysUserDao() {
 		return sysUserDao;
@@ -34,6 +40,22 @@ public class DataHelper extends BaseBiz {
 		DataHelper.sysAuthGroupDao = sysAuthGroupDao;
 	}
 
+	public static HpPersonDDao getHpPersonDDao() {
+		return hpPersonDDao;
+	}
+
+	public static void setHpPersonDDao(HpPersonDDao hpPersonDDao) {
+		DataHelper.hpPersonDDao = hpPersonDDao;
+	}
+
+	public static HpOrganisationDDao getHpOrganisationDDao() {
+		return hpOrganisationDDao;
+	}
+
+	public static void setHpOrganisationDDao(HpOrganisationDDao hpOrganisationDDao) {
+		DataHelper.hpOrganisationDDao = hpOrganisationDDao;
+	}
+
 	/*!
 	 * SysUser
 	 */
@@ -45,6 +67,32 @@ public class DataHelper extends BaseBiz {
 	public static String getUserNameById(String userId) throws Exception {
 		if (CommonUtil.isBlank(userId)) {return "";}
 		return getUserByUserId(userId).getUserName();
+	}
+
+	/*!
+	 * HpPersonD
+	 */
+	public static HpPersonD getHpPersonDById(String personId) throws Exception {
+		if (CommonUtil.isBlank(personId)) {return new HpPersonD();}
+		return hpPersonDDao.getPersonByPersonId(personId);
+	}
+
+	public static String getPersonFullNameById(String personId) throws Exception {
+		if (CommonUtil.isBlank(personId)) {return "";}
+		return getHpPersonDById(personId).getFullName();
+	}
+
+	/*!
+	 * HpOrganisationD
+	 */
+	public static HpOrganisationD getHpOrganisationDById(String organisationId) throws Exception {
+		if (CommonUtil.isBlank(organisationId)) {return new HpOrganisationD();}
+		return hpOrganisationDDao.getOrganisationByOrganisationId(organisationId);
+	}
+
+	public static String getOrganisationNameById(String organisationId) throws Exception {
+		if (CommonUtil.isBlank(organisationId)) {return "";}
+		return getHpOrganisationDById(organisationId).getOrganisationName();
 	}
 
 	/*!

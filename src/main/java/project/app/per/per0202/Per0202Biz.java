@@ -30,4 +30,9 @@ public interface Per0202Biz {
 	public ParamEntity getGeneralInfo(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getWorkingRightsStatusList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getScheduledPayrollNotiList(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getOpportunity(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getOpportunityList(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getEditOpportunity(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getOpportunityDetail(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getOpportunityDocuments(ParamEntity paramEntity) throws Exception;
 }

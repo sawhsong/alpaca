@@ -258,7 +258,7 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "NOTIFICATION_PERIOD_MEANING")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "START_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "END_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "NOTIFICATION_TEXT"), 50)));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "NOTIFICATION_TEXT"), 70)));
 
 				var iconAction = new UiIcon();
 				iconAction.setId("icnActionScheduledPayrollNoti").setName("icnActionScheduledPayrollNoti").addClassName("fa-tasks fa-lg").addAttribute("notificationId:"+ds.getValue(i, "NOTIFICATION_ID")).setScript("doActionScheduledPayrollNoti(this)");

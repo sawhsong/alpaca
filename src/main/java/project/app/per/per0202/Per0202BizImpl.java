@@ -19,6 +19,8 @@ import project.conf.resource.ormapper.dao.HpNextActions.HpNextActionsDao;
 import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
 import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
 import project.conf.resource.ormapper.dao.HrDocument.HrDocumentDao;
+import project.conf.resource.ormapper.dao.Opportunity.OpportunityDao;
+import project.conf.resource.ormapper.dao.OpportunityAssignmentDetails.OpportunityAssignmentDetailsDao;
 import project.conf.resource.ormapper.dao.ScheduledPayrollNotes.ScheduledPayrollNotesDao;
 import project.conf.resource.ormapper.dao.WorkingRightsStatus.WorkingRightsStatusDao;
 import project.conf.resource.ormapper.dto.oracle.HpAddressContactD;
@@ -55,6 +57,10 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	private WorkingRightsStatusDao workingRightsStatusDao;
 	@Autowired
 	private ScheduledPayrollNotesDao scheduledPayrollNotesDao;
+	@Autowired
+	private OpportunityDao opportunityDao;
+	@Autowired
+	private OpportunityAssignmentDetailsDao oppAsgDetailsDao;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -477,6 +483,95 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 			scheduledPayrollNotesDao.setDataSourceName(dataSource);
 
 			dataSet = scheduledPayrollNotesDao.getScheduledPayrollNotiListByPersonId(queryAdvisor, personId);
+
+			paramEntity.setAjaxResponseDataSet(dataSet);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getOpportunity(ParamEntity paramEntity) throws Exception {
+		try {
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getOpportunityList(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String personId = dsRequest.getValue("personId");
+		DataSet dataSet;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			opportunityDao.setDataSourceName(dataSource);
+
+			queryAdvisor.setPagination(true);
+			queryAdvisor.setRequestDataSet(dsRequest);
+
+			dataSet = opportunityDao.getOpportunityListByPersonId(queryAdvisor, personId);
+
+			paramEntity.setAjaxResponseDataSet(dataSet);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getEditOpportunity(ParamEntity paramEntity) throws Exception {
+		try {
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getOpportunityDetail(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		String opportunityId = dsRequest.getValue("opportunityId");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+		DataSet dsOpp, dsAsg;
+
+		try {
+			opportunityDao.setDataSourceName(dataSource);
+			oppAsgDetailsDao.setDataSourceName(dataSource);
+
+			dsOpp = opportunityDao.getOpportunityDataSetByOpportunityId(opportunityId);
+			dsAsg = oppAsgDetailsDao.getOppAsgDetailsDataSetByOpportunityId(opportunityId);
+
+			paramEntity.setObject("dsOpp", dsOpp);
+			paramEntity.setObject("dsAsg", dsAsg);
+
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getOpportunityDocuments(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String opportunityId = dsRequest.getValue("opportunityId");
+		DataSet dataSet;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			opportunityDao.setDataSourceName(dataSource);
+
+			dataSet = opportunityDao.getOpportunityDocumentDataSetByOpportunityId(opportunityId);
 
 			paramEntity.setAjaxResponseDataSet(dataSet);
 			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());

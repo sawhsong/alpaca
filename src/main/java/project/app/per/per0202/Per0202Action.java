@@ -185,4 +185,37 @@ public class Per0202Action extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
+
+	public String getOpportunities() throws Exception {
+		biz.getOpportunity(paramEntity);
+		return "opportunity";
+	}
+
+	public String getOpportunityList() throws Exception {
+		try {
+			biz.getOpportunityList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getEditOpportunity() throws Exception {
+		biz.getEditOpportunity(paramEntity);
+		return "editOpportunity";
+	}
+
+	public String getOpportunityDetail() throws Exception {
+		biz.getOpportunityDetail(paramEntity);
+		return "opportunityDetail";
+	}
+
+	public String getOpportunityDocuments() throws Exception {
+		try {
+			biz.getOpportunityDocuments(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }

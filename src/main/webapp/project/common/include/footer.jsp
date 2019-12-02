@@ -11,7 +11,7 @@
 			</colgroup>
 			<tr>
 <!-- 				<td class="tdDefaultCt">PERCI / Entity Solutions</td> -->
-				<td class="tdDefaultCt">Dustin Sa</td>
+				<td class="tdDefaultCt">&copy; Copyright 2019, Dustin Sa</td>
 			</tr>
 		</table>
 	</div>

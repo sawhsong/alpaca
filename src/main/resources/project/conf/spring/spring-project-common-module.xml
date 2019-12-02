@@ -28,5 +28,7 @@
 	<bean id="dataHelper" name="dataHelper" class="${name.package.project}.common.module.datahelper.DataHelper" parent="baseBiz">
 		<property name="sysUserDao" ref="sysUserDao"/>
 		<property name="sysAuthGroupDao" ref="sysAuthGroupDao"/>
+		<property name="hpPersonDDao" ref="hpPersonDDao"/>
+		<property name="hpOrganisationDDao" ref="hpOrganisationDDao"/>
 	</bean>
 </beans>

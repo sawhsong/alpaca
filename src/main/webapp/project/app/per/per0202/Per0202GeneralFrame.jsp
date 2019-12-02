@@ -66,13 +66,13 @@ var personId = "<%=personId%>";
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerFrame">
 	<div id="divFrameDataAreaWrapper" style="overflow:auto">
-		<div id="divLeft" class="accordion" style="width:38%;float:left">
+		<div id="divLeft" class="accordion" style="width:35%;float:left">
 			<div class="accordionGroup">
 				<h3 id="hGeneralInfo">General Info</h3>
 				<div id="divGeneralInfo" class="accordionContents">
 					<table id="tblGeneralInfo" class="tblEdit">
 						<colgroup>
-							<col width="40%"/>
+							<col width="45%"/>
 							<col width="*"/>
 						</colgroup>
 						<tbody>
@@ -149,7 +149,7 @@ var personId = "<%=personId%>";
 				</div>
 			</div>
 		</div>
-		<div id="divRight" class="accordion" style="width:61%;float:right">
+		<div id="divRight" class="accordion" style="width:64%;float:right">
 			<div class="accordionGroup">
 				<h3 id="hPaymentAdviceDelivery">Payment Advice Delivery</h3>
 				<div id="divPaymentAdviceDelivery" class="accordionContents">

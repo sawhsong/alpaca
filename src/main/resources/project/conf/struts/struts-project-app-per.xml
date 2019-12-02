@@ -15,6 +15,9 @@
             <result name="communication" type="debugDispatcherResult">/project/app/per/per0202/Per0202CommunicationFrame.jsp</result>
             <result name="nextActions" type="debugDispatcherResult">/project/app/per/per0202/Per0202NextActionsFrame.jsp</result>
             <result name="general" type="debugDispatcherResult">/project/app/per/per0202/Per0202GeneralFrame.jsp</result>
+            <result name="opportunity" type="debugDispatcherResult">/project/app/per/per0202/Per0202OpportunityFrame.jsp</result>
+            <result name="editOpportunity" type="debugDispatcherResult">/project/app/per/per0202/Per0202EditOpportunityPop.jsp</result>
+            <result name="opportunityDetail" type="debugDispatcherResult">/project/app/per/per0202/Per0202OpportunityDetailPop.jsp</result>
         </action>
     </package>
 </struts>

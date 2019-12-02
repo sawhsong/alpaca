@@ -2,6 +2,8 @@
  * Framework Generated Javascript Source
  * - Per0202List.js
  *************************************************************************************************/
+var popup;
+
 $(function() {
 	/*!
 	 * event
