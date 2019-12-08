@@ -219,7 +219,7 @@ $(function() {
 		$("#tbodyWorkingRightsStatus").append($(html));
 		$("#tblWorkingRightsStatus").fixedHeaderTable({
 			attachTo:$("#divGridHolderWorkingRightsStatus"),
-			attachToHeight:200,
+			attachToHeight:198,
 			isPageable:false
 		});
 
@@ -276,7 +276,7 @@ $(function() {
 		$("#tbodyScheduledPayrollNoti").append($(html));
 		$("#tblScheduledPayrollNoti").fixedHeaderTable({
 			attachTo:$("#divGridHolderScheduledPayrollNoti"),
-			attachToHeight:190,
+			attachToHeight:198,
 			isPageable:false
 		});
 

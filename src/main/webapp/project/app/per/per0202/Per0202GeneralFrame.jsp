@@ -165,14 +165,14 @@ var personId = "<%=personId%>";
 								<th class="thEdit rt">Email</th>
 								<td class="tdEdit"><ui:text name="paymentAdviceDeliveryEmail"/></td>
 								<th class="thEdit rt" rowspan="2">Description</th>
-								<td class="tdEdit" rowspan="2"><ui:txa name="paymentAdviceDeliveryDescription" style="height:100px"/></td>
+								<td class="tdEdit" rowspan="2"><ui:txa name="paymentAdviceDeliveryDescription" style="height:54px"/></td>
 							</tr>
 							<tr>
 								<th class="thEdit rt">Send To</th>
 								<td class="tdEdit">
-									<ui:check name="paymentAdviceDeliverySendToEmail" value="Y" text="Email" displayType="block"/>
-									<ui:check name="paymentAdviceDeliverySendToEntityOnline" value="Y" text="Entity Online" displayType="block"/>
-									<ui:check name="paymentAdviceDeliverySendToOther" value="Y" text="Other" displayType="block"/>
+									<ui:check name="paymentAdviceDeliverySendToEmail" value="Y" text="Email"/>
+									<ui:check name="paymentAdviceDeliverySendToEntityOnline" value="Y" text="Entity Online"/>
+									<ui:check name="paymentAdviceDeliverySendToOther" value="Y" text="Other"/>
 								</td>
 							</tr>
 						</tbody>

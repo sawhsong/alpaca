@@ -2,8 +2,8 @@
  * Framework Generated Javascript Source
  * - Per0202NextActionsFrame.js
  *************************************************************************************************/
-//jsconfig.put("scrollablePanelHeightAdjust", -24);
 var searchResultDataCount = 0;
+jsconfig.put("scrollablePanelHeightAdjust", 10);
 
 $(function() {
 	/*!

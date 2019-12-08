@@ -71,7 +71,7 @@ $(function() {
 		$("#tbodyOpportunityDocument").append($(html));
 		$("#tblOpportunityDocument").fixedHeaderTable({
 			attachTo:$("#divGridHolderOpportunityDocument"),
-			attachToHeight:400,
+			attachToHeight:390,
 			isPageable:false
 		});
 
