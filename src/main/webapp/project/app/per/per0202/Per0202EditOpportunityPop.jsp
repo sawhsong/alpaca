@@ -8,9 +8,11 @@
 ************************************************************************************************/%>
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
-	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
-	SysBoard sysBoard = (SysBoard)paramEntity.getObject("sysBoard");
-	DataSet fileDataSet = (DataSet)paramEntity.getObject("fileDataSet");
+	DataSet dsRequest = (DataSet)paramEntity.getRequestDataSet();
+	String profileHtmlString = (String)paramEntity.getObject("profileHtmlString");
+	DataSet dsOpp = (DataSet)paramEntity.getObject("dsOpp");
+	DataSet dsAsg = (DataSet)paramEntity.getObject("dsAsg");
+	String numberFormat = "#,##0.00";
 %>
 <%/************************************************************************************************
 * HTML
@@ -26,10 +28,12 @@
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
+.optmandatory:after {font-size:1em;content:"\00a0 \273B";color:#000000;}
+.tblEdit td {padding:2px 6px;}
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
-var articleId = "<%=sysBoard.getArticleId()%>";
+var opportunityId = "<%=dsRequest.getValue("opportunityId")%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -49,6 +53,7 @@ var articleId = "<%=sysBoard.getArticleId()%>";
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
 			<ui:button id="btnSave" caption="button.com.save" iconClass="fa-save"/>
+			<ui:button id="btnCloseOpp" caption="Close Opportunity" iconClass="fa-legal"/>
 			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
 		</ui:buttonGroup>
 	</div>
@@ -65,77 +70,320 @@ var articleId = "<%=sysBoard.getArticleId()%>";
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
-	<table class="tblEdit">
-		<colgroup>
-			<col width="15%"/>
-			<col width="35%"/>
-			<col width="15%"/>
-			<col width="35%"/>
-		</colgroup>
-		<tr>
-			<th class="thEdit Rt mandatory"><mc:msg key="sys9902.header.writerName"/></th>
-			<td class="tdEdit">
-				<ui:text name="writerName" value="<%=sysBoard.getWriterName()%>" checkName="sys9902.header.writerName" options="mandatory"/>
-			</td>
-			<th class="thEdit Rt mandatory"><mc:msg key="sys9902.header.writerEmail"/></th>
-			<td class="tdEdit">
-				<ui:text name="writerEmail" value="<%=sysBoard.getWriterEmail()%>" checkName="sys9902.header.writerEmail" option="email" options="mandatory"/>
-			</td>
-		</tr>
-		<tr>
-			<th class="thEdit Rt mandatory"><mc:msg key="sys9902.header.articleSubject"/></th>
-			<td class="tdEdit" colspan="3">
-				<ui:text name="articleSubject" value="<%=sysBoard.getArticleSubject()%>" checkName="sys9902.header.articleSubject" options="mandatory"/>
-			</td>
-		</tr>
-		<tr>
-			<th class="thEdit Rt"><mc:msg key="sys9902.header.articleContents"/></th>
-			<td class="tdEdit" colspan="3">
-				<ui:txa name="articleContents" style="height:224px;" value="<%=sysBoard.getArticleContents()%>"/>
-			</td>
-		</tr>
-		<tr>
-			<th class="thEdit Rt">
-				<mc:msg key="sys9902.header.attachedFile"/><br/>
-			</th>
-			<td class="tdEdit" colspan="3">
-				<div id="divAttachedFileList" style="width:100%;height:100px;overflow-y:auto;">
-					<table class="tblDefault withPadding">
-<%
-					if (fileDataSet.getRowCnt() > 0) {
-						for (int i=0; i<fileDataSet.getRowCnt(); i++) {
-							double fileSize = CommonUtil.toDouble(fileDataSet.getValue(i, "FILE_SIZE")) / 1024;
-%>
-						<tr>
-							<td class="tdDefault">
-								<label class="lblCheckEn">
-									<input type="checkbox" id="chkForDel_<%=i%>" name="chkForDel" class="chkEn" value="<%=fileDataSet.getValue(i, "FILE_ID")%>" title="Select to Delete"/>
-									<img src="<%=fileDataSet.getValue(i, "FILE_ICON")%>" style="margin-top:-4px;"/>
-									<%=fileDataSet.getValue(i, "ORIGINAL_NAME")%> (<%=CommonUtil.getNumberMask(fileSize)%> KB)
-								</label>
-							</td>
-						</tr>
-<%
-						}
-					}
-%>
+	<div id="divFrameDataAreaWrapper" style="overflow:auto">
+		<div id="accordionPerson" class="accordion">
+			<div class="accordionGroup">
+				<h3 id="hPersonDetails">Person Details</h3>
+				<div id="divPersonDetails" class="accordionContents">
+					<table id="tblPersonDetail" class="tblEdit">
+						<colgroup>
+							<col width="8%"/>
+							<col width="17%"/>
+							<col width="8%"/>
+							<col width="17%"/>
+							<col width="8%"/>
+							<col width="17%"/>
+							<col width="8%"/>
+							<col width="*"/>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th class="thEdit rt mandatory">Person</th>
+								<td class="tdEdit"><ui:text name="personName" status="display" options="mandatory" checkName="Person"/><ui:hidden name="personId"/></td>
+								<th class="thEdit rt">Person Type</th>
+								<td class="tdEdit"><ui:text name="personType" status="display"/></td>
+								<th class="thEdit rt">Preferred Email</th>
+								<td class="tdEdit"><ui:text name="preferredEmail" status="display"/></td>
+								<th class="thEdit rt" rowspan="3">Personal Comments</th>
+								<td class="tdEdit" rowspan="3"><ui:txa id="personalComments" name="personalComments" status="display" style="height:110px;"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Service Status</th>
+								<td class="tdEdit"><ui:text name="serviceStatus" status="display"/></td>
+								<th class="thEdit rt">Service Type</th>
+								<td class="tdEdit"><ui:text name="serviceType" status="display"/></td>
+								<th class="thEdit rt">Mobile Number</th>
+								<td class="tdEdit"><ui:text name="mobileNumber" status="display"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Primary Approver</th>
+								<td class="tdEdit"><ui:text name="primaryApprover" status="display"/></td>
+								<th class="thEdit rt">Last Paid Date</th>
+								<td class="tdEdit"><ui:text name="lastPaidDate" status="display"/></td>
+								<th class="thEdit rt"></th>
+								<td class="tdEdit"></td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<th class="thEdit Rt">
-				<mc:msg key="sys9902.header.attachedFile"/><br/>
-				<div id="divButtonAreaRight">
-					<ui:button id="btnAddFile" caption="button.com.add" iconClass="fa-plus"/>
+			</div>
+		</div>
+		<div id="accordionOpportunity" class="accordion">
+			<div class="accordionGroup">
+				<h3 id="hOpportunityDetails">Opportunity Details</h3>
+				<div id="divOpportunityDetails" class="accordionContents">
+					<table id="tblOpportunityDetails" class="tblEdit">
+						<colgroup>
+							<col width="8%"/>
+							<col width="17%"/>
+							<col width="8%"/>
+							<col width="17%"/>
+							<col width="8%"/>
+							<col width="17%"/>
+							<col width="8%"/>
+							<col width="*"/>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th class="thEdit rt mandatory">Opportunity Id</th>
+								<td class="tdEdit"><ui:text name="oppId" status="display"/></td>
+								<th class="thEdit rt mandatory">Opportunity Type</th>
+								<td class="tdEdit"><ui:ccselect name="oppType" codeType="OPPORTUNITY_TYPE" options="mandatory" checkName="Opportunity Type"/></td>
+								<th class="thEdit rt mandatory">CDM<br/>(Formerly CRM)</th>
+								<td class="tdEdit"><ui:text name="oppCrmName" options="mandatory" checkName="CRM"/><ui:hidden name="oppCrmId"/></td>
+								<th class="thEdit rt mandatory">CDM<br/>(Formerly CSM)</th>
+								<td class="tdEdit"><ui:text name="oppCsmName" options="mandatory" checkName="CSM"/><ui:hidden name="oppCsmId"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Due Date</th>
+								<td class="tdEdit"><ui:text name="oppDueDate" className="Ct hor" style="width:96px" option="date"/><ui:icon id="icnOppDueDate" className="fa-calendar hor"/></td>
+								<th class="thEdit rt">Ref Number</th>
+								<td class="tdEdit"><ui:text name="oppReferenceNumber"/></td>
+								<th class="thEdit rt">Ref Description</th>
+								<td class="tdEdit"><ui:text name="oppReferenceDescription"/></td>
+								<th class="thEdit rt">Status</th>
+								<td class="tdEdit"><ui:text name="oppStatus" status="display"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Estimated Revenue</th>
+								<td class="tdEdit"><ui:text name="oppEstimatedRevenue" status="display"/></td>
+								<th class="thEdit rt">Created By</th>
+								<td class="tdEdit"><ui:text name="oppCreatedBy" status="display"/></td>
+								<th class="thEdit rt">Created Date</th>
+								<td class="tdEdit"><ui:text name="oppCreatedDate" status="display"/></td>
+								<th class="thEdit rt">Updated Date</th>
+								<td class="tdEdit"><ui:text name="oppUpdatedDate" status="display"/></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
-			</th>
-			<td class="tdEdit" colspan="3">
-				<div id="divAttachedFile" style="width:100%;height:100px;overflow-y:auto;">
+			</div>
+		</div>
+		<div id="accordionAsgTermWc" class="accordion">
+			<div class="accordionGroup">
+				<h3 id="hAsgTermWc">Assignment / Terms / Workcover</h3>
+				<div id="divAsgTermWc" class="accordionContents">
+					<div id="divTabAreaAsgTermWc" class="divTabArea">
+						<ui:tab id="tabAsgTermWc">
+							<ui:tabList caption="Assignment Details" isActive="true" iconClass="fa-id-card" iconPosition="left"/>
+							<ui:tabList caption="Terms" iconClass="fa-sliders" iconPosition="left"/>
+							<ui:tabList caption="Workcover" iconClass="fa-medkit" iconPosition="left"/>
+						</ui:tab>
+					</div>
+					<div id="div0" class="areaContainer" style="padding:2px 0px 2px 0px;">
+						<table id="tblAssignmentDetail" class="tblEdit">
+							<caption class="captionEdit">Assignment Details</caption>
+							<colgroup>
+								<col width="8%"/>
+								<col width="17%"/>
+								<col width="8%"/>
+								<col width="17%"/>
+								<col width="8%"/>
+								<col width="17%"/>
+								<col width="8%"/>
+								<col width="*"/>
+							</colgroup>
+							<tbody>
+								<tr>
+									<th class="thEdit rt mandatory">Assignment<br/>Start / End Date</th>
+									<td class="tdEdit">
+										<ui:text name="asgStartDate" className="Ct hor" style="width:90px" options="mandatory" option="date"/><ui:icon id="icnAsgStartDate" className="fa-calendar hor"/>
+										<div class="horGap20" style="padding:6px 8px 6px 0px;">-</div>
+										<ui:text name="asgEndDate" className="Ct hor" style="width:90px" options="mandatory" option="date"/><ui:icon id="icnAsgEndDate" className="fa-calendar hor"/>
+									</td>
+									<th class="thEdit rt mandatory">Rate</th>
+									<td class="tdEdit"><ui:text name="asgRate" className="Rt hor" style="width:96px"/><div><ui:ccselect name="asgRateUnit" options="mandatory" codeType="PAY_BASIS"/></div></td>
+									<th class="thEdit rt mandatory">Job Title</th>
+									<td class="tdEdit"><ui:text name="asgJobTitle" options="mandatory" checkName="Job Title"/></td>
+									<th class="thEdit rt mandatory">Management Fee</th>
+									<td class="tdEdit">
+										<ui:text name="asgManagementFee" options="mandatory" checkName="Management Fee" className="Rt hor" style="width:96px"/>
+										<div><ui:ccselect name="asgManagementFeeUnit" options="mandatory" codeType="AMOUNT_PERCENTAGE"/></div>
+									</td>
+								</tr>
+								<tr>
+									<th class="thEdit rt mandatory">Billing Org</th>
+									<td class="tdEdit"><ui:text name="asgBillingOrgName" options="mandatory" checkName="Billing Org"/><ui:hidden name="asgBillingOrgId"/></td>
+									<th class="thEdit rt optmandatory">Billing Org Contact</th>
+									<td class="tdEdit"><ui:text name="asgBillingOrgContactName"/><ui:hidden name="asgBillingOrgContactId"/></td>
+									<th class="thEdit rt">IPro To Be<br/>Paid upon</th>
+									<td class="tdEdit"><ui:ccselect name="asgPaidUpon" codeType="IPRO_FEE_UPON"/></td>
+									<th class="thEdit rt optmandatory">Payment Arrangement</th>
+									<td class="tdEdit"><ui:ccselect name="asgPaymentArrangement" codeType="PAYMENT_ARRANGMENT"/></td>
+								</tr>
+								<tr>
+									<th class="thEdit rt">End User Type</th>
+									<td class="tdEdit"><ui:ccselect name="asgEndUserType" codeType="END_USER_TYPE"/></td>
+									<th class="thEdit rt" rowspan="2">Description of Services</th>
+									<td class="tdEdit" rowspan="2"><ui:txa id="asgDescriptionOfServices" name="asgDescriptionOfServices" style="height:60px;"/></td>
+									<th class="thEdit rt" rowspan="2">Management Fee<br/>Comments</th>
+									<td class="tdEdit" rowspan="2"><ui:txa id="asgManagementFeeComments" name="asgManagementFeeComments" style="height:60px;"/></td>
+									<th class="thEdit rt">Contract Value</th>
+									<td class="tdEdit"><ui:text name="asgContractValue" className="Rt" status="display"/></td>
+								</tr>
+								<tr>
+									<th class="thEdit rt mandatory">End User Org</th>
+									<td class="tdEdit"><ui:text name="asgEndUserOrgName" options="mandatory" checkName="End User Org"/><ui:hidden name="asgEndUserOrgId"/></td>
+									<th class="thEdit rt"></th>
+									<td class="tdEdit"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="div1" style="display:none;padding:2px 0px 2px 0px;">
+						<table id="tblTermsDetail" class="tblEdit">
+							<caption class="captionEdit">Terms</caption>
+							<colgroup>
+								<col width="8%"/>
+								<col width="17%"/>
+								<col width="8%"/>
+								<col width="17%"/>
+								<col width="8%"/>
+								<col width="17%"/>
+								<col width="8%"/>
+								<col width="*"/>
+							</colgroup>
+							<tbody>
+								<tr>
+									<th class="thEdit rt mandatory">Opportunity Id</th>
+									<td class="tdEdit"><ui:text name="oppId" status="display"/></td>
+									<th class="thEdit rt mandatory">Opportunity Type</th>
+									<td class="tdEdit"><ui:ccselect name="oppType" codeType="OPPORTUNITY_TYPE" options="mandatory" checkName="Opportunity Type"/></td>
+									<th class="thEdit rt mandatory">CDM<br/>(Formerly CRM)</th>
+									<td class="tdEdit"><ui:text name="oppCrmName" options="mandatory" checkName="CRM"/><ui:hidden name="oppCrmId"/></td>
+									<th class="thEdit rt mandatory">CDM<br/>(Formerly CSM)</th>
+									<td class="tdEdit"><ui:text name="oppCsmName" options="mandatory" checkName="CSM"/><ui:hidden name="oppCsmId"/></td>
+								</tr>
+								<tr>
+									<th class="thEdit rt">Due Date</th>
+									<td class="tdEdit"><ui:text name="oppDueDate" className="Ct hor" style="width:96px" option="date"/><ui:icon id="icnOppDueDate" className="fa-calendar hor"/></td>
+									<th class="thEdit rt">Ref Number</th>
+									<td class="tdEdit"><ui:text name="oppReferenceNumber"/></td>
+									<th class="thEdit rt">Ref Description</th>
+									<td class="tdEdit"><ui:text name="oppReferenceDescription"/></td>
+									<th class="thEdit rt">Status</th>
+									<td class="tdEdit"><ui:text name="oppStatus" status="display"/></td>
+								</tr>
+								<tr>
+									<th class="thEdit rt">Estimated Revenue</th>
+									<td class="tdEdit"><ui:text name="oppEstimatedRevenue" status="display"/></td>
+									<th class="thEdit rt">Created By</th>
+									<td class="tdEdit"><ui:text name="oppCreatedBy" status="display"/></td>
+									<th class="thEdit rt">Created Date</th>
+									<td class="tdEdit"><ui:text name="oppCreatedDate" status="display"/></td>
+									<th class="thEdit rt">Updated Date</th>
+									<td class="tdEdit"><ui:text name="oppUpdatedDate" status="display"/></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="div2" style="display:none;padding:2px 0px 2px 0px;">
+						<table id="tblWorkcoverDetail" class="tblEdit">
+							<caption class="captionEdit">Workcover</caption>
+							<colgroup>
+								<col width="8%"/>
+								<col width="17%"/>
+								<col width="8%"/>
+								<col width="17%"/>
+								<col width="8%"/>
+								<col width="17%"/>
+								<col width="8%"/>
+								<col width="*"/>
+							</colgroup>
+							<tbody>
+								<tr>
+									<th class="thEdit rt mandatory">Opportunity Id</th>
+									<td class="tdEdit"><ui:text name="oppId" status="display"/></td>
+									<th class="thEdit rt mandatory">Opportunity Type</th>
+									<td class="tdEdit"><ui:ccselect name="oppType" codeType="OPPORTUNITY_TYPE" options="mandatory" checkName="Opportunity Type"/></td>
+									<th class="thEdit rt mandatory">CDM<br/>(Formerly CRM)</th>
+									<td class="tdEdit"><ui:text name="oppCrmName" options="mandatory" checkName="CRM"/><ui:hidden name="oppCrmId"/></td>
+									<th class="thEdit rt mandatory">CDM<br/>(Formerly CSM)</th>
+									<td class="tdEdit"><ui:text name="oppCsmName" options="mandatory" checkName="CSM"/><ui:hidden name="oppCsmId"/></td>
+								</tr>
+								<tr>
+									<th class="thEdit rt">Due Date</th>
+									<td class="tdEdit"><ui:text name="oppDueDate" className="Ct hor" style="width:96px" option="date"/><ui:icon id="icnOppDueDate" className="fa-calendar hor"/></td>
+									<th class="thEdit rt">Ref Number</th>
+									<td class="tdEdit"><ui:text name="oppReferenceNumber"/></td>
+									<th class="thEdit rt">Ref Description</th>
+									<td class="tdEdit"><ui:text name="oppReferenceDescription"/></td>
+									<th class="thEdit rt">Status</th>
+									<td class="tdEdit"><ui:text name="oppStatus" status="display"/></td>
+								</tr>
+								<tr>
+									<th class="thEdit rt">Estimated Revenue</th>
+									<td class="tdEdit"><ui:text name="oppEstimatedRevenue" status="display"/></td>
+									<th class="thEdit rt">Created By</th>
+									<td class="tdEdit"><ui:text name="oppCreatedBy" status="display"/></td>
+									<th class="thEdit rt">Created Date</th>
+									<td class="tdEdit"><ui:text name="oppCreatedDate" status="display"/></td>
+									<th class="thEdit rt">Updated Date</th>
+									<td class="tdEdit"><ui:text name="oppUpdatedDate" status="display"/></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</td>
-		</tr>
-	</table>
+			</div>
+		</div>
+		<div id="accordionDocuments" class="accordion">
+			<div class="accordionGroup">
+				<h3 id="hDocuments">Opportunity Documents</h3>
+				<div id="divDocuments" class="accordionContents">
+					<div class="divButtonArea">
+						<div class="divButtonAreaRight">
+							<ui:buttonGroup>
+								<ui:button id="btnCreateFromTemplate" caption="Create From Template" iconClass="fa-window-restore"/>
+								<ui:button id="btnManageDocument" caption="Manage Document" iconClass="fa-sliders"/>
+								<ui:button id="btnAddAdHocDocument" caption="Add Ad Hoc Document" iconClass="fa-plus-circle"/>
+								<div style="margin-top:3px;padding:0px 4px 0px 4px;"><%=profileHtmlString%></div>
+								<ui:button id="btnApplyProfile" caption="Apply" iconClass="fa-plug"/>
+							</ui:buttonGroup>
+						</div>
+					</div>
+					<div class="verGap2"></div>
+					<div id="divGridHolderDocuments">
+						<table id="tblDocuments" class="tblGrid sort autosort">
+							<colgroup>
+								<col width="6%"></col>
+								<col width="12%"></col>
+								<col width="21%"></col>
+								<col width="22%"></col>
+								<col width="*"></col>
+								<col width="5%"></col>
+							</colgroup>
+							<thead>
+								<tr>
+									<th class="thGrid">Document Id</th>
+									<th class="thGrid">Document Type</th>
+									<th class="thGrid">Document Sub Type</th>
+									<th class="thGrid">Description</th>
+									<th class="thGrid">File Name</th>
+									<th class="thGrid">Upload Date</th>
+								</tr>
+							</thead>
+							<tbody id="tbodyDocuments">
+								<tr>
+									<td class="tdGrid Ct" colspan="6"><mc:msg key="I002"/></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <div id="divPagingArea"></div>
 <%/************************************************************************************************

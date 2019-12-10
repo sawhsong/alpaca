@@ -29,6 +29,7 @@ public class DocumentProfileHDaoImpl extends BaseHDao implements DocumentProfile
 		}
 
 		html += "<select"+attrStr+">";
+		html += "<option value=\"\">==Select==</option>";
 		for (int i=0; i<ds.getRowCnt(); i++) {
 			if (!CommonUtil.equals(preOptGroup, ds.getValue(i, "PROFILE_GROUP"))) {
 				if (i != 0) {

@@ -1,46 +1,13 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9902UpdatePop.js
+ * - Per0202EditOpportunityPop.js
  *************************************************************************************************/
 $(function() {
 	/*!
 	 * event
 	 */
-	$("#btnSave").click(function(event) {
-		if (commonJs.doValidate("fmDefault")) {
-			$("#fmDefault").attr("enctype", "multipart/form-data");
-
-			commonJs.confirm({
-				contents:com.message.Q001,
-				buttons:[{
-					caption:com.caption.yes,
-					callback:function() {
-						commonJs.doSubmit({
-							form:"fmDefault",
-							action:"/sys/9902/exeUpdate.do",
-							data:{
-								articleId:articleId
-							}
-						});
-					}
-				}, {
-					caption:com.caption.no,
-					callback:function() {
-					}
-				}]
-			});
-		}
-	});
-
 	$("#btnClose").click(function(event) {
 		parent.popup.close();
-	});
-
-	$("#btnAddFile").click(function(event) {
-		commonJs.addFileSelectObject({
-			appendToId:"divAttachedFile",
-			rowBreak:false
-		});
 	});
 
 	$(document).keypress(function(event) {
@@ -52,10 +19,84 @@ $(function() {
 	/*!
 	 * process
 	 */
+	setBlind = function() {
+		commonJs.showProcMessageOnElement("divOppAsgDetails");
+		commonJs.showProcMessageOnElement("divOpportunityDocument");
+
+		setTimeout(function() {
+			commonJs.hideProcMessageOnElement("divOppAsgDetails");
+			commonJs.hideProcMessageOnElement("divOpportunityDocument");
+		}, 1000);
+	};
+
+	getOpportunityDocuments = function() {
+		commonJs.showProcMessageOnElement("divGridHolderOpportunityDocument");
+
+		commonJs.doSimpleProcess({
+			url:"/per/0202/getOpportunityDocuments.do",
+			noForm:true,
+			data:{opportunityId:opportunityId},
+			callback:function(result) {
+				var ds = result.dataSet;
+				renderOpportunityDocumentTable(ds);
+			}
+		});
+	};
+	renderOpportunityDocumentTable = function(ds) {
+		var html = "";
+
+		searchResultDataCount = ds.getRowCnt();
+		$("#tbodyOpportunityDocument").html("");
+
+		if (ds.getRowCnt() > 0) {
+			for (var i=0; i<ds.getRowCnt(); i++) {
+				var gridTr = new UiGridTr();
+
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "DOCUMENT_ID")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DOCUMENT_TYPE_MEANING")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DOCUMENT_SUB_TYPE_MEANING")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DESCRIPTION")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(commonJs.htmlToString(ds.getValue(i, "DOCUMENT_FILE_NAME")), 80)));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "UPLOADED_DATE")));
+
+				html += gridTr.toHtmlString();
+			}
+		} else {
+			var gridTr = new UiGridTr();
+
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:6").setText(com.message.I001));
+			html += gridTr.toHtmlString();
+		}
+
+		$("#tbodyOpportunityDocument").append($(html));
+		$("#tblOpportunityDocument").fixedHeaderTable({
+			attachTo:$("#divGridHolderOpportunityDocument"),
+			attachToHeight:390,
+			isPageable:false
+		});
+
+		commonJs.hideProcMessageOnElement("divGridHolderOpportunityDocument");
+	};
 
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
+//		commonJs.changeTabSelection($("#divTabAreaAsgTermWc li:eq(0) a"));
+
+		commonJs.setAccordion({
+			containerClass:"accordion",
+			multipleExpand:true,
+			expandAll:true,
+			icons:null
+		});
+
+//		setTimeout(function() {
+//			setBlind();
+//		}, 100);
+//
+//		setTimeout(function() {
+//			getOpportunityDocuments();
+//		}, 400);
 	});
 });

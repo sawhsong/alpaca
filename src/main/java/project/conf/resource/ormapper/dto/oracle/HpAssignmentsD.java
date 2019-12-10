@@ -51,16 +51,6 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	private String ATTRIBUTE1;
 	private String attribute10;
 	private String ATTRIBUTE10;
-	private String attribute4;
-	private String ATTRIBUTE4;
-	private String attribute5;
-	private String ATTRIBUTE5;
-	private String attribute6;
-	private String ATTRIBUTE6;
-	private String attribute7;
-	private String ATTRIBUTE7;
-	private String attribute8;
-	private String ATTRIBUTE8;
 	private String attribute9;
 	private String ATTRIBUTE9;
 	private String automaticInvoice;
@@ -81,6 +71,18 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	private String COST_CENTRE;
 	private String createdAs;
 	private String CREATED_AS;
+	private double deliverablesApprover1;
+	private String DELIVERABLES_APPROVER_1;
+	private double deliverablesApprover2;
+	private String DELIVERABLES_APPROVER_2;
+	private double deliverablesApprover3;
+	private String DELIVERABLES_APPROVER_3;
+	private double deliverablesApprNotiToId;
+	private String DELIVERABLES_APPR_NOTI_TO_ID;
+	private double deliverablesApprNotiToOrg;
+	private String DELIVERABLES_APPR_NOTI_TO_ORG;
+	private String deliverablesName;
+	private String DELIVERABLES_NAME;
 	private double element1;
 	private String ELEMENT_1;
 	private double element2;
@@ -99,10 +101,28 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	private String ETS_APPROVAL_NOTIFICATION_TO;
 	private double euContactPersonId;
 	private String EU_CONTACT_PERSON_ID;
+	private double expenseApprovalNotiToId;
+	private String EXPENSE_APPROVAL_NOTI_TO_ID;
+	private double expenseApprovalNotiToOrg;
+	private String EXPENSE_APPROVAL_NOTI_TO_ORG;
+	private double expenseApprover1;
+	private String EXPENSE_APPROVER_1;
+	private double expenseApprover2;
+	private String EXPENSE_APPROVER_2;
+	private double expenseApprover3;
+	private String EXPENSE_APPROVER_3;
+	private String expenseName;
+	private String EXPENSE_NAME;
 	private String gstExempt;
 	private String GST_EXEMPT;
 	private String invoiceRecipientEmail;
 	private String INVOICE_RECIPIENT_EMAIL;
+	private String isBulkApproval;
+	private String IS_BULK_APPROVAL;
+	private String isBulkApprovalDeliverables;
+	private String IS_BULK_APPROVAL_DELIVERABLES;
+	private String isBulkApprovalExpense;
+	private String IS_BULK_APPROVAL_EXPENSE;
 	private String isDaily;
 	private String IS_DAILY;
 	private String isStartEndTime;
@@ -131,6 +151,14 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	private String RATE4;
 	private double rate5;
 	private String RATE5;
+	private String referenceAPo;
+	private String REFERENCE_A_PO;
+	private String referenceB;
+	private String REFERENCE_B;
+	private String referenceC;
+	private String REFERENCE_C;
+	private String referenceD;
+	private String REFERENCE_D;
 	private String referenceNo1;
 	private String REFERENCE_NO_1;
 	private String referenceNo2;
@@ -165,6 +193,10 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	private String TIMESHEET_UNITS;
 	private String unit;
 	private String UNIT;
+	private String useDeliverables;
+	private String USE_DELIVERABLES;
+	private String useExpense;
+	private String USE_EXPENSE;
 	private String wcOrganisationTypeFlag;
 	private String WC_ORGANISATION_TYPE_FLAG;
 	private double wcOrgCodeRateLinkId;
@@ -204,7 +236,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		updateColumnsDataSet.addName(updateColumnsDataSetHeader);
 		setFrwVarPrimaryKey("ASSIGNMENT_ID,FROM_DATE,TO_DATE");
 		setFrwVarDateColumn("FROM_DATE,TO_DATE,CREATION_DATE,LAST_UPDATE_DATE,ASSIGNMENT_END_DATE,ASSIGNMENT_START_DATE");
-		setFrwVarNumberColumn("ASSIGNMENT_ID,CREATED_BY,LAST_UPDATED_BY,PERSON_ID,BILLING_ORGANISATION_ID,EU_ORGANISATION_ID,BILLING_CODE_ID,BILLING_ORGANISATION_PERSON_ID,BUSINESS_GROUP_ID,ELEMENT_1,ELEMENT_2,ELEMENT_3,ELEMENT_4,ELEMENT_5,ETS_APPROVAL_NOTIFICATION_TO,EU_CONTACT_PERSON_ID,PAY_METHOD_ID,RATE,RATE1,RATE2,RATE3,RATE4,RATE5,TIMECARD_APPROVAL_ID,TIMECARD_SECONDARY_APPROVAL_ID,TIMECARD_TERTIARY_APPROVAL_ID,WC_ORG_CODE_RATE_LINK_ID");
+		setFrwVarNumberColumn("ASSIGNMENT_ID,CREATED_BY,LAST_UPDATED_BY,PERSON_ID,BILLING_ORGANISATION_ID,EU_ORGANISATION_ID,BILLING_CODE_ID,BILLING_ORGANISATION_PERSON_ID,BUSINESS_GROUP_ID,DELIVERABLES_APPROVER_1,DELIVERABLES_APPROVER_2,DELIVERABLES_APPROVER_3,DELIVERABLES_APPR_NOTI_TO_ID,DELIVERABLES_APPR_NOTI_TO_ORG,ELEMENT_1,ELEMENT_2,ELEMENT_3,ELEMENT_4,ELEMENT_5,ETS_APPROVAL_NOTIFICATION_TO,EU_CONTACT_PERSON_ID,EXPENSE_APPROVAL_NOTI_TO_ID,EXPENSE_APPROVAL_NOTI_TO_ORG,EXPENSE_APPROVER_1,EXPENSE_APPROVER_2,EXPENSE_APPROVER_3,PAY_METHOD_ID,RATE,RATE1,RATE2,RATE3,RATE4,RATE5,TIMECARD_APPROVAL_ID,TIMECARD_SECONDARY_APPROVAL_ID,TIMECARD_TERTIARY_APPROVAL_ID,WC_ORG_CODE_RATE_LINK_ID");
 		setFrwVarClobColumn("");
 		setFrwVarDefaultColumn("ASG_ACTIVE");
 		setFrwVarDefaultValue("Y");
@@ -367,51 +399,6 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		setValueFromAccessor("ATTRIBUTE10", attribute10);
 	}
 
-	public String getAttribute4() {
-		return attribute4;
-	}
-
-	public void setAttribute4(String attribute4) throws Exception {
-		this.attribute4 = attribute4;
-		setValueFromAccessor("ATTRIBUTE4", attribute4);
-	}
-
-	public String getAttribute5() {
-		return attribute5;
-	}
-
-	public void setAttribute5(String attribute5) throws Exception {
-		this.attribute5 = attribute5;
-		setValueFromAccessor("ATTRIBUTE5", attribute5);
-	}
-
-	public String getAttribute6() {
-		return attribute6;
-	}
-
-	public void setAttribute6(String attribute6) throws Exception {
-		this.attribute6 = attribute6;
-		setValueFromAccessor("ATTRIBUTE6", attribute6);
-	}
-
-	public String getAttribute7() {
-		return attribute7;
-	}
-
-	public void setAttribute7(String attribute7) throws Exception {
-		this.attribute7 = attribute7;
-		setValueFromAccessor("ATTRIBUTE7", attribute7);
-	}
-
-	public String getAttribute8() {
-		return attribute8;
-	}
-
-	public void setAttribute8(String attribute8) throws Exception {
-		this.attribute8 = attribute8;
-		setValueFromAccessor("ATTRIBUTE8", attribute8);
-	}
-
 	public String getAttribute9() {
 		return attribute9;
 	}
@@ -502,6 +489,60 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		setValueFromAccessor("CREATED_AS", createdAs);
 	}
 
+	public double getDeliverablesApprover1() {
+		return deliverablesApprover1;
+	}
+
+	public void setDeliverablesApprover1(double deliverablesApprover1) throws Exception {
+		this.deliverablesApprover1 = deliverablesApprover1;
+		setValueFromAccessor("DELIVERABLES_APPROVER_1", CommonUtil.toString(deliverablesApprover1));
+	}
+
+	public double getDeliverablesApprover2() {
+		return deliverablesApprover2;
+	}
+
+	public void setDeliverablesApprover2(double deliverablesApprover2) throws Exception {
+		this.deliverablesApprover2 = deliverablesApprover2;
+		setValueFromAccessor("DELIVERABLES_APPROVER_2", CommonUtil.toString(deliverablesApprover2));
+	}
+
+	public double getDeliverablesApprover3() {
+		return deliverablesApprover3;
+	}
+
+	public void setDeliverablesApprover3(double deliverablesApprover3) throws Exception {
+		this.deliverablesApprover3 = deliverablesApprover3;
+		setValueFromAccessor("DELIVERABLES_APPROVER_3", CommonUtil.toString(deliverablesApprover3));
+	}
+
+	public double getDeliverablesApprNotiToId() {
+		return deliverablesApprNotiToId;
+	}
+
+	public void setDeliverablesApprNotiToId(double deliverablesApprNotiToId) throws Exception {
+		this.deliverablesApprNotiToId = deliverablesApprNotiToId;
+		setValueFromAccessor("DELIVERABLES_APPR_NOTI_TO_ID", CommonUtil.toString(deliverablesApprNotiToId));
+	}
+
+	public double getDeliverablesApprNotiToOrg() {
+		return deliverablesApprNotiToOrg;
+	}
+
+	public void setDeliverablesApprNotiToOrg(double deliverablesApprNotiToOrg) throws Exception {
+		this.deliverablesApprNotiToOrg = deliverablesApprNotiToOrg;
+		setValueFromAccessor("DELIVERABLES_APPR_NOTI_TO_ORG", CommonUtil.toString(deliverablesApprNotiToOrg));
+	}
+
+	public String getDeliverablesName() {
+		return deliverablesName;
+	}
+
+	public void setDeliverablesName(String deliverablesName) throws Exception {
+		this.deliverablesName = deliverablesName;
+		setValueFromAccessor("DELIVERABLES_NAME", deliverablesName);
+	}
+
 	public double getElement1() {
 		return element1;
 	}
@@ -583,6 +624,60 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		setValueFromAccessor("EU_CONTACT_PERSON_ID", CommonUtil.toString(euContactPersonId));
 	}
 
+	public double getExpenseApprovalNotiToId() {
+		return expenseApprovalNotiToId;
+	}
+
+	public void setExpenseApprovalNotiToId(double expenseApprovalNotiToId) throws Exception {
+		this.expenseApprovalNotiToId = expenseApprovalNotiToId;
+		setValueFromAccessor("EXPENSE_APPROVAL_NOTI_TO_ID", CommonUtil.toString(expenseApprovalNotiToId));
+	}
+
+	public double getExpenseApprovalNotiToOrg() {
+		return expenseApprovalNotiToOrg;
+	}
+
+	public void setExpenseApprovalNotiToOrg(double expenseApprovalNotiToOrg) throws Exception {
+		this.expenseApprovalNotiToOrg = expenseApprovalNotiToOrg;
+		setValueFromAccessor("EXPENSE_APPROVAL_NOTI_TO_ORG", CommonUtil.toString(expenseApprovalNotiToOrg));
+	}
+
+	public double getExpenseApprover1() {
+		return expenseApprover1;
+	}
+
+	public void setExpenseApprover1(double expenseApprover1) throws Exception {
+		this.expenseApprover1 = expenseApprover1;
+		setValueFromAccessor("EXPENSE_APPROVER_1", CommonUtil.toString(expenseApprover1));
+	}
+
+	public double getExpenseApprover2() {
+		return expenseApprover2;
+	}
+
+	public void setExpenseApprover2(double expenseApprover2) throws Exception {
+		this.expenseApprover2 = expenseApprover2;
+		setValueFromAccessor("EXPENSE_APPROVER_2", CommonUtil.toString(expenseApprover2));
+	}
+
+	public double getExpenseApprover3() {
+		return expenseApprover3;
+	}
+
+	public void setExpenseApprover3(double expenseApprover3) throws Exception {
+		this.expenseApprover3 = expenseApprover3;
+		setValueFromAccessor("EXPENSE_APPROVER_3", CommonUtil.toString(expenseApprover3));
+	}
+
+	public String getExpenseName() {
+		return expenseName;
+	}
+
+	public void setExpenseName(String expenseName) throws Exception {
+		this.expenseName = expenseName;
+		setValueFromAccessor("EXPENSE_NAME", expenseName);
+	}
+
 	public String getGstExempt() {
 		return gstExempt;
 	}
@@ -599,6 +694,33 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	public void setInvoiceRecipientEmail(String invoiceRecipientEmail) throws Exception {
 		this.invoiceRecipientEmail = invoiceRecipientEmail;
 		setValueFromAccessor("INVOICE_RECIPIENT_EMAIL", invoiceRecipientEmail);
+	}
+
+	public String getIsBulkApproval() {
+		return isBulkApproval;
+	}
+
+	public void setIsBulkApproval(String isBulkApproval) throws Exception {
+		this.isBulkApproval = isBulkApproval;
+		setValueFromAccessor("IS_BULK_APPROVAL", isBulkApproval);
+	}
+
+	public String getIsBulkApprovalDeliverables() {
+		return isBulkApprovalDeliverables;
+	}
+
+	public void setIsBulkApprovalDeliverables(String isBulkApprovalDeliverables) throws Exception {
+		this.isBulkApprovalDeliverables = isBulkApprovalDeliverables;
+		setValueFromAccessor("IS_BULK_APPROVAL_DELIVERABLES", isBulkApprovalDeliverables);
+	}
+
+	public String getIsBulkApprovalExpense() {
+		return isBulkApprovalExpense;
+	}
+
+	public void setIsBulkApprovalExpense(String isBulkApprovalExpense) throws Exception {
+		this.isBulkApprovalExpense = isBulkApprovalExpense;
+		setValueFromAccessor("IS_BULK_APPROVAL_EXPENSE", isBulkApprovalExpense);
 	}
 
 	public String getIsDaily() {
@@ -725,6 +847,42 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	public void setRate5(double rate5) throws Exception {
 		this.rate5 = rate5;
 		setValueFromAccessor("RATE5", CommonUtil.toString(rate5));
+	}
+
+	public String getReferenceAPo() {
+		return referenceAPo;
+	}
+
+	public void setReferenceAPo(String referenceAPo) throws Exception {
+		this.referenceAPo = referenceAPo;
+		setValueFromAccessor("REFERENCE_A_PO", referenceAPo);
+	}
+
+	public String getReferenceB() {
+		return referenceB;
+	}
+
+	public void setReferenceB(String referenceB) throws Exception {
+		this.referenceB = referenceB;
+		setValueFromAccessor("REFERENCE_B", referenceB);
+	}
+
+	public String getReferenceC() {
+		return referenceC;
+	}
+
+	public void setReferenceC(String referenceC) throws Exception {
+		this.referenceC = referenceC;
+		setValueFromAccessor("REFERENCE_C", referenceC);
+	}
+
+	public String getReferenceD() {
+		return referenceD;
+	}
+
+	public void setReferenceD(String referenceD) throws Exception {
+		this.referenceD = referenceD;
+		setValueFromAccessor("REFERENCE_D", referenceD);
 	}
 
 	public String getReferenceNo1() {
@@ -878,6 +1036,24 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	public void setUnit(String unit) throws Exception {
 		this.unit = unit;
 		setValueFromAccessor("UNIT", unit);
+	}
+
+	public String getUseDeliverables() {
+		return useDeliverables;
+	}
+
+	public void setUseDeliverables(String useDeliverables) throws Exception {
+		this.useDeliverables = useDeliverables;
+		setValueFromAccessor("USE_DELIVERABLES", useDeliverables);
+	}
+
+	public String getUseExpense() {
+		return useExpense;
+	}
+
+	public void setUseExpense(String useExpense) throws Exception {
+		this.useExpense = useExpense;
+		setValueFromAccessor("USE_EXPENSE", useExpense);
 	}
 
 	public String getWcOrganisationTypeFlag() {
@@ -1087,11 +1263,6 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "assignmentStartDate : "+assignmentStartDate+"\n";
 		str += "attribute1 : "+attribute1+"\n";
 		str += "attribute10 : "+attribute10+"\n";
-		str += "attribute4 : "+attribute4+"\n";
-		str += "attribute5 : "+attribute5+"\n";
-		str += "attribute6 : "+attribute6+"\n";
-		str += "attribute7 : "+attribute7+"\n";
-		str += "attribute8 : "+attribute8+"\n";
 		str += "attribute9 : "+attribute9+"\n";
 		str += "automaticInvoice : "+automaticInvoice+"\n";
 		str += "basicSalary : "+basicSalary+"\n";
@@ -1102,6 +1273,12 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "comments : "+comments+"\n";
 		str += "costCentre : "+costCentre+"\n";
 		str += "createdAs : "+createdAs+"\n";
+		str += "deliverablesApprover1 : "+deliverablesApprover1+"\n";
+		str += "deliverablesApprover2 : "+deliverablesApprover2+"\n";
+		str += "deliverablesApprover3 : "+deliverablesApprover3+"\n";
+		str += "deliverablesApprNotiToId : "+deliverablesApprNotiToId+"\n";
+		str += "deliverablesApprNotiToOrg : "+deliverablesApprNotiToOrg+"\n";
+		str += "deliverablesName : "+deliverablesName+"\n";
 		str += "element1 : "+element1+"\n";
 		str += "element2 : "+element2+"\n";
 		str += "element3 : "+element3+"\n";
@@ -1111,8 +1288,17 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "equipmentRequiredYn : "+equipmentRequiredYn+"\n";
 		str += "etsApprovalNotificationTo : "+etsApprovalNotificationTo+"\n";
 		str += "euContactPersonId : "+euContactPersonId+"\n";
+		str += "expenseApprovalNotiToId : "+expenseApprovalNotiToId+"\n";
+		str += "expenseApprovalNotiToOrg : "+expenseApprovalNotiToOrg+"\n";
+		str += "expenseApprover1 : "+expenseApprover1+"\n";
+		str += "expenseApprover2 : "+expenseApprover2+"\n";
+		str += "expenseApprover3 : "+expenseApprover3+"\n";
+		str += "expenseName : "+expenseName+"\n";
 		str += "gstExempt : "+gstExempt+"\n";
 		str += "invoiceRecipientEmail : "+invoiceRecipientEmail+"\n";
+		str += "isBulkApproval : "+isBulkApproval+"\n";
+		str += "isBulkApprovalDeliverables : "+isBulkApprovalDeliverables+"\n";
+		str += "isBulkApprovalExpense : "+isBulkApprovalExpense+"\n";
 		str += "isDaily : "+isDaily+"\n";
 		str += "isStartEndTime : "+isStartEndTime+"\n";
 		str += "jobTitle : "+jobTitle+"\n";
@@ -1127,6 +1313,10 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "rate3 : "+rate3+"\n";
 		str += "rate4 : "+rate4+"\n";
 		str += "rate5 : "+rate5+"\n";
+		str += "referenceAPo : "+referenceAPo+"\n";
+		str += "referenceB : "+referenceB+"\n";
+		str += "referenceC : "+referenceC+"\n";
+		str += "referenceD : "+referenceD+"\n";
 		str += "referenceNo1 : "+referenceNo1+"\n";
 		str += "referenceNo2 : "+referenceNo2+"\n";
 		str += "referenceNo3 : "+referenceNo3+"\n";
@@ -1144,6 +1334,8 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "timesheetName : "+timesheetName+"\n";
 		str += "timesheetUnits : "+timesheetUnits+"\n";
 		str += "unit : "+unit+"\n";
+		str += "useDeliverables : "+useDeliverables+"\n";
+		str += "useExpense : "+useExpense+"\n";
 		str += "wcOrganisationTypeFlag : "+wcOrganisationTypeFlag+"\n";
 		str += "wcOrgCodeRateLinkId : "+wcOrgCodeRateLinkId+"\n";
 		str += "workingState : "+workingState+"\n";
@@ -1178,11 +1370,6 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "<column name=\"assignmentStartDate\" value=\""+assignmentStartDate+"\">";
 		str += "<column name=\"attribute1\" value=\""+attribute1+"\">";
 		str += "<column name=\"attribute10\" value=\""+attribute10+"\">";
-		str += "<column name=\"attribute4\" value=\""+attribute4+"\">";
-		str += "<column name=\"attribute5\" value=\""+attribute5+"\">";
-		str += "<column name=\"attribute6\" value=\""+attribute6+"\">";
-		str += "<column name=\"attribute7\" value=\""+attribute7+"\">";
-		str += "<column name=\"attribute8\" value=\""+attribute8+"\">";
 		str += "<column name=\"attribute9\" value=\""+attribute9+"\">";
 		str += "<column name=\"automaticInvoice\" value=\""+automaticInvoice+"\">";
 		str += "<column name=\"basicSalary\" value=\""+basicSalary+"\">";
@@ -1193,6 +1380,12 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "<column name=\"comments\" value=\""+comments+"\">";
 		str += "<column name=\"costCentre\" value=\""+costCentre+"\">";
 		str += "<column name=\"createdAs\" value=\""+createdAs+"\">";
+		str += "<column name=\"deliverablesApprover1\" value=\""+deliverablesApprover1+"\">";
+		str += "<column name=\"deliverablesApprover2\" value=\""+deliverablesApprover2+"\">";
+		str += "<column name=\"deliverablesApprover3\" value=\""+deliverablesApprover3+"\">";
+		str += "<column name=\"deliverablesApprNotiToId\" value=\""+deliverablesApprNotiToId+"\">";
+		str += "<column name=\"deliverablesApprNotiToOrg\" value=\""+deliverablesApprNotiToOrg+"\">";
+		str += "<column name=\"deliverablesName\" value=\""+deliverablesName+"\">";
 		str += "<column name=\"element1\" value=\""+element1+"\">";
 		str += "<column name=\"element2\" value=\""+element2+"\">";
 		str += "<column name=\"element3\" value=\""+element3+"\">";
@@ -1202,8 +1395,17 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "<column name=\"equipmentRequiredYn\" value=\""+equipmentRequiredYn+"\">";
 		str += "<column name=\"etsApprovalNotificationTo\" value=\""+etsApprovalNotificationTo+"\">";
 		str += "<column name=\"euContactPersonId\" value=\""+euContactPersonId+"\">";
+		str += "<column name=\"expenseApprovalNotiToId\" value=\""+expenseApprovalNotiToId+"\">";
+		str += "<column name=\"expenseApprovalNotiToOrg\" value=\""+expenseApprovalNotiToOrg+"\">";
+		str += "<column name=\"expenseApprover1\" value=\""+expenseApprover1+"\">";
+		str += "<column name=\"expenseApprover2\" value=\""+expenseApprover2+"\">";
+		str += "<column name=\"expenseApprover3\" value=\""+expenseApprover3+"\">";
+		str += "<column name=\"expenseName\" value=\""+expenseName+"\">";
 		str += "<column name=\"gstExempt\" value=\""+gstExempt+"\">";
 		str += "<column name=\"invoiceRecipientEmail\" value=\""+invoiceRecipientEmail+"\">";
+		str += "<column name=\"isBulkApproval\" value=\""+isBulkApproval+"\">";
+		str += "<column name=\"isBulkApprovalDeliverables\" value=\""+isBulkApprovalDeliverables+"\">";
+		str += "<column name=\"isBulkApprovalExpense\" value=\""+isBulkApprovalExpense+"\">";
 		str += "<column name=\"isDaily\" value=\""+isDaily+"\">";
 		str += "<column name=\"isStartEndTime\" value=\""+isStartEndTime+"\">";
 		str += "<column name=\"jobTitle\" value=\""+jobTitle+"\">";
@@ -1218,6 +1420,10 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "<column name=\"rate3\" value=\""+rate3+"\">";
 		str += "<column name=\"rate4\" value=\""+rate4+"\">";
 		str += "<column name=\"rate5\" value=\""+rate5+"\">";
+		str += "<column name=\"referenceAPo\" value=\""+referenceAPo+"\">";
+		str += "<column name=\"referenceB\" value=\""+referenceB+"\">";
+		str += "<column name=\"referenceC\" value=\""+referenceC+"\">";
+		str += "<column name=\"referenceD\" value=\""+referenceD+"\">";
 		str += "<column name=\"referenceNo1\" value=\""+referenceNo1+"\">";
 		str += "<column name=\"referenceNo2\" value=\""+referenceNo2+"\">";
 		str += "<column name=\"referenceNo3\" value=\""+referenceNo3+"\">";
@@ -1235,6 +1441,8 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "<column name=\"timesheetName\" value=\""+timesheetName+"\">";
 		str += "<column name=\"timesheetUnits\" value=\""+timesheetUnits+"\">";
 		str += "<column name=\"unit\" value=\""+unit+"\">";
+		str += "<column name=\"useDeliverables\" value=\""+useDeliverables+"\">";
+		str += "<column name=\"useExpense\" value=\""+useExpense+"\">";
 		str += "<column name=\"wcOrganisationTypeFlag\" value=\""+wcOrganisationTypeFlag+"\">";
 		str += "<column name=\"wcOrgCodeRateLinkId\" value=\""+wcOrgCodeRateLinkId+"\">";
 		str += "<column name=\"workingState\" value=\""+workingState+"\">";
@@ -1269,11 +1477,6 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "\"assignmentStartDate\":\""+assignmentStartDate+"\", ";
 		str += "\"attribute1\":\""+attribute1+"\", ";
 		str += "\"attribute10\":\""+attribute10+"\", ";
-		str += "\"attribute4\":\""+attribute4+"\", ";
-		str += "\"attribute5\":\""+attribute5+"\", ";
-		str += "\"attribute6\":\""+attribute6+"\", ";
-		str += "\"attribute7\":\""+attribute7+"\", ";
-		str += "\"attribute8\":\""+attribute8+"\", ";
 		str += "\"attribute9\":\""+attribute9+"\", ";
 		str += "\"automaticInvoice\":\""+automaticInvoice+"\", ";
 		str += "\"basicSalary\":\""+basicSalary+"\", ";
@@ -1284,6 +1487,12 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "\"comments\":\""+comments+"\", ";
 		str += "\"costCentre\":\""+costCentre+"\", ";
 		str += "\"createdAs\":\""+createdAs+"\", ";
+		str += "\"deliverablesApprover1\":\""+deliverablesApprover1+"\", ";
+		str += "\"deliverablesApprover2\":\""+deliverablesApprover2+"\", ";
+		str += "\"deliverablesApprover3\":\""+deliverablesApprover3+"\", ";
+		str += "\"deliverablesApprNotiToId\":\""+deliverablesApprNotiToId+"\", ";
+		str += "\"deliverablesApprNotiToOrg\":\""+deliverablesApprNotiToOrg+"\", ";
+		str += "\"deliverablesName\":\""+deliverablesName+"\", ";
 		str += "\"element1\":\""+element1+"\", ";
 		str += "\"element2\":\""+element2+"\", ";
 		str += "\"element3\":\""+element3+"\", ";
@@ -1293,8 +1502,17 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "\"equipmentRequiredYn\":\""+equipmentRequiredYn+"\", ";
 		str += "\"etsApprovalNotificationTo\":\""+etsApprovalNotificationTo+"\", ";
 		str += "\"euContactPersonId\":\""+euContactPersonId+"\", ";
+		str += "\"expenseApprovalNotiToId\":\""+expenseApprovalNotiToId+"\", ";
+		str += "\"expenseApprovalNotiToOrg\":\""+expenseApprovalNotiToOrg+"\", ";
+		str += "\"expenseApprover1\":\""+expenseApprover1+"\", ";
+		str += "\"expenseApprover2\":\""+expenseApprover2+"\", ";
+		str += "\"expenseApprover3\":\""+expenseApprover3+"\", ";
+		str += "\"expenseName\":\""+expenseName+"\", ";
 		str += "\"gstExempt\":\""+gstExempt+"\", ";
 		str += "\"invoiceRecipientEmail\":\""+invoiceRecipientEmail+"\", ";
+		str += "\"isBulkApproval\":\""+isBulkApproval+"\", ";
+		str += "\"isBulkApprovalDeliverables\":\""+isBulkApprovalDeliverables+"\", ";
+		str += "\"isBulkApprovalExpense\":\""+isBulkApprovalExpense+"\", ";
 		str += "\"isDaily\":\""+isDaily+"\", ";
 		str += "\"isStartEndTime\":\""+isStartEndTime+"\", ";
 		str += "\"jobTitle\":\""+jobTitle+"\", ";
@@ -1309,6 +1527,10 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "\"rate3\":\""+rate3+"\", ";
 		str += "\"rate4\":\""+rate4+"\", ";
 		str += "\"rate5\":\""+rate5+"\", ";
+		str += "\"referenceAPo\":\""+referenceAPo+"\", ";
+		str += "\"referenceB\":\""+referenceB+"\", ";
+		str += "\"referenceC\":\""+referenceC+"\", ";
+		str += "\"referenceD\":\""+referenceD+"\", ";
 		str += "\"referenceNo1\":\""+referenceNo1+"\", ";
 		str += "\"referenceNo2\":\""+referenceNo2+"\", ";
 		str += "\"referenceNo3\":\""+referenceNo3+"\", ";
@@ -1326,6 +1548,8 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "\"timesheetName\":\""+timesheetName+"\", ";
 		str += "\"timesheetUnits\":\""+timesheetUnits+"\", ";
 		str += "\"unit\":\""+unit+"\", ";
+		str += "\"useDeliverables\":\""+useDeliverables+"\", ";
+		str += "\"useExpense\":\""+useExpense+"\", ";
 		str += "\"wcOrganisationTypeFlag\":\""+wcOrganisationTypeFlag+"\", ";
 		str += "\"wcOrgCodeRateLinkId\":\""+wcOrgCodeRateLinkId+"\", ";
 		str += "\"workingState\":\""+workingState+"\", ";

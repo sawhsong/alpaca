@@ -105,11 +105,11 @@ $(function() {
 		if (status == "Open") {
 			popupId = "Edit Opportunity";
 			url = "/per/0202/getEditOpportunity.do";
-			width = 1840, height = 950;
+			width = 1860, height = 970;
 		} else {
 			popupId = "Opportunity Details";
 			url = "/per/0202/getOpportunityDetail.do";
-			width = 1840, height = 950;
+			width = 1860, height = 970;
 		}
 
 		parent.popup = parent.commonJs.openPopup({

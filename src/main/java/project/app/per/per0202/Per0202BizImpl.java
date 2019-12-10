@@ -528,7 +528,26 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	}
 
 	public ParamEntity getEditOpportunity(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		String opportunityId = dsRequest.getValue("opportunityId");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+		DataSet dsOpp, dsAsg;
+		String profileHtmlString = "";
+
 		try {
+			documentProfileDao.setDataSourceName(dataSource);
+			opportunityDao.setDataSourceName(dataSource);
+			oppAsgDetailsDao.setDataSourceName(dataSource);
+
+			profileHtmlString = documentProfileDao.getProfileHtmlStringForSelectbox("id:documentProfile;name:documentProfile;class:bootstrapSelect hor;data-width:400px;data-size:15");
+			dsOpp = opportunityDao.getOpportunityDataSetByOpportunityId(opportunityId);
+			dsAsg = oppAsgDetailsDao.getOppAsgDetailsDataSetByOpportunityId(opportunityId);
+
+			paramEntity.setObject("profileHtmlString", profileHtmlString);
+			paramEntity.setObject("dsOpp", dsOpp);
+			paramEntity.setObject("dsAsg", dsAsg);
+
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
