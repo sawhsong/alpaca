@@ -28,8 +28,8 @@
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
-.optmandatory:after {font-size:1em;content:"\00a0 \273B";color:#000000;}
-.tblEdit td {padding:2px 6px;}
+.optmandatory:after {font-size:.8em;content:"\00a0 \273B";color:#000000;}
+.tblEdit th, .tblEdit td {padding:2px 6px;}
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
@@ -217,13 +217,13 @@ var opportunityId = "<%=dsRequest.getValue("opportunityId")%>";
 									<th class="thEdit rt optmandatory">Billing Org Contact</th>
 									<td class="tdEdit"><ui:text name="asgBillingOrgContactName"/><ui:hidden name="asgBillingOrgContactId"/></td>
 									<th class="thEdit rt">IPro To Be<br/>Paid upon</th>
-									<td class="tdEdit"><ui:ccselect name="asgPaidUpon" codeType="IPRO_FEE_UPON"/></td>
+									<td class="tdEdit"><ui:ccselect name="asgPaidUpon" caption="==Select==" codeType="IPRO_FEE_UPON"/></td>
 									<th class="thEdit rt optmandatory">Payment Arrangement</th>
-									<td class="tdEdit"><ui:ccselect name="asgPaymentArrangement" codeType="PAYMENT_ARRANGMENT"/></td>
+									<td class="tdEdit"><ui:ccselect name="asgPaymentArrangement" caption="==Select==" codeType="PAYMENT_ARRANGMENT"/></td>
 								</tr>
 								<tr>
 									<th class="thEdit rt">End User Type</th>
-									<td class="tdEdit"><ui:ccselect name="asgEndUserType" codeType="END_USER_TYPE"/></td>
+									<td class="tdEdit"><ui:ccselect name="asgEndUserType" caption="==Select==" codeType="END_USER_TYPE"/></td>
 									<th class="thEdit rt" rowspan="2">Description of Services</th>
 									<td class="tdEdit" rowspan="2"><ui:txa id="asgDescriptionOfServices" name="asgDescriptionOfServices" style="height:60px;"/></td>
 									<th class="thEdit rt" rowspan="2">Management Fee<br/>Comments</th>
@@ -255,34 +255,40 @@ var opportunityId = "<%=dsRequest.getValue("opportunityId")%>";
 							</colgroup>
 							<tbody>
 								<tr>
-									<th class="thEdit rt mandatory">Opportunity Id</th>
-									<td class="tdEdit"><ui:text name="oppId" status="display"/></td>
-									<th class="thEdit rt mandatory">Opportunity Type</th>
-									<td class="tdEdit"><ui:ccselect name="oppType" codeType="OPPORTUNITY_TYPE" options="mandatory" checkName="Opportunity Type"/></td>
-									<th class="thEdit rt mandatory">CDM<br/>(Formerly CRM)</th>
-									<td class="tdEdit"><ui:text name="oppCrmName" options="mandatory" checkName="CRM"/><ui:hidden name="oppCrmId"/></td>
-									<th class="thEdit rt mandatory">CDM<br/>(Formerly CSM)</th>
-									<td class="tdEdit"><ui:text name="oppCsmName" options="mandatory" checkName="CSM"/><ui:hidden name="oppCsmId"/></td>
+									<th class="thEdit rt">Working Hours Basis</th>
+									<td class="tdEdit"><ui:ccselect name="workingHoursBasis" caption="==Select==" codeType="WORKING_HOURS_BASIS"/></td>
+									<th class="thEdit rt">Start Time</th>
+									<td class="tdEdit">
+										<div style="float:left;padding-top:2px;"><ui:ccselect name="startTimeHour" caption="==Select==" codeType="HOUR_CODE" className="dropdown" attribute="data-size:13;data-dropup-auto:false"/></div>
+										<div style="float:left;padding:8px 8px 8px 8px;">:</div>
+										<div style="float:left;padding-top:2px;"><ui:ccselect name="startTimeMin" caption="==Select==" codeType="MINUTE_CODE"/></div>
+									</td>
+									<th class="thEdit rt">End Time</th>
+									<td class="tdEdit">
+										<div style="float:left;padding-top:2px;"><ui:ccselect name="endTimeHour" caption="==Select==" codeType="HOUR_CODE" className="dropdown" attribute="data-size:13;data-dropup-auto:false"/></div>
+										<div style="float:left;padding:8px 8px 8px 8px;">:</div>
+										<div style="float:left;padding-top:2px;"><ui:ccselect name="endTimeMin" caption="==Select==" codeType="MINUTE_CODE"/></div>
+									</td>
+									<th class="thEdit rt optmandatory">Termination Notice</th>
+									<td class="tdEdit">
+										<div style="float:left;padding-top:2px;"><ui:ccselect name="terminationNotice" caption="==Select==" codeType="ASG_TERM_NOTICE" className="dropdown" attribute="data-size:13;data-dropup-auto:false"/></div>
+										<div style="float:left;padding:8px 8px 8px 8px;"></div>
+										<div style="float:left;padding-top:2px;"><ui:ccselect name="terminationNoticeUnit" caption="==Select==" codeType="ASG_TERM_NOTICE_UNIT"/></div>
+									</td>
 								</tr>
 								<tr>
-									<th class="thEdit rt">Due Date</th>
-									<td class="tdEdit"><ui:text name="oppDueDate" className="Ct hor" style="width:96px" option="date"/><ui:icon id="icnOppDueDate" className="fa-calendar hor"/></td>
-									<th class="thEdit rt">Ref Number</th>
-									<td class="tdEdit"><ui:text name="oppReferenceNumber"/></td>
-									<th class="thEdit rt">Ref Description</th>
-									<td class="tdEdit"><ui:text name="oppReferenceDescription"/></td>
-									<th class="thEdit rt">Status</th>
-									<td class="tdEdit"><ui:text name="oppStatus" status="display"/></td>
+									<th class="thEdit rt optmandatory">Equipment Required</th>
+									<td class="tdEdit"><ui:ccradio name="equipmentRequired" codeType="SIMPLE_YN" selectedValue="N"/></td>
+									<th class="thEdit rt" rowspan="2">Equipment</th>
+									<td class="tdEdit" rowspan="2"><ui:txa id="equipment" name="equipment" style="height:60px;"/></td>
+									<th class="thEdit rt" rowspan="2">Special Conditions</th>
+									<td class="tdEdit" rowspan="2"><ui:txa id="specialConditions" name="specialConditions" style="height:60px;"/></td>
+									<th class="thEdit rt" rowspan="2">Approved Expense</th>
+									<td class="tdEdit" rowspan="2"><ui:txa id="approvedExpense" name="approvedExpense" style="height:60px;"/></td>
 								</tr>
 								<tr>
-									<th class="thEdit rt">Estimated Revenue</th>
-									<td class="tdEdit"><ui:text name="oppEstimatedRevenue" status="display"/></td>
-									<th class="thEdit rt">Created By</th>
-									<td class="tdEdit"><ui:text name="oppCreatedBy" status="display"/></td>
-									<th class="thEdit rt">Created Date</th>
-									<td class="tdEdit"><ui:text name="oppCreatedDate" status="display"/></td>
-									<th class="thEdit rt">Updated Date</th>
-									<td class="tdEdit"><ui:text name="oppUpdatedDate" status="display"/></td>
+									<th class="thEdit rt">Restraint of Trade</th>
+									<td class="tdEdit"><ui:text name="restraintOfTrade"/></td>
 								</tr>
 							</tbody>
 						</table>
@@ -302,34 +308,25 @@ var opportunityId = "<%=dsRequest.getValue("opportunityId")%>";
 							</colgroup>
 							<tbody>
 								<tr>
-									<th class="thEdit rt mandatory">Opportunity Id</th>
-									<td class="tdEdit"><ui:text name="oppId" status="display"/></td>
-									<th class="thEdit rt mandatory">Opportunity Type</th>
-									<td class="tdEdit"><ui:ccselect name="oppType" codeType="OPPORTUNITY_TYPE" options="mandatory" checkName="Opportunity Type"/></td>
-									<th class="thEdit rt mandatory">CDM<br/>(Formerly CRM)</th>
-									<td class="tdEdit"><ui:text name="oppCrmName" options="mandatory" checkName="CRM"/><ui:hidden name="oppCrmId"/></td>
-									<th class="thEdit rt mandatory">CDM<br/>(Formerly CSM)</th>
-									<td class="tdEdit"><ui:text name="oppCsmName" options="mandatory" checkName="CSM"/><ui:hidden name="oppCsmId"/></td>
+									<th class="thEdit rt">Workcover Code</th>
+									<td class="tdEdit" colspan="7">
+										<ui:text name="workcoverCode" className="hor" status="disabled" style="width:300px"/>
+										<ui:button id="btnAddWorkcover" caption="Add" iconClass="fa-plus"/>
+									</td>
 								</tr>
 								<tr>
-									<th class="thEdit rt">Due Date</th>
-									<td class="tdEdit"><ui:text name="oppDueDate" className="Ct hor" style="width:96px" option="date"/><ui:icon id="icnOppDueDate" className="fa-calendar hor"/></td>
-									<th class="thEdit rt">Ref Number</th>
-									<td class="tdEdit"><ui:text name="oppReferenceNumber"/></td>
-									<th class="thEdit rt">Ref Description</th>
-									<td class="tdEdit"><ui:text name="oppReferenceDescription"/></td>
-									<th class="thEdit rt">Status</th>
-									<td class="tdEdit"><ui:text name="oppStatus" status="display"/></td>
-								</tr>
-								<tr>
-									<th class="thEdit rt">Estimated Revenue</th>
-									<td class="tdEdit"><ui:text name="oppEstimatedRevenue" status="display"/></td>
-									<th class="thEdit rt">Created By</th>
-									<td class="tdEdit"><ui:text name="oppCreatedBy" status="display"/></td>
-									<th class="thEdit rt">Created Date</th>
-									<td class="tdEdit"><ui:text name="oppCreatedDate" status="display"/></td>
-									<th class="thEdit rt">Updated Date</th>
-									<td class="tdEdit"><ui:text name="oppUpdatedDate" status="display"/></td>
+									<th class="thEdit rt">WIC / ANZIC</th>
+									<td class="tdEdit"><ui:text name="wicAnzic" status="disabled"/></td>
+									<th class="thEdit rt">Working State</th>
+									<td class="tdEdit"><ui:text name="workingState" status="disabled"/></td>
+									<th class="thEdit rt">Percentage</th>
+									<td class="tdEdit"><ui:text name="wcPercentage" status="disabled"/></td>
+									<th class="thEdit rt">Start / End Date</th>
+									<td class="tdEdit">
+										<ui:text name="wcStartDate" className="Ct hor" style="width:90px" status="disabled"/>
+										<div class="horGap20" style="padding:6px 8px 6px 0px;">-</div>
+										<ui:text name="wcEndDate" className="Ct hor" style="width:90px" status="disabled"/>
+									</td>
 								</tr>
 							</tbody>
 						</table>

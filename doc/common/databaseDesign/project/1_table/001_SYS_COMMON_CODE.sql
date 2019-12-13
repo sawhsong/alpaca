@@ -102,8 +102,81 @@ insert into sys_common_code values('MENU_LEVEL','1',          'Level 1',    'Lev
 insert into sys_common_code values('MENU_LEVEL','2',          'Level 2',    'Level 2',    'Level 2',    'MENU_LEVEL_2',           '002',   'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('MENU_LEVEL','3',          'Level 3',    'Level 3',    'Level 3',    'MENU_LEVEL_3',           '002',   'Y', 'Y', '0', sysdate, null, null);
 
+-- Hours, Minutes Code
+insert into sys_common_code
+select 'HOUR_CODE' as code_type,
+       '0000000000' as common_code,
+       'Hour Code' as code_meaning,
+       'Hour Code' as description_ko,
+       'Hour Code' as description_en,
+       'HOUR_CODE'||'_'||'0000000000' as program_constants,
+       '000' as sort_order,
+       'Y' as is_active,
+       'N' as is_default,
+       '0' as insert_user_id,
+       sysdate as insert_date,
+       null as update_user_id,
+       null as update_date
+  from dual
+union
+select 'HOUR_CODE' as code_type,
+       sys_hour as common_code,
+       sys_hour as code_meaning,
+       sys_hour as description_ko,
+       sys_hour as description_en,
+       'HOUR_CODE'||'_'||sys_hour as program_constants,
+       lpad(rownum, 3, '0') as sort_order,
+       'Y' as is_active,
+       'N' as is_default,
+       '0' as insert_user_id,
+       sysdate as insert_date,
+       null as update_user_id,
+       null as update_date
+  from (select to_char(trunc(sysdate) + (level-1)/24, 'HH24') as sys_hour
+          from dual
+        connect by level <= 24
+       )
+order by sort_order
+;
+
+insert into sys_common_code
+select 'MINUTE_CODE' as code_type,
+       '0000000000' as common_code,
+       'Minute Code' as code_meaning,
+       'Minute Code' as description_ko,
+       'Minute Code' as description_en,
+       'MINUTE_CODE'||'_'||'0000000000' as program_constants,
+       '000' as sort_order,
+       'Y' as is_active,
+       'N' as is_default,
+       '0' as insert_user_id,
+       sysdate as insert_date,
+       null as update_user_id,
+       null as update_date
+  from dual
+union
+select 'MINUTE_CODE' as code_type,
+       sys_min as common_code,
+       sys_min as code_meaning,
+       sys_min as description_ko,
+       sys_min as description_en,
+       'MINUTE_CODE'||'_'||sys_min as program_constants,
+       lpad(rownum, 3, '0') as sort_order,
+       'Y' as is_active,
+       'N' as is_default,
+       '0' as insert_user_id,
+       sysdate as insert_date,
+       null as update_user_id,
+       null as update_date
+  from (select lpad(level-1, 2, '0') as sys_min
+          from dual
+        connect by level <= 60
+       )
+ where sys_min like '%0' or sys_min like '%5'
+ order by sort_order
+;
+
 -- From PERCI
-/*
 insert into sys_common_code
 select lookup_type as code_type,
        '0000000000' as common_code,
@@ -144,4 +217,3 @@ select lookup_type as code_type,
        sort_order,
        common_code
 ;
-*/
