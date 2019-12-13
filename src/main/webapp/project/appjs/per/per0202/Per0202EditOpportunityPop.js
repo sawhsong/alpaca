@@ -20,17 +20,21 @@ $(function() {
 	 * process
 	 */
 	setBlind = function() {
-		commonJs.showProcMessageOnElement("divOppAsgDetails");
-		commonJs.showProcMessageOnElement("divOpportunityDocument");
+		commonJs.showProcMessageOnElement("divPersonDetails");
+		commonJs.showProcMessageOnElement("divOpportunityDetails");
+		commonJs.showProcMessageOnElement("divAsgTermWc");
+		commonJs.showProcMessageOnElement("divDocuments");
 
 		setTimeout(function() {
-			commonJs.hideProcMessageOnElement("divOppAsgDetails");
-			commonJs.hideProcMessageOnElement("divOpportunityDocument");
-		}, 1000);
+			commonJs.hideProcMessageOnElement("divPersonDetails");
+			commonJs.hideProcMessageOnElement("divOpportunityDetails");
+			commonJs.hideProcMessageOnElement("divAsgTermWc");
+			commonJs.hideProcMessageOnElement("divDocuments");
+		}, 800);
 	};
 
 	getOpportunityDocuments = function() {
-		commonJs.showProcMessageOnElement("divGridHolderOpportunityDocument");
+		commonJs.showProcMessageOnElement("divDocuments");
 
 		commonJs.doSimpleProcess({
 			url:"/per/0202/getOpportunityDocuments.do",
@@ -46,44 +50,51 @@ $(function() {
 		var html = "";
 
 		searchResultDataCount = ds.getRowCnt();
-		$("#tbodyOpportunityDocument").html("");
+		$("#tbodyDocuments").html("");
 
 		if (ds.getRowCnt() > 0) {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "DOCUMENT_ID")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DOCUMENT_TYPE_MEANING")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DOCUMENT_SUB_TYPE_MEANING")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "DOCUMENT_NAME")).setScript("getDetail('"+ds.getValue(i, "DOCUMENT_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DESCRIPTION")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(commonJs.htmlToString(ds.getValue(i, "DOCUMENT_FILE_NAME")), 80)));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "UPLOADED_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ASSIGNED_TO_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "DUE_DATE_FORMAT")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "FOLLOW_UP_DATE_FORMAT")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "STATUS_MEANING")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "STATUS_DETAIL_MEANING")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "SENT_BY_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "SENT_DATE_FORMAT")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "RECEIVED_DATE_FORMAT")));
 
 				html += gridTr.toHtmlString();
 			}
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:6").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:11").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
-		$("#tbodyOpportunityDocument").append($(html));
-		$("#tblOpportunityDocument").fixedHeaderTable({
-			attachTo:$("#divGridHolderOpportunityDocument"),
-			attachToHeight:390,
-			isPageable:false
-		});
+		$("#tbodyDocuments").append($(html));
+//		$("#tblDocuments").fixedHeaderTable({
+//			attachTo:$("#divGridHolderDocuments"),
+//			attachToHeight:300,
+//			isPageable:false
+//		});
 
-		commonJs.hideProcMessageOnElement("divGridHolderOpportunityDocument");
+		commonJs.hideProcMessageOnElement("divDocuments");
+	};
+
+	getDetail = function(documentId) {
+		commonJs.alert("Detail : "+documentId);
 	};
 
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-//		commonJs.changeTabSelection($("#divTabAreaAsgTermWc li:eq(0) a"));
-
 		commonJs.setAccordion({
 			containerClass:"accordion",
 			multipleExpand:true,
@@ -91,12 +102,9 @@ $(function() {
 			icons:null
 		});
 
-//		setTimeout(function() {
-//			setBlind();
-//		}, 100);
-//
-//		setTimeout(function() {
-//			getOpportunityDocuments();
-//		}, 400);
+		setTimeout(function() {
+			setBlind();
+			getOpportunityDocuments();
+		}, 200);
 	});
 });

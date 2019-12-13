@@ -530,6 +530,14 @@ public class CommonUtil extends StringUtils {
 		return RandomStringUtils.randomAlphanumeric(count);
 	}
 
+	public static boolean isValidId(String val) {
+		return !isBlank(val);
+	}
+
+	public static boolean isValidId(double val) {
+		return val > 0 ? true : false;
+	}
+
 	public static String getIconNameByFileType(String fileType) {
 		if (containsIgnoreCase(fileType, "pdf")) {
 			return ConfigUtil.getProperty("path.image.icon")+"/"+"icnPdf.png";

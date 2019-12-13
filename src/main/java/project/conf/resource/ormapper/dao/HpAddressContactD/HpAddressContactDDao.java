@@ -9,4 +9,5 @@ import zebra.base.IDao;
 
 public interface HpAddressContactDDao extends IDao {
 	public HpAddressContactD getAddressContactByPersonId(String personId) throws Exception;
+	public String getPreferredEmailByPersonId(String personId) throws Exception;
 }

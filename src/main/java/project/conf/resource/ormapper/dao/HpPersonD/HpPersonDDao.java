@@ -12,6 +12,7 @@ import zebra.data.QueryAdvisor;
 public interface HpPersonDDao extends IDao {
 	public HpPersonD getPersonByPersonId(String personId) throws Exception;
 	public DataSet getPersonDataSetByCriteria(QueryAdvisor queryAdvisor) throws Exception;
+	public DataSet getPersonDataSetByPersonId(String personId) throws Exception;
 	public DataSet getPersonDataSetForQuickMenu(QueryAdvisor queryAdvisor) throws Exception;
 	public DataSet getPersonBasicInfoForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception;
 	public DataSet getEsEmployeeByNameForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception;

@@ -57,7 +57,7 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DOCUMENT_SUB_TYPE_MEANING")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DESCRIPTION")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(commonJs.htmlToString(ds.getValue(i, "DOCUMENT_FILE_NAME")), 80)));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "UPLOADED_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "UPLOADED_DATE_FORMAT")));
 
 				html += gridTr.toHtmlString();
 			}

@@ -48,6 +48,16 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 		return selectAsDataSet(queryAdvisor, "query.HpPersonD.getPersonDataSetByCriteria");
 	}
 
+	public DataSet getPersonDataSetByPersonId(String personId) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		String dateFormat = ConfigUtil.getProperty("format.date.java");
+
+		queryAdvisor.addVariable("dateFormat", dateFormat);
+		queryAdvisor.addVariable("personId", personId);
+
+		return selectAsDataSet(queryAdvisor, "query.HpPersonD.getPersonDataSetByPersonId");
+	}
+
 	public DataSet getPersonDataSetForQuickMenu(QueryAdvisor queryAdvisor) throws Exception {
 		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
 		String dateFormat = ConfigUtil.getProperty("format.date.java");

@@ -23,6 +23,61 @@
 	]]>
 	</sql-query>
 
+	<sql-query name="query.HpPersonD.getPersonDataSetByPersonId">
+	<![CDATA[
+		select per.*,
+		       (select meaning from sys_common_lookups where lookup_type = 'PREFIX' and lookup_code = per.prefix) as prefix_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'GENDER' and lookup_code = per.gender) as gender_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'SERVICE_STATUS' and lookup_code = per.service_status) as service_status_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'SERVICE_TYPE' and lookup_code = per.service_type) as service_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = per.ecms_payroll_consultant_id) as ecms_payroll_consultant,
+		       (select meaning from sys_common_lookups where lookup_type = 'RESIGNATION_REASON' and lookup_code = per.ecms_payroll_consultant_id) as resignation_reason_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'PREV_EMPLOY_MODEL' and lookup_code = per.previous_employment_model) as previous_emp_model_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'EMPLOYMENT_TYPE' and lookup_code = per.employment_type) as employment_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'MARITAL_STATUS' and lookup_code = per.marital_status) as marital_status_meaning,
+		       (select organisation_name from hp_organisation_d where organisation_id = per.employment_company_org_id) as employment_company_org_name,
+		       (select organisation_name from hp_organisation_d where organisation_id = per.referral_organisation_id) as referral_organisation_name,
+		       to_char(per.date_of_birth, '${dateFormat}') as date_of_birth_format,
+		       to_char(per.first_contact, '${dateFormat}') as first_contact_format,
+		       to_char(per.member_since, '${dateFormat}') as member_since_format,
+		       to_char(per.resignation_date, '${dateFormat}') as resignation_date_format,
+		       to_char(per.first_assignment_date, '${dateFormat}') as first_assignment_date_format,
+		       to_char(per.lafha_lease_expiry, '${dateFormat}') as lafha_lease_expiry_format,
+		       to_char(per.creation_date, '${dateFormat}') as creation_date_format,
+		       to_char(per.last_update_date, '${dateFormat}') as last_update_date_format,
+		       (select full_name from hp_person_d where person_id = per.referral_id) as referral_name,
+		       (select full_name from hp_person_d where person_id = per.ecms_account_mgr_id) as crm_name,
+		       (select full_name from hp_person_d where person_id = per.ecms_cs_consultant_id) as csm_name,
+		       (select full_name from hp_person_d where person_id = per.customer_support) as csa_name,
+		       (select full_name from hp_person_d where person_id = per.created_by) as created_by_name,
+		       (select full_name from hp_person_d where person_id = per.last_updated_by) as last_updated_by_name,
+		       (select long_to_varchar('hp_comments', 'description', rowid) from hp_comments where comment_id = per.resignation_comment_id) as resignation_comments,
+		       (select long_to_varchar('hp_comments', 'description', rowid) from hp_comments where comment_id = per.personal_comment_id) as personal_comments,
+		       case (select preferred from hp_address_contact_d where person_id = per.person_id)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = per.person_id)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = per.person_id)
+		            when 'B' then (select email_home||', '||email_work from hp_address_contact_d where person_id = per.person_id)
+		            else ''
+		       end as preferred_email,
+		       (select telephone_mobile from hp_address_contact_d where person_id = per.person_id) as mobile_number,
+		       (select count(*) from hp_assignments_d where person_id = per.person_id) as all_assignment_cnt,
+		       (select count(*) from hp_assignments_d where asg_active = 'Y' and person_id = per.person_id) as all_active_assignment_cnt,
+		       (select timecard_approval_id from hp_assignments_d where preferred = 'Y' and person_id = per.person_id) as primary_approver_id,
+		       (select full_name from hp_person_d where person_id = (select timecard_approval_id from hp_assignments_d where person_id = per.person_id and preferred = 'Y')) as primary_approver_name,
+		       (select to_char(max(date_earned), 'dd/mm/yyyy')
+		          from hp_assignments_d asg,
+		               (select assignment_id, max(date_earned) as date_earned
+		                  from hp_balance
+		                 group by assignment_id
+		               ) pay
+		         where asg.person_id = per.person_id
+		           and asg.assignment_id = pay.assignment_id(+)
+		       ) as last_paid_date
+		  from hp_person_d per
+		 where per.person_id = '${personId}'
+	]]>
+	</sql-query>
+
 	<sql-query name="query.HpPersonD.getPersonDataSetForQuickMenu">
 	<![CDATA[
 		select per.person_id,

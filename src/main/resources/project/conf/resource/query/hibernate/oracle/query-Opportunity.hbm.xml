@@ -24,6 +24,7 @@
 		       to_char(opp.close_date, '${dateFormat}') as close_date_format,
 		       (select full_name from hp_person_d where person_id = opp.assigned_person_id) as assigned_person_name,
 		       (select full_name from hp_person_d where person_id = opp.person_id) as person_name,
+		       (select full_name||' ('||person_number||')' from hp_person_d where person_id = opp.person_id) as person_name_with_number,
 		       (select full_name from hp_person_d where person_id = opp.close_by) as close_by_name,
 		       (select full_name from hp_person_d where person_id = opp.created_by) as created_by_name,
 		       (select full_name from hp_person_d where person_id = opp.last_updated_by) as last_updated_by_name,
@@ -60,14 +61,30 @@
 
 	<sql-query name="query.Opportunity.getOpportunityDocumentDataSetByOpportunityId">
 	<![CDATA[
-		select odl.document_id,
-		       hdc.document_type,
+		select odl.link_id,
+		       odl.opportunity_id,
+		       hdc.*,
 		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_TYPE' and lookup_code = hdc.document_type) as document_type_meaning,
-		       hdc.document_sub_type,
 		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_SUB_TYPE' and lookup_code = hdc.document_sub_type) as document_sub_type_meaning,
-		       hdc.document_file_name,
-		       hdc.description,
-		       to_char(hdc.creation_date, '${dateFormat}') as uploaded_date
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_RECIEVED_STATUS' and lookup_code = hdc.status) as status_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_RECIEVED_STATUS_DETAIL' and lookup_code = hdc.status_detail) as status_detail_meaning,
+		       (select full_name from hp_person_d where person_id = hdc.person_id) as person_name,
+		       (select full_name||' ('||person_number||')' from hp_person_d where person_id = hdc.person_id) as person_name_with_number,
+		       (select full_name from hp_person_d where person_id = hdc.assigned_to) as assigned_to_name,
+		       (select full_name from hp_person_d where person_id = hdc.sent_by) as sent_by_name,
+		       (select full_name from hp_person_d where person_id = hdc.received_by) as received_by_name,
+		       (select organisation_name from hp_organisation_d where organisation_id = hdc.organisation_id) as organisation_name,
+		       (select organisation_name||' ('||organisation_id||')' from hp_organisation_d where organisation_id = hdc.organisation_id) as organisation_name_with_id,
+		       (select full_name from hp_person_d where person_id = hdc.created_by) as created_by_name,
+		       (select full_name from hp_person_d where person_id = hdc.last_updated_by) as last_updated_by_name,
+		       to_char(hdc.creation_date, '${dateFormat}') as creation_date_format,
+		       to_char(hdc.last_update_date, '${dateFormat}') as last_update_date_format,
+		       to_char(hdc.creation_date, '${dateFormat}') as uploaded_date_format,
+		       to_char(hdc.due_date, '${dateFormat}') as due_date_format,
+		       to_char(hdc.follow_up_date, '${dateFormat}') as follow_up_date_format,
+		       to_char(hdc.sent_date, '${dateFormat}') as sent_date_format,
+		       to_char(hdc.received_date, '${dateFormat}') as received_date_format,
+		       to_char(hdc.expiry_date, '${dateFormat}') as expiry_date_format
 		  from opportunity_docs_link odl,
 		       hr_document hdc
 		 where opportunity_id = '${opportunityId}'

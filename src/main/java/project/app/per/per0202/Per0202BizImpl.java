@@ -532,27 +532,52 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 		String opportunityId = dsRequest.getValue("opportunityId");
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
-		DataSet dsOpp, dsAsg;
+		DataSet dsPerson, dsOpp, dsAsg;
 		String profileHtmlString = "";
 
 		try {
 			documentProfileDao.setDataSourceName(dataSource);
 			opportunityDao.setDataSourceName(dataSource);
 			oppAsgDetailsDao.setDataSourceName(dataSource);
+			hpPersonDDao.setDataSourceName(dataSource);
 
 			profileHtmlString = documentProfileDao.getProfileHtmlStringForSelectbox("id:documentProfile;name:documentProfile;class:bootstrapSelect hor;data-width:400px;data-size:15");
 			dsOpp = opportunityDao.getOpportunityDataSetByOpportunityId(opportunityId);
 			dsAsg = oppAsgDetailsDao.getOppAsgDetailsDataSetByOpportunityId(opportunityId);
+			dsPerson = hpPersonDDao.getPersonDataSetByPersonId(dsOpp.getValue("PERSON_ID"));
+
+			setWorkcoverValues(session, dsAsg);
 
 			paramEntity.setObject("profileHtmlString", profileHtmlString);
 			paramEntity.setObject("dsOpp", dsOpp);
 			paramEntity.setObject("dsAsg", dsAsg);
+			paramEntity.setObject("dsPerson", dsPerson);
 
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}
 		return paramEntity;
+	}
+
+	private void setWorkcoverValues(HttpSession session, DataSet dsAsg) throws Exception {
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+		HpOrganisationD hpOrganisationD;
+		String wcOrgCodeRateLinkId = "", wcCodeRateName = "", wcWicAnzic = "", wcPercentage = "", wcStartDate = "", wcEndDate = "";
+
+		hpOrganisationDDao.setDataSourceName(dataSource);
+		hpOrganisationD = hpOrganisationDDao.getOrganisationByOrganisationId(dsAsg.getValue("END_USER_ORG"));
+		wcOrgCodeRateLinkId = dsAsg.getValue("WC_ORG_CODE_RATE_LINK_ID");
+
+		if (CommonUtil.isValidId(hpOrganisationD.getOrganisationId())) {
+//			if (CommonUtil.isValidId(wcOrgCodeRateLinkId)) {
+//				wcCodeRateName = endUserOrg.getWcCodeRateName(ESUtils.toLong(wcOrgCodeRateLinkId));
+//				wcWicAnzic = endUserOrg.getWcWicAnzic(ESUtils.toLong(wcOrgCodeRateLinkId));
+//				wcPercentage = ESUtils.toString(endUserOrg.getWcPercentage(ESUtils.toLong(wcOrgCodeRateLinkId)));
+//				wcStartDate = endUserOrg.getWcStartDate(ESUtils.toLong(wcOrgCodeRateLinkId));
+//				wcEndDate = endUserOrg.getWcEndDate(ESUtils.toLong(wcOrgCodeRateLinkId));
+//			}
+		}
 	}
 
 	public ParamEntity getOpportunityDetail(ParamEntity paramEntity) throws Exception {
