@@ -5,6 +5,14 @@
 package project.conf.resource.ormapper.dao.WcTasOrgCodeRateLink;
 
 import project.common.extend.BaseHDao;
+import project.conf.resource.ormapper.dto.oracle.WcTasOrgCodeRateLink;
+import zebra.data.QueryAdvisor;
 
 public class WcTasOrgCodeRateLinkHDaoImpl extends BaseHDao implements WcTasOrgCodeRateLinkDao {
+	public WcTasOrgCodeRateLink getWcTasOrgCodeRateLinkById(String wcTasOrgCodeRateLinkId) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		queryAdvisor.addWhereClause("link_id = '"+wcTasOrgCodeRateLinkId+"'");
+		queryAdvisor.addWhereClause("is_active = 'Y'");
+		return (WcTasOrgCodeRateLink)selectAllToDto(queryAdvisor, new WcTasOrgCodeRateLink());
+	}
 }

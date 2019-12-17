@@ -10,6 +10,18 @@ $(function() {
 		parent.popup.close();
 	});
 
+	$("#icnOppDueDate").click(function(event) {
+		commonJs.openCalendar(event, "oppDueDate");
+	});
+
+	$("#icnAsgStartDate").click(function(event) {
+		commonJs.openCalendar(event, "asgStartDate");
+	});
+
+	$("#icnAsgEndDate").click(function(event) {
+		commonJs.openCalendar(event, "asgEndDate");
+	});
+
 	$(document).keypress(function(event) {
 		if (event.which == 13) {
 			var element = event.target;
@@ -78,11 +90,6 @@ $(function() {
 		}
 
 		$("#tbodyDocuments").append($(html));
-//		$("#tblDocuments").fixedHeaderTable({
-//			attachTo:$("#divGridHolderDocuments"),
-//			attachToHeight:300,
-//			isPageable:false
-//		});
 
 		commonJs.hideProcMessageOnElement("divDocuments");
 	};
@@ -95,12 +102,157 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
+		commonJs.setFieldDateMask("oppDueDate");
+		commonJs.setFieldDateMask("asgStartDate");
+		commonJs.setFieldDateMask("asgEndDate");
+
 		commonJs.setAccordion({
 			containerClass:"accordion",
 			multipleExpand:true,
 			expandAll:true,
 			icons:null
 		});
+
+		commonJs.setAutoComplete($("#personName"), {
+			method:"getPersonByNameOrPersonNumber",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#personId").val(ui.item.value);
+				$("#personName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#personName").val())) {
+					$("#personId").val("");
+					$("#personName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#personId").val(ui.item.value);
+				$("#personName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#oppCrmName"), {
+			method:"getEsEmployeeByNameOrPersonNumber",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#oppCrmId").val(ui.item.value);
+				$("#oppCrmName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#oppCrmName").val())) {
+					$("#oppCrmId").val("");
+					$("#oppCrmName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#oppCrmId").val(ui.item.value);
+				$("#oppCrmName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#oppCsmName"), {
+			method:"getEsEmployeeByNameOrPersonNumber",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#oppCsmId").val(ui.item.value);
+				$("#oppCsmName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#oppCsmName").val())) {
+					$("#oppCsmId").val("");
+					$("#oppCsmName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#oppCsmId").val(ui.item.value);
+				$("#oppCsmName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#asgBillingOrgContactName"), {
+			method:"getPersonByNameOrPersonNumber",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#asgBillingOrgContactId").val(ui.item.value);
+				$("#asgBillingOrgContactName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#asgBillingOrgContactName").val())) {
+					$("#asgBillingOrgContactId").val("");
+					$("#asgBillingOrgContactName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#asgBillingOrgContactId").val(ui.item.value);
+				$("#asgBillingOrgContactName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#asgBillingOrgName"), {
+			method:"getBillingOrgByNameOrId",
+			label:"org_name_with_org_id",
+			value:"organisation_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#asgBillingOrgId").val(ui.item.value);
+				$("#asgBillingOrgName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#asgBillingOrgName").val())) {
+					$("#asgBillingOrgId").val("");
+					$("#asgBillingOrgName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#asgBillingOrgId").val(ui.item.value);
+				$("#asgBillingOrgName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#asgEndUserOrgName"), {
+			method:"getOrgByNameOrId",
+			label:"org_name_with_org_id",
+			value:"organisation_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#asgEndUserOrgId").val(ui.item.value);
+				$("#asgEndUserOrgName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#asgEndUserOrgName").val())) {
+					$("#asgEndUserOrgId").val("");
+					$("#asgEndUserOrgName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#asgEndUserOrgId").val(ui.item.value);
+				$("#asgEndUserOrgName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		$("#asgRate").number(true, 2);
+		$("#asgManagementFee").number(true, 3);
 
 		setTimeout(function() {
 			setBlind();

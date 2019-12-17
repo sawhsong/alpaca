@@ -207,6 +207,31 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		return paramEntity;
 	}
 
+	public ParamEntity getBillingOrgByNameOrId(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpOrganisationDDao.setDataSourceName(dataSource);
+
+			if (CommonUtil.isNumeric(inputValue)) {
+				queryAdvisor.addAutoFillCriteria(inputValue, "organisation_id like '"+inputValue+"%'");
+			} else {
+				queryAdvisor.addAutoFillCriteria(inputValue, "lower(organisation_name) like lower('"+inputValue+"%')");
+			}
+			queryAdvisor.addOrderByClause("organisation_name asc");
+
+			paramEntity.setAjaxResponseDataSet(hpOrganisationDDao.getBillingOrgByNameForAutoCompletion(queryAdvisor));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
 	public ParamEntity getOrgName(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
@@ -390,6 +415,31 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 			hpPersonDDao.setDataSourceName(dataSource);
 
 			queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('"+inputValue+"%')");
+			queryAdvisor.addOrderByClause("full_name");
+
+			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getEsEmployeeByNameForAutoCompletion(queryAdvisor));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getEsEmployeeByNameOrPersonNumber(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpPersonDDao.setDataSourceName(dataSource);
+
+			if (CommonUtil.isNumeric(inputValue)) {
+				queryAdvisor.addAutoFillCriteria(inputValue, "person_number like '"+inputValue+"%'");
+			} else {
+				queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('"+inputValue+"%')");
+			}
 			queryAdvisor.addOrderByClause("full_name");
 
 			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getEsEmployeeByNameForAutoCompletion(queryAdvisor));

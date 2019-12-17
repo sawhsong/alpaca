@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
+import project.common.module.bizservice.workcover.WorkcoverBizService;
 import project.conf.resource.ormapper.dao.DocumentProfile.DocumentProfileDao;
 import project.conf.resource.ormapper.dao.HpAdditionalServices.HpAdditionalServicesDao;
 import project.conf.resource.ormapper.dao.HpAddressContactD.HpAddressContactDDao;
@@ -61,6 +62,8 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	private OpportunityDao opportunityDao;
 	@Autowired
 	private OpportunityAssignmentDetailsDao oppAsgDetailsDao;
+	@Autowired
+	private WorkcoverBizService wcBS;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -546,7 +549,7 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 			dsAsg = oppAsgDetailsDao.getOppAsgDetailsDataSetByOpportunityId(opportunityId);
 			dsPerson = hpPersonDDao.getPersonDataSetByPersonId(dsOpp.getValue("PERSON_ID"));
 
-			setWorkcoverValues(session, dsAsg);
+			setWorkcoverValues(paramEntity, session, dsAsg);
 
 			paramEntity.setObject("profileHtmlString", profileHtmlString);
 			paramEntity.setObject("dsOpp", dsOpp);
@@ -560,23 +563,39 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 		return paramEntity;
 	}
 
-	private void setWorkcoverValues(HttpSession session, DataSet dsAsg) throws Exception {
+	private void setWorkcoverValues(ParamEntity paramEntity, HttpSession session, DataSet dsAsg) throws Exception {
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
-		HpOrganisationD hpOrganisationD;
-		String wcOrgCodeRateLinkId = "", wcCodeRateName = "", wcWicAnzic = "", wcPercentage = "", wcStartDate = "", wcEndDate = "";
+		String endUserOrgId = "", wcOrgCodeRateLinkId = "", wcCodeRateName = "", wcWicAnzic = "", wcPercentage = "", wcStartDate = "", wcEndDate = "", wcWorkingStateMeaning = "";
 
-		hpOrganisationDDao.setDataSourceName(dataSource);
-		hpOrganisationD = hpOrganisationDDao.getOrganisationByOrganisationId(dsAsg.getValue("END_USER_ORG"));
+		endUserOrgId = dsAsg.getValue("END_USER_ORG");
 		wcOrgCodeRateLinkId = dsAsg.getValue("WC_ORG_CODE_RATE_LINK_ID");
 
-		if (CommonUtil.isValidId(hpOrganisationD.getOrganisationId())) {
-//			if (CommonUtil.isValidId(wcOrgCodeRateLinkId)) {
-//				wcCodeRateName = endUserOrg.getWcCodeRateName(ESUtils.toLong(wcOrgCodeRateLinkId));
-//				wcWicAnzic = endUserOrg.getWcWicAnzic(ESUtils.toLong(wcOrgCodeRateLinkId));
-//				wcPercentage = ESUtils.toString(endUserOrg.getWcPercentage(ESUtils.toLong(wcOrgCodeRateLinkId)));
-//				wcStartDate = endUserOrg.getWcStartDate(ESUtils.toLong(wcOrgCodeRateLinkId));
-//				wcEndDate = endUserOrg.getWcEndDate(ESUtils.toLong(wcOrgCodeRateLinkId));
-//			}
+		if (CommonUtil.isValidId(endUserOrgId) && CommonUtil.isValidId(wcOrgCodeRateLinkId)) {
+			queryAdvisor.setObject("dataSource", dataSource);
+			queryAdvisor.setObject("organisationId", endUserOrgId);
+			queryAdvisor.setObject("wcOrgCodeRateLinkId", wcOrgCodeRateLinkId);
+
+			wcCodeRateName = wcBS.getWcCodeRateName(queryAdvisor);
+			wcWicAnzic = wcBS.getWcWicAnzic(queryAdvisor);
+			wcPercentage = CommonUtil.toStringWithNoFormat(wcBS.getWcPercentage(queryAdvisor));
+			wcStartDate = wcBS.getWcStartDate(queryAdvisor);
+			wcEndDate = wcBS.getWcEndDate(queryAdvisor);
+			wcWorkingStateMeaning = wcBS.getWorkingStateMeaning(queryAdvisor);
+
+			dsAsg.addColumn("WC_CODE_RATE_NAME", wcCodeRateName);
+			dsAsg.addColumn("WC_WIC_ANZIC", wcWicAnzic);
+			dsAsg.addColumn("WC_PERCENTAGE", wcPercentage);
+			dsAsg.addColumn("WC_START_DATE", wcStartDate);
+			dsAsg.addColumn("WC_END_DATE", wcEndDate);
+			dsAsg.addColumn("WC_WORKING_STATE_MEANING", wcWorkingStateMeaning);
+		} else {
+			dsAsg.addColumn("WC_CODE_RATE_NAME", "");
+			dsAsg.addColumn("WC_WIC_ANZIC", "");
+			dsAsg.addColumn("WC_PERCENTAGE", "");
+			dsAsg.addColumn("WC_START_DATE", "");
+			dsAsg.addColumn("WC_END_DATE", "");
+			dsAsg.addColumn("WC_WORKING_STATE_MEANING", "");
 		}
 	}
 

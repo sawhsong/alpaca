@@ -166,6 +166,15 @@ public class CommonUtil extends StringUtils {
 		return form.format(Double.valueOf(val)).toString();
 	}
 
+	public static String toStringForId(double val) {
+		DecimalFormat form = new DecimalFormat("####");
+		return form.format(Double.valueOf(val)).toString();
+	}
+
+	public static String toStringWithNoFormat(double val) {
+		return Double.valueOf(val).toString();
+	}
+
 	public static String toString(double val, String format) {
 		DecimalFormat form = new DecimalFormat(format);
 		return form.format(Double.valueOf(val));
@@ -530,14 +539,6 @@ public class CommonUtil extends StringUtils {
 		return RandomStringUtils.randomAlphanumeric(count);
 	}
 
-	public static boolean isValidId(String val) {
-		return !isBlank(val);
-	}
-
-	public static boolean isValidId(double val) {
-		return val > 0 ? true : false;
-	}
-
 	public static String getIconNameByFileType(String fileType) {
 		if (containsIgnoreCase(fileType, "pdf")) {
 			return ConfigUtil.getProperty("path.image.icon")+"/"+"icnPdf.png";
@@ -572,4 +573,30 @@ public class CommonUtil extends StringUtils {
 
 		return stackTrace;
 	}
+
+	/**
+	 * PERCI related - Begin
+	 */
+	public static boolean isValidId(String val) {
+		return !isBlank(val);
+	}
+
+	public static boolean isValidId(double val) {
+		return val > 0 ? true : false;
+	}
+
+	public static String getStateCode(String stateValue) {
+		if (isBlank(stateValue)) {
+			return "";
+		}
+
+		if (contains(stateValue, "_")) {
+			return split(stateValue, "_")[0];
+		} else {
+			return stateValue;
+		}
+	}
+	/**
+	 * PERCI related - End
+	 */
 }

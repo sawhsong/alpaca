@@ -7,5 +7,8 @@
 
 	<!--/* Assignment Biz Service Module */-->
 	<bean id="assignmentBS" name="assignmentBS" class="${name.package.project}.common.module.bizservice.assignment.AssignmentBizServiceImpl" parent="baseBiz"/>
+	<!--/* Invoice Biz Service Module */-->
 	<bean id="invoiceBS" name="invoiceBS" class="${name.package.project}.common.module.bizservice.invoice.InvoiceBizServiceImpl" parent="baseBiz"/>
+	<!--/* Workcover Biz Service Module */-->
+	<bean id="workcoverBS" name="workcoverBS" class="${name.package.project}.common.module.bizservice.workcover.WorkcoverBizServiceImpl" parent="baseBiz"/>
 </beans>

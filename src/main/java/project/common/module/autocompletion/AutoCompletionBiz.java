@@ -13,6 +13,7 @@ public interface AutoCompletionBiz {
 	public ParamEntity getOrgByName(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getOrgByNameOrId(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getBillingOrgByName(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getBillingOrgByNameOrId(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getOrgName(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getAbn(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getPersonNumber(ParamEntity paramEntity) throws Exception;
@@ -22,6 +23,7 @@ public interface AutoCompletionBiz {
 	public ParamEntity getPersonByNameOrPersonNumber(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getEsEmployeeByPersonNumber(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getEsEmployeeByName(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getEsEmployeeByNameOrPersonNumber(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getBillingCodeById(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getBillingCodeByCode(ParamEntity paramEntity) throws Exception;
 }

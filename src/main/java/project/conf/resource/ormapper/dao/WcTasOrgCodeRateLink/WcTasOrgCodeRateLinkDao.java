@@ -4,7 +4,9 @@
  *************************************************************************************************/
 package project.conf.resource.ormapper.dao.WcTasOrgCodeRateLink;
 
+import project.conf.resource.ormapper.dto.oracle.WcTasOrgCodeRateLink;
 import zebra.base.IDao;
 
 public interface WcTasOrgCodeRateLinkDao extends IDao {
+	public WcTasOrgCodeRateLink getWcTasOrgCodeRateLinkById(String wcTasOrgCodeRateLinkId) throws Exception;
 }

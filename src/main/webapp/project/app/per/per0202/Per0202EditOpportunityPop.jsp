@@ -31,12 +31,14 @@
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
-.optmandatory:after {font-size:.8em;content:"\00a0 \273B";color:#000000;}
 button.bootstrapSelect.dropdown-toggle {padding:3px 20px 2px 5px;}
-.tblEdit td, .tblEdit th {padding:2px 4px;}
+.optmandatory:after {font-size:.8em;content:"\00a0 \273B";color:#000000;}
+.tblEdit th {padding:2px 4px;}
+.tblEdit td {padding:2px 2px;}
 .tblGrid th, .tblGrid td {padding:5px 4px;}
-.tdEdit, .thEdit {padding:2px 4px;}
-.txtEn, .txtDpl, .txtDis, .txaDpl {padding:4px 4px;}
+.thEdit {padding:2px 4px;}
+.tdEdit {padding:2px 2px;}
+.txtEn, .txtDpl, .txtDis, .txaEn, .txaDis, .txaDpl {padding:4px 4px;}
 .btn {padding:2px 10px;}
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
@@ -209,19 +211,19 @@ var opportunityId = "<%=dsRequest.getValue("opportunityId")%>";
 									<th class="thEdit rt mandatory">Assignment<br/>Start / End Date</th>
 									<td class="tdEdit">
 										<ui:text name="asgStartDate" className="Ct hor" value="<%=dsAsg.getValue(\"ASSIGNMENT_START_DATE_FORMAT\")%>" style="width:90px" options="mandatory" option="date"/><ui:icon id="icnAsgStartDate" className="fa-calendar hor"/>
-										<div class="horGap20" style="padding:6px 8px 6px 0px;">-</div>
+										<div class="horGap10" style="padding:6px 6px 0px 0px;">-</div>
 										<ui:text name="asgEndDate" className="Ct hor" value="<%=dsAsg.getValue(\"ASSIGNMENT_END_DATE_FORMAT\")%>" style="width:90px" options="mandatory" option="date"/><ui:icon id="icnAsgEndDate" className="fa-calendar hor"/>
 									</td>
 									<th class="thEdit rt mandatory">Rate</th>
 									<td class="tdEdit">
-										<ui:text name="asgRate" value="<%=CommonUtil.getNumberMask(dsAsg.getValue(\"RATE\"), fmt2)%>" className="Rt hor" style="width:96px"/>
+										<ui:text name="asgRate" value="<%=CommonUtil.getNumberMask(dsAsg.getValue(\"RATE\"), fmt2)%>" className="Rt hor numeric" style="width:96px"/>
 										<div><ui:ccselect name="asgRateUnit" selectedValue="<%=dsAsg.getValue(\"UNIT\")%>" options="mandatory" codeType="PAY_BASIS"/></div>
 									</td>
 									<th class="thEdit rt mandatory">Job Title</th>
 									<td class="tdEdit"><ui:text name="asgJobTitle" value="<%=dsAsg.getValue(\"JOB_TITLE\")%>" options="mandatory" checkName="Job Title"/></td>
 									<th class="thEdit rt mandatory">Management Fee</th>
 									<td class="tdEdit">
-										<ui:text name="asgManagementFee" value="<%=CommonUtil.getNumberMask(dsAsg.getValue(\"MANAGEMENT_FEE\"), fmt3)%>" options="mandatory" checkName="Management Fee" className="Rt hor" style="width:96px"/>
+										<ui:text name="asgManagementFee" value="<%=CommonUtil.getNumberMask(dsAsg.getValue(\"MANAGEMENT_FEE\"), fmt3)%>" options="mandatory" checkName="Management Fee" className="Rt hor numeric" style="width:96px"/>
 										<div><ui:ccselect name="asgManagementFeeUnit" selectedValue="<%=dsAsg.getValue(\"MANAGEMENT_FEE_TYPE\")%>" options="mandatory" codeType="AMOUNT_PERCENTAGE"/></div>
 									</td>
 								</tr>
@@ -239,9 +241,9 @@ var opportunityId = "<%=dsRequest.getValue("opportunityId")%>";
 									<th class="thEdit rt">End User Type</th>
 									<td class="tdEdit"><ui:ccselect name="asgEndUserType" selectedValue="<%=dsAsg.getValue(\"END_USER_TYPE\")%>" caption="==Select==" codeType="END_USER_TYPE"/></td>
 									<th class="thEdit rt" rowspan="2">Description of Services</th>
-									<td class="tdEdit" rowspan="2"><ui:txa id="asgDescriptionOfServices" name="asgDescriptionOfServices" value="<%=dsAsg.getValue(\"SERVICE_DESCRIPTION\")%>" style="height:50px;"/></td>
+									<td class="tdEdit" rowspan="2"><ui:txa id="asgDescriptionOfServices" name="asgDescriptionOfServices" value="<%=dsAsg.getValue(\"SERVICE_DESCRIPTION\")%>" style="height:49px;"/></td>
 									<th class="thEdit rt" rowspan="2">Management Fee<br/>Comments</th>
-									<td class="tdEdit" rowspan="2"><ui:txa id="asgManagementFeeComments" name="asgManagementFeeComments" value="<%=dsAsg.getValue(\"MANAGEMENT_FEE_COMMENTS\")%>" style="height:50px;"/></td>
+									<td class="tdEdit" rowspan="2"><ui:txa id="asgManagementFeeComments" name="asgManagementFeeComments" value="<%=dsAsg.getValue(\"MANAGEMENT_FEE_COMMENTS\")%>" style="height:49px;"/></td>
 									<th class="thEdit rt">Contract Value</th>
 									<td class="tdEdit"><ui:text name="asgContractValue" status="display" value="<%=contractValue%>"/></td>
 								</tr>
@@ -274,19 +276,19 @@ var opportunityId = "<%=dsRequest.getValue("opportunityId")%>";
 									<th class="thEdit rt">Start Time</th>
 									<td class="tdEdit">
 										<div style="float:left;padding-top:2px;"><ui:ccselect name="startTimeHour" selectedValue="<%=dsAsg.getValue(\"WORK_START_HH\")%>" caption="==Select==" codeType="HOUR_CODE" className="dropdown" attribute="data-size:13;data-dropup-auto:false"/></div>
-										<div style="float:left;padding:8px 8px 8px 8px;">:</div>
+										<div style="float:left;padding:6px 6px 2px 6px;">:</div>
 										<div style="float:left;padding-top:2px;"><ui:ccselect name="startTimeMin" selectedValue="<%=dsAsg.getValue(\"WORK_START_MM\")%>" caption="==Select==" codeType="MINUTE_CODE"/></div>
 									</td>
 									<th class="thEdit rt">End Time</th>
 									<td class="tdEdit">
 										<div style="float:left;padding-top:2px;"><ui:ccselect name="endTimeHour" selectedValue="<%=dsAsg.getValue(\"WORK_END_HH\")%>" caption="==Select==" codeType="HOUR_CODE" className="dropdown" attribute="data-size:13;data-dropup-auto:false"/></div>
-										<div style="float:left;padding:8px 8px 8px 8px;">:</div>
+										<div style="float:left;padding:6px 6px 2px 6px;">:</div>
 										<div style="float:left;padding-top:2px;"><ui:ccselect name="endTimeMin" selectedValue="<%=dsAsg.getValue(\"WORK_END_MM\")%>" caption="==Select==" codeType="MINUTE_CODE"/></div>
 									</td>
 									<th class="thEdit rt optmandatory">Termination Notice</th>
 									<td class="tdEdit">
 										<div style="float:left;padding-top:2px;"><ui:ccselect name="terminationNotice" selectedValue="<%=dsAsg.getValue(\"TERMINATION_NOTICE\")%>" caption="==Select==" codeType="ASG_TERM_NOTICE" className="dropdown" attribute="data-size:13;data-dropup-auto:false"/></div>
-										<div style="float:left;padding:8px 8px 8px 8px;"></div>
+										<div style="float:left;padding:6px 6px 2px 6px;"></div>
 										<div style="float:left;padding-top:2px;"><ui:ccselect name="terminationNoticeUnit" selectedValue="<%=dsAsg.getValue(\"TERMINATION_NOTICE_UNIT\")%>" caption="==Select==" codeType="ASG_TERM_NOTICE_UNIT"/></div>
 									</td>
 								</tr>
@@ -294,11 +296,11 @@ var opportunityId = "<%=dsRequest.getValue("opportunityId")%>";
 									<th class="thEdit rt optmandatory">Equipment Required</th>
 									<td class="tdEdit"><ui:ccradio name="equipmentRequired" codeType="SIMPLE_YN" selectedValue="<%=dsAsg.getValue(\"EQUIPMENT_REQUIRED_YN\")%>"/></td>
 									<th class="thEdit rt" rowspan="2">Equipment</th>
-									<td class="tdEdit" rowspan="2"><ui:txa id="equipment" name="equipment" value="<%=dsAsg.getValue(\"EQUIPMENT_DETAILS\")%>" style="height:50px;"/></td>
+									<td class="tdEdit" rowspan="2"><ui:txa id="equipment" name="equipment" value="<%=dsAsg.getValue(\"EQUIPMENT_DETAILS\")%>" style="height:46px;"/></td>
 									<th class="thEdit rt" rowspan="2">Special Conditions</th>
-									<td class="tdEdit" rowspan="2"><ui:txa id="specialConditions" name="specialConditions" value="<%=dsAsg.getValue(\"SPECIAL_CONDITIONS\")%>" style="height:50px;"/></td>
+									<td class="tdEdit" rowspan="2"><ui:txa id="specialConditions" name="specialConditions" value="<%=dsAsg.getValue(\"SPECIAL_CONDITIONS\")%>" style="height:46px;"/></td>
 									<th class="thEdit rt" rowspan="2">Approved Expense</th>
-									<td class="tdEdit" rowspan="2"><ui:txa id="approvedExpense" name="approvedExpense" value="<%=dsAsg.getValue(\"APPROVED_EXPENSES\")%>" style="height:50px;"/></td>
+									<td class="tdEdit" rowspan="2"><ui:txa id="approvedExpense" name="approvedExpense" value="<%=dsAsg.getValue(\"APPROVED_EXPENSES\")%>" style="height:46px;"/></td>
 								</tr>
 								<tr>
 									<th class="thEdit rt">Restraint of Trade</th>
@@ -324,22 +326,22 @@ var opportunityId = "<%=dsRequest.getValue("opportunityId")%>";
 								<tr>
 									<th class="thEdit rt">Workcover Code</th>
 									<td class="tdEdit" colspan="7">
-										<ui:text name="workcoverCode" className="hor" value="<%=dsAsg.getValue(\"RESTRAINT_OF_TRADE\")%>" status="disabled" style="width:300px"/>
+										<ui:text name="workcoverCode" className="hor" value="<%=dsAsg.getValue(\"WC_CODE_RATE_NAME\")%>" status="disabled" style="width:300px"/>
 										<ui:button id="btnAddWorkcover" caption="Add" iconClass="fa-plus"/>
 									</td>
 								</tr>
 								<tr>
 									<th class="thEdit rt">WIC / ANZIC</th>
-									<td class="tdEdit"><ui:text name="wicAnzic" status="disabled"/></td>
+									<td class="tdEdit"><ui:text name="wicAnzic" value="<%=dsAsg.getValue(\"WC_WIC_ANZIC\")%>" status="disabled"/></td>
 									<th class="thEdit rt">Working State</th>
-									<td class="tdEdit"><ui:text name="workingState" status="disabled"/></td>
+									<td class="tdEdit"><ui:text name="workingState" value="<%=dsAsg.getValue(\"WC_WORKING_STATE_MEANING\")%>" status="disabled"/></td>
 									<th class="thEdit rt">Percentage</th>
-									<td class="tdEdit"><ui:text name="wcPercentage" status="disabled"/></td>
+									<td class="tdEdit"><ui:text name="wcPercentage" value="<%=dsAsg.getValue(\"WC_PERCENTAGE\")%>" status="disabled"/></td>
 									<th class="thEdit rt">Start / End Date</th>
 									<td class="tdEdit">
-										<ui:text name="wcStartDate" className="Ct hor" style="width:90px" status="disabled"/>
-										<div class="horGap20" style="padding:6px 8px 6px 0px;">-</div>
-										<ui:text name="wcEndDate" className="Ct hor" style="width:90px" status="disabled"/>
+										<ui:text name="wcStartDate" className="Ct hor" style="width:90px" value="<%=dsAsg.getValue(\"WC_START_DATE\")%>" status="disabled"/>
+										<div class="horGap10" style="padding:6px 6px 0px 0px;">-</div>
+										<ui:text name="wcEndDate" className="Ct hor" style="width:90px" value="<%=dsAsg.getValue(\"WC_END_DATE\")%>" status="disabled"/>
 									</td>
 								</tr>
 							</tbody>
@@ -358,9 +360,9 @@ var opportunityId = "<%=dsRequest.getValue("opportunityId")%>";
 								<ui:button id="btnCreateFromTemplate" caption="Create From Template" iconClass="fa-window-restore"/>
 								<ui:button id="btnManageDocument" caption="Manage Document" iconClass="fa-sliders"/>
 								<ui:button id="btnAddAdHocDocument" caption="Add Ad Hoc Document" iconClass="fa-plus-circle"/>
-								<div style="margin-top:3px;padding:0px 4px 0px 4px;"><%=profileHtmlString%></div>
-								<ui:button id="btnApplyProfile" caption="Apply" iconClass="fa-plug"/>
 							</ui:buttonGroup>
+							<div style="margin-top:3px;padding:0px 4px 0px 4px;"><%=profileHtmlString%></div>
+							<ui:button id="btnApplyProfile" caption="Apply" iconClass="fa-plug"/>
 						</div>
 					</div>
 					<div class="verGap2"></div>

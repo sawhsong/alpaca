@@ -4,7 +4,9 @@
  *************************************************************************************************/
 package project.conf.resource.ormapper.dao.WcWaCodeRateD;
 
+import project.conf.resource.ormapper.dto.oracle.WcWaCodeRateD;
 import zebra.base.IDao;
 
 public interface WcWaCodeRateDDao extends IDao {
+	public WcWaCodeRateD getWcWaCodeRateDByWcWaCodeRateId(String wcWaCodeRateId) throws Exception;
 }
