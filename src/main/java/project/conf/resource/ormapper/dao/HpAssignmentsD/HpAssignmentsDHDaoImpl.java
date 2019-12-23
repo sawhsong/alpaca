@@ -8,6 +8,7 @@ import project.common.extend.BaseHDao;
 import project.conf.resource.ormapper.dto.oracle.HpAssignmentsD;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
+import zebra.util.ConfigUtil;
 
 public class HpAssignmentsDHDaoImpl extends BaseHDao implements HpAssignmentsDDao {
 	public int updateAssignmentByColumn(QueryAdvisor queryAdvisor, HpAssignmentsD hpAssignmentsD) throws Exception {
@@ -22,5 +23,14 @@ public class HpAssignmentsDHDaoImpl extends BaseHDao implements HpAssignmentsDDa
 		QueryAdvisor qa = new QueryAdvisor();
 		qa.addWhereClause("assignment_id = '"+assignmentId+"'");
 		return (HpAssignmentsD)selectAllToDto(qa, new HpAssignmentsD());
+	}
+
+	public DataSet getDataSetByAssignmentId(String assignmentId) throws Exception {
+		QueryAdvisor qa = new QueryAdvisor();
+
+		qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
+		qa.addVariable("assignmentId", assignmentId);
+
+		return selectAsDataSet(qa, "query.HpAssignmentsD.getDataSetByAssignmentId");
 	}
 }

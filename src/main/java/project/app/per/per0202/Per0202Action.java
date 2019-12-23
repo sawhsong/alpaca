@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseAction;
 import project.conf.resource.ormapper.dto.oracle.HpPersonD;
+import zebra.data.DataSet;
 
 public class Per0202Action extends BaseAction {
 	@Autowired
@@ -217,5 +218,32 @@ public class Per0202Action extends BaseAction {
 		}
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
+	}
+
+	public String getAssignmentList() throws Exception {
+		biz.getAssignmentList(paramEntity);
+		return "assignmentList";
+	}
+
+	public String getAssignmentDataList() throws Exception {
+		try {
+			biz.getAssignmentDataList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getAssignment() throws Exception {
+		biz.getAssignment(paramEntity);
+
+		if (paramEntity.isSuccess()) {
+			DataSet dsRequest = paramEntity.getRequestDataSet();
+
+			session.setAttribute("AssignmentIdForAdminTool", dsRequest.getValue("assignmentId"));
+
+			session.setAttribute("AssignmentIdQuickSearch", dsRequest.getValue("assignmentId"));
+		}
+		return "assignment";
 	}
 }

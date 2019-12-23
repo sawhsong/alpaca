@@ -35,4 +35,7 @@ public interface Per0202Biz {
 	public ParamEntity getEditOpportunity(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getOpportunityDetail(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getOpportunityDocuments(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getAssignmentList(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getAssignmentDataList(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getAssignment(ParamEntity paramEntity) throws Exception;
 }

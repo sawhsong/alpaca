@@ -13,4 +13,5 @@ public interface HpAssignmentsDDao extends IDao {
 	public int updateAssignmentByColumn(QueryAdvisor queryAdvisor, HpAssignmentsD hpAssignmentsD) throws Exception;
 	public DataSet getAssignmentList(QueryAdvisor queryAdvisor) throws Exception;
 	public HpAssignmentsD getByAssignmentId(String assignmentId) throws Exception;
+	public DataSet getDataSetByAssignmentId(String assignmentId) throws Exception;
 }

@@ -425,12 +425,12 @@
 					scrollHeight = 19;
 				}
 
-				if ($("#"+divSystemGeneratedFixedTableHeaderWrapperId).length > 0) {
+//				if ($("#"+divSystemGeneratedFixedTableHeaderWrapperId).length > 0) {
 					$("#"+divSystemGeneratedFixedTableHeaderWrapperId).remove();
 					if ($(options.attachTo).height() > $table.height()) {
 						$(options.attachTo).height($(this).height() + (heightAdjustment - 4) + scrollHeight);
 					}
-				}
+//				}
 
 				$(options.attachTo).css({"border-left":"0px solid", "border-color":borderColor});
 

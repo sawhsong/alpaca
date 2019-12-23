@@ -18,6 +18,8 @@
             <result name="opportunity" type="debugDispatcherResult">/project/app/per/per0202/Per0202OpportunityFrame.jsp</result>
             <result name="editOpportunity" type="debugDispatcherResult">/project/app/per/per0202/Per0202EditOpportunityPop.jsp</result>
             <result name="opportunityDetail" type="debugDispatcherResult">/project/app/per/per0202/Per0202OpportunityDetailPop.jsp</result>
+            <result name="assignmentList" type="debugDispatcherResult">/project/app/per/per0202/Per0202AssignmentListFrame.jsp</result>
+            <result name="assignment" type="debugDispatcherResult">/project/app/per/per0202/Per0202AssignmentFrame.jsp</result>
         </action>
     </package>
 </struts>

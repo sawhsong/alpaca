@@ -25,6 +25,11 @@ public class AssignmentBizServiceImpl extends BaseBiz implements AssignmentBizSe
 		return hpAssignmentsDDao.getByAssignmentId(assignmentId);
 	}
 
+	public DataSet getAssignmentAsDataSetByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception {
+		hpAssignmentsDDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
+		return hpAssignmentsDDao.getDataSetByAssignmentId(assignmentId);
+	}
+
 	public int updateWorkingState(QueryAdvisor queryAdvisor, String assignmentId, String toWorkingState) throws Exception {
 		HpAssignmentsD hpAssignmentsD = new HpAssignmentsD();
 

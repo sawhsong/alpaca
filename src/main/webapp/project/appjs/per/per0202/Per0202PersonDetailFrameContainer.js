@@ -63,9 +63,12 @@ $(function() {
 	$("#tabCategoryAssignments li a").click(function() {
 		var index = $(this).parent().index(),
 			action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
-			actionString = "/per/0202/get"+action+".do"+"?personId="+personId;
+			actionString = "/per/0202/get"+action+".do"+"?personId="+personId+"&assignmentId="+assignmentId;
+
+		assignmentId = "";
 
 		hideSubTabs("Assignments");
+		disableTabs("Assignments");
 		changeTabSelection($(this));
 		setFrame(actionString);
 	});
@@ -137,6 +140,41 @@ $(function() {
 		} else if (parentTabName == "EcmsEbo") {
 			$("#divTabAreaAssignments").stop().animate({opacity:"hide"}, jsconfig.get("effectDuration"));
 		}
+	};
+
+	disableTabs = function(parentTabName) {
+		if (parentTabName == "Assignments") {
+			if (commonJs.isEmpty(assignmentId)) {
+				$("#tabCategoryAssignments li").each(function(index) {
+					if (index != 0) {
+						$(this).removeClass("active").addClass("disabled").find("a").unbind("click");
+					}
+				});
+			}
+		}
+	};
+
+	enableTabs = function(parentTabName) {
+		if (parentTabName == "Assignments") {
+			if (!commonJs.isEmpty(assignmentId)) {
+				$("#tabCategoryAssignments li").each(function(index) {
+					if (index != 0) {
+						$(this).removeClass("disabled").find("a").bind("click", bindClickAssignments);
+					}
+				});
+			}
+		}
+	};
+
+	bindClickAssignments = function() {
+		var index = $(this).parent().index(),
+		action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
+		actionString = "/per/0202/get"+action+".do"+"?personId="+personId+"&assignmentId="+assignmentId;
+
+		hideSubTabs("Assignments");
+		disableTabs("Assignments");
+		changeTabSelection($(this));
+		setFrame(actionString);
 	};
 
 	setFrame = function(actionString) {

@@ -134,7 +134,7 @@ $(function() {
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
 				url:"/qm/30/getList.do",
-				dataType:"xml",
+				dataType:"html",
 				callback:renderGridData
 			});
 		}

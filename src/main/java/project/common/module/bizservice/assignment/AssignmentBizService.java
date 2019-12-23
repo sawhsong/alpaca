@@ -7,5 +7,6 @@ import zebra.data.QueryAdvisor;
 public interface AssignmentBizService {
 	public DataSet getAssignmentList(QueryAdvisor queryAdvisor) throws Exception;
 	public HpAssignmentsD getAssignmentByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception;
+	public DataSet getAssignmentAsDataSetByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception;
 	public int updateWorkingState(QueryAdvisor queryAdvisor, String assignmentId, String toWorkingState) throws Exception;
 }
