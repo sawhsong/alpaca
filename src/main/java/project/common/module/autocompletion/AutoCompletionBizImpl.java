@@ -5,8 +5,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
+import project.conf.resource.ormapper.dao.HpAssignmentsD.HpAssignmentsDDao;
 import project.conf.resource.ormapper.dao.HpBillingCode.HpBillingCodeDao;
 import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
+import project.conf.resource.ormapper.dao.HpPaymentMethods.HpPaymentMethodsDao;
 import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
 import project.conf.resource.ormapper.dao.SysCommonCode.SysCommonCodeDao;
 import project.conf.resource.ormapper.dao.SysCountryCurrency.SysCountryCurrencyDao;
@@ -31,6 +33,10 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 	private HpPersonDDao hpPersonDDao;
 	@Autowired
 	private HpBillingCodeDao hpBillingCodeDao;
+	@Autowired
+	private HpAssignmentsDDao hpAssignmentsDDao;
+	@Autowired
+	private HpPaymentMethodsDao hpPaymentMethodsDao;
 
 	public ParamEntity getCommonCodeType(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
@@ -485,6 +491,77 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 			queryAdvisor.addOrderByClause("billing_code");
 
 			paramEntity.setAjaxResponseDataSet(hpBillingCodeDao.getBillingCodeByCodeForAutoCompletion(queryAdvisor));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getBillingCodeByCodeOrId(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpBillingCodeDao.setDataSourceName(dataSource);
+
+			if (CommonUtil.isNumeric(inputValue)) {
+				queryAdvisor.addAutoFillCriteria(inputValue, "lower(billing_code_id) like lower('"+inputValue+"%')");
+			} else {
+				queryAdvisor.addAutoFillCriteria(inputValue, "lower(billing_code) like lower('"+inputValue+"%')");
+			}
+			queryAdvisor.addOrderByClause("billing_code");
+
+			paramEntity.setAjaxResponseDataSet(hpBillingCodeDao.getBillingCodeByCodeForAutoCompletion(queryAdvisor));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getCostCentre(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpAssignmentsDDao.setDataSourceName(dataSource);
+
+			queryAdvisor.addAutoFillCriteria(inputValue, "lower(cost_centre) like lower('%"+inputValue+"%')");
+			queryAdvisor.addOrderByClause("cost_centre");
+
+			paramEntity.setAjaxResponseDataSet(hpAssignmentsDDao.getCostCentreForAutoCompletion(queryAdvisor));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getPaymentMethodByCodeOrId(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String inputValue = requestDataSet.getValue("inputValue");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpPaymentMethodsDao.setDataSourceName(dataSource);
+
+			if (CommonUtil.isNumeric(inputValue)) {
+				queryAdvisor.addAutoFillCriteria(inputValue, "lower(pay_method_id) like lower('"+inputValue+"%')");
+			} else {
+				queryAdvisor.addAutoFillCriteria(inputValue, "lower(name) like lower('"+inputValue+"%')");
+			}
+			queryAdvisor.addOrderByClause("name");
+
+			paramEntity.setAjaxResponseDataSet(hpPaymentMethodsDao.getPaymentMethodForAutoCompletion(queryAdvisor));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);

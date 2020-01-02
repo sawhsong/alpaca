@@ -23,6 +23,21 @@ public class HpOrganisationDHDaoImpl extends BaseHDao implements HpOrganisationD
 		return (HpOrganisationD)selectAllToDto(queryAdvisor, new HpOrganisationD());
 	}
 
+	public DataSet getDataSetByOrganisationIds(String... organisationIds) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		String ids = "";
+		String excludeOrgIds = "'1811', '3071', '3', '93191'";
+
+		for (String id : organisationIds) {
+			ids += (CommonUtil.isBlank(ids)) ? "'"+id+"'" : ", "+"'"+id+"'";
+		}
+		queryAdvisor.addVariable("organisationIds", ids);
+		queryAdvisor.addAutoFillCriteria(excludeOrgIds, "organisation_id not in ("+excludeOrgIds+")");
+		queryAdvisor.addOrderByClause("organisation_name");
+
+		return selectAsDataSet(queryAdvisor, "query.HpOrganisationD.getDataSetByOrganisationIds");
+	}
+
 	public DataSet getOrganisationDataSetForQuickMenu(QueryAdvisor queryAdvisor) throws Exception {
 		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
 		String orgId = requestDataSet.getValue("orgId");

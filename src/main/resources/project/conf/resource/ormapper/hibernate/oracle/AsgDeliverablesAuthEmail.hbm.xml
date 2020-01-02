@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - ASG_DELIVERABLES_AUTH_EMAIL - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.AsgDeliverablesAuthEmail" table="ASG_DELIVERABLES_AUTH_EMAIL" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="linkId" column="LINK_ID" type="java.lang.Double"></id>
+
+		<property name="approverId" column="APPROVER_ID" not-null="true" type="java.lang.Double"/>
+		<property name="asgDeliverablesRatesId" column="ASG_DELIVERABLES_RATES_ID" type="java.lang.Double"/>
+		<property name="cipheredUrl" column="CIPHERED_URL" type="java.lang.String" length="500"/>
+		<property name="url" column="URL" type="java.lang.String" length="500"/>
+	</class>
+
+	<sql-query name="asgDeliverablesAuthEmail.selectAll">
+	<![CDATA[
+		SELECT LINK_ID,
+		       APPROVER_ID,
+		       ASG_DELIVERABLES_RATES_ID,
+		       CIPHERED_URL,
+		       URL
+		  FROM ASG_DELIVERABLES_AUTH_EMAIL
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="asgDeliverablesAuthEmail.insert">
+	<![CDATA[
+		INSERT INTO ASG_DELIVERABLES_AUTH_EMAIL (
+		       LINK_ID,
+		       APPROVER_ID,
+		       ASG_DELIVERABLES_RATES_ID,
+		       CIPHERED_URL,
+		       URL
+		       )
+		VALUES (
+		       ${LINK_ID},
+		       ${APPROVER_ID},
+		       ${ASG_DELIVERABLES_RATES_ID},
+		       ${CIPHERED_URL},
+		       ${URL}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="asgDeliverablesAuthEmail.update">
+	<![CDATA[
+		UPDATE ASG_DELIVERABLES_AUTH_EMAIL
+		   SET APPROVER_ID = ${APPROVER_ID},
+		       ASG_DELIVERABLES_RATES_ID = ${ASG_DELIVERABLES_RATES_ID},
+		       CIPHERED_URL = ${CIPHERED_URL},
+		       URL = ${URL}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="asgDeliverablesAuthEmail.updateColumns">
+	<![CDATA[
+		UPDATE ASG_DELIVERABLES_AUTH_EMAIL
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="asgDeliverablesAuthEmail.delete">
+	<![CDATA[
+		DELETE ASG_DELIVERABLES_AUTH_EMAIL
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -14,6 +14,25 @@
 	HpPersonD person = (HpPersonD)session.getAttribute("HpPersonDQuickSearch");
 	DataSet dsPerson = (DataSet)paramEntity.getObject("dsPerson");
 	DataSet dsAsg = (DataSet)paramEntity.getObject("dsAsg");
+	DataSet dsPrt = (DataSet)paramEntity.getObject("dsPrt");
+	DataSet timesheetApprovers = (DataSet)paramEntity.getObject("timesheetApprovers");
+	DataSet timesheetNotiOrg = (DataSet)paramEntity.getObject("dsNotiOrg");
+	DataSet expenseApprovers = (DataSet)paramEntity.getObject("expenseApprovers");
+	DataSet expenseNotiOrg = (DataSet)paramEntity.getObject("dsNotiOrg");
+	DataSet deliverableApprovers = (DataSet)paramEntity.getObject("deliverableApprovers");
+	DataSet deliverableNotiOrg = (DataSet)paramEntity.getObject("dsNotiOrg");
+	String timesheetApprover1Id = dsAsg.getValue("TIMECARD_APPROVAL_ID");
+	String timesheetApprover2Id = dsAsg.getValue("TIMECARD_SECONDARY_APPROVAL_ID");
+	String timesheetApprover3Id = dsAsg.getValue("TIMECARD_TERTIARY_APPROVAL_ID");
+	String timesheetNotiToOrgId = dsAsg.getValue("TIMESHEET_NOTI_ORG_ID");
+	String expenseApprover1Id = dsAsg.getValue("EXPENSE_APPROVER_1");
+	String expenseApprover2Id = dsAsg.getValue("EXPENSE_APPROVER_2");
+	String expenseApprover3Id = dsAsg.getValue("EXPENSE_APPROVER_3");
+	String expenseNotiToOrgId = dsAsg.getValue("EXPENSE_APPROVAL_NOTI_TO_ORG");
+	String deliverableApprover1Id = dsAsg.getValue("DELIVERABLES_APPROVER_1");
+	String deliverableApprover2Id = dsAsg.getValue("DELIVERABLES_APPROVER_2");
+	String deliverableApprover3Id = dsAsg.getValue("DELIVERABLES_APPROVER_3");
+	String deliverableNotiToOrgId = dsAsg.getValue("DELIVERABLES_APPR_NOTI_TO_ORG");
 %>
 <%/************************************************************************************************
 * HTML
@@ -36,11 +55,14 @@ button.bootstrapSelect.dropdown-toggle {padding:3px 20px 2px 5px;}
 .thEdit {padding:2px 4px;}
 .tdEdit {padding:2px 2px;}
 .txtEn, .txtDpl, .txtDis, .txaEn, .txaDis, .txaDpl {padding:4px 4px;}
+.btn {padding:2px 10px;}
+.sectionHeader {padding:2px 4px;background:#f5f5f5;border:1px solid #dddddd}
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
 var personId = "<%=personId%>";
 var assignmentId = "<%=assignmentId%>";
+var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -79,30 +101,87 @@ var assignmentId = "<%=assignmentId%>";
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerFrame">
 	<div id="divFrameDataAreaWrapper" style="overflow:auto">
-		<div class="accordion" style="width:40%;float:left">
+		<div class="accordion" style="width:35%;float:left">
 			<div class="accordionGroup">
 				<h3>Assignment Detail</h3>
 				<div id="divAsgDetail" class="accordionContents">
 					<table id="tblAsgDetail" class="tblEdit">
 						<colgroup>
-							<col width="20%"/>
+							<col width="25%"/>
 							<col width="*"/>
 						</colgroup>
 						<tbody>
 							<tr>
 								<th class="thEdit rt mandatory">Asg Status</th>
 								<td class="tdEdit">
-									<ui:check name="asgPreferred" value="Y" text="Preferred" labelStyle="margin:4px 0px"/>
-									<ui:check name="asgActive" value="Y" text="Active" labelStyle="margin:4px 0px"/>
+									<ui:check name="asgPreferred" value="Y" text="Preferred" labelStyle="margin:4px 0px" isChecked="<%=dsAsg.getValue(\"PREFERRED\")%>"/>
+									<ui:check name="asgActive" value="Y" text="Active" labelStyle="margin:4px 0px" isChecked="<%=dsAsg.getValue(\"ASG_ACTIVE\")%>"/>
 								</td>
 							</tr>
 							<tr>
 								<th class="thEdit rt mandatory">Asg Date</th>
 								<td class="tdEdit">
-									<ui:text name="asgStartDate" className="Ct hor" value="<%=dsAsg.getValue(\"ASSIGNMENT_START_DATE_FORMAT\")%>" style="width:90px" options="mandatory" option="date"/><ui:icon id="icnAsgStartDate" className="fa-calendar hor"/>
+									<ui:text name="asgStartDate" className="Ct hor" value="<%=dsAsg.getValue(\"ASG_START_DATE_FORMAT\")%>" style="width:90px" options="mandatory" option="date"/><ui:icon id="icnAsgStartDate" className="fa-calendar hor"/>
 									<div class="horGap10" style="padding:6px 6px 0px 0px;">-</div>
-									<ui:text name="asgEndDate" className="Ct hor" value="<%=dsAsg.getValue(\"ASSIGNMENT_END_DATE_FORMAT\")%>" style="width:90px" options="mandatory" option="date"/><ui:icon id="icnAsgEndDate" className="fa-calendar hor"/>
+									<ui:text name="asgEndDate" className="Ct hor" value="<%=dsAsg.getValue(\"ASG_END_DATE_FORMAT\")%>" style="width:90px" options="mandatory" option="date"/><ui:icon id="icnAsgEndDate" className="fa-calendar hor"/>
 								</td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Asg Number</th>
+								<td class="tdEdit"><ui:text name="asgNumber" className="Lt" value="<%=dsAsg.getValue(\"ASSIGNMENT_NUMBER\")%>" status="display"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt mandatory">Billing Org</th>
+								<td class="tdEdit">
+									<ui:text name="asgBillingOrgName" className="Lt" value="<%=dsAsg.getValue(\"BILLING_ORGANISATION_NAME\")%>" options="mandatory" checkName="Billing Organisation"/>
+									<ui:hidden name="asgBillingOrgId" value="<%=dsAsg.getValue(\"BILLING_ORGANISATION_ID\")%>"/>
+								</td>
+							</tr>
+							<tr>
+								<th class="thEdit rt mandatory">Billing Org Contact</th>
+								<td class="tdEdit">
+									<ui:text name="asgBillingOrgContactName" className="Lt" value="<%=dsAsg.getValue(\"BILLING_ORG_PERSON_NAME\")%>" options="mandatory" checkName="Billing Organisation Contact Person"/>
+									<ui:hidden name="asgBillingOrgContactId" value="<%=dsAsg.getValue(\"BILLING_ORGANISATION_PERSON_ID\")%>"/>
+								</td>
+							</tr>
+							<tr>
+								<th class="thEdit rt mandatory">End User Org</th>
+								<td class="tdEdit">
+									<ui:text name="asgEuOrgName" className="Lt" value="<%=dsAsg.getValue(\"EU_ORGANISATION_NAME\")%>" options="mandatory" checkName="End User Organisation"/>
+									<ui:hidden name="asgEuOrgId" value="<%=dsAsg.getValue(\"EU_ORGANISATION_ID\")%>"/>
+								</td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">End User Org Contact</th>
+								<td class="tdEdit">
+									<ui:text name="asgEuOrgContactName" className="Lt" value="<%=dsAsg.getValue(\"EU_ORG_PERSON_NAME\")%>"/>
+									<ui:hidden name="asgEuOrgContactId" value="<%=dsAsg.getValue(\"EU_CONTACT_PERSON_ID\")%>"/>
+								</td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Agency 2</th>
+								<td class="tdEdit">
+									<ui:text name="asgReferenceNo3Name" className="Lt" value="<%=dsAsg.getValue(\"REFERENCE_NO_3_NAME\")%>"/>
+									<ui:hidden name="asgReferenceNo3Id" value="<%=dsAsg.getValue(\"REFERENCE_NO_3\")%>"/>
+								</td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Agency Margin Org</th>
+								<td class="tdEdit">
+									<ui:text name="asgReferenceNo2Name" className="Lt" value="<%=dsAsg.getValue(\"REFERENCE_NO_2_NAME\")%>"/>
+									<ui:hidden name="asgReferenceNo2Id" value="<%=dsAsg.getValue(\"REFERENCE_NO_2\")%>"/>
+								</td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Sales Org</th>
+								<td class="tdEdit">
+									<ui:text name="asgReferenceNo1Name" className="Lt" value="<%=dsAsg.getValue(\"REFERENCE_NO_1_NAME\")%>"/>
+									<ui:hidden name="asgReferenceNo1Id" value="<%=dsAsg.getValue(\"REFERENCE_NO_1\")%>"/>
+								</td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Cost Centre</th>
+								<td class="tdEdit"><ui:text name="asgCostCentre" className="Lt" value="<%=dsAsg.getValue(\"COST_CENTRE\")%>"/></td>
 							</tr>
 						</tbody>
 					</table>
@@ -118,7 +197,7 @@ var assignmentId = "<%=assignmentId%>";
 						</ui:tab>
 					</div>
 					<div id="divPrtWorkcover0" class="areaContainerFrame" style="padding:2px 0px 2px 0px;">
-						<div class="divButtonArea">
+						<div class="divButtonArea sectionHeader">
 							<div class="divButtonAreaRight">
 								<ui:buttonGroup>
 									<ui:button id="btnAddAsgPrt" caption="Add" iconClass="fa-plus"/>
@@ -128,40 +207,40 @@ var assignmentId = "<%=assignmentId%>";
 						<div class="verGap2"></div>
 						<table id="tblAsgPrt" class="tblEdit">
 							<colgroup>
-								<col width="20%"/>
+								<col width="25%"/>
 								<col width="*"/>
 							</colgroup>
 							<tbody>
 								<tr>
 									<th class="thEdit rt">Working State</th>
-									<td class="tdEdit"></td>
+									<td class="tdEdit"><ui:text name="prtWorkingState" value="<%=dsPrt.getValue(\"PRT_WORKING_STATE_MEANING\")%>" status="display"/></td>
 								</tr>
 								<tr>
 									<th class="thEdit rt">Liable</th>
-									<td class="tdEdit"></td>
+									<td class="tdEdit"><ui:text name="prtLiable" value="<%=dsPrt.getValue(\"PRT_RESPONSIBLE_DESCRIPTION\")%>" status="display"/></td>
 								</tr>
 								<tr>
 									<th class="thEdit rt">Percentage</th>
-									<td class="tdEdit"></td>
+									<td class="tdEdit"><ui:text name="prtPercentage" value="<%=dsPrt.getValue(\"PRT_RATE\")%>" status="display"/></td>
 								</tr>
 								<tr>
 									<th class="thEdit rt">Scenario</th>
-									<td class="tdEdit"></td>
+									<td class="tdEdit"><ui:text name="prtScenario" value="<%=dsPrt.getValue(\"SCENARIO\")%>" status="display"/></td>
 								</tr>
 								<tr>
 									<th class="thEdit rt">Created By</th>
-									<td class="tdEdit"></td>
+									<td class="tdEdit"><ui:text name="prtCreatedByName" value="<%=dsPrt.getValue(\"CREATED_BY_NAME\")%>" status="display"/></td>
 								</tr>
 							</tbody>
 						</table>
 						<div class="verGap2"></div>
 						<div id="divGridHolderPrtDocument" style="overflow:auto;">
-							<table id="tblPrtDocument" class="tblGrid sort autosort" style="width:1000px">
+							<table id="tblPrtDocument" class="tblGrid sort autosort" style="width:800px">
 								<colgroup>
 									<col width="*"></col>
-									<col width="20%"></col>
-									<col width="20%"></col>
-									<col width="20%"></col>
+									<col width="26%"></col>
+									<col width="13%"></col>
+									<col width="12%"></col>
 								</colgroup>
 								<thead>
 									<tr>
@@ -171,16 +250,16 @@ var assignmentId = "<%=assignmentId%>";
 										<th class="thGrid">Expiry Date</th>
 									</tr>
 								</thead>
-								<tbody id="tbodyDocuments">
+								<tbody id="tbodyPrtDocument">
 									<tr>
-										<td class="tdGrid Ct" colspan="4"><mc:msg key="I002"/></td>
+										<td class="tdGrid Ct" colspan="4"><mc:msg key="I001"/></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
 					<div id="divPrtWorkcover1" class="areaContainerFrame" style="padding:2px 0px 2px 0px;display:none;">
-						<div class="divButtonArea">
+						<div class="divButtonArea sectionHeader">
 							<div class="divButtonAreaRight">
 								<ui:buttonGroup>
 									<ui:button id="btnEditAsgWorkcover" caption="Edit" iconClass="fa-edit"/>
@@ -190,25 +269,25 @@ var assignmentId = "<%=assignmentId%>";
 						<div class="verGap2"></div>
 						<table id="tblAsgWorkcover" class="tblEdit">
 							<colgroup>
-								<col width="20%"/>
+								<col width="25%"/>
 								<col width="*"/>
 							</colgroup>
 							<tbody>
 								<tr>
 									<th class="thEdit rt">Working State</th>
-									<td class="tdEdit"></td>
+									<td class="tdEdit"><ui:text name="wcWorkingState" value="<%=dsAsg.getValue(\"WC_WORKING_STATE_MEANING\")%>" status="display"/></td>
 								</tr>
 								<tr>
 									<th class="thEdit rt">Code</th>
-									<td class="tdEdit"></td>
+									<td class="tdEdit"><ui:text name="wcCodeName" value="<%=dsAsg.getValue(\"WC_CODE_RATE_NAME\")%>" status="display"/></td>
 								</tr>
 								<tr>
 									<th class="thEdit rt">WIC / ANZIC</th>
-									<td class="tdEdit"></td>
+									<td class="tdEdit"><ui:text name="wcWicAnzic" value="<%=dsAsg.getValue(\"WC_WIC_ANZIC\")%>" status="display"/></td>
 								</tr>
 								<tr>
 									<th class="thEdit rt">Percentage</th>
-									<td class="tdEdit"></td>
+									<td class="tdEdit"><ui:text name="wcPercentage" value="<%=dsAsg.getValue(\"WC_PERCENTAGE\")%>" status="display"/></td>
 								</tr>
 							</tbody>
 						</table>
@@ -220,25 +299,31 @@ var assignmentId = "<%=assignmentId%>";
 				<div id="divPayrollInvoice" class="accordionContents">
 					<table id="tblPayrollInvoice" class="tblEdit">
 						<colgroup>
-							<col width="20%"/>
+							<col width="25%"/>
 							<col width="*"/>
 						</colgroup>
 						<tbody>
 							<tr>
 								<th class="thEdit rt">Billing Code</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit">
+									<ui:text name="asgBillingCodeName" value="<%=dsAsg.getValue(\"BILLING_CODE\")%>"/>
+									<ui:hidden name="asgBillingCodeId" value="<%=dsAsg.getValue(\"BILLING_CODE_ID\")%>"/>
+								</td>
 							</tr>
 							<tr>
 								<th class="thEdit rt mandatory">Payment Method</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit">
+									<ui:text name="asgPaymentMethodName" value="<%=dsAsg.getValue(\"PAYMENT_METHOD_NAME\")%>"/>
+									<ui:hidden name="asgPaymentMethodId" value="<%=dsAsg.getValue(\"PAY_METHOD_NAME\")%>"/>
+								</td>
 							</tr>
 							<tr>
 								<th class="thEdit rt">Payroll Notes</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:txa name="asgPayrollNotes" style="height:40px" value="<%=dsAsg.getValue(\"PAYROLL_NOTES\")%>"/></td>
 							</tr>
 							<tr>
 								<th class="thEdit rt">Invoice Comments</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:txa name="asgComments" style="height:40px" value="<%=dsAsg.getValue(\"COMMENTS\")%>"/></td>
 							</tr>
 						</tbody>
 					</table>
@@ -249,36 +334,36 @@ var assignmentId = "<%=assignmentId%>";
 				<div id="divAsgReference" class="accordionContents">
 					<table id="tblAsgReference" class="tblEdit">
 						<colgroup>
-							<col width="20%"/>
+							<col width="25%"/>
 							<col width="*"/>
 						</colgroup>
 						<tbody>
 							<tr>
 								<th class="thEdit rt">Reference A(PO)</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="asgReferenceA" value="<%=dsAsg.getValue(\"REFERENCE_A_PO\")%>"/></td>
 							</tr>
 							<tr>
 								<th class="thEdit rt">Reference B</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="asgReferenceB" value="<%=dsAsg.getValue(\"REFERENCE_B\")%>"/></td>
 							</tr>
 							<tr>
 								<th class="thEdit rt">Reference C</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="asgReferenceC" value="<%=dsAsg.getValue(\"REFERENCE_C\")%>"/></td>
 							</tr>
 							<tr>
 								<th class="thEdit rt">Reference D</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="asgReferenceD" value="<%=dsAsg.getValue(\"REFERENCE_D\")%>"/></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
-		<div class="accordion" style="width:59%;float:right">
+		<div class="accordion" style="width:64%;float:right">
 			<div class="accordionGroup">
 				<h3>Asg Rates</h3>
 				<div id="divAsgRate" class="accordionContents">
-					<div class="divButtonArea">
+					<div class="divButtonArea sectionHeader">
 						<div class="divButtonAreaRight">
 							<ui:buttonGroup>
 								<ui:button id="btnAddAsgRate" caption="Add" iconClass="fa-plus"/>
@@ -286,45 +371,45 @@ var assignmentId = "<%=assignmentId%>";
 						</div>
 					</div>
 					<div class="verGap2"></div>
-					<div id="divGridHolderAsgRates" style="height:250px;overflow:auto;">
-						<table id="tblAsgRates" class="tblGrid sort autosort" style="width:2000px">
+					<div id="divGridHolderAsgRates" style="overflow:auto">
+						<table id="tblAsgRates" class="tblGrid sort autosort" style="width:1800px">
 							<colgroup>
-								<col width="1%"></col>
-								<col width="8%"></col>
-								<col width="8%"></col>
-								<col width="8%"></col>
-								<col width="8%"></col>
+								<col width="3%"></col>
+								<col width="5%"></col>
+								<col width="5%"></col>
+								<col width="4%"></col>
+								<col width="13%"></col>
 								<col width="*"></col>
-								<col width="8%"></col>
-								<col width="8%"></col>
-								<col width="8%"></col>
-								<col width="8%"></col>
-								<col width="8%"></col>
-								<col width="8%"></col>
-								<col width="8%"></col>
-								<col width="2%"></col>
+								<col width="6%"></col>
+								<col width="7%"></col>
+								<col width="6%"></col>
+								<col width="7%"></col>
+								<col width="6%"></col>
+								<col width="7%"></col>
+								<col width="5%"></col>
+								<col width="6%"></col>
 							</colgroup>
 							<thead>
 								<tr>
-									<th class="thGrid"></th>
+									<th class="thGrid">Action</th>
 									<th class="thGrid">Pay Rate</th>
 									<th class="thGrid">Period</th>
 									<th class="thGrid">Units</th>
 									<th class="thGrid">Element</th>
 									<th class="thGrid">Alternate Name</th>
 									<th class="thGrid">Charge Rate</th>
-									<th class="thGrid">Period</th>
+									<th class="thGrid">Charge Period</th>
+									<th class="thGrid">Is Preferred</th>
 									<th class="thGrid">Disp Timesheet</th>
 									<th class="thGrid">Disp Expense</th>
-									<th class="thGrid">Tax</th>
-									<th class="thGrid">GST</th>
-									<th class="thGrid">Recur</th>
-									<th class="thGrid">Action</th>
+									<th class="thGrid">Tax Percentage</th>
+									<th class="thGrid">Has GST</th>
+									<th class="thGrid">Is Recurring</th>
 								</tr>
 							</thead>
-							<tbody id="tbodyDocuments">
+							<tbody id="tbodyAsgRates">
 								<tr>
-									<td class="tdGrid Ct" colspan="15"><mc:msg key="I002"/></td>
+									<td class="tdGrid Ct" colspan="14"><mc:msg key="I001"/></td>
 								</tr>
 							</tbody>
 						</table>
@@ -333,7 +418,7 @@ var assignmentId = "<%=assignmentId%>";
 			</div>
 			<div class="accordionGroup">
 				<h3>Timesheets / Expenses / Deliverables</h3>
-				<div id="divTsExpDeli" class="accordionContents" style="overflow:hidden;">
+				<div id="divTsExpDeli" class="accordionContents">
 					<div class="divTabArea">
 						<ui:tab id="tabTsExpDeli">
 							<ui:tabList caption="Timesheets" isActive="true" iconClass="fa-address-card" iconPosition="left" useAutoScript="false"/>
@@ -342,192 +427,142 @@ var assignmentId = "<%=assignmentId%>";
 						</ui:tab>
 					</div>
 					<div id="divTsExpDeli0" class="areaContainerFrame" style="padding:2px 0px 2px 0px;">
-						<table id="tblTimesheetM" class="tblEdit">
-							<colgroup>
-								<col width="10%"/>
-								<col width="20%"/>
-								<col width="10%"/>
-								<col width="20%"/>
-								<col width="10%"/>
-								<col width="*"/>
-							</colgroup>
-							<tbody>
-								<tr>
-									<th class="thEdit rt">Electronic Timesheet</th>
-									<td class="tdEdit"></td>
-									<th class="thEdit rt">Timesheet Units</th>
-									<td class="tdEdit"></td>
-									<th class="thEdit rt">Enable Bulk Approval</th>
-									<td class="tdEdit"></td>
-								</tr>
-							</tbody>
-						</table>
+						<div class="sectionHeader" style="padding:4px 4px;">
+							<ui:check name="useTimesheet" value="Y" text="Use Timesheet" isChecked="<%=dsAsg.getValue(\"ATTRIBUTE10\")%>"/>
+						</div>
 						<div id="divTimesheetD">
 							<div class="verGap2"></div>
 							<table id="tblTimesheetD" class="tblEdit">
 								<colgroup>
-									<col width="23%"/>
-									<col width="20%"/>
-									<col width="20%"/>
-									<col width="10%"/>
+									<col width="14%"/>
+									<col width="27%"/>
+									<col width="6%"/>
+									<col width="24%"/>
 									<col width="*"/>
 								</colgroup>
 								<tbody>
 									<tr>
 										<th class="thEdit rt">Timesheet Name</th>
-										<td class="tdEdit" colspan="5"></td>
+										<td class="tdEdit"><ui:text name="timesheetName" value="<%=dsAsg.getValue(\"TIMESHEET_NAME\")%>"/></td>
+										<th class="thEdit rt">Units</th>
+										<td class="tdEdit"><ui:ccselect name="timesheetUnits" codeType="TIMESHEET_UNIT" selectedValue="<%=dsAsg.getValue(\"TIMESHEET_UNITS\")%>" attribute="data-width:100%"/></td>
+										<td class="tdEdit"><ui:check name="timesheetBulkApproval" value="Y" text="Enable Bulk Approval" isChecked="<%=dsAsg.getValue(\"IS_BULK_APPROVAL\")%>"/></td>
 									</tr>
 									<tr>
 										<th class="thEdit rt">Primary Approver</th>
-										<td class="tdEdit" colspan="2"></td>
-										<th class="thEdit rt">Email</th>
-										<td class="tdEdit"></td>
+										<td class="tdEdit" colspan="3"><%=timesheetApprovers.getAsHtmlStringForSelectbox("PERSON_ID", "FULL_NAME", timesheetApprover1Id, "==Select==", "id:timsheetApprover1;name:timsheetApprover1;class:bootstrapSelect")%></td>
+										<td class="tdEdit"><ui:text name="timesheetApprover1Email" value="<%=dsAsg.getValue(\"TIMESHEET_APPROVER_1_EMAIL\")%>" status="display"/></td>
 									</tr>
 									<tr>
 										<th class="thEdit rt">Secondary Approver</th>
-										<td class="tdEdit" colspan="2"></td>
-										<th class="thEdit rt">Email</th>
-										<td class="tdEdit"></td>
+										<td class="tdEdit" colspan="3"><%=timesheetApprovers.getAsHtmlStringForSelectbox("PERSON_ID", "FULL_NAME", timesheetApprover2Id, "==Select==", "id:timsheetApprover2;name:timsheetApprover2;class:bootstrapSelect")%></td>
+										<td class="tdEdit"><ui:text name="timesheetApprover2Email" value="<%=dsAsg.getValue(\"TIMESHEET_APPROVER_2_EMAIL\")%>" status="display"/></td>
 									</tr>
 									<tr>
 										<th class="thEdit rt">Tertiary Approver</th>
-										<td class="tdEdit" colspan="2"></td>
-										<th class="thEdit rt">Email</th>
-										<td class="tdEdit"></td>
+										<td class="tdEdit" colspan="3"><%=timesheetApprovers.getAsHtmlStringForSelectbox("PERSON_ID", "FULL_NAME", timesheetApprover3Id, "==Select==", "id:timsheetApprover3;name:timsheetApprover3;class:bootstrapSelect")%></td>
+										<td class="tdEdit"><ui:text name="timesheetApprover3Email" value="<%=dsAsg.getValue(\"TIMESHEET_APPROVER_3_EMAIL\")%>" status="display"/></td>
 									</tr>
 									<tr>
-										<th class="thEdit rt">Send Approval Notification To</th>
-										<td class="tdEdit"></td>
-										<td class="tdEdit"></td>
-										<th class="thEdit rt">Email</th>
-										<td class="tdEdit"></td>
+										<th class="thEdit rt">Send Notification To</th>
+										<td class="tdEdit"><%=timesheetNotiOrg.getAsHtmlStringForSelectbox("ORGANISATION_ID", "ORGANISATION_NAME", timesheetNotiToOrgId, "==Select==", "id:timsheetNotiToOrg;name:timsheetNotiToOrg;class:bootstrapSelect;data-width:100%")%></td>
+										<td class="tdEdit" colspan="2"><ui:select name="timesheetNotiToPerson" className="dropup" attribute="data-width:100%;data-dropup-auto:false"><ui:seloption value="" text="==Select=="/></ui:select></td>
+										<td class="tdEdit"><ui:text name="timesheetNotiToPersonEmail" value="<%=dsAsg.getValue(\"TIMESHEET_NOTI_TO_EMAIL\")%>" status="display"/></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
 					<div id="divTsExpDeli1" class="areaContainerFrame" style="padding:2px 0px 2px 0px;display:none;">
-						<table id="tblExpenseM" class="tblEdit">
-							<colgroup>
-								<col width="10%"/>
-								<col width="20%"/>
-								<col width="10%"/>
-								<col width="*"/>
-							</colgroup>
-							<tbody>
-								<tr>
-									<th class="thEdit rt">Electronic Expense</th>
-									<td class="tdEdit"></td>
-									<th class="thEdit rt">Enable Bulk Approval</th>
-									<td class="tdEdit"></td>
-								</tr>
-							</tbody>
-						</table>
+						<div class="sectionHeader" style="padding:4px 4px;">
+							<ui:check name="useExpense" value="Y" text="Use Expense" isChecked="<%=dsAsg.getValue(\"USE_EXPENSE\")%>"/>
+						</div>
 						<div id="divExpenseD">
 							<div class="verGap2"></div>
 							<table id="tblExpenseD" class="tblEdit">
 								<colgroup>
-									<col width="23%"/>
-									<col width="20%"/>
-									<col width="20%"/>
-									<col width="10%"/>
+									<col width="14%"/>
+									<col width="27%"/>
+									<col width="6%"/>
+									<col width="24%"/>
 									<col width="*"/>
 								</colgroup>
 								<tbody>
 									<tr>
 										<th class="thEdit rt">Expense Name</th>
-										<td class="tdEdit" colspan="5"></td>
+										<td class="tdEdit" colspan="2"><ui:text name="expenseName" value="<%=dsAsg.getValue(\"EXPENSE_NAME\")%>"/></td>
+										<td class="tdEdit" colspan="2"><ui:check name="expenseBulkApproval" value="Y" text="Enable Bulk Approval" isChecked="<%=dsAsg.getValue(\"IS_BULK_APPROVAL_EXPENSE\")%>"/></td>
 									</tr>
 									<tr>
 										<th class="thEdit rt">Primary Approver</th>
-										<td class="tdEdit" colspan="2"></td>
-										<th class="thEdit rt">Email</th>
-										<td class="tdEdit"></td>
+										<td class="tdEdit" colspan="3"><%=expenseApprovers.getAsHtmlStringForSelectbox("PERSON_ID", "FULL_NAME", expenseApprover1Id, "==Select==", "id:expenseApprover1;name:expenseApprover1;class:bootstrapSelect")%></td>
+										<td class="tdEdit"><ui:text name="expenseApprover1Email" value="<%=dsAsg.getValue(\"EXPENSE_APPROVER_1_EMAIL\")%>" status="display"/></td>
 									</tr>
 									<tr>
 										<th class="thEdit rt">Secondary Approver</th>
-										<td class="tdEdit" colspan="2"></td>
-										<th class="thEdit rt">Email</th>
-										<td class="tdEdit"></td>
+										<td class="tdEdit" colspan="3"><%=expenseApprovers.getAsHtmlStringForSelectbox("PERSON_ID", "FULL_NAME", expenseApprover2Id, "==Select==", "id:expenseApprover2;name:expenseApprover2;class:bootstrapSelect")%></td>
+										<td class="tdEdit"><ui:text name="expenseApprover2Email" value="<%=dsAsg.getValue(\"EXPENSE_APPROVER_2_EMAIL\")%>" status="display"/></td>
 									</tr>
 									<tr>
 										<th class="thEdit rt">Tertiary Approver</th>
-										<td class="tdEdit" colspan="2"></td>
-										<th class="thEdit rt">Email</th>
-										<td class="tdEdit"></td>
+										<td class="tdEdit" colspan="3"><%=expenseApprovers.getAsHtmlStringForSelectbox("PERSON_ID", "FULL_NAME", expenseApprover3Id, "==Select==", "id:expenseApprover3;name:expenseApprover3;class:bootstrapSelect")%></td>
+										<td class="tdEdit"><ui:text name="expenseApprover3Email" value="<%=dsAsg.getValue(\"EXPENSE_APPROVER_3_EMAIL\")%>" status="display"/></td>
 									</tr>
 									<tr>
-										<th class="thEdit rt">Send Approval Notification To</th>
-										<td class="tdEdit"></td>
-										<td class="tdEdit"></td>
-										<th class="thEdit rt">Email</th>
-										<td class="tdEdit"></td>
+										<th class="thEdit rt">Send Notification To</th>
+										<td class="tdEdit"><%=expenseNotiOrg.getAsHtmlStringForSelectbox("ORGANISATION_ID", "ORGANISATION_NAME", expenseNotiToOrgId, "==Select==", "id:expenseNotiToOrg;name:expenseNotiToOrg;class:bootstrapSelect;data-width:100%")%></td>
+										<td class="tdEdit" colspan="2"><ui:select name="expenseNotiToPerson" className="dropup" attribute="data-width:100%;data-dropup-auto:false"><ui:seloption value="" text="==Select=="/></ui:select></td>
+										<td class="tdEdit"><ui:text name="expenseNotiToPersonEmail" value="<%=dsAsg.getValue(\"EXPENSE_NOTI_TO_EMAIL\")%>" status="display"/></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
 					<div id="divTsExpDeli2" class="areaContainerFrame" style="padding:2px 0px 2px 0px;display:none;">
-						<table id="tblDeliverableM" class="tblEdit">
-							<colgroup>
-								<col width="10%"/>
-								<col width="20%"/>
-								<col width="10%"/>
-								<col width="*"/>
-							</colgroup>
-							<tbody>
-								<tr>
-									<th class="thEdit rt">Electronic SoW</th>
-									<td class="tdEdit"></td>
-									<th class="thEdit rt">Enable Bulk Approval</th>
-									<td class="tdEdit"></td>
-								</tr>
-							</tbody>
-						</table>
+						<div class="sectionHeader" style="padding:4px 4px;">
+							<ui:check name="useDeliverable" value="Y" text="Use Deliverable" isChecked="<%=dsAsg.getValue(\"USE_DELIVERABLES\")%>"/>
+						</div>
 						<div id="divDeliverableD">
 							<div class="verGap2"></div>
 							<table id="tblDeliverableD" class="tblEdit">
 								<colgroup>
-									<col width="23%"/>
-									<col width="20%"/>
-									<col width="20%"/>
-									<col width="10%"/>
+									<col width="14%"/>
+									<col width="27%"/>
+									<col width="6%"/>
+									<col width="24%"/>
 									<col width="*"/>
 								</colgroup>
 								<tbody>
 									<tr>
 										<th class="thEdit rt">Deliverables Name</th>
-										<td class="tdEdit" colspan="5"></td>
+										<td class="tdEdit" colspan="2"><ui:text name="deliverableName" value="<%=dsAsg.getValue(\"DELIVERABLES_NAME\")%>"/></td>
+										<td class="tdEdit" colspan="2"><ui:check name="deliverableBulkApproval" value="Y" text="Enable Bulk Approval" isChecked="<%=dsAsg.getValue(\"IS_BULK_APPROVAL_DELIVERABLES\")%>"/></td>
 									</tr>
 									<tr>
 										<th class="thEdit rt">Primary Approver</th>
-										<td class="tdEdit" colspan="2"></td>
-										<th class="thEdit rt">Email</th>
-										<td class="tdEdit"></td>
+										<td class="tdEdit" colspan="3"><%=deliverableApprovers.getAsHtmlStringForSelectbox("PERSON_ID", "FULL_NAME", deliverableApprover1Id, "==Select==", "id:deliverableApprover1;name:deliverableApprover1;class:bootstrapSelect")%></td>
+										<td class="tdEdit"><ui:text name="deliverableApprover1Email" value="<%=dsAsg.getValue(\"DELIVERABLES_APPROVER_1_EMAIL\")%>" status="display"/></td>
 									</tr>
 									<tr>
 										<th class="thEdit rt">Secondary Approver</th>
-										<td class="tdEdit" colspan="2"></td>
-										<th class="thEdit rt">Email</th>
-										<td class="tdEdit"></td>
+										<td class="tdEdit" colspan="3"><%=deliverableApprovers.getAsHtmlStringForSelectbox("PERSON_ID", "FULL_NAME", deliverableApprover2Id, "==Select==", "id:deliverableApprover2;name:deliverableApprover2;class:bootstrapSelect")%></td>
+										<td class="tdEdit"><ui:text name="deliverableApprover2Email" value="<%=dsAsg.getValue(\"DELIVERABLES_APPROVER_2_EMAIL\")%>" status="display"/></td>
 									</tr>
 									<tr>
 										<th class="thEdit rt">Tertiary Approver</th>
-										<td class="tdEdit" colspan="2"></td>
-										<th class="thEdit rt">Email</th>
-										<td class="tdEdit"></td>
+										<td class="tdEdit" colspan="3"><%=deliverableApprovers.getAsHtmlStringForSelectbox("PERSON_ID", "FULL_NAME", deliverableApprover3Id, "==Select==", "id:deliverableApprover3;name:deliverableApprover3;class:bootstrapSelect")%></td>
+										<td class="tdEdit"><ui:text name="deliverableApprover3Email" value="<%=dsAsg.getValue(\"DELIVERABLES_APPROVER_3_EMAIL\")%>" status="display"/></td>
 									</tr>
 									<tr>
-										<th class="thEdit rt">Send Approval Notification To</th>
-										<td class="tdEdit"></td>
-										<td class="tdEdit"></td>
-										<th class="thEdit rt">Email</th>
-										<td class="tdEdit"></td>
+										<th class="thEdit rt">Send Notification To</th>
+										<td class="tdEdit"><%=deliverableNotiOrg.getAsHtmlStringForSelectbox("ORGANISATION_ID", "ORGANISATION_NAME", deliverableNotiToOrgId, "==Select==", "id:deliverableNotiToOrg;name:deliverableNotiToOrg;class:bootstrapSelect;data-width:100%")%></td>
+										<td class="tdEdit" colspan="2"><ui:select name="deliverableNotiToPerson" className="dropup" attribute="data-width:100%;data-dropup-auto:false"><ui:seloption value="" text="==Select=="/></ui:select></td>
+										<td class="tdEdit"><ui:text name="deliverableNotiToPersonEmail" value="<%=dsAsg.getValue(\"DELIVERABLES_NOTI_TO_EMAIL\")%>" status="display"/></td>
 									</tr>
 								</tbody>
 							</table>
-							<div class="verGap2"></div>
-							<div class="divButtonArea">
+							<div class="verGap4"></div>
+							<div class="divButtonArea sectionHeader">
 								<div class="divButtonAreaRight">
 									<ui:buttonGroup>
 										<ui:button id="btnAddDeliverableRate" caption="Add" iconClass="fa-plus"/>
@@ -536,19 +571,20 @@ var assignmentId = "<%=assignmentId%>";
 							</div>
 							<div class="verGap2"></div>
 							<div id="divGridHolderDeliverableRate" style="overflow:auto;">
-								<table id="tblDeliverableRate" class="tblGrid sort autosort" style="width:2000px">
+								<table id="tblDeliverableRate" class="tblGrid sort autosort" style="width:1300px">
 									<colgroup>
-										<col width="8%"></col>
-										<col width="8%"></col>
+										<col width="3%"></col>
+										<col width="14%"></col>
+										<col width="17%"></col>
 										<col width="*"></col>
 										<col width="8%"></col>
 										<col width="8%"></col>
-										<col width="8%"></col>
-										<col width="8%"></col>
-										<col width="2%"></col>
+										<col width="10%"></col>
+										<col width="12%"></col>
 									</colgroup>
 									<thead>
 										<tr>
+											<th class="thGrid">Action</th>
 											<th class="thGrid">Element</th>
 											<th class="thGrid">Alternate Name</th>
 											<th class="thGrid">Description</th>
@@ -556,12 +592,11 @@ var assignmentId = "<%=assignmentId%>";
 											<th class="thGrid">Due Date</th>
 											<th class="thGrid">Disp Deliverables</th>
 											<th class="thGrid">Status</th>
-											<th class="thGrid">Action</th>
 										</tr>
 									</thead>
-									<tbody id="tbodyDocuments">
+									<tbody id="tbodyDeliverableRate">
 										<tr>
-											<td class="tdGrid Ct" colspan="8"><mc:msg key="I002"/></td>
+											<td class="tdGrid Ct" colspan="8"><mc:msg key="I001"/></td>
 										</tr>
 									</tbody>
 								</table>
@@ -585,43 +620,41 @@ var assignmentId = "<%=assignmentId%>";
 						<tbody>
 							<tr>
 								<th class="thEdit rt">Invoice Template</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="invoiceTemplate" value="<%=dsAsg.getValue(\"INVOICE_TEMPLATE\")%>" status="display"/></td>
 								<th class="thEdit rt">Rate Type</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="rateType" value="<%=dsAsg.getValue(\"UNIT_MEANING\")%>" status="display"/></td>
 								<th class="thEdit rt">Last Invoice</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="lastInvoiceDate" value="<%=dsAsg.getValue(\"LAST_INVOICE_DATE_FORMAT\")%>" status="display"/></td>
 							</tr>
 							<tr>
 								<th class="thEdit rt">Payment Terms</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="paymentTerms" value="<%=dsAsg.getValue(\"PAYMENT_TERMS\")%>" status="display"/></td>
 								<th class="thEdit rt">Management Fee</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="managementFee" value="<%=dsAsg.getValue(\"MANAGEMENT_FEE\")+\" %\"%>" status="display"/></td>
 								<th class="thEdit rt">Last Paid</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="lastPaidDate" value="<%=dsAsg.getValue(\"LAST_PAID_DATE_FORMAT\")%>" status="display"/></td>
 							</tr>
 							<tr>
 								<th class="thEdit rt">Invoice Cycle</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="invoiceCycle" value="<%=dsAsg.getValue(\"INVOICE_CYCLE_MEANING\")%>" status="display"/></td>
 								<th class="thEdit rt">Payroll Tax</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="payrollTax" value="<%=dsAsg.getValue(\"PAYROLL_TAX\")+\" %\"%>" status="display"/></td>
 								<th class="thEdit rt">Next Invoice</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="nextInvoiceDate" value="<%=dsAsg.getValue(\"NEXT_INVOICE_DATE_FORMAT\")%>" status="display"/></td>
 							</tr>
 							<tr>
 								<th class="thEdit rt">Customer Support Consultant</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="cscName" value="<%=dsAsg.getValue(\"CSC_NAME\")%>" status="display"/></td>
 								<th class="thEdit rt"></th>
 								<td class="tdEdit"></td>
 								<th class="thEdit rt">Next Paid</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="nextPaymentDate" value="<%=dsAsg.getValue(\"NEXT_PAYMENT_DATE_FORMAT\")%>" status="display"/></td>
 							</tr>
 							<tr>
 								<th class="thEdit rt">Invoice Recipient Email</th>
-								<td class="tdEdit"></td>
-								<th class="thEdit rt"></th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit" colspan="3"><ui:text name="invoiceRecipientEmail" value="<%=dsAsg.getValue(\"INVOICE_RECIPIENT_EMAIL\")%>" status="display"/></td>
 								<th class="thEdit rt">Next Timesheet</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="nextTimesheetDate" value="<%=dsAsg.getValue(\"NEXT_TIMESHEET_DATE_FORMAT\")%>" status="display"/></td>
 							</tr>
 						</tbody>
 					</table>

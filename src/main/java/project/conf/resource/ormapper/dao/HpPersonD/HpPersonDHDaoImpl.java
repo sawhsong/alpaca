@@ -108,4 +108,16 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 
 		return selectAsDataSet(queryAdvisor, "query.HpPersonD.getEcmsGeneralInfoByPersonId");
 	}
+
+	public DataSet getApproverDataSetByOrgIds(String... organisationIds) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		String ids = "";
+
+		for (String id : organisationIds) {
+			ids += (CommonUtil.isBlank(ids)) ? "'"+id+"'" : ", "+"'"+id+"'";
+		}
+		queryAdvisor.addVariable("organisationIds", ids);
+
+		return selectAsDataSet(queryAdvisor, "query.HpPersonD.getApproverDataSetByOrgIds");
+	}
 }

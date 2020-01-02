@@ -246,4 +246,49 @@ public class Per0202Action extends BaseAction {
 		}
 		return "assignment";
 	}
+
+	public String getPrtDocumentList() throws Exception {
+		try {
+			biz.getPrtDocumentList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getAssignmentRateList() throws Exception {
+		try {
+			biz.getAssignmentRateList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getDeliverableRateList() throws Exception {
+		try {
+			biz.getDeliverableRateList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getApproverEmail() throws Exception {
+		try {
+			biz.getApproverEmail(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getNotiToPersonList() throws Exception {
+		try {
+			biz.getNotiToPersonList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }

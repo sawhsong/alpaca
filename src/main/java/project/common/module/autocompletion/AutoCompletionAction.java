@@ -228,4 +228,34 @@ public class AutoCompletionAction extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
+
+	public String getBillingCodeByCodeOrId() throws Exception {
+		try {
+			biz.getBillingCodeByCodeOrId(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	/*!
+	 * Assignment
+	 */
+	public String getCostCentre() throws Exception {
+		try {
+			biz.getCostCentre(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getPaymentMethodByCodeOrId() throws Exception {
+		try {
+			biz.getPaymentMethodByCodeOrId(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }

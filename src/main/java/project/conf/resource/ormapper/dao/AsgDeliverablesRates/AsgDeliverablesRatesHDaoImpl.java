@@ -1,21 +1,23 @@
 /**************************************************************************************************
  * Framework Generated HDAOImpl Source
- * - HP_ASSIGNMENT_RATES - 
+ * - ASG_DELIVERABLES_RATES - 
  *************************************************************************************************/
-package project.conf.resource.ormapper.dao.HpAssignmentRates;
+package project.conf.resource.ormapper.dao.AsgDeliverablesRates;
 
 import project.common.extend.BaseHDao;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 import zebra.util.ConfigUtil;
 
-public class HpAssignmentRatesHDaoImpl extends BaseHDao implements HpAssignmentRatesDao {
+public class AsgDeliverablesRatesHDaoImpl extends BaseHDao implements AsgDeliverablesRatesDao {
 	public DataSet getDataSetByAssignmentId(String assignmentId) throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		String dateFormat = ConfigUtil.getProperty("format.date.java");
+		String dateTimeFormat = ConfigUtil.getProperty("format.dateTime.db.au");
 
 		queryAdvisor.addVariable("dateFormat", dateFormat);
+		queryAdvisor.addVariable("dateTimeFormat", dateTimeFormat);
 		queryAdvisor.addVariable("assignmentId", assignmentId);
-		return selectAsDataSet(queryAdvisor, "query.HpAssignmentRates.getDataSetByAssignmentId");
+		return selectAsDataSet(queryAdvisor, "query.AsgDeliverablesRates.getDataSetByAssignmentId");
 	}
 }

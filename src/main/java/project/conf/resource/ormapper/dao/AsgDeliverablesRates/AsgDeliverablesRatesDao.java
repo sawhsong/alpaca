@@ -1,13 +1,12 @@
 /**************************************************************************************************
  * Framework Generated DAO Source
- * - HP_PAYMENT_METHODS - 
+ * - ASG_DELIVERABLES_RATES - 
  *************************************************************************************************/
-package project.conf.resource.ormapper.dao.HpPaymentMethods;
+package project.conf.resource.ormapper.dao.AsgDeliverablesRates;
 
 import zebra.base.IDao;
 import zebra.data.DataSet;
-import zebra.data.QueryAdvisor;
 
-public interface HpPaymentMethodsDao extends IDao {
-	public DataSet getPaymentMethodForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception;
+public interface AsgDeliverablesRatesDao extends IDao {
+	public DataSet getDataSetByAssignmentId(String assignmentId) throws Exception;
 }

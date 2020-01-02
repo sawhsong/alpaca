@@ -11,6 +11,10 @@ import zebra.data.QueryAdvisor;
 import zebra.util.ConfigUtil;
 
 public class HpAssignmentsDHDaoImpl extends BaseHDao implements HpAssignmentsDDao {
+	public DataSet getCostCentreForAutoCompletion(QueryAdvisor queryAdvisor) throws Exception {
+		return selectAsDataSet(queryAdvisor, "query.HpAssignmentsD.getCostCentreForAutoCompletion");
+	}
+
 	public int updateAssignmentByColumn(QueryAdvisor queryAdvisor, HpAssignmentsD hpAssignmentsD) throws Exception {
 		return updateColumns(queryAdvisor, hpAssignmentsD);
 	}

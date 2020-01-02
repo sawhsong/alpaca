@@ -35,7 +35,7 @@
 			var $scrollablePanel, attachToHeight = 0, isScrollbar = false, heightAdjustment = 0,
 				isPopup = $.nony.isPopup(), isTabFrame = $.nony.isTabFrame(), tableId = $(this).attr("id");
 			var systemGeneratedTableForFixedHeaderId = jsconfig.get("systemGeneratedTableForFixedHeaderId"+tableId) || "systemGeneratedTableForFixedHeader"+tableId;
-			var divSystemGeneratedFixedTableHeaderWrapperId = jsconfig.get("divSystemGeneratedFixedTableHeaderWrapperId");
+			var divSystemGeneratedFixedTableHeaderWrapperId = jsconfig.get("divSystemGeneratedFixedTableHeaderWrapperId")+tableId;
 
 			$(options.attachTo).css("overflow", "auto");
 
@@ -353,7 +353,7 @@
 			var $scrollablePanel = $.nony.isPopup() ? $("#divScrollablePanelPopup") : ($.nony.isTabFrame() ? $("#divScrollablePanelFrame") : $("#divScrollablePanel"));
 			var $header = $table.find("thead").clone(true, true);
 			var $fixedTable = $("<table id=\""+systemGeneratedTableForFixedHeaderId+"\"/>").prop("class", $table.prop("class"))
-								.css({position:"fixed", "table-layout":"fixed", display:"none", "margin-top":"0px", "z-index":500});
+								.css({position:"fixed", "table-layout":"fixed", display:"none", "margin-top":"0px", "z-index":1000});
 
 			if ($.nony.browser.Chrome) {$fixedTable.width($table.width());}
 			else if ($.nony.browser.FireFox) {$fixedTable.width($table.width()+1);}
@@ -396,15 +396,36 @@
 
 			visibleHeight = $.nony.toNumber($(options.attachTo).offset().top - $scrollablePanel.offset().top);
 
-			$scrollablePanel.bind("scroll", function() {
-				$fixedTable.css("top", $(options.attachTo).offset().top);
+			/*!
+			 * Check page scroll for hiding/displaying header according to the wapper
+			 * 		options.scrollWrapper
+			 */
+			if (!$.nony.isEmpty(options.scrollWrapper)) {
+				$scrollablePanel = $(options.scrollWrapper);
 
-				if (visibleHeight < $scrollablePanel.scrollTop()) {
-					$fixedTable.hide();
-				} else {
-					$fixedTable.show();
-				}
-			});
+				$scrollablePanel.bind("scroll", function() {
+					var tableWrapperId = jsconfig.get("divSystemGeneratedFixedTableHeaderWrapperId"+tableId);
+					var $tableWrapper = $("#"+tableWrapperId);
+
+					$tableWrapper.css("top", $(options.attachTo).offset().top);
+
+					if (visibleHeight < $scrollablePanel.scrollTop()) {
+						$fixedTable.hide();
+					} else {
+						$fixedTable.show();
+					}
+				});
+			} else {
+				$scrollablePanel.bind("scroll", function() {
+					$fixedTable.css("top", $(options.attachTo).offset().top);
+
+					if (visibleHeight < $scrollablePanel.scrollTop()) {
+						$fixedTable.hide();
+					} else {
+						$fixedTable.show();
+					}
+				});
+			}
 
 			/*!
 			 * If (table width != '100%' or table width > attachTo width)
@@ -470,7 +491,7 @@
 				$fixedTable.detach().appendTo($wrapper);
 				$table.before($wrapper);
 
-				jsconfig.put("divSystemGeneratedFixedTableHeaderWrapperId", "divSystemGeneratedFixedTableHeaderWrapper"+tableId);
+				jsconfig.put("divSystemGeneratedFixedTableHeaderWrapperId"+tableId, "divSystemGeneratedFixedTableHeaderWrapper"+tableId);
 
 				var left = $table.offset().left;
 				$(options.attachTo).bind("scroll", function() {

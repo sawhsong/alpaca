@@ -5,6 +5,33 @@
  * - HR_DOCUMENT - 
  */-->
 <hibernate-mapping>
+	<sql-query name="query.HrDocument.getDataSetByDocumentId">
+	<![CDATA[
+		select hrd.*,
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_TYPE' and lookup_code = hrd.document_type) as document_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_SUB_TYPE' and lookup_code = hrd.document_sub_type) as document_sub_type_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_RECIEVED_STATUS' and lookup_code = hrd.status) as status_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'DOCUMENT_RECIEVED_STATUS_DETAIL' and lookup_code = hrd.status_detail) as status_detail_meaning,
+		       (select full_name from hp_person_d where person_id = hrd.person_id) as person_name,
+		       (select full_name from hp_person_d where person_id = hrd.assigned_to) as assigned_to_name,
+		       (select organisation_name from hp_organisation_d where organisation_id = hrd.organisation_id) as organisation_name,
+		       (select full_name from hp_person_d where person_id = hrd.sent_by) as sent_by_name,
+		       to_char(hrd.sent_date, '${dateFormat}') as sent_date_format,
+		       (select full_name from hp_person_d where person_id = hrd.received_by) as received_by_name,
+		       to_char(hrd.received_date, '${dateFormat}') as received_date_format,
+		       (select full_name from hp_person_d where person_id = hrd.created_by) as created_by_name,
+		       to_char(hrd.creation_date, '${dateFormat}') as creation_date_format,
+		       (select full_name from hp_person_d where person_id = hrd.last_updated_by) as last_updated_by_name,
+		       to_char(hrd.last_update_date, '${dateFormat}') as last_update_date_format,
+		       to_char(hrd.due_date, '${dateFormat}') as due_date_format,
+		       to_char(hrd.follow_up_date, '${dateFormat}') as follow_up_date_format,
+		       to_char(hrd.expiry_date, '${dateFormat}') as expiry_date_format
+		  from hr_document hrd
+		 where hrd.is_active = 'Y'
+		   and hrd.document_id = '${documentId}'
+	]]>
+	</sql-query>
+
 	<sql-query name="query.HrDocument.getPersonOutstandingDocumentByPersonId">
 	<![CDATA[
 		select hrd.person_id as person_id,

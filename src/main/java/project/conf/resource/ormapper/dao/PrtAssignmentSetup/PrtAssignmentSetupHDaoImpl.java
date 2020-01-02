@@ -20,6 +20,15 @@ public class PrtAssignmentSetupHDaoImpl extends BaseHDao implements PrtAssignmen
 		return selectAsDataSet(queryAdvisor, "query.PrtAssignmentSetup.getByAssignmentId");
 	}
 
+	public DataSet getLatestDataSetByAssignmentId(String assignmentId) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		String dateFormat = ConfigUtil.getProperty("format.date.java");
+
+		queryAdvisor.addVariable("dateFormat", dateFormat);
+		queryAdvisor.addVariable("assignmentId", assignmentId);
+		return selectAsDataSet(queryAdvisor, "query.PrtAssignmentSetup.getLatestDataSetByAssignmentId");
+	}
+
 	public int deleteByAssignmentId(String assignmentId) throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 

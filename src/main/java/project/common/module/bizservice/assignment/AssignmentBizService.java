@@ -8,5 +8,9 @@ public interface AssignmentBizService {
 	public DataSet getAssignmentList(QueryAdvisor queryAdvisor) throws Exception;
 	public HpAssignmentsD getAssignmentByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception;
 	public DataSet getAssignmentAsDataSetByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception;
+	public DataSet getPayrollTaxDataSetByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception;
+	public DataSet getAssignmentRatesDataSetByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception;
+	public DataSet getDeliverableRatesDataSetByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception;
+	public DataSet getNotiToOrganisations(QueryAdvisor queryAdvisor, String assignmentId) throws Exception;
 	public int updateWorkingState(QueryAdvisor queryAdvisor, String assignmentId, String toWorkingState) throws Exception;
 }

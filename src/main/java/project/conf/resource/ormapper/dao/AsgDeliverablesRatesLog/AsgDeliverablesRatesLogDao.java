@@ -1,12 +1,10 @@
 /**************************************************************************************************
  * Framework Generated DAO Source
- * - HP_ASSIGNMENT_RATES - 
+ * - ASG_DELIVERABLES_RATES_LOG - 
  *************************************************************************************************/
-package project.conf.resource.ormapper.dao.HpAssignmentRates;
+package project.conf.resource.ormapper.dao.AsgDeliverablesRatesLog;
 
 import zebra.base.IDao;
-import zebra.data.DataSet;
 
-public interface HpAssignmentRatesDao extends IDao {
-	public DataSet getDataSetByAssignmentId(String assignmentId) throws Exception;
+public interface AsgDeliverablesRatesLogDao extends IDao {
 }

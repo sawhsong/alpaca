@@ -187,6 +187,10 @@ $(function() {
 		setTimeout(function() {
 			$("#divFrame").stop().animate({opacity:"show"}, jsconfig.get("effectDuration"));
 		}, 100);
+
+		if (commonJs.contains(actionString, "getAssignment.do")) {
+			commonJs.showProcMessageOnElement("divFrame");
+		}
 	};
 
 	/*!

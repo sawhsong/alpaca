@@ -201,4 +201,22 @@
 		   and per.person_id = pap.person_id(+)
 	]]>
 	</sql-query>
+
+	<sql-query name="query.HpPersonD.getApproverDataSetByOrgIds">
+	<![CDATA[
+		select per.person_id,
+		       per.person_number,
+		       per.full_name,
+		       case (select preferred from hp_address_contact_d where person_id = per.person_id)
+		            when 'W' then (select email_work from hp_address_contact_d where person_id = per.person_id)
+		            when 'H' then (select email_home from hp_address_contact_d where person_id = per.person_id)
+		            when 'B' then (select email_work||', '||email_home from hp_address_contact_d where person_id = per.person_id)
+		            else ''
+		       end as email
+		  from hp_person_d per
+		 where per.employment_company_org_id in (${organisationIds})
+		   and per.employment_company_org_id not in ('1811')
+		 order by per.full_name
+	]]>
+	</sql-query>
 </hibernate-mapping>

@@ -1,12 +1,10 @@
 /**************************************************************************************************
  * Framework Generated DAO Source
- * - HP_ASSIGNMENT_RATES - 
+ * - ASG_DELIVERABLES_AUTH_EMAIL - 
  *************************************************************************************************/
-package project.conf.resource.ormapper.dao.HpAssignmentRates;
+package project.conf.resource.ormapper.dao.AsgDeliverablesAuthEmail;
 
 import zebra.base.IDao;
-import zebra.data.DataSet;
 
-public interface HpAssignmentRatesDao extends IDao {
-	public DataSet getDataSetByAssignmentId(String assignmentId) throws Exception;
+public interface AsgDeliverablesAuthEmailDao extends IDao {
 }

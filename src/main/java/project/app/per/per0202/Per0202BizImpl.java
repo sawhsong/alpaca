@@ -552,7 +552,7 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 			dsAsg = oppAsgDetailsDao.getOppAsgDetailsDataSetByOpportunityId(opportunityId);
 			dsPerson = hpPersonDDao.getPersonDataSetByPersonId(dsOpp.getValue("PERSON_ID"));
 
-			setWorkcoverValuesForOpportunity(paramEntity, session, dsAsg);
+			setWorkcoverValues(paramEntity, session, dsAsg.getValue("END_USER_ORG"), dsAsg.getValue("WC_ORG_CODE_RATE_LINK_ID"), dsAsg);
 
 			paramEntity.setObject("profileHtmlString", profileHtmlString);
 			paramEntity.setObject("dsOpp", dsOpp);
@@ -651,7 +651,8 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 		String assignmentId = dsRequest.getValue("assignmentId");
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
-		DataSet dsPerson, dsAsg;
+		DataSet dsPerson, dsAsg, dsPrt, dsNotiOrg, timesheetApprovers, expenseApprovers, deliverableApprovers;
+		String billingOrgId = "", euOrgId = "";
 
 		try {
 			qa.setObject("dataSource", dataSource);
@@ -661,9 +662,136 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 			dsPerson = hpPersonDDao.getPersonDataSetByPersonId(personId);
 			dsAsg = assignmentBS.getAssignmentAsDataSetByAssignmentId(qa, assignmentId);
 
+			setWorkcoverValues(paramEntity, session, dsAsg.getValue("EU_ORGANISATION_ID"), dsAsg.getValue("WC_ORG_CODE_RATE_LINK_ID"), dsAsg);
+
+			dsPrt = assignmentBS.getPayrollTaxDataSetByAssignmentId(qa, assignmentId);
+			dsNotiOrg = assignmentBS.getNotiToOrganisations(qa, assignmentId);
+
+			billingOrgId = dsAsg.getValue("BILLING_ORGANISATION_ID");
+			euOrgId = dsAsg.getValue("EU_ORGANISATION_ID");
+
+			timesheetApprovers = hpPersonDDao.getApproverDataSetByOrgIds(billingOrgId, euOrgId);
+			expenseApprovers = hpPersonDDao.getApproverDataSetByOrgIds(billingOrgId, euOrgId);
+			deliverableApprovers = hpPersonDDao.getApproverDataSetByOrgIds(billingOrgId, euOrgId);
+
 			paramEntity.setObject("dsPerson", dsPerson);
 			paramEntity.setObject("dsAsg", dsAsg);
+			paramEntity.setObject("dsPrt", dsPrt);
+			paramEntity.setObject("dsNotiOrg", dsNotiOrg);
+			paramEntity.setObject("timesheetApprovers", timesheetApprovers);
+			paramEntity.setObject("expenseApprovers", expenseApprovers);
+			paramEntity.setObject("deliverableApprovers", deliverableApprovers);
 
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getPrtDocumentList(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String prtDocumentId = dsRequest.getValue("prtDocumentId");
+		DataSet dataSet;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hrDocumentDao.setDataSourceName(dataSource);
+
+			dataSet = hrDocumentDao.getDataSetByDocumentId(prtDocumentId);
+
+			paramEntity.setAjaxResponseDataSet(dataSet);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getAssignmentRateList(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String assignmentId = dsRequest.getValue("assignmentId");
+		DataSet dataSet;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+
+			dataSet = assignmentBS.getAssignmentRatesDataSetByAssignmentId(queryAdvisor, assignmentId);
+
+			paramEntity.setAjaxResponseDataSet(dataSet);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getDeliverableRateList(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String assignmentId = dsRequest.getValue("assignmentId");
+		DataSet dataSet;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+
+			dataSet = assignmentBS.getDeliverableRatesDataSetByAssignmentId(queryAdvisor, assignmentId);
+
+			paramEntity.setAjaxResponseDataSet(dataSet);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getApproverEmail(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String approverId = dsRequest.getValue("approverId");
+		DataSet dataSet = new DataSet();
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpAddressContactDDao.setDataSourceName(dataSource);
+
+			dataSet.addColumn("EMAIL", hpAddressContactDDao.getPreferredEmailByPersonId(approverId));
+
+			paramEntity.setAjaxResponseDataSet(dataSet);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getNotiToPersonList(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String organisationId = dsRequest.getValue("organisationId");
+		DataSet dataSet;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpPersonDDao.setDataSourceName(dataSource);
+
+			dataSet = hpPersonDDao.getApproverDataSetByOrgIds(organisationId);
+
+			paramEntity.setAjaxResponseDataSet(dataSet);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -674,13 +802,10 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	/**
 	 * Private
 	 */
-	private void setWorkcoverValuesForOpportunity(ParamEntity paramEntity, HttpSession session, DataSet dsAsg) throws Exception {
+	private void setWorkcoverValues(ParamEntity paramEntity, HttpSession session, String endUserOrgId, String wcOrgCodeRateLinkId, DataSet dsAsg) throws Exception {
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
-		String endUserOrgId = "", wcOrgCodeRateLinkId = "", wcCodeRateName = "", wcWicAnzic = "", wcPercentage = "", wcStartDate = "", wcEndDate = "", wcWorkingStateMeaning = "";
-
-		endUserOrgId = dsAsg.getValue("END_USER_ORG");
-		wcOrgCodeRateLinkId = dsAsg.getValue("WC_ORG_CODE_RATE_LINK_ID");
+		String wcCodeRateName = "", wcWicAnzic = "", wcPercentage = "", wcStartDate = "", wcEndDate = "", wcWorkingStateMeaning = "";
 
 		if (CommonUtil.isValidId(endUserOrgId) && CommonUtil.isValidId(wcOrgCodeRateLinkId)) {
 			queryAdvisor.setObject("dataSource", dataSource);

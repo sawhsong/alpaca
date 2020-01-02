@@ -72,15 +72,15 @@ var personId = "<%=personId%>";
 				<col width="10%"/>
 				<col width="12%"/>
 				<col width="3%"/>
-				<col width="3%"/>
-				<col width="4%"/>
-				<col width="4%"/>
 				<col width="4%"/>
 				<col width="5%"/>
 				<col width="5%"/>
 				<col width="*"/>
 				<col width="14%"/>
 				<col width="3%"/>
+				<col width="3%"/>
+				<col width="4%"/>
+				<col width="4%"/>
 				<col width="4%"/>
 				<col width="8%"/>
 				<col width="3%"/>
@@ -90,17 +90,17 @@ var personId = "<%=personId%>";
 					<th class="thGrid sortable:alphanumeric">Asg Id</th>
 					<th class="thGrid sortable:alphanumeric">Asg Number</th>
 					<th class="thGrid sortable:alphanumeric">Person Name</th>
+					<th class="thGrid">Is Active</th>
+					<th class="thGrid">Is Preferred</th>
+					<th class="thGrid sortable:date">Asg Start Date</th>
+					<th class="thGrid sortable:date">Asg End Date</th>
+					<th class="thGrid sortable:alphanumeric">Billing Org</th>
+					<th class="thGrid sortable:alphanumeric">End User Org</th>
 					<th class="thGrid">Has PRT</th>
 					<th class="thGrid">Has WC</th>
 					<th class="thGrid">Last Invoice</th>
 					<th class="thGrid">Last Paid</th>
 					<th class="thGrid">Working State</th>
-					<th class="thGrid sortable:date">Asg Start Date</th>
-					<th class="thGrid sortable:date">Asg End Date</th>
-					<th class="thGrid sortable:alphanumeric">Billing Org</th>
-					<th class="thGrid sortable:alphanumeric">End User Org</th>
-					<th class="thGrid">Is Active</th>
-					<th class="thGrid">Is Preferred</th>
 					<th class="thGrid">Payment Method</th>
 					<th class="thGrid"><mc:msg key="page.com.action"/></th>
 				</tr>

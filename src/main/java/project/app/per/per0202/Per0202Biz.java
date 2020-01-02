@@ -38,4 +38,9 @@ public interface Per0202Biz {
 	public ParamEntity getAssignmentList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getAssignmentDataList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getAssignment(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getPrtDocumentList(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getAssignmentRateList(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getDeliverableRateList(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getApproverEmail(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getNotiToPersonList(ParamEntity paramEntity) throws Exception;
 }

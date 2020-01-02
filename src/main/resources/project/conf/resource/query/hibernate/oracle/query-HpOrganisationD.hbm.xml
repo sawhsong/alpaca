@@ -111,4 +111,51 @@
 		${order_by_clause}
 	]]>
 	</sql-query>
+
+	<sql-query name="query.HpOrganisationD.getDataSetByOrganisationIds">
+	<![CDATA[
+		select organisation_id,
+		       organisation_name,
+		       organisation_type,
+		       (select meaning from sys_common_lookups where lookup_type = 'ORGANISATION_TYPES' and lookup_code = organisation_type) as organisation_type_meaning,
+		       relationship,
+		       abn,
+		       acn,
+		       state,
+		       (select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = state) as state_meaning,
+		       country,
+		       decode(
+		            address_line||', '||suburb||', '||(select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = state)||', '||post_code||', '||country,
+		            ', , , , ', '',
+		            address_line||', '||suburb||', '||(select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = state)||', '||post_code||', '||country
+		       ) as address,
+		       to_char(first_contact_date, 'dd/mm/yyyy') as first_contact_date,
+		       es_payroll_consultant as csc,
+		       (select full_name from hp_person_d where person_id = es_payroll_consultant) as csc_name,
+		       es_account_manager as cdm_crm,
+		       (select full_name from hp_person_d where person_id = es_account_manager) as cdm_crm_name,
+		       es_cs_consultant as cdm_csm,
+		       (select full_name from hp_person_d where person_id = es_cs_consultant) as cdm_csm_name,
+		       es_bd_manager as cad_csd,
+		       (select full_name from hp_person_d where person_id = es_bd_manager) as cad_csd_name,
+		       es_customer_administrator as csa,
+		       (select full_name from hp_person_d where person_id = es_customer_administrator) as csa_name,
+		       es_migration_consultant as migration_consultant,
+		       (select full_name from hp_person_d where person_id = es_migration_consultant) as migration_consultant_name,
+		       es_migration_administrator as migration_administrator,
+		       (select full_name from hp_person_d where person_id = es_migration_administrator) as migration_administrator_name,
+		       customer_category,
+		       (select meaning from sys_common_lookups where lookup_type = 'ORGANISATION_TYPES' and lookup_code = customer_category) as customer_category_meaning,
+		       customer_stream,
+		       (select meaning from sys_common_lookups where lookup_type = 'CUSTOMER_STREAM' and lookup_code = customer_stream) as customer_stream_meaning,
+		       tax_invoice_acceptance_type,
+		       (select meaning from sys_common_lookups where lookup_type = 'TAX_INVOICE_ACCEPTANCE_TYPE' and lookup_code = tax_invoice_acceptance_type) as tax_invoice_acceptance_meaning
+		  from hp_organisation_d
+		 where 1 = 1
+		   and organisation_id in (${organisationIds})
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
 </hibernate-mapping>

@@ -5,4 +5,21 @@
  * - HP_PAYMENT_METHODS - 
  */-->
 <hibernate-mapping>
+	<sql-query name="query.HpPaymentMethods.getPaymentMethodForAutoCompletion">
+	<![CDATA[
+		select pay_method_id,
+		       name,
+		       account_name,
+		       bsb_number,
+		       account_number,
+		       bank_name,
+		       name||' ('||pay_method_id||')' as display_column_short,
+		       name||' ('||pay_method_id||')'||' ('||account_name||', '||bsb_number||', '||account_number||')' as display_column_long
+		  from hp_payment_methods
+		 where 1 = 1
+		${auto_fill}
+		${where_clause}
+		${order_by_clause}
+	]]>
+	</sql-query>
 </hibernate-mapping>

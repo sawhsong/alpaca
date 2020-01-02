@@ -26,4 +26,7 @@ public interface AutoCompletionBiz {
 	public ParamEntity getEsEmployeeByNameOrPersonNumber(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getBillingCodeById(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getBillingCodeByCode(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getBillingCodeByCodeOrId(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getCostCentre(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getPaymentMethodByCodeOrId(ParamEntity paramEntity) throws Exception;
 }
