@@ -37,4 +37,12 @@ public class HpAssignmentsDHDaoImpl extends BaseHDao implements HpAssignmentsDDa
 
 		return selectAsDataSet(qa, "query.HpAssignmentsD.getDataSetByAssignmentId");
 	}
+
+	public DataSet getManagementFeeAndPayrollTaxByAssignmentId(String assignmentId) throws Exception {
+		QueryAdvisor qa = new QueryAdvisor();
+
+		qa.addVariable("assignmentId", assignmentId);
+
+		return selectAsDataSet(qa, "query.HpAssignmentsD.getManagementFeeAndPayrollTaxByAssignmentId");
+	}
 }

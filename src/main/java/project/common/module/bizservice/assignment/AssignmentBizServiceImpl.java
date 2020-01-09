@@ -86,6 +86,26 @@ public class AssignmentBizServiceImpl extends BaseBiz implements AssignmentBizSe
 		return hpOrganisationDDao.getDataSetByOrganisationIds(billingOrgId, euOrgId, empOrgId, refNo1, refNo2, refNo3);
 	}
 
+	public String getManagementFeeByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception {
+		String dataSource = (String)queryAdvisor.getObject("dataSource");
+		DataSet ds;
+
+		hpAssignmentsDDao.setDataSourceName(dataSource);
+		ds = hpAssignmentsDDao.getManagementFeeAndPayrollTaxByAssignmentId(assignmentId);
+
+		return ds.getValue("MANAGEMENT_FEE");
+	}
+
+	public String getPayrollTaxByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception {
+		String dataSource = (String)queryAdvisor.getObject("dataSource");
+		DataSet ds;
+
+		hpAssignmentsDDao.setDataSourceName(dataSource);
+		ds = hpAssignmentsDDao.getManagementFeeAndPayrollTaxByAssignmentId(assignmentId);
+
+		return ds.getValue("PAYROLL_TAX");
+	}
+
 	public int updateWorkingState(QueryAdvisor queryAdvisor, String assignmentId, String toWorkingState) throws Exception {
 		HpAssignmentsD hpAssignmentsD = new HpAssignmentsD();
 
