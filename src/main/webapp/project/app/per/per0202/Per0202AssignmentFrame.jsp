@@ -687,7 +687,7 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 									<div style="float:left;padding-top:2px;"><ui:ccselect name="endTimeMin" selectedValue="<%=dsAsg.getValue(\"WORK_END_MM\")%>" caption="==Select==" codeType="MINUTE_CODE"/></div>
 								</td>
 								<th class="thEdit rt">Equipment Required</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:ccradio name="equipmentRequired" codeType="SIMPLE_YN" selectedValue="<%=dsAsg.getValue(\"EQUIPMENT_REQUIRED_YN\")%>"/></td>
 								<th class="thEdit rt">Special Conditions</th>
 								<td class="tdEdit"></td>
 							</tr>
