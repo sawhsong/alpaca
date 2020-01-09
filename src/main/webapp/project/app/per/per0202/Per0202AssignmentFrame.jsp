@@ -610,11 +610,11 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 				<div id="divInvoiceAllocation" class="accordionContents">
 					<table id="tblInvoiceAllocation" class="tblEdit">
 						<colgroup>
-							<col width="17%"/>
-							<col width="17%"/>
-							<col width="17%"/>
-							<col width="17%"/>
-							<col width="17%"/>
+							<col width="20%"/>
+							<col width="22%"/>
+							<col width="13%"/>
+							<col width="14%"/>
+							<col width="13%"/>
 							<col width="*"/>
 						</colgroup>
 						<tbody>
@@ -652,7 +652,7 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 							</tr>
 							<tr>
 								<th class="thEdit rt">Invoice Recipient Email</th>
-								<td class="tdEdit" colspan="3"><ui:text name="invoiceRecipientEmail" value="<%=dsAsg.getValue(\"INVOICE_RECIPIENT_EMAIL\")%>" status="display"/></td>
+								<td class="tdEdit" colspan="3"><ui:text name="invoiceRecipientEmail" value="<%=dsAsg.getValue(\"INVOICE_RECIPIENT_EMAIL\")%>"/></td>
 								<th class="thEdit rt">Next Timesheet</th>
 								<td class="tdEdit"><ui:text name="nextTimesheetDate" value="<%=dsAsg.getValue(\"NEXT_TIMESHEET_DATE_FORMAT\")%>" status="display"/></td>
 							</tr>
@@ -660,9 +660,6 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 					</table>
 				</div>
 			</div>
-		</div>
-		<div class="breaker"></div>
-		<div class="accordion">
 			<div class="accordionGroup">
 				<h3>Contracts</h3>
 				<div id="divContract" class="accordionContents">

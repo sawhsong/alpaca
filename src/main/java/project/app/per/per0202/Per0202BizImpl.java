@@ -663,6 +663,7 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 			dsAsg = assignmentBS.getAssignmentAsDataSetByAssignmentId(qa, assignmentId);
 
 			setWorkcoverValues(paramEntity, session, dsAsg.getValue("EU_ORGANISATION_ID"), dsAsg.getValue("WC_ORG_CODE_RATE_LINK_ID"), dsAsg);
+			setManagementFeeAndPayrollTax(paramEntity, session, assignmentId, dsAsg);
 
 			dsPrt = assignmentBS.getPayrollTaxDataSetByAssignmentId(qa, assignmentId);
 			dsNotiOrg = assignmentBS.getNotiToOrganisations(qa, assignmentId);
@@ -833,5 +834,19 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 			dsAsg.addColumn("WC_END_DATE", "");
 			dsAsg.addColumn("WC_WORKING_STATE_MEANING", "");
 		}
+	}
+
+	private void setManagementFeeAndPayrollTax(ParamEntity paramEntity, HttpSession session, String assignmentId, DataSet dsAsg) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+		String managementFee, payrollTax;
+
+		queryAdvisor.setObject("dataSource", dataSource);
+
+		managementFee = assignmentBS.getManagementFeeByAssignmentId(queryAdvisor, assignmentId);
+		payrollTax = assignmentBS.getPayrollTaxByAssignmentId(queryAdvisor, assignmentId);
+
+		dsAsg.addColumn("MANAGEMENT_FEE", managementFee);
+		dsAsg.addColumn("PAYROLL_TAX", payrollTax);
 	}
 }

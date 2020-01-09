@@ -37,7 +37,9 @@ $(function() {
 
 		var text = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"])
 		if (text == "Deliverables") {
-			getDeliverableRateList();
+			if ($("[name=useDeliverable]").prop("checked")) {
+				getDeliverableRateList();
+			}
 		}
 	});
 
