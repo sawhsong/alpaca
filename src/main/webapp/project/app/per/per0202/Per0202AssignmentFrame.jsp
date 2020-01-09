@@ -675,7 +675,17 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 						<tbody>
 							<tr>
 								<th class="thEdit rt">Start Time</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit">
+									<div style="float:left;padding-top:2px;"><ui:ccselect name="startTimeHour" selectedValue="<%=dsAsg.getValue(\"WORK_START_HH\")%>" caption="==Select==" codeType="HOUR_CODE" className="dropdown" attribute="data-size:13;data-dropup-auto:false"/></div>
+									<div style="float:left;padding:6px 6px 2px 6px;">:</div>
+									<div style="float:left;padding-top:2px;"><ui:ccselect name="startTimeMin" selectedValue="<%=dsAsg.getValue(\"WORK_START_MM\")%>" caption="==Select==" codeType="MINUTE_CODE"/></div>
+								</td>
+								<th class="thEdit rt">End Time</th>
+								<td class="tdEdit">
+									<div style="float:left;padding-top:2px;"><ui:ccselect name="endTimeHour" selectedValue="<%=dsAsg.getValue(\"WORK_END_HH\")%>" caption="==Select==" codeType="HOUR_CODE" className="dropdown" attribute="data-size:13;data-dropup-auto:false"/></div>
+									<div style="float:left;padding:6px 6px 2px 6px;">:</div>
+									<div style="float:left;padding-top:2px;"><ui:ccselect name="endTimeMin" selectedValue="<%=dsAsg.getValue(\"WORK_END_MM\")%>" caption="==Select==" codeType="MINUTE_CODE"/></div>
+								</td>
 								<th class="thEdit rt">Equipment Required</th>
 								<td class="tdEdit"></td>
 								<th class="thEdit rt">Special Conditions</th>
