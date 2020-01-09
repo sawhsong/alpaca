@@ -665,11 +665,11 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 				<div id="divContract" class="accordionContents">
 					<table id="tblContract" class="tblEdit">
 						<colgroup>
-							<col width="18%"/>
-							<col width="18%"/>
-							<col width="18%"/>
-							<col width="18%"/>
-							<col width="18%"/>
+							<col width="10%"/>
+							<col width="23%"/>
+							<col width="10%"/>
+							<col width="23%"/>
+							<col width="10%"/>
 							<col width="*"/>
 						</colgroup>
 						<tbody>
@@ -686,42 +686,46 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 									<div style="float:left;padding:6px 6px 2px 6px;">:</div>
 									<div style="float:left;padding-top:2px;"><ui:ccselect name="endTimeMin" selectedValue="<%=dsAsg.getValue(\"WORK_END_MM\")%>" caption="==Select==" codeType="MINUTE_CODE"/></div>
 								</td>
+								<th class="thEdit rt">Termination Notice</th>
+								<td class="tdEdit">
+									<div style="float:left;padding-top:2px;"><ui:ccselect name="terminationNotice" selectedValue="<%=dsAsg.getValue(\"TERMINATION_NOTICE\")%>" caption="==Select==" codeType="ASG_TERM_NOTICE" className="dropdown" attribute="data-size:13;data-dropup-auto:false"/></div>
+									<div style="float:left;padding:6px 6px 2px 6px;"></div>
+									<div style="float:left;padding-top:2px;"><ui:ccselect name="terminationNoticeUnit" selectedValue="<%=dsAsg.getValue(\"TERMINATION_NOTICE_UNIT\")%>" caption="==Select==" codeType="ASG_TERM_NOTICE_UNIT"/></div>
+								</td>
+							</tr>
+							<tr>
 								<th class="thEdit rt">Equipment Required</th>
 								<td class="tdEdit"><ui:ccradio name="equipmentRequired" codeType="SIMPLE_YN" selectedValue="<%=dsAsg.getValue(\"EQUIPMENT_REQUIRED_YN\")%>"/></td>
-								<th class="thEdit rt">Special Conditions</th>
-								<td class="tdEdit"></td>
-							</tr>
-							<tr>
-								<th class="thEdit rt">End Time</th>
-								<td class="tdEdit"></td>
-								<th class="thEdit rt">Equipment</th>
-								<td class="tdEdit"></td>
-								<th class="thEdit rt"></th>
-								<td class="tdEdit"></td>
-							</tr>
-							<tr>
-								<th class="thEdit rt">Termination Notice</th>
-								<td class="tdEdit"></td>
-								<th class="thEdit rt">Approved Expenses</th>
-								<td class="tdEdit"></td>
-								<th class="thEdit rt">Restraint of Trade</th>
-								<td class="tdEdit"></td>
+								<th class="thEdit rt" rowspan="2">Equipment</th>
+								<td class="tdEdit" rowspan="2"><ui:txa id="equipment" name="equipment" value="<%=dsAsg.getValue(\"EQUIPMENT_DETAILS\")%>" style="height:46px;"/></td>
+								<th class="thEdit rt" rowspan="2">Special Conditions</th>
+								<td class="tdEdit" rowspan="2"><ui:txa id="specialConditions" name="specialConditions" value="<%=dsAsg.getValue(\"SPECIAL_CONDITIONS\")%>" style="height:46px;"/></td>
 							</tr>
 							<tr>
 								<th class="thEdit rt mandatory">Job Title</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:text name="jobTitle" value="<%=dsAsg.getValue(\"JOB_TITLE\")%>" options="mandatory" checkName="Job Title"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt mandatory">Service Description</th>
+								<td class="tdEdit"><ui:txa id="descriptionOfServices" name="descriptionOfServices" value="<%=dsAsg.getValue(\"SERVICE_DESCRIPTION\")%>" style="height:46px;"/></td>
+								<th class="thEdit rt">Approved Expenses</th>
+								<td class="tdEdit"><ui:txa id="approvedExpense" name="approvedExpense" value="<%=dsAsg.getValue(\"APPROVED_EXPENSES\")%>" style="height:46px;"/></td>
+								<th class="thEdit rt">Restraint of Trade</th>
+								<td class="tdEdit"><ui:txa id="restraintOfTrade" name="restraintOfTrade" value="<%=dsAsg.getValue(\"RESTRAINT_OF_TRADE\")%>" style="height:46px;"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt" rowspan="2">Work Location</th>
+								<td class="tdEdit" rowspan="2"><ui:txa id="workLocation" name="workLocation" value="<%=dsAsg.getValue(\"ATTRIBUTE9\")%>" style="height:46px;"/></td>
 								<th class="thEdit rt">Payment Arrangement</th>
-								<td class="tdEdit"></td>
+								<td class="tdEdit"><ui:ccselect name="paymentArrangement" selectedValue="<%=dsAsg.getValue(\"PAYMENT_ARRANGMENT\")%>" caption="==Select==" codeType="PAYMENT_ARRANGMENT"/></td>
 								<th class="thEdit rt"></th>
 								<td class="tdEdit"></td>
 							</tr>
 							<tr>
-								<th class="thEdit rt mandatory">Description of Services</th>
-								<td class="tdEdit"></td>
-								<th class="thEdit rt">Work Location</th>
-								<td class="tdEdit"></td>
-								<th class="thEdit rt"></th>
-								<td class="tdEdit"></td>
+								<th class="thEdit rt">&nbsp;</th>
+								<td class="tdEdit">&nbsp;</td>
+								<th class="thEdit rt">&nbsp;</th>
+								<td class="tdEdit">&nbsp;</td>
 							</tr>
 						</tbody>
 					</table>
