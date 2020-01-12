@@ -43,4 +43,6 @@ public interface Per0202Biz {
 	public ParamEntity getDeliverableRateList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getApproverEmail(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getNotiToPersonList(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getPayslips(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getPayslipList(ParamEntity paramEntity) throws Exception;
 }

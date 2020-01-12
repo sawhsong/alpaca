@@ -291,4 +291,18 @@ public class Per0202Action extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
+
+	public String getPayslips() throws Exception {
+		biz.getPayslips(paramEntity);
+		return "payslips";
+	}
+
+	public String getPayslipList() throws Exception {
+		try {
+			biz.getPayslipList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }

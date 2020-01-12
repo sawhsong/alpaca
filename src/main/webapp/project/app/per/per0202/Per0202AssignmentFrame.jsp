@@ -723,7 +723,7 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 							</tr>
 							<tr>
 								<th class="thEdit rt">&nbsp;</th>
-								<td class="tdEdit">&nbsp;</td>
+								<td class="tdEdit"><ui:text name="dummy" status="display"/></td>
 								<th class="thEdit rt">&nbsp;</th>
 								<td class="tdEdit">&nbsp;</td>
 							</tr>

@@ -11,4 +11,6 @@
 	<bean id="invoiceBS" name="invoiceBS" class="${name.package.project}.common.module.bizservice.invoice.InvoiceBizServiceImpl" parent="baseBiz"/>
 	<!--/* Workcover Biz Service Module */-->
 	<bean id="workcoverBS" name="workcoverBS" class="${name.package.project}.common.module.bizservice.workcover.WorkcoverBizServiceImpl" parent="baseBiz"/>
+	<!--/* Payment Biz Service Module */-->
+	<bean id="paymentBS" name="paymentBS" class="${name.package.project}.common.module.bizservice.payment.PaymentBizServiceImpl" parent="baseBiz"/>
 </beans>

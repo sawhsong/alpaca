@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
 import project.common.module.bizservice.assignment.AssignmentBizService;
+import project.common.module.bizservice.payment.PaymentBizService;
 import project.common.module.bizservice.workcover.WorkcoverBizService;
 import project.conf.resource.ormapper.dao.DocumentProfile.DocumentProfileDao;
 import project.conf.resource.ormapper.dao.HpAdditionalServices.HpAdditionalServicesDao;
@@ -67,6 +68,8 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 	private WorkcoverBizService wcBS;
 	@Autowired
 	private AssignmentBizService assignmentBS;
+	@Autowired
+	private PaymentBizService paymentBS;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -790,6 +793,39 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 			hpPersonDDao.setDataSourceName(dataSource);
 
 			dataSet = hpPersonDDao.getApproverDataSetByOrgIds(organisationId);
+
+			paramEntity.setAjaxResponseDataSet(dataSet);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getPayslips(ParamEntity paramEntity) throws Exception {
+		try {
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getPayslipList(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String personId = dsRequest.getValue("personId");
+		DataSet dataSet;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+			queryAdvisor.setPagination(true);
+			queryAdvisor.setRequestDataSet(dsRequest);
+
+			dataSet = paymentBS.getPayslipListByPersonId(queryAdvisor, personId);
 
 			paramEntity.setAjaxResponseDataSet(dataSet);
 			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
