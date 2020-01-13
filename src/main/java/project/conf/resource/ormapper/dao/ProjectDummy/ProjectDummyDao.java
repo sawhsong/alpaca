@@ -1,0 +1,11 @@
+package project.conf.resource.ormapper.dao.ProjectDummy;
+
+import zebra.base.IDao;
+import zebra.data.DataSet;
+import zebra.data.QueryAdvisor;
+
+public interface ProjectDummyDao extends IDao {
+	public DataSet getDatabaseSessionList(QueryAdvisor queryAdvisor) throws Exception;
+	public DataSet getSqlTextBySqlId(String sqlId) throws Exception;
+	public int killSessions(String ids[]) throws Exception;
+}

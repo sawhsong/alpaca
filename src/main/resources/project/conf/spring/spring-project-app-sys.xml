@@ -32,4 +32,10 @@
     <!--Sys9806 - ETC-->
     <bean class="${name.package.project}.app.sys.sys9806.Sys9806Action" id="sys9806Action" name="sys9806Action"/>
     <bean class="${name.package.project}.app.sys.sys9806.Sys9806BizImpl" id="sys9806Biz" name="sys9806Biz" parent="baseBiz"/>
+    <!--Sys9898 - Monitor Databse Session-->
+    <bean class="${name.package.project}.app.sys.sys9898.Sys9898Action" id="sys9898Action" name="sys9898Action"/>
+    <bean class="${name.package.project}.app.sys.sys9898.Sys9898BizImpl" id="sys9898Biz" name="sys9898Biz" parent="baseBiz"/>
+    <!--Sys9899 - Site Running Test-->
+    <bean class="${name.package.project}.app.sys.sys9899.Sys9899Action" id="sys9899Action" name="sys9899Action"/>
+    <bean class="${name.package.project}.app.sys.sys9899.Sys9899BizImpl" id="sys9899Biz" name="sys9899Biz" parent="baseBiz"/>
 </beans>

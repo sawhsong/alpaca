@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<sql-query name="query.ProjectDummy.getDatabaseSessionList">
+	<![CDATA[
+		select vss.sid as sid,
+		       vss.serial# as serial_no,
+		       vss.username as user_name,
+		       vss.status,
+		       vss.schemaname as schema_name,
+		       vss.osuser as os_user,
+		       vss.machine,
+		       vss.terminal,
+		       vss.program,
+		       vss.type,
+		       vss.sql_address,
+		       vss.sql_hash_value,
+		       vss.sql_id,
+		       vss.module,
+		       vss.command,
+		       (select command_name from v$sqlcommand where command_type = vss.command) as command_name,
+		       to_char(vss.logon_time, '${dateTimeFormat}') as logon_time_format,
+		       vss.event,
+		       'alter system kill session '||''''||vss.sid||', '||vss.serial#||''''||'' as query_to_kill
+		  from v$session vss
+		 where vss.schemaname not in ('SYSTEM', 'SYS')
+		   and vss.osuser not in ('SYSTEM', 'SYS')
+		   and vss.username not in ('SYSTEM', 'SYS')
+		 ${where_clause}
+		 order by vss.osuser desc, vss.logon_time
+	]]>
+	</sql-query>
+
+	<sql-query name="query.ProjectDummy.getSqlTextBySqlId">
+	<![CDATA[
+		select vsq.sql_text as sql_text,
+		       vsq.sql_fulltext as sql_full_text,
+		       vsq.sql_id,
+		       vsq.address,
+		       vsq.hash_value,
+		       to_char(to_date(replace(vsq.first_load_time, '/', ' '), 'yyyy-mm-dd hh24:mi:ss'), '${dateTimeFormat}') as first_load_time_format,
+		       to_char(vsq.last_active_time, '${dateTimeFormat}') as last_active_time_format,
+		       to_char(vsq.last_load_time, '${dateTimeFormat}') as last_load_time_format
+		  from v$sqlarea vsq
+		 where 1 = 1
+		 ${where_clause}
+	]]>
+	</sql-query>
+</hibernate-mapping>

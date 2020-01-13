@@ -66,41 +66,47 @@ var personId = "<%=personId%>";
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerFrame">
-	<table id="tblGrid" class="tblGrid sort autosort">
-		<colgroup>
-			<col width="2%"/>
-			<col width="15%"/>
-			<col width="6%"/>
-			<col width="6%"/>
-			<col width="5%"/>
-			<col width="9%"/>
-			<col width="6%"/>
-			<col width="5%"/>
-			<col width="10%"/>
-			<col width="18%"/>
-			<col width="*"/>
-		</colgroup>
-		<thead>
-			<tr>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="Select To Send"/></th>
-				<th class="thGrid">Assignment Number</th>
-				<th class="thGrid">Period Start</th>
-				<th class="thGrid">Period End</th>
-				<th class="thGrid">Date Paid</th>
-				<th class="thGrid">Consulting Revenue</th>
-				<th class="thGrid">Gross Taxable</th>
-				<th class="thGrid">PAYG Tax</th>
-				<th class="thGrid">Transfered Amount</th>
-				<th class="thGrid">Employer Name</th>
-				<th class="thGrid">Billing Organisation Name</th>
-			</tr>
-		</thead>
-		<tbody id="tblGridBody">
-			<tr>
-				<td class="tdGrid Ct" colspan="11"><mc:msg key="I002"/></td>
-			</tr>
-		</tbody>
-	</table>
+	<div id="divGridWrapper">
+		<table id="tblGrid" class="tblGrid sort autosort" style="width:2200px">
+			<colgroup>
+				<col width="2%"/>
+				<col width="12%"/>
+				<col width="5%"/>
+				<col width="4%"/>
+				<col width="4%"/>
+				<col width="7%"/>
+				<col width="5%"/>
+				<col width="4%"/>
+				<col width="7%"/>
+				<col width="18%"/>
+				<col width="*"/>
+				<col width="8%"/>
+				<col width="6%"/>
+			</colgroup>
+			<thead>
+				<tr>
+					<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="Select To Send"/></th>
+					<th class="thGrid">Assignment Number</th>
+					<th class="thGrid">Period Start</th>
+					<th class="thGrid">Period End</th>
+					<th class="thGrid">Date Paid</th>
+					<th class="thGrid">Consulting Revenue</th>
+					<th class="thGrid">Gross Taxable</th>
+					<th class="thGrid">PAYG Tax</th>
+					<th class="thGrid">Transfered Amount</th>
+					<th class="thGrid">Employer Name</th>
+					<th class="thGrid">Billing Organisation Name</th>
+					<th class="thGrid">Payslip Template</th>
+					<th class="thGrid">Is Accept RCTI</th>
+				</tr>
+			</thead>
+			<tbody id="tblGridBody">
+				<tr>
+					<td class="tdGrid Ct" colspan="13"><mc:msg key="I002"/></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
 <div id="divPagingArea" class="areaContainerFrame"></div>
 <%/************************************************************************************************

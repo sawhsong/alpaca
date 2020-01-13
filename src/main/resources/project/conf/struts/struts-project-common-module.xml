@@ -14,5 +14,10 @@
 			<result name="employmentOrg" type="debugDispatcherResult">/project/common/module/commonlookup/EmploymentOrganisationLookupPop.jsp</result>
 			<result name="esEmployee" type="debugDispatcherResult">/project/common/module/commonlookup/EsEmployeeLookupPop.jsp</result>
 		</action>
+
+		<!--/* Payment */-->
+		<action name="payment/*" class="project.common.module.payment.PaymentAction" method="{1}">
+			<result name="previewPayslip" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipPop.jsp</result>
+		</action>
 	</package>
 </struts>

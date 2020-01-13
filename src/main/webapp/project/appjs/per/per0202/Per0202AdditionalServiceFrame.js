@@ -56,7 +56,7 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setId("chkForDel").setName("chkForDel").setValue(ds.getValue(i, "SERVICE_ID"))));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setName("chkForDel").setValue(ds.getValue(i, "SERVICE_ID"))));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "SERVICE_PROVIDER_NAME")).setScript("getDetail('"+ds.getValue(i, "SERVICE_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "REFERRAL_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ENTITY_EMPLOYEE_NAME")));

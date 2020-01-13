@@ -12,7 +12,7 @@ import zebra.util.ConfigUtil;
 public class HpAsgProcessesHDaoImpl extends BaseHDao implements HpAsgProcessesDao {
 	public DataSet getPayslipListByPersonId(QueryAdvisor queryAdvisor, String personId) throws Exception {
 		queryAdvisor.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
-		queryAdvisor.addVariable("personId", personId);
+		queryAdvisor.addWhereClause("hpd.person_id = '"+personId+"'");
 
 		return selectAsDataSet(queryAdvisor, "query.HpAsgProcesses.getPayslipListByPersonId");
 	}
@@ -21,7 +21,7 @@ public class HpAsgProcessesHDaoImpl extends BaseHDao implements HpAsgProcessesDa
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 
 		queryAdvisor.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
-		queryAdvisor.addVariable("personId", personId);
+		queryAdvisor.addWhereClause("hpd.person_id = '"+personId+"'");
 
 		return selectAsDataSet(queryAdvisor, "query.HpAsgProcesses.getPayslipListByPersonId");
 	}

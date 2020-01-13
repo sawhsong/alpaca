@@ -13,12 +13,16 @@ $(function() {
 		doSearch();
 	});
 
+	$("#icnCheck").click(function(event) {
+		commonJs.toggleCheckboxes("chkToSend");
+	});
+
 	/*!
 	 * process
 	 */
 	setGridTable = function(totalResultRows) {
 		$("#tblGrid").fixedHeaderTable({
-			attachTo:$("#divDataArea"),
+			attachTo:$("#divGridWrapper"),
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
 			totalResultRows:totalResultRows,
@@ -49,8 +53,8 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setId("chkToSend").setName("chkToSend").setValue(ds.getValue(i, "PAYMENT_ID"))));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "ASSIGNMENT_NUMBER")).setScript("previewPayslip('"+ds.getValue(i, "PAYMENT_ID")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setName("chkToSend").setValue(ds.getValue(i, "PAYMENT_ID"))));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "ASSIGNMENT_NUMBER")).setScript("previewPayslip('"+ds.getValue(i, "PAYMENT_ID")+"', '"+ds.getValue(i, "PAYROLL_TYPE")+"', '"+ds.getValue(i, "ACCEPT_RCTI")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "PERIOD_START_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "PERIOD_END_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ACTUAL_PAY_DATE")));
@@ -60,13 +64,15 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(ds.getValue(i, "TRANSFERED_AMT"), "#,##0.00")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "EMPLOYMENT_ORG_NAME"), 50)));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "BILLING_ORG_NAME"), 50)));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "TEMPLATE_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ACCEPT_RCTI")));
 
 				html += gridTr.toHtmlString();
 			}
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:11").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:13").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
@@ -76,8 +82,20 @@ $(function() {
 		commonJs.hideProcMessageOnElement("divScrollablePanelFrame");
 	};
 
-	previewPayslip = function(paymentId) {
-		commonJs.alert("Preview : "+paymentId);
+	previewPayslip = function(paymentId, payrollType, acceptRcti) {
+		parent.popup = parent.commonJs.openPopup({
+			popupId:"PreviewPayslip",
+			url:"/common/payment/getDefault.do",
+			paramData:{
+				actionName:"previewPayslip",
+				paymentId:paymentId,
+				payrollType:payrollType,
+				acceptRcti:acceptRcti
+			},
+			header:"Preview Payslip",
+			width:660,
+			height:800
+		});
 	};
 
 	/*!

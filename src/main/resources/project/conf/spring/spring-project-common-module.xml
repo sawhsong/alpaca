@@ -24,6 +24,10 @@
 	<bean id="commonLookupAction" name="commonLookupAction" class="${name.package.project}.common.module.commonlookup.CommonLookupAction"/>
 	<bean id="commonLookupBiz" name="commonLookupBiz" class="${name.package.project}.common.module.commonlookup.CommonLookupBizImpl" parent="baseBiz"/>
 
+	<!--/* Payment */-->
+	<bean id="paymentAction" name="paymentAction" class="${name.package.project}.common.module.payment.PaymentAction"/>
+	<bean id="paymentBiz" name="paymentBiz" class="${name.package.project}.common.module.payment.PaymentBizImpl" parent="baseBiz"/>
+
 	<!--/* DataHelper */-->
 	<bean id="dataHelper" name="dataHelper" class="${name.package.project}.common.module.datahelper.DataHelper" parent="baseBiz">
 		<property name="sysUserDao" ref="sysUserDao"/>

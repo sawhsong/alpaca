@@ -79,5 +79,14 @@
         <action class="project.app.sys.sys9806.Sys9806Action" method="{1}" name="9806/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sys9806/Sys9806List.jsp</result>
         </action>
+        <!--Sys9898 - Monitor Databse Session-->
+        <action class="project.app.sys.sys9898.Sys9898Action" method="{1}" name="9898/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sys9898/Sys9898List.jsp</result>
+            <result name="sqlText" type="debugDispatcherResult">/project/app/sys/sys9898/Sys9898SqlTextPop.jsp</result>
+        </action>
+        <!--Sys9899 - Site Runnin Test-->
+        <action class="project.app.sys.sys9899.Sys9899Action" method="{1}" name="9899/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sys9899/Sys9899List.jsp</result>
+        </action>
     </package>
 </struts>
