@@ -67,21 +67,22 @@ var personId = "<%=personId%>";
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerFrame">
 	<div id="divGridWrapper">
-		<table id="tblGrid" class="tblGrid sort autosort" style="width:2200px">
+		<table id="tblGrid" class="tblGrid sort autosort" style="width:2700px">
 			<colgroup>
 				<col width="2%"/>
-				<col width="12%"/>
-				<col width="5%"/>
+				<col width="11%"/>
 				<col width="4%"/>
 				<col width="4%"/>
-				<col width="7%"/>
-				<col width="5%"/>
 				<col width="4%"/>
-				<col width="7%"/>
-				<col width="18%"/>
-				<col width="*"/>
-				<col width="8%"/>
 				<col width="6%"/>
+				<col width="5%"/>
+				<col width="4%"/>
+				<col width="6%"/>
+				<col width="16%"/>
+				<col width="*"/>
+				<col width="9%"/>
+				<col width="5%"/>
+				<col width="8%"/>
 			</colgroup>
 			<thead>
 				<tr>
@@ -97,12 +98,13 @@ var personId = "<%=personId%>";
 					<th class="thGrid">Employer Name</th>
 					<th class="thGrid">Billing Organisation Name</th>
 					<th class="thGrid">Payslip Template</th>
-					<th class="thGrid">Is Accept RCTI</th>
+					<th class="thGrid">Payroll Type</th>
+					<th class="thGrid">Tax Inv Acceptance Type</th>
 				</tr>
 			</thead>
 			<tbody id="tblGridBody">
 				<tr>
-					<td class="tdGrid Ct" colspan="13"><mc:msg key="I002"/></td>
+					<td class="tdGrid Ct" colspan="14"><mc:msg key="I002"/></td>
 				</tr>
 			</tbody>
 		</table>

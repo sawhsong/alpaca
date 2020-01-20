@@ -125,7 +125,7 @@ $(function() {
 				confirmMessage:"Are you sure to proceed?",
 				callback:function(result) {
 					var ds = result.dataSet;
-console.log(ds.toString());
+
 					setTimeout(function() {
 						doSearch();
 					}, 300);

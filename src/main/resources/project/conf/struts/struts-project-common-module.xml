@@ -17,7 +17,7 @@
 
 		<!--/* Payment */-->
 		<action name="payment/*" class="project.common.module.payment.PaymentAction" method="{1}">
-			<result name="previewPayslip" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipPop.jsp</result>
+			<result name="previewPayslip" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipFrameContainerPop.jsp</result>
 		</action>
 	</package>
 </struts>

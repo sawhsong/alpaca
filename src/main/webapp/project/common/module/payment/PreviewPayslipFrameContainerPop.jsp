@@ -1,5 +1,5 @@
 <%/************************************************************************************************
-* Description - ES Employee Lookup
+* Description - PreviewPayslipFrameContainerPop
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCommon.jsp"%>
 <%/************************************************************************************************
@@ -10,6 +10,8 @@
 	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
 	String actionName = requestDataSet.getValue("actionName");
 	String paymentId = requestDataSet.getValue("paymentId");
+	String payrollType = requestDataSet.getValue("payrollType");
+	String taxInvoiceAcceptanceType = requestDataSet.getValue("taxInvoiceAcceptanceType");
 %>
 <%/************************************************************************************************
 * HTML
@@ -30,6 +32,8 @@
 <script type="text/javascript">
 var actionName = "<%=actionName%>";
 var paymentId = "<%=paymentId%>";
+var payrollType = "<%=payrollType%>";
+var taxInvoiceAcceptanceType = "<%=taxInvoiceAcceptanceType%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -64,27 +68,13 @@ var paymentId = "<%=paymentId%>";
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
-	<table id="tblGrid" class="tblGrid sort">
-		<colgroup>
-			<col width="14%"/>
-			<col width="35%"/>
-			<col width="*"/>
-		</colgroup>
-		<thead>
-			<tr>
-				<th class="thGrid Ct"><mc:msg key="esEmployeeLookup.grid.personNumber"/></th>
-				<th class="thGrid"><mc:msg key="esEmployeeLookup.grid.personName"/></th>
-				<th class="thGrid"><mc:msg key="esEmployeeLookup.grid.title"/></th>
-			</tr>
-		</thead>
-		<tbody id="tblGridBody">
-			<tr>
-				<td class="tdGrid Ct" colspan="3"><mc:msg key="I002"/></td>
-			</tr>
-		</tbody>
-	</table>
+	<div id="divFrameContainer" class="frameContainer">
+		<div id="divFrame" style="">
+			<iframe id="ifFrame" class="iframeInFrameContainer"></iframe>
+		</div>
+	</div>
 </div>
-<div id="divPagingArea" class="areaContainer"></div>
+<div id="divPagingArea"></div>
 <%/************************************************************************************************
 * Right & Footer
 ************************************************************************************************/%>

@@ -54,7 +54,7 @@ $(function() {
 				var gridTr = new UiGridTr();
 
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setName("chkToSend").setValue(ds.getValue(i, "PAYMENT_ID"))));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "ASSIGNMENT_NUMBER")).setScript("previewPayslip('"+ds.getValue(i, "PAYMENT_ID")+"', '"+ds.getValue(i, "PAYROLL_TYPE")+"', '"+ds.getValue(i, "ACCEPT_RCTI")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "ASSIGNMENT_NUMBER")).setScript("previewPayslip('"+ds.getValue(i, "PAYMENT_ID")+"', '"+ds.getValue(i, "PAYROLL_TYPE")+"', '"+ds.getValue(i, "TAX_INVOICE_ACCEPTANCE_TYPE")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "PERIOD_START_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "PERIOD_END_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ACTUAL_PAY_DATE")));
@@ -65,14 +65,15 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "EMPLOYMENT_ORG_NAME"), 50)));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "BILLING_ORG_NAME"), 50)));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "TEMPLATE_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ACCEPT_RCTI")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYROLL_TYPE_MEANING")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "TAX_INVOICE_ACCEPTANCE_TYPE_MEANING")));
 
 				html += gridTr.toHtmlString();
 			}
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:13").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:14").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
@@ -82,7 +83,7 @@ $(function() {
 		commonJs.hideProcMessageOnElement("divScrollablePanelFrame");
 	};
 
-	previewPayslip = function(paymentId, payrollType, acceptRcti) {
+	previewPayslip = function(paymentId, payrollType, taxInvoiceAcceptanceType) {
 		parent.popup = parent.commonJs.openPopup({
 			popupId:"PreviewPayslip",
 			url:"/common/payment/getDefault.do",
@@ -90,11 +91,11 @@ $(function() {
 				actionName:"previewPayslip",
 				paymentId:paymentId,
 				payrollType:payrollType,
-				acceptRcti:acceptRcti
+				taxInvoiceAcceptanceType:taxInvoiceAcceptanceType
 			},
 			header:"Preview Payslip",
-			width:660,
-			height:800
+			width:720,
+			height:880
 		});
 	};
 
