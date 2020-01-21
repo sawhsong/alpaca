@@ -74,6 +74,7 @@ jsconfig.put("cssJqUi", "<mc:cp key="cssJqUi"/>");
 jsconfig.put("imgIcon", "<mc:cp key="imgIcon"/>");
 jsconfig.put("imgPhoto", "<mc:cp key="path.image.photo"/>");
 jsconfig.put("imgSortableTable", "<mc:cp key="imgSortableTable"/>");
+jsconfig.put("imgOrgLogo", "<mc:cp key="imgOrgLogo"/>");
 jsconfig.put("jsCommon", "<mc:cp key="jsCommon"/>");
 jsconfig.put("jsJq", "<mc:cp key="jsJq"/>");
 jsconfig.put("jsNg", "<mc:cp key="jsNg"/>");

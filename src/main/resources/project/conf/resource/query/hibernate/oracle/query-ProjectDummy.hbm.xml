@@ -1,6 +1,22 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping>
+	<sql-query name="query.ProjectDummy.getFinacialYear">
+	<![CDATA[
+		select *
+		  from ( select (base_year + level - 1)||'-'||(base_year + level) as financial_year,
+		                (base_year + level - 1)||'0701'||'-'||(base_year + level)||'0630' as financial_date,
+		                (base_year + level - 1)||'0701' as financial_date_from,
+		                (base_year + level)||'0630' as financial_date_to
+		           from (select (to_number(to_char(sysdate, 'yyyy')) - 20) base_year
+		                   from dual
+		                )
+		        connect by base_year + level - 1 <= to_number(to_char(sysdate, 'yyyy'))
+		       )
+		 where trunc(sysdate) between to_date(financial_date_from, 'yyyymmdd') and to_date(financial_date_to, 'yyyymmdd')
+	]]>
+	</sql-query>
+
 	<sql-query name="query.ProjectDummy.getDatabaseSessionList">
 	<![CDATA[
 		select vss.sid as sid,

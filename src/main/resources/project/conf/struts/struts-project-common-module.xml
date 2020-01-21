@@ -18,6 +18,12 @@
 		<!--/* Payment */-->
 		<action name="payment/*" class="project.common.module.payment.PaymentAction" method="{1}">
 			<result name="previewPayslip" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipFrameContainerPop.jsp</result>
+			<result name="ICRCTI" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipICRCTIFrame.jsp</result>
+			<result name="ICRemittance" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipICRemittanceFrame.jsp</result>
+			<result name="STRCTI" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipSTRCTIFrame.jsp</result>
+			<result name="STRemittance" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipSTRemittanceFrame.jsp</result>
+			<result name="BCTI" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipBCTIFrame.jsp</result>
+			<result name="Remittance" type="debugDispatcherResult">/project/common/module/payment/PreviewPayslipRemittanceFrame.jsp</result>
 		</action>
 	</package>
 </struts>

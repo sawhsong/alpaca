@@ -102,6 +102,50 @@ insert into sys_common_code values('MENU_LEVEL','1',          'Level 1',    'Lev
 insert into sys_common_code values('MENU_LEVEL','2',          'Level 2',    'Level 2',    'Level 2',    'MENU_LEVEL_2',           '002',   'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('MENU_LEVEL','3',          'Level 3',    'Level 3',    'Level 3',    'MENU_LEVEL_3',           '002',   'Y', 'Y', '0', sysdate, null, null);
 
+-- Individual code from PERCI
+delete sys_common_code
+ where code_type = 'PERSON_TYPES'
+;
+insert into sys_common_code
+select lookup_type as code_type,
+       '0000000000' as common_code,
+       initcap(replace(lookup_type, '_', ' ')) as code_meaning,
+       initcap(replace(lookup_type, '_', ' ')) as description_ko,
+       initcap(replace(lookup_type, '_', ' ')) as description_en,
+       lookup_type||'_'||'0000000000' as program_constants,
+       '000' as sort_order,
+       'Y' as is_active,
+       'N' as is_default,
+       '0' as insert_user_id,
+       sysdate as insert_date,
+       null as update_user_id,
+       null as update_date
+  from sys_common_lookups@perci_live
+ where enabled_flag = 'Y'
+   and lookup_type in ('PERSON_TYPES')
+union
+select lookup_type as code_type,
+       lookup_code as common_code,
+       meaning as description_ko,
+       description as description_ko,
+       description as description_en,
+       lookup_type||'_'||lookup_code as program_constants,
+       lpad(to_char(display_order), 3, '0') as sort_order,
+       'Y' as is_active,
+       'N' as is_default,
+       '0' as insert_user_id,
+       sysdate as insert_date,
+       null as update_user_id,
+       null as update_date
+  from sys_common_lookups@perci_live
+ where enabled_flag = 'Y'
+   and lookup_type in ('PERSON_TYPES')
+ order by code_type,
+       sort_order,
+       common_code
+;
+
+
 -- Hours, Minutes Code
 insert into sys_common_code
 select 'HOUR_CODE' as code_type,

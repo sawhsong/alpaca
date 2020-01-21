@@ -7,6 +7,11 @@ import zebra.util.CommonUtil;
 import zebra.util.ConfigUtil;
 
 public class ProjectDummyHDaoImpl extends BaseHDao implements ProjectDummyDao {
+	public DataSet getFinacialYear() throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		return selectAsDataSet(queryAdvisor, "query.ProjectDummy.getFinacialYear");
+	}
+
 	public DataSet getDatabaseSessionList(QueryAdvisor queryAdvisor) throws Exception {
 		queryAdvisor.addVariable("dateTimeFormat", ConfigUtil.getProperty("format.dateTime.db.au"));
 

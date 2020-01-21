@@ -89,6 +89,7 @@ $(function() {
 			url:"/common/payment/getDefault.do",
 			paramData:{
 				actionName:"previewPayslip",
+				personId:personId,
 				paymentId:paymentId,
 				payrollType:payrollType,
 				taxInvoiceAcceptanceType:taxInvoiceAcceptanceType

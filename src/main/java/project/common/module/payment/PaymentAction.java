@@ -16,4 +16,48 @@ public class PaymentAction extends BaseAction {
 		biz.getDefault(paramEntity);
 		return actionName;
 	}
+
+	public String getPageByTemplate() throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		String templateType = requestDataSet.getValue("templateType");
+
+		biz.getPageByTemplate(paramEntity);
+		return templateType;
+	}
+
+	public String getEarnings() throws Exception {
+		try {
+			biz.getEarnings(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getDeductions() throws Exception {
+		try {
+			biz.getDeductions(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getPayAdvice() throws Exception {
+		try {
+			biz.getPayAdvice(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getPaymentType() throws Exception {
+		try {
+			biz.getPaymentType(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }
