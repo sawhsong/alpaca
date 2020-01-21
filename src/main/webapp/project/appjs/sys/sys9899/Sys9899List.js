@@ -39,15 +39,16 @@ $(function() {
 		if (ds.getRowCnt() > 0) {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
-				var status = ds.getValue(i, "Status");
+				var responseCode = ds.getValue(i, "ResponseCode");
 
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "Name")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "Url")).setScript("openUrl('"+ds.getValue(i, "Url")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "Description")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(responseCode));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "Status")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "Time")));
 
-				if (status != "Running OK") {
+				if (!commonJs.startsWith(responseCode, "2")) {
 					gridTr.setStyle("background:#f8d7da");
 				}
 
@@ -56,7 +57,7 @@ $(function() {
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:5").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:6").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 

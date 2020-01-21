@@ -54,7 +54,7 @@ $(function() {
 				var gridTr = new UiGridTr();
 
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setName("chkToSend").setValue(ds.getValue(i, "PAYMENT_ID"))));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "ASSIGNMENT_NUMBER")).setScript("previewPayslip('"+ds.getValue(i, "PAYMENT_ID")+"', '"+ds.getValue(i, "PAYROLL_TYPE")+"', '"+ds.getValue(i, "TAX_INVOICE_ACCEPTANCE_TYPE")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "ASSIGNMENT_NUMBER")).setScript("previewPayslip('"+ds.getValue(i, "PAYMENT_ID")+"', '"+ds.getValue(i, "assignment_id")+"', '"+ds.getValue(i, "PAYROLL_TYPE")+"', '"+ds.getValue(i, "TAX_INVOICE_ACCEPTANCE_TYPE")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "PERIOD_START_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "PERIOD_END_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ACTUAL_PAY_DATE")));
@@ -83,13 +83,15 @@ $(function() {
 		commonJs.hideProcMessageOnElement("divScrollablePanelFrame");
 	};
 
-	previewPayslip = function(paymentId, payrollType, taxInvoiceAcceptanceType) {
+	previewPayslip = function(paymentId, assignmentId, payrollType, taxInvoiceAcceptanceType) {
 		parent.popup = parent.commonJs.openPopup({
 			popupId:"PreviewPayslip",
 			url:"/common/payment/getDefault.do",
 			paramData:{
 				actionName:"previewPayslip",
+				personId:personId,
 				paymentId:paymentId,
+				assignmentId:assignmentId,
 				payrollType:payrollType,
 				taxInvoiceAcceptanceType:taxInvoiceAcceptanceType
 			},

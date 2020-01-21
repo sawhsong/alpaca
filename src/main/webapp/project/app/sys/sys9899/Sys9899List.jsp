@@ -47,7 +47,7 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnStartChecking" caption="Start Checking" iconClass="fa-Plug"/>
+			<ui:button id="btnStartChecking" caption="Start Checking" iconClass="fa-plug"/>
 		</ui:buttonGroup>
 	</div>
 </div>
@@ -70,6 +70,7 @@
 			<col width="10%"/>
 			<col width="25%"/>
 			<col width="14%"/>
+			<col width="9%"/>
 			<col width="*"/>
 			<col width="9%"/>
 		</colgroup>
@@ -78,13 +79,14 @@
 				<th class="thGrid">Site Name</th>
 				<th class="thGrid">Url</th>
 				<th class="thGrid">Description</th>
+				<th class="thGrid">Response Code</th>
 				<th class="thGrid">Status</th>
 				<th class="thGrid">Time Checked</th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
 			<tr>
-				<td class="tdGrid Ct" colspan="5"><mc:msg key="I002"/></td>
+				<td class="tdGrid Ct" colspan="6"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
 	</table>

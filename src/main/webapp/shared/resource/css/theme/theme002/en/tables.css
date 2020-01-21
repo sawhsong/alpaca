@@ -168,13 +168,13 @@ table.tblAdminTool caption {padding:8px 8px;font-size:1.0em;font-weight:bold;bor
 }
 .tblGrid tfoot tr:first-child td {}
 .tblGrid tfoot tr:last-child td {}
-.tblGrid tr:not(.default):not(.active):not(.info):not(.success):not(.warning):not(.danger):hover td {transition:background .2s;
+.tblGrid tr:not(.default):not(.active):not(.info):not(.success):not(.warning):not(.danger):not(.noStripe):hover td {transition:background .2s;
 	background:#EAF5FE;
 }
 .tblGrid tr:not(.default):not(.active):not(.info):not(.success):not(.warning):not(.danger):not(.noStripe):nth-child(even) {
 	background:#F4FBFF;
 }
-.tblGrid tfoot tr:not(.default):not(.active):not(.info):not(.success):not(.warning):not(.danger):hover td {
+.tblGrid tfoot tr:not(.default):not(.active):not(.info):not(.success):not(.warning):not(.danger):not(.noStripe):hover td {
 	background:#F5F5F5;
 }
 

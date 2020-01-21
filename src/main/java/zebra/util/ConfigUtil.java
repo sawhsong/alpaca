@@ -51,6 +51,7 @@ public class ConfigUtil {
 
 			else if (CommonUtil.equalsIgnoreCase(key, "imgIcon")) {rtnString = ConfigUtil.getProperty("path.image.icon");}
 			else if (CommonUtil.equalsIgnoreCase(key, "imgSortableTable")) {rtnString = ConfigUtil.getProperty("path.image.sortableTable");}
+			else if (CommonUtil.equalsIgnoreCase(key, "imgOrgLogo")) {rtnString = ConfigUtil.getProperty("path.image.orgLogo");}
 
 			else if (CommonUtil.equalsIgnoreCase(key, "jsApp")) {rtnString = ConfigUtil.getProperty("path.web.appJs");}
 			else if (CommonUtil.equalsIgnoreCase(key, "jsAppFwk")) {rtnString = ConfigUtil.getProperty("path.web.fwkAppJs");}

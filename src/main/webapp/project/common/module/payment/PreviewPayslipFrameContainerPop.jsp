@@ -9,7 +9,9 @@
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
 	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
 	String actionName = requestDataSet.getValue("actionName");
+	String personId = requestDataSet.getValue("personId");
 	String paymentId = requestDataSet.getValue("paymentId");
+	String assignmentId = requestDataSet.getValue("assignmentId");
 	String payrollType = requestDataSet.getValue("payrollType");
 	String taxInvoiceAcceptanceType = requestDataSet.getValue("taxInvoiceAcceptanceType");
 %>
@@ -31,7 +33,9 @@
 <script type="text/javascript" src="<mc:cp key="commonModuleViewPageJsName"/>"></script>
 <script type="text/javascript">
 var actionName = "<%=actionName%>";
+var personId = "<%=personId%>";
 var paymentId = "<%=paymentId%>";
+var assignmentId = "<%=assignmentId%>";
 var payrollType = "<%=payrollType%>";
 var taxInvoiceAcceptanceType = "<%=taxInvoiceAcceptanceType%>";
 </script>

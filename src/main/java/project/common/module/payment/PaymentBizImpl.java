@@ -1,10 +1,24 @@
 package project.common.module.payment;
 
+import java.util.Date;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import project.common.extend.BaseBiz;
+import project.common.module.bizservice.payment.PaymentBizService;
+import zebra.data.DataSet;
 import zebra.data.ParamEntity;
+import zebra.data.QueryAdvisor;
 import zebra.exception.FrameworkException;
+import zebra.util.CommonUtil;
+import zebra.util.ConfigUtil;
 
 public class PaymentBizImpl extends BaseBiz implements PaymentBiz {
+	@Autowired
+	private PaymentBizService paymentBS;
+
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
 			paramEntity.setSuccess(true);
@@ -12,5 +26,317 @@ public class PaymentBizImpl extends BaseBiz implements PaymentBiz {
 			throw new FrameworkException(paramEntity, ex);
 		}
 		return paramEntity;
+	}
+
+	public ParamEntity getPageByTemplate(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		DataSet payslipMaster = new DataSet();
+		String paymentId = dsRequest.getValue("paymentId");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+
+			payslipMaster = paymentBS.getPayslipMasterByPaymentId(queryAdvisor, paymentId);
+
+			paramEntity.setObject("payslipMaster", payslipMaster);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getEarnings(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String paymentId = dsRequest.getValue("paymentId");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+
+			paramEntity.setAjaxResponseDataSet(paymentBS.getEarningsByPaymentIdForPreview(queryAdvisor, paymentId));
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getDeductions(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String dateFormat = ConfigUtil.getProperty("format.date.java");
+		String personId = dsRequest.getValue("personId");
+		String paymentId = dsRequest.getValue("paymentId");
+		Date paymentDate = CommonUtil.toDate(dsRequest.getValue("paymentDate"), dateFormat);
+		DataSet deduction, ytd;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+
+			deduction = paymentBS.getDeductionsByPaymentIdForPreview(queryAdvisor, paymentId);
+			if (deduction.getRowCnt() > 0) {
+				for (int i=0; i<deduction.getRowCnt(); i++) {
+					String elementId = deduction.getValue(i, "ELEMENT_ID");
+
+					if (i == 0) {
+						deduction.addColumn("YTD_VALUE");
+					}
+
+					ytd = paymentBS.getYtdByElementIdForPreview(queryAdvisor, personId, paymentDate, elementId);
+					deduction.setValue(i, ytd.getValue("VALUE"));
+				}
+			} else {
+				deduction = new DataSet(new String[] {"ALTERNATE_NAME", "ELEMENT_REPORTING_NAME", "SHOW_ZERO_Y_N", "CALCULATED_AMOUNT", "YTD_VALUE"});
+				ytd = paymentBS.getYtdDeductionForPreview(queryAdvisor, personId, paymentDate);
+				for (int i=0; i<ytd.getRowCnt(); i++) {
+					deduction.addRow();
+					deduction.setValue(deduction.getRowCnt()-1, "ALTERNATE_NAME", ytd.getValue(i, "REPORTING_NAME"));
+					deduction.setValue(deduction.getRowCnt()-1, "ELEMENT_REPORTING_NAME", ytd.getValue(i, "REPORTING_NAME"));
+					deduction.setValue(deduction.getRowCnt()-1, "SHOW_ZERO_Y_N", "Y");
+					deduction.setValue(deduction.getRowCnt()-1, "CALCULATED_AMOUNT", "0");
+					deduction.setValue(deduction.getRowCnt()-1, "YTD_VALUE", ytd.getValue(i, "VALUE"));
+				}
+			}
+
+			paramEntity.setAjaxResponseDataSet(deduction);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getPayAdvice(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		DataSet dsPayAdvice;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+
+			dsPayAdvice = getPayAdviceDataSet(queryAdvisor, dsRequest);
+
+			paramEntity.setAjaxResponseDataSet(dsPayAdvice);
+			paramEntity.setTotalResultRows(dsPayAdvice.getRowCnt());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getPaymentType(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String dateFormat = ConfigUtil.getProperty("format.date.java");
+		String personId = dsRequest.getValue("personId");
+		String paymentId = dsRequest.getValue("paymentId");
+		Date paymentDate = CommonUtil.toDate(dsRequest.getValue("paymentDate"), dateFormat);
+		DataSet ds, dsYtd;
+		DataSet dsPaymentType = new DataSet(new String[] {"PAYMENT_TYPE_NAME", "THIS_PERIOD", "YTD"});
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+		double earningYtd = 0, deductionYtd = 0;
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+
+			ds = paymentBS.getBalanceLinesByElementId(queryAdvisor, paymentId, "2");	// NET_BALANCE_ID
+			queryAdvisor.resetAll();
+			dsYtd = paymentBS.getYtdAllByPersonIdForPreview(queryAdvisor, personId, paymentDate, "Earnings", "Deduction", "Superannuation", "SuperSalSac", "PAYG", "OtherTaxation");
+
+			// Net Wages
+			dsPaymentType.addRow();
+			dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "PAYMENT_TYPE_NAME", "Net Wages");
+			dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "THIS_PERIOD", ds.getValue("VALUE"));
+			for (int i=0; i<dsYtd.getRowCnt(); i++) {
+				String name = dsYtd.getValue(i, "YTD_TYPE");
+				if (CommonUtil.equalsIgnoreCase(name, "Earnings")) {
+					earningYtd += CommonUtil.toDouble(dsYtd.getValue(i, "VALUE"));
+				} else {
+					deductionYtd += CommonUtil.toDouble(dsYtd.getValue(i, "VALUE"));
+				}
+			}
+			dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "YTD", (earningYtd - deductionYtd));
+
+			// PostTaxAddBacks
+			queryAdvisor.resetAll();
+			ds = paymentBS.getPaymentAllByPaymentIdForPreview(queryAdvisor, paymentId, "AddBack");
+			if (ds.getRowCnt() > 0 ) {
+				for (int i=0; i<ds.getRowCnt(); i++) {
+					dsPaymentType.addRow();
+					dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "PAYMENT_TYPE_NAME", CommonUtil.nvl(ds.getValue(i, "ALTERNATE_NAME"), ds.getValue(i, "ELEMENT_REPORTING_NAME")));
+					dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "THIS_PERIOD", ds.getValue("CALCULATED_AMOUNT"));
+
+					queryAdvisor.resetAll();
+					dsYtd = paymentBS.getYtdByElementIdForPreview(queryAdvisor, personId, paymentDate, ds.getValue("ELEMENT_ID"));
+					dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "YTD", dsYtd.getValue("VALUE"));
+				}
+			}
+
+			// PostTaxDeductions
+			queryAdvisor.resetAll();
+			ds = paymentBS.getPaymentAllByPaymentIdForPreview(queryAdvisor, paymentId, "PostDeduction");
+			if (ds.getRowCnt() > 0 ) {
+				for (int i=0; i<ds.getRowCnt(); i++) {
+					dsPaymentType.addRow();
+					dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "PAYMENT_TYPE_NAME", CommonUtil.nvl(ds.getValue(i, "ALTERNATE_NAME"), ds.getValue(i, "ELEMENT_REPORTING_NAME")));
+					dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "THIS_PERIOD", ds.getValue("CALCULATED_AMOUNT"));
+
+					queryAdvisor.resetAll();
+					dsYtd = paymentBS.getYtdByElementIdForPreview(queryAdvisor, personId, paymentDate, ds.getValue("ELEMENT_ID"));
+					dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "YTD", dsYtd.getValue("VALUE"));
+				}
+			}
+
+			paramEntity.setAjaxResponseDataSet(dsPaymentType);
+			paramEntity.setTotalResultRows(dsPaymentType.getRowCnt());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getBankDetails(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String paymentId = dsRequest.getValue("paymentId");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+
+			paramEntity.setAjaxResponseDataSet(paymentBS.getBankDetailsByPaymentIdForPreview(queryAdvisor, paymentId));
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	private DataSet getPayAdviceDataSet(QueryAdvisor queryAdvisor, DataSet dsRequest) throws Exception {
+		String dateFormat = ConfigUtil.getProperty("format.date.java");
+		String personId = dsRequest.getValue("personId");
+		String paymentId = dsRequest.getValue("paymentId");
+		Date paymentDate = CommonUtil.toDate(dsRequest.getValue("paymentDate"), dateFormat);
+		DataSet dsPayAdvice = new DataSet(new String[] {"PAY_ADVICE_NAME", "THIS_PERIOD", "YTD"});
+		DataSet dsThisPeriod, dsYtd;
+		double earningThisPeriod = 0, deductionThisPeriod = 0, earningYtd = 0, deductionYtd = 0;
+
+		// Total Package
+		queryAdvisor.resetAll();
+		dsPayAdvice.addRow();
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "PAY_ADVICE_NAME", "Total Package");
+		dsThisPeriod = paymentBS.getPaymentAllByPaymentIdForPreview(queryAdvisor, paymentId, "Earnings", "Deduction");
+		queryAdvisor.resetAll();
+		dsYtd = paymentBS.getYtdAllByPersonIdForPreview(queryAdvisor, personId, paymentDate, "Earnings", "Deduction");
+
+		for (int i=0; i<dsThisPeriod.getRowCnt(); i++) {
+			String typeName = dsThisPeriod.getValue(i, "TYPE");
+			if (CommonUtil.equalsIgnoreCase(typeName, "Earnings")) {
+				earningThisPeriod += CommonUtil.toDouble(dsThisPeriod.getValue(i, "CALCULATED_AMOUNT"));
+			} else if (CommonUtil.equalsIgnoreCase(typeName, "Deduction")) {
+				deductionThisPeriod += CommonUtil.toDouble(dsThisPeriod.getValue(i, "CALCULATED_AMOUNT"));
+			}
+		}
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "THIS_PERIOD", (earningThisPeriod - deductionThisPeriod));
+
+		for (int i=0; i<dsYtd.getRowCnt(); i++) {
+			String typeName = dsYtd.getValue(i, "YTD_TYPE");
+			if (CommonUtil.equalsIgnoreCase(typeName, "Earnings")) {
+				earningYtd += CommonUtil.toDouble(dsYtd.getValue(i, "VALUE"));
+			} else if (CommonUtil.equalsIgnoreCase(typeName, "Deduction")) {
+				deductionYtd += CommonUtil.toDouble(dsYtd.getValue(i, "VALUE"));
+			}
+		}
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "YTD", (earningYtd - deductionYtd));
+
+		// Superannuation
+		queryAdvisor.resetAll();
+		dsPayAdvice.addRow();
+		dsThisPeriod = paymentBS.getPaymentAllByPaymentIdForPreview(queryAdvisor, paymentId, "Superannuation");
+		queryAdvisor.resetAll();
+		dsYtd = paymentBS.getYtdAllByPersonIdForPreview(queryAdvisor, personId, paymentDate, "Superannuation");
+
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "PAY_ADVICE_NAME", "Superannuation ("+dsThisPeriod.getValue("SUPER_NAME")+")");
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "THIS_PERIOD", dsThisPeriod.getValue("CALCULATED_AMOUNT"));
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "YTD", dsYtd.getValue("VALUE"));
+
+		// SuperSalSac
+		queryAdvisor.resetAll();
+		dsPayAdvice.addRow();
+		dsThisPeriod = paymentBS.getPaymentAllByPaymentIdForPreview(queryAdvisor, paymentId, "SuperSalSac");
+		queryAdvisor.resetAll();
+		dsYtd = paymentBS.getYtdAllByPersonIdForPreview(queryAdvisor, personId, paymentDate, "SuperSalSac");
+
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "PAY_ADVICE_NAME", "Salary Sacrifice");
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "THIS_PERIOD", dsThisPeriod.getValue("CALCULATED_AMOUNT"));
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "YTD", dsYtd.getValue("VALUE"));
+
+		// Gross Income
+		queryAdvisor.resetAll();
+		earningThisPeriod = 0; deductionThisPeriod = 0; earningYtd = 0; deductionYtd = 0;
+		for (int i=0; i<dsPayAdvice.getRowCnt(); i++) {
+			String name = dsPayAdvice.getValue(i, "PAY_ADVICE_NAME");
+			if (CommonUtil.equalsIgnoreCase(name, "Total Package")) {
+				earningThisPeriod += CommonUtil.toDouble(dsPayAdvice.getValue(i, "THIS_PERIOD"));
+			} else {
+				deductionThisPeriod += CommonUtil.toDouble(dsPayAdvice.getValue(i, "THIS_PERIOD"));
+			}
+		}
+
+		for (int i=0; i<dsPayAdvice.getRowCnt(); i++) {
+			String name = dsPayAdvice.getValue(i, "PAY_ADVICE_NAME");
+			if (CommonUtil.equalsIgnoreCase(name, "Total Package")) {
+				earningYtd += CommonUtil.toDouble(dsPayAdvice.getValue(i, "YTD"));
+			} else {
+				deductionYtd += CommonUtil.toDouble(dsPayAdvice.getValue(i, "YTD"));
+			}
+		}
+
+		dsPayAdvice.addRow();
+
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "PAY_ADVICE_NAME", "Gross Income");
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "THIS_PERIOD", (earningThisPeriod - deductionThisPeriod));
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "YTD", (earningYtd - deductionYtd));
+
+		// PAYG
+		queryAdvisor.resetAll();
+		dsPayAdvice.addRow();
+		dsThisPeriod = paymentBS.getPaymentAllByPaymentIdForPreview(queryAdvisor, paymentId, "PAYG");
+		queryAdvisor.resetAll();
+		dsYtd = paymentBS.getYtdAllByPersonIdForPreview(queryAdvisor, personId, paymentDate, "PAYG");
+
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "PAY_ADVICE_NAME", "PAYG Taxation");
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "THIS_PERIOD", dsThisPeriod.getValue("CALCULATED_AMOUNT"));
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "YTD", dsYtd.getValue("VALUE"));
+
+		// Other Taxation
+		queryAdvisor.resetAll();
+		dsPayAdvice.addRow();
+		dsThisPeriod = paymentBS.getPaymentAllByPaymentIdForPreview(queryAdvisor, paymentId, "OtherTaxation");
+		queryAdvisor.resetAll();
+		dsYtd = paymentBS.getYtdAllByPersonIdForPreview(queryAdvisor, personId, paymentDate, "OtherTaxation");
+
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "PAY_ADVICE_NAME", "Other Taxation");
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "THIS_PERIOD", dsThisPeriod.getValue("CALCULATED_AMOUNT"));
+		dsPayAdvice.setValue(dsPayAdvice.getRowCnt()-1, "YTD", dsYtd.getValue("VALUE"));
+
+		return dsPayAdvice;
 	}
 }

@@ -27,8 +27,9 @@ public class Sys9899BizImpl extends BaseBiz implements Sys9899Biz {
 
 	public ParamEntity doSearch(ParamEntity paramEntity) throws Exception {
 		DataSet ds = new DataSet();
-		String header[] = new String[] {"Name", "Url", "Description", "Status", "Time"};
+		String header[] = new String[] {"Name", "Url", "Description", "ResponseCode", "Status", "Time"};
 		String dateFormat = ConfigUtil.getProperty("format.dateTime.java");
+		String status = "", responseCode = "", statusString = "";
 
 		try {
 			ds.addName(header);
@@ -37,84 +38,180 @@ public class Sys9899BizImpl extends BaseBiz implements Sys9899Biz {
 			ds.setValue(ds.getRowCnt()-1, "Name", "PERCI_LIVE");
 			ds.setValue(ds.getRowCnt()-1, "Url", "http://172.16.15.22:8080/perci");
 			ds.setValue(ds.getRowCnt()-1, "Description", "PERCI Live");
-			ds.setValue(ds.getRowCnt()-1, "Status", getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url")));
+			status = getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url"));
+			if (CommonUtil.contains(status, ":")) {
+				responseCode = CommonUtil.splitWithTrim(status, ":")[0];
+				statusString = CommonUtil.splitWithTrim(status, ":")[1];
+			} else {
+				statusString = CommonUtil.splitWithTrim(status, ":")[0];
+			}
+			ds.setValue(ds.getRowCnt()-1, "ResponseCode", responseCode);
+			ds.setValue(ds.getRowCnt()-1, "Status", statusString);
 			ds.setValue(ds.getRowCnt()-1, "Time", CommonUtil.getSysdate(dateFormat));
 
 			ds.addRow();
 			ds.setValue(ds.getRowCnt()-1, "Name", "PERCI_TEST");
 			ds.setValue(ds.getRowCnt()-1, "Url", "http://192.168.1.7:8893/perci_test");
 			ds.setValue(ds.getRowCnt()-1, "Description", "PERCI Test");
-			ds.setValue(ds.getRowCnt()-1, "Status", getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url")));
+			status = getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url"));
+			if (CommonUtil.contains(status, ":")) {
+				responseCode = CommonUtil.splitWithTrim(status, ":")[0];
+				statusString = CommonUtil.splitWithTrim(status, ":")[1];
+			} else {
+				statusString = CommonUtil.splitWithTrim(status, ":")[0];
+			}
+			ds.setValue(ds.getRowCnt()-1, "ResponseCode", responseCode);
+			ds.setValue(ds.getRowCnt()-1, "Status", statusString);
 			ds.setValue(ds.getRowCnt()-1, "Time", CommonUtil.getSysdate(dateFormat));
 
 			ds.addRow();
 			ds.setValue(ds.getRowCnt()-1, "Name", "PERCI_UAT");
 			ds.setValue(ds.getRowCnt()-1, "Url", "http://192.168.1.7:8894/perci_uat");
 			ds.setValue(ds.getRowCnt()-1, "Description", "PERCI UAT");
-			ds.setValue(ds.getRowCnt()-1, "Status", getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url")));
+			status = getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url"));
+			if (CommonUtil.contains(status, ":")) {
+				responseCode = CommonUtil.splitWithTrim(status, ":")[0];
+				statusString = CommonUtil.splitWithTrim(status, ":")[1];
+			} else {
+				statusString = CommonUtil.splitWithTrim(status, ":")[0];
+			}
+			ds.setValue(ds.getRowCnt()-1, "ResponseCode", responseCode);
+			ds.setValue(ds.getRowCnt()-1, "Status", statusString);
 			ds.setValue(ds.getRowCnt()-1, "Time", CommonUtil.getSysdate(dateFormat));
 
 			ds.addRow();
 			ds.setValue(ds.getRowCnt()-1, "Name", "MERLIN_LIVE");
 			ds.setValue(ds.getRowCnt()-1, "Url", "http://172.16.15.5:8090/jasperserver");
 			ds.setValue(ds.getRowCnt()-1, "Description", "MERLIN Live");
-			ds.setValue(ds.getRowCnt()-1, "Status", getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url")));
+			status = getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url"));
+			if (CommonUtil.contains(status, ":")) {
+				responseCode = CommonUtil.splitWithTrim(status, ":")[0];
+				statusString = CommonUtil.splitWithTrim(status, ":")[1];
+			} else {
+				statusString = CommonUtil.splitWithTrim(status, ":")[0];
+			}
+			ds.setValue(ds.getRowCnt()-1, "ResponseCode", responseCode);
+			ds.setValue(ds.getRowCnt()-1, "Status", statusString);
 			ds.setValue(ds.getRowCnt()-1, "Time", CommonUtil.getSysdate(dateFormat));
 
 			ds.addRow();
 			ds.setValue(ds.getRowCnt()-1, "Name", "MERLIN_TEST");
 			ds.setValue(ds.getRowCnt()-1, "Url", "http://192.168.1.8:8090/jasperserver");
 			ds.setValue(ds.getRowCnt()-1, "Description", "MERLIN Test");
-			ds.setValue(ds.getRowCnt()-1, "Status", getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url")));
+			status = getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url"));
+			if (CommonUtil.contains(status, ":")) {
+				responseCode = CommonUtil.splitWithTrim(status, ":")[0];
+				statusString = CommonUtil.splitWithTrim(status, ":")[1];
+			} else {
+				statusString = CommonUtil.splitWithTrim(status, ":")[0];
+			}
+			ds.setValue(ds.getRowCnt()-1, "ResponseCode", responseCode);
+			ds.setValue(ds.getRowCnt()-1, "Status", statusString);
 			ds.setValue(ds.getRowCnt()-1, "Time", CommonUtil.getSysdate(dateFormat));
 
 			ds.addRow();
 			ds.setValue(ds.getRowCnt()-1, "Name", "WSO2_LIVE");
 			ds.setValue(ds.getRowCnt()-1, "Url", "https://192.168.1.10/carbon");
 			ds.setValue(ds.getRowCnt()-1, "Description", "WSO2 Live");
-			ds.setValue(ds.getRowCnt()-1, "Status", getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url")));
+			status = getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url"));
+			if (CommonUtil.contains(status, ":")) {
+				responseCode = CommonUtil.splitWithTrim(status, ":")[0];
+				statusString = CommonUtil.splitWithTrim(status, ":")[1];
+			} else {
+				statusString = CommonUtil.splitWithTrim(status, ":")[0];
+			}
+			ds.setValue(ds.getRowCnt()-1, "ResponseCode", responseCode);
+			ds.setValue(ds.getRowCnt()-1, "Status", statusString);
 			ds.setValue(ds.getRowCnt()-1, "Time", CommonUtil.getSysdate(dateFormat));
 
 			ds.addRow();
 			ds.setValue(ds.getRowCnt()-1, "Name", "WebCenter_LIVE");
 			ds.setValue(ds.getRowCnt()-1, "Url", "https://portal.entitysolutions.com.au/webcenter/portal");
 			ds.setValue(ds.getRowCnt()-1, "Description", "WebCenter Live");
-			ds.setValue(ds.getRowCnt()-1, "Status", getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url")));
+			status = getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url"));
+			if (CommonUtil.contains(status, ":")) {
+				responseCode = CommonUtil.splitWithTrim(status, ":")[0];
+				statusString = CommonUtil.splitWithTrim(status, ":")[1];
+			} else {
+				statusString = CommonUtil.splitWithTrim(status, ":")[0];
+			}
+			ds.setValue(ds.getRowCnt()-1, "ResponseCode", responseCode);
+			ds.setValue(ds.getRowCnt()-1, "Status", statusString);
 			ds.setValue(ds.getRowCnt()-1, "Time", CommonUtil.getSysdate(dateFormat));
 
 			ds.addRow();
 			ds.setValue(ds.getRowCnt()-1, "Name", "WebCenter_TEST");
 			ds.setValue(ds.getRowCnt()-1, "Url", "https://192.168.1.9:7002/em");
 			ds.setValue(ds.getRowCnt()-1, "Description", "WebCenter Test");
-			ds.setValue(ds.getRowCnt()-1, "Status", getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url")));
+			status = getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url"));
+			if (CommonUtil.contains(status, ":")) {
+				responseCode = CommonUtil.splitWithTrim(status, ":")[0];
+				statusString = CommonUtil.splitWithTrim(status, ":")[1];
+			} else {
+				statusString = CommonUtil.splitWithTrim(status, ":")[0];
+			}
+			ds.setValue(ds.getRowCnt()-1, "ResponseCode", responseCode);
+			ds.setValue(ds.getRowCnt()-1, "Status", statusString);
 			ds.setValue(ds.getRowCnt()-1, "Time", CommonUtil.getSysdate(dateFormat));
 
 			ds.addRow();
 			ds.setValue(ds.getRowCnt()-1, "Name", "OHS_TEST 1");
 			ds.setValue(ds.getRowCnt()-1, "Url", "http://129.154.120.218/webcenter/portal/login");
 			ds.setValue(ds.getRowCnt()-1, "Description", "OHS Test 1");
-			ds.setValue(ds.getRowCnt()-1, "Status", getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url")));
+			status = getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url"));
+			if (CommonUtil.contains(status, ":")) {
+				responseCode = CommonUtil.splitWithTrim(status, ":")[0];
+				statusString = CommonUtil.splitWithTrim(status, ":")[1];
+			} else {
+				statusString = CommonUtil.splitWithTrim(status, ":")[0];
+			}
+			ds.setValue(ds.getRowCnt()-1, "ResponseCode", responseCode);
+			ds.setValue(ds.getRowCnt()-1, "Status", statusString);
 			ds.setValue(ds.getRowCnt()-1, "Time", CommonUtil.getSysdate(dateFormat));
 
 			ds.addRow();
 			ds.setValue(ds.getRowCnt()-1, "Name", "OHS_TEST 2");
 			ds.setValue(ds.getRowCnt()-1, "Url", "http://192.168.1.11/webcenter/portal/login");
 			ds.setValue(ds.getRowCnt()-1, "Description", "OHS Test 2");
-			ds.setValue(ds.getRowCnt()-1, "Status", getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url")));
+			status = getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url"));
+			if (CommonUtil.contains(status, ":")) {
+				responseCode = CommonUtil.splitWithTrim(status, ":")[0];
+				statusString = CommonUtil.splitWithTrim(status, ":")[1];
+			} else {
+				statusString = CommonUtil.splitWithTrim(status, ":")[0];
+			}
+			ds.setValue(ds.getRowCnt()-1, "ResponseCode", responseCode);
+			ds.setValue(ds.getRowCnt()-1, "Status", statusString);
 			ds.setValue(ds.getRowCnt()-1, "Time", CommonUtil.getSysdate(dateFormat));
 
 			ds.addRow();
 			ds.setValue(ds.getRowCnt()-1, "Name", "JIRA");
 			ds.setValue(ds.getRowCnt()-1, "Url", "http://172.16.15.3:8080");
 			ds.setValue(ds.getRowCnt()-1, "Description", "JIRA");
-			ds.setValue(ds.getRowCnt()-1, "Status", getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url")));
+			status = getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url"));
+			if (CommonUtil.contains(status, ":")) {
+				responseCode = CommonUtil.splitWithTrim(status, ":")[0];
+				statusString = CommonUtil.splitWithTrim(status, ":")[1];
+			} else {
+				statusString = CommonUtil.splitWithTrim(status, ":")[0];
+			}
+			ds.setValue(ds.getRowCnt()-1, "ResponseCode", responseCode);
+			ds.setValue(ds.getRowCnt()-1, "Status", statusString);
 			ds.setValue(ds.getRowCnt()-1, "Time", CommonUtil.getSysdate(dateFormat));
 
 			ds.addRow();
 			ds.setValue(ds.getRowCnt()-1, "Name", "Wiki");
 			ds.setValue(ds.getRowCnt()-1, "Url", "http://172.16.15.3:8090");
 			ds.setValue(ds.getRowCnt()-1, "Description", "Wiki");
-			ds.setValue(ds.getRowCnt()-1, "Status", getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url")));
+			status = getSiteRunningStatus(ds.getValue(ds.getRowCnt()-1, "Url"));
+			if (CommonUtil.contains(status, ":")) {
+				responseCode = CommonUtil.splitWithTrim(status, ":")[0];
+				statusString = CommonUtil.splitWithTrim(status, ":")[1];
+			} else {
+				statusString = CommonUtil.splitWithTrim(status, ":")[0];
+			}
+			ds.setValue(ds.getRowCnt()-1, "ResponseCode", responseCode);
+			ds.setValue(ds.getRowCnt()-1, "Status", statusString);
 			ds.setValue(ds.getRowCnt()-1, "Time", CommonUtil.getSysdate(dateFormat));
 
 			paramEntity.setAjaxResponseDataSet(ds);
@@ -128,20 +225,20 @@ public class Sys9899BizImpl extends BaseBiz implements Sys9899Biz {
 
 	private String getSiteRunningStatus(String url) {
 		HttpURLConnection conn = null;
+		int responseCode = -1;
 
 		try {
 			conn = (HttpURLConnection)new URL(url).openConnection();
-			int responseCode;
 
 			conn.setRequestMethod("HEAD");
 			responseCode = conn.getResponseCode();
 
 			if (responseCode == HttpURLConnection.HTTP_OK) {
-				return "Running OK";
+				return responseCode+" : "+"Running OK";
 			}
 			return responseCode+" : "+conn.getResponseMessage();
 		} catch (Exception e) {
-			return e.getMessage();
+			return responseCode+" : "+e.getMessage();
 		} finally {
 			if (conn != null) {conn.disconnect();}
 		}

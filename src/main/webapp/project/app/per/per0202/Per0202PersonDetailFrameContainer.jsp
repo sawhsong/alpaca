@@ -15,10 +15,10 @@
 	String personType = person.getPersonType();
 	String personTypeForPortalTab[] = {"ECMS IPro","ECMS IC","ECMS Sponsored IPro","ECMS Prospect", "BO Employee", "EST ECMS Sponsored IPro","NZ IC", "NZ IPro",
 			"NZ Prospect", "ECMS Elite Premium IC","ECMS EES IPro","ECMS EES IC", "ECMS ESSG Contractor", "ECMS ESSG Pte Ltd Contractor", "ECMS ESSG SPass Contractor",
-			"ECMS ESUK IPro", "ECMS ESUK IC", "ECMS ESMY Contractor", "ECMS EES IPro", "ECMS EES IC", "ECMS ESHK Ltd Co Contractor"};
+			"ECMS ESUK IPro", "ECMS ESUK IC", "ECMS ESMY Contractor", "ECMS EES IPro", "ECMS EES IC", "ECMS ESHK Ltd Co Contractor", "UoM Sole Trader", "UoM IC"};
 	boolean isEcmsEboTabAvailable = false, isPortalTabAvailable = false;
 
-	if (CommonUtil.contains(personType, "ECMS", "NZ")) {
+	if (CommonUtil.contains(personType, "ECMS", "NZ", "UoM")) {
 		isEcmsEboTabAvailable = true;
 		captionEcmsEbo = "ECMS";
 	} else if (CommonUtil.contains(personType, "EBO", "EES")) {

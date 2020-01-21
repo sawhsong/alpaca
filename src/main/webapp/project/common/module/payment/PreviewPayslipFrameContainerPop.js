@@ -1,6 +1,8 @@
 /**
  * PreviewPayslipFrameContainerPop.js
  */
+var templateType = "";
+
 $(function() {
 	/*!
 	 * event
@@ -17,34 +19,34 @@ $(function() {
 	};
 
 	loadPage = function() {
-		var str = "", actionString = "", paramString = "";
+		var actionString = "", paramString = "";
+
 		if ("ICRCTI" == commonJs.upperCase(payrollType) || "ICNRCTI" == commonJs.upperCase(payrollType)) {
-			str = ("RCTI" == commonJs.upperCase(taxInvoiceAcceptanceType)) ? "ICRCTI" : "ICRemittance";
+			templateType = ("RCTI" == commonJs.upperCase(taxInvoiceAcceptanceType)) ? "ICRCTI" : "ICRemittance";
 		} else if ("STG" == commonJs.upperCase(payrollType) || "STNG" == commonJs.upperCase(payrollType)) {
-			str = ("RCTI" == commonJs.upperCase(taxInvoiceAcceptanceType)) ? "STRCTI" : "STRemittance";
+			templateType = ("RCTI" == commonJs.upperCase(taxInvoiceAcceptanceType)) ? "STRCTI" : "STRemittance";
 		} else if ("BCTI" == commonJs.upperCase(payrollType)) {
-			str = ("BCTI" == commonJs.upperCase(taxInvoiceAcceptanceType)) ? "BCTI" : "ICRemittance";
+			templateType = ("BCTI" == commonJs.upperCase(taxInvoiceAcceptanceType)) ? "BCTI" : "ICRemittance";
 		} else {
-			str = "Remittance";
+			templateType = "Remittance";
 		}
 
-		paramString = "paymentId="+paymentId+"&payrollType="+payrollType+"&taxInvoiceAcceptanceType="+taxInvoiceAcceptanceType;
-		actionString = "/common/payment/get"+str+".do?"+paramString;
+		paramString = "templateType="+templateType+"&personId="+personId+"&paymentId="+paymentId+"&assignmentId="+assignmentId+"&payrollType="+payrollType+"&taxInvoiceAcceptanceType="+taxInvoiceAcceptanceType;
+		actionString = "/common/payment/getPageByTemplate.do?"+paramString;
 		setFrame(actionString);
 	};
 
 	setFrame = function(actionString) {
-		$("#ifFrame").attr("src", "");
-		setTimeout(function() {
-			$("#ifFrame").attr("src", actionString);
-		}, 30); // important
+		$("#ifFrame").attr("src", actionString);
 	};
 
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		setIframeSize();
-		loadPage();
+		setTimeout(function() {
+			setIframeSize();
+			loadPage();
+		}, 500);
 	});
 });

@@ -5,6 +5,10 @@
 package project.conf.resource.ormapper.dao.HpBalanceLines;
 
 import zebra.base.IDao;
+import zebra.data.DataSet;
+import zebra.data.QueryAdvisor;
 
 public interface HpBalanceLinesDao extends IDao {
+	public DataSet getByElementId(QueryAdvisor queryAdvisor, String paymentId, String elementId) throws Exception;
+	public DataSet getByElementId(String paymentId, String elementId) throws Exception;
 }
