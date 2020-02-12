@@ -203,6 +203,51 @@ $(function() {
 		commonJs.hideProcMessageOnElement("divPaymentType");
 	};
 
+	getBankDetails = function() {
+		if (isDeduction == "Y") {
+			commonJs.showProcMessageOnElement("divBankDetail");
+
+			commonJs.doSimpleProcess({
+				url:"/common/payment/getBankDetails.do",
+				noForm:true,
+				data:{paymentId:paymentId},
+				callback:function(result) {
+					var ds = result.dataSet;
+					renderBankDetailsGridTable(ds);
+				}
+			});
+		} else {
+			$("divBankDetail").hide();
+		}
+	};
+	renderBankDetailsGridTable = function(ds) {
+		var html = "";
+
+		$("#tbodyBankDetail").html("");
+
+		if (ds.getRowCnt() > 0) {
+			for (var i=0; i<ds.getRowCnt(); i++) {
+				var gridTr = new UiGridTr();
+
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "BANK_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "BSB")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ACCOUNT_NUMBER")));
+				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(ds.getValue(i, "AMOUNT"), "#,##0.00")));
+
+				html += gridTr.addClassName("noStripe").toHtmlString();
+			}
+		} else {
+			var gridTr = new UiGridTr();
+
+			gridTr.addClassName("noStripe").addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:4").setText(com.message.I001));
+			html += gridTr.toHtmlString();
+		}
+
+		$("#tbodyBankDetail").append($(html));
+
+		commonJs.hideProcMessageOnElement("divBankDetail");
+	};
+
 	/*
 	 * ! load event (document / window)
 	 */
@@ -212,7 +257,7 @@ $(function() {
 			getDeductions();
 			getPayAdvice();
 			getPaymentType();
-//			getBankingDetails();
+			getBankDetails();
 //			getLeaveAccurals();
 		}, 500);
 	});

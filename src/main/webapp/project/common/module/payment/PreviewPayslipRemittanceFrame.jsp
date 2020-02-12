@@ -33,6 +33,7 @@
 <script type="text/javascript">
 var personId = "<%=dsRequest.getValue("personId")%>";
 var paymentId = "<%=dsRequest.getValue("paymentId")%>";
+var assignmentId = "<%=dsRequest.getValue("assignmentId")%>";
 var isConsultingRevenue = "<%=payslipMaster.getValue("CONSULTING_REVENUE_Y_N")%>";
 var isDeduction = "<%=payslipMaster.getValue("DEDUCTIONS_Y_N")%>";
 var isPayAdvice = "<%=payslipMaster.getValue("PAY_ADVICE_Y_N")%>";

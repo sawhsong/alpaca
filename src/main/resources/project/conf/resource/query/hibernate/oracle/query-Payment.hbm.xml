@@ -331,6 +331,96 @@
 			               hbl.balance_type_id,
 			               hbl.element_id
 			       ) src
+			union
+			select 'AddBack' as ytd_type,
+			       src.*,
+			       (select fund_name
+			          from super_fund_detail
+			         where super_fund_id = (select super_fund_id
+			                                  from person_super_detail
+			                                 where person_id = src.person_id
+			                               )
+			       ) as super_name
+			  from (select hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id,
+			               (select element_name from hp_elements_d where element_id = hbl.element_id) as element_name,
+			               (select reporting_name from hp_elements_d where element_id = hbl.element_id) as reporting_name,
+			               max(hbt.balance_name) as balance_name,
+			               sum(hbl.value) as value,
+			               sum(hbl.ptd) as ptd,
+			               sum(hbl.mtd) as mtd,
+			               sum(hbl.qtd) as qtd,
+			               sum(hbl.ytd) as ytd
+			          from hp_balance hbm,
+			               hp_balance_lines hbl,
+			               hp_balance_types hbt,
+			               hp_asg_processes hap,
+			               hp_person_d per
+			         where hbm.person_id = '${personId}'
+			           and trunc(hbm.date_earned) between to_date('${financialDateFrom}', 'yyyymmdd') and to_date('${paymentDate}', 'yyyymmdd')
+			           and hap.process_status in ('S', 'I', 'C', 'M')
+			           and hbt.balance_name not like ('%_Hours')
+			           and hbm.assignment_action_id = hbl.assignment_action_id
+			           and hbl.balance_type_id = hbt.balance_id
+			           and hbm.assignment_action_id = hap.assignment_process_id
+			           and hbm.person_id = per.person_id
+			           and hbl.element_id in (select element_id
+			                                    from hp_elements_d
+			                                   where classifications_id in (select classifications_id
+			                                                                  from hp_classifications
+			                                                                 where classifications_name in ('Pre-Tax-Payback Deductions', 'Cash Payments', 'Others')
+			                                                               )
+			                                 )
+			         group by hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id
+			       ) src
+			union
+			select 'PostDeduction' as ytd_type,
+			       src.*,
+			       (select fund_name
+			          from super_fund_detail
+			         where super_fund_id = (select super_fund_id
+			                                  from person_super_detail
+			                                 where person_id = src.person_id
+			                               )
+			       ) as super_name
+			  from (select hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id,
+			               (select element_name from hp_elements_d where element_id = hbl.element_id) as element_name,
+			               (select reporting_name from hp_elements_d where element_id = hbl.element_id) as reporting_name,
+			               max(hbt.balance_name) as balance_name,
+			               sum(hbl.value) as value,
+			               sum(hbl.ptd) as ptd,
+			               sum(hbl.mtd) as mtd,
+			               sum(hbl.qtd) as qtd,
+			               sum(hbl.ytd) as ytd
+			          from hp_balance hbm,
+			               hp_balance_lines hbl,
+			               hp_balance_types hbt,
+			               hp_asg_processes hap,
+			               hp_person_d per
+			         where hbm.person_id = '${personId}'
+			           and trunc(hbm.date_earned) between to_date('${financialDateFrom}', 'yyyymmdd') and to_date('${paymentDate}', 'yyyymmdd')
+			           and hap.process_status in ('S', 'I', 'C', 'M')
+			           and hbt.balance_name not like ('%_Hours')
+			           and hbm.assignment_action_id = hbl.assignment_action_id
+			           and hbl.balance_type_id = hbt.balance_id
+			           and hbm.assignment_action_id = hap.assignment_process_id
+			           and hbm.person_id = per.person_id
+			           and hbl.element_id in (select element_id
+			                                    from hp_elements_d
+			                                   where classifications_id in (select classifications_id
+			                                                                  from hp_classifications
+			                                                                 where classifications_name in ('Post-Tax Deductions')
+			                                                               )
+			                                 )
+			         group by hbm.person_id,
+			               hbl.balance_type_id,
+			               hbl.element_id
+			       ) src
 		)
 		select *
 		  from src
@@ -621,6 +711,96 @@
 			                                                      )
 			                        )
 			   and pe.element_id in ('1573', '1572')
+			union
+			select 'AddBack' as type,
+			       pe.payment_id,
+			       pe.payment_element_id,
+			       pe.element_id,
+			       pe.source,
+			       pe.source_id,
+			       pe.period,
+			       pe.input_amount,
+			       pe.calculated_amount,
+			       pe.alternate_name,
+			       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Hours')
+			       ) as units,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Rate', 'Flat Amount')
+			       ) as rate,
+			       rat.show_zero_y_n,
+			       '' as super_name
+			  from payment_element pe,
+			       hp_asg_processes hap,
+			       hp_assignments_d asg,
+			       hp_billing_code hbc,
+			       hp_remittance_advice_template rat
+			 where pe.payment_id = '${paymentId}'
+			   and pe.payment_id = hap.payment_id
+			   and hap.assignment_id = asg.assignment_id
+			   and asg.billing_code_id = hbc.billing_code_id
+			   and hbc.payslip_template_id = rat.remittance_advice_template_id
+			   and pe.element_id in (select element_id
+			                           from hp_elements_d
+			                          where classifications_id in (select classifications_id
+			                                                         from hp_classifications
+			                                                        where classifications_name in ('Pre-Tax-Payback Deductions', 'Cash Payments', 'Others')
+			                                                      )
+			                        )
+			union
+			select 'PostDeduction' as type,
+			       pe.payment_id,
+			       pe.payment_element_id,
+			       pe.element_id,
+			       pe.source,
+			       pe.source_id,
+			       pe.period,
+			       pe.input_amount,
+			       pe.calculated_amount,
+			       pe.alternate_name,
+			       (select reporting_name from hp_elements_d where element_id = pe.element_id) as element_reporting_name,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Hours')
+			       ) as units,
+			       (select nvl(sum(pea.value), 0)
+			          from payment_element_attribute pea,
+			               hp_element_attributes_d hea
+			         where pea.payment_element_id = pe.payment_element_id
+			           and pea.element_attribute_id = hea.element_att_id
+			           and hea.name in ('Rate', 'Flat Amount')
+			       ) as rate,
+			       rat.show_zero_y_n,
+			       '' as super_name
+			  from payment_element pe,
+			       hp_asg_processes hap,
+			       hp_assignments_d asg,
+			       hp_billing_code hbc,
+			       hp_remittance_advice_template rat
+			 where pe.payment_id = '${paymentId}'
+			   and pe.payment_id = hap.payment_id
+			   and hap.assignment_id = asg.assignment_id
+			   and asg.billing_code_id = hbc.billing_code_id
+			   and hbc.payslip_template_id = rat.remittance_advice_template_id
+			   and pe.element_id in (select element_id
+			                           from hp_elements_d
+			                          where classifications_id in (select classifications_id
+			                                                         from hp_classifications
+			                                                        where classifications_name in ('Post-Tax Deductions')
+			                                                      )
+			                        )
 		)
 		select *
 		  from src

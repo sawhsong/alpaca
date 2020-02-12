@@ -144,7 +144,7 @@ public class PaymentBizImpl extends BaseBiz implements PaymentBiz {
 		String personId = dsRequest.getValue("personId");
 		String paymentId = dsRequest.getValue("paymentId");
 		Date paymentDate = CommonUtil.toDate(dsRequest.getValue("paymentDate"), dateFormat);
-		DataSet dsBalanceLines, dsYtd;
+		DataSet ds, dsYtd;
 		DataSet dsPaymentType = new DataSet(new String[] {"PAYMENT_TYPE_NAME", "THIS_PERIOD", "YTD"});
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
@@ -153,14 +153,14 @@ public class PaymentBizImpl extends BaseBiz implements PaymentBiz {
 		try {
 			queryAdvisor.setObject("dataSource", dataSource);
 
-			dsBalanceLines = paymentBS.getBalanceLinesByElementId(queryAdvisor, paymentId, "2");	// NET_BALANCE_ID
+			ds = paymentBS.getBalanceLinesByElementId(queryAdvisor, paymentId, "2");	// NET_BALANCE_ID
 			queryAdvisor.resetAll();
 			dsYtd = paymentBS.getYtdAllByPersonIdForPreview(queryAdvisor, personId, paymentDate, "Earnings", "Deduction", "Superannuation", "SuperSalSac", "PAYG", "OtherTaxation");
 
 			// Net Wages
 			dsPaymentType.addRow();
 			dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "PAYMENT_TYPE_NAME", "Net Wages");
-			dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "THIS_PERIOD", dsBalanceLines.getValue("VALUE"));
+			dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "THIS_PERIOD", ds.getValue("VALUE"));
 			for (int i=0; i<dsYtd.getRowCnt(); i++) {
 				String name = dsYtd.getValue(i, "YTD_TYPE");
 				if (CommonUtil.equalsIgnoreCase(name, "Earnings")) {
@@ -171,8 +171,57 @@ public class PaymentBizImpl extends BaseBiz implements PaymentBiz {
 			}
 			dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "YTD", (earningYtd - deductionYtd));
 
+			// PostTaxAddBacks
+			queryAdvisor.resetAll();
+			ds = paymentBS.getPaymentAllByPaymentIdForPreview(queryAdvisor, paymentId, "AddBack");
+			if (ds.getRowCnt() > 0 ) {
+				for (int i=0; i<ds.getRowCnt(); i++) {
+					dsPaymentType.addRow();
+					dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "PAYMENT_TYPE_NAME", CommonUtil.nvl(ds.getValue(i, "ALTERNATE_NAME"), ds.getValue(i, "ELEMENT_REPORTING_NAME")));
+					dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "THIS_PERIOD", ds.getValue("CALCULATED_AMOUNT"));
+
+					queryAdvisor.resetAll();
+					dsYtd = paymentBS.getYtdByElementIdForPreview(queryAdvisor, personId, paymentDate, ds.getValue("ELEMENT_ID"));
+					dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "YTD", dsYtd.getValue("VALUE"));
+				}
+			}
+
+			// PostTaxDeductions
+			queryAdvisor.resetAll();
+			ds = paymentBS.getPaymentAllByPaymentIdForPreview(queryAdvisor, paymentId, "PostDeduction");
+			if (ds.getRowCnt() > 0 ) {
+				for (int i=0; i<ds.getRowCnt(); i++) {
+					dsPaymentType.addRow();
+					dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "PAYMENT_TYPE_NAME", CommonUtil.nvl(ds.getValue(i, "ALTERNATE_NAME"), ds.getValue(i, "ELEMENT_REPORTING_NAME")));
+					dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "THIS_PERIOD", ds.getValue("CALCULATED_AMOUNT"));
+
+					queryAdvisor.resetAll();
+					dsYtd = paymentBS.getYtdByElementIdForPreview(queryAdvisor, personId, paymentDate, ds.getValue("ELEMENT_ID"));
+					dsPaymentType.setValue(dsPaymentType.getRowCnt()-1, "YTD", dsYtd.getValue("VALUE"));
+				}
+			}
+
 			paramEntity.setAjaxResponseDataSet(dsPaymentType);
 			paramEntity.setTotalResultRows(dsPaymentType.getRowCnt());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getBankDetails(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String paymentId = dsRequest.getValue("paymentId");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+
+			paramEntity.setAjaxResponseDataSet(paymentBS.getBankDetailsByPaymentIdForPreview(queryAdvisor, paymentId));
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);

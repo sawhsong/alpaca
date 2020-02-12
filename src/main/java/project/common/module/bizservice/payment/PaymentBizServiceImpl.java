@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.conf.resource.ormapper.dao.HpAsgProcesses.HpAsgProcessesDao;
+import project.conf.resource.ormapper.dao.HpAssignmentPayments.HpAssignmentPaymentsDao;
 import project.conf.resource.ormapper.dao.HpBalanceLines.HpBalanceLinesDao;
 import project.conf.resource.ormapper.dao.Payment.PaymentDao;
 import zebra.data.DataSet;
@@ -18,6 +19,8 @@ public class PaymentBizServiceImpl extends BaseBiz implements PaymentBizService 
 	private PaymentDao paymentDao;
 	@Autowired
 	private HpBalanceLinesDao hpBalanceLinesDao;
+	@Autowired
+	private HpAssignmentPaymentsDao hpAssignmentPaymentsDao;
 
 	public DataSet getPayslipListByPersonId(QueryAdvisor queryAdvisor, String personId) throws Exception {
 		hpAsgProcessesDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
@@ -62,5 +65,10 @@ public class PaymentBizServiceImpl extends BaseBiz implements PaymentBizService 
 	public DataSet getPaymentAllByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId, String... paymentTypes) throws Exception {
 		paymentDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
 		return paymentDao.getPaymentAllByPaymentIdForPreview(queryAdvisor, paymentId, paymentTypes);
+	}
+
+	public DataSet getBankDetailsByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception {
+		hpAssignmentPaymentsDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
+		return hpAssignmentPaymentsDao.getBankDetailsByPaymentIdForPreview(queryAdvisor, paymentId);
 	}
 }

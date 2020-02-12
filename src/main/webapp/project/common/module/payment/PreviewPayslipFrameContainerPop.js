@@ -31,7 +31,7 @@ $(function() {
 			templateType = "Remittance";
 		}
 
-		paramString = "templateType="+templateType+"&personId="+personId+"&paymentId="+paymentId+"&payrollType="+payrollType+"&taxInvoiceAcceptanceType="+taxInvoiceAcceptanceType;
+		paramString = "templateType="+templateType+"&personId="+personId+"&paymentId="+paymentId+"&assignmentId="+assignmentId+"&payrollType="+payrollType+"&taxInvoiceAcceptanceType="+taxInvoiceAcceptanceType;
 		actionString = "/common/payment/getPageByTemplate.do?"+paramString;
 		setFrame(actionString);
 	};
