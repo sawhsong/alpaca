@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.conf.resource.ormapper.dao.HpAsgProcesses.HpAsgProcessesDao;
+import project.conf.resource.ormapper.dao.HpAssignmentAccruals.HpAssignmentAccrualsDao;
 import project.conf.resource.ormapper.dao.HpAssignmentPayments.HpAssignmentPaymentsDao;
 import project.conf.resource.ormapper.dao.HpBalanceLines.HpBalanceLinesDao;
 import project.conf.resource.ormapper.dao.Payment.PaymentDao;
@@ -21,6 +22,8 @@ public class PaymentBizServiceImpl extends BaseBiz implements PaymentBizService 
 	private HpBalanceLinesDao hpBalanceLinesDao;
 	@Autowired
 	private HpAssignmentPaymentsDao hpAssignmentPaymentsDao;
+	@Autowired
+	private HpAssignmentAccrualsDao hpAssignmentAccrualsDao;
 
 	public DataSet getPayslipListByPersonId(QueryAdvisor queryAdvisor, String personId) throws Exception {
 		hpAsgProcessesDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
@@ -70,5 +73,10 @@ public class PaymentBizServiceImpl extends BaseBiz implements PaymentBizService 
 	public DataSet getBankDetailsByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception {
 		hpAssignmentPaymentsDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
 		return hpAssignmentPaymentsDao.getBankDetailsByPaymentIdForPreview(queryAdvisor, paymentId);
+	}
+
+	public DataSet getLeaveAccrualsByAssignmentIdForPreview(QueryAdvisor queryAdvisor, String assignmentId) throws Exception {
+		hpAssignmentAccrualsDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
+		return hpAssignmentAccrualsDao.getLeaveAccrualsByAssignmentIdForPreview(queryAdvisor, assignmentId);
 	}
 }

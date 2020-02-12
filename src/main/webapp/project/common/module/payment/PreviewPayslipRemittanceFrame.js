@@ -20,7 +20,9 @@ $(function() {
 				data:{paymentId:paymentId},
 				callback:function(result) {
 					var ds = result.dataSet;
-					renderEarningGridTable(ds);
+					setTimeout(function() {
+						renderEarningGridTable(ds);
+					}, 500);
 				}
 			});
 		} else {
@@ -28,7 +30,7 @@ $(function() {
 		}
 	};
 	renderEarningGridTable = function(ds) {
-		var html = "", isShowZero = ds.getValue(0, "SHOW_ZERO_Y_N");
+		var html = "";
 
 		$("#tbodyEarning").html("");
 
@@ -68,7 +70,9 @@ $(function() {
 				},
 				callback:function(result) {
 					var ds = result.dataSet;
-					renderDeductionGridTable(ds);
+					setTimeout(function() {
+						renderDeductionGridTable(ds);
+					}, 500);
 				}
 			});
 		} else {
@@ -76,22 +80,18 @@ $(function() {
 		}
 	};
 	renderDeductionGridTable = function(ds) {
-		var html = "", isShowZero = "";
+		var html = "";
 
 		$("#tbodyDeduction").html("");
 
 		if (ds.getRowCnt() > 0) {
-			isShowZero = ds.getValue(0, "SHOW_ZERO_Y_N");
-
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var name = commonJs.nvl(ds.getValue(i, "ALTERNATE_NAME"), ds.getValue(i, "ELEMENT_REPORTING_NAME"));
 				var gridTr = new UiGridTr();
-				var deductionAmt = commonJs.toNumber(ds.getValue(i, "CALCULATED_AMOUNT"));
-				var ytdAmt = commonJs.toNumber(ds.getValue(i, "YTD_VALUE"));
 
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(name));
-				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(deductionAmt, "#,##0.00")));
-				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask((deductionAmt + ytdAmt), "#,##0.00")));
+				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(ds.getValue(i, "CALCULATED_AMOUNT"), "#,##0.00")));
+				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(ds.getValue(i, "YTD_VALUE"), "#,##0.00")));
 
 				html += gridTr.addClassName("noStripe").toHtmlString();
 			}
@@ -121,7 +121,9 @@ $(function() {
 				},
 				callback:function(result) {
 					var ds = result.dataSet;
-					renderPayAdviceGridTable(ds);
+					setTimeout(function() {
+						renderPayAdviceGridTable(ds);
+					}, 500);
 				}
 			});
 		} else {
@@ -169,7 +171,9 @@ $(function() {
 				},
 				callback:function(result) {
 					var ds = result.dataSet;
-					renderPaymentTypeGridTable(ds);
+					setTimeout(function() {
+						renderPaymentTypeGridTable(ds);
+					}, 500);
 				}
 			});
 		} else {
@@ -213,7 +217,9 @@ $(function() {
 				data:{paymentId:paymentId},
 				callback:function(result) {
 					var ds = result.dataSet;
-					renderBankDetailsGridTable(ds);
+					setTimeout(function() {
+						renderBankDetailsGridTable(ds);
+					}, 500);
 				}
 			});
 		} else {
@@ -230,8 +236,8 @@ $(function() {
 				var gridTr = new UiGridTr();
 
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "BANK_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "BSB")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ACCOUNT_NUMBER")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "BSB")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ACCOUNT_NUMBER")));
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(ds.getValue(i, "AMOUNT"), "#,##0.00")));
 
 				html += gridTr.addClassName("noStripe").toHtmlString();
@@ -248,6 +254,51 @@ $(function() {
 		commonJs.hideProcMessageOnElement("divBankDetail");
 	};
 
+	getLeaveAccruals = function() {
+		if (isDeduction == "Y") {
+			commonJs.showProcMessageOnElement("divLeaveAccrual");
+
+			commonJs.doSimpleProcess({
+				url:"/common/payment/getLeaveAccruals.do",
+				noForm:true,
+				data:{assignmentId:assignmentId},
+				callback:function(result) {
+					var ds = result.dataSet;
+					setTimeout(function() {
+						renderLeaveAccrualsGridTable(ds);
+					}, 500);
+				}
+			});
+		} else {
+			$("divLeaveAccrual").hide();
+		}
+	};
+	renderLeaveAccrualsGridTable = function(ds) {
+		var html = "";
+
+		$("#tbodyLeaveAccrual").html("");
+
+		if (ds.getRowCnt() > 0) {
+			for (var i=0; i<ds.getRowCnt(); i++) {
+				var gridTr = new UiGridTr();
+
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DISPLAY_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(ds.getValue(i, "UNITS"), "#,##0.00")));
+
+				html += gridTr.addClassName("noStripe").toHtmlString();
+			}
+		} else {
+			var gridTr = new UiGridTr();
+
+			gridTr.addClassName("noStripe").addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:2").setText(com.message.I001));
+			html += gridTr.toHtmlString();
+		}
+
+		$("#tbodyLeaveAccrual").append($(html));
+
+		commonJs.hideProcMessageOnElement("divLeaveAccrual");
+	};
+
 	/*
 	 * ! load event (document / window)
 	 */
@@ -258,7 +309,7 @@ $(function() {
 			getPayAdvice();
 			getPaymentType();
 			getBankDetails();
-//			getLeaveAccurals();
-		}, 500);
+			getLeaveAccruals();
+		}, 100);
 	});
 });

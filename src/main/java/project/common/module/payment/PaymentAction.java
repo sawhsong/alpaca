@@ -69,4 +69,13 @@ public class PaymentAction extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
+
+	public String getLeaveAccruals() throws Exception {
+		try {
+			biz.getLeaveAccruals(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }

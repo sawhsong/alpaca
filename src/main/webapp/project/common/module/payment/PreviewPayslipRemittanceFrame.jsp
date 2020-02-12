@@ -144,7 +144,7 @@ var paymentDate = "<%=payslipMaster.getValue("PAYMENT_DATE_FORMAT")%>";
 			</colgroup>
 			<thead>
 				<tr class="noStripe">
-					<th class="thGrid">Deduction</th>
+					<th class="thGrid">Deductions</th>
 					<th class="thGrid">Amount</th>
 					<th class="thGrid">YTD</th>
 				</tr>
@@ -224,9 +224,9 @@ var paymentDate = "<%=payslipMaster.getValue("PAYMENT_DATE_FORMAT")%>";
 			</tbody>
 		</table>
 	</div>
-	<div id="divLeavAccrual">
+	<div id="divLeaveAccrual">
 		<div class="verGap2"></div>
-		<table id="tblLeavAccrual" class="tblGrid sort autosort">
+		<table id="tblLeaveAccrual" class="tblGrid sort autosort">
 			<colgroup>
 				<col width="*"></col>
 				<col width="14%"></col>
@@ -237,7 +237,7 @@ var paymentDate = "<%=payslipMaster.getValue("PAYMENT_DATE_FORMAT")%>";
 					<th class="thGrid">Units</th>
 				</tr>
 			</thead>
-			<tbody id="tbodyLeavAccrual">
+			<tbody id="tbodyLeaveAccrual">
 				<tr class="noStripe">
 					<td class="tdGrid Ct" colspan="2"><mc:msg key="I001"/></td>
 				</tr>
