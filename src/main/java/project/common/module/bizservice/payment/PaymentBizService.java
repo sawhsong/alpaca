@@ -2,10 +2,15 @@ package project.common.module.bizservice.payment;
 
 import java.util.Date;
 
+import project.conf.resource.ormapper.dto.oracle.Payment;
+import project.conf.resource.ormapper.dto.oracle.PaymentElement;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 
 public interface PaymentBizService {
+	public Payment getPayment(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
+	public PaymentElement getPaymentElementByElementId(QueryAdvisor queryAdvisor, String paymentId, String elementId) throws Exception;
+
 	public DataSet getPayslipListByPersonId(QueryAdvisor queryAdvisor, String personId) throws Exception;
 	public DataSet getPayslipMasterByPaymentId(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
 	public DataSet getBalanceLinesByElementId(QueryAdvisor queryAdvisor, String paymentId, String elementId) throws Exception;
@@ -17,4 +22,6 @@ public interface PaymentBizService {
 	public DataSet getPaymentAllByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId, String... paymentTypes) throws Exception;
 	public DataSet getBankDetailsByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
 	public DataSet getLeaveAccrualsByAssignmentIdForPreview(QueryAdvisor queryAdvisor, String assignmentId) throws Exception;
+
+	public DataSet getICRCTITaxableSuppliesByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
 }

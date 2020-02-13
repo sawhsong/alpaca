@@ -11,4 +11,7 @@ public interface PaymentBiz {
 	public ParamEntity getPaymentType(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getBankDetails(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getLeaveAccruals(ParamEntity paramEntity) throws Exception;
+
+	public ParamEntity getICRCTITaxableSupplies(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getICRCTIValues(ParamEntity paramEntity) throws Exception;
 }

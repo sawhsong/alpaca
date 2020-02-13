@@ -9,6 +9,9 @@ import project.conf.resource.ormapper.dao.HpAssignmentAccruals.HpAssignmentAccru
 import project.conf.resource.ormapper.dao.HpAssignmentPayments.HpAssignmentPaymentsDao;
 import project.conf.resource.ormapper.dao.HpBalanceLines.HpBalanceLinesDao;
 import project.conf.resource.ormapper.dao.Payment.PaymentDao;
+import project.conf.resource.ormapper.dao.PaymentElement.PaymentElementDao;
+import project.conf.resource.ormapper.dto.oracle.Payment;
+import project.conf.resource.ormapper.dto.oracle.PaymentElement;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 import zebra.example.common.extend.BaseBiz;
@@ -19,11 +22,23 @@ public class PaymentBizServiceImpl extends BaseBiz implements PaymentBizService 
 	@Autowired
 	private PaymentDao paymentDao;
 	@Autowired
+	private PaymentElementDao paymentElementDao;
+	@Autowired
 	private HpBalanceLinesDao hpBalanceLinesDao;
 	@Autowired
 	private HpAssignmentPaymentsDao hpAssignmentPaymentsDao;
 	@Autowired
 	private HpAssignmentAccrualsDao hpAssignmentAccrualsDao;
+
+	public Payment getPayment(QueryAdvisor queryAdvisor, String paymentId) throws Exception {
+		paymentDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
+		return paymentDao.getPayment(queryAdvisor, paymentId);
+	}
+
+	public PaymentElement getPaymentElementByElementId(QueryAdvisor queryAdvisor, String paymentId, String elementId) throws Exception {
+		paymentElementDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
+		return paymentElementDao.getPaymentElementByElementId(queryAdvisor, paymentId, elementId);
+	}
 
 	public DataSet getPayslipListByPersonId(QueryAdvisor queryAdvisor, String personId) throws Exception {
 		hpAsgProcessesDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
@@ -78,5 +93,10 @@ public class PaymentBizServiceImpl extends BaseBiz implements PaymentBizService 
 	public DataSet getLeaveAccrualsByAssignmentIdForPreview(QueryAdvisor queryAdvisor, String assignmentId) throws Exception {
 		hpAssignmentAccrualsDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
 		return hpAssignmentAccrualsDao.getLeaveAccrualsByAssignmentIdForPreview(queryAdvisor, assignmentId);
+	}
+
+	public DataSet getICRCTITaxableSuppliesByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception {
+		paymentDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
+		return paymentDao.getICRCTITaxableSuppliesByPaymentIdForPreview(queryAdvisor, paymentId);
 	}
 }

@@ -78,4 +78,22 @@ public class PaymentAction extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
+
+	public String getICRCTITaxableSupplies() throws Exception {
+		try {
+			biz.getICRCTITaxableSupplies(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getICRCTIValues() throws Exception {
+		try {
+			biz.getICRCTIValues(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }

@@ -6,13 +6,17 @@ package project.conf.resource.ormapper.dao.Payment;
 
 import java.util.Date;
 
+import project.conf.resource.ormapper.dto.oracle.Payment;
 import zebra.base.IDao;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 
 public interface PaymentDao extends IDao {
+	public Payment getPayment(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
+	public Payment getPayment(String paymentId) throws Exception;
+
 	public DataSet getPayslipMasterByPaymentId(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
-	public DataSet getPayslipMasterByPaymentId(String paymentId) throws Exception;
+	public DataSet getPayslipMasterByPaymentId(String payrollType, String paymentId) throws Exception;
 
 	public DataSet getYtdAllByPersonIdForPreview(QueryAdvisor queryAdvisor, String personId, Date paymentDate, String... ytdTypes) throws Exception;
 	public DataSet getYtdAllByPersonIdForPreview(String personId, Date paymentDate, String... ytdTypes) throws Exception;
@@ -29,4 +33,7 @@ public interface PaymentDao extends IDao {
 
 	public DataSet getDeductionsByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
 	public DataSet getDeductionsByPaymentIdForPreview(String paymentId) throws Exception;
+
+	public DataSet getICRCTITaxableSuppliesByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
+	public DataSet getICRCTITaxableSuppliesByPaymentIdForPreview(String paymentId) throws Exception;
 }

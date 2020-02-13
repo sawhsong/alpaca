@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
 import project.common.module.bizservice.payment.PaymentBizService;
+import project.conf.resource.ormapper.dto.oracle.Payment;
+import project.conf.resource.ormapper.dto.oracle.PaymentElement;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
 import zebra.data.QueryAdvisor;
@@ -32,12 +34,14 @@ public class PaymentBizImpl extends BaseBiz implements PaymentBiz {
 		DataSet dsRequest = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		DataSet payslipMaster = new DataSet();
+		String payrollType = dsRequest.getValue("payrollType");
 		String paymentId = dsRequest.getValue("paymentId");
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			queryAdvisor.setObject("dataSource", dataSource);
+			queryAdvisor.setObject("payrollType", payrollType);
 
 			payslipMaster = paymentBS.getPayslipMasterByPaymentId(queryAdvisor, paymentId);
 
@@ -294,6 +298,66 @@ public class PaymentBizImpl extends BaseBiz implements PaymentBiz {
 
 			paramEntity.setAjaxResponseDataSet(paymentBS.getLeaveAccrualsByAssignmentIdForPreview(queryAdvisor, assignmentId));
 			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getICRCTITaxableSupplies(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String paymentId = dsRequest.getValue("paymentId");
+		DataSet ds, dsEarning, dsCash;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+
+			dsEarning = paymentBS.getEarningsByPaymentIdForPreview(queryAdvisor, paymentId);
+			queryAdvisor.resetAll();
+			dsCash = paymentBS.getICRCTITaxableSuppliesByPaymentIdForPreview(queryAdvisor, paymentId);
+
+			ds = dsEarning.copyDataSet();
+			ds.merge(dsCash);
+
+			paramEntity.setAjaxResponseDataSet(ds);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getICRCTIValues(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String paymentId = dsRequest.getValue("paymentId");
+		Payment payment = new Payment();
+		PaymentElement paymentElement = new PaymentElement();
+		DataSet dsDeduction, ds = new DataSet();
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+
+			payment = paymentBS.getPayment(queryAdvisor, paymentId);
+			queryAdvisor.resetAll();
+			paymentElement = paymentBS.getPaymentElementByElementId(queryAdvisor, paymentId, "1575"); // GST Paid
+
+			queryAdvisor.resetAll();
+			dsDeduction = paymentBS.getPaymentAllByPaymentIdForPreview(queryAdvisor, paymentId, "PostDeduction");
+			ds.addColumn("Deduction", CommonUtil.nvl(dsDeduction.getValue("CALCULATED_AMOUNT"), "0"));
+			ds.addColumn("SubTotal", CommonUtil.toStringWithNoFormat(payment.getNetAmount() - paymentElement.getCalculatedAmount()));
+			ds.addColumn("GST", CommonUtil.toStringWithNoFormat(paymentElement.getCalculatedAmount()));
+			ds.addColumn("Total", CommonUtil.toStringWithNoFormat(payment.getNetAmount()));
+
+			paramEntity.setAjaxResponseDataSet(ds);
+			paramEntity.setTotalResultRows(ds.getRowCnt());
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseHDao;
 import project.conf.resource.ormapper.dao.ProjectDummy.ProjectDummyDao;
+import project.conf.resource.ormapper.dto.oracle.Payment;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 import zebra.util.CommonUtil;
@@ -19,20 +20,49 @@ public class PaymentHDaoImpl extends BaseHDao implements PaymentDao {
 	@Autowired
 	private ProjectDummyDao projectDummyDao;
 
+	public Payment getPayment(QueryAdvisor queryAdvisor, String paymentId) throws Exception {
+		queryAdvisor.addWhereClause("payment_id = '"+paymentId+"'");
+		return (Payment)selectAllToDto(queryAdvisor, new Payment());
+	}
+
+	public Payment getPayment(String paymentId) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		queryAdvisor.addWhereClause("payment_id = '"+paymentId+"'");
+		return (Payment)selectAllToDto(queryAdvisor, new Payment());
+	}
+
 	public DataSet getPayslipMasterByPaymentId(QueryAdvisor queryAdvisor, String paymentId) throws Exception {
+		String query = "";
+		String payrollType = (String)queryAdvisor.getObject("payrollType");
+
 		queryAdvisor.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
 		queryAdvisor.addVariable("paymentId", paymentId);
 
-		return selectAsDataSet(queryAdvisor, "query.Payment.getPayslipMasterByPaymentId");
+		// ICRCTI / ICNRCTI / STG / STNG / BCTI / IP
+		if (CommonUtil.equalsIgnoreCase(payrollType, "ICRCTI")) {
+			query = "query.Payment.getPayslipMasterICRCTIByPaymentId";
+		} else {
+			query = "query.Payment.getPayslipMasterIPByPaymentId";
+		}
+
+		return selectAsDataSet(queryAdvisor, query);
 	}
 
-	public DataSet getPayslipMasterByPaymentId(String paymentId) throws Exception {
+	public DataSet getPayslipMasterByPaymentId(String payrollType, String paymentId) throws Exception {
+		String query = "";
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 
 		queryAdvisor.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
 		queryAdvisor.addVariable("paymentId", paymentId);
 
-		return selectAsDataSet(queryAdvisor, "query.Payment.getPayslipMasterByPaymentId");
+		// ICRCTI / ICNRCTI / STG / STNG / BCTI / IP
+		if (CommonUtil.equalsIgnoreCase(payrollType, "ICRCTI")) {
+			query = "query.Payment.getPayslipMasterICRCTIByPaymentId";
+		} else {
+			query = "query.Payment.getPayslipMasterIPByPaymentId";
+		}
+
+		return selectAsDataSet(queryAdvisor, query);
 	}
 
 	public DataSet getYtdAllByPersonIdForPreview(QueryAdvisor queryAdvisor, String personId, Date paymentDate, String... ytdTypes) throws Exception {
@@ -203,5 +233,21 @@ public class PaymentHDaoImpl extends BaseHDao implements PaymentDao {
 		queryAdvisor.addVariable("paymentId", paymentId);
 
 		return selectAsDataSet(queryAdvisor, "query.Payment.getDeductionsByPaymentIdForPreview");
+	}
+
+	public DataSet getICRCTITaxableSuppliesByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception {
+		queryAdvisor.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
+		queryAdvisor.addVariable("paymentId", paymentId);
+
+		return selectAsDataSet(queryAdvisor, "query.Payment.getICRCTITaxableSuppliesByPaymentIdForPreview");
+	}
+
+	public DataSet getICRCTITaxableSuppliesByPaymentIdForPreview(String paymentId) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+
+		queryAdvisor.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
+		queryAdvisor.addVariable("paymentId", paymentId);
+
+		return selectAsDataSet(queryAdvisor, "query.Payment.getICRCTITaxableSuppliesByPaymentIdForPreview");
 	}
 }

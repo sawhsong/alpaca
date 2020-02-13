@@ -11,7 +11,7 @@
 	DataSet dsRequest = (DataSet)paramEntity.getRequestDataSet();
 	DataSet payslipMaster = (DataSet)paramEntity.getObject("payslipMaster");
 	String orgLogoImgPath = ConfigUtil.getProperty("path.image.orgLogo");
-	String orgLogoName = orgLogoImgPath+"/"+payslipMaster.getValue("BILLING_ORG_LOGO_NAME");
+	String orgLogoName = orgLogoImgPath+"/"+payslipMaster.getValue("LOGO_NAME");
 %>
 <%/************************************************************************************************
 * HTML
