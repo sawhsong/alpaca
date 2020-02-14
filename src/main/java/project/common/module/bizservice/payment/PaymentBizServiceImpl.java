@@ -55,6 +55,11 @@ public class PaymentBizServiceImpl extends BaseBiz implements PaymentBizService 
 		return hpBalanceLinesDao.getByElementId(queryAdvisor, paymentId, elementId);
 	}
 
+	public DataSet getBalanceLinesByElementIds(QueryAdvisor queryAdvisor, String paymentId, String... elementIds) throws Exception {
+		hpBalanceLinesDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
+		return hpBalanceLinesDao.getByElementIds(queryAdvisor, paymentId, elementIds);
+	}
+
 	public DataSet getYtdAllByPersonIdForPreview(QueryAdvisor queryAdvisor, String personId, Date paymentDate, String... ytdTypes) throws Exception {
 		paymentDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
 		return paymentDao.getYtdAllByPersonIdForPreview(queryAdvisor, personId, paymentDate, ytdTypes);
@@ -95,8 +100,8 @@ public class PaymentBizServiceImpl extends BaseBiz implements PaymentBizService 
 		return hpAssignmentAccrualsDao.getLeaveAccrualsByAssignmentIdForPreview(queryAdvisor, assignmentId);
 	}
 
-	public DataSet getICRCTITaxableSuppliesByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception {
+	public DataSet getCashPaymentsByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception {
 		paymentDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
-		return paymentDao.getICRCTITaxableSuppliesByPaymentIdForPreview(queryAdvisor, paymentId);
+		return paymentDao.getCashPaymentsByPaymentIdForPreview(queryAdvisor, paymentId);
 	}
 }

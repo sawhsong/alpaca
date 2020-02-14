@@ -14,4 +14,7 @@ public interface PaymentBiz {
 
 	public ParamEntity getICRCTITaxableSupplies(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getICRCTIValues(ParamEntity paramEntity) throws Exception;
+
+	public ParamEntity getICRemittanceEarnings(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getICRemittanceValues(ParamEntity paramEntity) throws Exception;
 }

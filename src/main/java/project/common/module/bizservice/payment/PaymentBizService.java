@@ -14,6 +14,7 @@ public interface PaymentBizService {
 	public DataSet getPayslipListByPersonId(QueryAdvisor queryAdvisor, String personId) throws Exception;
 	public DataSet getPayslipMasterByPaymentId(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
 	public DataSet getBalanceLinesByElementId(QueryAdvisor queryAdvisor, String paymentId, String elementId) throws Exception;
+	public DataSet getBalanceLinesByElementIds(QueryAdvisor queryAdvisor, String paymentId, String... elementIds) throws Exception;
 	public DataSet getYtdAllByPersonIdForPreview(QueryAdvisor queryAdvisor, String personId, Date paymentDate, String... ytdTypes) throws Exception;
 	public DataSet getYtdByElementIdForPreview(QueryAdvisor queryAdvisor, String personId, Date paymentDate, String elementId) throws Exception;
 	public DataSet getEarningsByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
@@ -23,5 +24,5 @@ public interface PaymentBizService {
 	public DataSet getBankDetailsByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
 	public DataSet getLeaveAccrualsByAssignmentIdForPreview(QueryAdvisor queryAdvisor, String assignmentId) throws Exception;
 
-	public DataSet getICRCTITaxableSuppliesByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
+	public DataSet getCashPaymentsByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
 }

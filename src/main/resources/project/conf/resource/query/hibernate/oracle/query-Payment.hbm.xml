@@ -57,6 +57,59 @@
 	]]>
 	</sql-query>
 
+	<sql-query name="query.Payment.getPayslipMasterICNRCTIByPaymentId">
+	<![CDATA[
+		select pay.payment_id,
+		       hap.assignment_process_id,
+		       asg.assignment_id,
+		       asg.person_id,
+		       hbc.billing_code_id,
+		       hbc.billing_code,
+		       rat.remittance_advice_template_id,
+		       per.full_name||' ('||per.person_number||')' as person_name_number,
+		       rat.logo_name as logo_name,
+		       emp_org.organisation_name as emp_org_name,
+		       emp_org.abn as emp_org_abn,
+		       translate(emp_org.address_line, chr(10)||chr(11)||chr(13), ' ')||' '||regexp_substr(emp_org.state, '[^_]+', 1, 1)||' '||emp_org.post_code as emp_org_addr,
+		       billing_org.organisation_name as billing_org_name,
+		       billing_org.abn as billing_org_abn,
+		       translate(billing_org.address_line, chr(10)||chr(11)||chr(13), ' ')||' '||regexp_substr(billing_org.state, '[^_]+', 1, 1)||' '||billing_org.post_code as billing_org_addr,
+		       asg.assignment_number,
+		       to_char(pay.period_start, '${dateFormat}') as period_start_format,
+		       to_char(pay.period_end, '${dateFormat}') as period_end_format,
+		       to_char(pay.payment_date, '${dateFormat}') as payment_date_format,
+		       to_char(pay.creation_date, '${dateFormat}') as payment_creation_date_format,
+		       rat.consulting_revenue_y_n,
+		       rat.deductions_y_n,
+		       rat.pay_advice_y_n,
+		       rat.payment_advice_y_n,
+		       rat.leave_accruals_y_n,
+		       (select fund_name
+		          from super_fund_detail
+		         where super_fund_id = (select super_fund_id
+		                                  from person_super_detail
+		                                 where person_id = asg.person_id
+		                               )
+		       ) as super_name
+		  from payment pay,
+		       hp_asg_processes hap,
+		       hp_assignments_d asg,
+		       hp_billing_code hbc,
+		       hp_remittance_advice_template rat,
+		       hp_person_d per,
+		       hp_organisation_d billing_org,
+		       hp_organisation_d emp_org
+		 where pay.payment_id = '${paymentId}'
+		   and pay.payment_id = hap.payment_id
+		   and hap.assignment_id = asg.assignment_id
+		   and asg.billing_code_id = hbc.billing_code_id
+		   and hbc.payslip_template_id = rat.remittance_advice_template_id
+		   and asg.person_id = per.person_id
+		   and hbc.emp_organization_id = billing_org.organisation_id
+		   and per.employment_company_org_id = emp_org.organisation_id
+	]]>
+	</sql-query>
+
 	<sql-query name="query.Payment.getPayslipMasterIPByPaymentId">
 	<![CDATA[
 		select pay.payment_id,
@@ -957,7 +1010,7 @@
 	]]>
 	</sql-query>
 
-	<sql-query name="query.Payment.getICRCTITaxableSuppliesByPaymentIdForPreview">
+	<sql-query name="query.Payment.getCashPaymentsByPaymentIdForPreview">
 	<![CDATA[
 		select pe.payment_id,
 		       pe.payment_element_id,

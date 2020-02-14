@@ -318,7 +318,7 @@ public class PaymentBizImpl extends BaseBiz implements PaymentBiz {
 
 			dsEarning = paymentBS.getEarningsByPaymentIdForPreview(queryAdvisor, paymentId);
 			queryAdvisor.resetAll();
-			dsCash = paymentBS.getICRCTITaxableSuppliesByPaymentIdForPreview(queryAdvisor, paymentId);
+			dsCash = paymentBS.getCashPaymentsByPaymentIdForPreview(queryAdvisor, paymentId);
 
 			ds = dsEarning.copyDataSet();
 			ds.merge(dsCash);
@@ -353,6 +353,81 @@ public class PaymentBizImpl extends BaseBiz implements PaymentBiz {
 			dsDeduction = paymentBS.getPaymentAllByPaymentIdForPreview(queryAdvisor, paymentId, "PostDeduction");
 			ds.addColumn("Deduction", CommonUtil.nvl(dsDeduction.getValue("CALCULATED_AMOUNT"), "0"));
 			ds.addColumn("SubTotal", CommonUtil.toStringWithNoFormat(payment.getNetAmount() - paymentElement.getCalculatedAmount()));
+			ds.addColumn("GST", CommonUtil.toStringWithNoFormat(paymentElement.getCalculatedAmount()));
+			ds.addColumn("Total", CommonUtil.toStringWithNoFormat(payment.getNetAmount()));
+
+			paramEntity.setAjaxResponseDataSet(ds);
+			paramEntity.setTotalResultRows(ds.getRowCnt());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getICRemittanceEarnings(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String paymentId = dsRequest.getValue("paymentId");
+		DataSet ds, dsEarning, dsCash, dsDeduction;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+
+			dsEarning = paymentBS.getEarningsByPaymentIdForPreview(queryAdvisor, paymentId);
+			queryAdvisor.resetAll();
+			dsCash = paymentBS.getCashPaymentsByPaymentIdForPreview(queryAdvisor, paymentId);
+			queryAdvisor.resetAll();
+			dsDeduction = paymentBS.getPaymentAllByPaymentIdForPreview(queryAdvisor, paymentId, "OtherTaxation");
+
+			ds = dsEarning.copyDataSet();
+			ds.merge(dsCash);
+			ds.merge(dsDeduction);
+
+			paramEntity.setAjaxResponseDataSet(ds);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getICRemittanceValues(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String paymentId = dsRequest.getValue("paymentId");
+		Payment payment = new Payment();
+		PaymentElement paymentElement = new PaymentElement();
+		DataSet dsEarning, dsCash, dsTax, ds = new DataSet();
+		double earning = 0, cash = 0, tax = 0, subTotal = 0;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+
+			dsEarning = paymentBS.getEarningsByPaymentIdForPreview(queryAdvisor, paymentId);
+			queryAdvisor.resetAll();
+			dsCash = paymentBS.getCashPaymentsByPaymentIdForPreview(queryAdvisor, paymentId);
+			queryAdvisor.resetAll();
+			dsTax = paymentBS.getBalanceLinesByElementIds(queryAdvisor, paymentId, "1612", "1614", "1616", "8833"); // PAYG_ID, HECS_ID, SSS_ID, RWHT_ID
+			for (int i=0; i<dsTax.getRowCnt(); i++) {
+				tax += CommonUtil.toDouble(dsTax.getValue(i, "VALUE"));
+			}
+
+			earning = CommonUtil.toDouble(dsEarning.getValue("CALCULATED_AMOUNT"));
+			cash = CommonUtil.toDouble(dsCash.getValue("CALCULATED_AMOUNT"));
+			subTotal = earning + cash - tax;
+
+			queryAdvisor.resetAll();
+			payment = paymentBS.getPayment(queryAdvisor, paymentId);
+			queryAdvisor.resetAll();
+			paymentElement = paymentBS.getPaymentElementByElementId(queryAdvisor, paymentId, "1575"); // GST Paid
+
+			ds.addColumn("SubTotal", CommonUtil.toStringWithNoFormat(subTotal));
 			ds.addColumn("GST", CommonUtil.toStringWithNoFormat(paymentElement.getCalculatedAmount()));
 			ds.addColumn("Total", CommonUtil.toStringWithNoFormat(payment.getNetAmount()));
 

@@ -41,6 +41,8 @@ public class PaymentHDaoImpl extends BaseHDao implements PaymentDao {
 		// ICRCTI / ICNRCTI / STG / STNG / BCTI / IP
 		if (CommonUtil.equalsIgnoreCase(payrollType, "ICRCTI")) {
 			query = "query.Payment.getPayslipMasterICRCTIByPaymentId";
+		} else if (CommonUtil.equalsIgnoreCase(payrollType, "ICNRCTI")) {
+			query = "query.Payment.getPayslipMasterICNRCTIByPaymentId";
 		} else {
 			query = "query.Payment.getPayslipMasterIPByPaymentId";
 		}
@@ -235,19 +237,19 @@ public class PaymentHDaoImpl extends BaseHDao implements PaymentDao {
 		return selectAsDataSet(queryAdvisor, "query.Payment.getDeductionsByPaymentIdForPreview");
 	}
 
-	public DataSet getICRCTITaxableSuppliesByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception {
+	public DataSet getCashPaymentsByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception {
 		queryAdvisor.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
 		queryAdvisor.addVariable("paymentId", paymentId);
 
-		return selectAsDataSet(queryAdvisor, "query.Payment.getICRCTITaxableSuppliesByPaymentIdForPreview");
+		return selectAsDataSet(queryAdvisor, "query.Payment.getCashPaymentsByPaymentIdForPreview");
 	}
 
-	public DataSet getICRCTITaxableSuppliesByPaymentIdForPreview(String paymentId) throws Exception {
+	public DataSet getCashPaymentsByPaymentIdForPreview(String paymentId) throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 
 		queryAdvisor.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
 		queryAdvisor.addVariable("paymentId", paymentId);
 
-		return selectAsDataSet(queryAdvisor, "query.Payment.getICRCTITaxableSuppliesByPaymentIdForPreview");
+		return selectAsDataSet(queryAdvisor, "query.Payment.getCashPaymentsByPaymentIdForPreview");
 	}
 }

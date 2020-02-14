@@ -11,4 +11,6 @@ import zebra.data.QueryAdvisor;
 public interface HpBalanceLinesDao extends IDao {
 	public DataSet getByElementId(QueryAdvisor queryAdvisor, String paymentId, String elementId) throws Exception;
 	public DataSet getByElementId(String paymentId, String elementId) throws Exception;
+	public DataSet getByElementIds(QueryAdvisor queryAdvisor, String paymentId, String... elementIds) throws Exception;
+	public DataSet getByElementIds(String paymentId, String... elementIds) throws Exception;
 }

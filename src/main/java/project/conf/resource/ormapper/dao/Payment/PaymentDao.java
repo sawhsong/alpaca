@@ -34,6 +34,6 @@ public interface PaymentDao extends IDao {
 	public DataSet getDeductionsByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
 	public DataSet getDeductionsByPaymentIdForPreview(String paymentId) throws Exception;
 
-	public DataSet getICRCTITaxableSuppliesByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
-	public DataSet getICRCTITaxableSuppliesByPaymentIdForPreview(String paymentId) throws Exception;
+	public DataSet getCashPaymentsByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
+	public DataSet getCashPaymentsByPaymentIdForPreview(String paymentId) throws Exception;
 }
