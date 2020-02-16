@@ -17,4 +17,7 @@ public interface PaymentBiz {
 
 	public ParamEntity getICRemittanceEarnings(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getICRemittanceValues(ParamEntity paramEntity) throws Exception;
+
+	public ParamEntity getSTRemittanceEarnings(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getSTRemittanceValues(ParamEntity paramEntity) throws Exception;
 }

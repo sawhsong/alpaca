@@ -114,4 +114,22 @@ public class PaymentAction extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
+
+	public String getSTRemittanceEarnings() throws Exception {
+		try {
+			biz.getSTRemittanceEarnings(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getSTRemittanceValues() throws Exception {
+		try {
+			biz.getSTRemittanceValues(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }
