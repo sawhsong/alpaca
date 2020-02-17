@@ -33,7 +33,7 @@ public class PaymentBizImpl extends BaseBiz implements PaymentBiz {
 	public ParamEntity getPageByTemplate(ParamEntity paramEntity) throws Exception {
 		DataSet dsRequest = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
-		DataSet payslipMaster = new DataSet();
+		DataSet payslipMaster = new DataSet(), rctiMaster = new DataSet(), nrctiMaster = new DataSet();
 		String payrollType = dsRequest.getValue("payrollType");
 		String paymentId = dsRequest.getValue("paymentId");
 		HttpSession session = paramEntity.getSession();
@@ -41,11 +41,21 @@ public class PaymentBizImpl extends BaseBiz implements PaymentBiz {
 
 		try {
 			queryAdvisor.setObject("dataSource", dataSource);
-			queryAdvisor.setObject("payrollType", payrollType);
 
-			payslipMaster = paymentBS.getPayslipMasterByPaymentId(queryAdvisor, paymentId);
+			if (CommonUtil.equals(payrollType, "STNG")) {
+				queryAdvisor.setObject("payrollType", "ICRCTI");
+				rctiMaster = paymentBS.getPayslipMasterByPaymentId(queryAdvisor, paymentId);
+				queryAdvisor.setObject("payrollType", "STNG");
+				nrctiMaster = paymentBS.getPayslipMasterByPaymentId(queryAdvisor, paymentId);
 
-			paramEntity.setObject("payslipMaster", payslipMaster);
+				paramEntity.setObject("rctiMaster", rctiMaster);
+				paramEntity.setObject("nrctiMaster", nrctiMaster);
+			} else {
+				queryAdvisor.setObject("payrollType", payrollType);
+				payslipMaster = paymentBS.getPayslipMasterByPaymentId(queryAdvisor, paymentId);
+				paramEntity.setObject("payslipMaster", payslipMaster);
+			}
+
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);

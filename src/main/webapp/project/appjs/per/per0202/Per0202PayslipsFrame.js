@@ -96,8 +96,8 @@ $(function() {
 				taxInvoiceAcceptanceType:taxInvoiceAcceptanceType
 			},
 			header:"Preview Payslip",
-			width:720,
-			height:880
+			width:750,
+			height:900
 		});
 	};
 
