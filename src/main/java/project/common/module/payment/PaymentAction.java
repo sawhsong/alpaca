@@ -132,4 +132,22 @@ public class PaymentAction extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
+
+	public String getBCTITaxableSupplies() throws Exception {
+		try {
+			biz.getBCTITaxableSupplies(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getBCTIValues() throws Exception {
+		try {
+			biz.getICRCTIValues(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }

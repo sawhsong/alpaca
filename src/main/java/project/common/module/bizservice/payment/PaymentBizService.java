@@ -26,4 +26,6 @@ public interface PaymentBizService {
 	public DataSet getLeaveAccrualsByAssignmentIdForPreview(QueryAdvisor queryAdvisor, String assignmentId) throws Exception;
 
 	public DataSet getCashPaymentsByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
+
+	public DataSet getDeductionsBCTIByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception;
 }

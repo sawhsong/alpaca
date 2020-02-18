@@ -20,4 +20,6 @@ public interface PaymentBiz {
 
 	public ParamEntity getSTRemittanceEarnings(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getSTRemittanceValues(ParamEntity paramEntity) throws Exception;
+
+	public ParamEntity getBCTITaxableSupplies(ParamEntity paramEntity) throws Exception;
 }

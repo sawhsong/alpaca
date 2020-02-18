@@ -109,4 +109,9 @@ public class PaymentBizServiceImpl extends BaseBiz implements PaymentBizService 
 		paymentDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
 		return paymentDao.getCashPaymentsByPaymentIdForPreview(queryAdvisor, paymentId);
 	}
+
+	public DataSet getDeductionsBCTIByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception {
+		paymentDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
+		return paymentDao.getDeductionsBCTIByPaymentIdForPreview(queryAdvisor, paymentId);
+	}
 }

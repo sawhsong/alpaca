@@ -45,6 +45,8 @@ public class PaymentHDaoImpl extends BaseHDao implements PaymentDao {
 			query = "query.Payment.getPayslipMasterICNRCTIByPaymentId";
 		} else if (CommonUtil.equalsIgnoreCase(payrollType, "STNG")) {
 			query = "query.Payment.getPayslipMasterSTNGByPaymentId";
+		} else if (CommonUtil.equalsIgnoreCase(payrollType, "BCTI")) {
+			query = "query.Payment.getPayslipMasterBCTIByPaymentId";
 		} else {
 			query = "query.Payment.getPayslipMasterIPByPaymentId";
 		}
@@ -269,5 +271,21 @@ public class PaymentHDaoImpl extends BaseHDao implements PaymentDao {
 		queryAdvisor.addVariable("paymentId", paymentId);
 
 		return selectAsDataSet(queryAdvisor, "query.Payment.getCashPaymentsByPaymentIdForPreview");
+	}
+
+	public DataSet getDeductionsBCTIByPaymentIdForPreview(QueryAdvisor queryAdvisor, String paymentId) throws Exception {
+		queryAdvisor.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
+		queryAdvisor.addVariable("paymentId", paymentId);
+
+		return selectAsDataSet(queryAdvisor, "query.Payment.getDeductionsBCTIByPaymentIdForPreview");
+	}
+
+	public DataSet getDeductionsBCTIByPaymentIdForPreview(String paymentId) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+
+		queryAdvisor.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
+		queryAdvisor.addVariable("paymentId", paymentId);
+
+		return selectAsDataSet(queryAdvisor, "query.Payment.getDeductionsBCTIByPaymentIdForPreview");
 	}
 }

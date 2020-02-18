@@ -527,6 +527,36 @@ public class PaymentBizImpl extends BaseBiz implements PaymentBiz {
 		return paramEntity;
 	}
 
+	public ParamEntity getBCTITaxableSupplies(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String paymentId = dsRequest.getValue("paymentId");
+		DataSet ds, dsEarning, dsCash, dsDeduction;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			queryAdvisor.setObject("dataSource", dataSource);
+
+			dsEarning = paymentBS.getEarningsByPaymentIdForPreview(queryAdvisor, paymentId);
+			queryAdvisor.resetAll();
+			dsCash = paymentBS.getCashPaymentsByPaymentIdForPreview(queryAdvisor, paymentId);
+			queryAdvisor.resetAll();
+			dsDeduction = paymentBS.getDeductionsBCTIByPaymentIdForPreview(queryAdvisor, paymentId);
+
+			ds = dsEarning.copyDataSet();
+			ds.merge(dsCash);
+			ds.merge(dsDeduction);
+
+			paramEntity.setAjaxResponseDataSet(ds);
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
 	/*!
 	 * Private methods
 	 */
