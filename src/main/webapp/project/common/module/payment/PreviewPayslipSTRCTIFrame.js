@@ -69,10 +69,10 @@ $(function() {
 		});
 	};
 	renderValuesRcti = function(ds) {
-		var subTot = ds.getValue(0, "SubTotal"), gst = ds.getValue(0, "GST");
+		var subTot = commonJs.toNumber(ds.getValue(0, "SubTotal")), gst = commonJs.toNumber(ds.getValue(0, "GST"));
 		$("#tdSubTotalRcti").html(commonJs.getNumberMask(ds.getValue(0, "SubTotal"), "#,##0.00"));
 		$("#tdGSTRcti").html(commonJs.getNumberMask(ds.getValue(0, "GST"), "#,##0.00"));
-		$("#tdTotalRcti").html(commonJs.getNumberMask((subTot - gst), "#,##0.00"));
+		$("#tdTotalRcti").html(commonJs.getNumberMask((subTot + gst), "#,##0.00"));
 
 		commonJs.hideProcMessageOnElement("divValuesRcti");
 	};

@@ -36,20 +36,27 @@ public class PaymentBizImpl extends BaseBiz implements PaymentBiz {
 		DataSet payslipMaster = new DataSet(), rctiMaster = new DataSet(), nrctiMaster = new DataSet();
 		String payrollType = dsRequest.getValue("payrollType");
 		String paymentId = dsRequest.getValue("paymentId");
+		String taxInvoiceAcceptanceType = dsRequest.getValue("taxInvoiceAcceptanceType");
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			queryAdvisor.setObject("dataSource", dataSource);
 
-			if (CommonUtil.equals(payrollType, "STNG")) {
-				queryAdvisor.setObject("payrollType", "ICRCTI");
-				rctiMaster = paymentBS.getPayslipMasterByPaymentId(queryAdvisor, paymentId);
-				queryAdvisor.setObject("payrollType", "STNG");
-				nrctiMaster = paymentBS.getPayslipMasterByPaymentId(queryAdvisor, paymentId);
+			if (CommonUtil.equals(payrollType, "STG") || CommonUtil.equals(payrollType, "STNG")) {
+				if (CommonUtil.equals(taxInvoiceAcceptanceType, "RCTI")) {
+					queryAdvisor.setObject("payrollType", "ICRCTI");
+					rctiMaster = paymentBS.getPayslipMasterByPaymentId(queryAdvisor, paymentId);
+					queryAdvisor.setObject("payrollType", "STNG");
+					nrctiMaster = paymentBS.getPayslipMasterByPaymentId(queryAdvisor, paymentId);
 
-				paramEntity.setObject("rctiMaster", rctiMaster);
-				paramEntity.setObject("nrctiMaster", nrctiMaster);
+					paramEntity.setObject("rctiMaster", rctiMaster);
+					paramEntity.setObject("nrctiMaster", nrctiMaster);
+				} else {
+					queryAdvisor.setObject("payrollType", payrollType);
+					payslipMaster = paymentBS.getPayslipMasterByPaymentId(queryAdvisor, paymentId);
+					paramEntity.setObject("payslipMaster", payslipMaster);
+				}
 			} else {
 				queryAdvisor.setObject("payrollType", payrollType);
 				payslipMaster = paymentBS.getPayslipMasterByPaymentId(queryAdvisor, paymentId);
