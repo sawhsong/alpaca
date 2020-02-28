@@ -586,7 +586,7 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(ds.getValue(i, "AMOUNT"), "#,##0.00")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PERIOD_MEANING")));
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(ds.getValue(i, "UNITS"), "#,##0.00")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "RATE_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ELEMENT_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ALTERNATE_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(ds.getValue(i, "CHARGE_RATE"), "#,##0.00")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "CHARGE_PERIOD_MEANING")));

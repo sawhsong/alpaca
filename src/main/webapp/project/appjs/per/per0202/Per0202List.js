@@ -265,7 +265,7 @@ $(function() {
 		});
 
 		commonJs.setAutoComplete($("#empOrgName"), {
-			method:"getOrgByName",
+			method:"getOrgByNameOrId",
 			label:"org_name_with_org_id",
 			value:"organisation_id",
 			minLength:2,

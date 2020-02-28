@@ -40,6 +40,7 @@ $(function() {
 
 		commonJs.doSearch({
 			url:"/per/0202/getAssignmentDataList.do",
+			dataType:"html",
 			data:{personId:personId},
 			callback:renderGridData
 		});
