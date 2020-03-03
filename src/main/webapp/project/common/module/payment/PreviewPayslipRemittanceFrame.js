@@ -303,6 +303,8 @@ $(function() {
 	 * ! load event (document / window)
 	 */
 	$(window).load(function() {
+		commonJs.showProcMessage(com.message.loading);
+
 		setTimeout(function() {
 			getEarnings();
 			getDeductions();
@@ -310,6 +312,8 @@ $(function() {
 			getPaymentType();
 			getBankDetails();
 			getLeaveAccruals();
+
+			commonJs.hideProcMessage();
 		}, 100);
 	});
 });
