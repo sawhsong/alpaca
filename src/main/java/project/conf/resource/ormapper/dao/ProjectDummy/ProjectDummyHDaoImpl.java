@@ -1,5 +1,7 @@
 package project.conf.resource.ormapper.dao.ProjectDummy;
 
+import java.util.Date;
+
 import project.common.extend.BaseHDao;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
@@ -10,6 +12,15 @@ public class ProjectDummyHDaoImpl extends BaseHDao implements ProjectDummyDao {
 	public DataSet getFinacialYear() throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		return selectAsDataSet(queryAdvisor, "query.ProjectDummy.getFinacialYear");
+	}
+
+	public DataSet getFinacialYear(Date date) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		String dateFormat = ConfigUtil.getProperty("format.default.date");
+
+		queryAdvisor.addVariable("asDate", CommonUtil.toString(date, dateFormat));
+		queryAdvisor.addVariable("dateFormat", dateFormat);
+		return selectAsDataSet(queryAdvisor, "query.ProjectDummy.getFinacialYearWithAsOfDate");
 	}
 
 	public DataSet getDatabaseSessionList(QueryAdvisor queryAdvisor) throws Exception {

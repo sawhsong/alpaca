@@ -75,7 +75,7 @@ public class PaymentHDaoImpl extends BaseHDao implements PaymentDao {
 		String dateFormat = ConfigUtil.getProperty("format.default.date");
 		DataSet financialYear;
 
-		financialYear = projectDummyDao.getFinacialYear();
+		financialYear = projectDummyDao.getFinacialYear(paymentDate);
 		queryAdvisor.addVariable("financialDateFrom", financialYear.getValue("FINANCIAL_DATE_FROM"));
 		queryAdvisor.addVariable("financialDateTo", financialYear.getValue("FINANCIAL_DATE_TO"));
 		queryAdvisor.addVariable("paymentDate", CommonUtil.toString(paymentDate, dateFormat));
@@ -96,7 +96,7 @@ public class PaymentHDaoImpl extends BaseHDao implements PaymentDao {
 		String dateFormat = ConfigUtil.getProperty("format.default.date");
 		DataSet financialYear;
 
-		financialYear = projectDummyDao.getFinacialYear();
+		financialYear = projectDummyDao.getFinacialYear(paymentDate);
 		queryAdvisor.addVariable("financialDateFrom", financialYear.getValue("FINANCIAL_DATE_FROM"));
 		queryAdvisor.addVariable("financialDateTo", financialYear.getValue("FINANCIAL_DATE_TO"));
 		queryAdvisor.addVariable("paymentDate", CommonUtil.toString(paymentDate, dateFormat));
@@ -116,7 +116,7 @@ public class PaymentHDaoImpl extends BaseHDao implements PaymentDao {
 		String dateFormat = ConfigUtil.getProperty("format.default.date");
 		DataSet financialYear;
 
-		financialYear = projectDummyDao.getFinacialYear();
+		financialYear = projectDummyDao.getFinacialYear(paymentDate);
 		queryAdvisor.addVariable("financialDateFrom", financialYear.getValue("FINANCIAL_DATE_FROM"));
 		queryAdvisor.addVariable("financialDateTo", financialYear.getValue("FINANCIAL_DATE_TO"));
 		queryAdvisor.addVariable("paymentDate", CommonUtil.toString(paymentDate, dateFormat));
@@ -137,7 +137,7 @@ public class PaymentHDaoImpl extends BaseHDao implements PaymentDao {
 		String dateFormat = ConfigUtil.getProperty("format.default.date");
 		DataSet financialYear;
 
-		financialYear = projectDummyDao.getFinacialYear();
+		financialYear = projectDummyDao.getFinacialYear(paymentDate);
 		queryAdvisor.addVariable("financialDateFrom", financialYear.getValue("FINANCIAL_DATE_FROM"));
 		queryAdvisor.addVariable("financialDateTo", financialYear.getValue("FINANCIAL_DATE_TO"));
 		queryAdvisor.addVariable("paymentDate", CommonUtil.toString(paymentDate, dateFormat));
