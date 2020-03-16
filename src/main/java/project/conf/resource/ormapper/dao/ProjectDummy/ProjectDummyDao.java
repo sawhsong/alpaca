@@ -12,4 +12,9 @@ public interface ProjectDummyDao extends IDao {
 	public DataSet getDatabaseSessionList(QueryAdvisor queryAdvisor) throws Exception;
 	public DataSet getSqlTextBySqlId(String sqlId) throws Exception;
 	public int killSessions(String ids[]) throws Exception;
+
+	public DataSet getTableListDataSetByCriteria(QueryAdvisor queryAdvisor) throws Exception;
+	public DataSet getTableListDataSetByCriteriaForAdditionalDataSource(QueryAdvisor queryAdvisor) throws Exception;
+	public DataSet getTableDetailDataSetByTableName(String tableName) throws Exception;
+	public DataSet getTableDetailDataSetByTableNameForAdditionalDataSource(String tableName) throws Exception;
 }

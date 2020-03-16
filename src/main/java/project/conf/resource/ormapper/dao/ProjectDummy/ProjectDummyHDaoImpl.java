@@ -63,4 +63,34 @@ public class ProjectDummyHDaoImpl extends BaseHDao implements ProjectDummyDao {
 
 		return result;
 	}
+
+	public DataSet getTableListDataSetByCriteria(QueryAdvisor queryAdvisor) throws Exception {
+		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
+		String tableName = requestDataSet.getValue("tableName");
+
+		queryAdvisor.addAutoFillCriteria(tableName, "upper(table_name) like upper('%"+tableName+"%')");
+
+		return selectAsDataSet(queryAdvisor, "query.ProjectDummy.getTableListDataSetByCriteria");
+	}
+
+	public DataSet getTableListDataSetByCriteriaForAdditionalDataSource(QueryAdvisor queryAdvisor) throws Exception {
+		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
+		String tableName = requestDataSet.getValue("tableName");
+
+		queryAdvisor.addAutoFillCriteria(tableName, "upper(table_name) like upper('%"+tableName+"%')");
+
+		return selectAsDataSet(queryAdvisor, "query.ProjectDummy.getTableListDataSetByCriteriaForAdditionalDataSource");
+	}
+
+	public DataSet getTableDetailDataSetByTableName(String tableName) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		queryAdvisor.addVariable("table_name", tableName);
+		return selectAsDataSet(queryAdvisor, "query.ProjectDummy.getTableDetailDataSetByTableName");
+	}
+
+	public DataSet getTableDetailDataSetByTableNameForAdditionalDataSource(String tableName) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		queryAdvisor.addVariable("table_name", tableName);
+		return selectAsDataSet(queryAdvisor, "query.ProjectDummy.getTableDetailDataSetByTableNameForAdditionalDataSource");
+	}
 }

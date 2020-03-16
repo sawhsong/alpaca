@@ -88,5 +88,11 @@
         <action class="project.app.sys.sys9899.Sys9899Action" method="{1}" name="9899/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sys9899/Sys9899List.jsp</result>
         </action>
+        <!--Sys9808 - PERCI Source Generator-->
+        <action class="project.app.sys.sys9808.Sys9808Action" method="{1}" name="9808/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sys9808/Sys9808List.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9808/Sys9808DetailPop.jsp</result>
+            <result name="info" type="debugDispatcherResult">/project/app/sys/sys9808/Sys9808InfoPop.jsp</result>
+        </action>
     </package>
 </struts>
