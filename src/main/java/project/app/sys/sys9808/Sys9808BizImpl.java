@@ -418,12 +418,9 @@ public class Sys9808BizImpl extends BaseBiz implements Sys9808Biz {
 				accessors += "\tpublic void set"+colNameUpperCamelCase+"("+convertedDataType+" "+colNameLowerCamelCase+") {\n";
 				accessors += "\t\tthis."+colNameLowerCamelCase+" = "+colNameLowerCamelCase+";\n";
 				accessors += "\t}\n";
-				if (i != (tableInfoDataSet.getRowCnt() - 1)) {
-					accessors += "\n";
-				}
 
 				setValues += (CommonUtil.isBlank(setValues) ? "" : "\t\t");
-				setValues += "this."+colNameLowerCamelCase+" = source.get"+colNameUpperCamelCase+"();\n";
+				setValues += "this."+colNameLowerCamelCase+" = source.get"+colNameUpperCamelCase+"();";
 				if (i != (tableInfoDataSet.getRowCnt() - 1)) {
 					setValues += "\n";
 				}
@@ -454,7 +451,7 @@ public class Sys9808BizImpl extends BaseBiz implements Sys9808Biz {
 		String singleSourcePath = "C:/projectRepository/PerciSource/SingleClass.src";
 		String collectionSourcePath = "C:/projectRepository/PerciSource/CollectionClass.src";
 		String targetPath = destinationFolder+"/dto/fnd";
-		String tempString, sourceString, packageString, configPackage, absPackage = "";
+		String tempString, sourceString, packageString, configPackage, absPackage = "", toString;
 
 		BufferedReader bufferedReader = null;
 		StringBuffer stringBuffer = null;
@@ -487,10 +484,20 @@ public class Sys9808BizImpl extends BaseBiz implements Sys9808Biz {
 			osWriter = new OutputStreamWriter(new FileOutputStream(singleFile, true), "utf-8");
 			sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
 
+			toString = "String str = \"\";\n\n";
+			for (int i=0; i<tableInfoDataSet.getRowCnt(); i++) {
+				String colNameUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(tableInfoDataSet.getValue(i, "COLUMN_NAME"));
+				String colNameLowerCamelCase = CommonUtil.toCamelCaseStartLowerCase(tableInfoDataSet.getValue(i, "COLUMN_NAME"));
+
+				toString += "\t\tstr += \""+colNameLowerCamelCase+" : \"+get"+colNameUpperCamelCase+"();\n";
+			}
+			toString += "\n\t\treturn str;";
+
 			sourceString = CommonUtil.replace(sourceString, "#PACKAGE_STRING#", packageString);
 			sourceString = CommonUtil.replace(sourceString, "#CONFIG_PACKAGE#", configPackage);
 			sourceString = CommonUtil.replace(sourceString, "#ABS_PACKAGE#", absPackage);
 			sourceString = CommonUtil.replace(sourceString, "#TABLE_NAME_CAMELCASE#", CommonUtil.toCamelCaseStartUpperCase(tableName));
+			sourceString = CommonUtil.replace(sourceString, "#TO_STRING#", toString);
 
 			osWriter.write(sourceString);
 			osWriter.flush();
@@ -556,7 +563,7 @@ public class Sys9808BizImpl extends BaseBiz implements Sys9808Biz {
 
 	private String getXmlTypeProperty(String colName, String dataType) {
 		if (CommonUtil.equalsIgnoreCase(dataType, "NUMBER")) {
-			if (CommonUtil.contains(colName, "ID")) {
+			if (CommonUtil.contains(colName, "ID") || CommonUtil.equals(colName, "CREATED_BY") || CommonUtil.equals(colName, "LAST_UPDATED_BY")) {
 				return "java.lang.Long";
 			} else {
 				return "java.lang.Double";
@@ -570,7 +577,7 @@ public class Sys9808BizImpl extends BaseBiz implements Sys9808Biz {
 
 	private String getDataTypeString(String colName, String dataType) {
 		if (CommonUtil.equalsIgnoreCase(dataType, "NUMBER")) {
-			if (CommonUtil.contains(colName, "ID")) {
+			if (CommonUtil.contains(colName, "ID") || CommonUtil.equals(colName, "CREATED_BY") || CommonUtil.equals(colName, "LAST_UPDATED_BY")) {
 				return "Long";
 			} else {
 				return "Double";
