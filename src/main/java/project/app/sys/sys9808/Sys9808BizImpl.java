@@ -489,7 +489,7 @@ public class Sys9808BizImpl extends BaseBiz implements Sys9808Biz {
 				String colNameUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(tableInfoDataSet.getValue(i, "COLUMN_NAME"));
 				String colNameLowerCamelCase = CommonUtil.toCamelCaseStartLowerCase(tableInfoDataSet.getValue(i, "COLUMN_NAME"));
 
-				toString += "\t\tstr += \""+colNameLowerCamelCase+" : \"+get"+colNameUpperCamelCase+"();\n";
+				toString += "\t\tstr += \""+colNameLowerCamelCase+" : \"+get"+colNameUpperCamelCase+"()+\"\\n\";\n";
 			}
 			toString += "\n\t\treturn str;";
 
