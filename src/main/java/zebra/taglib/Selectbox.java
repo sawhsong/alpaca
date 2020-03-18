@@ -18,6 +18,7 @@ public class Selectbox extends TaglibBodySupport {
 	private String isMultiple = "";
 	private String isBootstrap = "";
 	private String checkName = "";
+	private String caption = "";
 	private String options = "";	// for data validator
 	private String attribute = "";
 
@@ -64,6 +65,8 @@ public class Selectbox extends TaglibBodySupport {
 
 			html.append(" class=\""+classString+" "+CommonUtil.nvl(className)+"\"");
 			html.append(">\n");
+
+			if (CommonUtil.isNotBlank(caption)) {html.append("<option value=\"\">"+caption+"</option>\n");}
 
 			html.append(bodyContent.getString());
 
@@ -161,6 +164,12 @@ public class Selectbox extends TaglibBodySupport {
 		this.checkName = checkName;
 	}
 
+	public String getCaption() {
+		return caption;
+	}
+	public void setCaption(String caption) {
+		this.caption = caption;
+	}
 	public String getOptions() {
 		return options;
 	}
