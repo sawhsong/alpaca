@@ -169,6 +169,60 @@
 			</div>
 		</div>
 	</div>
+	<div id="divAccordionContainer" class="accordionContainer" style="float:left;width:50%">
+		<div class="accordionGroup">
+			<h3>Account Shift</h3>
+			<div class="accordionContents">
+				<div id="divAccountShift" style="">
+					<table class="tblEdit">
+						<caption class="captionEdit">Account Shift</caption>
+						<colgroup>
+							<col width="20%"/>
+							<col width="*"/>
+							<col width="10%"/>
+						</colgroup>
+						<tr>
+							<td class="tdEdit" colspan="3">
+								<div class="divButtonArea">
+									<div class="divButtonAreaRight">
+										<ui:buttonGroup>
+											<ui:button id="btnClearAccntShift" caption="button.com.clear" iconClass="fa-refresh"/>
+											<ui:button id="btnSaveAccntShift" caption="button.com.save" iconClass="fa-save"/>
+										</ui:buttonGroup>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="thEdit rt search">Shift To</th>
+							<td class="tdEdit search" colspan="2"><ui:hidden name="shiftToId"/><ui:text name="shiftToName"/></td>
+						</tr>
+						<tr>
+							<th class="thEdit rt search">Organisation</th>
+							<td class="tdEdit search" style="border-right:0px"><ui:hidden name="shiftOrgId"/><ui:text name="shiftOrgName"/></td>
+							<td class="tdEdit ct search" style="border-left:0px"><ui:button id="btnAddShiftOrg" caption="Add" iconClass="fa-plus"/></td>
+						</tr>
+						<tr>
+							<td class="tdEdit ct" colspan="3">
+								<table class="tblEdit">
+									<colgroup>
+										<col width="50%"/>
+										<col width="*"/>
+									</colgroup>
+									<tr>
+										<th class="thEdit rt">Selected Organisation</th>
+										<td class="tdEdit lt">
+											<ui:select name="selectedShiftOrg"  caption="==Selected Organisation==" isMultiple="true"/>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <div id="divPagingArea"></div>
 <%/************************************************************************************************

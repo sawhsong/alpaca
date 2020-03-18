@@ -93,7 +93,7 @@ var assignmentId = "<%=requestDataSet.getValue("assignmentId")%>";
 			<th class="thEdit Ct"><mc:msg key="sys9802.header.to"/></th>
 		</tr>
 		<tr>
-			<td class="tdEdit Ct"><ui:text name="workingStateFrom" value="<%=assignment.getWorkingState()%>" className="Ct" status="display"/></td>
+			<td class="tdEdit Ct"><ui:ccselect name="workingStateFrom" codeType="STATES" selectedValue="<%=assignment.getWorkingState()%>" status="disabled"/></td>
 			<td class="tdEdit Ct"><ui:ccselect name="workingStateTo" codeType="STATES"/></td>
 		</tr>
 	</table>
