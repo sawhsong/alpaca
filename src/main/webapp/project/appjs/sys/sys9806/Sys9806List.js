@@ -33,6 +33,21 @@ $(function() {
 		commonJs.refreshBootstrapSelectbox("billingCodeCreationTypeTo");
 	});
 
+	$("#btnClearAccntShift").click(function(event) {
+		$(document).find("#divAccountShift").find(":input").each(function() {
+			if ($(this).prop("type") == "checkbox" || $(this).prop("type") == "radio") {
+				$(this).attr("checked", false);
+			} else {
+				$(this).val("");
+			}
+		});
+
+		$("#selectedShiftOrg option").each(function(index) {
+			$(this).remove();
+		});
+		commonJs.refreshBootstrapSelectbox("selectedShiftOrg");
+	});
+
 	$("#btnSaveOrg").click(function(event) {
 		if (!commonJs.doValidate($("#orgNameTo"))) {
 			return false;
@@ -69,6 +84,28 @@ $(function() {
 		});
 	});
 
+	$("#btnSaveAccntShift").click(function(event) {
+		if (!commonJs.doValidate($("#selectedShiftOrg")) || !commonJs.doValidate($("#shiftToName"))) {
+			return false;
+		}
+		
+		commonJs.doSave({
+			url:"/sys/9806/doSaveAccntShift.do",
+			data:{},
+			callback:function() {
+				commonJs.showProcMessageOnElement("divAccountShift");
+				setTimeout(function() {
+					$("#btnClearAccntShift").trigger("click");
+					commonJs.hideProcMessageOnElement("divAccountShift");
+				}, 500);
+			}
+		});
+	});
+
+	$("#btnAddShiftOrg").click(function(event) {
+		addShiftOrg();
+	});
+
 	$("#orgId").blur(function() {
 		if (commonJs.isEmpty($(this).val())) {
 			$("#orgName").val("");
@@ -94,6 +131,12 @@ $(function() {
 		if (commonJs.isEmpty($(this).val())) {
 			$("#billingCodeId").val("");
 			setBillingCodeInfo();
+		}
+	});
+
+	$("#shiftToName").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#shiftToId").val("");
 		}
 	});
 
@@ -145,6 +188,27 @@ $(function() {
 					commonJs.refreshBootstrapSelectbox("billingCodeCreationTypeTo");
 				}
 			});
+		}
+	};
+
+	addShiftOrg = function() {
+		var orgId = $("#shiftOrgId").val();
+		var orgName = $("#shiftOrgName").val();
+
+		if (!commonJs.isEmpty(orgId)) {
+			var isSelected = false;
+
+			$("#selectedShiftOrg option").each(function(index) {
+				if ($(this).val() == orgId) {isSelected = true;}
+			});
+
+			if (!isSelected) {
+				$("#selectedShiftOrg").append("<option value=\""+orgId+"\" selected>"+orgName+"</option>");
+				$("#selectedShiftOrg").selectpicker("refresh");
+			}
+
+			$("#shiftOrgId").val("");
+			$("#shiftOrgName").val("");
 		}
 	};
 
@@ -253,6 +317,53 @@ $(function() {
 				$("#billingCodeId").val(ui.item.value);
 				$("#billingCode").val(ui.item.label);
 				setBillingCodeInfo();
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#shiftOrgName"), {
+			method:"getOrgByNameOrId",
+			label:"org_name_with_org_id",
+			value:"organisation_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#shiftOrgId").val(ui.item.value);
+				$("#shiftOrgName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#shiftOrgName").val())) {
+					$("#shiftOrgId").val("");
+					$("#shiftOrgName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#shiftOrgId").val(ui.item.value);
+				$("#shiftOrgName").val(ui.item.label);
+				addShiftOrg();
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#shiftToName"), {
+			method:"getEsEmployeeByNameOrPersonNumber",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#shiftToId").val(ui.item.value);
+				$("#shiftToName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#shiftToName").val())) {
+					$("#shiftToId").val("");
+					$("#shiftToName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#shiftToId").val(ui.item.value);
+				$("#shiftToName").val(ui.item.label);
 				return false;
 			}
 		});

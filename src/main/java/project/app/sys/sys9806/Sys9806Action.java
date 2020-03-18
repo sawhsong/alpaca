@@ -62,4 +62,13 @@ public class Sys9806Action extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
+
+	public String doSaveAccntShift() throws Exception {
+		try {
+			biz.doSaveAccntShift(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }

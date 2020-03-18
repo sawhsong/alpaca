@@ -93,4 +93,25 @@
 		       hdc.document_id
 	]]>
 	</sql-query>
+
+	<sql-query name="query.Opportunity.shiftAccount">
+	<![CDATA[
+		update opportunity
+		   set customer_relationship_mgr_id = '${shiftToId}',
+		       customer_support_mgr_id = '${shiftToId}',
+		       last_update_date = sysdate,
+		       last_updated_by = '1'
+		 where opportunity_id in (select opportunity_id
+		                            from opportunity
+		                           where status = 'Open'
+		                             and opportunity_id in (select opportunity_id
+		                                                      from opportunity_assignment_details
+		                                                     where billing_org in (select organisation_id
+		                                                                             from hp_organisation_d
+		                                                                            where organisation_id in (${organisationIds})
+		                                                                          )
+		                                                   )
+		                         )
+	]]>
+	</sql-query>
 </hibernate-mapping>

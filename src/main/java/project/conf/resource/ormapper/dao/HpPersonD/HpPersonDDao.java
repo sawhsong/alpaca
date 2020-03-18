@@ -19,4 +19,6 @@ public interface HpPersonDDao extends IDao {
 	public DataSet getEsEmployeeLookup(QueryAdvisor queryAdvisor) throws Exception;
 	public DataSet getEcmsGeneralInfoByPersonId(QueryAdvisor queryAdvisor, String personId) throws Exception;
 	public DataSet getApproverDataSetByOrgIds(String... organisationIds) throws Exception;
+	public int shiftAccountFromOpportunity(String organisationIds[], String shiftToId) throws Exception;
+	public int shiftAccountFromAssignment(String organisationIds[], String shiftToId) throws Exception;
 }

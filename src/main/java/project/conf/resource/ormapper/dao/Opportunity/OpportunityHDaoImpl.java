@@ -8,6 +8,7 @@ import project.common.extend.BaseHDao;
 import project.conf.resource.ormapper.dto.oracle.Opportunity;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
+import zebra.util.CommonUtil;
 import zebra.util.ConfigUtil;
 
 public class OpportunityHDaoImpl extends BaseHDao implements OpportunityDao {
@@ -44,5 +45,19 @@ public class OpportunityHDaoImpl extends BaseHDao implements OpportunityDao {
 		queryAdvisor.addVariable("opportunityId", opportunityId);
 
 		return selectAsDataSet(queryAdvisor, "query.Opportunity.getOpportunityDocumentDataSetByOpportunityId");
+	}
+
+	public int shiftAccount(String organisationIds[], String shiftToId) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		String ids = "";
+
+		for (String id : organisationIds) {
+			ids += (CommonUtil.isBlank(ids)) ? "'"+id+"'" : ", "+"'"+id+"'";
+		}
+
+		queryAdvisor.addVariable("shiftToId", shiftToId);
+		queryAdvisor.addVariable("organisationIds", ids);
+
+		return updateWithSQLQuery(queryAdvisor, "query.Opportunity.shiftAccount");
 	}
 }

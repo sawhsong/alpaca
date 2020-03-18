@@ -177,9 +177,9 @@
 					<table class="tblEdit">
 						<caption class="captionEdit">Account Shift</caption>
 						<colgroup>
-							<col width="20%"/>
+							<col width="7%"/>
 							<col width="*"/>
-							<col width="10%"/>
+							<col width="1%"/>
 						</colgroup>
 						<tr>
 							<td class="tdEdit" colspan="3">
@@ -194,25 +194,31 @@
 							</td>
 						</tr>
 						<tr>
-							<th class="thEdit rt search">Shift To</th>
-							<td class="tdEdit search" colspan="2"><ui:hidden name="shiftToId"/><ui:text name="shiftToName"/></td>
-						</tr>
-						<tr>
 							<th class="thEdit rt search">Organisation</th>
 							<td class="tdEdit search" style="border-right:0px"><ui:hidden name="shiftOrgId"/><ui:text name="shiftOrgName"/></td>
-							<td class="tdEdit ct search" style="border-left:0px"><ui:button id="btnAddShiftOrg" caption="Add" iconClass="fa-plus"/></td>
+							<td class="tdEdit rt search" style="border-left:0px"><ui:button id="btnAddShiftOrg" caption="Add" iconClass="fa-plus"/></td>
 						</tr>
 						<tr>
 							<td class="tdEdit ct" colspan="3">
 								<table class="tblEdit">
 									<colgroup>
-										<col width="50%"/>
+										<col width="25%"/>
 										<col width="*"/>
 									</colgroup>
 									<tr>
 										<th class="thEdit rt">Selected Organisation</th>
-										<td class="tdEdit lt">
-											<ui:select name="selectedShiftOrg"  caption="==Selected Organisation==" isMultiple="true"/>
+										<td class="tdEdit lt"><ui:select name="selectedShiftOrg" isMultiple="true" options="mandatory" checkName="Selected Organisation" attribute="data-size:10;data-width:610px"> </ui:select></td>
+									</tr>
+									<tr>
+										<th class="thEdit rt">Shift To</th>
+										<td class="tdEdit"><ui:hidden name="shiftToId"/><ui:text name="shiftToName" options="mandatory" checkName="Shift To"/></td>
+									</tr>
+									<tr>
+										<th class="thEdit rt">Data To Shift</th>
+										<td class="tdEdit">
+											<ui:check name="isOrganisationShift" value="Y" text="Organisation" displayType="block" isChecked="Y"/>
+											<ui:check name="isPersonShift" value="Y" text="Person" displayType="block" isChecked="Y"/>
+											<ui:check name="isOpportunityShift" value="Y" text="Opportunity" displayType="block" isChecked="Y"/>
 										</td>
 									</tr>
 								</table>

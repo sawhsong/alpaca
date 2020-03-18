@@ -14,4 +14,5 @@ public interface OpportunityDao extends IDao {
 	public DataSet getOpportunityDataSetByOpportunityId(String opportunityId) throws Exception;
 	public DataSet getOpportunityListByPersonId(QueryAdvisor queryAdvisor, String personId) throws Exception;
 	public DataSet getOpportunityDocumentDataSetByOpportunityId(String opportunityId) throws Exception;
+	public int shiftAccount(String organisationIds[], String shiftToId) throws Exception;
 }

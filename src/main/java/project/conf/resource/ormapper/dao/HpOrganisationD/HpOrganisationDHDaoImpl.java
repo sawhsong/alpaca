@@ -17,6 +17,17 @@ public class HpOrganisationDHDaoImpl extends BaseHDao implements HpOrganisationD
 		return updateColumns(queryAdvisor, hpOrganisationD);
 	}
 
+	public int updateColumns(String organisationIds[], HpOrganisationD hpOrganisationD) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		String ids = "";
+
+		for (String id : organisationIds) {
+			ids += (CommonUtil.isBlank(ids)) ? "'"+id+"'" : ", "+"'"+id+"'";
+		}
+		queryAdvisor.addWhereClause("organisation_id in ("+ids+")");
+		return updateColumns(queryAdvisor, hpOrganisationD);
+	}
+
 	public HpOrganisationD getOrganisationByOrganisationId(String organisationId) throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		queryAdvisor.addWhereClause("organisation_id = '"+organisationId+"'");

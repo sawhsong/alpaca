@@ -14,4 +14,5 @@ public interface Sys9806Biz {
 	public ParamEntity getBillingCodeInfo(ParamEntity paramEntity) throws Exception;
 	public ParamEntity doSaveOrg(ParamEntity paramEntity) throws Exception;
 	public ParamEntity doSaveBillingCodeCreationType(ParamEntity paramEntity) throws Exception;
+	public ParamEntity doSaveAccntShift(ParamEntity paramEntity) throws Exception;
 }

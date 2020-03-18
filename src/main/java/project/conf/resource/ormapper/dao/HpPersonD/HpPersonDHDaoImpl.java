@@ -120,4 +120,32 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 
 		return selectAsDataSet(queryAdvisor, "query.HpPersonD.getApproverDataSetByOrgIds");
 	}
+
+	public int shiftAccountFromOpportunity(String organisationIds[], String shiftToId) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		String ids = "";
+
+		for (String id : organisationIds) {
+			ids += (CommonUtil.isBlank(ids)) ? "'"+id+"'" : ", "+"'"+id+"'";
+		}
+
+		queryAdvisor.addVariable("shiftToId", shiftToId);
+		queryAdvisor.addVariable("organisationIds", ids);
+
+		return updateWithSQLQuery(queryAdvisor, "query.HpPersonD.shiftAccountFromOpportunity");
+	}
+
+	public int shiftAccountFromAssignment(String organisationIds[], String shiftToId) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		String ids = "";
+
+		for (String id : organisationIds) {
+			ids += (CommonUtil.isBlank(ids)) ? "'"+id+"'" : ", "+"'"+id+"'";
+		}
+
+		queryAdvisor.addVariable("shiftToId", shiftToId);
+		queryAdvisor.addVariable("organisationIds", ids);
+
+		return updateWithSQLQuery(queryAdvisor, "query.HpPersonD.shiftAccountFromAssignment");
+	}
 }

@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import project.common.extend.BaseBiz;
 import project.conf.resource.ormapper.dao.HpBillingCode.HpBillingCodeDao;
 import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
+import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
+import project.conf.resource.ormapper.dao.Opportunity.OpportunityDao;
 import project.conf.resource.ormapper.dto.oracle.HpBillingCode;
 import project.conf.resource.ormapper.dto.oracle.HpOrganisationD;
 import zebra.data.DataSet;
@@ -25,6 +27,10 @@ public class Sys9806BizImpl extends BaseBiz implements Sys9806Biz {
 	private HpOrganisationDDao hpOrganisationDDao;
 	@Autowired
 	private HpBillingCodeDao hpBillingCodeDao;
+	@Autowired
+	private HpPersonDDao hpPersonDDao;
+	@Autowired
+	private OpportunityDao opportunityDao;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -140,6 +146,59 @@ public class Sys9806BizImpl extends BaseBiz implements Sys9806Biz {
 			hpBillingCode.addUpdateColumn("last_update_date", "sysdate", "Date");
 
 			result = hpBillingCodeDao.updateColumns(billingCodeId, hpBillingCode);
+			if (result <= 0) {
+				throw new FrameworkException("E801", getMessage("E801", paramEntity));
+			}
+
+			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity doSaveAccntShift(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		String selectedShiftOrg = dsReq.getValue("selectedShiftOrg");
+		String shiftToId = dsReq.getValue("shiftToId");
+		boolean isOrganisationShift = CommonUtil.toBoolean(dsReq.getValue("isOrganisationShift"));
+		boolean isPersonShift = CommonUtil.toBoolean(dsReq.getValue("isPersonShift"));
+		boolean isOpportunityShift = CommonUtil.toBoolean(dsReq.getValue("isOpportunityShift"));
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+		String delimiter = ConfigUtil.getProperty("delimiter.record");
+		String selectedShiftOrgs[];
+		int result = 0;
+
+		try {
+			selectedShiftOrgs = CommonUtil.split(selectedShiftOrg, delimiter);
+
+			if (isOrganisationShift) {
+				HpOrganisationD hpOrganisationD = new HpOrganisationD();
+				hpOrganisationDDao.setDataSourceName(dataSource);
+
+				hpOrganisationD.addUpdateColumn("es_account_manager", shiftToId);
+				hpOrganisationD.addUpdateColumn("es_cs_consultant", shiftToId);
+				hpOrganisationD.addUpdateColumn("last_updated_by", "1");
+				hpOrganisationD.addUpdateColumn("last_update_date", "sysdate", "Date");
+
+				result += hpOrganisationDDao.updateColumns(selectedShiftOrgs, hpOrganisationD);
+			}
+
+			if (isPersonShift) {
+				hpPersonDDao.setDataSourceName(dataSource);
+
+				result += hpPersonDDao.shiftAccountFromOpportunity(selectedShiftOrgs, shiftToId);
+				result += hpPersonDDao.shiftAccountFromAssignment(selectedShiftOrgs, shiftToId);
+			}
+
+			if (isOpportunityShift) {
+				opportunityDao.setDataSourceName(dataSource);
+
+				result += opportunityDao.shiftAccount(selectedShiftOrgs, shiftToId);
+			}
+
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
 			}
