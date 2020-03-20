@@ -36,7 +36,7 @@ $(function() {
 	$("#btnClearAccntShift").click(function(event) {
 		$(document).find("#divAccountShift").find(":input").each(function() {
 			if ($(this).prop("type") == "checkbox" || $(this).prop("type") == "radio") {
-				$(this).attr("checked", false);
+//				$(this).attr("checked", false);
 			} else {
 				$(this).val("");
 			}
