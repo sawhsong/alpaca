@@ -191,7 +191,7 @@ var personId = "<%=personId%>";
 						</div>
 					</div>
 					<div class="verGap4"></div>
-					<div id="divGridHolderWorkingRightsStatus">
+					<div id="divGridHolderWorkingRightsStatus" style="overflow:auto">
 						<table id="tblWorkingRightsStatus" class="tblGrid sort autosort">
 							<colgroup>
 								<col width="6%"></col>
@@ -234,7 +234,7 @@ var personId = "<%=personId%>";
 						</div>
 					</div>
 					<div class="verGap4"></div>
-					<div id="divGridHolderScheduledPayrollNoti">
+					<div id="divGridHolderScheduledPayrollNoti" style="overflow:auto">
 						<table id="tblScheduledPayrollNoti" class="tblGrid sort autosort">
 							<colgroup>
 								<col width="6%"></col>
