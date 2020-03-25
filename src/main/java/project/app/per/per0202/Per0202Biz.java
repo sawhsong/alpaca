@@ -45,4 +45,5 @@ public interface Per0202Biz {
 	public ParamEntity getNotiToPersonList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getPayslips(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getPayslipList(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getSuperannuation(ParamEntity paramEntity) throws Exception;
 }

@@ -305,4 +305,9 @@ public class Per0202Action extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
+
+	public String getSuperannuation() throws Exception {
+		biz.getSuperannuation(paramEntity);
+		return "superannuation";
+	}
 }

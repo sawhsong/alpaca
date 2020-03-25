@@ -20,6 +20,7 @@
             <result name="opportunityDetail" type="debugDispatcherResult">/project/app/per/per0202/Per0202OpportunityDetailPop.jsp</result>
             <result name="assignmentList" type="debugDispatcherResult">/project/app/per/per0202/Per0202AssignmentListFrame.jsp</result>
             <result name="assignment" type="debugDispatcherResult">/project/app/per/per0202/Per0202AssignmentFrame.jsp</result>
+            <result name="superannuation" type="debugDispatcherResult">/project/app/per/per0202/Per0202SuperannuationFrame.jsp</result>
 
             <result name="payslips" type="debugDispatcherResult">/project/app/per/per0202/Per0202PayslipsFrame.jsp</result>
         </action>

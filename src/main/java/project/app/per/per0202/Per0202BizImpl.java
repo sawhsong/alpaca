@@ -836,6 +836,26 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 		return paramEntity;
 	}
 
+	public ParamEntity getSuperannuation(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		String personId = dsRequest.getValue("personId");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+		HpPersonD hpPersonD;
+
+		try {
+			hpPersonDDao.setDataSourceName(dataSource);
+
+			hpPersonD = hpPersonDDao.getPersonByPersonId(personId);
+
+			paramEntity.setObject("hpPersonD", hpPersonD);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
 	/**
 	 * Private
 	 */
