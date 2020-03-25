@@ -217,12 +217,12 @@ $(function() {
 		}
 
 		$("#tbodyWorkingRightsStatus").append($(html));
-		$("#tblWorkingRightsStatus").fixedHeaderTable({
-			attachTo:$("#divGridHolderWorkingRightsStatus"),
-			attachToHeight:198,
-			scrollWrapper:$("#divFrameDataAreaWrapper"),
-			isPageable:false
-		});
+//		$("#tblWorkingRightsStatus").fixedHeaderTable({
+//			attachTo:$("#divGridHolderWorkingRightsStatus"),
+//			attachToHeight:198,
+//			scrollWrapper:$("#divFrameDataAreaWrapper"),
+//			isPageable:false
+//		});
 
 		$("[name=icnActionWorkingRightsStatus]").each(function(index) {
 			$(this).contextMenu(ctxMenu.commonSimpleAction);
@@ -275,12 +275,12 @@ $(function() {
 		}
 
 		$("#tbodyScheduledPayrollNoti").append($(html));
-		$("#tblScheduledPayrollNoti").fixedHeaderTable({
-			attachTo:$("#divGridHolderScheduledPayrollNoti"),
-			attachToHeight:198,
-			scrollWrapper:$("#divFrameDataAreaWrapper"),
-			isPageable:false
-		});
+//		$("#tblScheduledPayrollNoti").fixedHeaderTable({
+//			attachTo:$("#divGridHolderScheduledPayrollNoti"),
+//			attachToHeight:198,
+//			scrollWrapper:$("#divFrameDataAreaWrapper"),
+//			isPageable:false
+//		});
 
 		$("[name=icnActionScheduledPayrollNoti]").each(function(index) {
 			$(this).contextMenu(ctxMenu.commonSimpleAction);
