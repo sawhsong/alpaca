@@ -159,7 +159,6 @@ $(function() {
 		$("[name=icnAction]").each(function(index) {
 			$(this).contextMenu(ctxMenu.dtoGeneratorAction);
 		});
-		doSearch();
-		$("#tableName").focus();
+//		doSearch();
 	});
 });
