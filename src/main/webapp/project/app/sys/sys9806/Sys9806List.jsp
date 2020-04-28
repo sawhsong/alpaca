@@ -230,6 +230,49 @@
 				</div>
 			</div>
 		</div>
+		<div class="accordionGroup">
+			<h3>EO Expense Status Update</h3>
+			<div class="accordionContents">
+				<div id="divEoExpenseStatus">
+					<table class="tblEdit">
+						<colgroup>
+							<col width="15%"/>
+							<col width="*"/>
+						</colgroup>
+						<tr>
+							<td class="tdEdit" colspan="2">
+								<div class="divButtonArea">
+									<div class="divButtonAreaRight">
+										<ui:buttonGroup>
+											<ui:button id="btnClearEoExpenseStatus" caption="button.com.clear" iconClass="fa-refresh"/>
+											<ui:button id="btnSaveEoExpenseStatus" caption="button.com.save" iconClass="fa-save"/>
+										</ui:buttonGroup>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="thEdit rt search">Expense Ids</th>
+							<td class="tdEdit search"><ui:txa id="txaEoExpenseIds" name="txaEoExpenseIds" style="height:196px"/></td>
+						</tr>
+						<tr>
+							<td class="tdEdit" colspan="2">
+								<table class="tblEdit">
+									<colgroup>
+										<col width="15%"/>
+										<col width="*"/>
+									</colgroup>
+									<tr>
+										<th class="thEdit rt">Update To</th>
+										<td class="tdEdit"><ui:ccselect name="eoExpenseStatusTo" codeType="EO_EXPENSE_STATUS" selectedValue="TU" caption="==Select==" options="mandatory"/></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <div id="divPagingArea"></div>

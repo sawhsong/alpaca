@@ -653,10 +653,4 @@
     <bean class="${name.package.project}.conf.resource.ormapper.dao.AsgDeliverablesRates.AsgDeliverablesRatesHDaoImpl" id="asgDeliverablesRatesDao" init-method="init" name="asgDeliverablesRatesDao" parent="baseHDao" scope="prototype"/>
     <!--AsgDeliverablesRatesLog DAO-->
     <bean class="${name.package.project}.conf.resource.ormapper.dao.AsgDeliverablesRatesLog.AsgDeliverablesRatesLogHDaoImpl" id="asgDeliverablesRatesLogDao" init-method="init" name="asgDeliverablesRatesLogDao" parent="baseHDao" scope="prototype"/>
-    <!--EoExpense DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.EoExpense.EoExpenseHDaoImpl" id="eoExpenseDao" init-method="init" name="eoExpenseDao" parent="baseHDao" scope="prototype"/>
-    <!--EoExpenseAuthEmailLink DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.EoExpenseAuthEmailLink.EoExpenseAuthEmailLinkHDaoImpl" id="eoExpenseAuthEmailLinkDao" init-method="init" name="eoExpenseAuthEmailLinkDao" parent="baseHDao" scope="prototype"/>
-    <!--EoExpenseD DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.EoExpenseD.EoExpenseDHDaoImpl" id="eoExpenseDDao" init-method="init" name="eoExpenseDDao" parent="baseHDao" scope="prototype"/>
 </beans>

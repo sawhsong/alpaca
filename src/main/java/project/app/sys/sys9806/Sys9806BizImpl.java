@@ -10,10 +10,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
+import project.conf.resource.ormapper.dao.EoExpense.EoExpenseDao;
 import project.conf.resource.ormapper.dao.HpBillingCode.HpBillingCodeDao;
 import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
 import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
 import project.conf.resource.ormapper.dao.Opportunity.OpportunityDao;
+import project.conf.resource.ormapper.dto.oracle.EoExpense;
 import project.conf.resource.ormapper.dto.oracle.HpBillingCode;
 import project.conf.resource.ormapper.dto.oracle.HpOrganisationD;
 import zebra.data.DataSet;
@@ -31,6 +33,8 @@ public class Sys9806BizImpl extends BaseBiz implements Sys9806Biz {
 	private HpPersonDDao hpPersonDDao;
 	@Autowired
 	private OpportunityDao opportunityDao;
+	@Autowired
+	private EoExpenseDao eoExpenseDao;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -199,6 +203,38 @@ public class Sys9806BizImpl extends BaseBiz implements Sys9806Biz {
 				result += opportunityDao.shiftAccount(selectedShiftOrgs, shiftToId);
 			}
 
+			if (result <= 0) {
+				throw new FrameworkException("E801", getMessage("E801", paramEntity));
+			}
+
+			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity doUpdateEoExpenseStatus(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		String txaEoExpenseIds = dsReq.getValue("txaEoExpenseIds");
+		String eoExpenseStatusTo = dsReq.getValue("eoExpenseStatusTo");
+		String eoExpenseIds[];
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+		EoExpense eoExpense = new EoExpense();
+		int result = 0;
+
+		try {
+			eoExpenseDao.setDataSourceName(dataSource);
+
+			eoExpenseIds = CommonUtil.split(txaEoExpenseIds, "\n\r");
+
+			eoExpense.addUpdateColumn("status", eoExpenseStatusTo);
+			eoExpense.addUpdateColumn("last_updated_by", "1");
+			eoExpense.addUpdateColumn("last_update_date", "sysdate", "Date");
+
+			result = eoExpenseDao.updateStatusByIds(eoExpenseIds, eoExpense);
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
 			}
