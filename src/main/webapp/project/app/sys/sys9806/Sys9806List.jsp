@@ -64,13 +64,12 @@
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainer">
-	<div id="divAccordionContainer" class="accordionContainer">
+	<div class="accordionContainer" style="float:left;width:50%">
 		<div class="accordionGroup">
-			<h3><mc:msg key="sys9806.caption.cap1"/></h3>
+			<h3>Organisation Name Change</h3>
 			<div class="accordionContents">
-				<div id="divOrg" style="float:left;width:50%">
+				<div id="divOrg">
 					<table class="tblEdit">
-						<caption class="captionEdit"><mc:msg key="sys9806.caption.org"/></caption>
 						<colgroup>
 							<col width="15%"/>
 							<col width="20%"/>
@@ -119,63 +118,13 @@
 						</tr>
 					</table>
 				</div>
-				<div id="divBillingCode" style="float:right;width:49%">
-					<table class="tblEdit">
-						<caption class="captionEdit"><mc:msg key="sys9806.caption.billingCode"/></caption>
-						<colgroup>
-							<col width="15%"/>
-							<col width="20%"/>
-							<col width="15%"/>
-							<col width="*"/>
-						</colgroup>
-						<tr>
-							<td class="tdEdit" colspan="4">
-								<div class="divButtonArea">
-									<div class="divButtonAreaRight">
-										<ui:buttonGroup>
-											<ui:button id="btnClearBillingCodeCreationType" caption="button.com.clear" iconClass="fa-refresh"/>
-											<ui:button id="btnSaveBillingCodeCreationType" caption="button.com.save" iconClass="fa-save"/>
-										</ui:buttonGroup>
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<th class="thEdit rt search"><mc:msg key="sys9806.search.billingCodeId"/></th>
-							<td class="tdEdit search"><ui:text name="billingCodeId"/></td>
-							<th class="thEdit rt search"><mc:msg key="sys9806.search.billingCode"/></th>
-							<td class="tdEdit search"><ui:text name="billingCode"/></td>
-						</tr>
-						<tr>
-							<td class="tdEdit ct" colspan="4">
-								<table class="tblEdit">
-									<colgroup>
-										<col width="50%"/>
-										<col width="*"/>
-									</colgroup>
-									<tr>
-										<th class="thEdit ct"><mc:msg key="sys9806.header.typeFrom"/></th>
-										<th class="thEdit ct mandatory"><mc:msg key="sys9806.header.typeTo"/></th>
-									</tr>
-									<tr>
-										<td class="tdEdit ct"><ui:ccselect name="billingCodeCreationTypeFrom" codeType="BILLING_CODE_PERIODS_CREATION_TYPE" caption="==Select==" status="disabled"/></td>
-										<td class="tdEdit ct"><ui:ccselect name="billingCodeCreationTypeTo" codeType="BILLING_CODE_PERIODS_CREATION_TYPE" caption="==Select==" options="mandatory"/></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</table>
-				</div>
 			</div>
 		</div>
-	</div>
-	<div id="divAccordionContainer" class="accordionContainer" style="float:left;width:50%">
 		<div class="accordionGroup">
 			<h3>Account Shift</h3>
 			<div class="accordionContents">
-				<div id="divAccountShift" style="">
+				<div id="divAccountShift">
 					<table class="tblEdit">
-						<caption class="captionEdit">Account Shift</caption>
 						<colgroup>
 							<col width="7%"/>
 							<col width="*"/>
@@ -220,6 +169,59 @@
 											<ui:check name="isPersonShift" value="Y" text="Person" displayType="block" isChecked="Y"/>
 											<ui:check name="isOpportunityShift" value="Y" text="Opportunity" displayType="block" isChecked="Y"/>
 										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="accordionContainer" style="float:right;width:49%">
+		<div class="accordionGroup">
+			<h3>Billing Code Creation Type Chnage</h3>
+			<div class="accordionContents">
+				<div id="divBillingCode">
+					<table class="tblEdit">
+						<colgroup>
+							<col width="15%"/>
+							<col width="20%"/>
+							<col width="15%"/>
+							<col width="*"/>
+						</colgroup>
+						<tr>
+							<td class="tdEdit" colspan="4">
+								<div class="divButtonArea">
+									<div class="divButtonAreaRight">
+										<ui:buttonGroup>
+											<ui:button id="btnClearBillingCodeCreationType" caption="button.com.clear" iconClass="fa-refresh"/>
+											<ui:button id="btnSaveBillingCodeCreationType" caption="button.com.save" iconClass="fa-save"/>
+										</ui:buttonGroup>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="thEdit rt search"><mc:msg key="sys9806.search.billingCodeId"/></th>
+							<td class="tdEdit search"><ui:text name="billingCodeId"/></td>
+							<th class="thEdit rt search"><mc:msg key="sys9806.search.billingCode"/></th>
+							<td class="tdEdit search"><ui:text name="billingCode"/></td>
+						</tr>
+						<tr>
+							<td class="tdEdit ct" colspan="4">
+								<table class="tblEdit">
+									<colgroup>
+										<col width="50%"/>
+										<col width="*"/>
+									</colgroup>
+									<tr>
+										<th class="thEdit ct"><mc:msg key="sys9806.header.typeFrom"/></th>
+										<th class="thEdit ct mandatory"><mc:msg key="sys9806.header.typeTo"/></th>
+									</tr>
+									<tr>
+										<td class="tdEdit ct"><ui:ccselect name="billingCodeCreationTypeFrom" codeType="BILLING_CODE_PERIODS_CREATION_TYPE" caption="==Select==" status="disabled"/></td>
+										<td class="tdEdit ct"><ui:ccselect name="billingCodeCreationTypeTo" codeType="BILLING_CODE_PERIODS_CREATION_TYPE" caption="==Select==" options="mandatory"/></td>
 									</tr>
 								</table>
 							</td>
