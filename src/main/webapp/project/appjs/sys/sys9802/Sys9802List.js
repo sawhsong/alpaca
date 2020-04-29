@@ -305,6 +305,6 @@ $(function() {
 			}
 		});
 
-		doSearch();
+//		doSearch();
 	});
 });

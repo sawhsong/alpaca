@@ -64,13 +64,12 @@
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainer">
-	<div id="divAccordionContainer" class="accordionContainer">
+	<div class="accordionContainer" style="float:left;width:50%">
 		<div class="accordionGroup">
-			<h3><mc:msg key="sys9806.caption.cap1"/></h3>
+			<h3>Organisation Name Change</h3>
 			<div class="accordionContents">
-				<div id="divOrg" style="float:left;width:50%">
+				<div id="divOrg">
 					<table class="tblEdit">
-						<caption class="captionEdit"><mc:msg key="sys9806.caption.org"/></caption>
 						<colgroup>
 							<col width="15%"/>
 							<col width="20%"/>
@@ -119,9 +118,72 @@
 						</tr>
 					</table>
 				</div>
-				<div id="divBillingCode" style="float:right;width:49%">
+			</div>
+		</div>
+		<div class="accordionGroup">
+			<h3>Account Shift</h3>
+			<div class="accordionContents">
+				<div id="divAccountShift">
 					<table class="tblEdit">
-						<caption class="captionEdit"><mc:msg key="sys9806.caption.billingCode"/></caption>
+						<colgroup>
+							<col width="7%"/>
+							<col width="*"/>
+							<col width="1%"/>
+						</colgroup>
+						<tr>
+							<td class="tdEdit" colspan="3">
+								<div class="divButtonArea">
+									<div class="divButtonAreaRight">
+										<ui:buttonGroup>
+											<ui:button id="btnClearAccntShift" caption="button.com.clear" iconClass="fa-refresh"/>
+											<ui:button id="btnSaveAccntShift" caption="button.com.save" iconClass="fa-save"/>
+										</ui:buttonGroup>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="thEdit rt search">Organisation</th>
+							<td class="tdEdit search" style="border-right:0px"><ui:hidden name="shiftOrgId"/><ui:text name="shiftOrgName"/></td>
+							<td class="tdEdit rt search" style="border-left:0px"><ui:button id="btnAddShiftOrg" caption="Add" iconClass="fa-plus"/></td>
+						</tr>
+						<tr>
+							<td class="tdEdit ct" colspan="3">
+								<table class="tblEdit">
+									<colgroup>
+										<col width="25%"/>
+										<col width="*"/>
+									</colgroup>
+									<tr>
+										<th class="thEdit rt">Selected Organisation</th>
+										<td class="tdEdit lt"><ui:select name="selectedShiftOrg" isMultiple="true" options="mandatory" checkName="Selected Organisation" attribute="data-size:10;data-width:610px"> </ui:select></td>
+									</tr>
+									<tr>
+										<th class="thEdit rt">Shift To</th>
+										<td class="tdEdit"><ui:hidden name="shiftToId"/><ui:text name="shiftToName" options="mandatory" checkName="Shift To"/></td>
+									</tr>
+									<tr>
+										<th class="thEdit rt">Data To Shift</th>
+										<td class="tdEdit">
+											<ui:check name="isOrganisationShift" value="Y" text="Organisation" displayType="block" isChecked="Y"/>
+											<ui:check name="isPersonShift" value="Y" text="Person" displayType="block" isChecked="Y"/>
+											<ui:check name="isOpportunityShift" value="Y" text="Opportunity" displayType="block" isChecked="Y"/>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="accordionContainer" style="float:right;width:49%">
+		<div class="accordionGroup">
+			<h3>Billing Code Creation Type Chnage</h3>
+			<div class="accordionContents">
+				<div id="divBillingCode">
+					<table class="tblEdit">
 						<colgroup>
 							<col width="15%"/>
 							<col width="20%"/>
@@ -168,58 +230,41 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div id="divAccordionContainer" class="accordionContainer" style="float:left;width:50%">
 		<div class="accordionGroup">
-			<h3>Account Shift</h3>
+			<h3>EO Expense Status Update</h3>
 			<div class="accordionContents">
-				<div id="divAccountShift" style="">
+				<div id="divEoExpenseStatus">
 					<table class="tblEdit">
-						<caption class="captionEdit">Account Shift</caption>
 						<colgroup>
-							<col width="7%"/>
+							<col width="15%"/>
 							<col width="*"/>
-							<col width="1%"/>
 						</colgroup>
 						<tr>
-							<td class="tdEdit" colspan="3">
+							<td class="tdEdit" colspan="2">
 								<div class="divButtonArea">
 									<div class="divButtonAreaRight">
 										<ui:buttonGroup>
-											<ui:button id="btnClearAccntShift" caption="button.com.clear" iconClass="fa-refresh"/>
-											<ui:button id="btnSaveAccntShift" caption="button.com.save" iconClass="fa-save"/>
+											<ui:button id="btnClearEoExpenseStatus" caption="button.com.clear" iconClass="fa-refresh"/>
+											<ui:button id="btnSaveEoExpenseStatus" caption="button.com.save" iconClass="fa-save"/>
 										</ui:buttonGroup>
 									</div>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<th class="thEdit rt search">Organisation</th>
-							<td class="tdEdit search" style="border-right:0px"><ui:hidden name="shiftOrgId"/><ui:text name="shiftOrgName"/></td>
-							<td class="tdEdit rt search" style="border-left:0px"><ui:button id="btnAddShiftOrg" caption="Add" iconClass="fa-plus"/></td>
+							<th class="thEdit rt search">Expense Ids</th>
+							<td class="tdEdit search"><ui:txa id="txaEoExpenseIds" name="txaEoExpenseIds" style="height:196px"/></td>
 						</tr>
 						<tr>
-							<td class="tdEdit ct" colspan="3">
+							<td class="tdEdit" colspan="2">
 								<table class="tblEdit">
 									<colgroup>
-										<col width="25%"/>
+										<col width="15%"/>
 										<col width="*"/>
 									</colgroup>
 									<tr>
-										<th class="thEdit rt">Selected Organisation</th>
-										<td class="tdEdit lt"><ui:select name="selectedShiftOrg" isMultiple="true" options="mandatory" checkName="Selected Organisation" attribute="data-size:10;data-width:610px"> </ui:select></td>
-									</tr>
-									<tr>
-										<th class="thEdit rt">Shift To</th>
-										<td class="tdEdit"><ui:hidden name="shiftToId"/><ui:text name="shiftToName" options="mandatory" checkName="Shift To"/></td>
-									</tr>
-									<tr>
-										<th class="thEdit rt">Data To Shift</th>
-										<td class="tdEdit">
-											<ui:check name="isOrganisationShift" value="Y" text="Organisation" displayType="block" isChecked="Y"/>
-											<ui:check name="isPersonShift" value="Y" text="Person" displayType="block" isChecked="Y"/>
-											<ui:check name="isOpportunityShift" value="Y" text="Opportunity" displayType="block" isChecked="Y"/>
-										</td>
+										<th class="thEdit rt">Update To</th>
+										<td class="tdEdit"><ui:ccselect name="eoExpenseStatusTo" codeType="EO_EXPENSE_STATUS" selectedValue="TU" caption="==Select==" options="mandatory"/></td>
 									</tr>
 								</table>
 							</td>

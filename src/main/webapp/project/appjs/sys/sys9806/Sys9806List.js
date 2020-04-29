@@ -2,6 +2,7 @@
  * Framework Generated Javascript Source
  * - Sys9806List.js
  *************************************************************************************************/
+jsconfig.put("pagehandlerActionType", "message");
 var popup = null;
 
 $(function() {
@@ -46,6 +47,19 @@ $(function() {
 			$(this).remove();
 		});
 		commonJs.refreshBootstrapSelectbox("selectedShiftOrg");
+	});
+
+	$("#btnClearEoExpenseStatus").click(function(event) {
+		$(document).find("#divEoExpenseStatus").find(":input").each(function() {
+			if ($(this).prop("type") == "checkbox" || $(this).prop("type") == "radio") {
+				$(this).attr("checked", false);
+			} else {
+				$(this).val("");
+			}
+		});
+
+		$("#eoExpenseStatusTo").val("TU");
+		commonJs.refreshBootstrapSelectbox("eoExpenseStatusTo");
 	});
 
 	$("#btnSaveOrg").click(function(event) {
@@ -97,6 +111,25 @@ $(function() {
 				setTimeout(function() {
 					$("#btnClearAccntShift").trigger("click");
 					commonJs.hideProcMessageOnElement("divAccountShift");
+				}, 500);
+			}
+		});
+	});
+
+	$("#btnSaveEoExpenseStatus").click(function(event) {
+		if (!commonJs.doValidate($("#eoExpenseStatusTo"))) {
+			return false;
+		}
+
+		commonJs.doSave({
+			url:"/sys/9806/doUpdateEoExpenseStatus.do",
+			data:{},
+			callback:function() {
+				commonJs.showProcMessageOnElement("divEoExpenseStatus");
+
+				setTimeout(function() {
+					$("#btnClearEoExpenseStatus").trigger("click");
+					commonJs.hideProcMessageOnElement("divEoExpenseStatus");
 				}, 500);
 			}
 		});

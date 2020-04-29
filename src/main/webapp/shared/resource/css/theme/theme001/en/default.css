@@ -24,6 +24,7 @@
 @import url("./calendar.css");
 @import url("./fileElement.css");
 @import url("./imageSlider.css");
+@import url("./Chart.css");
 @import url("./tabFrame.css");
 
 /**
@@ -32,7 +33,7 @@
 * {margin:0px 0px;padding:0px 0px;}
 body {padding:0px 0px;
 	color:#000000;
-	font:normal normal normal 11px/1.2 Verdana, Arial, "Malgun Gothic", sans-serif;
+	font:normal normal normal 11px/1.2 "Verdana", "Malgun Gothic", "Sans-serif";
 }
 
 /**
@@ -95,6 +96,10 @@ label.hor, input[type=text].hor, input[type=file].hor, i.hor, img.hor {float:lef
 }
 #textAreaForLog {overflow:auto;width:100%;height:150px;outline:0;
 	border:0px solid #CCCCCC;
+	background:#FFFFFF;
+}
+#divMessageAreaForProcMessage {overflow:auto;width:100%;height:80px;outline:0;
+	border:0px solid #ADADAD;
 	background:#FFFFFF;
 }
 #divLogPanelCloser {float:right;width:20px;text-align:right;}
