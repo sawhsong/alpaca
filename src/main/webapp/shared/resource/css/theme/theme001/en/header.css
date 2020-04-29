@@ -15,7 +15,7 @@
 /**
  * Layout - Header Center
  */
-#divGlobalMenuHeaderGroup {padding:6px 10px;
+#divGlobalMenuHeaderGroup {padding:12px 8px 14px 8px;
 	background:#191919;
 }
 #divGlobalMenuHeaderGroup:after {content:"";display:block;line-height:0px;clear:both;}
@@ -44,16 +44,17 @@
 }
 #aLogoFramework {padding:6px 0px 6px 24px;
 	font-size:0.8em;
-	background:url('/shared/resource/image/icon/logo-gear_Black.png') no-repeat 0% 50%;
+	background:url('/shared/resource/image/icon/logo-gear_White.png') no-repeat 0% 50%;
 }
 #aLogo {padding:6px 0px 8px 100px;
-	background:url('/shared/resource/image/icon/logoPerci.png') no-repeat 0% 0%;
-	background-size:64px 30px;
+	background:url('/shared/resource/image/theme/theme001/common/logoPerci.png') no-repeat 0% 0%;
+	background-size:60px 30px;
 }
 
 /**
  * Global Menu - Right(Global menu items)
  */
+#divGblMenuAreaFramework {margin-top:2px;}
 #divGblMenuArea {}
 .headerGblMenus {float:right;font-size:0.9em;font-weight:bold;cursor:pointer;text-shadow:1px 1px 2px rgba(255, 255, 255, 0.9);
 	color:#FFFFFF;
