@@ -275,6 +275,6 @@ $(function() {
 			}
 		});
 
-		doSearch();
+//		doSearch();
 	});
 });

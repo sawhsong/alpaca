@@ -71,4 +71,13 @@ public class Sys9806Action extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
+
+	public String doUpdateEoExpenseStatus() throws Exception {
+		try {
+			biz.doUpdateEoExpenseStatus(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }

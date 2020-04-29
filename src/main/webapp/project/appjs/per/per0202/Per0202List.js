@@ -288,6 +288,6 @@ $(function() {
 			}
 		});
 
-		doSearch();
+//		doSearch();
 	});
 });

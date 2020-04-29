@@ -258,7 +258,7 @@ $(function() {
 		</div>
 		<div id="divGlobalMenuRight">
 			<div id="divGblMenuArea">
-				<div id="divUsingUserAs" class="headerGblMenus" style="color:#D92E24;cursor:default;">
+				<div id="divUsingUserAs" class="headerGblMenus" style="cursor:default;">
 					<div id="divDbInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(databaseHeaderPage)) {%>Database : <%=databaseHeaderPage%><%}%></div>
 					<div id="divPersonInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(personInfoHeaderPage)) {%> / Person : <%=personInfoHeaderPage%><%}%></div>
 					<div id="divOrgInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(organisationInfoHeaderPage)) {%> / Org : <%=organisationInfoHeaderPage%><%}%></div>
