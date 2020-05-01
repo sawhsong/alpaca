@@ -48,10 +48,7 @@ $(function() {
 				commonJs.doSearch({
 					url:"/bbs/0202/getList.do",
 					dataType:"json",
-					callback:renderDataGridTable,
-					onError:function() {
-						alert("Error");
-					}
+					onSuccess:renderDataGridTable
 				});
 			}, 200);
 		}

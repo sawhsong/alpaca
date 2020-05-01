@@ -2067,7 +2067,7 @@ var nony = {
 					$("#divMessageAreaForProcMessage").remove();
 					$("#divLogPanelHolder").remove();
 				});
-console.log(params.onClose);
+
 				if (typeof params.onClose == "function") {
 					params.onClose();
 				}
