@@ -54,6 +54,10 @@ $(function() {
 			name:sys.sys9802.caption.updateWorkingState,
 			img:"fa-map",
 			fun:function() {openPopup({mode:"UpdateWorkingState"});}
+		}, {
+			name:"Update End User",
+			img:"fa-building",
+			fun:function() {openPopup({mode:"UpdateEndUser"});}
 		}];
 
 		$("#btnAction").contextMenu(ctxMenu, {
@@ -168,6 +172,9 @@ $(function() {
 		} else if (param.mode == "UpdateWorkingState") {
 			url = "/sys/9802/getUpdateWorkingState.do";
 			width = 700, height = 400;
+		} else if (param.mode == "UpdateEndUser") {
+			url = "/sys/9802/getUpdateEndUser.do";
+			width = 700, height = 500;
 		}
 
 		var popParam = {

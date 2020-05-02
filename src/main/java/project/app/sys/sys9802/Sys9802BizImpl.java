@@ -108,6 +108,24 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 		return paramEntity;
 	}
 
+	public ParamEntity getUpdateEndUser(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			qa.setObject("dataSource", dataSource);
+
+			paramEntity.setObject("assignment", assignmentBS.getAssignmentByAssignmentId(qa, dsReq.getValue("assignmentId")));
+			paramEntity.setObject("assignmentDataSet", assignmentBS.getAssignmentAsDataSetByAssignmentId(qa, dsReq.getValue("assignmentId")));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
 	public ParamEntity doUnlockPrt(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		String assignmentId = dsReq.getValue("rdoForAction");
@@ -143,6 +161,31 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 			qa.setObject("dataSource", dataSource);
 
 			result = assignmentBS.updateWorkingState(qa, assignmentId, workingStateTo);
+			if (result <= 0) {
+				throw new FrameworkException("E801", getMessage("E801", paramEntity));
+			}
+
+			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity doUpdateEndUser(ParamEntity paramEntity) throws Exception {
+		DataSet dsReq = paramEntity.getRequestDataSet();
+		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		String assignmentId = dsReq.getValue("assignmentId");
+		String endUserToId = dsReq.getValue("endUserToId");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+		int result = 0;
+
+		try {
+			qa.setObject("dataSource", dataSource);
+
+			result = assignmentBS.updateEndUser(qa, assignmentId, endUserToId);
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
 			}

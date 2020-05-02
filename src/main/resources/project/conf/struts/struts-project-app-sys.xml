@@ -67,6 +67,7 @@
             <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802DetailPop.jsp</result>
             <result name="unlockPrt" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802UnlockPrtPop.jsp</result>
             <result name="updateWorkingState" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802UpdateWorkingStatePop.jsp</result>
+            <result name="updateEndUser" type="debugDispatcherResult">/project/app/sys/sys9802/Sys9802UpdateEndUserPop.jsp</result>
         </action>
         <!--Sys9804 - Invoice-->
         <action class="project.app.sys.sys9804.Sys9804Action" method="{1}" name="9804/*">

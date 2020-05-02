@@ -42,6 +42,11 @@ public class Sys9802Action extends BaseAction {
 		return "updateWorkingState";
 	}
 
+	public String getUpdateEndUser() throws Exception {
+		biz.getUpdateEndUser(paramEntity);
+		return "updateEndUser";
+	}
+
 	public String doUnlockPrt() throws Exception {
 		try {
 			biz.doUnlockPrt(paramEntity);
@@ -54,6 +59,15 @@ public class Sys9802Action extends BaseAction {
 	public String doUpdateWorkingState() throws Exception {
 		try {
 			biz.doUpdateWorkingState(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String doUpdateEndUser() throws Exception {
+		try {
+			biz.doUpdateEndUser(paramEntity);
 		} catch (Exception ex) {
 		}
 		setRequestAttribute("paramEntity", paramEntity);

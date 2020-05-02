@@ -119,4 +119,18 @@ public class AssignmentBizServiceImpl extends BaseBiz implements AssignmentBizSe
 
 		return hpAssignmentsDDao.updateAssignmentByColumn(queryAdvisor, hpAssignmentsD);
 	}
+
+	public int updateEndUser(QueryAdvisor queryAdvisor, String assignmentId, String toEndUserId) throws Exception {
+		HpAssignmentsD hpAssignmentsD = new HpAssignmentsD();
+
+		hpAssignmentsD.addUpdateColumn("eu_organisation_id", toEndUserId);
+		hpAssignmentsD.addUpdateColumn("last_updated_by", "1");
+		hpAssignmentsD.addUpdateColumn("last_update_date", "sysdate", "Date");
+
+		queryAdvisor.addWhereClause("assignment_id = '"+assignmentId+"'");
+
+		hpAssignmentsDDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
+
+		return hpAssignmentsDDao.updateAssignmentByColumn(queryAdvisor, hpAssignmentsD);
+	}
 }

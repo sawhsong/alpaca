@@ -13,7 +13,9 @@ public interface Sys9802Biz {
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getUnlockPrt(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getUpdateWorkingState(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getUpdateEndUser(ParamEntity paramEntity) throws Exception;
 	public ParamEntity doUnlockPrt(ParamEntity paramEntity) throws Exception;
 	public ParamEntity doUpdateWorkingState(ParamEntity paramEntity) throws Exception;
+	public ParamEntity doUpdateEndUser(ParamEntity paramEntity) throws Exception;
 	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception;
 }
