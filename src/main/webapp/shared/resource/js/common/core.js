@@ -33,6 +33,41 @@ var jsconfig = {
 	}
 };
 
+var chartColor = {
+		background0:"rgba(255, 99, 132, 0.2)",
+		border0:"rgba(255, 99, 132, 1)",
+		background1:"rgba(54, 162, 235, 0.2)",
+		border1:"rgba(54, 162, 235, 1)",
+		background2:"rgba(255, 159, 64, 0.2)",
+		border2:"rgba(255, 159, 64, 1)",
+		background3:"rgba(75, 192, 192, 0.2)",
+		border3:"rgba(75, 192, 192, 1)",
+		background4:"rgba(255, 205, 86, 0.2)",
+		border4:"rgba(255, 205, 86, 1)",
+		background5:"rgba(153, 102, 255, 0.2)",
+		border5:"rgba(153, 102, 255, 1)",
+		background6:"rgba(201, 203, 207, 0.2)",
+		border6:"rgba(201, 203, 207, 1)",
+		background7:"rgba(194, 24, 91, 0.2)",
+		border7:"rgba(194, 24, 91, 1)",
+		background8:"rgba(85, 139, 47, 0.2)",
+		border8:"rgba(85, 139, 47, 1)",
+		background9:"rgba(245, 127, 23, 0.2)",
+		border9:"rgba(245, 127, 23, 1)",
+		background10:"rgba(121, 85, 72, 0.2)",
+		border10:"rgba(121, 85, 72, 1)",
+		background11:"rgba(0, 0, 0, 0.2)",
+		border11:"rgba(0, 0, 0, 1)",
+		background12:"rgba(221, 44, 0, 0.2)",
+		border12:"rgba(221, 44, 0, 1)",
+		background13:"rgba(251, 192, 45, 0.2)",
+		border13:"rgba(251, 192, 45, 1)",
+		background14:"rgba(174, 234, 0, 0.2)",
+		border14:"rgba(174, 234, 0, 1)",
+		background15:"rgba(0, 131, 143, 0.2)",
+		border15:"rgba(0, 131, 143, 1)"
+	};
+
 /**
  * declare nony
  */
@@ -190,11 +225,37 @@ var nony = {
 				data:params.data || {},
 				success:function(data, textStatus) {
 					var result = commonJs.parseAjaxResult(data, textStatus, params.dataType||"json");
+					var msgHandleType = jsconfig.get("pagehandlerActionType");
 
 					if (result.isSuccess == true || result.isSuccess == "true") {
-						params.callback(result);
+						if (typeof params.callback == "function") {
+							params.callback(result);
+						} else if (typeof params.onSuccess == "function") {
+							params.onSuccess(result);
+						}
 					} else {
-						commonJs.error(result.message);
+						if (typeof params.onError == "function") {
+							params.onError(result);
+						} else {
+							if (msgHandleType == "message") {
+								$.nony.printProcMessage({
+									type:"Error",
+									message:result.message,
+									onClose:function() {
+										try {
+											$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+											$.nony.hideProcMessage();
+										} catch(e) {}
+									}
+								});
+							} else if (msgHandleType == "popup") {
+								commonJs.error(result.message);
+								try {
+									$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+									$.nony.hideProcMessage();
+								} catch(e) {}
+							}
+						}
 					}
 				}
 			});
@@ -208,11 +269,37 @@ var nony = {
 			data:params.data || {},
 			success:function(data, textStatus) {
 				var result = commonJs.parseAjaxResult(data, textStatus, params.dataType||"json");
+				var msgHandleType = jsconfig.get("pagehandlerActionType");
 
 				if (result.isSuccess == true || result.isSuccess == "true") {
-					params.callback(result);
+					if (typeof params.callback == "function") {
+						params.callback(result);
+					} else if (typeof params.onSuccess == "function") {
+						params.onSuccess(result);
+					}
 				} else {
-					commonJs.error(result.message);
+					if (typeof params.onError == "function") {
+						params.onError(result);
+					} else {
+						if (msgHandleType == "message") {
+							$.nony.printProcMessage({
+								type:"Error",
+								message:result.message,
+								onClose:function() {
+									try {
+										$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+										$.nony.hideProcMessage();
+									} catch(e) {}
+								}
+							});
+						} else if (msgHandleType == "popup") {
+							commonJs.error(result.message);
+							try {
+								$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+								$.nony.hideProcMessage();
+							} catch(e) {}
+						}
+					}
 				}
 			}
 		});
@@ -230,30 +317,77 @@ var nony = {
 						data:params.data || {},
 						success:function(data, textStatus) {
 							var result = commonJs.parseAjaxResult(data, textStatus, params.dataType||"json");
+							var msgHandleType = jsconfig.get("pagehandlerActionType");
 
 							if (result.isSuccess == true || result.isSuccess == "true") {
 								if (params.showPostMessage == false) {
 									setTimeout(function() {
-										params.callback(result);
+										if (typeof params.callback == "function") {
+											params.callback(result);
+										} else if (typeof params.onSuccess == "function") {
+											params.onSuccess(result);
+										}
 									}, 400);
 								} else {
-									commonJs.openDialog({
-										type:com.message.I000,
-										contents:result.message,
-										blind:true,
-										width:300,
-										buttons:[{
-											caption:com.caption.ok,
-											callback:function() {
-												setTimeout(function() {
-													params.callback(result);
-												}, 400);
+									if (msgHandleType == "message") {
+										setTimeout(function() {
+											$.nony.printProcMessage({
+												type:"Success",
+												message:result.message,
+												onClose:function() {
+												}
+											});
+
+											if (typeof params.callback == "function") {
+												params.callback(result);
+											} else if (typeof params.onSuccess == "function") {
+												params.onSuccess(result);
 											}
-										}]
-									});
+										}, 400);
+									} else if (msgHandleType == "popup") {
+										commonJs.openDialog({
+											type:com.message.I000,
+											contents:result.message,
+											blind:true,
+											width:300,
+											buttons:[{
+												caption:com.caption.ok,
+												callback:function() {
+													setTimeout(function() {
+														if (typeof params.callback == "function") {
+															params.callback(result);
+														} else if (typeof params.onSuccess == "function") {
+															params.onSuccess(result);
+														}
+													}, 400);
+												}
+											}]
+										});
+									}
 								}
 							} else {
-								commonJs.error(result.message);
+								if (typeof params.onError == "function") {
+									params.onError(result);
+								} else {
+									if (msgHandleType == "message") {
+										$.nony.printProcMessage({
+											type:"Error",
+											message:result.message,
+											onClose:function() {
+												try {
+													$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+													$.nony.hideProcMessage();
+												} catch(e) {}
+											}
+										});
+									} else if (msgHandleType == "popup") {
+										commonJs.error(result.message);
+										try {
+											$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+											$.nony.hideProcMessage();
+										} catch(e) {}
+									}
+								}
 							}
 						}
 					});
@@ -278,30 +412,77 @@ var nony = {
 						data:params.data || {},
 						success:function(data, textStatus) {
 							var result = commonJs.parseAjaxResult(data, textStatus, params.dataType||"json");
+							var msgHandleType = jsconfig.get("pagehandlerActionType");
 
 							if (result.isSuccess == true || result.isSuccess == "true") {
 								if (params.showPostMessage == false) {
 									setTimeout(function() {
-										params.callback(result);
+										if (typeof params.callback == "function") {
+											params.callback(result);
+										} else if (typeof params.onSuccess == "function") {
+											params.onSuccess(result);
+										}
 									}, 400);
 								} else {
-									commonJs.openDialog({
-										type:com.message.I000,
-										contents:result.message,
-										blind:true,
-										width:300,
-										buttons:[{
-											caption:com.caption.ok,
-											callback:function() {
-												setTimeout(function() {
-													params.callback(result);
-												}, 400);
+									if (msgHandleType == "message") {
+										setTimeout(function() {
+											$.nony.printProcMessage({
+												type:"Success",
+												message:result.message,
+												onClose:function() {
+												}
+											});
+
+											if (typeof params.callback == "function") {
+												params.callback(result);
+											} else if (typeof params.onSuccess == "function") {
+												params.onSuccess(result);
 											}
-										}]
-									});
+										}, 400);
+									} else if (msgHandleType == "popup") {
+										commonJs.openDialog({
+											type:com.message.I000,
+											contents:result.message,
+											blind:true,
+											width:300,
+											buttons:[{
+												caption:com.caption.ok,
+												callback:function() {
+													setTimeout(function() {
+														if (typeof params.callback == "function") {
+															params.callback(result);
+														} else if (typeof params.onSuccess == "function") {
+															params.onSuccess(result);
+														}
+													}, 400);
+												}
+											}]
+										});
+									}
 								}
 							} else {
-								commonJs.error(result.message);
+								if (typeof params.onError == "function") {
+									params.onError(result);
+								} else {
+									if (msgHandleType == "message") {
+										$.nony.printProcMessage({
+											type:"Error",
+											message:result.message,
+											onClose:function() {
+												try {
+													$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+													$.nony.hideProcMessage();
+												} catch(e) {}
+											}
+										});
+									} else if (msgHandleType == "popup") {
+										commonJs.error(result.message);
+										try {
+											$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+											$.nony.hideProcMessage();
+										} catch(e) {}
+									}
+								}
 							}
 						}
 					});
@@ -326,30 +507,77 @@ var nony = {
 						data:params.data || {},
 						success:function(data, textStatus) {
 							var result = commonJs.parseAjaxResult(data, textStatus, params.dataType||"json");
+							var msgHandleType = jsconfig.get("pagehandlerActionType");
 
 							if (result.isSuccess == true || result.isSuccess == "true") {
 								if (params.showPostMessage == false) {
 									setTimeout(function() {
-										params.callback(result);
+										if (typeof params.callback == "function") {
+											params.callback(result);
+										} else if (typeof params.onSuccess == "function") {
+											params.onSuccess(result);
+										}
 									}, 400);
 								} else {
-									commonJs.openDialog({
-										type:com.message.I000,
-										contents:result.message,
-										blind:true,
-										width:300,
-										buttons:[{
-											caption:com.caption.ok,
-											callback:function() {
-												setTimeout(function() {
-													params.callback(result);
-												}, 400);
+									if (msgHandleType == "message") {
+										setTimeout(function() {
+											$.nony.printProcMessage({
+												type:"Success",
+												message:result.message,
+												onClose:function() {
+												}
+											});
+
+											if (typeof params.callback == "function") {
+												params.callback(result);
+											} else if (typeof params.onSuccess == "function") {
+												params.onSuccess(result);
 											}
-										}]
-									});
+										}, 400);
+									} else if (msgHandleType == "popup") {
+										commonJs.openDialog({
+											type:com.message.I000,
+											contents:result.message,
+											blind:true,
+											width:300,
+											buttons:[{
+												caption:com.caption.ok,
+												callback:function() {
+													setTimeout(function() {
+														if (typeof params.callback == "function") {
+															params.callback(result);
+														} else if (typeof params.onSuccess == "function") {
+															params.onSuccess(result);
+														}
+													}, 400);
+												}
+											}]
+										});
+									}
 								}
 							} else {
-								commonJs.error(result.message);
+								if (typeof params.onError == "function") {
+									params.onError(result);
+								} else {
+									if (msgHandleType == "message") {
+										$.nony.printProcMessage({
+											type:"Error",
+											message:result.message,
+											onClose:function() {
+												try {
+													$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+													$.nony.hideProcMessage();
+												} catch(e) {}
+											}
+										});
+									} else if (msgHandleType == "popup") {
+										commonJs.error(result.message);
+										try {
+											$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+											$.nony.hideProcMessage();
+										} catch(e) {}
+									}
+								}
 							}
 						}
 					});
@@ -374,30 +602,77 @@ var nony = {
 						data:params.data || {},
 						success:function(data, textStatus) {
 							var result = commonJs.parseAjaxResult(data, textStatus, params.dataType||"json");
+							var msgHandleType = jsconfig.get("pagehandlerActionType");
 
 							if (result.isSuccess == true || result.isSuccess == "true") {
 								if (params.showPostMessage == false) {
 									setTimeout(function() {
-										params.callback(result);
+										if (typeof params.callback == "function") {
+											params.callback(result);
+										} else if (typeof params.onSuccess == "function") {
+											params.onSuccess(result);
+										}
 									}, 400);
 								} else {
-									commonJs.openDialog({
-										type:com.message.I000,
-										contents:result.message,
-										blind:true,
-										width:300,
-										buttons:[{
-											caption:com.caption.ok,
-											callback:function() {
-												setTimeout(function() {
-													params.callback(result);
-												}, 400);
+									if (msgHandleType == "message") {
+										setTimeout(function() {
+											$.nony.printProcMessage({
+												type:"Success",
+												message:result.message,
+												onClose:function() {
+												}
+											});
+
+											if (typeof params.callback == "function") {
+												params.callback(result);
+											} else if (typeof params.onSuccess == "function") {
+												params.onSuccess(result);
 											}
-										}]
-									});
+										}, 400);
+									} else if (msgHandleType == "popup") {
+										commonJs.openDialog({
+											type:com.message.I000,
+											contents:result.message,
+											blind:true,
+											width:300,
+											buttons:[{
+												caption:com.caption.ok,
+												callback:function() {
+													setTimeout(function() {
+														if (typeof params.callback == "function") {
+															params.callback(result);
+														} else if (typeof params.onSuccess == "function") {
+															params.onSuccess(result);
+														}
+													}, 400);
+												}
+											}]
+										});
+									}
 								}
 							} else {
-								commonJs.error(result.message);
+								if (typeof params.onError == "function") {
+									params.onError(result);
+								} else {
+									if (msgHandleType == "message") {
+										$.nony.printProcMessage({
+											type:"Error",
+											message:result.message,
+											onClose:function() {
+												try {
+													$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+													$.nony.hideProcMessage();
+												} catch(e) {}
+											}
+										});
+									} else if (msgHandleType == "popup") {
+										commonJs.error(result.message);
+										try {
+											$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+											$.nony.hideProcMessage();
+										} catch(e) {}
+									}
+								}
 							}
 						}
 					});
@@ -422,30 +697,77 @@ var nony = {
 						data:params.data || {},
 						success:function(data, textStatus) {
 							var result = commonJs.parseAjaxResult(data, textStatus, params.dataType||"json");
+							var msgHandleType = jsconfig.get("pagehandlerActionType");
 
 							if (result.isSuccess == true || result.isSuccess == "true") {
 								if (params.showPostMessage == false) {
 									setTimeout(function() {
-										params.callback(result);
+										if (typeof params.callback == "function") {
+											params.callback(result);
+										} else if (typeof params.onSuccess == "function") {
+											params.onSuccess(result);
+										}
 									}, 400);
 								} else {
-									commonJs.openDialog({
-										type:com.message.I000,
-										contents:result.message,
-										blind:true,
-										width:300,
-										buttons:[{
-											caption:com.caption.ok,
-											callback:function() {
-												setTimeout(function() {
-													params.callback(result);
-												}, 400);
+									if (msgHandleType == "message") {
+										setTimeout(function() {
+											$.nony.printProcMessage({
+												type:"Success",
+												message:result.message,
+												onClose:function() {
+												}
+											});
+
+											if (typeof params.callback == "function") {
+												params.callback(result);
+											} else if (typeof params.onSuccess == "function") {
+												params.onSuccess(result);
 											}
-										}]
-									});
+										}, 400);
+									} else if (msgHandleType == "popup") {
+										commonJs.openDialog({
+											type:com.message.I000,
+											contents:result.message,
+											blind:true,
+											width:300,
+											buttons:[{
+												caption:com.caption.ok,
+												callback:function() {
+													setTimeout(function() {
+														if (typeof params.callback == "function") {
+															params.callback(result);
+														} else if (typeof params.onSuccess == "function") {
+															params.onSuccess(result);
+														}
+													}, 400);
+												}
+											}]
+										});
+									}
 								}
 							} else {
-								commonJs.error(result.message);
+								if (typeof params.onError == "function") {
+									params.onError(result);
+								} else {
+									if (msgHandleType == "message") {
+										$.nony.printProcMessage({
+											type:"Error",
+											message:result.message,
+											onClose:function() {
+												try {
+													$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+													$.nony.hideProcMessage();
+												} catch(e) {}
+											}
+										});
+									} else if (msgHandleType == "popup") {
+										commonJs.error(result.message);
+										try {
+											$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+											$.nony.hideProcMessage();
+										} catch(e) {}
+									}
+								}
 							}
 						}
 					});
@@ -1270,9 +1592,11 @@ var nony = {
 				opacity:"0.1"
 			}
 		});
+		jsconfig.put("showProcMessageOnElement", blockElementId);
 	},
 	hideProcMessageOnElement : function(blockElementId) {
 		$("#"+blockElementId).unblock();
+		jsconfig.remove("showProcMessageOnElement");
 	},
 	/*!
 	 * controlling tab - relevant elements should be div which has the same index of the tab as an id
@@ -1585,6 +1909,10 @@ var nony = {
 	},
 	/*!
 	 * Logging on console
+	 * 		option
+	 * 			resetFlag : true / false
+	 * 			message : message to display
+	 * 			onClose : onclose function
 	 */
 	printLog : function(params) {
 		if ($("#textAreaForLog").length) {
@@ -1625,14 +1953,14 @@ var nony = {
 			$(imgFolder).bind("click", function() {
 				if ("Fold" == $("#imgLogPanelCloserFolder").attr("flag")) {
 					$("#divLogPanelHolder").animate({
-						marginTop:"+=144px",
-						height:"30px"
+						marginTop:"+=142px",
+						height:"36px"
 					}, 1000, function() {
 						$("#imgLogPanelCloserFolder").removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up").attr("flag", "Expand");
 					});
 				} else {
 					$("#divLogPanelHolder").animate({
-						marginTop:"-=144px",
+						marginTop:"-=142px",
 						height:"180px"
 					}, 1000, function() {
 						$("#imgLogPanelCloserFolder").removeClass("fa-chevron-circle-up").addClass("fa-chevron-circle-down").attr("flag", "Fold");
@@ -1655,6 +1983,98 @@ var nony = {
 		}
 	},
 	/*!
+	 * Logging Process Message
+	 * 		option
+	 * 			resetFlag : true / false
+	 * 			type : Confirm / Confirmation / Error / Information(Default) / Question / Warning / Success
+	 * 			message : message to display
+	 * 			onClose : onclose function
+	 */
+	printProcMessage : function(params) {
+		if ($("#divMessageAreaForProcMessage").length) {
+			if (params.resetFlag) {$(this.procMessageArea).html("");}
+
+			var html = "", str = $(this.procMessageArea).html();
+			if (str == "") {
+				html += "<table><tr>";
+				html += "<td style='vertical-align:top;padding-right:4px;'><img src='"+jsconfig.get("imgThemeCom")+"/"+params.type+"_Small.png"+"'/></td>";
+				html += "<td style='padding:2px 4px;line-height:14px;white-space:nowrap;'>"+params.message+"</td>";
+				html += "</tr></table>";
+			} else {
+				html += "<div class='verGap2'></div>";
+				html += "<table><tr>";
+				html += "<td style='vertical-align:top;padding-right:4px;'><img src='"+jsconfig.get("imgThemeCom")+"/"+params.type+"_Small.png"+"'/></td>";
+				html += "<td style='padding:2px 4px;line-height:14px;white-space:nowrap;'>"+params.message+"</td>";
+				html += "</tr></table>";
+			}
+			str += html;
+
+			$(this.procMessageArea).html(str);
+
+			$(this.procMessageArea).animate({scrollTop:$(this.procMessageArea).prop("scrollHeight")}, 1000);
+		} else {
+			var divLogPanelHolder = $("<div id='divLogPanelHolder'></div>");
+			var divMessageAreaForProcMessage = $("<div id='divMessageAreaForProcMessage' style='float:left;width:98%'></div>");
+			var divLogPanelCloser = $("<div id='divLogPanelCloser' style='float:right;width:1%'></div>");
+			var imgFolder = $("<i id='imgLogPanelCloserFolder' class='fa fa-chevron-circle-down fa-lg icnEn' flag='Fold'></i>");
+			var imgClose = $("<i id='imgLogPanelColserClose' class='fa fa-times-circle fa-lg icnEn'></i>");
+			var holderTop = ($(window).innerHeight() + $(window).scrollTop());
+
+			$(divLogPanelHolder).append(divMessageAreaForProcMessage);
+			$(divLogPanelCloser).append(imgFolder);
+			$(divLogPanelCloser).append(imgClose);
+			$(divLogPanelHolder).append(divLogPanelCloser);
+			$("body").append(divLogPanelHolder);
+
+			$(divMessageAreaForProcMessage).css({
+				"width":($(window).outerWidth() - 34) + "px"
+			});
+
+			$("#divLogPanelHolder").css("top", holderTop + "px");
+			$("#divLogPanelHolder").animate({
+				marginTop:"-" + ($("#divLogPanelHolder").height() + 16) + "px"
+			}, 1000);
+
+			// be careful of order
+			this.procMessageArea = divMessageAreaForProcMessage;
+			this.printProcMessage(params);
+
+			$(window).scroll(this._reposProcMessage);
+			$(window).resize(this._reposProcMessage);
+
+			$(imgFolder).bind("click", function() {
+				if ("Fold" == $("#imgLogPanelCloserFolder").attr("flag")) {
+					$("#divLogPanelHolder").animate({
+						marginTop:"+=70px",
+						height:"34px"
+					}, 800, function() {
+						$("#imgLogPanelCloserFolder").removeClass("fa-chevron-circle-down").addClass("fa-chevron-circle-up").attr("flag", "Expand");
+					});
+				} else {
+					$("#divLogPanelHolder").animate({
+						marginTop:"-=70px",
+						height:"180px"
+					}, 800, function() {
+						$("#imgLogPanelCloserFolder").removeClass("fa-chevron-circle-up").addClass("fa-chevron-circle-down").attr("flag", "Fold");
+					});
+				}
+			});
+
+			$(imgClose).bind("click", function(event) {
+				$("#divLogPanelHolder").stop().animate({
+					marginTop:"200px"
+				}, 500, function() {
+					$("#divMessageAreaForProcMessage").remove();
+					$("#divLogPanelHolder").remove();
+				});
+
+				if (typeof params.onClose == "function") {
+					params.onClose();
+				}
+			});
+		}
+	},
+	/*!
 	 * private methods
 	 */
 	_reposLogPanel : function() {
@@ -1666,6 +2086,15 @@ var nony = {
 			$("#divLogPanelHolder").css("top", ($(window).innerHeight() - ($("#divLogPanelHolder").height() + 16)) + "px");
 		}
 	},
+	_reposProcMessage : function() {
+		if (nony.procMessageArea) {
+			$("#divMessageAreaForProcMessage").css("width", ($(window).width() - 34) + "px");
+			$("#divLogPanelHolder").css("top", ($(window).innerHeight() - ($("#divLogPanelHolder").height() + 16)) + "px");
+			$("#divLogPanelHolder").stop().animate({"margin-top":$(window).scrollTop() + "px"}, "slow", "swing");
+			$("#divMessageAreaForProcMessage").css("width", ($(window).width() - 34) + "px");
+			$("#divLogPanelHolder").css("top", ($(window).innerHeight() - ($("#divLogPanelHolder").height() + 16)) + "px");
+		}
+	}
 };
 
 /**

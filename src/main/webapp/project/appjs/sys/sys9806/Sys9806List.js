@@ -2,6 +2,7 @@
  * Framework Generated Javascript Source
  * - Sys9806List.js
  *************************************************************************************************/
+jsconfig.put("pagehandlerActionType", "message");
 var popup = null;
 
 $(function() {
