@@ -15,7 +15,7 @@
 /**
  * Layout - Header Center
  */
-#divGlobalMenuHeaderGroup {padding:12px 8px 14px 8px;
+#divGlobalMenuHeaderGroup {padding:12px 8px 12px 8px;
 	background:#191919;
 }
 #divGlobalMenuHeaderGroup:after {content:"";display:block;line-height:0px;clear:both;}
@@ -35,7 +35,7 @@
 /**
  * Global Menu - Left(Logo)
  */
-#divLogoArea {font-size:1.0em;font-weight:bold;cursor:pointer;text-shadow:2px 2px 2px rgba(255, 255, 255, 0.9);}
+#divLogoArea {font-size:1.3em;font-weight:bold;cursor:pointer;text-shadow:1px 1px 2px rgba(255, 255, 255, 0.2);}
 #divLogoArea a, #divLogoArea a:link, #divLogoArea a:visited {text-decoration:none;
 	color:#FFFFFF;
 }
@@ -56,7 +56,7 @@
  */
 #divGblMenuAreaFramework {margin-top:2px;}
 #divGblMenuArea {}
-.headerGblMenus {float:right;font-size:0.9em;font-weight:bold;cursor:pointer;text-shadow:1px 1px 2px rgba(255, 255, 255, 0.9);
+.headerGblMenus {float:right;font-size:1.0em;font-weight:bold;cursor:pointer;text-shadow:1px 1px 2px rgba(255, 255, 255, 0.2);
 	color:#FFFFFF;
 }
 .headerGblMenus a, .headerGblMenus a:link, .headerGblMenus a:visited {text-decoration:none;
@@ -97,8 +97,7 @@
 	background:#FFFFFF;
 }
 .headerMainMenus a, .headerMainMenus a:hover, .headerMainMenus a:link, .headerMainMenus a:visited,
-.headerMainMenusSelected a, .headerMainMenusSelected a:hover, .headerMainMenusSelected a:link, .headerMainMenusSelected a:visited {padding:0px 0px 0px 25px;font-size:1.1em;text-decoration:none;
-	text-shadow:1px 1px 2px rgba(255, 255, 255, 1.0);
+.headerMainMenusSelected a, .headerMainMenusSelected a:hover, .headerMainMenusSelected a:link, .headerMainMenusSelected a:visited {padding:0px 0px 1px 25px;font-size:1.1em;text-decoration:none;
 	color:#000000;
 }
 /**
