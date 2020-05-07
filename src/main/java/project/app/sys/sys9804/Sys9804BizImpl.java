@@ -54,7 +54,7 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 			qa.addAutoFillCriteria(dsReq.getValue("invoiceId"), "inv.invoice_id like '"+dsReq.getValue("invoiceId")+"%'");
 			qa.addAutoFillCriteria(dsReq.getValue("dateFrom"), "trunc(inv.invoice_date) >= to_date('"+dsReq.getValue("dateFrom")+"', '"+dateFormat+"')");
 			qa.addAutoFillCriteria(dsReq.getValue("dateTo"), "trunc(inv.invoice_date) <= to_date('"+dsReq.getValue("dateTo")+"', '"+dateFormat+"')");
-			qa.addAutoFillCriteria(dsReq.getValue("billingOrgId"), "hbc.billing_organization_id = '"+dsReq.getValue("billingOrgId")+"'");
+			qa.addAutoFillCriteria(dsReq.getValue("billingOrgId"), "inv.pay_to_organisation_id = '"+dsReq.getValue("billingOrgId")+"'");
 			qa.addAutoFillCriteria(dsReq.getValue("personId"), "inv.person_id = '"+dsReq.getValue("personId")+"'");
 			qa.addAutoFillCriteria(dsReq.getValue("status"), "inv.status = '"+dsReq.getValue("status")+"'");
 			qa.addAutoFillCriteria(dsReq.getValue("genType"), "inv.inv_cr_status = '"+dsReq.getValue("genType")+"'");
