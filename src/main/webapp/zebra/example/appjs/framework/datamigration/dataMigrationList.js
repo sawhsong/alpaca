@@ -7,6 +7,10 @@ $(function() {
 	/*!
 	 * event
 	 */
+	$("#sourceDb").change(function(event) {
+		$("#btnSearch").trigger("click");
+	});
+
 	$("#btnSearch").click(function(event) {
 		doSourceDataSearch();
 		doTargetDataSearch();
@@ -14,29 +18,6 @@ $(function() {
 
 	$("#icnCheckSourceData").click(function(event) {
 		commonJs.toggleCheckboxes("chkSourceData");
-	});
-
-	$("#btnGenerate").click(function(event) {
-		if (commonJs.getCountChecked("chkSourceData") == 0) {
-			commonJs.warn(com.message.I902);
-			return;
-		}
-
-		commonJs.confirm({
-			contents:com.message.Q902,
-			width:300,
-			height:150,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					exeGenerate();
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}]
-		});
 	});
 
 	$(document).keypress(function(event) {
@@ -48,25 +29,39 @@ $(function() {
 	/*!
 	 * process
 	 */
+	setActionButtonContextMenu = function() {
+		var ctxMenu = [{
+			name:"Generate DDL File",
+			img:"fa-file-text",
+			fun:function() {doMigrationAction("generateFile");}
+		}, {
+			name:"Create Table",
+			img:"fa-database",
+			fun:function() {doMigrationAction("createTable");}
+		}, {
+			name:"Insert Data",
+			img:"fa-upload",
+			fun:function() {doMigrationAction("insertData");}
+		}];
+
+		$("#btnAction").contextMenu(ctxMenu, {
+			classPrefix:com.constants.ctxClassPrefixButton,
+			effectDuration:100,
+			effect:"fade",
+			borderRadius:"bottom 4px",
+			displayAround:"trigger",
+			position:"bottom"
+		});
+	};
+
 	doSourceDataSearch = function() {
 		commonJs.showProcMessageOnElement("tblSourceData");
 
-		setTimeout(function() {
-			commonJs.ajaxSubmit({
-				url:"/zebra/framework/datamigration/getTableList.do",
-				dataType:"json",
-				data:{dataSource:$("#sourceDb").val()},
-				success:function(data, textStatus) {
-					var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-					if (result.isSuccess == true || result.isSuccess == "true") {
-						renderSourceDataTable(result);
-					} else {
-						commonJs.error(result.message);
-					}
-				}
-			});
-		}, 200);
+		commonJs.doSearch({
+			url:"/zebra/framework/datamigration/getTableList.do",
+			data:{dataSource:$("#sourceDb").val()},
+			callback:renderSourceDataTable
+		});
 	};
 
 	renderSourceDataTable = function(result) {
@@ -101,7 +96,10 @@ $(function() {
 		$("#tblSourceDataBody").append($(html));
 
 		$("#tblSourceData").fixedHeaderTable({
-			attachTo:$("#divSourceDataTable")
+			attachTo:$("#divSourceDataTable"),
+			pagingArea:$("#divSourceDataPagingArea"),
+			displayRowCount:true,
+			totalResultRows:result.totalResultRows
 		});
 
 		commonJs.hideProcMessageOnElement("tblSourceData");
@@ -110,20 +108,11 @@ $(function() {
 	doTargetDataSearch = function() {
 		commonJs.showProcMessageOnElement("tblTargetData");
 
-		setTimeout(function() {
-			commonJs.ajaxSubmit({
-				url:"/zebra/framework/datamigration/getTableList.do",
-				dataType:"json",
-				data:{dataSource:$("#targetDb").val()},
-				success:function(data, textStatus) {
-					var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-					if (result.isSuccess == true || result.isSuccess == "true") {
-						renderTargetDataTable(result);
-					}
-				}
-			});
-		}, 200);
+		commonJs.doSearch({
+			url:"/zebra/framework/datamigration/getTableList.do",
+			data:{dataSource:$("#targetDb").val()},
+			callback:renderTargetDataTable
+		});
 	};
 
 	renderTargetDataTable = function(result) {
@@ -154,19 +143,22 @@ $(function() {
 		$("#tblTargetDataBody").append($(html));
 
 		$("#tblTargetData").fixedHeaderTable({
-			attachTo:$("#divTargetDataTable")
+			attachTo:$("#divTargetDataTable"),
+			pagingArea:$("#divTargetDataPagingArea"),
+			displayRowCount:true,
+			totalResultRows:result.totalResultRows
 		});
 
 		commonJs.hideProcMessageOnElement("tblTargetData");
 	};
 
-	getDetail = function(dbFlag, tableName) {
+	getDetail = function(dataSource, tableName) {
 		popup = commonJs.openPopup({
 			popupId:"TableDetail",
 			url:"/zebra/framework/datamigration/getDetail.do",
 			paramData:{
 				tableName:tableName,
-				dataSource:dbFlag
+				dataSource:dataSource
 			},
 			header:framework.header.popHeaderDetail,
 			width:1300,
@@ -174,11 +166,43 @@ $(function() {
 		});
 	};
 
-	exeGenerate = function() {
+	doMigrationAction = function(migrationType) {
+		if (commonJs.getCountChecked("chkSourceData") == 0) {
+			commonJs.warn(com.message.I902);
+			return;
+		}
+
+		commonJs.confirm({
+			contents:com.message.Q902,
+			width:300,
+			height:150,
+			buttons:[{
+				caption:com.caption.yes,
+				callback:function() {
+					doMigration(migrationType);
+				}
+			}, {
+				caption:com.caption.no,
+				callback:function() {
+				}
+			}]
+		});
+	};
+
+	doMigration = function(migrationType) {
 		var param = {};
+		var actionCommand = "";
 
 		param.sourceDb = $("#sourceDb").val();
 		param.targetDb = $("#targetDb").val();
+
+		if (migrationType == "generateFile") {
+			actionCommand = "doGenerateFile";
+		} else if (migrationType == "createTable") {
+			actionCommand = "doCreateTable";
+		} else if (migrationType == "insertData") {
+			actionCommand = "doInsertData";
+		}
 
 		popup = commonJs.openPopup({
 			popupId:"ProcessInformation",
@@ -193,39 +217,70 @@ $(function() {
 					setTimeout(function() {
 						param.tableName = $this.val();
 
-						commonJs.ajaxSubmit({
-							url:"/zebra/framework/datamigration/doMigration.do",
-							dataType:"json",
+						commonJs.doSimpleProcess({
+							url:"/zebra/framework/datamigration/"+actionCommand+".do",
 							data:param,
+							noForm:true,
 							blind:false,
-							success:function(data, textStatus) {
-								var result = commonJs.parseAjaxResult(data, textStatus, "json");
+							onSuccess:function(result) {
+								popup.addContents(com.message.I802+" : "+param.tableName);
 
-								if (result.isSuccess == true || result.isSuccess == "true") {
-									popup.addContents(com.message.I802+" : "+param.tableName);
-
-									if ((index+1) == commonJs.getCountChecked("chkSourceData")) {
-										commonJs.openDialog({
-											type:com.message.I000,
-											contents:com.message.I801,
-											modal:true,
-											width:300,
-											buttons:[{
-												caption:com.caption.ok, callback:function() {
-													try {
-														popup.close();
-														doTargetDataSearch();
-													} catch(ex) {
-													}
+								if ((index+1) == commonJs.getCountChecked("chkSourceData")) {
+									commonJs.openDialog({
+										type:com.message.I000,
+										contents:com.message.I801,
+										modal:true,
+										width:300,
+										buttons:[{
+											caption:com.caption.ok, callback:function() {
+												try {
+													popup.close();
+													doTargetDataSearch();
+												} catch(ex) {
 												}
-											}]
-										});
-									}
-								} else {
-									popup.addContents(com.message.E801+" : "+param.tableName);
+											}
+										}]
+									});
 								}
+							},
+							onError:function(result) {
+								popup.addContents(com.message.E801+" : "+param.tableName);
 							}
 						});
+
+//						commonJs.ajaxSubmit({
+//							url:"/zebra/framework/datamigration/doMigration.do",
+//							dataType:"json",
+//							data:param,
+//							blind:false,
+//							success:function(data, textStatus) {
+//								var result = commonJs.parseAjaxResult(data, textStatus, "json");
+//
+//								if (result.isSuccess == true || result.isSuccess == "true") {
+//									popup.addContents(com.message.I802+" : "+param.tableName);
+//
+//									if ((index+1) == commonJs.getCountChecked("chkSourceData")) {
+//										commonJs.openDialog({
+//											type:com.message.I000,
+//											contents:com.message.I801,
+//											modal:true,
+//											width:300,
+//											buttons:[{
+//												caption:com.caption.ok, callback:function() {
+//													try {
+//														popup.close();
+//														doTargetDataSearch();
+//													} catch(ex) {
+//													}
+//												}
+//											}]
+//										});
+//									}
+//								} else {
+//									popup.addContents(com.message.E801+" : "+param.tableName);
+//								}
+//							}
+//						});
 					}, index * 100);
 				});
 			}
@@ -235,10 +290,11 @@ $(function() {
 	 * load event (document / window)
 	 */
 	setGridSize = function() {
-		$("#divScrollablePanel").height($("#divScrollablePanel").outerHeight()-6);
+		$("#divScrollablePanel").height($("#divScrollablePanel").outerHeight() + 18);
 	};
 
 	$(window).load(function() {
+		setActionButtonContextMenu();
 		setGridSize();
 		doSourceDataSearch();
 		doTargetDataSearch();

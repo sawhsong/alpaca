@@ -14,8 +14,8 @@ select *
   from user_db_links
 ;
 
-drop database link perci;
-create database link perci_live connect to PERCI identified by WELCOME1 using '192.168.1.2:1521/pdb1.616281599.oraclecloud.internal';
+drop database link perci_live;
+create database link perci_live connect to PERCI identified by "OfA!g69b=HTuyrf" using '192.168.10.13:1521/pdb1.default.default.oraclevcn.com';
 
 /**
  * Table space(Index, Data)

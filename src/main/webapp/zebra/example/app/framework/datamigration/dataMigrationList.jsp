@@ -51,7 +51,7 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnGenerate" caption="button.com.generate" iconClass="fa-gears"/>
+			<ui:button id="btnAction" caption="button.com.action" iconClass="fa-caret-down"/>
 			<ui:button id="btnSearch" caption="button.com.search" iconClass="fa-search"/>
 			<ui:button id="btnClear" caption="button.com.clear" iconClass="fa-refresh"/>
 		</ui:buttonGroup>
@@ -65,7 +65,7 @@
 					<tr>
 						<td class="tdDefault">
 							<label for="sourceDb" class="lblEn hor">Source Database</label>
-							<select id="sourceDb" name="sourceDb" class="bootstrapSelect" disabled>
+							<select id="sourceDb" name="sourceDb" class="bootstrapSelect">
 <%
 							for (int i=0; i<datasourceDataSet.getRowCnt(); i++) {
 								String selected = (CommonUtil.equalsIgnoreCase(datasourceDataSet.getValue(i, "VALUE"), sourceDataSource)) ? "selected" : "";
@@ -120,7 +120,7 @@
 		<table id="tblSourceData" class="tblGrid sort autosort">
 			<colgroup>
 				<col width="3%"/>
-				<col width="34%"/>
+				<col width="33%"/>
 				<col width="*"/>
 			</colgroup>
 			<thead>

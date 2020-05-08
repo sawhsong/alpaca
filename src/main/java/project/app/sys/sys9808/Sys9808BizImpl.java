@@ -417,7 +417,7 @@ public class Sys9808BizImpl extends BaseBiz implements Sys9808Biz {
 				accessors += "\t}\n\n";
 				accessors += "\tpublic void set"+colNameUpperCamelCase+"("+convertedDataType+" "+colNameLowerCamelCase+") {\n";
 				accessors += "\t\tthis."+colNameLowerCamelCase+" = "+colNameLowerCamelCase+";\n";
-				accessors += "\t}\n";
+				accessors += "\t}\n\n";
 
 				setValues += (CommonUtil.isBlank(setValues) ? "" : "\t\t");
 				setValues += "this."+colNameLowerCamelCase+" = source.get"+colNameUpperCamelCase+"();";

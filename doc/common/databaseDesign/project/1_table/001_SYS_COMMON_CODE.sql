@@ -100,7 +100,7 @@ insert into sys_common_code values('USER_STATUS','WU',         'Withdrawn', 'Wit
 insert into sys_common_code values('MENU_LEVEL','0000000000', 'Menu Level', 'Menu Level', 'Menu Level', 'MENU_LEVEL_0000000000',  '000',   'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('MENU_LEVEL','1',          'Level 1',    'Level 1',    'Level 1',    'MENU_LEVEL_1',           '001',   'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('MENU_LEVEL','2',          'Level 2',    'Level 2',    'Level 2',    'MENU_LEVEL_2',           '002',   'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('MENU_LEVEL','3',          'Level 3',    'Level 3',    'Level 3',    'MENU_LEVEL_3',           '002',   'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('MENU_LEVEL','3',          'Level 3',    'Level 3',    'Level 3',    'MENU_LEVEL_3',           '003',   'Y', 'Y', '0', sysdate, null, null);
 
 -- Individual code from PERCI
 delete sys_common_code
@@ -221,6 +221,14 @@ select 'MINUTE_CODE' as code_type,
 ;
 
 -- From PERCI
+/*
+ * Check dup
+	select lookup_type, lookup_code, count(*)
+	  from sys_common_lookups
+	 group by lookup_type, lookup_code
+	having count(*) > 1
+	;
+ */
 insert into sys_common_code
 select lookup_type as code_type,
        '0000000000' as common_code,
@@ -237,14 +245,13 @@ select lookup_type as code_type,
        null as update_date
   from sys_common_lookups@perci_live
  where enabled_flag = 'Y'
-   and lookup_type not in ('ORG_RELATIONSHIP', 'EXTENSION_CHANGES') -- Duplicated codes
-   and meaning not in ('EB Customer', 'EMA Prospect')
+   and lookup_type not in ('ORG_RELATIONSHIP', 'EXTENSION_CHANGES', 'CUSTOMER_EMAIL_LIST') -- Duplicated codes
 union
 select lookup_type as code_type,
        lookup_code as common_code,
        meaning as description_ko,
-       description as description_ko,
-       description as description_en,
+       meaning as description_ko,
+       meaning as description_en,
        lookup_type||'_'||lookup_code as program_constants,
        lpad(to_char(display_order), 3, '0') as sort_order,
        'Y' as is_active,
@@ -255,7 +262,130 @@ select lookup_type as code_type,
        null as update_date
   from sys_common_lookups@perci_live
  where enabled_flag = 'Y'
-   and lookup_type not in ('ORG_RELATIONSHIP', 'EXTENSION_CHANGES') -- Duplicated codes
+   and lookup_type not in ('ORG_RELATIONSHIP', 'EXTENSION_CHANGES', 'CUSTOMER_EMAIL_LIST') -- Duplicated codes
+ order by code_type,
+       sort_order,
+       common_code
+;
+
+/*
+ * Dup
+ */
+insert into sys_common_code
+select lookup_type as code_type,
+       '0000000000' as common_code,
+       initcap(replace(lookup_type, '_', ' ')) as code_meaning,
+       initcap(replace(lookup_type, '_', ' ')) as description_ko,
+       initcap(replace(lookup_type, '_', ' ')) as description_en,
+       lookup_type||'_'||'0000000000' as program_constants,
+       '000' as sort_order,
+       'Y' as is_active,
+       'N' as is_default,
+       '0' as insert_user_id,
+       sysdate as insert_date,
+       null as update_user_id,
+       null as update_date
+  from sys_common_lookups@perci_live
+ where enabled_flag = 'Y'
+   and lookup_type in ('CUSTOMER_EMAIL_LIST') -- Duplicated codes
+   and meaning not in ('pdaniel@entitysolutionsgroup.com')
+union
+select lookup_type as code_type,
+       lookup_code as common_code,
+       meaning as description_ko,
+       meaning as description_ko,
+       meaning as description_en,
+       lookup_type||'_'||lookup_code as program_constants,
+       lpad(to_char(display_order), 3, '0') as sort_order,
+       'Y' as is_active,
+       'N' as is_default,
+       '0' as insert_user_id,
+       sysdate as insert_date,
+       null as update_user_id,
+       null as update_date
+  from sys_common_lookups@perci_live
+ where enabled_flag = 'Y'
+   and lookup_type in ('CUSTOMER_EMAIL_LIST') -- Duplicated codes
+   and meaning not in ('pdaniel@entitysolutionsgroup.com')
+ order by code_type,
+       sort_order,
+       common_code
+;
+
+insert into sys_common_code
+select lookup_type as code_type,
+       '0000000000' as common_code,
+       initcap(replace(lookup_type, '_', ' ')) as code_meaning,
+       initcap(replace(lookup_type, '_', ' ')) as description_ko,
+       initcap(replace(lookup_type, '_', ' ')) as description_en,
+       lookup_type||'_'||'0000000000' as program_constants,
+       '000' as sort_order,
+       'Y' as is_active,
+       'N' as is_default,
+       '0' as insert_user_id,
+       sysdate as insert_date,
+       null as update_user_id,
+       null as update_date
+  from sys_common_lookups@perci_live
+ where enabled_flag = 'Y'
+   and lookup_type in ('EXTENSION_CHANGES') -- Duplicated codes
+union
+select lookup_type as code_type,
+       lookup_code as common_code,
+       meaning as description_ko,
+       meaning as description_ko,
+       meaning as description_en,
+       lookup_type||'_'||lookup_code as program_constants,
+       lpad(to_char(display_order), 3, '0') as sort_order,
+       'Y' as is_active,
+       'N' as is_default,
+       '0' as insert_user_id,
+       sysdate as insert_date,
+       null as update_user_id,
+       null as update_date
+  from sys_common_lookups@perci_live
+ where enabled_flag = 'Y'
+   and lookup_type in ('EXTENSION_CHANGES') -- Duplicated codes
+ order by code_type,
+       sort_order,
+       common_code
+;
+
+insert into sys_common_code
+select distinct lookup_type as code_type,
+       '0000000000' as common_code,
+       initcap(replace(lookup_type, '_', ' ')) as code_meaning,
+       initcap(replace(lookup_type, '_', ' ')) as description_ko,
+       initcap(replace(lookup_type, '_', ' ')) as description_en,
+       lookup_type||'_'||'0000000000' as program_constants,
+       '000' as sort_order,
+       'Y' as is_active,
+       'N' as is_default,
+       '0' as insert_user_id,
+       sysdate as insert_date,
+       null as update_user_id,
+       null as update_date
+  from sys_common_lookups@perci_live
+ where enabled_flag = 'Y'
+   and lookup_type in ('ORG_RELATIONSHIP') -- Duplicated codes
+   and meaning not in ('EB Customer', 'EMA Prospect')
+union
+select distinct lookup_type as code_type,
+       lookup_code as common_code,
+       meaning as description_ko,
+       meaning as description_ko,
+       meaning as description_en,
+       lookup_type||'_'||lookup_code as program_constants,
+       lpad(to_char(display_order), 3, '0') as sort_order,
+       'Y' as is_active,
+       'N' as is_default,
+       '0' as insert_user_id,
+       sysdate as insert_date,
+       null as update_user_id,
+       null as update_date
+  from sys_common_lookups@perci_live
+ where enabled_flag = 'Y'
+   and lookup_type in ('ORG_RELATIONSHIP') -- Duplicated codes
    and meaning not in ('EB Customer', 'EMA Prospect')
  order by code_type,
        sort_order,
