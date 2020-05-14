@@ -2217,7 +2217,17 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String userName = ConfigUtil.getProperty("jdbc.user.name_"+sourceDb);
 		String pw = ConfigUtil.getProperty("jdbc.user.pass_"+sourceDb);
 		String url = CommonUtil.substringAfter(ConfigUtil.getProperty("jdbc.driver.url_"+sourceDb), "@");
+		String compilePath = "/target/alpaca";
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String path = ConfigUtil.getProperty("path.migration.script")+"/perci/";
+		String tableNameUpperCase = CommonUtil.upperCase(tableName);
 		String sqlString = "", colNames = "";
+		File file = new File(rootPath + path + tableNameUpperCase+"_DATA.sql");
+		OutputStreamWriter osWriter;
+
+		FileUtil.createFolder(rootPath + path);
+		createEmptyFile(file);
+		osWriter = new OutputStreamWriter(new FileOutputStream(file, true), "utf-8");
 
 		dummyDao.setDataSourceName(sourceDb);
 		tableInfoDataSet = dummyDao.getTableDetailDataSetByTableNameForAdditionalDataSource(tableName);
@@ -2239,8 +2249,12 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		sqlString = "";
 		sqlString += "insert into "+tableName+" ("+colNames+") ";
 		sqlString += "select "+colNames+" from "+tableName+"@"+dbLinkName;
-		logger.debug("sqlString : "+sqlString);
+
 		dummyDao.runScript(sqlString);
+
+		osWriter.write(sqlString);
+		osWriter.flush();
+		osWriter.close();
 
 		dummyDao.runScript("drop database link "+dbLinkName);
 
