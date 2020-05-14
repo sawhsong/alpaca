@@ -2239,6 +2239,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		sqlString = "";
 		sqlString += "insert into "+tableName+" ("+colNames+") ";
 		sqlString += "select "+colNames+" from "+tableName+"@"+dbLinkName;
+		logger.debug("sqlString : "+sqlString);
 		dummyDao.runScript(sqlString);
 
 		dummyDao.runScript("drop database link "+dbLinkName);
