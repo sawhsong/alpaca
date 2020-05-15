@@ -45,10 +45,10 @@
 #hNotice.ui-accordion-header.ui-state-active {background:#DFF0D8;padding-top:10px;padding-bottom:10px;}
 #hFreeBoard.ui-state-default {background-color:#DFF0D8;padding-top:10px;padding-bottom:10px;}
 #hFreeBoard.ui-accordion-header.ui-state-active {background:#DFF0D8;padding-top:10px;padding-bottom:10px;}
-#hIncome.ui-state-default {background-color:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;}
-#hIncome.ui-accordion-header.ui-state-active {background:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;}
-#hExpense.ui-state-default {background-color:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;}
-#hExpense.ui-accordion-header.ui-state-active {background:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;}
+#hChart1.ui-state-default {background-color:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;}
+#hChart1.ui-accordion-header.ui-state-active {background:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;}
+#hChart2.ui-state-default {background-color:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;}
+#hChart2.ui-accordion-header.ui-state-active {background:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;}
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
@@ -102,30 +102,14 @@
 				</div>
 			</div>
 			<div class="accordionGroup">
-				<h3 id="hIncome">item</h3>
-				<div id="divIncome" class="accordionContents">
-					<table id="tblGridIncome" class="tblGrid">
-						<colgroup>
-							<col width="*"/>
-							<col width="12%"/>
-							<col width="12%"/>
-							<col width="12%"/>
-							<col width="12%"/>
-							<col width="12%"/>
-							<col width="12%"/>
-							<col width="12%"/>
-						</colgroup>
-						<thead>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
+				<h3 id="hChart1">Chart1</h3>
+				<div id="divChart1" class="accordionContents">
 				</div>
 			</div>
 		</div>
 		<div id="divRight" class="accordion" style="width:49%;float:right">
 			<div class="accordionGroup">
-				<h3 id="hFreeBoard">item</h3>
+				<h3 id="hFreeBoard">Free Board</h3>
 				<div id="divFreeBoard" class="accordionContents">
 					<table id="tblGridFreeBoard" class="tblGrid">
 						<colgroup>
@@ -133,30 +117,14 @@
 							<col width="15%"/>
 							<col width="10%"/>
 						</colgroup>
-						<tbody>
+						<tbody id="tbodyGridFreeBoard">
 						</tbody>
 					</table>
 				</div>
 			</div>
 			<div class="accordionGroup">
-				<h3 id="hExpense">item</h3>
-				<div id="divExpense" class="accordionContents">
-					<table id="tblGridExpense" class="tblGrid">
-						<colgroup>
-							<col width="*"/>
-							<col width="20%"/>
-							<col width="6%"/>
-							<col width="10%"/>
-							<col width="7%"/>
-							<col width="7%"/>
-							<col width="7%"/>
-							<col width="20%"/>
-						</colgroup>
-						<thead>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
+				<h3 id="hChart2">Chart2</h3>
+				<div id="divChart2" class="accordionContents">
 				</div>
 			</div>
 		</div>

@@ -36,7 +36,25 @@ public class IndexBizImpl extends BaseBiz implements IndexBiz {
 		DataSet result = new DataSet();
 
 		try {
+			qa.addWhereClause("rownum <= 10");
+
 			result = sysBoardDao.getNoticeBoardDataSetByCriteria(qa);
+			paramEntity.setAjaxResponseDataSet(result);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getFreeBoardList(ParamEntity paramEntity) throws Exception {
+		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		DataSet result = new DataSet();
+
+		try {
+			qa.addWhereClause("rownum <= 10");
+
+			result = sysBoardDao.getFreeBoardDataSetByCriteria(qa);
 			paramEntity.setAjaxResponseDataSet(result);
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
