@@ -74,4 +74,7 @@ public interface SysBoardDao extends IDao {
 	 * @throws Exception
 	 */
 	public DataSet getFreeBoardDataSetByCriteria(QueryAdvisor queryAdvisor) throws Exception;
+
+	public DataSet getNoticeBoardDataSetForDashboard(QueryAdvisor queryAdvisor) throws Exception;
+	public DataSet getFreeBoardDataSetForDashboard(QueryAdvisor queryAdvisor) throws Exception;
 }

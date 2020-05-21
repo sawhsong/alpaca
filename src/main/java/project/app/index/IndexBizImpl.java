@@ -36,9 +36,7 @@ public class IndexBizImpl extends BaseBiz implements IndexBiz {
 		DataSet result = new DataSet();
 
 		try {
-			qa.addWhereClause("rownum <= 10");
-
-			result = sysBoardDao.getNoticeBoardDataSetByCriteria(qa);
+			result = sysBoardDao.getNoticeBoardDataSetForDashboard(qa);
 			paramEntity.setAjaxResponseDataSet(result);
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
@@ -52,9 +50,7 @@ public class IndexBizImpl extends BaseBiz implements IndexBiz {
 		DataSet result = new DataSet();
 
 		try {
-			qa.addWhereClause("rownum <= 10");
-
-			result = sysBoardDao.getFreeBoardDataSetByCriteria(qa);
+			result = sysBoardDao.getFreeBoardDataSetForDashboard(qa);
 			paramEntity.setAjaxResponseDataSet(result);
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {

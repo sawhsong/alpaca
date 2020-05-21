@@ -41,14 +41,14 @@
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
 #divWrapper {padding:15px;}
-#hNotice.ui-state-default {background-color:#DFF0D8;padding-top:10px;padding-bottom:10px;}
-#hNotice.ui-accordion-header.ui-state-active {background:#DFF0D8;padding-top:10px;padding-bottom:10px;}
-#hFreeBoard.ui-state-default {background-color:#DFF0D8;padding-top:10px;padding-bottom:10px;}
-#hFreeBoard.ui-accordion-header.ui-state-active {background:#DFF0D8;padding-top:10px;padding-bottom:10px;}
-#hChart1.ui-state-default {background-color:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;}
-#hChart1.ui-accordion-header.ui-state-active {background:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;}
-#hChart2.ui-state-default {background-color:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;}
-#hChart2.ui-accordion-header.ui-state-active {background:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;}
+/* #hNotice.ui-state-default {background-color:#DFF0D8;padding-top:10px;padding-bottom:10px;} */
+/* #hNotice.ui-accordion-header.ui-state-active {background:#DFF0D8;padding-top:10px;padding-bottom:10px;} */
+/* #hFreeBoard.ui-state-default {background-color:#DFF0D8;padding-top:10px;padding-bottom:10px;} */
+/* #hFreeBoard.ui-accordion-header.ui-state-active {background:#DFF0D8;padding-top:10px;padding-bottom:10px;} */
+/* #hChart1.ui-state-default {background-color:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;} */
+/* #hChart1.ui-accordion-header.ui-state-active {background:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;} */
+/* #hChart2.ui-state-default {background-color:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;} */
+/* #hChart2.ui-accordion-header.ui-state-active {background:#5BC0DE;padding-top:10px;padding-bottom:10px;color:#ffffff;} */
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
