@@ -180,7 +180,7 @@
 	</div>
 	<div class="accordionContainer" style="float:right;width:49%">
 		<div class="accordionGroup">
-			<h3>Billing Code Creation Type Chnage</h3>
+			<h3>Billing Code Creation Type Change</h3>
 			<div class="accordionContents">
 				<div id="divBillingCode">
 					<table class="tblEdit">
