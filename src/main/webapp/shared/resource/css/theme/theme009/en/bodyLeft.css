@@ -40,24 +40,19 @@
 	border-bottom:1px solid #EBEBEB;
 }
 .leftMenus:hover, .leftMenus:link, .leftMenus:visited {
-	color:#459e00;
 	background-color:#F9F9F9;
 }
 .leftMenus:active {
-	color:#459e00;
 	background-color:#E8E8E8;
 }
 .leftMenusSelected {padding:10px 10px 10px 16px;cursor:pointer;list-style:none;transition:background .2s;
-	color:#459e00;
 	border-bottom:1px solid #EBEBEB;
 	background-color:#F9F9F9;
 }
 .leftMenusSelected:hover, .leftMenusSelected:link, .leftMenusSelected:visited {
-	color:#459e00;
 	background-color:#F9F9F9;
 }
 .leftMenusSelected:active {
-	color:#459e00;
 	background-color:#E8E8E8;
 }
 
@@ -67,16 +62,13 @@
 .leftMenuAccordionHolder {}
 .leftMenuAccordionGroup {}
 .leftMenuAccordionGroup h3 {border-radius:0px;border:1px solid transparent;padding:12px 4px 12px 36px !important;box-shadow:0px 1px 4px rgba(0, 0, 0, .1);text-shadow:1px 1px 2px rgba(255, 255, 255, 1.0);outline:0px;
-	color:#191919;
 	border-bottom:1px solid #D3D3D3;
 	background-color:#F3F3F3 !important;
 }
 .leftMenuAccordionGroup h3.selected {
-	color:#459e00;
 	background-color:#F9F9F9 !important;
 }
 .leftMenuAccordionGroup h3:hover {
-	color:#459e00;
 	background-color:#F9F9F9 !important;
 }
 .leftMenuAccordionContents {border-radius:0px;border:0px;margin-bottom:0px !important;padding:0px 0px !important;
