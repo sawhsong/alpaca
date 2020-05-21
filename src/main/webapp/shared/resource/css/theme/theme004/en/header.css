@@ -109,7 +109,7 @@
 	border-right:0px solid #191919;
 }
 #aLoggedInUser {
-	background:url('/shared/resource/image/theme/theme000/common/icnUser-loggedIn_White.png') no-repeat 0px 0px
+	background:url('/shared/resource/image/theme/theme004/common/icnUser-loggedIn_White.png') no-repeat 0px 0px
 }
 #divLoggedInUser.selected {
 	background-color:#5681A7;
