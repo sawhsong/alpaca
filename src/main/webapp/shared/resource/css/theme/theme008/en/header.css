@@ -87,14 +87,14 @@
  * Main menu - Left - Menu items(ul)
  */
 .headerMainMenus {float:left;display:inline-block;padding:12px 18px;transition:background .2s;cursor:pointer;
-	border-right:1px solid #3E8044;
+	border-right:1px solid #D4CCB0;
 	background:#459e00;
 }
 .headerMainMenus:hover {
 	background:#007836;
 }
 .headerMainMenusSelected {float:left;display:inline-block;padding:12px 18px;transition:background .2s;cursor:pointer;
-	border-right:1px solid #3E8044;
+	border-right:1px solid #D4CCB0;
 	background:#007836;
 }
 .headerMainMenus a, .headerMainMenus a:hover, .headerMainMenus a:link, .headerMainMenus a:visited,
@@ -105,12 +105,12 @@
  * Main menu - Right - User loggedin(ul)
  */
 #divLoggedInUser, #divQuickMenu {float:left;
-	border-left:1px solid #3E8044;
-	border-right:0px solid #3E8044;
+	border-left:1px solid #D4CCB0;
+	border-right:0px solid #D4CCB0;
 }
 #aLoggedInUser {
 	background:url('/shared/resource/image/theme/theme008/common/icnUser-loggedIn_White.png') no-repeat 0px 0px
 }
-#divLoggedInUser.selected {
+#divLoggedInUser.selected, #divQuickMenu.selected {
 	background-color:#007836;
 }

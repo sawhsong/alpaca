@@ -33,8 +33,8 @@
 	border:1px solid #191919;
 }
 .theme-cm-menu {padding:5px 0px;
-	color:#f1f1f1;
-	background:#191919;
+	color:#FFFFFF;
+	background:#094369;
 }
 .theme-cm-menu li {position:relative;padding:15px 15px;list-style:none;cursor:pointer;transition:background 0.2s;}
 .theme-mOverlay {position:absolute;width:100%;height:100%;top:0px;left:0px;opacity:.5;

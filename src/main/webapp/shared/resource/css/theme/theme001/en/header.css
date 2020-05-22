@@ -111,6 +111,6 @@
 #aLoggedInUser {
 	background:url('/shared/resource/image/theme/theme001/common/icnUser-loggedIn_Black.png') no-repeat 0px 0px
 }
-#divLoggedInUser.selected {
+#divLoggedInUser.selected, #divQuickMenu.selected {
 	background-color:#FFFFFF;
 }
