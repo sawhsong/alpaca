@@ -2237,6 +2237,12 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 
 		dummyDao.setDataSourceName(targetDb);
+		sqlString = "";
+		sqlString += "delete "+tableName;
+		dummyDao.runScript(sqlString);
+
+		dummyDao.setDataSourceName(targetDb);
+		sqlString = "";
 		if (!dummyDao.isDbLinkCreated(dbLinkName)) {
 			sqlString += "create database link "+dbLinkName;
 			sqlString += " connect to "+userName;
