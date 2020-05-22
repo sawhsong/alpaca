@@ -86,19 +86,19 @@
 /**
  * Main menu - Left - Menu items(ul)
  */
-.headerMainMenus {float:left;display:inline-block;padding:12px 18px;transition:background .2s;cursor:pointer;
+.headerMainMenus {float:left;display:inline-block;padding:12px 18px;transition:background .2s;cursor:pointer;font-size:1.1em;
 	border-right:1px solid #191919;
 	background:#EEEEEE;
 }
 .headerMainMenus:hover {
 	background:#F9F9F9;
 }
-.headerMainMenusSelected {float:left;display:inline-block;padding:12px 18px;transition:background .2s;cursor:pointer;
+.headerMainMenusSelected {float:left;display:inline-block;padding:12px 18px;transition:background .2s;cursor:pointer;font-size:1.1em;
 	border-right:1px solid #191919;
 	background:#F9F9F9;
 }
 .headerMainMenus a, .headerMainMenus a:hover, .headerMainMenus a:link, .headerMainMenus a:visited,
-.headerMainMenusSelected a, .headerMainMenusSelected a:hover, .headerMainMenusSelected a:link, .headerMainMenusSelected a:visited {padding:0px 0px 1px 25px;font-size:1.1em;text-decoration:none;
+.headerMainMenusSelected a, .headerMainMenusSelected a:hover, .headerMainMenusSelected a:link, .headerMainMenusSelected a:visited {padding:0px 0px 1px 25px;text-decoration:none;
 	color:#000000;
 }
 /**

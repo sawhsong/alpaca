@@ -46,10 +46,10 @@ body {padding:0px 0px;
 /**
  * jQuery-Layout component
  */
-.layoutTogglers-north-open, .layoutTogglers-south-closed {background:url("/shared/resource/image/theme/theme008/common/togglerUp.gif") no-repeat scroll center bottom transparent;}
-.layoutTogglers-north-closed, .layoutTogglers-south-open {background:url("/shared/resource/image/theme/theme008/common/togglerDown.gif") no-repeat scroll center bottom transparent;}
-.layoutTogglers-west-open, .layoutTogglers-east-closed {background:url("/shared/resource/image/theme/theme008/common/togglerLeft.gif") no-repeat scroll center bottom transparent;}
-.layoutTogglers-west-closed, .layoutTogglers-east-open {background:url("/shared/resource/image/theme/theme008/common/togglerRight.gif") no-repeat scroll center bottom transparent;}
+.layoutTogglers-north-open, .layoutTogglers-south-closed {background:#0F7839;}
+.layoutTogglers-north-closed, .layoutTogglers-south-open {background:#0F7839;}
+.layoutTogglers-west-open, .layoutTogglers-east-closed {background:#0F7839;}
+.layoutTogglers-west-closed, .layoutTogglers-east-open {background:#0F7839;}
 .northLayoutResizers {transition:background 0.2s;
 	background-color:#00642D;
 }
@@ -57,16 +57,16 @@ body {padding:0px 0px;
 	background-color:#00642D;
 }
 .southLayoutResizers {transition:background 0.2s;
-	background-color:#E4E4E4;
+	background-color:#D7F1C5;
 }
 .southLayoutResizers:hover {
-	background-color:#D2D2D2;
+	background-color:#57C01F;
 }
 .layoutResizers {transition:background 0.2s;
-	background-color:#E4E4E4;
+	background-color:#D7F1C5;
 }
 .layoutResizers:hover {
-	background-color:#D2D2D2;
+	background-color:#57C01F;
 }
 .ui-layout-center {overflow:hidden !important;}
 

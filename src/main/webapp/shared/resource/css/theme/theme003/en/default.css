@@ -46,10 +46,10 @@ body {padding:0px 0px;
 /**
  * jQuery-Layout component
  */
-.layoutTogglers-north-open, .layoutTogglers-south-closed {background:#F8B74C;}
-.layoutTogglers-north-closed, .layoutTogglers-south-open {background:#F8B74C;}
-.layoutTogglers-west-open, .layoutTogglers-east-closed {background:#F8B74C;}
-.layoutTogglers-west-closed, .layoutTogglers-east-open {background:#F8B74C;}
+.layoutTogglers-north-open, .layoutTogglers-south-closed {background:#C5731B;}
+.layoutTogglers-north-closed, .layoutTogglers-south-open {background:#C5731B;}
+.layoutTogglers-west-open, .layoutTogglers-east-closed {background:#C5731B;}
+.layoutTogglers-west-closed, .layoutTogglers-east-open {background:#C5731B;}
 .northLayoutResizers {transition:background 0.2s;
 	background-color:#191919;
 }
@@ -57,16 +57,16 @@ body {padding:0px 0px;
 	background-color:#191919;
 }
 .southLayoutResizers {transition:background 0.2s;
-	background-color:#E4E4E4;
+	background-color:#F9E8D5;
 }
 .southLayoutResizers:hover {
-	background-color:#D2D2D2;
+	background-color:#ECB980;
 }
 .layoutResizers {transition:background 0.2s;
-	background-color:#E4E4E4;
+	background-color:#F9E8D5;
 }
 .layoutResizers:hover {
-	background-color:#D2D2D2;
+	background-color:#ECB980;
 }
 .ui-layout-center {overflow:hidden !important;}
 

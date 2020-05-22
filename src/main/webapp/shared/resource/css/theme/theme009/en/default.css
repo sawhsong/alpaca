@@ -33,7 +33,7 @@
 * {margin:0px 0px;padding:0px 0px;}
 body {padding:0px 0px;
 	color:#000000;
-	font:normal normal normal 11px/1.2 "Segoe UI", "Malgun Gothic", sans-serif;
+	font:normal normal normal 11px/1.2 "Trebuchet MS", "Malgun Gothic", sans-serif;
 }
 
 /**
@@ -46,10 +46,10 @@ body {padding:0px 0px;
 /**
  * jQuery-Layout component
  */
-.layoutTogglers-north-open, .layoutTogglers-south-closed {background:url("/shared/resource/image/theme/theme009/common/togglerUp.gif") no-repeat scroll center bottom transparent;}
-.layoutTogglers-north-closed, .layoutTogglers-south-open {background:url("/shared/resource/image/theme/theme009/common/togglerDown.gif") no-repeat scroll center bottom transparent;}
-.layoutTogglers-west-open, .layoutTogglers-east-closed {background:url("/shared/resource/image/theme/theme009/common/togglerLeft.gif") no-repeat scroll center bottom transparent;}
-.layoutTogglers-west-closed, .layoutTogglers-east-open {background:url("/shared/resource/image/theme/theme009/common/togglerRight.gif") no-repeat scroll center bottom transparent;}
+.layoutTogglers-north-open, .layoutTogglers-south-closed {background:#925F2B;}
+.layoutTogglers-north-closed, .layoutTogglers-south-open {background:#925F2B;}
+.layoutTogglers-west-open, .layoutTogglers-east-closed {background:#925F2B;}
+.layoutTogglers-west-closed, .layoutTogglers-east-open {background:#925F2B;}
 .northLayoutResizers {transition:background 0.2s;
 	background-color:#191919;
 }
@@ -57,16 +57,16 @@ body {padding:0px 0px;
 	background-color:#191919;
 }
 .southLayoutResizers {transition:background 0.2s;
-	background-color:#E4E4E4;
+	background-color:#FBF9F8;
 }
 .southLayoutResizers:hover {
-	background-color:#D2D2D2;
+	background-color:#CE9459;
 }
 .layoutResizers {transition:background 0.2s;
-	background-color:#E4E4E4;
+	background-color:#FBF9F8;
 }
 .layoutResizers:hover {
-	background-color:#D2D2D2;
+	background-color:#CE9459;
 }
 .ui-layout-center {overflow:hidden !important;}
 

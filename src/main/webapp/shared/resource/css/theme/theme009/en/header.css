@@ -47,7 +47,7 @@
 	font-size:0.9em;
 	background:url('/shared/resource/image/icon/logo-gear_Black.png') no-repeat 0% 50%;
 }
-#aLogo {padding:5px 0px 6px 60px;
+#aLogo {padding:8px 0px 10px 60px;
 	background:url('/shared/resource/image/theme/theme009/common/logoPerci.png') no-repeat 0% 0%;
 	background-size:54px 27px;
 }
@@ -86,19 +86,19 @@
 /**
  * Main menu - Left - Menu items(ul)
  */
-.headerMainMenus {float:left;display:inline-block;padding:12px 18px;transition:background .2s;cursor:pointer;
+.headerMainMenus {float:left;display:inline-block;padding:12px 18px;transition:background .2s;cursor:pointer;font-size:1.1em;
 	border-right:1px solid #CDC3B8;
 	background:#936026;
 }
 .headerMainMenus:hover {
 	background:#A96D2C;
 }
-.headerMainMenusSelected {float:left;display:inline-block;padding:12px 18px;transition:background .2s;cursor:pointer;
+.headerMainMenusSelected {float:left;display:inline-block;padding:12px 18px;transition:background .2s;cursor:pointer;font-size:1.1em;
 	border-right:1px solid #CDC3B8;
 	background:#A96D2C;
 }
 .headerMainMenus a, .headerMainMenus a:hover, .headerMainMenus a:link, .headerMainMenus a:visited,
-.headerMainMenusSelected a, .headerMainMenusSelected a:hover, .headerMainMenusSelected a:link, .headerMainMenusSelected a:visited {padding:0px 0px 0px 25px;font-size:1.1em;text-decoration:none;
+.headerMainMenusSelected a, .headerMainMenusSelected a:hover, .headerMainMenusSelected a:link, .headerMainMenusSelected a:visited {padding:0px 0px 0px 25px;text-decoration:none;
 	color:#ffffff;
 }
 /**
