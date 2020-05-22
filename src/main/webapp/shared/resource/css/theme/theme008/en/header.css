@@ -36,7 +36,7 @@
 /**
  * Global Menu - Left(Logo)
  */
-#divLogoArea {font-size:1.3em;font-weight:bold;cursor:pointer;text-shadow:2px 2px 2px rgba(0, 0, 0, 0.2);}
+#divLogoArea {font-size:1.0em;font-weight:bold;cursor:pointer;text-shadow:1px 1px 2px rgba(0, 0, 0, 0.2);}
 #divLogoArea a, #divLogoArea a:link, #divLogoArea a:visited {text-decoration:none;
 	color:#191919;
 }
@@ -44,18 +44,18 @@
 	color:#D92E24;
 }
 #aLogoFramework {padding:6px 0px 6px 24px;
-	font-size:0.8em;
+	font-size:0.9em;
 	background:url('/shared/resource/image/icon/logo-gear_Black.png') no-repeat 0% 50%;
 }
-#aLogo {padding:6px 0px 8px 100px;
+#aLogo {padding:5px 0px 6px 60px;
 	background:url('/shared/resource/image/theme/theme008/common/logoPerci.png') no-repeat 0% 0%;
-	background-size:60px 30px;
+	background-size:54px 27px;
 }
 
 /**
  * Global Menu - Right(Global menu items)
  */
-#divGblMenuAreaFramework {margin-top:2px;}
+#divGblMenuAreaFramework {margin-top:0px;}
 #divGblMenuArea {}
 .headerGblMenus {float:right;font-size:0.9em;font-weight:bold;cursor:pointer;text-shadow:1px 1px 2px rgba(0, 0, 0, 0.2);
 	color:#191919;
@@ -66,8 +66,8 @@
 .headerGblMenus a:hover {text-decoration:none;
 	color:#D92E24;
 }
-.divGblMenuBreak {margin:2px 10px;float:right;height:12px;font-size:1px;
-	border-left:2px solid #191919;
+.divGblMenuBreak {margin:0px 10px;float:right;height:12px;font-size:1px;
+	border-left:4px solid #191919;
 	background-color:#191919;
 }
 #aThemeSelector {padding:6px 0px 6px 20px;
