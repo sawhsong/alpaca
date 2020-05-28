@@ -7,9 +7,8 @@
  * Location Path Area Contents
  */
 #divLocationPathContainer {}
-.locationPathContainer {padding:10px 10px;font-weight:bold;opacity:0.8;
-	color:#3F3731;
-	border-bottom:1px solid #D1D1D1;
+.locationPathContainer {padding:10px 10px;font-weight:bold;opacity:1.0;
+	border-bottom:1px solid #E0CFC3;
 }
 .locationPathContainerIcon {
 	color:#3F3731;

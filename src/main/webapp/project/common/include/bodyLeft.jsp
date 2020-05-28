@@ -21,6 +21,7 @@
 <style type="text/css">
 </style>
 <script type="text/javascript">
+var leftMenuId = "<%=leftMenuId%>";
 $(function() {
 	$(".leftMenuAccordionGroup h3").click(function() {
 		$(".leftMenuAccordionGroup h3").each(function() {
@@ -54,12 +55,21 @@ $(function() {
 			});
 		});
 
-		$(".leftMenuAccordionGroup").each(function(i) {
-			if (i == activeMenuIndex) {
-				var header = $(this).find("h3");
+		$(".leftMenuAccordionGroup").each(function(index) {
+			if (activeMenuIndex == 0) {
+				if (index == activeMenuIndex) {
+					var header = $(this).find("h3");
 
-				if (!$(header).hasClass("ui-state-active")) {
 					$(header).trigger("click");
+					$(header).trigger("click");
+				}
+			} else {
+				if (index == activeMenuIndex) {
+					var header = $(this).find("h3");
+
+					if (!$(header).hasClass("ui-state-active")) {
+						$(header).trigger("click");
+					}
 				}
 			}
 		});
