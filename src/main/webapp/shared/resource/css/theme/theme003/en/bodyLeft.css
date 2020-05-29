@@ -16,18 +16,16 @@
  * Left menu header
  */
 #divLeftMenuHeader {margin-top:0px;padding:14px 12px;text-transform:uppercase;font-size:1.0em;font-weight:900;cursor:default;outline:0px;box-shadow:0px 1px 2px rgba(0, 0, 0, .2);
-	text-shadow:1px 1px 2px rgba(255, 255, 255, 1.0);
-	color:#EB8F00;
+	color:#1C94C4;
+	text-shadow:1px 1px 2px rgba(0, 0, 0, .1);
 	border-radius:0px;
 	border:0px;
-	border-bottom:1px solid #FBD850;
-	background:#FFFFFF url("/shared/resource/css/jquery-ui/theme003/images/ui-bg_glass_65_ffffff_1x400.png") 50% 50% repeat-x;
+	border-bottom:1px solid #A8A8A8;
 }
 #divLeftMenuHeader:hover {
-	background-color:#ffffff;
-	background-image:none;
+	background-color:#FFFFFF;
 }
-#divLeftMenuHeader a {padding:3px 0px 0px 24px;opacity:0.9;cursor:default;color:#000000;text-decoration:none;}
+#divLeftMenuHeader a {padding-left:24px;opacity:0.9;cursor:default;color:#000000;text-decoration:none;}
 #divLeftMenuHeader a:hover {
 }
 
@@ -36,28 +34,31 @@
  */
 #divLeftMenu {margin-top:1px;padding:0px 0px;border-radius:0px;font-size:1.1em;box-shadow:0px 0px 0px rgba(0, 0, 0, .075);
 	text-shadow:1px 1px 2px rgba(255, 255, 255, 1.0);
-	font-weight:bold;
 	border:0px;
 	background:#EEEEEE;
 }
-.leftMenus {padding:10px 10px 10px 16px;cursor:pointer;list-style:none;transition:background .2s;
+.leftMenus {padding:10px 10px 10px 16px;cursor:pointer;list-style:none;transition:background .2s;font-weight:bold;
+	color:#1C94C4;
 	border-bottom:1px solid #E0E0E0;
 }
 .leftMenus:hover, .leftMenus:link, .leftMenus:visited {
+	color:#EB8F00;
 	background-color:#F9F9F9;
 }
 .leftMenus:active {
+	color:#EB8F00;
 	background-color:#E8E8E8;
 }
-.leftMenusSelected {padding:10px 10px 10px 16px;cursor:pointer;list-style:none;transition:background .2s;
+.leftMenusSelected {padding:10px 10px 10px 16px;cursor:pointer;list-style:none;transition:background .2s;font-weight:bold;
+	color:#EB8F00;
 	border-bottom:1px solid #EBEBEB;
 	background-color:#F9F9F9;
 }
 .leftMenusSelected:hover, .leftMenusSelected:link, .leftMenusSelected:visited {
-	background-color:#F9F9F9;
+/* 	background-color:#F9F9F9; */
 }
 .leftMenusSelected:active {
-	background-color:#E8E8E8;
+/* 	background-color:#E8E8E8; */
 }
 
 /**
@@ -66,13 +67,16 @@
 .leftMenuAccordionHolder {}
 .leftMenuAccordionGroup {}
 .leftMenuAccordionGroup h3 {border-radius:0px;border:1px solid transparent;padding:12px 4px 12px 36px !important;box-shadow:0px 1px 4px rgba(0, 0, 0, .1);text-shadow:1px 1px 2px rgba(255, 255, 255, 1.0);outline:0px;
+	color:#1C94C4;
 	border-bottom:1px solid #D3D3D3;
 	background-color:#F3F3F3 !important;
 }
 .leftMenuAccordionGroup h3.selected {
+	color:#EB8F00;
 	background-color:#F9F9F9 !important;
 }
 .leftMenuAccordionGroup h3:hover {
+	color:#EB8F00;
 	background-color:#F9F9F9 !important;
 }
 .leftMenuAccordionContents {border-radius:0px;border:0px;margin-bottom:0px !important;padding:0px 0px !important;

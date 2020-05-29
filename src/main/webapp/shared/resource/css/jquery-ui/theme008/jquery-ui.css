@@ -180,7 +180,7 @@
 	margin:2px 0px 0px 0px; /* Dustin changed */
 	padding:9px 10px 9px 10px; /* Dustin changed */
 	min-height:0; /* support: IE7 */
-	font-size:1.1em; /* Dustin changed */
+	font-size:1.0em; /* Dustin changed */
 	font-weight:bold; /* Dustin changed */
 	outline:0px; /* Dustin added */
 }

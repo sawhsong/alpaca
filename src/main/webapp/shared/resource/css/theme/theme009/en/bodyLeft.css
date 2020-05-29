@@ -42,9 +42,11 @@
 	border-bottom:1px solid #E0CFC3;
 }
 .leftMenus:hover, .leftMenus:link, .leftMenus:visited {
+	color:#B85700;
 	background-color:#FBF9F8;
 }
 .leftMenus:active {
+	color:#B85700;
 	background-color:#FBF9F8;
 }
 .leftMenusSelected {padding:10px 10px 10px 16px;cursor:pointer;list-style:none;transition:background .2s;font-weight:bold;

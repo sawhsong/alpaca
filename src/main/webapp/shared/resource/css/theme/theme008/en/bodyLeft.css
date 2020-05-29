@@ -16,10 +16,11 @@
  * Left menu header
  */
 #divLeftMenuHeader {margin-top:0px;padding:14px 12px;text-transform:uppercase;font-size:1.0em;font-weight:900;cursor:default;outline:0px;box-shadow:0px 1px 2px rgba(0, 0, 0, .3);
-	text-shadow:1px 1px 2px rgba(255, 255, 255, 1.0);
+	color:#191919;
+	text-shadow:1px 1px 2px rgba(0, 0, 0, .1);
 	border-radius:0px;
 	border:0px;
-	border-bottom:1px solid #A8A8A8;
+	border-bottom:1px solid #AAAAAA;
 }
 #divLeftMenuHeader:hover {
 	background-color:#ffffff;
@@ -31,13 +32,14 @@
 /**
  * Left menu items
  */
-#divLeftMenu {margin-top:1px;padding:0px 0px;border-radius:0px;font-size:1.1em;box-shadow:0px 0px 0px rgba(0, 0, 0, .075);
+#divLeftMenu {margin-top:1px;padding:0px 0px;border-radius:0px;font-size:1.0em;box-shadow:0px 0px 0px rgba(0, 0, 0, .075);
 	text-shadow:1px 1px 2px rgba(255, 255, 255, 1.0);
 	border:0px;
-	background:#F1F1F1;
+	background:#F0F0F0;
 }
-.leftMenus {padding:10px 10px 10px 16px;cursor:pointer;list-style:none;transition:background .2s;
-	border-bottom:1px solid #EBEBEB;
+.leftMenus {padding:10px 10px 10px 16px;cursor:pointer;list-style:none;transition:background .2s;font-weight:bold;
+	color:#191919;
+	border-bottom:1px solid #E0E0E0;
 }
 .leftMenus:hover, .leftMenus:link, .leftMenus:visited {
 	color:#459e00;
@@ -47,18 +49,16 @@
 	color:#459e00;
 	background-color:#E8E8E8;
 }
-.leftMenusSelected {padding:10px 10px 10px 16px;cursor:pointer;list-style:none;transition:background .2s;
+.leftMenusSelected {padding:10px 10px 10px 16px;cursor:pointer;list-style:none;transition:background .2s;font-weight:bold;
 	color:#459e00;
-	border-bottom:1px solid #EBEBEB;
+	border-bottom:1px solid #CEEDC5;
 	background-color:#F9F9F9;
 }
 .leftMenusSelected:hover, .leftMenusSelected:link, .leftMenusSelected:visited {
-	color:#459e00;
-	background-color:#F9F9F9;
+/* 	background-color:#F9F9F9; */
 }
 .leftMenusSelected:active {
-	color:#459e00;
-	background-color:#E8E8E8;
+/* 	background-color:#E8E8E8; */
 }
 
 /**
