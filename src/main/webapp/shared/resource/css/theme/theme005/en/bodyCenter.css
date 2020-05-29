@@ -7,7 +7,10 @@
  * Body Center Common
  */
 #divBodyCenter {overflow:auto;
-	border:1px solid #D09320;
+	border-top:1px solid #D09320;
+	border-right:0px solid #D09320;
+	border-bottom:1px solid #D09320;
+	border-left:1px solid #D09320;
 	background:#FFFFFF;
 }
 

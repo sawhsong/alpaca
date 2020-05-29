@@ -57,13 +57,13 @@ body {padding:0px 0px;
 	background-color:#191919;
 }
 .southLayoutResizers {transition:background 0.2s;
-	background-color:#E6E6E6;
+	background-color:#EEEEEE;
 }
 .southLayoutResizers:hover {
 	background-color:#D3D3D3;
 }
 .layoutResizers {transition:background 0.2s;
-	background-color:#E6E6E6;
+	background-color:#EEEEEE;
 }
 .layoutResizers:hover {
 	background-color:#D3D3D3;

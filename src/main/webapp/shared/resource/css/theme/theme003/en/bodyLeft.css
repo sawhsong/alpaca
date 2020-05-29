@@ -6,8 +6,11 @@
 /**
  * Body Left Common
  */
-#divBodyLeft {overflow:auto;border-left:0px;
-	border:1px solid #FAD75B;
+#divBodyLeft {overflow:auto;
+	border-top:0px solid #FAD75B;
+	border-right:1px solid #FAD75B;
+	border-bottom:0px solid #FAD75B;
+	border-left:0px solid #FAD75B;
 	background:#FFFFFF;
 }
 #divBodyLeftMenuPanel {}

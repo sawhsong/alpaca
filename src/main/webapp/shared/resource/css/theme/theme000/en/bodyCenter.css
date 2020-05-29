@@ -12,9 +12,9 @@
  * Body Center Common
  */
 #divBodyCenter {overflow:auto;
-	border-top:1px solid #D1D1D1;
+	border-top:0px solid #D1D1D1;
 	border-right:0px solid #D1D1D1;
-	border-bottom:0px solid #D1D1D1;
+	border-bottom:1px solid #D1D1D1;
 	border-left:1px solid #D1D1D1;
 	background:#FFFFFF;
 }

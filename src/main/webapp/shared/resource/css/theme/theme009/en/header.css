@@ -10,6 +10,10 @@
 #divHeaderRight {float:right;width:0%;display:none;}
 #divHeaderCenter {float:left;width:100%;
 	color:#FFFFFF;
+	border-top:0px solid #E0CFC3;
+	border-right:0px solid #E0CFC3;
+	border-bottom:0px solid #E0CFC3;
+	border-left:0px solid #E0CFC3;
 }
 
 /**
