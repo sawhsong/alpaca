@@ -5,6 +5,8 @@
  *************************************************************************************************/
 package project.app.login;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseAction;
@@ -43,7 +45,11 @@ public class LoginAction extends BaseAction {
 				session.setAttribute("UserName", sysUser.getUserName());
 				session.setAttribute("LoginId", sysUser.getLoginId());
 				session.setAttribute("langCode", CommonUtil.lowerCase(sysUser.getLanguage()));
-				session.setAttribute("themeId", CommonUtil.lowerCase(sysUser.getThemeType()));
+
+//				session.setAttribute("themeId", CommonUtil.lowerCase(sysUser.getThemeType()));
+				Random random = new Random();
+				session.setAttribute("themeId", "THEME"+CommonUtil.leftPad(CommonUtil.toString(random.nextInt(10)), 3, "0"));
+
 				session.setAttribute("maxRowsPerPage", CommonUtil.toString(sysUser.getMaxRowPerPage(), "###"));
 				session.setAttribute("pageNumsPerPage", CommonUtil.toString(sysUser.getPageNumPerPage(), "###"));
 				session.setAttribute("SysUser", sysUser);
