@@ -39,7 +39,7 @@
 #divDataArea {}
 #divDataArea.areaContainer {margin:4px 8px 0px 0px;padding:0px 0px 0px 8px;}
 #divDataArea.areaContainerPopup {margin:4px 5px 0px 0px;padding:0px 0px 0px 5px;}
-#divDataArea.areaContainerFrame {margin:4px 5px 0px 0px;padding:0px 0px 0px 5px;}
+#divDataArea.areaContainerFrame {margin:4px 8px 0px 0px;padding:0px 0px 0px 8px;}
 #divPagingArea {}
 #divPagingArea.areaContainerFrame {padding-bottom:0px;}
 /* Set class attribute instead of id, if an area is needed to be used for exeption */

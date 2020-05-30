@@ -6,9 +6,7 @@
 /**
  * tab holder
  */
-.tabHolder {padding-top:8px;
-	border-bottom:0px solid #FBCB09;
-}
+.tabHolder {padding-top:0px;}
 .tabHolder:after {content:".";display:block;line-height:0px;font-size:1px;clear:both;}
 
 /**
@@ -22,7 +20,7 @@
  */
 .nav > li > a > img {}
 .nav-tabs > li {}
-.nav-tabs > li > a {margin-right:1px;padding:8px 12px;transition:all .3s;
+.nav-tabs > li > a {margin-right:1px;padding:5px 14px;transition:all .3s;
 	color:#1C94C4;
 	border:1px solid #CCCCCC;
 	background:#F6F6F6 url("/shared/resource/css/jquery-ui/theme003/images/ui-bg_glass_100_f6f6f6_1x400.png") 50% 50% repeat-x;
@@ -40,7 +38,7 @@
 	background-color:#FFFFFF;
 	background-image:none;
 }
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {cursor:pointer;
+.nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {cursor:pointer;
 	color:#C77405;
 	border-top:1px solid #FBCB09;
 	border-left:1px solid #FBCB09;

@@ -19,7 +19,7 @@
  * Left menu header
  */
 #divLeftMenuHeader {margin-top:0px;padding:14px 12px;text-transform:uppercase;font-size:1.0em;font-weight:900;cursor:default;outline:0px;box-shadow:0px 1px 1px rgba(0, 0, 0, .2);
-	color:#212121;
+	color:#555555;
 	text-shadow:1px 1px 2px rgba(0, 0, 0, .1);
 	border-radius:0px;
 	border:0px;
@@ -41,19 +41,19 @@
 	background:#EEEEEE;
 }
 .leftMenus {padding:10px 10px 10px 16px;cursor:pointer;list-style:none;transition:background .2s;font-weight:bold;
-	color:#212121;
+	color:#555555;
 	border-bottom:1px solid #CCCCCC;
 }
 .leftMenus:hover, .leftMenus:link, .leftMenus:visited {
-	color:#D92E24;
+	color:#000000;
 	background-color:#F5F5F5;
 }
 .leftMenus:active {
-	color:#D92E24;
+	color:#000000;
 	background-color:#F9F9F9;
 }
 .leftMenusSelected {padding:10px 10px 10px 16px;cursor:pointer;list-style:none;transition:background .2s;font-weight:bold;
-	color:#D92E24;
+	color:#000000;
 	border-bottom:1px solid #CCCCCC;
 	background-color:#F9F9F9;
 }
@@ -70,16 +70,16 @@
 .leftMenuAccordionHolder {}
 .leftMenuAccordionGroup {}
 .leftMenuAccordionGroup h3 {border-radius:0px;border:1px solid transparent;padding:12px 4px 12px 36px !important;box-shadow:0px 1px 4px rgba(0, 0, 0, .1);text-shadow:1px 1px 2px rgba(255, 255, 255, 1.0);outline:0px;
-	color:#212121;
+	color:#555555;
 	border-bottom:1px solid #D3D3D3;
 	background-color:#F3F3F3 !important;
 }
 .leftMenuAccordionGroup h3.selected {
-	color:#D92E24;
+	color:#000000;
 	background-color:#F9F9F9 !important;
 }
 .leftMenuAccordionGroup h3:hover {
-	color:#D92E24;
+	color:#000000;
 	background-color:#F9F9F9 !important;
 }
 .leftMenuAccordionContents {border-radius:0px;border:0px;margin-bottom:0px !important;padding:0px 0px !important;

@@ -15,3 +15,8 @@
 .panel-footer {}
 .panel-default {}
 .panel-default .panel-heading {}
+
+/**
+ * Tabs
+ */
+.nav-tabs {border-bottom:1px solid #D19405;}

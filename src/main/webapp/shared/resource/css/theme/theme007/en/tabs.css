@@ -6,9 +6,7 @@
 /**
  * tab holder
  */
-.tabHolder {padding-top:8px;
-	border-bottom:0px solid #DDDDDD;
-}
+.tabHolder {padding-top:2px;}
 .tabHolder:after {content:".";display:block;line-height:0px;font-size:1px;clear:both;}
 
 /**
@@ -22,7 +20,7 @@
  */
 .nav > li > a > img {}
 .nav-tabs > li {}
-.nav-tabs > li > a {margin-right:1px;padding:8px 20px;
+.nav-tabs > li > a {margin-right:1px;padding:5px 14px;
 	margin-bottom:-3px;
 	color:#337AB7;
 }
