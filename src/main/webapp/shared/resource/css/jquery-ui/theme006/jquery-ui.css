@@ -849,7 +849,7 @@ body .ui-tooltip {
 }
 .ui-widget-content {
 	border: 1px solid #d9d6c4;
-	background: #eceadf url("images/ui-bg_fine-grain_10_eceadf_60x60.png") 50% 50% repeat;
+/* 	background: #eceadf url("images/ui-bg_fine-grain_10_eceadf_60x60.png") 50% 50% repeat; */ /* Dustin changed */
 	color: #1f1f1f;
 }
 .ui-widget-content a {
