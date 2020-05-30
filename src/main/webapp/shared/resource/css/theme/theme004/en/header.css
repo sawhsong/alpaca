@@ -51,7 +51,7 @@
 	font-size:0.9em;
 	background:url('/shared/resource/image/icon/logo-gear_White.png') no-repeat 0% 50%;
 }
-#aLogo {padding:7px 0px 6px 60px;
+#aLogo {padding:6px 0px 8px 60px;
 	background:url('/shared/resource/image/theme/theme004/common/logoPerci.png') no-repeat 0% 0%;
 	background-size:54px 27px;
 }
@@ -102,7 +102,7 @@
 	background:#0F79AC;
 }
 .headerMainMenus a, .headerMainMenus a:hover, .headerMainMenus a:link, .headerMainMenus a:visited,
-.headerMainMenusSelected a, .headerMainMenusSelected a:hover, .headerMainMenusSelected a:link, .headerMainMenusSelected a:visited {padding:0px 0px 0px 25px;text-decoration:none;
+.headerMainMenusSelected a, .headerMainMenusSelected a:hover, .headerMainMenusSelected a:link, .headerMainMenusSelected a:visited {padding:0px 0px 0px 25px;text-decoration:none;font-weight:bold;
 	color:#ffffff;
 }
 /**
