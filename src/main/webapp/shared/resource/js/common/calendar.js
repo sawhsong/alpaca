@@ -190,8 +190,6 @@
 			var themeId = jsconfig.get("themeId");
 			if (themeId == "theme000" || themeId == "theme001") {
 				this.height = params.height = "236";
-			} else if (themeId == "theme002") {
-				this.height = params.height = "222";
 			} else {
 				this.height = params.height = "236";
 			}
