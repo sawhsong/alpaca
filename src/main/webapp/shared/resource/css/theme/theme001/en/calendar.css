@@ -162,7 +162,7 @@
 	border:1px solid #DDDDDD;
 	background:#E6E6E6 url("/shared/resource/css/jquery-ui/theme001/images/ui-bg_glass_75_e6e6e6_1x400.png") 50% 50% repeat-x;
 }
-.tblNonyCalendarTable td:not(.selectable):not(.weekNumber) {opacity:0.3;
+.tblNonyCalendarTable td:not(.selectable):not(.weekNumber) {opacity:0.0;
 	border:1px solid #DDDDDD;
 	background:#E6E6E6 url("/shared/resource/css/jquery-ui/theme001/images/ui-bg_glass_75_e6e6e6_1x400.png") 50% 50% repeat-x;
 }
@@ -178,7 +178,7 @@
 	border:1px solid #DDDDDD;
 	background:#E6E6E6 url("/shared/resource/css/jquery-ui/theme001/images/ui-bg_glass_75_e6e6e6_1x400.png") 50% 50% repeat-x;
 }
-.tblNonyCalendarTable td.weekNumber[weekNumber |= weekNumberBlank] {opacity:0.3;}
+.tblNonyCalendarTable td.weekNumber[weekNumber |= weekNumberBlank] {opacity:0.0;}
 .selectable {cursor:pointer;}
 .sa {
 	color:#0000FF;

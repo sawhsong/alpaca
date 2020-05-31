@@ -42,17 +42,17 @@
 .divNonyCalendarHeaderCloseButton:after {content:"";line-height:0px;clear:both;}
 .divNonyCalendarHeaderCloseButton i.icnEn:hover {font-size:1.1em;transform:scale(1.0, 1.0);}
 .divNonyCalendarBody {margin:0px 0px;padding:0px 0px;
-	border-bottom:0px solid #CCCCCC;
+	border-bottom:0px solid #DFD9C4;
 	background-color:#FFFFFF;
 }
 .divNonyCalendarTimeArea {padding:4px 4px;overflow:hidden;
 	color:#C77405;
-	border-top:1px solid #CCCCCC;
+	border-top:1px solid #DFD9C4;
 	background:#f9f9f9;
 }
 .divNonyCalendarStatusBar {margin:0px auto;padding:8px 4px;text-align:center;clear:both;overflow:hidden;border-bottom-left-radius:3px;border-bottom-right-radius:3px;
 	color:#C77405;
-	border-top:1px solid #CCCCCC;
+	border-top:1px solid #DFD9C4;
 	background:#F9F9F9;
 }
 
@@ -169,7 +169,7 @@
 	border:1px solid #CCCCCC;
 	background:#F6F6F6 url("/shared/resource/css/jquery-ui/theme003/images/ui-bg_glass_100_f6f6f6_1x400.png") 50% 50% repeat-x;
 }
-.tblNonyCalendarTable td:not(.selectable):not(.weekNumber) {opacity:0.3;
+.tblNonyCalendarTable td:not(.selectable):not(.weekNumber) {opacity:0.0;
 	border:1px solid #CCCCCC;
 	background:#F6F6F6 url("/shared/resource/css/jquery-ui/theme003/images/ui-bg_glass_100_f6f6f6_1x400.png") 50% 50% repeat-x;
 }
@@ -185,7 +185,7 @@
 	border:1px solid #CCCCCC;
 	background:#F6F6F6 url("/shared/resource/css/jquery-ui/theme003/images/ui-bg_glass_100_f6f6f6_1x400.png") 50% 50% repeat-x;
 }
-.tblNonyCalendarTable td.weekNumber[weekNumber |= weekNumberBlank] {opacity:0.3;}
+.tblNonyCalendarTable td.weekNumber[weekNumber |= weekNumberBlank] {opacity:0.0;}
 .selectable {cursor:pointer;}
 .sa {
 	color:#0000FF;
