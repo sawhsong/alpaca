@@ -27,8 +27,8 @@
 }
 .nav-tabs > li > a:hover {cursor:pointer;transition:all .3s;
 	color:#381f00;
-	border:1px solid #a45b13;
-	background:#ffdd57 url("/shared/resource/css/jquery-ui/theme005/images/ui-bg_gloss-wave_70_ffdd57_500x100.png") 50% 50% repeat-x;
+	border:1px solid #A45B13;
+	background:#FFDD57 url("/shared/resource/css/jquery-ui/theme005/images/ui-bg_gloss-wave_70_ffdd57_500x100.png") 50% 50% repeat-x;
 }
 .nav-tabs > li.active > a {cursor:pointer;
 	color:#0074c7;

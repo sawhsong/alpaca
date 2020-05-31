@@ -48,7 +48,7 @@ $(function() {
 
 	$("#btnPopupDialogExample1").click(function() {
 		popup1 = commonJs.openDialog({
-			type:"confirm",
+			type:"Confirm",
 			contents:"Are you sure to save the data?\nAre you sure to save the data?\nAre you sure to save the data?\nAre you sure to save the data?\nAre you sure to save the data?\nAre you sure to save the data?\n",
 			effect:"fade",
 			heightAdjust:1,
