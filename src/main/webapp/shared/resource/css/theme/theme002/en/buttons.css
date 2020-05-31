@@ -6,19 +6,18 @@
 /**
  * Overriden from bootstrap
  */
-.btn {padding:5px 10px 4px 10px;font-size:1.02em;transition:background .2s;box-shadow:0px 1px 1px rgba(0, 0, 0, .1);}
+.btn {padding:5px 10px;font-size:1.02em;transition:background .2s;box-shadow:0px 1px 1px rgba(0, 0, 0, .1);}
 .btn:active, .btn:focus, .btn:active:focus {outline:0px;transition:background .2s;
 	border:1px solid #79B7E7;
 }
 
 .btn-default {text-shadow:0px 1px 1px rgba(255, 255, 255, 1.0);box-shadow:0px 1px 1px rgba(0, 0, 0, .1);
-	font-weight:700;
-	color:#2e6e9e;
+	font-weight:500;
+	color:#2E6E9E;
 	border:1px solid #C5DBEC;
 	background:#DFEFFC url("/shared/resource/css/jquery-ui/theme002/images/ui-bg_glass_85_dfeffc_1x400.png") 50% 50% repeat-x;
 }
 .btn-default:not([disabled]):hover {
-	font-weight:700;
 	color:#1D5987;
 	border:1px solid #79B7E7;
 	background:#D0E5F5 url("/shared/resource/css/jquery-ui/theme002/images/ui-bg_glass_75_d0e5f5_1x400.png") 50% 50% repeat-x;
