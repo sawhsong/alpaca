@@ -425,10 +425,11 @@
 				/*!
 				 * Dustin : chrome has border-radius issue(sub menu does not show)
 				 * 			css name must be '.iw' if the context menu has sub menu
+				 * 			this issue has been fixed(2020.06.02) - if option.classPrefix == "iw" -> .corner(option.borderRadius) can be used.
 				 */
 				if ("slide" == option.effect) {
 					if (option.classPrefix == "iw") {
-						menu.css(cssObj).delay(5).slideDown(effectDuration, function() {
+						menu.css(cssObj).corner(option.borderRadius).delay(5).slideDown(effectDuration, function() {
 							option.afterOpen.call(this, clbckData, e);
 						});
 					} else {
@@ -438,7 +439,7 @@
 					}
 				} else {
 					if (option.classPrefix == "iw") {
-						menu.css(cssObj).delay(5).fadeIn(effectDuration, function() {
+						menu.css(cssObj).corner(option.borderRadius).delay(5).fadeIn(effectDuration, function() {
 							option.afterOpen.call(this, clbckData, e);
 						});
 					} else {
@@ -450,7 +451,7 @@
 			} else if (option.displayAround == "trigger") {// sub menu
 				if ("slide" == option.effect) {
 					if (option.classPrefix == "iw") {
-						menu.css(cssObj).delay(5).slideDown(effectDuration, function() {
+						menu.css(cssObj).corner(option.borderRadius).delay(5).slideDown(effectDuration, function() {
 							option.afterOpen.call(this, clbckData, e);
 						});
 					} else {
@@ -460,7 +461,7 @@
 					}
 				} else {
 					if (option.classPrefix == "iw") {
-						menu.css(cssObj).delay(5).fadeIn(effectDuration, function() {
+						menu.css(cssObj).corner(option.borderRadius).delay(5).fadeIn(effectDuration, function() {
 							option.afterOpen.call(this, clbckData, e);
 						});
 					} else {

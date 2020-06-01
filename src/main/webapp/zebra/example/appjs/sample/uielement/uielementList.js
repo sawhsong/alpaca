@@ -107,47 +107,56 @@ $(function() {
 		$("#txtJQueryDatePicker").datepicker("show");
 	});
 
-	var menu = [ {
-		name : 'create',
-		fun : function() {
-			alert('i am add button')
-		}
+	var menu = [{
+		name : "Context Menu 1",
+		img:"fa-list-alt",
+		fun : function() {alert("Context Menu 1");}
 	}, {
-		name : 'update',
+		name:"Context Menu 1 - 1 Disabled",
+		disable:true
+	}, {
+		name : "Context Menu 2",
+		img:"fa-edit",
 		subMenu : [ {
-			name : 'merge',
+			name : "Context Menu 2 - Sub Menu 1",
+			img:"fa-gears",
 			fun : function() {
-				alert('It will merge row')
+				alert("Context Menu 2 - Sub Menu 1")
 			}
 		}, {
-			name : 'replace',
+			name : "Context Menu 2 - Sub Menu 2",
+			img:"fa-gears",
 			subMenu : [ {
-				name : 'replace top 100',
+				name : "Context Menu 2 - Sub Menu 2 - Sub 1",
+				img:"fa-file-pdf-o",
 				fun : function() {
-					alert('It will replace top 100 rows');
+					alert("Context Menu 2 - Sub Menu 2 - Sub 1");
 				}
-
 			}, {
-				name : 'replace all',
+				name : "Context Menu 2 - Sub Menu 2 - Sub 2",
+				img:"fa-file-pdf-o",
 				fun : function() {
-					alert('It will replace all rows');
+					alert("Context Menu 2 - Sub Menu 2 - Sub 2");
 				}
 			} ]
 		} ]
 	}, {
-		name : 'delete',
+		name : "Context Menu 3",
+		img:"fa-edit",
 		subMenu : [ {
-			'name' : 'soft delete',
+			name : "Context Menu 3 - Sub Menu 1",
+			img:"fa-gears",
 			fun : function() {
-				alert('You can recover back');
+				alert("Context Menu 3 - Sub Menu 1");
 			}
 		}, {
-			'name' : 'hard delete',
+			name : "Context Menu 3 - Sub Menu 2",
+			img:"fa-gears",
 			fun : function() {
-				alert('It will delete permanently');
+				alert("Context Menu 3 - Sub Menu 2");
 			}
 		} ]
-	} ];
+	}];
 
 	$(window).load(function() {
 		commonJs.changeTabSelection($("#tabCategory li:eq(0) a"));
@@ -220,8 +229,53 @@ $(function() {
 		});
 
 		$("#btnAnchor").contextMenu(menu, {
-// classPrefix:com.constants.ctxClassPrefixButton,
-			borderRadius : "4px",
+			classPrefix:"iw",
+			borderRadius : "3px",
+			displayAround : "trigger",
+			position : "bottom",
+			horAdjust : 0,
+			verAdjust : 0
+		});
+
+		$("#btnCtxIw").contextMenu(menu, {
+			classPrefix:"iw",
+			borderRadius : "3px",
+			displayAround : "trigger",
+			position : "bottom",
+			horAdjust : 0,
+			verAdjust : 0
+		});
+
+		$("#btnCtxActionButton").contextMenu(menu, {
+			classPrefix:"actionButton",
+			borderRadius : "3px",
+			displayAround : "trigger",
+			position : "bottom",
+			horAdjust : 0,
+			verAdjust : 0
+		});
+
+		$("#btnCtxActionInGrid").contextMenu(menu, {
+			classPrefix:"actionInGrid",
+			borderRadius : "3px",
+			displayAround : "trigger",
+			position : "bottom",
+			horAdjust : 0,
+			verAdjust : 0
+		});
+
+		$("#btnCtxTheme").contextMenu(menu, {
+			classPrefix:"theme",
+			borderRadius : "3px",
+			displayAround : "trigger",
+			position : "bottom",
+			horAdjust : 0,
+			verAdjust : 0
+		});
+
+		$("#btnCtxHeader").contextMenu(menu, {
+			classPrefix:"header",
+			borderRadius : "3px",
 			displayAround : "trigger",
 			position : "bottom",
 			horAdjust : 0,

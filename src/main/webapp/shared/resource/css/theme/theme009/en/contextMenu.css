@@ -9,10 +9,10 @@
 
 /* Default Context menu css */
 .iw-contextMenu {display:none;z-index:1000;overflow:auto;box-shadow:2px 2px 5px rgba(0, 0, 0, 0.2);
-	border:1px solid #CCCCCC;
+	border:1px solid #CDC3B7;
 }
 .iw-cm-menu {padding:4px 0px;
-	color:#000000;
+	color:#3F3731;
 	background:#FBFBFB;
 }
 .iw-cm-menu li {position:relative;padding:10px 10px;list-style:none;cursor:pointer;transition:background 0.2s;}
@@ -21,11 +21,11 @@
 }
 .iw-contextMenu li.iw-mDisable {opacity:.7;}
 .iw-mSelected {transition:background 0.2s;
-	color:#000000;
-	background:#D8D8D8;
+	color:#A46313;
+	background:#F5F0E5;
 }
-.iw-cm-arrow-right {width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:5px solid #000000;position:absolute;right:3px;top:50%;margin-top:-4px;}
-.iw-mSelected > .iw-cm-arrow-right {width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:5px solid #000000;position:absolute;right:3px;top:50%;margin-top:-4px;}
+.iw-cm-arrow-right {width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:5px solid #3F3731;position:absolute;right:10px;top:50%;margin-top:-4px;}
+.iw-mSelected > .iw-cm-arrow-right {width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:5px solid #A46313;position:absolute;right:10px;top:50%;margin-top:-4px;}
 .iw-mIcon {margin:-1px 0px 0px 0px;padding:0px 10px 0px 0px;float:left;}
 
 /* Header - Theme Context menu css */

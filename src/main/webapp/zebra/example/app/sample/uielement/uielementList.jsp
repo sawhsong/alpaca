@@ -234,13 +234,22 @@
 						<input type="text" id="txtWithPngImage" name="txtWithPngImage" class="txtEn hor warning" value="" style="width:200px" placeholder="txtWithPngImage"/>
 						<img id="imgWithPngImageEn" src="<mc:cp key="imgThemeCom"/>/icnDocument.png" class="imgEn hor" title="imgWithPngImageEn"/>
 						<img id="imgWithPngImageDis" src="<mc:cp key="imgThemeCom"/>/icnDocument.png" class="imgDis hor" title="imgWithPngImageDis"/>
-	
+
 						<div class="horGap20"></div>
-	
+
 						<label for="txtWithButton" class="lblEn hor mandatory">Input text</label>
 						<input type="text" id="txtWithButton" name="txtWithButton" class="txtEn hor error" value="" style="width:200px" checkName="txtTest1" maxlength="30" minlength="4" checkFlag="optional" mandatory placeholder="txtWithButton"/>
 						<button id="btnPrintLog" type="button" class="btn btn-default"><i class="fa fa-save fa-lg"></i> Print Log</button>
+					</div>
+					<div class="verGap20"></div>
+					<div id="divContextMenu">
+						<label class="lblEn hor">Context Menu Samples</label>
 						<a id="btnAnchor" type="button" class="btn btn-primary"><i class="fa fa-list-alt fa-lg"></i> <mc:msg key="button.com.create"/></a>
+						<a id="btnCtxIw" type="button" class="btn btn-default"><i class="fa fa-list-alt fa-lg"></i> CTX IW</a>
+						<a id="btnCtxActionButton" type="button" class="btn btn-default"><i class="fa fa-list-alt fa-lg"></i> CTX ActionButton</a>
+						<a id="btnCtxActionInGrid" type="button" class="btn btn-default"><i class="fa fa-list-alt fa-lg"></i> CTX ActionInGrid</a>
+						<a id="btnCtxTheme" type="button" class="btn btn-default"><i class="fa fa-list-alt fa-lg"></i> CTX Theme</a>
+						<a id="btnCtxHeader" type="button" class="btn btn-default"><i class="fa fa-list-alt fa-lg"></i> CTX Header</a>
 					</div>
 				</div>
 			</div>
