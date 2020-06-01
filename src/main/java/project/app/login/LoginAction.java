@@ -40,15 +40,19 @@ public class LoginAction extends BaseAction {
 
 			if (paramEntity.isSuccess()) {
 				SysUser sysUser = (SysUser)paramEntity.getObject("sysUser");
+				String themeId = CommonUtil.lowerCase(sysUser.getThemeType());
 
 				session.setAttribute("UserId", sysUser.getUserId());
 				session.setAttribute("UserName", sysUser.getUserName());
 				session.setAttribute("LoginId", sysUser.getLoginId());
 				session.setAttribute("langCode", CommonUtil.lowerCase(sysUser.getLanguage()));
 
-				session.setAttribute("themeId", CommonUtil.lowerCase(sysUser.getThemeType()));
-//				Random random = new Random();
-//				session.setAttribute("themeId", "THEME"+CommonUtil.leftPad(CommonUtil.toString(random.nextInt(10)), 3, "0"));
+				if (CommonUtil.equalsIgnoreCase(themeId, "theme999")) {
+					Random random = new Random();
+					session.setAttribute("themeId", "theme"+CommonUtil.leftPad(CommonUtil.toString(random.nextInt(10)), 3, "0"));
+				} else {
+					session.setAttribute("themeId", themeId);
+				}
 
 				session.setAttribute("maxRowsPerPage", CommonUtil.toString(sysUser.getMaxRowPerPage(), "###"));
 				session.setAttribute("pageNumsPerPage", CommonUtil.toString(sysUser.getPageNumPerPage(), "###"));

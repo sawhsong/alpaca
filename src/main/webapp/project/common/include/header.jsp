@@ -112,21 +112,25 @@ $(function() {
 		var themeMenu = [];
 
 		for (var i=0; i<theme.getRowCnt(); i++) {
-			themeMenu.push({
-				name:theme.getValue(i, "DESCRIPTION_EN"),
-				img:"<mc:cp key="imgIcon"/>/"+commonJs.lowerCase(theme.getValue(i, "COMMON_CODE"))+".png",
-				themeId:theme.getValue(i, "COMMON_CODE"),
-				fun:function() {
-					var index = $(this).index();
+			var themeCode = commonJs.lowerCase(theme.getValue(i, "COMMON_CODE"));
 
-					commonJs.doSubmit({
-						data:{
-							themeId:themeMenu[index].themeId
-						},
-						action:"/index.do"
-					});
-				}
-			});
+			if (themeCode != "theme999") {
+				themeMenu.push({
+					name:theme.getValue(i, "DESCRIPTION_EN"),
+					img:"<mc:cp key="imgIcon"/>/"+themeCode+".png",
+					themeId:theme.getValue(i, "COMMON_CODE"),
+					fun:function() {
+						var index = $(this).index();
+
+						commonJs.doSubmit({
+							data:{
+								themeId:themeMenu[index].themeId
+							},
+							action:"/index.do"
+						});
+					}
+				});
+			}
 		}
 
 		$("#aThemeSelector").contextMenu(themeMenu, {
