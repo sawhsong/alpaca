@@ -83,8 +83,8 @@
 .header-mIcon {margin-top:-1px;padding:0px 15px 0px 0px;float:left;}
 
 /* Action button in Grid Table */
-.actionInGrid-contextMenu {display:none;z-index:1000;overflow:auto;box-shadow:0px 2px 10px rgba(0, 0, 0, 0.4);font-weight:500;
-	border:1px solid #F8B74C;
+.actionInGrid-contextMenu {display:none;z-index:1000;overflow:auto;box-shadow:0px 2px 10px rgba(0, 0, 0, 0.4);font-weight:700;
+	border:1px solid #C77405;
 }
 .actionInGrid-cm-menu {padding:5px 0px;
 	color:#1C94C4;
@@ -96,20 +96,20 @@
 }
 .actionInGrid-contextMenu li.actionInGrid-mDisable {opacity:.7;cursor:not-allowed;}
 .actionInGrid-mSelected {transition:background 0.2s;
-	color:#C77405;
-	background:#FDE7B3;
+	color:#FFFFFF;
+	background:#C77405;
 }
 .actionInGrid-cm-arrow-right {width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;position:absolute;right:10px;top:50%;margin-top:-4px;
 	border-left:5px solid #1C94C4;
 }
 .actionInGrid-mSelected > .actionInGrid-cm-arrow-right {width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;position:absolute;right:10px;top:50%;margin-top:-4px;
-	border-left:5px solid #C77405;
+	border-left:5px solid #FFFFFF;
 }
 .actionInGrid-mIcon {margin-top:-1px;padding:0px 15px 0px 0px;float:left;}
 
 /* Action Button */
-.actionButton-contextMenu {display:none;z-index:1000;overflow:auto;box-shadow:0px 1px 1px rgba(0, 0, 0, 0.4);font-weight:500;
-	border:1px solid #F8B74C;
+.actionButton-contextMenu {display:none;z-index:1000;overflow:auto;box-shadow:0px 1px 1px rgba(0, 0, 0, 0.4);font-weight:700;
+	border:1px solid #C77405;
 }
 .actionButton-cm-menu {padding:5px 0px;
 	color:#1C94C4;
@@ -121,13 +121,13 @@
 }
 .actionButton-contextMenu li.actionButton-mDisable {opacity:.7;cursor:not-allowed;}
 .actionButton-mSelected {transition:background 0.2s;
-	color:#C77405;
-	background:#FDE7B3;
+	color:#FFFFFF;
+	background:#C77405;
 }
 .actionButton-cm-arrow-right {width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;position:absolute;right:10px;top:50%;margin-top:-4px;
 	border-left:5px solid #1C94C4;
 }
 .actionButton-mSelected > .actionButton-cm-arrow-right {width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;position:absolute;right:10px;top:50%;margin-top:-4px;
-	border-left:5px solid #C77405;
+	border-left:5px solid #FFFFFF;
 }
 .actionButton-mIcon {margin-top:-1px;padding:0px 15px 0px 0px;float:left;}
