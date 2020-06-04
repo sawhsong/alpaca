@@ -284,4 +284,34 @@ $(function() {
 			verAdjust : 0
 		});
 	});
+
+	$(function() {
+		var f = function() {
+//			$(this).next().text($(this).is(':checked') ? true : false);
+		};
+		$("[name=chkCustomBlock]").change(f).trigger('change');
+		$("[name=chkCustomInline]").change(f).trigger('change');
+		$("[name=rdoCustomBlock]").change(f).trigger('change');
+		$("[name=rdoCustomInline]").change(f).trigger('change');
+	});
+
+	$("#btnGetCustomCheckboxValue").click(function() {
+		var checkValue = "";
+		$("[name=chkCustomInline]").each(function(index) {
+			if ($(this).is(":checked")) {
+				checkValue += (commonJs.isEmpty(checkValue)) ? $(this).val() : ", "+$(this).val();
+			}
+		});
+		alert(checkValue);
+	});
+
+	$("#btnGetCustomRadioValue").click(function() {
+		var checkValue = "";
+		$("[name=rdoCustomInline]").each(function(index) {
+			if ($(this).is(":checked")) {
+				checkValue += (commonJs.isEmpty(checkValue)) ? $(this).val() : ", "+$(this).val();
+			}
+		});
+		alert(checkValue);
+	});
 });
