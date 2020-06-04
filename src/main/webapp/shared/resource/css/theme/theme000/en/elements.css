@@ -126,6 +126,52 @@ label.lblRadioEn > .rdoEn, label.lblRadioDis > .rdoDis {position:absolute;margin
 label.withElem {margin-top:7px;}
 label.block {display:block;padding-top:4px;padding-bottom:4px;width:5px;white-space:nowrap;}
 
+/* Customised Checkbox/Radio */
+input[type="checkbox"].custom, input[type="radio"].custom {position:relative !important;-webkit-appearance:initial !important;width:34px !important;height:20px !important;outline:none !important;cursor:pointer !important;
+	border:1px solid #AAAAAA !important;
+	background:#ffffff !important;
+}
+input[type="checkbox"].custom {border-radius:8px !important;}
+input[type="radio"].custom {border-radius:10px !important;}
+input[type="checkbox"].custom:after, input[type="radio"].custom:after {position:absolute;display:block;top:5%;width:50%;height:90%;font-weight:bold;box-sizing:border-box;text-align:center;transition:all 0.2s ease-in 0s;
+	color:#4E7595;
+	background:#FFFFFF;
+	border:solid 1px #AAAAAA;
+}
+input[type="checkbox"].custom:after {border-radius:6px;}
+input[type="radio"].custom:after {border-radius:8px;}
+input[type="checkbox"].custom:disabled, input[type="radio"].custom:disabled {opacity:.4;cursor:not-allowed !important;}
+input[type="checkbox"].custom:checked, input[type="radio"].custom:checked {
+	background:#4E7595 !important;
+}
+input[type="checkbox"].custom:after, input[type="radio"].custom:after {left:3% !important;content: " ";}
+input[type="checkbox"].custom:checked:after, input[type="radio"].custom:checked:after {left:47% !important;content: "\2713";}
+
+.checkbox-custom, .radio-custom {margin:2px 2px;}
+.checkbox-custom > label {font-weight:normal;transition:color 0.2s linear;}
+.checkbox-custom > label > span {cursor:pointer;display:block;margin:-19px 0px 0px 40px;}
+.checkbox-custom.disabled > label > span {opacity:.4;cursor:not-allowed;}
+.checkbox-custom:not(.disabled) > label:hover {
+	color:#FF6633;
+}
+
+
+
+.radio-custom > label, .radio-custom-inline {transition:color 0.2s linear;}
+.radio-custom > label:hover, .radio-custom-inline:hover {
+	color:#FF6633;
+}
+.radio-custom.disabled > label:hover {
+	color:#555555;
+}
+
+
+.radio-custom input[type="radio"]:not([disabled]), .radio-custom-inline input[type="radio"]:not([disabled]),
+.checkbox-custom input[type="checkbox"]:not([disabled]), .checkbox-custom-inline input[type="checkbox"]:not([disabled]) {cursor:pointer;}
+
+
+.checkbox-custom-inline {transition:color 0.2s linear;}
+
 /**
  * Textbox
  */

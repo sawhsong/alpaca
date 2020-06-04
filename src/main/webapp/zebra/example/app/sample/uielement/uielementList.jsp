@@ -24,43 +24,6 @@
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
-.chkCustom, .rdoCustom {
-    position:relative !important;
-    background:#4E7595 !important;
-    width: 36px !important;
-    height: 18px !important;
-    -webkit-appearance: initial !important;
-    border-radius: 3px !important;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
-    outline:none !important;
-    font-size: 10px !important;
-    font-weight: bold !important;
-    cursor:pointer !important;
-    border:1px solid #ddd !important;
-}
-.chkCustom:after, .rdoCustom:after {
-    position:absolute;
-    top:5%;
-    display:block; 
-    line-height:32px;
-    width:45%;
-    height:90%;
-    background:#f9f9f9;
-    box-sizing:border-box;
-    text-align:center;
-    transition: all 0.3s ease-in 0s; 
-    color:black;
-    border:#888 1px solid;
-    border-radius:3px;
-}
-.chkCustom:after, .rdoCustom:after {
-    left:2%;
-    content:"N";
-}
-.chkCustom:checked:after, .rdoCustom:checked:after {
-    left:53%;
-    content: "Y";
-}
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
@@ -530,27 +493,27 @@
 						<tr>
 							<th class="thEdit">Customised Checkbox Block</th>
 							<td class="tdEdit">
-								<div class="checkbox">
-									<label><input type="checkbox" name="chkCustomBlock" value="chkCustomBlock0" class="chkCustom"/>chkCustomBlock0</label>
+								<div class="checkbox-custom">
+									<label><input type="checkbox" name="chkCustomBlock" value="chkCustomBlock0" class="custom"/><span>CustomBlock0</span></label>
 								</div>
-								<div class="checkbox disabled">
-									<label><input type="checkbox" name="chkCustomBlock" value="chkCustomBlock1" disabled class="chkCustom"/>chkCustomBlock1</label>
+								<div class="checkbox-custom disabled">
+									<label><input type="checkbox" name="chkCustomBlock" value="chkCustomBlock1" disabled class="custom"/><span>CustomBlock1</span></label>
 								</div>
-								<div class="checkbox">
-									<label><input type="checkbox" name="chkCustomBlock" value="chkCustomBlock2" class="chkCustom"/>chkCustomBlock2</label>
+								<div class="checkbox-custom">
+									<label><input type="checkbox" name="chkCustomBlock" value="chkCustomBlock2" class="custom"/><span>CustomBlock2</span></label>
 								</div>
-								<div class="checkbox">
-									<label><input type="checkbox" name="chkCustomBlock" value="chkCustomBlock3" class="chkCustom"/>chkCustomBlock3</label>
+								<div class="checkbox-custom">
+									<label><input type="checkbox" name="chkCustomBlock" value="chkCustomBlock3" class="custom"/><span>CustomBlock3</span></label>
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<th class="thEdit">Customised Checkbox Inline</th>
 							<td class="tdEdit">
-								<label class="checkbox-inline"><input type="checkbox" name="chkCustomInline" value="chkCustomInline0" class="chkCustom"/>CustomInline0</label>
-								<label class="checkbox-inline disabled"><input type="checkbox" name="chkCustomInline" value="chkCustomInline1" disabled class="chkCustom"/>CustomInline1</label>
-								<label class="checkbox-inline"><input type="checkbox" name="chkCustomInline" value="chkCustomInline2" class="chkCustom"/>CustomInline2</label>
-								<label class="checkbox-inline"><input type="checkbox" name="chkCustomInline" value="chkCustomInline3" class="chkCustom"/>CustomInline3</label>
+								<label class="checkbox-inline-custom"><input type="checkbox" name="chkCustomInline" value="chkCustomInline0" class="custom"/><span>CustomInline0</span></label>
+								<label class="checkbox-inline-custom disabled"><input type="checkbox" name="chkCustomInline" value="chkCustomInline1" disabled class="custom"/><span>CustomInline1</span></label>
+								<label class="checkbox-inline-custom"><input type="checkbox" name="chkCustomInline" value="chkCustomInline2" class="custom"/><span>CustomInline2</span></label>
+								<label class="checkbox-inline-custom"><input type="checkbox" name="chkCustomInline" value="chkCustomInline3" class="custom"/><span>CustomInline3</span></label>
 								<a id="btnGetCustomCheckboxValue" type="button" class="btn btn-primary"><i class="fa fa-list-alt fa-lg"></i> Get Value</a>
 							</td>
 						</tr>
@@ -618,26 +581,26 @@
 							<th class="thEdit">Customised Radio Block</th>
 							<td class="tdEdit">
 								<div class="radio">
-									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock0" class="rdoCustom">rdoCustomBlock0</label>
+									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock0" class="custom">rdoCustomBlock0</label>
 								</div>
 								<div class="radio disabled">
-									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock1" disabled class="rdoCustom">rdoCustomBlock1</label>
+									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock1" disabled class="custom">rdoCustomBlock1</label>
 								</div>
 								<div class="radio">
-									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock2" class="rdoCustom">rdoCustomBlock2</label>
+									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock2" class="custom">rdoCustomBlock2</label>
 								</div>
 								<div class="radio">
-									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock3" class="rdoCustom">rdoCustomBlock3</label>
+									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock3" class="custom">rdoCustomBlock3</label>
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<th class="thEdit">Customised Radio inline</th>
 							<td class="tdEdit">
-								<label class="radio-inline"><input type="radio" name="rdoCustomInline" value="rdoCustomInline0" class="rdoCustom">rdoCustomInline0</label>
-								<label class="radio-inline disabled"><input type="radio" name="rdoCustomInline" value="rdoCustomInline1" disabled class="rdoCustom">rdoCustomInline1</label>
-								<label class="radio-inline"><input type="radio" name="rdoCustomInline" value="rdoCustomInline2" class="rdoCustom">rdoCustomInline2</label>
-								<label class="radio-inline"><input type="radio" name="rdoCustomInline" value="rdoCustomInline3" class="rdoCustom">rdoCustomInline3</label>
+								<label class="radio-inline"><input type="radio" name="rdoCustomInline" value="rdoCustomInline0" class="custom">rdoCustomInline0</label>
+								<label class="radio-inline disabled"><input type="radio" name="rdoCustomInline" value="rdoCustomInline1" disabled class="custom">rdoCustomInline1</label>
+								<label class="radio-inline"><input type="radio" name="rdoCustomInline" value="rdoCustomInline2" class="custom">rdoCustomInline2</label>
+								<label class="radio-inline"><input type="radio" name="rdoCustomInline" value="rdoCustomInline3" class="custom">rdoCustomInline3</label>
 								<a id="btnGetCustomRadioValue" type="button" class="btn btn-primary"><i class="fa fa-list-alt fa-lg"></i> Get Value</a>
 							</td>
 						</tr>
