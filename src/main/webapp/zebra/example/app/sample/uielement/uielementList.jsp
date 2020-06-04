@@ -227,6 +227,11 @@
 						<ui:text name="txtTaglib" className="hor success" style="width:200px" checkName="txtTest1" maxlength="30" minlength="4" checkFlag="optional" options="mandatory" placeHolder="txtTaglib"/>
 						<ui:img id="imgTaglib" src="<mc:cp key=imgThemeCom/>/generate_Black.png" className="hor" style="margin-top:6px" title="imgTaglib"/>
 						<ui:icon id="icnTaglib" className="fa-calendar fa-lg hor" style="margin-top:8px" title="icnTaglib"/>
+
+						<div class="horGap20"></div>
+
+						<label for="txtSpinner" class="lblEn hor">Spinner</label>
+						<ui:text name="txtSpinner" className="hor" style="width:100px" status="spinner" placeHolder="Spinner"/>
 					</div>
 					<div class="verGap20"></div>
 					<div id="divBasicIcnImgBtn2">

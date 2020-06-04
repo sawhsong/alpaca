@@ -109,7 +109,7 @@ i.glyphicon {font-size:1.4em;}
 .chkDis {cursor:not-allowed;}
 .lblCheckEn {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:pointer;transition:color 0.2s linear;position:relative;display:inline-block;}
 .lblCheckEn:hover {
-	color:#FF6633;
+	color:#D92E24;
 }
 .lblCheckDis {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:not-allowed;position:relative;display:inline-block;}
 label.lblCheckEn > .chkEn, label.lblCheckDis > .chkDis {position:absolute;margin-left:-20px;vertical-align:-3px;}
@@ -118,7 +118,7 @@ label.lblCheckEn > .chkEn, label.lblCheckDis > .chkDis {position:absolute;margin
 .rdoDis {cursor:not-allowed;}
 .lblRadioEn {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:pointer;transition:color 0.2s linear;position:relative;display:inline-block;}
 .lblRadioEn:hover {
-	color:#FF6633;
+	color:#D92E24;
 }
 .lblRadioDis {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:not-allowed;position:relative;display:inline-block;}
 label.lblRadioEn > .rdoEn, label.lblRadioDis > .rdoDis {position:absolute;margin-left:-20px;vertical-align:-3px;}
