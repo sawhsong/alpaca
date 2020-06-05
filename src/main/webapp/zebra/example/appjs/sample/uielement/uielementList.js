@@ -286,13 +286,10 @@ $(function() {
 	});
 
 	$(function() {
-		var f = function() {
-//			$(this).next().text($(this).is(':checked') ? true : false);
-		};
-		$("[name=chkCustomBlock]").change(f).trigger('change');
-		$("[name=chkCustomInline]").change(f).trigger('change');
-		$("[name=rdoCustomBlock]").change(f).trigger('change');
-		$("[name=rdoCustomInline]").change(f).trigger('change');
+		$("[name=chkCustomBlock]").change(function() {}).trigger("change");
+		$("[name=chkCustomInline]").change(function() {}).trigger("change");
+		$("[name=rdoCustomBlock]").change(function() {}).trigger("change");
+		$("[name=rdoCustomInline]").change(function() {}).trigger("change");
 	});
 
 	$("#btnGetCustomCheckboxValue").click(function() {

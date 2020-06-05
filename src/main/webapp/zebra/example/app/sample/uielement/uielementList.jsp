@@ -580,27 +580,27 @@
 						<tr>
 							<th class="thEdit">Customised Radio Block</th>
 							<td class="tdEdit">
-								<div class="radio">
-									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock0" class="custom">rdoCustomBlock0</label>
+								<div class="radio-custom">
+									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock0" class="custom"><span>rdoCustomBlock0</span></label>
 								</div>
-								<div class="radio disabled">
-									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock1" disabled class="custom">rdoCustomBlock1</label>
+								<div class="radio-custom disabled">
+									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock1" disabled class="custom"><span>rdoCustomBlock1</span></label>
 								</div>
-								<div class="radio">
-									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock2" class="custom">rdoCustomBlock2</label>
+								<div class="radio-custom">
+									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock2" class="custom"><span>rdoCustomBlock2</span></label>
 								</div>
-								<div class="radio">
-									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock3" class="custom">rdoCustomBlock3</label>
+								<div class="radio-custom">
+									<label><input type="radio" name="rdoCustomBlock" value="rdoCustomBlock3" class="custom"><span>rdoCustomBlock3</span></label>
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<th class="thEdit">Customised Radio inline</th>
 							<td class="tdEdit">
-								<label class="radio-inline"><input type="radio" name="rdoCustomInline" value="rdoCustomInline0" class="custom">rdoCustomInline0</label>
-								<label class="radio-inline disabled"><input type="radio" name="rdoCustomInline" value="rdoCustomInline1" disabled class="custom">rdoCustomInline1</label>
-								<label class="radio-inline"><input type="radio" name="rdoCustomInline" value="rdoCustomInline2" class="custom">rdoCustomInline2</label>
-								<label class="radio-inline"><input type="radio" name="rdoCustomInline" value="rdoCustomInline3" class="custom">rdoCustomInline3</label>
+								<label class="radio-inline-custom"><input type="radio" name="rdoCustomInline" value="rdoCustomInline0" class="custom"><span>rdoCustomInline0</span></label>
+								<label class="radio-inline-custom disabled"><input type="radio" name="rdoCustomInline" value="rdoCustomInline1" disabled class="custom"><span>rdoCustomInline1</span></label>
+								<label class="radio-inline-custom"><input type="radio" name="rdoCustomInline" value="rdoCustomInline2" class="custom"><span>rdoCustomInline2</span></label>
+								<label class="radio-inline-custom"><input type="radio" name="rdoCustomInline" value="rdoCustomInline3" class="custom"><span>rdoCustomInline3</span></label>
 								<a id="btnGetCustomRadioValue" type="button" class="btn btn-primary"><i class="fa fa-list-alt fa-lg"></i> Get Value</a>
 							</td>
 						</tr>
@@ -929,6 +929,18 @@
 								<ui:cccheck name="chkComCodeInline2" codeType="BOARD_TYPE" selectedValue="REPOSITORY" disabledValue="REPOSITORY" isBootstrap="true" script="alert($(this).val());" source="framework"/>
 							</td>
 						</tr>
+						<tr>
+							<th class="thEdit">Customised Checkbox Block</th>
+							<td class="tdEdit">
+								<ui:cccheck name="chkComCodeBlockCustomised" codeType="BOARD_TYPE" selectedValue="BBS" isCustomised="true" displayType="block" source="framework"/>
+							</td>
+						</tr>
+						<tr>
+							<th class="thEdit">Customised Checkbox Inline</th>
+							<td class="tdEdit">
+								<ui:cccheck name="chkComCodeInlineCustomised" codeType="BOARD_TYPE" selectedValue="NOTICE" isCustomised="true" source="framework"/>
+							</td>
+						</tr>
 					</table>
 					<div class="verGap10"></div>
 					<table class="tblEdit" style="width:100%;">
@@ -959,6 +971,18 @@
 							<th class="thEdit">Bootstrap Radio Inline</th>
 							<td class="tdEdit">
 								<ui:ccradio name="rdoComCodeInline2" codeType="BOARD_TYPE" selectedValue="REPOSITORY" disabledValue="REPOSITORY" isBootstrap="true" script="alert($(this).val());" source="framework"/>
+							</td>
+						</tr>
+						<tr>
+							<th class="thEdit">Customised Radio Block</th>
+							<td class="tdEdit">
+								<ui:ccradio name="rdoComCodeBlockCustomised" codeType="BOARD_TYPE" selectedValue="REPOSITORY" displayType="block" isCustomised="true" source="framework"/>
+							</td>
+						</tr>
+						<tr>
+							<th class="thEdit">Customised Radio Inline</th>
+							<td class="tdEdit">
+								<ui:ccradio name="rdoComCodeInlineCustomised" codeType="BOARD_TYPE" selectedValue="REPOSITORY" isCustomised="true" source="framework"/>
 							</td>
 						</tr>
 					</table>

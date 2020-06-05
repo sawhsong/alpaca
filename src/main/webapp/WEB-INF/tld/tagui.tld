@@ -553,6 +553,9 @@
 			<name>isBootstrap</name><required>false</required><rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
+			<name>isCustomised</name><required>false</required><rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
 			<name>status</name><required>false</required><rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
@@ -605,6 +608,9 @@
 		</attribute>
 		<attribute>
 			<name>isBootstrap</name><required>false</required><rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>isCustomised</name><required>false</required><rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
 			<name>status</name><required>false</required><rtexprvalue>true</rtexprvalue>
@@ -727,6 +733,9 @@
 			<name>isBootstrap</name><required>false</required><rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
+			<name>isCustomised</name><required>false</required><rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
 			<name>status</name><required>false</required><rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
@@ -782,6 +791,9 @@
 		</attribute>
 		<attribute>
 			<name>isBootstrap</name><required>false</required><rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>isCustomised</name><required>false</required><rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
 			<name>attribute</name><required>false</required><rtexprvalue>true</rtexprvalue>

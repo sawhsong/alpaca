@@ -24,6 +24,7 @@ public class CommonCodeCheckbox extends TaglibSupport {
 	private String inputStyle = "";
 	private String displayType = "";	// inline / block
 	private String isBootstrap = "";
+	private String isCustomised = "";
 	private String status = "";
 	private String options = "";	// for data validator
 	private String attribute = "";
@@ -35,7 +36,7 @@ public class CommonCodeCheckbox extends TaglibSupport {
 			HttpSession httpSession = pageContext.getSession();
 			StringBuffer html = new StringBuffer();
 			DataSet ds = new DataSet();
-			String defaultLangCode = "", attrStr = "", attrs[], attr[];
+			String defaultLangCode = "", attrStr = "", classNameCustomised = "", spnTagStart = "", spnTagEnd = "", attrs[], attr[];
 
 			if (CommonUtil.isNotBlank(source) || CommonUtil.equalsIgnoreCase(source, "framework")) {
 				ds = ZebraCommonCodeManager.getCodeDataSetByCodeType(codeType);
@@ -44,6 +45,14 @@ public class CommonCodeCheckbox extends TaglibSupport {
 			}
 
 			defaultLangCode = CommonUtil.nvl(langCode, (String)httpSession.getAttribute("langCode"));
+
+			if (CommonUtil.toBoolean(isCustomised)) {
+				isBootstrap = "true";
+				classNameCustomised = "-custom";
+				inputClassName = (CommonUtil.isBlank(inputClassName)) ? "custom" : "custom"+" "+inputClassName;
+				spnTagStart = "<span>";
+				spnTagEnd = "</span>";
+			}
 
 			if (CommonUtil.isNotBlank(attribute)) {
 				attrs = CommonUtil.split(attribute, ";");
@@ -56,7 +65,7 @@ public class CommonCodeCheckbox extends TaglibSupport {
 			for (int i=0; i<ds.getRowCnt(); i++) {
 				if (CommonUtil.toBoolean(isBootstrap, true)) {
 					if (CommonUtil.equalsIgnoreCase(displayType, "block")) {
-						html.append("<div class=\"checkbox");
+						html.append("<div class=\"checkbox"+classNameCustomised);
 						if (CommonUtil.containsIgnoreCase(disabledValue, ds.getValue(i, "COMMON_CODE")) || CommonUtil.equalsIgnoreCase(status, "disabled")) {html.append(" disabled");}
 //						if (CommonUtil.equalsIgnoreCase(status, "disabled")) {html.append(" disabled");}
 						html.append("\"><label");
@@ -73,9 +82,9 @@ public class CommonCodeCheckbox extends TaglibSupport {
 						if (CommonUtil.isNotBlank(script)) {html.append(" onclick=\""+script+"\"");}
 						if (CommonUtil.isNotBlank(attrStr)) {html.append(" "+attrStr+"");}
 
-						html.append("/>"+ds.getValue(i, "DESCRIPTION_"+defaultLangCode.toUpperCase())+"</label></div>");
+						html.append("/>"+spnTagStart+ds.getValue(i, "DESCRIPTION_"+defaultLangCode.toUpperCase())+spnTagEnd+"</label></div>");
 					} else {
-						html.append("<label class=\"checkbox-inline");
+						html.append("<label class=\"checkbox-inline"+classNameCustomised);
 						if (CommonUtil.containsIgnoreCase(disabledValue, ds.getValue(i, "COMMON_CODE")) || CommonUtil.equalsIgnoreCase(status, "disabled")) {html.append(" disabled");}
 //						if (CommonUtil.equalsIgnoreCase(status, "disabled")) {html.append(" disabled");}
 						if (CommonUtil.isNotBlank(labelClassName)) {html.append(" "+labelClassName+"");}
@@ -91,7 +100,7 @@ public class CommonCodeCheckbox extends TaglibSupport {
 						if (CommonUtil.isNotBlank(script)) {html.append(" onclick=\""+script+"\"");}
 						if (CommonUtil.isNotBlank(attrStr)) {html.append(" "+attrStr+"");}
 
-						html.append("/>"+ds.getValue(i, "DESCRIPTION_"+defaultLangCode.toUpperCase())+"</label>");
+						html.append("/>"+spnTagStart+ds.getValue(i, "DESCRIPTION_"+defaultLangCode.toUpperCase())+spnTagEnd+"</label>");
 					}
 				} else {
 					if (CommonUtil.equalsIgnoreCase(displayType, "block")) {
@@ -263,6 +272,14 @@ public class CommonCodeCheckbox extends TaglibSupport {
 
 	public void setIsBootstrap(String isBootstrap) {
 		this.isBootstrap = isBootstrap;
+	}
+
+	public String getIsCustomised() {
+		return isCustomised;
+	}
+
+	public void setIsCustomised(String isCustomised) {
+		this.isCustomised = isCustomised;
 	}
 
 	public String getStatus() {
