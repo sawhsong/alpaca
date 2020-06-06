@@ -87,8 +87,8 @@ var operationalRelationship = "<%=address.getOperationalRelation()%>";
 							<tr>
 								<th class="thEdit rt">Address Search</th>
 								<td class="tdEdit" colspan="3">
-									<ui:text name="homeAddressSearch" className="hor" style="width:83%" placeHolder="Enter a location"/>
-									<ui:check name="editHomeAddress" labelClassName="withElem" value="Y" text="Edit Address"/>
+									<ui:text name="homeAddressSearch" className="hor" style="width:81%" placeHolder="Enter a location"/>
+									<ui:check name="editHomeAddress" labelClassName="withElem" value="Y" text="Edit Address" isCustomised="true"/>
 								</td>
 							</tr>
 							<tr>
@@ -125,8 +125,8 @@ var operationalRelationship = "<%=address.getOperationalRelation()%>";
 							<tr>
 								<th class="thEdit rt">Address Search</th>
 								<td class="tdEdit" colspan="3">
-									<ui:text name="otherAddressSearch" className="hor" style="width:83%" placeHolder="Enter a location"/>
-									<ui:check name="editOtherAddress" labelClassName="withElem" value="Y" text="Edit Address"/>
+									<ui:text name="otherAddressSearch" className="hor" style="width:81%" placeHolder="Enter a location"/>
+									<ui:check name="editOtherAddress" labelClassName="withElem" value="Y" text="Edit Address" isCustomised="true"/>
 								</td>
 							</tr>
 							<tr>
@@ -163,8 +163,8 @@ var operationalRelationship = "<%=address.getOperationalRelation()%>";
 							<tr>
 								<th class="thEdit rt">Address Search</th>
 								<td class="tdEdit" colspan="3">
-									<ui:text name="emerAddressSearch" className="hor" style="width:83%" placeHolder="Enter a location"/>
-									<ui:check name="editEmerAddress" labelClassName="withElem" value="Y" text="Edit Address"/>
+									<ui:text name="emerAddressSearch" className="hor" style="width:81%" placeHolder="Enter a location"/>
+									<ui:check name="editEmerAddress" labelClassName="withElem" value="Y" text="Edit Address" isCustomised="true"/>
 								</td>
 							</tr>
 							<tr>
@@ -190,8 +190,8 @@ var operationalRelationship = "<%=address.getOperationalRelation()%>";
 			<div class="accordionGroup">
 				<h3 id="hCorporateRelationship">Corporate Customer Employee Details</h3>
 				<div id="divCorporateRelationship" class="accordionContents">
-					<ui:check name="executiveRelationship" displayType="block" value="Y" text="Executive relationship ?"/>
-					<ui:check name="operationalRelationship" displayType="block" value="Y" text="Operational relationship ?"/>
+					<ui:check name="executiveRelationship" displayType="block" value="Y" text="Executive relationship ?" isCustomised="true"/>
+					<ui:check name="operationalRelationship" displayType="block" value="Y" text="Operational relationship ?" isCustomised="true"/>
 				</div>
 			</div>
 		</div>
@@ -216,15 +216,15 @@ var operationalRelationship = "<%=address.getOperationalRelation()%>";
 							<tr>
 								<th class="thEdit rt">Preferred</th>
 								<td class="tdEdit">
-									<ui:radio name="preferredEmail" value="N" text="None"/>
-									<ui:radio name="preferredEmail" value="B" text="Both"/>
-									<ui:radio name="preferredEmail" value="H" text="Home"/>
-									<ui:radio name="preferredEmail" value="W" text="Work"/>
+									<ui:radio name="preferredEmail" value="N" text="None" isCustomised="true"/>
+									<ui:radio name="preferredEmail" value="B" text="Both" isCustomised="true"/>
+									<ui:radio name="preferredEmail" value="H" text="Home" isCustomised="true"/>
+									<ui:radio name="preferredEmail" value="W" text="Work" isCustomised="true"/>
 								</td>
 							</tr>
 							<tr>
 								<th class="thEdit rt">Bulk Email</th>
-								<td class="tdEdit"><ui:check name="excludeFromBulkEmail" value="Y" text="Exclude From Bulk Email"/></td>
+								<td class="tdEdit"><ui:check name="excludeFromBulkEmail" value="Y" text="Exclude From Bulk Email" isCustomised="true"/></td>
 							</tr>
 						</tbody>
 					</table>

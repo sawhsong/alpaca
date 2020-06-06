@@ -84,7 +84,7 @@ var personId = "<%=personId%>";
 							</tr>
 							<tr>
 								<th class="thEdit rt">Prefix</th>
-								<td class="tdEdit"><ui:ccradio name="prefix" codeType="PREFIX"/></td>
+								<td class="tdEdit"><ui:ccradio name="prefix" codeType="PREFIX" isCustomised="true"/></td>
 							</tr>
 							<tr>
 								<th class="thEdit rt mandatory">Surname</th>
@@ -116,7 +116,7 @@ var personId = "<%=personId%>";
 							</tr>
 							<tr>
 								<th class="thEdit rt">Gender</th>
-								<td class="tdEdit"><ui:ccradio name="gender" codeType="GENDER"/></td>
+								<td class="tdEdit"><ui:ccradio name="gender" codeType="GENDER" isCustomised="true"/></td>
 							</tr>
 							<tr>
 								<th class="thEdit rt mandatory">Person Type</th>

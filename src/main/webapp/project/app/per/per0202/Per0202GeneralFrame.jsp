@@ -135,14 +135,14 @@ var personId = "<%=personId%>";
 							<tr>
 								<th class="thEdit rt">LAFHA Eligible / Amount</th>
 								<td class="tdEdit">
-									<span style="float:left;padding-top:7px"><ui:check name="lafhaEligible" value="Y" text="LAFHA Eligible"/></span>
+									<span style="float:left;padding-top:4px"><ui:check name="lafhaEligible" value="Y" text="LAFHA Eligible" isCustomised="true"/></span>
 									&nbsp;&nbsp;&nbsp;
 									<span style="float:left"><ui:text name="lafhaAmount" className="rt numeric" style="width:100px"/></span>
 								</td>
 							</tr>
 							<tr>
 								<th class="thEdit rt">Verified</th>
-								<td class="tdEdit"><ui:check name="verified" value="Y" text="Verified"/></td>
+								<td class="tdEdit"><ui:check name="verified" value="Y" text="Verified" isCustomised="true"/></td>
 							</tr>
 						</tbody>
 					</table>
@@ -170,9 +170,9 @@ var personId = "<%=personId%>";
 							<tr>
 								<th class="thEdit rt">Send To</th>
 								<td class="tdEdit">
-									<ui:check name="paymentAdviceDeliverySendToEmail" value="Y" text="Email"/>
-									<ui:check name="paymentAdviceDeliverySendToEntityOnline" value="Y" text="Entity Online"/>
-									<ui:check name="paymentAdviceDeliverySendToOther" value="Y" text="Other"/>
+									<ui:check name="paymentAdviceDeliverySendToEmail" value="Y" text="Email" isCustomised="true"/>
+									<ui:check name="paymentAdviceDeliverySendToEntityOnline" value="Y" text="Entity Online" isCustomised="true"/>
+									<ui:check name="paymentAdviceDeliverySendToOther" value="Y" text="Other" isCustomised="true"/>
 								</td>
 							</tr>
 						</tbody>

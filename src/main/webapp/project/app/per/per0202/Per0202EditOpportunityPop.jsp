@@ -294,7 +294,7 @@ var opportunityId = "<%=dsRequest.getValue("opportunityId")%>";
 								</tr>
 								<tr>
 									<th class="thEdit rt optmandatory">Equipment Required</th>
-									<td class="tdEdit"><ui:ccradio name="equipmentRequired" codeType="SIMPLE_YN" selectedValue="<%=dsAsg.getValue(\"EQUIPMENT_REQUIRED_YN\")%>"/></td>
+									<td class="tdEdit"><ui:ccradio name="equipmentRequired" codeType="SIMPLE_YN" selectedValue="<%=dsAsg.getValue(\"EQUIPMENT_REQUIRED_YN\")%>" isCustomised="true"/></td>
 									<th class="thEdit rt" rowspan="2">Equipment</th>
 									<td class="tdEdit" rowspan="2"><ui:txa id="equipment" name="equipment" value="<%=dsAsg.getValue(\"EQUIPMENT_DETAILS\")%>" style="height:46px;"/></td>
 									<th class="thEdit rt" rowspan="2">Special Conditions</th>

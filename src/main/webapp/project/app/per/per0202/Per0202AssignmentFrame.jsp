@@ -114,8 +114,8 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 							<tr>
 								<th class="thEdit rt mandatory">Asg Status</th>
 								<td class="tdEdit">
-									<ui:check name="asgPreferred" value="Y" text="Preferred" labelStyle="margin:4px 0px" isChecked="<%=dsAsg.getValue(\"PREFERRED\")%>"/>
-									<ui:check name="asgActive" value="Y" text="Active" labelStyle="margin:4px 0px" isChecked="<%=dsAsg.getValue(\"ASG_ACTIVE\")%>"/>
+									<ui:check name="asgPreferred" value="Y" text="Preferred" isChecked="<%=dsAsg.getValue(\"PREFERRED\")%>" isCustomised="true"/>
+									<ui:check name="asgActive" value="Y" text="Active" isChecked="<%=dsAsg.getValue(\"ASG_ACTIVE\")%>" isCustomised="true"/>
 								</td>
 							</tr>
 							<tr>
@@ -428,7 +428,7 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 					</div>
 					<div id="divTsExpDeli0" class="areaContainerFrame" style="padding:2px 0px 2px 0px;">
 						<div class="sectionHeader" style="padding:4px 4px;">
-							<ui:check name="useTimesheet" value="Y" text="Use Timesheet" isChecked="<%=dsAsg.getValue(\"ATTRIBUTE10\")%>"/>
+							<ui:check name="useTimesheet" value="Y" text="Use Timesheet" isChecked="<%=dsAsg.getValue(\"ATTRIBUTE10\")%>" isCustomised="true"/>
 						</div>
 						<div id="divTimesheetD">
 							<div class="verGap2"></div>
@@ -446,7 +446,7 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 										<td class="tdEdit"><ui:text name="timesheetName" value="<%=dsAsg.getValue(\"TIMESHEET_NAME\")%>"/></td>
 										<th class="thEdit rt">Units</th>
 										<td class="tdEdit"><ui:ccselect name="timesheetUnits" codeType="TIMESHEET_UNIT" selectedValue="<%=dsAsg.getValue(\"TIMESHEET_UNITS\")%>" attribute="data-width:100%"/></td>
-										<td class="tdEdit"><ui:check name="timesheetBulkApproval" value="Y" text="Enable Bulk Approval" isChecked="<%=dsAsg.getValue(\"IS_BULK_APPROVAL\")%>"/></td>
+										<td class="tdEdit"><ui:check name="timesheetBulkApproval" value="Y" text="Enable Bulk Approval" isChecked="<%=dsAsg.getValue(\"IS_BULK_APPROVAL\")%>" isCustomised="true"/></td>
 									</tr>
 									<tr>
 										<th class="thEdit rt">Primary Approver</th>
@@ -475,7 +475,7 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 					</div>
 					<div id="divTsExpDeli1" class="areaContainerFrame" style="padding:2px 0px 2px 0px;display:none;">
 						<div class="sectionHeader" style="padding:4px 4px;">
-							<ui:check name="useExpense" value="Y" text="Use Expense" isChecked="<%=dsAsg.getValue(\"USE_EXPENSE\")%>"/>
+							<ui:check name="useExpense" value="Y" text="Use Expense" isChecked="<%=dsAsg.getValue(\"USE_EXPENSE\")%>" isCustomised="true"/>
 						</div>
 						<div id="divExpenseD">
 							<div class="verGap2"></div>
@@ -491,7 +491,7 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 									<tr>
 										<th class="thEdit rt">Expense Name</th>
 										<td class="tdEdit" colspan="2"><ui:text name="expenseName" value="<%=dsAsg.getValue(\"EXPENSE_NAME\")%>"/></td>
-										<td class="tdEdit" colspan="2"><ui:check name="expenseBulkApproval" value="Y" text="Enable Bulk Approval" isChecked="<%=dsAsg.getValue(\"IS_BULK_APPROVAL_EXPENSE\")%>"/></td>
+										<td class="tdEdit" colspan="2"><ui:check name="expenseBulkApproval" value="Y" text="Enable Bulk Approval" isChecked="<%=dsAsg.getValue(\"IS_BULK_APPROVAL_EXPENSE\")%>" isCustomised="true"/></td>
 									</tr>
 									<tr>
 										<th class="thEdit rt">Primary Approver</th>
@@ -520,7 +520,7 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 					</div>
 					<div id="divTsExpDeli2" class="areaContainerFrame" style="padding:2px 0px 2px 0px;display:none;">
 						<div class="sectionHeader" style="padding:4px 4px;">
-							<ui:check name="useDeliverable" value="Y" text="Use Deliverable" isChecked="<%=dsAsg.getValue(\"USE_DELIVERABLES\")%>"/>
+							<ui:check name="useDeliverable" value="Y" text="Use Deliverable" isChecked="<%=dsAsg.getValue(\"USE_DELIVERABLES\")%>" isCustomised="true"/>
 						</div>
 						<div id="divDeliverableD">
 							<div class="verGap2"></div>
@@ -536,7 +536,7 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 									<tr>
 										<th class="thEdit rt">Deliverables Name</th>
 										<td class="tdEdit" colspan="2"><ui:text name="deliverableName" value="<%=dsAsg.getValue(\"DELIVERABLES_NAME\")%>"/></td>
-										<td class="tdEdit" colspan="2"><ui:check name="deliverableBulkApproval" value="Y" text="Enable Bulk Approval" isChecked="<%=dsAsg.getValue(\"IS_BULK_APPROVAL_DELIVERABLES\")%>"/></td>
+										<td class="tdEdit" colspan="2"><ui:check name="deliverableBulkApproval" value="Y" text="Enable Bulk Approval" isChecked="<%=dsAsg.getValue(\"IS_BULK_APPROVAL_DELIVERABLES\")%>" isCustomised="true"/></td>
 									</tr>
 									<tr>
 										<th class="thEdit rt">Primary Approver</th>
@@ -695,7 +695,7 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 							</tr>
 							<tr>
 								<th class="thEdit rt">Equipment Required</th>
-								<td class="tdEdit"><ui:ccradio name="equipmentRequired" codeType="SIMPLE_YN" selectedValue="<%=dsAsg.getValue(\"EQUIPMENT_REQUIRED_YN\")%>"/></td>
+								<td class="tdEdit"><ui:ccradio name="equipmentRequired" codeType="SIMPLE_YN" selectedValue="<%=dsAsg.getValue(\"EQUIPMENT_REQUIRED_YN\")%>" isCustomised="true"/></td>
 								<th class="thEdit rt" rowspan="2">Equipment</th>
 								<td class="tdEdit" rowspan="2"><ui:txa id="equipment" name="equipment" value="<%=dsAsg.getValue(\"EQUIPMENT_DETAILS\")%>" style="height:46px;"/></td>
 								<th class="thEdit rt" rowspan="2">Special Conditions</th>

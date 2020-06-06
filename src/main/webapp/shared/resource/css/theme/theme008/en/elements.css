@@ -103,31 +103,6 @@ i.icnEn:active, i.imgEn:active {top:1px;position:relative;}
 i.hor {font-size:1.4em;margin-top:5px;}
 i.glyphicon {font-size:1.4em;}
 
-/**
- * Checkbox / Radio / Select
- */
-/* checkbox */
-.chkEn {cursor:pointer;}
-.chkDis {cursor:not-allowed;}
-.lblCheckEn {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:pointer;transition:color 0.2s linear;position:relative;display:inline-block;}
-.lblCheckEn:hover {
-	color:#FF6633;
-}
-.lblCheckDis {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:not-allowed;position:relative;display:inline-block;}
-label.lblCheckEn > .chkEn, label.lblCheckDis > .chkDis {position:absolute;margin-left:-20px;vertical-align:-3px;}
-
-.rdoEn {cursor:pointer;}
-.rdoDis {cursor:not-allowed;}
-.lblRadioEn {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:pointer;transition:color 0.2s linear;position:relative;display:inline-block;}
-.lblRadioEn:hover {
-	color:#FF6633;
-}
-.lblRadioDis {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:not-allowed;position:relative;display:inline-block;}
-label.lblRadioEn > .rdoEn, label.lblRadioDis > .rdoDis {position:absolute;margin-left:-20px;vertical-align:-3px;}
-
-label.withElem {margin-top:7px;}
-label.block {display:block;padding-top:4px;padding-bottom:4px;width:5px;white-space:nowrap;}
-
 /* Customised Checkbox/Radio */
 input[type="checkbox"].custom, input[type="radio"].custom {position:relative !important;-webkit-appearance:initial !important;width:34px !important;height:20px !important;outline:none !important;cursor:pointer !important;
 	background:#ffffff !important;
@@ -160,18 +135,20 @@ input[type="checkbox"].custom:checked:after, input[type="radio"].custom:checked:
 
 .checkbox-custom, .radio-custom {margin:2px 2px;}
 
-.checkbox-custom > label, .checkbox-inline-custom {font-weight:normal;transition:color 0.2s linear;}
+.checkbox-custom > label, .checkbox-inline-custom {font-weight:normal;transition:color 0.2s linear;cursor:pointer;}
 .checkbox-inline-custom {margin-right:15px;}
-.checkbox-custom > label > span, .checkbox-inline-custom > span {cursor:pointer;display:block;margin:-19px 0px 0px 40px;}
-.checkbox-custom.disabled > label > span, .checkbox-inline-custom.disabled > span {opacity:.4;cursor:not-allowed;}
+.checkbox-custom > label > span, .checkbox-inline-custom > span {display:block;margin:-19px 0px -2px 38px;}
+.checkbox-custom.disabled > label, .checkbox-inline-custom.disabled {cursor:not-allowed;}
+.checkbox-custom.disabled > label > span, .checkbox-inline-custom.disabled > span {opacity:.4;}
 .checkbox-custom:not(.disabled) > label:hover, .checkbox-inline-custom:not(.disabled):hover {
 	color:#FF6633;
 }
 
-.radio-custom > label, .radio-inline-custom {font-weight:normal;transition:color 0.2s linear;}
+.radio-custom > label, .radio-inline-custom {font-weight:normal;transition:color 0.2s linear;cursor:pointer;}
 .radio-inline-custom {margin-right:15px;}
-.radio-custom > label > span, .radio-inline-custom > span {cursor:pointer;display:block;margin:-19px 0px 0px 40px;}
-.radio-custom.disabled > label > span, .radio-inline-custom.disabled > span {opacity:.4;cursor:not-allowed;}
+.radio-custom > label > span, .radio-inline-custom > span {display:block;margin:-19px 0px -2px 38px;}
+.radio-custom.disabled > label, .radio-inline-custom.disabled {cursor:not-allowed;}
+.radio-custom.disabled > label > span, .radio-inline-custom.disabled > span {opacity:.4;}
 .radio-custom:not(.disabled) > label:hover, .radio-inline-custom:not(.disabled):hover {
 	color:#FF6633;
 }
