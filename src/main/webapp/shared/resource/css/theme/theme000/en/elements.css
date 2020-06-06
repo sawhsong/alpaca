@@ -8,6 +8,8 @@
  */
 
 /* Anchor */
+a {color:#0000DF;text-decoration:none;}
+a:hover, a:focus {color:#D92E24;text-decoration:underline;}
 .aEn {cursor:pointer;}
 .aDis {cursor:default;}
 

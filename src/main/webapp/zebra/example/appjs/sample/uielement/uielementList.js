@@ -285,12 +285,12 @@ $(function() {
 		});
 	});
 
-	$(function() {
-		$("[name=chkCustomBlock]").change(function() {}).trigger("change");
-		$("[name=chkCustomInline]").change(function() {}).trigger("change");
-		$("[name=rdoCustomBlock]").change(function() {}).trigger("change");
-		$("[name=rdoCustomInline]").change(function() {}).trigger("change");
-	});
+//	$(function() {
+//		$("[name=chkCustomBlock]").change(function() {}).trigger("change");
+//		$("[name=chkCustomInline]").change(function() {}).trigger("change");
+//		$("[name=rdoCustomBlock]").change(function() {}).trigger("change");
+//		$("[name=rdoCustomInline]").change(function() {}).trigger("change");
+//	});
 
 	$("#btnGetCustomCheckboxValue").click(function() {
 		var checkValue = "";
