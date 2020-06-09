@@ -164,10 +164,10 @@
 									</tr>
 									<tr>
 										<th class="thEdit rt">Data To Shift</th>
-										<td class="tdEdit">
-											<ui:check name="isOrganisationShift" value="Y" text="Organisation" displayType="block" isChecked="Y"/>
-											<ui:check name="isPersonShift" value="Y" text="Person" displayType="block" isChecked="Y"/>
-											<ui:check name="isOpportunityShift" value="Y" text="Opportunity" displayType="block" isChecked="Y"/>
+										<td class="tdEdit lt">
+											<ui:check name="isOrganisationShift" value="Y" text="Organisation" displayType="block" isChecked="Y" isCustomised="true"/>
+											<ui:check name="isPersonShift" value="Y" text="Person" displayType="block" isChecked="Y" isCustomised="true"/>
+											<ui:check name="isOpportunityShift" value="Y" text="Opportunity" displayType="block" isChecked="Y" isCustomised="true"/>
 										</td>
 									</tr>
 								</table>
