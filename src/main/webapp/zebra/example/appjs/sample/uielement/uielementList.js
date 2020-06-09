@@ -18,7 +18,7 @@ $(function() {
 			popupId:"PopupWindowExample",
 			effect:"fade",
 			oncloseCallback:function() {
-				alert("oncloseCallback");
+//				alert("oncloseCallback");
 			}
 // 			width:600,
 // 			height:400

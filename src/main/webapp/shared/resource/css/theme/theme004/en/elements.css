@@ -109,24 +109,34 @@ i.glyphicon {font-size:1.4em;}
 /* checkbox */
 .chkEn {cursor:pointer;}
 .chkDis {cursor:not-allowed;}
-.lblCheckEn {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:pointer;transition:color 0.2s linear;position:relative;display:inline-block;}
+.lblCheckEn {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:pointer;transition:color 0.2s linear;position:relative;display:inline-block;
+	line-height:1.5;
+}
 .lblCheckEn:hover {
 	color:#FF6633;
 }
-.lblCheckDis {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:not-allowed;position:relative;display:inline-block;}
+.lblCheckDis {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:not-allowed;position:relative;display:inline-block;
+	line-height:1.5;
+}
 label.lblCheckEn > .chkEn, label.lblCheckDis > .chkDis {position:absolute;margin-left:-20px;vertical-align:-3px;}
 
 .rdoEn {cursor:pointer;}
 .rdoDis {cursor:not-allowed;}
-.lblRadioEn {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:pointer;transition:color 0.2s linear;position:relative;display:inline-block;}
+.lblRadioEn {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:pointer;transition:color 0.2s linear;position:relative;display:inline-block;
+	line-height:1.5;
+}
 .lblRadioEn:hover {
 	color:#FF6633;
 }
-.lblRadioDis {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:not-allowed;position:relative;display:inline-block;}
+.lblRadioDis {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:not-allowed;position:relative;display:inline-block;
+	line-height:1.5;
+}
 label.lblRadioEn > .rdoEn, label.lblRadioDis > .rdoDis {position:absolute;margin-left:-20px;vertical-align:-3px;}
 
 label.withElem {margin-top:7px;}
-label.block {display:block;padding-top:4px;padding-bottom:4px;width:5px;white-space:nowrap;}
+label.block {display:block;padding-top:4px;padding-bottom:4px;width:5px;white-space:nowrap;
+	line-height:1.5;
+}
 
 /* Customised Checkbox/Radio */
 input[type="checkbox"].custom, input[type="radio"].custom {position:relative !important;-webkit-appearance:initial !important;width:34px !important;height:20px !important;outline:none !important;cursor:pointer !important;
@@ -140,7 +150,7 @@ input[type="checkbox"].custom, input[type="radio"].custom {position:relative !im
 input[type="checkbox"].custom:not([disabled]):hover, input[type="radio"].custom:not([disabled]):hover {
 	-webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 4px rgba(102, 175, 233, .5);
 			box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 4px rgba(102, 175, 233, .5);
-	border-color:#66afe9;
+	border-color:#66afe9 !important;
 }
 input[type="checkbox"].custom {border-radius:8px !important;}
 input[type="radio"].custom {border-radius:10px !important;}

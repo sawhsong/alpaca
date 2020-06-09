@@ -88,7 +88,7 @@ var operationalRelationship = "<%=address.getOperationalRelation()%>";
 								<th class="thEdit rt">Address Search</th>
 								<td class="tdEdit" colspan="3">
 									<ui:text name="homeAddressSearch" className="hor" style="width:81%" placeHolder="Enter a location"/>
-									<ui:check name="editHomeAddress" labelClassName="withElem" value="Y" text="Edit Address" isCustomised="true"/>
+									<ui:check name="editHomeAddress" labelClassName="withElem" labelStyle="margin-top:4px" value="Y" text="Edit Address" isCustomised="true"/>
 								</td>
 							</tr>
 							<tr>
@@ -126,7 +126,7 @@ var operationalRelationship = "<%=address.getOperationalRelation()%>";
 								<th class="thEdit rt">Address Search</th>
 								<td class="tdEdit" colspan="3">
 									<ui:text name="otherAddressSearch" className="hor" style="width:81%" placeHolder="Enter a location"/>
-									<ui:check name="editOtherAddress" labelClassName="withElem" value="Y" text="Edit Address" isCustomised="true"/>
+									<ui:check name="editOtherAddress" labelClassName="withElem" labelStyle="margin-top:4px" value="Y" text="Edit Address" isCustomised="true"/>
 								</td>
 							</tr>
 							<tr>
@@ -164,7 +164,7 @@ var operationalRelationship = "<%=address.getOperationalRelation()%>";
 								<th class="thEdit rt">Address Search</th>
 								<td class="tdEdit" colspan="3">
 									<ui:text name="emerAddressSearch" className="hor" style="width:81%" placeHolder="Enter a location"/>
-									<ui:check name="editEmerAddress" labelClassName="withElem" value="Y" text="Edit Address" isCustomised="true"/>
+									<ui:check name="editEmerAddress" labelClassName="withElem" labelStyle="margin-top:4px" value="Y" text="Edit Address" isCustomised="true"/>
 								</td>
 							</tr>
 							<tr>
