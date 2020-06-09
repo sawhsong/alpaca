@@ -309,7 +309,7 @@ button.bootstrapSelect.dropdown-toggle > span.caret {margin-right:-5px;}
 .bootstrapSelect .dropdown-menu {margin-top:1px;font-size:1.0em;
 	border-radius:3px;
 	box-shadow:1px 1px 2px rgba(0, 0, 0, .2);
-	border:1px solid #AFAFAF;
+	border:1px solid #66afe9;
 }
 .bootstrapSelect .dropdown-menu > li {transition:background .2s;}
 .bootstrapSelect .dropdown-menu > li > a {padding:5px 25px 5px 5px;min-width:60px;}
