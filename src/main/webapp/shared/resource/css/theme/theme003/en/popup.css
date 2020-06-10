@@ -24,23 +24,19 @@
 	border:2px solid #FBCB09;
 	background-color:#ffffff;
 }
-.nonyPopWinWindowHolder {width:100%;height:100%;border-radius:5px;
-	background-color:#FFFFFF;
-}
-.nonyPopWinHeaderHolder {padding:8px 8px;transition:background .2s;border-top-left-radius:5px;border-top-right-radius:5px;
+.nonyPopWinWindowHolder {width:100%;height:100%;border-radius:5px;background-color:#FFFFFF;}
+.nonyPopWinHeaderHolder {padding:10px 8px;transition:background .2s;border-top-left-radius:5px;border-top-right-radius:5px;
 	color:#1C94C4;
 	border:1px solid #CCCCCC;
 	background:#F6F6F6 url("/shared/resource/css/jquery-ui/theme003/images/ui-bg_glass_100_f6f6f6_1x400.png") 50% 50% repeat-x;
 }
-.nonyPopWinHeaderHolder:hover {transition:background .2s;
+.nonyPopWinHeaderHolder:hover {
 	color:#C77405;
 	border:1px solid #FBCB09;
 	background:#FDF5CE url("/shared/resource/css/jquery-ui/theme003/images/ui-bg_glass_100_fdf5ce_1x400.png") 50% 50% repeat-x;
 }
-.nonyPopWinHeaderTitle {font-size:1.03em;font-weight:bold;
-	background:transparent;
-}
-.nonyPopWinHeaderCloseButton {position:absolute;top:12px;right:12px;}
+.nonyPopWinHeaderTitle {font-weight:bold;background:transparent;}
+.nonyPopWinHeaderCloseButton {position:absolute;top:13px;right:12px;}
 .nonyPopWinHeaderCloseButton:after {content:"";line-height:0px;clear:both;}
 .nonyPopWinHeaderBreaker {height:2px;clear:both;
 	background:#ffffff;
@@ -60,23 +56,19 @@
 	border:1px solid #FBCB09;
 	background-color:#ffffff;
 }
-.nonyDialogWindowHolder {width:100%;height:100%;border-radius:5px;
-	background-color:#FFFFFF;
-}
-.nonyDialogHeaderHolder {padding:12px 8px;transition:background .2s;border-top-left-radius:5px;border-top-right-radius:5px;
+.nonyDialogWindowHolder {width:100%;height:100%;border-radius:5px;background-color:#FFFFFF;}
+.nonyDialogHeaderHolder {padding:10px 8px;transition:background .2s;border-top-left-radius:5px;border-top-right-radius:5px;
 	color:#1C94C4;
 	border:0px solid #CCCCCC;
 	background:#F6F6F6 url("/shared/resource/css/jquery-ui/theme003/images/ui-bg_glass_100_f6f6f6_1x400.png") 50% 50% repeat-x;
 }
-.nonyDialogHeaderHolder:hover {transition:background .2s;
+.nonyDialogHeaderHolder:hover {
 	color:#C77405;
 	border:0px solid #FBCB09;
 	background:#FDF5CE url("/shared/resource/css/jquery-ui/theme003/images/ui-bg_glass_100_fdf5ce_1x400.png") 50% 50% repeat-x;
 }
-.nonyDialogHeaderTitle {font-size:1.03em;font-weight:bold;
-	background:transparent;
-}
-.nonyDialogHeaderCloseButton {position:absolute;top:12px;right:10px;}
+.nonyDialogHeaderTitle {font-weight:bold;background:transparent;}
+.nonyDialogHeaderCloseButton {position:absolute;top:10px;right:10px;}
 .nonyDialogHeaderCloseButton:after {content:"";line-height:0px;clear:both;}
 .nonyDialogHeaderBreaker {height:0px;clear:both;
 	border-bottom:1px solid #CCCCCC;

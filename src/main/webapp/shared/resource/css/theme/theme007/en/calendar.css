@@ -17,8 +17,7 @@
 /**
  * Layout
  */
-.nonyCalendarBase {position:absolute;z-index:500;border-radius:4px;
-	padding:0px 0px;
+.nonyCalendarBase {position:absolute;z-index:500;border-radius:4px;padding:0px 0px;
 	border:1px solid #74B2E2;
 	background-color:#ffffff;
 }
