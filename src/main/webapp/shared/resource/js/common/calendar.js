@@ -104,7 +104,7 @@
 			this.shadowEffect = params.shadowEffect = (params.shadowEffect == false) ? false : true;						// calendar object shadowEffect ([true] / false)
 			this.statusBar = params.statusBar = (params.statusBar == false) ? false : true;									// status bar ([true] / false)
 			this.draggable = params.draggable = (params.draggable == false) ? false : true;									// drag ([true] / false)
-			this.weekNumber = params.weekNumber = (params.weekNumber == false) ? false : true;								// show week number ([true] / false)
+			this.weekNumber = params.weekNumber = (params.weekNumber == true) ? true : false;								// show week number ([false] / true)
 			this.onloadCallback = params.onloadCallback;																	// onload function(function() {alert("onload");};, [none])
 			this.oncloseCallback = params.oncloseCallback;																	// onclose function(function() {alert("onclose");};, [none])
 			this.firstDayOfWeek = params.firstDayOfWeek = params.firstDayOfWeek || "Sun";									// which day of week will be shown first ([Sunday] / Monday)

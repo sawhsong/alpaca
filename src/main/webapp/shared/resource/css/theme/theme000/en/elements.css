@@ -148,11 +148,12 @@ input[type="checkbox"].custom:after, input[type="radio"].custom:after {position:
 	background:#FFFFFF;
 	border:1px solid #cccccc;
 }
-input[type="checkbox"].custom:after {border-radius:6px;}
-input[type="radio"].custom:after {border-radius:8px;}
+input[type="checkbox"].custom:after {border-radius:6px;color:#2e6da4;}
+input[type="radio"].custom:after {border-radius:8px;color:#2e6da4;}
 input[type="checkbox"].custom:disabled, input[type="radio"].custom:disabled {opacity:.4;cursor:not-allowed !important;}
 input[type="checkbox"].custom:checked:after {left:47% !important;padding-top:2px;font-family:"FontAwesome";content: "\f00c";box-shadow:0px 0px 1px 1px rgba(0, 0, 0, .1);}
 input[type="radio"].custom:checked:after {left:47% !important;padding-top:2px;font-family:"FontAwesome";content: "\f111";box-shadow:0px 0px 1px 1px rgba(0, 0, 0, .1);}
+input[type="checkbox"].custom:checked:hover:after, input[type="radio"].custom:checked:hover:after {color:#D92E24;}
 @-moz-document url-prefix() {input[type="checkbox"].custom:checked:after, input[type="radio"].custom:checked:after {padding-top:1px;}}
 .checkbox-custom, .radio-custom {margin:2px 2px;}
 

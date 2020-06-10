@@ -35,6 +35,7 @@ $(function() {
 		var options = {
 			displayTime:true,
 			statusBar:true,
+			weekNumber:true,
 			effect:"fade",
 			returnBoxes:[{time:"txtToTime"}, {DoW:"txtToDay"}, {Week:"txtToWeek"}],
 			oncloseCallback:function() {doCloseCalendar();}
@@ -227,7 +228,8 @@ $(function() {
 			width:1000,
 			height:500,
 			autoSlide:false,
-			arrowTheme:1
+			arrowTheme:1,
+			thumbnail:true
 		});
 
 		$("#btnAnchor").contextMenu(menu, {

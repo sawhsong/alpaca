@@ -994,53 +994,53 @@
 					<div id="slider">
 						<div>
 							<img data-u="image" src="<mc:cp key="slider"/>/img/sample/031.jpg"/>
-<%-- 							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/031-s190x90.jpg" /> --%>
-<!-- 							<div u="thumb">Slide description #001</div> -->
+							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/031-s190x90.jpg" />
+							<div u="thumb">Slide description #001</div>
 						</div>
 						<div>
 							<img data-u="image" src="<mc:cp key="slider"/>/img/sample/032.jpg" />
-<%-- 							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/032-s190x90.jpg" /> --%>
-<!-- 								<div u="thumb">Slide description #002</div> -->
+							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/032-s190x90.jpg" />
+								<div u="thumb">Slide description #002</div>
 						</div>
 						<div>
 							<img data-u="image" src="<mc:cp key="slider"/>/img/sample/033.jpg" />
-<%-- 							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/033-s190x90.jpg" /> --%>
-<!-- 							<div u="thumb">Slide description #003</div> -->
+							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/033-s190x90.jpg" />
+							<div u="thumb">Slide description #003</div>
 						</div>
 						<div>
 							<img data-u="image" src="<mc:cp key="slider"/>/img/sample/034.jpg" />
-<%-- 							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/034-s190x90.jpg" /> --%>
-<!-- 							<div u="thumb">Slide description #004</div> -->
+							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/034-s190x90.jpg" />
+							<div u="thumb">Slide description #004</div>
 						</div>
 						<div>
 							<img data-u="image" src="<mc:cp key="slider"/>/img/sample/035.jpg" />
-<%-- 							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/035-s190x90.jpg" /> --%>
-<!-- 							<div u="thumb">Slide description #005</div> -->
+							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/035-s190x90.jpg" />
+							<div u="thumb">Slide description #005</div>
 						</div>
 						<div>
 							<img data-u="image" src="<mc:cp key="slider"/>/img/sample/036.jpg" />
-<%-- 							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/036-s190x90.jpg" /> --%>
-<!-- 							<div u="thumb">Slide description #006</div> -->
+							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/036-s190x90.jpg" />
+							<div u="thumb">Slide description #006</div>
 						</div>
 						<div>
 							<img data-u="image" src="<mc:cp key="slider"/>/img/sample/037.jpg" />
-<%-- 							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/037-s190x90.jpg" /> --%>
-<!-- 							<div u="thumb">Slide description #007</div> -->
+							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/037-s190x90.jpg" />
+							<div u="thumb">Slide description #007</div>
 						</div>
 						<div>
 							<img data-u="image" src="<mc:cp key="slider"/>/img/sample/038.jpg" />
-<%-- 							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/038-s190x90.jpg" /> --%>
-<!-- 							<div u="thumb">Slide description #008</div> -->
+							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/038-s190x90.jpg" />
+							<div u="thumb">Slide description #008</div>
 						</div>
 						<div>
 							<img data-u="image" src="<mc:cp key="slider"/>/img/sample/039.jpg" />
-<%-- 							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/039-s190x90.jpg" /> --%>
-<!-- 							<div u="thumb">Slide description #009</div> -->
+							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/039-s190x90.jpg" />
+							<div u="thumb">Slide description #009</div>
 						</div>
 						<div>
 							<img data-u="image" src="<mc:cp key="slider"/>/img/sample/040.jpg" />
-<%-- 							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/040-s190x90.jpg" /> --%>
-<!-- 							<div u="thumb">Slide description #010</div> -->
+							<img data-u="thumb" src="<mc:cp key="slider"/>/img/sample/040-s190x90.jpg" />
+							<div u="thumb">Slide description #010</div>
 						</div>
 					</div>
 				</div>
