@@ -154,7 +154,7 @@ input[type="checkbox"].custom:not([disabled]):hover, input[type="radio"].custom:
 }
 input[type="checkbox"].custom {border-radius:7px !important;}
 input[type="radio"].custom {border-radius:10px !important;}
-input[type="checkbox"].custom:after, input[type="radio"].custom:after {position:absolute;display:block;top:5%;width:50%;height:90%;font-weight:bold;box-sizing:border-box;text-align:center;transition:all 0.2s ease-in 0s;left:3% !important;padding-top:2px;content: " ";box-shadow:0px 0px 1px 1px rgba(0, 0, 0, .1);
+input[type="checkbox"].custom:after, input[type="radio"].custom:after {position:absolute;display:block;top:5%;width:50%;height:90%;font-weight:bold;box-sizing:border-box;text-align:center;transition:all 0.2s ease-in 0s;left:4% !important;padding-top:2px;content: " ";box-shadow:0px 0px 1px 1px rgba(0, 0, 0, .1);
 	background:#FFFFFF;
 	border:1px solid #cccccc;
 }

@@ -103,6 +103,31 @@ i.icnEn:active, i.imgEn:active {top:1px;position:relative;}
 i.hor {font-size:1.4em;margin-top:5px;}
 i.glyphicon {font-size:1.4em;}
 
+/**
+ * Checkbox / Radio / Select
+ */
+/* checkbox */
+.chkEn {cursor:pointer;}
+.chkDis {cursor:not-allowed;}
+.lblCheckEn {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:pointer;transition:color 0.2s linear;position:relative;display:inline-block;}
+.lblCheckEn:hover {
+	color:#D92E24;
+}
+.lblCheckDis {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:not-allowed;position:relative;display:inline-block;}
+label.lblCheckEn > .chkEn, label.lblCheckDis > .chkDis {position:absolute;margin-left:-20px;vertical-align:-3px;}
+
+.rdoEn {cursor:pointer;}
+.rdoDis {cursor:not-allowed;}
+.lblRadioEn {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:pointer;transition:color 0.2s linear;position:relative;display:inline-block;}
+.lblRadioEn:hover {
+	color:#D92E24;
+}
+.lblRadioDis {margin:0px 0px;padding:0px 20px;font-weight:normal;cursor:not-allowed;position:relative;display:inline-block;}
+label.lblRadioEn > .rdoEn, label.lblRadioDis > .rdoDis {position:absolute;margin-left:-20px;vertical-align:-3px;}
+
+label.withElem {margin-top:7px;}
+label.block {display:block;padding-top:4px;padding-bottom:4px;width:5px;white-space:nowrap;}
+
 /* Customised Checkbox/Radio */
 input[type="checkbox"].custom, input[type="radio"].custom {position:relative !important;-webkit-appearance:initial !important;width:34px !important;height:20px !important;outline:none !important;cursor:pointer !important;
 	background:#ffffff !important;
@@ -119,7 +144,7 @@ input[type="checkbox"].custom:not([disabled]):hover, input[type="radio"].custom:
 }
 input[type="checkbox"].custom {border-radius:7px !important;}
 input[type="radio"].custom {border-radius:10px !important;}
-input[type="checkbox"].custom:after, input[type="radio"].custom:after {position:absolute;display:block;top:5%;width:50%;height:90%;font-weight:bold;box-sizing:border-box;text-align:center;transition:all 0.2s ease-in 0s;left:3% !important;padding-top:2px;content: " ";box-shadow:0px 0px 1px 1px rgba(0, 0, 0, .1);
+input[type="checkbox"].custom:after, input[type="radio"].custom:after {position:absolute;display:block;top:5%;width:50%;height:90%;font-weight:bold;box-sizing:border-box;text-align:center;transition:all 0.2s ease-in 0s;left:4% !important;padding-top:2px;content: " ";box-shadow:0px 0px 1px 1px rgba(0, 0, 0, .1);
 	background:#FFFFFF;
 	border:1px solid #cccccc;
 }
