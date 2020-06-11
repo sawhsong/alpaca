@@ -136,6 +136,7 @@ var commonJs = {
 	getCheckedValueFromRadio : function(radioName) {return $.nony.getCheckedValueFromRadio(radioName);},
 	setRadioValue : function(radioName, value) {$.nony.setRadioValue(radioName, value);},
 	clearSearchCriteria : function() {$.nony.clearSearchCriteria();},
+	isSearchCriteriaSelected : function() {return $.nony.isSearchCriteriaSelected();},
 	clearPaginationValue : function() {$.nony.clearPaginationValue();},
 	setExportButtonContextMenu : function(jqObjectButton) {$.nony.setExportButtonContextMenu(jqObjectButton);},
 	/*!

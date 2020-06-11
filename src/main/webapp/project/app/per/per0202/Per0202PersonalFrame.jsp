@@ -148,7 +148,7 @@ var personId = "<%=personId%>";
 				<h3 id="hPersonalComment">Personal Comments</h3>
 				<div id="divPersonalComment" class="accordionContents">
 <%-- 					<ui:txa name="personalComment" style="height:270px;"/> --%>
-					<div id="personalComment" style="padding:6px;height:260px;border:1px solid #cccccc;border-radius:3px;overflow:auto;"></div>
+					<div id="personalComment" style="padding:6px;height:255px;border:1px solid #cccccc;border-radius:3px;overflow:auto;"></div>
 				</div>
 			</div>
 			<div class="accordionGroup">
@@ -165,7 +165,7 @@ var personId = "<%=personId%>";
 					</div>
 					<div class="verGap4"></div>
 <%-- 					<ui:txa name="commsHistory" style="height:299px;border:1px solid #cccccc;border-radius:3px" status="display"/> --%>
-					<div id="commsHistory" style="padding:6px;height:330px;border:1px solid #cccccc;border-radius:3px;overflow:auto;"></div>
+					<div id="commsHistory" style="padding:6px;height:325px;border:1px solid #cccccc;border-radius:3px;overflow:auto;"></div>
 				</div>
 			</div>
 		</div>

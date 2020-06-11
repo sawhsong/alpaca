@@ -46,7 +46,7 @@
 }
 .nonyPopWinFooter {text-align:center;margin:0px auto;clear:both;padding:2px 3px 0px 3px;overflow:hidden;height:auto;
 	border-top:1px solid #327E04;
-	background:#F8F8F8;
+	background:#F6F4ED;
 }
 
 /**
@@ -79,5 +79,5 @@
 }
 .nonyDialogFooter {text-align:center;margin:0px auto;clear:both;padding:6px 4px;overflow:hidden;height:auto;
 	border-top:1px solid #327E04;
-	background:#f5f5f5;
+	background:#F6F4ED;
 }

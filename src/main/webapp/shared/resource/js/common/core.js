@@ -824,6 +824,21 @@ var nony = {
 			$(this).selectpicker("refresh");
 		});
 	},
+	isSearchCriteriaSelected : function() {
+		var isSelected = false;
+		$(document).find("#divSearchCriteriaArea").find(":input").each(function() {
+			if ($(this).prop("type") == "checkbox" || $(this).prop("type") == "radio") {
+				if ($(this).is(":checked")) {
+					isSelected = true;
+				}
+			} else {
+				if (!$.nony.isEmpty($(this).val())) {
+					isSelected = true;
+				}
+			}
+		});
+		return isSelected;
+	},
 	clearPaginationValue : function() {
 		$("#txtCurrentPageForPagination").val("");
 		$("#selMaxRowsPerPageSelectForPagenation").val("");

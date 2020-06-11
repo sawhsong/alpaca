@@ -288,6 +288,8 @@ $(function() {
 			}
 		});
 
-//		doSearch();
+		if (commonJs.isSearchCriteriaSelected()) {
+			doSearch();
+		}
 	});
 });
