@@ -23,7 +23,7 @@
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
-.search {background:#f2f5f9;border-color:#cfdae9}
+.search {background:#f2f5f9;}
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
