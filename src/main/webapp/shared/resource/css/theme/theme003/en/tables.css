@@ -13,6 +13,9 @@ table caption {padding:8px 8px;font-size:1.0em;font-weight:bold;border-top-left-
 	border-bottom:0px;
 	background-color:#FEF9E2;
 }
+table caption.captionSearch {}
+table caption.captionInform {}
+table caption.captionAdminTool {}
 table caption.captionGrid {}
 table caption.captionDefault {}
 table caption.captionEdit {}
@@ -140,11 +143,11 @@ table.tblAdminTool caption {padding:8px 8px;font-size:1.0em;font-weight:bold;bor
 .tblEdit {width:100%;}
 .thEdit {padding:6px 6px;
 	color:#555555;
-	border:1px solid #CCCCCC;
-	background:#F6F6F6;
+	border:1px solid #FBCB09;
+	background:#FEF9E2;
 }
 .tblEdit td {padding:6px 6px;
-	border:1px solid #CCCCCC;
+	border:1px solid #FBCB09;
 }
 .tblEdit tfoot td {padding:6px 6px;}
 

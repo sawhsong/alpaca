@@ -8,11 +8,14 @@
  */
 /* Table caption : do not use for fixedHeader table with scroll instead use panel */
 table caption {padding:8px 8px;font-size:1.0em;font-weight:bold;border-top-left-radius:4px;border-top-right-radius:4px;
-	color:#555555;
-	border:1px solid #dddddd;
+	color:#FFFFFF;
+	border:1px solid #d4ccb0;
 	border-bottom:0px;
-	background-color:#F5F5F5;
+	background-color:#67B021;
 }
+table caption.captionSearch {}
+table caption.captionInform {}
+table caption.captionAdminTool {}
 table caption.captionGrid {}
 table caption.captionDefault {}
 table caption.captionEdit {}
@@ -140,11 +143,11 @@ table.tblAdminTool caption {padding:8px 8px;font-size:1.0em;font-weight:bold;bor
 .tblEdit {width:100%;}
 .thEdit {padding:6px 6px;
 	color:#555555;
-	border:1px solid #DDDDDD;
+	border:1px solid #d4ccb0;
 	background:#F5F5F5;
 }
 .tblEdit td {padding:6px 6px;
-	border:1px solid #DDDDDD;
+	border:1px solid #d4ccb0;
 }
 .tblEdit tfoot td {padding:6px 6px;}
 
@@ -152,24 +155,24 @@ table.tblAdminTool caption {padding:8px 8px;font-size:1.0em;font-weight:bold;bor
  * Grid style Tables
  */
 .tblGrid {width:100%;box-shadow:0px 0px 0px rgba(0, 0, 0, .2);
-	border-bottom:1px solid #DDDDDD;
+	border-bottom:1px solid #d4ccb0;
 }
 .thGrid {padding:8px 4px;text-align:center;
-	border:1px solid #DDDDDD;
+	border:1px solid #d4ccb0;
 	background:#F5F5F5;
 }
 .tblGrid td {padding:6px 4px;
-	border:1px solid #DDDDDD;
+	border:1px solid #d4ccb0;
 }
 .tblGrid tbody tr:last-child td {}
 .tblGrid tfoot td {padding:6px 4px;
-	border:1px solid #DDDDDD;
+	border:1px solid #d4ccb0;
 	background:#F5F5F5;
 }
 .tblGrid tfoot tr:first-child td {}
 .tblGrid tfoot tr:last-child td {}
 .tblGrid tr:not(.default):not(.active):not(.info):not(.success):not(.warning):not(.danger):not(.noStripe):hover td {transition:background .2s;
-	background:#F6F6F6;
+	background:#FEFAE5;
 }
 .tblGrid tr:not(.default):not(.active):not(.info):not(.success):not(.warning):not(.danger):not(.noStripe):nth-child(even) {
 	background:#F9F9F9;
@@ -179,24 +182,24 @@ table.tblAdminTool caption {padding:8px 8px;font-size:1.0em;font-weight:bold;bor
 }
 
 .tblGrid tr.noBorderHor td, .tblGrid tr.noBorderHor th {
-	border-top:0px solid #DDDDDD;
-	border-bottom:0px solid #DDDDDD;
+	border-top:0px solid #d4ccb0;
+	border-bottom:0px solid #d4ccb0;
 }
 .tblGrid tr.noBorderHor:first-child th {
-	border-top:1px solid #DDDDDD;
+	border-top:1px solid #d4ccb0;
 }
 .tblGrid tr.noBorderHor:first-child td {
-	border-top:1px solid #DDDDDD;
+	border-top:1px solid #d4ccb0;
 }
 .tblGrid tr.noBorderVer td, .tblGrid tr.noBorderVer th {
-	border-left:0px solid #DDDDDD;
-	border-right:0px solid #DDDDDD;
+	border-left:0px solid #d4ccb0;
+	border-right:0px solid #d4ccb0;
 }
 .tblGrid tr.noBorderAll td, .tblGrid tr.noBorderAll th {
-	border:0px solid #DDDDDD;
+	border:0px solid #d4ccb0;
 }
 .tblGrid tr.noBorderAll:first-child th, .tblGrid tr.noBorderAll:first-child td {
-	border-top:1px solid #DDDDDD;
+	border-top:1px solid #d4ccb0;
 }
 
 /**

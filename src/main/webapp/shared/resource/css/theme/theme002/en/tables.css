@@ -13,6 +13,9 @@ table caption {padding:8px 8px;font-size:1.0em;font-weight:bold;border-top-left-
 	border-bottom:0px;
 	background-color:#F4FBFF;
 }
+table caption.captionSearch {}
+table caption.captionInform {}
+table caption.captionAdminTool {}
 table caption.captionGrid {}
 table caption.captionDefault {}
 table caption.captionEdit {}

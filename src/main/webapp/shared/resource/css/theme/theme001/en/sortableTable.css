@@ -3,7 +3,7 @@
 **************************************************************************************************/
 /* Sorting */
 table.sort th.sortable:hover {text-decoration:none;
-	color:#4D7496;
+	color:#D92E24;
 }
 table.sort th.sortable:after {content:"";}
 table.sort th.sorted-asc:after {cursor:pointer; content:" "url("/shared/resource/image/sortableTable/03_ascending.gif"); vertical-align:0px;}

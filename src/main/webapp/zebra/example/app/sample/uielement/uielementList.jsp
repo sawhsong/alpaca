@@ -133,7 +133,7 @@
 						</thead>
 						<tbody>
 <%
-						for (int i=0; i<200; i++) {
+						for (int i=0; i<100; i++) {
 %>
 							<tr>
 								<td class="tdGrid Ct"><input type="checkbox" id="chkForGenerate" name="chkForGenerate" class="chkEn inTblGrid" value="NONY_BOARD"/></td>
@@ -177,8 +177,74 @@
 			</div>
 		</div>
 		<div class="panel panel-success">
-			<div class="panel-heading"><h3 class="panel-title">Table - class="tblEdit"</h3></div>
+			<div class="panel-heading"><h3 class="panel-title">Table - tblSearch / tblInform / tblAdminTool / tblEdit / </h3></div>
 			<div class="panel-body">
+				<table class="tblSearch" style="width:100%;">
+					<caption class="captionSearch">Table class="tblSearch"</caption>
+					<colgroup>
+						<col width="15%"/>
+						<col width="35%"/>
+						<col width="15%"/>
+						<col width="35%"/>
+					</colgroup>
+					<tr>
+						<th class="thSearch">thSearch</th>
+						<td class="tdSearch">tdSearch</td>
+						<th class="thSearch Rt">thSearchRt</th>
+						<td class="tdSearch Rt">tdSearchRt</td>
+					</tr>
+					<tr>
+						<th class="thSearch Lt">thSearchLt</th>
+						<td class="tdSearch Lt">tdSearchLt</td>
+						<th class="thSearch Ct">thSearchCt</th>
+						<td class="tdSearch Ct">tdSearchCt</td>
+					</tr>
+				</table>
+				<div class="horGap20"></div>
+				<table class="tblInform" style="width:100%;">
+					<caption class="captionInform">Table class="tblInform"</caption>
+					<colgroup>
+						<col width="15%"/>
+						<col width="35%"/>
+						<col width="15%"/>
+						<col width="35%"/>
+					</colgroup>
+					<tr>
+						<th class="thInform">thInform</th>
+						<td class="tdInform">tdInform</td>
+						<th class="thInform Rt">thInformRt</th>
+						<td class="tdInform Rt">tdInformRt</td>
+					</tr>
+					<tr>
+						<th class="thInform Lt">thInformLt</th>
+						<td class="tdInform Lt">tdInformLt</td>
+						<th class="thInform Ct">thInformCt</th>
+						<td class="tdInform Ct">tdInformCt</td>
+					</tr>
+				</table>
+				<div class="horGap20"></div>
+				<table class="tblAdminTool" style="width:100%;">
+					<caption class="captionAdminTool">Table class="tblAdminTool"</caption>
+					<colgroup>
+						<col width="15%"/>
+						<col width="35%"/>
+						<col width="15%"/>
+						<col width="35%"/>
+					</colgroup>
+					<tr>
+						<th class="thAdminTool">thAdminTool</th>
+						<td class="tdAdminTool">tdAdminTool</td>
+						<th class="thAdminTool Rt">thAdminToolRt</th>
+						<td class="tdAdminTool Rt">tdAdminToolRt</td>
+					</tr>
+					<tr>
+						<th class="thAdminTool Lt">thAdminToolLt</th>
+						<td class="tdAdminTool Lt">tdAdminToolLt</td>
+						<th class="thAdminTool Ct">thAdminToolCt</th>
+						<td class="tdAdminTool Ct">tdAdminToolCt</td>
+					</tr>
+				</table>
+				<div class="horGap20"></div>
 				<table class="tblEdit" style="width:100%;">
 					<caption class="captionEdit">Table class="tblEdit"</caption>
 					<colgroup>
