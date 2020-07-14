@@ -58,8 +58,9 @@
 		 where vss.schemaname not in ('SYSTEM', 'SYS')
 		   and vss.osuser not in ('SYSTEM', 'SYS')
 		   and vss.username not in ('SYSTEM', 'SYS')
+		   and vss.status <> 'KILLED'
 		 ${where_clause}
-		 order by vss.osuser desc, vss.logon_time
+		 order by vss.osuser desc, vss.logon_time desc
 	]]>
 	</sql-query>
 
