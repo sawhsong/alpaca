@@ -659,4 +659,6 @@
     <bean class="${name.package.project}.conf.resource.ormapper.dao.EoExpenseAuthEmailLink.EoExpenseAuthEmailLinkHDaoImpl" id="eoExpenseAuthEmailLinkDao" init-method="init" name="eoExpenseAuthEmailLinkDao" parent="baseHDao" scope="prototype"/>
     <!--EoExpenseD DAO-->
     <bean class="${name.package.project}.conf.resource.ormapper.dao.EoExpenseD.EoExpenseDHDaoImpl" id="eoExpenseDDao" init-method="init" name="eoExpenseDDao" parent="baseHDao" scope="prototype"/>
+    <!--PrtAssignmentDocLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PrtAssignmentDocLink.PrtAssignmentDocLinkHDaoImpl" id="prtAssignmentDocLinkDao" init-method="init" name="prtAssignmentDocLinkDao" parent="baseHDao" scope="prototype"/>
 </beans>

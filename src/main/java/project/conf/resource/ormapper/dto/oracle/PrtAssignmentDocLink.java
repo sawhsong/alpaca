@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated DTO Source
- * - PRT_ASSIGNMENT_SETUP - 
+ * - PRT_ASSIGNMENT_DOC_LINK - 
  *************************************************************************************************/
 package project.conf.resource.ormapper.dto.oracle;
 
@@ -13,26 +13,16 @@ import zebra.util.CommonUtil;
 import project.common.extend.BaseDto;
 
 @SuppressWarnings("unused")
-public class PrtAssignmentSetup extends BaseDto implements Serializable {
+public class PrtAssignmentDocLink extends BaseDto implements Serializable {
 	/**
 	 * Columns
 	 */
+	private double prtAssignmentDocLinkId;
+	private String PRT_ASSIGNMENT_DOC_LINK_ID;
 	private double prtAssignmentSetupId;
 	private String PRT_ASSIGNMENT_SETUP_ID;
-	private double assignmentId;
-	private String ASSIGNMENT_ID;
-	private double createdBy;
-	private String CREATED_BY;
-	private Date creationDate;
-	private String CREATION_DATE;
-	private String isActive;
-	private String IS_ACTIVE;
-	private double prtCohScenarioId;
-	private String PRT_COH_SCENARIO_ID;
-	private double prtOrganisationId;
-	private String PRT_ORGANISATION_ID;
-	private String prtWorkingState;
-	private String PRT_WORKING_STATE;
+	private double prtDocumentId;
+	private String PRT_DOCUMENT_ID;
 	private String insertUserName;
 	private String INSERT_USER_NAME;
 	private String updateUserName;
@@ -42,7 +32,7 @@ public class PrtAssignmentSetup extends BaseDto implements Serializable {
 	 * Constructor
 	 */
 	@SuppressWarnings("rawtypes")
-	public PrtAssignmentSetup() throws Exception {
+	public PrtAssignmentDocLink() throws Exception {
 		Class cls = getClass();
 		Field field[] = cls.getDeclaredFields();
 
@@ -60,9 +50,9 @@ public class PrtAssignmentSetup extends BaseDto implements Serializable {
 
 		dataSet.addRow();
 		updateColumnsDataSet.addName(updateColumnsDataSetHeader);
-		setFrwVarPrimaryKey("PRT_ASSIGNMENT_SETUP_ID");
-		setFrwVarDateColumn("CREATION_DATE");
-		setFrwVarNumberColumn("PRT_ASSIGNMENT_SETUP_ID,ASSIGNMENT_ID,CREATED_BY,PRT_COH_SCENARIO_ID,PRT_ORGANISATION_ID");
+		setFrwVarPrimaryKey("PRT_ASSIGNMENT_DOC_LINK_ID");
+		setFrwVarDateColumn("");
+		setFrwVarNumberColumn("PRT_ASSIGNMENT_DOC_LINK_ID,PRT_ASSIGNMENT_SETUP_ID,PRT_DOCUMENT_ID");
 		setFrwVarClobColumn("");
 		setFrwVarDefaultColumn("");
 		setFrwVarDefaultValue("");
@@ -72,6 +62,15 @@ public class PrtAssignmentSetup extends BaseDto implements Serializable {
 	/**
 	 * Accessors
 	 */
+	public double getPrtAssignmentDocLinkId() {
+		return prtAssignmentDocLinkId;
+	}
+
+	public void setPrtAssignmentDocLinkId(double prtAssignmentDocLinkId) throws Exception {
+		this.prtAssignmentDocLinkId = prtAssignmentDocLinkId;
+		setValueFromAccessor("PRT_ASSIGNMENT_DOC_LINK_ID", CommonUtil.toString(prtAssignmentDocLinkId));
+	}
+
 	public double getPrtAssignmentSetupId() {
 		return prtAssignmentSetupId;
 	}
@@ -81,67 +80,13 @@ public class PrtAssignmentSetup extends BaseDto implements Serializable {
 		setValueFromAccessor("PRT_ASSIGNMENT_SETUP_ID", CommonUtil.toString(prtAssignmentSetupId));
 	}
 
-	public double getAssignmentId() {
-		return assignmentId;
+	public double getPrtDocumentId() {
+		return prtDocumentId;
 	}
 
-	public void setAssignmentId(double assignmentId) throws Exception {
-		this.assignmentId = assignmentId;
-		setValueFromAccessor("ASSIGNMENT_ID", CommonUtil.toString(assignmentId));
-	}
-
-	public double getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(double createdBy) throws Exception {
-		this.createdBy = createdBy;
-		setValueFromAccessor("CREATED_BY", CommonUtil.toString(createdBy));
-	}
-
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(Date creationDate) throws Exception {
-		this.creationDate = creationDate;
-		setValueFromAccessor("CREATION_DATE", CommonUtil.toString(creationDate));
-	}
-
-	public String getIsActive() {
-		return isActive;
-	}
-
-	public void setIsActive(String isActive) throws Exception {
-		this.isActive = isActive;
-		setValueFromAccessor("IS_ACTIVE", isActive);
-	}
-
-	public double getPrtCohScenarioId() {
-		return prtCohScenarioId;
-	}
-
-	public void setPrtCohScenarioId(double prtCohScenarioId) throws Exception {
-		this.prtCohScenarioId = prtCohScenarioId;
-		setValueFromAccessor("PRT_COH_SCENARIO_ID", CommonUtil.toString(prtCohScenarioId));
-	}
-
-	public double getPrtOrganisationId() {
-		return prtOrganisationId;
-	}
-
-	public void setPrtOrganisationId(double prtOrganisationId) throws Exception {
-		this.prtOrganisationId = prtOrganisationId;
-		setValueFromAccessor("PRT_ORGANISATION_ID", CommonUtil.toString(prtOrganisationId));
-	}
-
-	public String getPrtWorkingState() {
-		return prtWorkingState;
-	}
-
-	public void setPrtWorkingState(String prtWorkingState) throws Exception {
-		this.prtWorkingState = prtWorkingState;
-		setValueFromAccessor("PRT_WORKING_STATE", prtWorkingState);
+	public void setPrtDocumentId(double prtDocumentId) throws Exception {
+		this.prtDocumentId = prtDocumentId;
+		setValueFromAccessor("PRT_DOCUMENT_ID", CommonUtil.toString(prtDocumentId));
 	}
 
 	public String getInsertUserName() {
@@ -279,14 +224,9 @@ public class PrtAssignmentSetup extends BaseDto implements Serializable {
 	public String toString() {
 		String str = "";
 
+		str += "prtAssignmentDocLinkId : "+prtAssignmentDocLinkId+"\n";
 		str += "prtAssignmentSetupId : "+prtAssignmentSetupId+"\n";
-		str += "assignmentId : "+assignmentId+"\n";
-		str += "createdBy : "+createdBy+"\n";
-		str += "creationDate : "+creationDate+"\n";
-		str += "isActive : "+isActive+"\n";
-		str += "prtCohScenarioId : "+prtCohScenarioId+"\n";
-		str += "prtOrganisationId : "+prtOrganisationId+"\n";
-		str += "prtWorkingState : "+prtWorkingState+"\n";
+		str += "prtDocumentId : "+prtDocumentId+"\n";
 		str += "insertUserName : "+insertUserName+"\n";
 		str += "updateUserName : "+updateUserName+"\n";
 
@@ -299,14 +239,9 @@ public class PrtAssignmentSetup extends BaseDto implements Serializable {
 	public String toXmlString() {
 		String str = "";
 
+		str += "<column name=\"prtAssignmentDocLinkId\" value=\""+prtAssignmentDocLinkId+"\">";
 		str += "<column name=\"prtAssignmentSetupId\" value=\""+prtAssignmentSetupId+"\">";
-		str += "<column name=\"assignmentId\" value=\""+assignmentId+"\">";
-		str += "<column name=\"createdBy\" value=\""+createdBy+"\">";
-		str += "<column name=\"creationDate\" value=\""+creationDate+"\">";
-		str += "<column name=\"isActive\" value=\""+isActive+"\">";
-		str += "<column name=\"prtCohScenarioId\" value=\""+prtCohScenarioId+"\">";
-		str += "<column name=\"prtOrganisationId\" value=\""+prtOrganisationId+"\">";
-		str += "<column name=\"prtWorkingState\" value=\""+prtWorkingState+"\">";
+		str += "<column name=\"prtDocumentId\" value=\""+prtDocumentId+"\">";
 		str += "<column name=\"insertUserName\" value=\""+insertUserName+"\">";
 		str += "<column name=\"updateUserName\" value=\""+updateUserName+"\">";
 
@@ -319,14 +254,9 @@ public class PrtAssignmentSetup extends BaseDto implements Serializable {
 	public String toJsonString() {
 		String str = "";
 
+		str += "\"prtAssignmentDocLinkId\":\""+prtAssignmentDocLinkId+"\", ";
 		str += "\"prtAssignmentSetupId\":\""+prtAssignmentSetupId+"\", ";
-		str += "\"assignmentId\":\""+assignmentId+"\", ";
-		str += "\"createdBy\":\""+createdBy+"\", ";
-		str += "\"creationDate\":\""+creationDate+"\", ";
-		str += "\"isActive\":\""+isActive+"\", ";
-		str += "\"prtCohScenarioId\":\""+prtCohScenarioId+"\", ";
-		str += "\"prtOrganisationId\":\""+prtOrganisationId+"\", ";
-		str += "\"prtWorkingState\":\""+prtWorkingState+"\", ";
+		str += "\"prtDocumentId\":\""+prtDocumentId+"\", ";
 		str += "\"insertUserName\":\""+insertUserName+"\", ";
 		str += "\"updateUserName\":\""+updateUserName+"\"";
 

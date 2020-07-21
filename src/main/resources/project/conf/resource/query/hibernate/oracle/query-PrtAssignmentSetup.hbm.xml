@@ -10,7 +10,6 @@
 		select prt_assignment_setup_id,
 		       assignment_id,
 		       prt_organisation_id,
-		       prt_document_id,
 		       prt_coh_scenario_id,
 		       prt_working_state,
 		       created_by,
