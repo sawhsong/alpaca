@@ -17,6 +17,11 @@
 			<result name="info" type="debugDispatcherResult">/zebra/example/app/framework/dtogenerator/dtoGeneratorInfoPop.jsp</result>
 		</action>
 
+		<!--/* CheckDtoDiscrepancy */-->
+		<action name="checkdto/*" class="zebra.example.app.framework.checkdto.CheckDtoAction" method="{1}">
+			<result name="list" type="debugDispatcherResult">/zebra/example/app/framework/checkdto/checkDtoList.jsp</result>
+		</action>
+
 		<!--/* CommonCode */-->
 		<action name="commoncode/*" class="zebra.example.app.framework.commoncode.CommonCodeAction" method="{1}">
 			<result name="list" type="debugDispatcherResult">/zebra/example/app/framework/commoncode/commonCodeList.jsp</result>

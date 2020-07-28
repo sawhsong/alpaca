@@ -51,6 +51,13 @@
 					"icon":"leftMenu-M220",
 					"menuUrl":"/zebra/framework/dtogenerator/getDefault.do"
 				}, {
+					"menuId":"M221",
+					"menuLevel":"2",
+					"menuName_en":"Check DTO Discrepancy",
+					"menuName_ko":"DTO 불일치 확인",
+					"icon":"leftMenu-M221",
+					"menuUrl":"/zebra/framework/checkdto/getDefault.do"
+				}, {
 					"menuId":"M230",
 					"menuLevel":"2",
 					"menuName_en":"Common Code Mgmt.",

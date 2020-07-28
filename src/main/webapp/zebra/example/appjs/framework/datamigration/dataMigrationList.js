@@ -247,40 +247,6 @@ $(function() {
 								popup.addContents(com.message.E801+" : "+param.tableName);
 							}
 						});
-
-//						commonJs.ajaxSubmit({
-//							url:"/zebra/framework/datamigration/doMigration.do",
-//							dataType:"json",
-//							data:param,
-//							blind:false,
-//							success:function(data, textStatus) {
-//								var result = commonJs.parseAjaxResult(data, textStatus, "json");
-//
-//								if (result.isSuccess == true || result.isSuccess == "true") {
-//									popup.addContents(com.message.I802+" : "+param.tableName);
-//
-//									if ((index+1) == commonJs.getCountChecked("chkSourceData")) {
-//										commonJs.openDialog({
-//											type:com.message.I000,
-//											contents:com.message.I801,
-//											modal:true,
-//											width:300,
-//											buttons:[{
-//												caption:com.caption.ok, callback:function() {
-//													try {
-//														popup.close();
-//														doTargetDataSearch();
-//													} catch(ex) {
-//													}
-//												}
-//											}]
-//										});
-//									}
-//								} else {
-//									popup.addContents(com.message.E801+" : "+param.tableName);
-//								}
-//							}
-//						});
 					}, index * 100);
 				});
 			}

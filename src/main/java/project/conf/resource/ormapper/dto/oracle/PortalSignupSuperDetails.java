@@ -55,6 +55,12 @@ public class PortalSignupSuperDetails extends BaseDto implements Serializable {
 	private String EFT_BSB;
 	private String eftEmail;
 	private String EFT_EMAIL;
+	private String noTfnReason;
+	private String NO_TFN_REASON;
+	private String paidHourly;
+	private String PAID_HOURLY;
+	private String paidWholly;
+	private String PAID_WHOLLY;
 	private String sacBpayBillerCode;
 	private String SAC_BPAY_BILLER_CODE;
 	private String sacBpayRefNo;
@@ -79,8 +85,12 @@ public class PortalSignupSuperDetails extends BaseDto implements Serializable {
 	private String SUPER_MEMBER_NUMBER;
 	private String superPaymentType;
 	private String SUPER_PAYMENT_TYPE;
+	private String tfn;
+	private String TFN;
 	private String transformed;
 	private String TRANSFORMED;
+	private String workPersonally;
+	private String WORK_PERSONALLY;
 	private String insertUserName;
 	private String INSERT_USER_NAME;
 	private String updateUserName;
@@ -291,6 +301,33 @@ public class PortalSignupSuperDetails extends BaseDto implements Serializable {
 		setValueFromAccessor("EFT_EMAIL", eftEmail);
 	}
 
+	public String getNoTfnReason() {
+		return noTfnReason;
+	}
+
+	public void setNoTfnReason(String noTfnReason) throws Exception {
+		this.noTfnReason = noTfnReason;
+		setValueFromAccessor("NO_TFN_REASON", noTfnReason);
+	}
+
+	public String getPaidHourly() {
+		return paidHourly;
+	}
+
+	public void setPaidHourly(String paidHourly) throws Exception {
+		this.paidHourly = paidHourly;
+		setValueFromAccessor("PAID_HOURLY", paidHourly);
+	}
+
+	public String getPaidWholly() {
+		return paidWholly;
+	}
+
+	public void setPaidWholly(String paidWholly) throws Exception {
+		this.paidWholly = paidWholly;
+		setValueFromAccessor("PAID_WHOLLY", paidWholly);
+	}
+
 	public String getSacBpayBillerCode() {
 		return sacBpayBillerCode;
 	}
@@ -399,6 +436,15 @@ public class PortalSignupSuperDetails extends BaseDto implements Serializable {
 		setValueFromAccessor("SUPER_PAYMENT_TYPE", superPaymentType);
 	}
 
+	public String getTfn() {
+		return tfn;
+	}
+
+	public void setTfn(String tfn) throws Exception {
+		this.tfn = tfn;
+		setValueFromAccessor("TFN", tfn);
+	}
+
 	public String getTransformed() {
 		return transformed;
 	}
@@ -406,6 +452,15 @@ public class PortalSignupSuperDetails extends BaseDto implements Serializable {
 	public void setTransformed(String transformed) throws Exception {
 		this.transformed = transformed;
 		setValueFromAccessor("TRANSFORMED", transformed);
+	}
+
+	public String getWorkPersonally() {
+		return workPersonally;
+	}
+
+	public void setWorkPersonally(String workPersonally) throws Exception {
+		this.workPersonally = workPersonally;
+		setValueFromAccessor("WORK_PERSONALLY", workPersonally);
 	}
 
 	public String getInsertUserName() {
@@ -562,6 +617,9 @@ public class PortalSignupSuperDetails extends BaseDto implements Serializable {
 		str += "eftAccountNo : "+eftAccountNo+"\n";
 		str += "eftBsb : "+eftBsb+"\n";
 		str += "eftEmail : "+eftEmail+"\n";
+		str += "noTfnReason : "+noTfnReason+"\n";
+		str += "paidHourly : "+paidHourly+"\n";
+		str += "paidWholly : "+paidWholly+"\n";
 		str += "sacBpayBillerCode : "+sacBpayBillerCode+"\n";
 		str += "sacBpayRefNo : "+sacBpayRefNo+"\n";
 		str += "superChoice : "+superChoice+"\n";
@@ -574,7 +632,9 @@ public class PortalSignupSuperDetails extends BaseDto implements Serializable {
 		str += "superMemberName : "+superMemberName+"\n";
 		str += "superMemberNumber : "+superMemberNumber+"\n";
 		str += "superPaymentType : "+superPaymentType+"\n";
+		str += "tfn : "+tfn+"\n";
 		str += "transformed : "+transformed+"\n";
+		str += "workPersonally : "+workPersonally+"\n";
 		str += "insertUserName : "+insertUserName+"\n";
 		str += "updateUserName : "+updateUserName+"\n";
 
@@ -606,6 +666,9 @@ public class PortalSignupSuperDetails extends BaseDto implements Serializable {
 		str += "<column name=\"eftAccountNo\" value=\""+eftAccountNo+"\">";
 		str += "<column name=\"eftBsb\" value=\""+eftBsb+"\">";
 		str += "<column name=\"eftEmail\" value=\""+eftEmail+"\">";
+		str += "<column name=\"noTfnReason\" value=\""+noTfnReason+"\">";
+		str += "<column name=\"paidHourly\" value=\""+paidHourly+"\">";
+		str += "<column name=\"paidWholly\" value=\""+paidWholly+"\">";
 		str += "<column name=\"sacBpayBillerCode\" value=\""+sacBpayBillerCode+"\">";
 		str += "<column name=\"sacBpayRefNo\" value=\""+sacBpayRefNo+"\">";
 		str += "<column name=\"superChoice\" value=\""+superChoice+"\">";
@@ -618,7 +681,9 @@ public class PortalSignupSuperDetails extends BaseDto implements Serializable {
 		str += "<column name=\"superMemberName\" value=\""+superMemberName+"\">";
 		str += "<column name=\"superMemberNumber\" value=\""+superMemberNumber+"\">";
 		str += "<column name=\"superPaymentType\" value=\""+superPaymentType+"\">";
+		str += "<column name=\"tfn\" value=\""+tfn+"\">";
 		str += "<column name=\"transformed\" value=\""+transformed+"\">";
+		str += "<column name=\"workPersonally\" value=\""+workPersonally+"\">";
 		str += "<column name=\"insertUserName\" value=\""+insertUserName+"\">";
 		str += "<column name=\"updateUserName\" value=\""+updateUserName+"\">";
 
@@ -650,6 +715,9 @@ public class PortalSignupSuperDetails extends BaseDto implements Serializable {
 		str += "\"eftAccountNo\":\""+eftAccountNo+"\", ";
 		str += "\"eftBsb\":\""+eftBsb+"\", ";
 		str += "\"eftEmail\":\""+eftEmail+"\", ";
+		str += "\"noTfnReason\":\""+noTfnReason+"\", ";
+		str += "\"paidHourly\":\""+paidHourly+"\", ";
+		str += "\"paidWholly\":\""+paidWholly+"\", ";
 		str += "\"sacBpayBillerCode\":\""+sacBpayBillerCode+"\", ";
 		str += "\"sacBpayRefNo\":\""+sacBpayRefNo+"\", ";
 		str += "\"superChoice\":\""+superChoice+"\", ";
@@ -662,7 +730,9 @@ public class PortalSignupSuperDetails extends BaseDto implements Serializable {
 		str += "\"superMemberName\":\""+superMemberName+"\", ";
 		str += "\"superMemberNumber\":\""+superMemberNumber+"\", ";
 		str += "\"superPaymentType\":\""+superPaymentType+"\", ";
+		str += "\"tfn\":\""+tfn+"\", ";
 		str += "\"transformed\":\""+transformed+"\", ";
+		str += "\"workPersonally\":\""+workPersonally+"\", ";
 		str += "\"insertUserName\":\""+insertUserName+"\", ";
 		str += "\"updateUserName\":\""+updateUserName+"\"";
 

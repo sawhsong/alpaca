@@ -24,6 +24,16 @@ public class DummyHDaoImpl extends BaseHDao implements DummyDao {
 		return selectAsDataSet(queryAdvisor, "query.zebra.Dummy.getTableListDataSetByCriteriaForAdditionalDataSource");
 	}
 
+	public DataSet getTableDetailDataSet() throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		return selectAsDataSet(queryAdvisor, "query.zebra.Dummy.getTableDetailDataSet");
+	}
+
+	public DataSet getTableDetailDataSetForAdditionalDataSource() throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		return selectAsDataSet(queryAdvisor, "query.zebra.Dummy.getTableDetailDataSetForAdditionalDataSource");
+	}
+
 	public DataSet getTableDetailDataSetByTableName(String tableName) throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		queryAdvisor.addVariable("table_name", tableName);

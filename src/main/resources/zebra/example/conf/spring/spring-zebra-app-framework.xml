@@ -13,6 +13,10 @@
 	<bean id="zebraFrameworkDtoGeneratorAction" name="zebraFrameworkDtoGeneratorAction" class="${name.package.framework}.example.app.framework.dtogenerator.DtoGeneratorAction"/>
 	<bean id="zebraFrameworkDtoGeneratorBiz" name="zebraFrameworkDtoGeneratorBiz" class="${name.package.framework}.example.app.framework.dtogenerator.DtoGeneratorBizImpl" parent="baseBiz"/>
 
+	<!--/* CheckDtoDiscrepancy */-->
+	<bean id="zebraFrameworkCheckDtoAction" name="zebraFrameworkCheckDtoAction" class="${name.package.framework}.example.app.framework.checkdto.CheckDtoAction"/>
+	<bean id="zebraFrameworkCheckDtoBiz" name="zebraFrameworkCheckDtoBiz" class="${name.package.framework}.example.app.framework.checkdto.CheckDtoBizImpl" parent="baseBiz"/>
+
 	<!--/* CommonCode */-->
 	<bean id="zebraFrameworkCommonCodeAction" name="zebraFrameworkCommonCodeAction" class="${name.package.framework}.example.app.framework.commoncode.CommonCodeAction"/>
 	<bean id="zebraFrameworkCommonCodeBiz" name="zebraFrameworkCommonCodeBiz" class="${name.package.framework}.example.app.framework.commoncode.CommonCodeBizImpl" parent="baseBiz"/>
