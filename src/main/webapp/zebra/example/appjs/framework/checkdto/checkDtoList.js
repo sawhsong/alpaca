@@ -62,6 +62,8 @@ $(function() {
 	doSourceDataSearch = function() {
 		commonJs.showProcMessageOnElement("tblSourceData");
 
+		initialiseListTable();
+
 		commonJs.doSearch({
 			url:"/zebra/framework/checkdto/getList.do",
 			data:{dataSource:$("#dataSourceToCheck").val()},
@@ -118,6 +120,8 @@ $(function() {
 			$(this).contextMenu(gridAction);
 		});
 
+		resizeListTable("tblSourceData");
+
 		commonJs.hideProcMessageOnElement("tblSourceData");
 	};
 
@@ -165,6 +169,8 @@ $(function() {
 			displayRowCount:true,
 			totalResultRows:result.totalResultRows
 		});
+
+		resizeListTable("tblColumns");
 
 		commonJs.hideProcMessageOnElement("tblColumns");
 	};
@@ -215,6 +221,33 @@ $(function() {
 			containment:$("#divScrollablePanel")
 		});
 	};
+
+	initialiseListTable = function() {
+		$("#tblColumnsBody").html("");
+		$("#divTargetDataPagingArea").html("");
+	}
+
+	resizeListTable = function(tableId) {
+		var attachToHeight, tableHeight;
+
+		if (tableId == "tblSourceData") {
+			attachToHeight = $("#divSourceDataTable").outerHeight();
+			tableHeight = $("#tblSourceData").outerHeight();
+			if (attachToHeight > tableHeight) {
+				if ($("#systemGeneratedTableForFixedHeadertblSourceData").length > 0) {
+					$("#systemGeneratedTableForFixedHeadertblSourceData").remove();
+				}
+			}
+		} else if (tableId == "tblColumns") {
+			attachToHeight = $("#divTargetDataTable").outerHeight();
+			tableHeight = $("#tblColumns").outerHeight();
+			if (attachToHeight > tableHeight) {
+				if ($("#systemGeneratedTableForFixedHeadertblColumns").length > 0) {
+					$("#systemGeneratedTableForFixedHeadertblColumns").remove();
+				}
+			}
+		}
+	}
 
 	/*!
 	 * load event (document / window)

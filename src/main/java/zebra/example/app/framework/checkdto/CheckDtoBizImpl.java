@@ -220,10 +220,10 @@ public class CheckDtoBizImpl extends BaseBiz implements CheckDtoBiz {
 		for (int i=0; i<tableList.getRowCnt(); i++) {
 			String tableName = tableList.getValue(i, "TABLE_NAME");
 			String className = tableList.getValue(i, "CLASS_NAME");
-			int tblIndex = -1;
 
-			tblIndex = tableDetail.getRowIndex("TABLE_NAME", tableName);
 			if (CommonUtil.isNotBlank(className)) {
+				int tblIndex = tableDetail.getRowIndex("TABLE_NAME", tableName);
+
 				for (int j=tblIndex; j<tableDetail.getRowCnt(); j++) {
 					if (CommonUtil.equals(tableName, tableDetail.getValue(j, "TABLE_NAME"))) {
 						String colName = tableDetail.getValue(j, "COLUMN_NAME");
@@ -240,6 +240,7 @@ public class CheckDtoBizImpl extends BaseBiz implements CheckDtoBiz {
 
 						if (!isExist) {
 							tableList.setValue(i, "IS_DIFFERENT", "Y");
+							break;
 						} else {
 							tableList.setValue(i, "IS_DIFFERENT", "N");
 						}
