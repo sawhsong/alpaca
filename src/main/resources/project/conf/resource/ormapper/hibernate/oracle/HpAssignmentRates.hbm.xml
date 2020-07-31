@@ -16,6 +16,7 @@
 		<property name="assigmentId" column="ASSIGMENT_ID" type="java.lang.Double"/>
 		<property name="chargePeriod" column="CHARGE_PERIOD" type="java.lang.String" length="50"/>
 		<property name="chargeRate" column="CHARGE_RATE" type="java.lang.Double"/>
+		<property name="displayOnExpense" column="DISPLAY_ON_EXPENSE" type="java.lang.String" length="1"/>
 		<property name="displayOnTimesheet" column="DISPLAY_ON_TIMESHEET" type="java.lang.String" length="1"/>
 		<property name="elementId" column="ELEMENT_ID" type="java.lang.Double"/>
 		<property name="enableFlag" column="ENABLE_FLAG" type="java.lang.String" length="1"/>
@@ -36,6 +37,7 @@
 		       ASSIGMENT_ID,
 		       CHARGE_PERIOD,
 		       CHARGE_RATE,
+		       DISPLAY_ON_EXPENSE,
 		       DISPLAY_ON_TIMESHEET,
 		       ELEMENT_ID,
 		       ENABLE_FLAG,
@@ -50,6 +52,7 @@
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -63,6 +66,7 @@
 		       ASSIGMENT_ID,
 		       CHARGE_PERIOD,
 		       CHARGE_RATE,
+		       DISPLAY_ON_EXPENSE,
 		       DISPLAY_ON_TIMESHEET,
 		       ELEMENT_ID,
 		       ENABLE_FLAG,
@@ -81,6 +85,7 @@
 		       ${ASSIGMENT_ID},
 		       ${CHARGE_PERIOD},
 		       ${CHARGE_RATE},
+		       ${DISPLAY_ON_EXPENSE},
 		       ${DISPLAY_ON_TIMESHEET},
 		       ${ELEMENT_ID},
 		       ${ENABLE_FLAG},
@@ -103,6 +108,7 @@
 		       ASSIGMENT_ID = ${ASSIGMENT_ID},
 		       CHARGE_PERIOD = ${CHARGE_PERIOD},
 		       CHARGE_RATE = ${CHARGE_RATE},
+		       DISPLAY_ON_EXPENSE = ${DISPLAY_ON_EXPENSE},
 		       DISPLAY_ON_TIMESHEET = ${DISPLAY_ON_TIMESHEET},
 		       ELEMENT_ID = ${ELEMENT_ID},
 		       ENABLE_FLAG = ${ENABLE_FLAG},

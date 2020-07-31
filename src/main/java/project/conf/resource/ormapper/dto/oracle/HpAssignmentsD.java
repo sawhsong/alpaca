@@ -139,6 +139,8 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	private String PAY_METHOD_ID;
 	private String preferred;
 	private String PREFERRED;
+	private String prtStatus;
+	private String PRT_STATUS;
 	private double rate;
 	private String RATE;
 	private double rate1;
@@ -795,6 +797,15 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		setValueFromAccessor("PREFERRED", preferred);
 	}
 
+	public String getPrtStatus() {
+		return prtStatus;
+	}
+
+	public void setPrtStatus(String prtStatus) throws Exception {
+		this.prtStatus = prtStatus;
+		setValueFromAccessor("PRT_STATUS", prtStatus);
+	}
+
 	public double getRate() {
 		return rate;
 	}
@@ -1307,6 +1318,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "payArrangement : "+payArrangement+"\n";
 		str += "payMethodId : "+payMethodId+"\n";
 		str += "preferred : "+preferred+"\n";
+		str += "prtStatus : "+prtStatus+"\n";
 		str += "rate : "+rate+"\n";
 		str += "rate1 : "+rate1+"\n";
 		str += "rate2 : "+rate2+"\n";
@@ -1414,6 +1426,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "<column name=\"payArrangement\" value=\""+payArrangement+"\">";
 		str += "<column name=\"payMethodId\" value=\""+payMethodId+"\">";
 		str += "<column name=\"preferred\" value=\""+preferred+"\">";
+		str += "<column name=\"prtStatus\" value=\""+prtStatus+"\">";
 		str += "<column name=\"rate\" value=\""+rate+"\">";
 		str += "<column name=\"rate1\" value=\""+rate1+"\">";
 		str += "<column name=\"rate2\" value=\""+rate2+"\">";
@@ -1521,6 +1534,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "\"payArrangement\":\""+payArrangement+"\", ";
 		str += "\"payMethodId\":\""+payMethodId+"\", ";
 		str += "\"preferred\":\""+preferred+"\", ";
+		str += "\"prtStatus\":\""+prtStatus+"\", ";
 		str += "\"rate\":\""+rate+"\", ";
 		str += "\"rate1\":\""+rate1+"\", ";
 		str += "\"rate2\":\""+rate2+"\", ";

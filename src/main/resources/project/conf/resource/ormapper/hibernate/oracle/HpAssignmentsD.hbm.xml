@@ -72,6 +72,7 @@
 		<property name="payArrangement" column="PAY_ARRANGEMENT" type="java.lang.String" length="10"/>
 		<property name="payMethodId" column="PAY_METHOD_ID" type="java.lang.Double"/>
 		<property name="preferred" column="PREFERRED" type="java.lang.String" length="1"/>
+		<property name="prtStatus" column="PRT_STATUS" type="java.lang.String" length="30"/>
 		<property name="rate" column="RATE" type="java.lang.Double"/>
 		<property name="rate1" column="RATE1" type="java.lang.Double"/>
 		<property name="rate2" column="RATE2" type="java.lang.Double"/>
@@ -171,6 +172,7 @@
 		       PAY_ARRANGEMENT,
 		       PAY_METHOD_ID,
 		       PREFERRED,
+		       PRT_STATUS,
 		       RATE,
 		       RATE1,
 		       RATE2,
@@ -278,6 +280,7 @@
 		       PAY_ARRANGEMENT,
 		       PAY_METHOD_ID,
 		       PREFERRED,
+		       PRT_STATUS,
 		       RATE,
 		       RATE1,
 		       RATE2,
@@ -375,6 +378,7 @@
 		       ${PAY_ARRANGEMENT},
 		       ${PAY_METHOD_ID},
 		       ${PREFERRED},
+		       ${PRT_STATUS},
 		       ${RATE},
 		       ${RATE1},
 		       ${RATE2},
@@ -474,6 +478,7 @@
 		       PAY_ARRANGEMENT = ${PAY_ARRANGEMENT},
 		       PAY_METHOD_ID = ${PAY_METHOD_ID},
 		       PREFERRED = ${PREFERRED},
+		       PRT_STATUS = ${PRT_STATUS},
 		       RATE = ${RATE},
 		       RATE1 = ${RATE1},
 		       RATE2 = ${RATE2},

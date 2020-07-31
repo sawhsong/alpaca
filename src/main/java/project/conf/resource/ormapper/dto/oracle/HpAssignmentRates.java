@@ -31,6 +31,8 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 	private String CHARGE_PERIOD;
 	private double chargeRate;
 	private String CHARGE_RATE;
+	private String displayOnExpense;
+	private String DISPLAY_ON_EXPENSE;
 	private String displayOnTimesheet;
 	private String DISPLAY_ON_TIMESHEET;
 	private double elementId;
@@ -149,6 +151,15 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 	public void setChargeRate(double chargeRate) throws Exception {
 		this.chargeRate = chargeRate;
 		setValueFromAccessor("CHARGE_RATE", CommonUtil.toString(chargeRate));
+	}
+
+	public String getDisplayOnExpense() {
+		return displayOnExpense;
+	}
+
+	public void setDisplayOnExpense(String displayOnExpense) throws Exception {
+		this.displayOnExpense = displayOnExpense;
+		setValueFromAccessor("DISPLAY_ON_EXPENSE", displayOnExpense);
 	}
 
 	public String getDisplayOnTimesheet() {
@@ -374,6 +385,7 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 		str += "assigmentId : "+assigmentId+"\n";
 		str += "chargePeriod : "+chargePeriod+"\n";
 		str += "chargeRate : "+chargeRate+"\n";
+		str += "displayOnExpense : "+displayOnExpense+"\n";
 		str += "displayOnTimesheet : "+displayOnTimesheet+"\n";
 		str += "elementId : "+elementId+"\n";
 		str += "enableFlag : "+enableFlag+"\n";
@@ -402,6 +414,7 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 		str += "<column name=\"assigmentId\" value=\""+assigmentId+"\">";
 		str += "<column name=\"chargePeriod\" value=\""+chargePeriod+"\">";
 		str += "<column name=\"chargeRate\" value=\""+chargeRate+"\">";
+		str += "<column name=\"displayOnExpense\" value=\""+displayOnExpense+"\">";
 		str += "<column name=\"displayOnTimesheet\" value=\""+displayOnTimesheet+"\">";
 		str += "<column name=\"elementId\" value=\""+elementId+"\">";
 		str += "<column name=\"enableFlag\" value=\""+enableFlag+"\">";
@@ -430,6 +443,7 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 		str += "\"assigmentId\":\""+assigmentId+"\", ";
 		str += "\"chargePeriod\":\""+chargePeriod+"\", ";
 		str += "\"chargeRate\":\""+chargeRate+"\", ";
+		str += "\"displayOnExpense\":\""+displayOnExpense+"\", ";
 		str += "\"displayOnTimesheet\":\""+displayOnTimesheet+"\", ";
 		str += "\"elementId\":\""+elementId+"\", ";
 		str += "\"enableFlag\":\""+enableFlag+"\", ";
