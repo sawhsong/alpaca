@@ -13,8 +13,11 @@ $(function() {
 					caption:com.caption.yes,
 					callback:function() {
 						commonJs.ajaxSubmitMultipart({
-							url:"/zebra/board/notice/exeUpdate",
+							url:"/zebra/board/notice/exeUpdate.do",
 							dataType:"json",
+							data:{
+								articleId:articleId
+							},
 							formId:"fmDefault",
 							success:function(data, textStatus) {
 								var result = commonJs.parseAjaxResult(data, textStatus, "json");
