@@ -406,8 +406,6 @@ var nony = {
 			buttons:[{
 				caption:com.caption.yes,
 				callback:function() {
-					params.data.fileType = params.menuObject.fileType;
-					params.data.dataRange = params.menuObject.dataRange;
 					popup = commonJs.openPopup({
 						popupId:"exportFile",
 						url:params.url,

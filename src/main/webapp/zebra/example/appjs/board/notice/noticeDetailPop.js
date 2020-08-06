@@ -30,7 +30,7 @@ $(function() {
 	/*!
 	 * process
 	 */
-	exeDownload = function(repositoryPath, originalName, newName) {
+	doDownload = function(repositoryPath, originalName, newName) {
 		commonJs.doSubmit({
 			form:"fmDefault",
 			action:"/download.do",
@@ -68,54 +68,17 @@ $(function() {
 		}
 
 		if (param.mode == "Delete") {
-			commonJs.confirm({
-				contents:com.message.Q002,
-				buttons:[{
-					caption:com.caption.yes,
-					callback:function() {
-						exeDelete(params);
-					}
-				}, {
-					caption:com.caption.no,
-					callback:function() {
-					}
-				}]
+			commonJs.doDelete({
+				url:"/zebra/board/notice/exeDelete.do",
+				data:{articleId:params.data.articleId},
+				callback:function() {
+					parent.popup.close();
+					parent.doSearch();
+				}
 			});
 		} else {
 			commonJs.doSubmit(params);
 		}
-	};
-
-	exeDelete = function(params) {
-		commonJs.ajaxSubmit({
-			url:"/zebra/board/notice/exeDelete.do",
-			dataType:"json",
-			formId:"fmDefault",
-			data:{
-				articleId:params.data.articleId
-			},
-			success:function(data, textStatus) {
-				var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-				if (result.isSuccess == true || result.isSuccess == "true") {
-					commonJs.openDialog({
-						type:com.message.I000,
-						contents:result.message,
-						blind:true,
-						width:300,
-						buttons:[{
-							caption:com.caption.ok,
-							callback:function() {
-								parent.popup.close();
-								parent.doSearch();
-							}
-						}]
-					});
-				} else {
-					commonJs.error(result.message);
-				}
-			}
-		});
 	};
 
 	/*!

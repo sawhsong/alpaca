@@ -188,46 +188,9 @@ $(function() {
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q002,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					exeDelete();
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}],
-			blind:true
-		});
-	};
-
-	exeDelete = function() {
-		commonJs.ajaxSubmit({
+		commonJs.doDelete({
 			url:"/zebra/board/notice/exeDelete.do",
-			dataType:"json",
-			formId:"fmDefault",
-			success:function(data, textStatus) {
-				var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-				if (result.isSuccess == true || result.isSuccess == "true") {
-					commonJs.openDialog({
-						type:com.message.I000,
-						contents:result.message,
-						blind:true,
-						buttons:[{
-							caption:com.caption.ok,
-							callback:function() {
-								doSearch();
-							}
-						}]
-					});
-				} else {
-					commonJs.error(result.message);
-				}
-			}
+			callback:doSearch
 		});
 	};
 
@@ -257,54 +220,46 @@ $(function() {
 	};
 
 	getAttachedFile = function(img) {
-		commonJs.ajaxSubmit({
+		commonJs.doSimpleProcess({
 			url:"/zebra/board/notice/getAttachedFile.do",
-			dataType:"json",
-			data:{
-				articleId:$(img).attr("articleId")
-			},
-			blind:false,
-			success:function(data, textStatus) {
-				var result = commonJs.parseAjaxResult(data, textStatus, "json");
+			data:{articleId:$(img).attr("articleId")},
+			callback:function(result) {
+				var dataSet = result.dataSet;
+				attchedFileContextMenu = [];
 
-				if (result.isSuccess == true || result.isSuccess == "true") {
-					var dataSet = result.dataSet;
-					attchedFileContextMenu = [];
+				for (var i=0; i<dataSet.getRowCnt(); i++) {
+					var repositoryPath = dataSet.getValue(i, "REPOSITORY_PATH");
+					var originalName = dataSet.getValue(i, "ORIGINAL_NAME");
+					var newName = dataSet.getValue(i, "NEW_NAME");
+					var fileIcon = dataSet.getValue(i, "FILE_ICON");
+					var fileSize = (dataSet.getValue(i, "FILE_SIZE")/1024)+1;
 
-					for (var i=0; i<dataSet.getRowCnt(); i++) {
-						var repositoryPath = dataSet.getValue(i, "REPOSITORY_PATH");
-						var originalName = dataSet.getValue(i, "ORIGINAL_NAME");
-						var newName = dataSet.getValue(i, "NEW_NAME");
-						var fileIcon = dataSet.getValue(i, "FILE_ICON");
-						var fileSize = dataSet.getValue(i, "FILE_SIZE")/1024;
+					attchedFileContextMenu.push({
+						name:originalName+" ("+commonJs.getNumberMask(fileSize, "0,0")+") KB",
+						title:originalName,
+						img:fileIcon,
+						repositoryPath:repositoryPath,
+						originalName:originalName,
+						newName:newName,
+						fun:function() {
+							var index = $(this).index();
 
-						attchedFileContextMenu.push({
-							name:originalName+" ("+commonJs.getNumberMask(fileSize, "0,0")+") KB",
-							title:originalName,
-							img:fileIcon,
-							repositoryPath:repositoryPath,
-							originalName:originalName,
-							newName:newName,
-							fun:function() {
-								var index = $(this).index();
-
-								downloadFile({
-									repositoryPath:attchedFileContextMenu[index].repositoryPath,
-									originalName:attchedFileContextMenu[index].originalName,
-									newName:attchedFileContextMenu[index].newName
-								});
-							}
-						});
-					}
-
-					$(img).contextMenu(attchedFileContextMenu, {
-						classPrefix:com.constants.ctxClassPrefixGrid,
-						displayAround:"trigger",
-						position:"bottom",
-						horAdjust:0,
-						verAdjust:2
+							downloadFile({
+								repositoryPath:attchedFileContextMenu[index].repositoryPath,
+								originalName:attchedFileContextMenu[index].originalName,
+								newName:attchedFileContextMenu[index].newName
+							});
+						}
 					});
 				}
+
+				$(img).contextMenu(attchedFileContextMenu, {
+					classPrefix:com.constants.ctxClassPrefixGrid,
+					displayAround:"trigger",
+					position:"bottom",
+					horAdjust:0,
+					verAdjust:2
+				});
 			}
 		});
 	};
@@ -322,39 +277,17 @@ $(function() {
 	};
 
 	exeExport = function(menuObject) {
-		$("[name=fileType]").remove();
-		$("[name=dataRange]").remove();
-
 		if (searchResultDataCount <= 0) {
 			commonJs.warn(com.message.I001);
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q003,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					popupNotice = commonJs.openPopup({
-						popupId:"exportFile",
-						url:"/zebra/board/notice/exeExport.do",
-						paramData:{
-							fileType:menuObject.fileType,
-							dataRange:menuObject.dataRange
-						},
-						header:framework.header.fileExport,
-						blind:false,
-						width:200,
-						height:100
-					});
-					setTimeout(function() {popupNotice.close();}, 3000);
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}],
-			blind:true
+		commonJs.doExport({
+			url:"/zebra/board/notice/exeExport.do",
+			data:{
+				fileType:menuObject.fileType,
+				dataRange:menuObject.dataRange
+			}
 		});
 	};
 

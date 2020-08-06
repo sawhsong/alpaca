@@ -113,7 +113,7 @@ var articleId = "<%=noticeBoard.getArticleId()%>";
 						<tr>
 							<td class="tdDefault">
 								<img src="<%=icon%>" style="margin-top:-4px;"/>
-								<a class="aEn" onclick="exeDownload('<%=repositoryPath%>', '<%=originalName%>', '<%=newName%>')">
+								<a class="aEn" onclick="doDownload('<%=repositoryPath%>', '<%=originalName%>', '<%=newName%>')">
 									<%=fileDataSet.getValue(i, "ORIGINAL_NAME")%> (<%=CommonUtil.getNumberMask(fileSize)%> KB)
 								</a>
 							</td>
