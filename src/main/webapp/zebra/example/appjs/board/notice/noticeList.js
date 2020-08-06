@@ -55,20 +55,11 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanel");
 
 		if (commonJs.doValidate($("#fmDefault"))) {
-			setTimeout(function() {
-				commonJs.ajaxSubmit({
-					url:"/zebra/board/notice/getList.do",
-					dataType:"json",
-					formId:"fmDefault",
-					success:function(data, textStatus) {
-						var result = commonJs.parseAjaxResult(data, textStatus, "json");
-		
-						if (result.isSuccess == true || result.isSuccess == "true") {
-							renderDataGridTable(result);
-						}
-					}
-				});
-			}, 200);
+			commonJs.doSearch({
+				url:"/zebra/board/notice/getList.do",
+				data:{},
+				callback:renderDataGridTable
+			});
 		}
 	};
 
@@ -117,6 +108,7 @@ $(function() {
 
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "WRITER_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "CREATED_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "UPDATED_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(dataSet.getValue(i, "VISIT_CNT"), "#,###")));
 
 				var iconAction = new UiIcon();
@@ -129,7 +121,7 @@ $(function() {
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:7").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:8").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
@@ -139,8 +131,6 @@ $(function() {
 			attachTo:$("#divDataArea"),
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
-			isFilter:false,
-			filterColumn:[1, 3],
 			totalResultRows:result.totalResultRows,
 			script:"doSearch"
 		});

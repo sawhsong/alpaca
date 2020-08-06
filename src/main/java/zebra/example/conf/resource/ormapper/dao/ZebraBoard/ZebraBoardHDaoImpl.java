@@ -101,8 +101,8 @@ public class ZebraBoardHDaoImpl extends BaseHDao implements ZebraBoardDao {
 			queryAdvisor.addAutoFillCriteria(searchWord, "lower(article_contents) like lower('%"+searchWord+"%')");
 		}
 
-		queryAdvisor.addAutoFillCriteria(searchDateFrom, "trunc(insert_date) >= trunc(to_date('"+searchDateFrom+"', '"+dateFormat+"'))");
-		queryAdvisor.addAutoFillCriteria(searchDateTo, "trunc(insert_date) <= trunc(to_date('"+searchDateTo+"', '"+dateFormat+"'))");
+		queryAdvisor.addAutoFillCriteria(searchDateFrom, "(trunc(insert_date) >= trunc(to_date('"+searchDateFrom+"', '"+dateFormat+"')) or trunc(update_date) >= trunc(to_date('"+searchDateFrom+"', '"+dateFormat+"')))");
+		queryAdvisor.addAutoFillCriteria(searchDateTo, "(trunc(insert_date) <= trunc(to_date('"+searchDateTo+"', '"+dateFormat+"')) or trunc(update_date) <= trunc(to_date('"+searchDateTo+"', '"+dateFormat+"')))");
 		queryAdvisor.addVariable("dateFormat", dateFormat);
 		queryAdvisor.addVariable("boardType", ZebraCommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
 
@@ -111,7 +111,7 @@ public class ZebraBoardHDaoImpl extends BaseHDao implements ZebraBoardDao {
 
 	public DataSet getFreeBoardDataSetByCriteria(QueryAdvisor queryAdvisor) throws Exception {
 		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
-		String dataFormat = ConfigUtil.getProperty("format.date.java");
+		String dateFormat = ConfigUtil.getProperty("format.date.java");
 		String searchType = requestDataSet.getValue("searchType");
 		String searchWord = requestDataSet.getValue("searchWord");
 		String searchDateFrom = requestDataSet.getValue("fromDate");
@@ -125,9 +125,9 @@ public class ZebraBoardHDaoImpl extends BaseHDao implements ZebraBoardDao {
 			queryAdvisor.addAutoFillCriteria(searchWord, "lower(article_contents) like lower('%"+searchWord+"%')");
 		}
 
-		queryAdvisor.addAutoFillCriteria(searchDateFrom, "trunc(insert_date) >= trunc(to_date('"+searchDateFrom+"', '"+dataFormat+"'))");
-		queryAdvisor.addAutoFillCriteria(searchDateTo, "trunc(insert_date) <= trunc(to_date('"+searchDateTo+"', '"+dataFormat+"'))");
-		queryAdvisor.addVariable("dateFormat", dataFormat);
+		queryAdvisor.addAutoFillCriteria(searchDateFrom, "(trunc(insert_date) >= trunc(to_date('"+searchDateFrom+"', '"+dateFormat+"')) or trunc(update_date) >= trunc(to_date('"+searchDateFrom+"', '"+dateFormat+"')))");
+		queryAdvisor.addAutoFillCriteria(searchDateTo, "(trunc(insert_date) <= trunc(to_date('"+searchDateTo+"', '"+dateFormat+"')) or trunc(update_date) <= trunc(to_date('"+searchDateTo+"', '"+dateFormat+"')))");
+		queryAdvisor.addVariable("dateFormat", dateFormat);
 		queryAdvisor.addVariable("boardType", ZebraCommonCodeManager.getCodeByConstants("BOARD_TYPE_FREE"));
 
 		return selectAsDataSet(queryAdvisor, "query.zebra.ZebraBoard.getFreeBoardDataSetByCriteria");

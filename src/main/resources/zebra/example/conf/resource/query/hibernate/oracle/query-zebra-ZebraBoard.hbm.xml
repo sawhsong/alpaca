@@ -20,7 +20,8 @@
 		        board.writer_ip_address,
 		        board.article_subject,
 		        board.visit_cnt,
-		        to_char(nvl(update_date, insert_date), '${dateFormat}') as created_date,
+		        to_char(insert_date, '${dateFormat}') as created_date,
+		        to_char(update_date, '${dateFormat}') as updated_date,
 		        board.ref_article_id,
 		        (select count(file_id) file_cnt
 		           from zebra_board_file
@@ -50,7 +51,8 @@
 		        board.writer_ip_address,
 		        board.article_subject,
 		        board.visit_cnt,
-		        to_char(nvl(update_date, insert_date), '${dateFormat}') as created_date,
+		        to_char(insert_date, '${dateFormat}') as created_date,
+		        to_char(update_date, '${dateFormat}') as updated_date,
 		        board.ref_article_id,
 		        (select count(file_id) file_cnt
 		           from zebra_board_file

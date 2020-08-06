@@ -102,6 +102,7 @@
 			<col width="5%"/>
 			<col width="15%"/>
 			<col width="10%"/>
+			<col width="10%"/>
 			<col width="8%"/>
 			<col width="5%"/>
 		</colgroup>
@@ -112,13 +113,14 @@
 				<th class="thGrid"><mc:msg key="fwk.notice.gridHeader.file"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.notice.gridHeader.writer"/></th>
 				<th class="thGrid sortable:date"><mc:msg key="fwk.notice.gridHeader.createdDate"/></th>
+				<th class="thGrid sortable:date">Updated Date</th>
 				<th class="thGrid sortable:numeric"><mc:msg key="fwk.notice.gridHeader.visitCount"/></th>
 				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
 			<tr class="noBorderHor noStripe">
-				<td class="tdGrid Ct" colspan="7"><mc:msg key="I002"/></td>
+				<td class="tdGrid Ct" colspan="8"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
 	</table>
