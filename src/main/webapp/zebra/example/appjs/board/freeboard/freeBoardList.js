@@ -76,7 +76,7 @@ $(function() {
 				var iLevel = parseInt(dataSet.getValue(i, "LEVEL")) - 1;
 				var gridTr = new UiGridTr();
 
-				gridTr.setClassName("noBorderHor noStripe");
+				gridTr.setClassName("noBorderHor");
 
 				var uiChk = new UiCheckbox();
 				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "ARTICLE_ID"));
@@ -94,7 +94,7 @@ $(function() {
 
 				var uiAnc = new UiAnchor();
 				uiAnc.setText(commonJs.abbreviate(dataSet.getValue(i, "ARTICLE_SUBJECT"), iLength)).setScript("getDetail('"+dataSet.getValue(i, "ARTICLE_ID")+"')");
-				gridTr.addChild(new UiGridTd().addClassName("Lt").addTextBeforeChild(space+"&nbsp;&nbsp;").addChild(uiAnc).addAttribute("title:"+commonJs.htmlToString(dataSet.getValue(i, "ARTICLE_SUBJECT"))));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addTextBeforeChild(space+"&nbsp;&nbsp;").addChild(uiAnc));
 
 				var gridTd = new UiGridTd();
 				gridTd.addClassName("Ct");
@@ -147,7 +147,9 @@ $(function() {
 	};
 
 	getInsert = function() {
-		commonJs.doSubmit({action:"/zebra/board/freeboard/getInsert.do"});
+		commonJs.doSimpleProcessForPage({
+			action:"/zebra/board/freeboard/getInsert.do"
+		});
 	};
 
 	getDetail = function(articleId) {
@@ -262,8 +264,7 @@ $(function() {
 	};
 
 	downloadFile = function(param) {
-		commonJs.doSubmit({
-			form:"fmDefault",
+		commonJs.doSimpleProcessForPage({
 			action:"/download.do",
 			data:{
 				repositoryPath:param.repositoryPath,

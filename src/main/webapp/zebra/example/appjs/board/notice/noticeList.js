@@ -265,8 +265,7 @@ $(function() {
 	};
 
 	downloadFile = function(param) {
-		commonJs.doSubmit({
-			form:"fmDefault",
+		commonJs.doSimpleProcessForPage({
 			action:"/download.do",
 			data:{
 				repositoryPath:param.repositoryPath,

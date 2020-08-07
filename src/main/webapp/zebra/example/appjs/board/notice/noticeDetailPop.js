@@ -31,8 +31,7 @@ $(function() {
 	 * process
 	 */
 	doDownload = function(repositoryPath, originalName, newName) {
-		commonJs.doSubmit({
-			form:"fmDefault",
+		commonJs.doSimpleProcessForPage({
 			action:"/download.do",
 			data:{
 				repositoryPath:repositoryPath,
@@ -77,7 +76,7 @@ $(function() {
 				}
 			});
 		} else {
-			commonJs.doSubmit(params);
+			commonJs.doSimpleProcessForPage(params);
 		}
 	};
 

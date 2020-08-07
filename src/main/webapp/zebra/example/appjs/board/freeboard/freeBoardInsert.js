@@ -7,26 +7,9 @@ $(function() {
 	 */
 	$("#btnSave").click(function(event) {
 		if (commonJs.doValidate("fmDefault")) {
-			$("#fmDefault").attr("enctype", "multipart/form-data");
-
-			commonJs.confirm({
-				contents:com.message.Q001,
-				buttons:[{
-					caption:com.caption.yes,
-					callback:function() {
-						commonJs.doSubmit({
-							form:"fmDefault",
-							action:"/zebra/board/freeboard/exeInsert.do",
-							data:{
-								articleId:articleId
-							}
-						});
-					}
-				}, {
-					caption:com.caption.no,
-					callback:function() {
-					}
-				}]
+			commonJs.doSaveWithFileForPage({
+				action:"/zebra/board/freeboard/exeInsert.do",
+				data:{articleId:articleId}
 			});
 		}
 	});
@@ -63,6 +46,5 @@ $(function() {
 	 */
 	$(window).load(function() {
 		setEditor();
-		$("#writerName").focus();
 	});
 });

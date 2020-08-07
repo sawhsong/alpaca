@@ -39,8 +39,7 @@ $(function() {
 	};
 
 	exeDownload = function(repositoryPath, originalName, newName) {
-		commonJs.doSubmit({
-			form:"fmDefault",
+		commonJs.doSimpleProcessForPage({
 			action:"/download.do",
 			data:{
 				repositoryPath:repositoryPath,
@@ -76,13 +75,13 @@ $(function() {
 				url:actionString,
 				data:{articleId:params.data.articleId},
 				callback:function() {
-					commonJs.doSubmit({
+					commonJs.doSimpleProcessForPage({
 						action:"/zebra/board/freeboard/getDefault.do"
 					});
 				}
 			});
 		} else {
-			commonJs.doSubmit(params);
+			commonJs.doSimpleProcessForPage(params);
 		}
 	};
 
