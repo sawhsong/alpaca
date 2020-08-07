@@ -214,6 +214,183 @@ var nony = {
 		return paramData;
 	},
 	/*!
+	 * General form submission process wrappers
+	 */
+	doSimpleProcessForPage : function(params) { // no confirm message, no post message (ex, getEdit, getInsert, getUpdate etc)
+		var formId = ($.nony.isEmpty(params.form)) ? params.formId : params.form;
+
+		if ($.nony.isEmpty(formId)) {
+			formId = $("form:eq(0)");
+			params.form = $("form:eq(0)");
+		}
+
+		if (typeof(formId) == "object") {formId = $(formId).prop("id");}
+
+		commonJs.doSubmit({
+			action:params.action,
+			data:params.data || {}
+		});
+	},
+	doProcessForPage : function(params) { // confirm message, post message (ex, not save/delete)
+		var formId = ($.nony.isEmpty(params.form)) ? params.formId : params.form;
+
+		if ($.nony.isEmpty(formId)) {
+			formId = $("form:eq(0)");
+			params.form = $("form:eq(0)");
+		}
+
+		if (typeof(formId) == "object") {formId = $(formId).prop("id");}
+
+		commonJs.confirm({
+			contents:params.confirmMessage,
+			buttons:[{
+				caption:com.caption.yes,
+				callback:function() {
+					commonJs.doSubmit({
+						formId:formId,
+						action:params.action,
+						data:params.data || {}
+					});
+				}
+			}, {
+				caption:com.caption.no,
+				callback:function() {
+					if (!$.nony.isEmpty(params.onCancel)) {
+						params.onCancel();
+					}
+				}
+			}]
+		});
+	},
+	doProcessWithFileForPage : function(params) {
+		var formId = ($.nony.isEmpty(params.form)) ? params.formId : params.form;
+
+		if ($.nony.isEmpty(formId)) {
+			formId = $("form:eq(0)");
+			params.form = $("form:eq(0)");
+		}
+
+		if (typeof(formId) == "object") {formId = $(formId).prop("id");}
+
+		$("#"+formId).attr("enctype", "multipart/form-data");
+
+		commonJs.confirm({
+			contents:params.confirmMessage,
+			buttons:[{
+				caption:com.caption.yes,
+				callback:function() {
+					commonJs.doSubmit({
+						formId:formId,
+						action:params.action,
+						data:params.data || {}
+					});
+				}
+			}, {
+				caption:com.caption.no,
+				callback:function() {
+					if (!$.nony.isEmpty(params.onCancel)) {
+						params.onCancel();
+					}
+				}
+			}]
+		});
+	},
+	doSaveForPage : function(params) {
+		var formId = ($.nony.isEmpty(params.form)) ? params.formId : params.form;
+
+		if ($.nony.isEmpty(formId)) {
+			formId = $("form:eq(0)");
+			params.form = $("form:eq(0)");
+		}
+
+		if (typeof(formId) == "object") {formId = $(formId).prop("id");}
+
+		commonJs.confirm({
+			contents:com.message.Q001,
+			buttons:[{
+				caption:com.caption.yes,
+				callback:function() {
+					commonJs.doSubmit({
+						formId:formId,
+						action:params.action,
+						data:params.data || {}
+					});
+				}
+			}, {
+				caption:com.caption.no,
+				callback:function() {
+					if (!$.nony.isEmpty(params.onCancel)) {
+						params.onCancel();
+					}
+				}
+			}]
+		});
+	},
+	doSaveWithFileForPage : function(params) {
+		var formId = ($.nony.isEmpty(params.form)) ? params.formId : params.form;
+
+		if ($.nony.isEmpty(formId)) {
+			formId = $("form:eq(0)");
+			params.form = $("form:eq(0)");
+		}
+
+		if (typeof(formId) == "object") {formId = $(formId).prop("id");}
+
+		$("#"+formId).attr("enctype", "multipart/form-data");
+
+		commonJs.confirm({
+			contents:com.message.Q001,
+			buttons:[{
+				caption:com.caption.yes,
+				callback:function() {
+					commonJs.doSubmit({
+						formId:formId,
+						action:params.action,
+						data:params.data || {}
+					});
+				}
+			}, {
+				caption:com.caption.no,
+				callback:function() {
+					if (!$.nony.isEmpty(params.onCancel)) {
+						params.onCancel();
+					}
+				}
+			}]
+		});
+	},
+	doDeleteForPage : function(params) {
+		var formId = ($.nony.isEmpty(params.form)) ? params.formId : params.form;
+
+		if ($.nony.isEmpty(formId)) {
+			formId = $("form:eq(0)");
+			params.form = $("form:eq(0)");
+		}
+
+		if (typeof(formId) == "object") {formId = $(formId).prop("id");}
+
+		commonJs.confirm({
+			contents:com.message.Q002,
+			buttons:[{
+				caption:com.caption.yes,
+				callback:function() {
+					commonJs.doSubmit({
+						formId:formId,
+						action:params.action,
+						data:params.data || {}
+					});
+				}
+			}, {
+				caption:com.caption.no,
+				callback:function() {
+					if (!$.nony.isEmpty(params.onCancel)) {
+						params.onCancel();
+					}
+				}
+			}]
+		});
+	},
+	/*!
 	 * Ajax process wrappers
 	 */
 	doSearch : function(params) {
@@ -277,6 +454,9 @@ var nony = {
 			}, {
 				caption:com.caption.no,
 				callback:function() {
+					if (!$.nony.isEmpty(params.onCancel)) {
+						params.onCancel();
+					}
 				}
 			}]
 		});
@@ -306,6 +486,9 @@ var nony = {
 			}, {
 				caption:com.caption.no,
 				callback:function() {
+					if (!$.nony.isEmpty(params.onCancel)) {
+						params.onCancel();
+					}
 				}
 			}]
 		});
@@ -335,6 +518,9 @@ var nony = {
 			}, {
 				caption:com.caption.no,
 				callback:function() {
+					if (!$.nony.isEmpty(params.onCancel)) {
+						params.onCancel();
+					}
 				}
 			}]
 		});
@@ -364,6 +550,9 @@ var nony = {
 			}, {
 				caption:com.caption.no,
 				callback:function() {
+					if (!$.nony.isEmpty(params.onCancel)) {
+						params.onCancel();
+					}
 				}
 			}]
 		});
@@ -393,6 +582,9 @@ var nony = {
 			}, {
 				caption:com.caption.no,
 				callback:function() {
+					if (!$.nony.isEmpty(params.onCancel)) {
+						params.onCancel();
+					}
 				}
 			}]
 		});

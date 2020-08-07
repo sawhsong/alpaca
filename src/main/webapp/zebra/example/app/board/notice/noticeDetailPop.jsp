@@ -108,7 +108,7 @@ var articleId = "<%=noticeBoard.getArticleId()%>";
 							String originalName = fileDataSet.getValue(i, "ORIGINAL_NAME");
 							String newName = fileDataSet.getValue(i, "NEW_NAME");
 							String icon = fileDataSet.getValue(i, "FILE_ICON");
-							double fileSize = CommonUtil.toDouble(fileDataSet.getValue(i, "FILE_SIZE")) / 1024;
+							double fileSize = (CommonUtil.toDouble(fileDataSet.getValue(i, "FILE_SIZE")) / 1024) + 1;
 %>
 						<tr>
 							<td class="tdDefault">

@@ -140,7 +140,7 @@ var commonJs = {
 	clearPaginationValue : function() {$.nony.clearPaginationValue();},
 	setExportButtonContextMenu : function(jqObjectButton) {$.nony.setExportButtonContextMenu(jqObjectButton);},
 	/*!
-	 * process wrappers
+	 * process wrappers - for ajax
 	 */
 	doSearch : function(params) {$.nony.doSearch(params);},
 	doSimpleProcess : function(params) {$.nony.doSimpleProcess(params);},
@@ -150,6 +150,15 @@ var commonJs = {
 	doSaveWithFile : function(params) {$.nony.doSaveWithFile(params);},
 	doDelete : function(params) {$.nony.doDelete(params);},
 	doExport : function(params) {$.nony.doExport(params);},
+	/*!
+	 * process wrappers - for page submit
+	 */
+	doSimpleProcessForPage : function(params) {$.nony.doSimpleProcessForPage(params);},
+	doProcessForPage : function(params) {$.nony.doProcessForPage(params);},
+	doProcessWithFileForPage : function(params) {$.nony.doProcessWithFileForPage(params);},
+	doSaveForPage : function(params) {$.nony.doSaveForPage(params);},
+	doSaveWithFileForPage : function(params) {$.nony.doSaveWithFileForPage(params);},
+	doDeleteForPage : function(params) {$.nony.doDeleteForPage(params);},
 	/*!
 	 * controlling page load operations
 	 */

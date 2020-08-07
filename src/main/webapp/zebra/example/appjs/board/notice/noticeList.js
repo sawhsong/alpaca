@@ -300,8 +300,6 @@ $(function() {
 
 		commonJs.setExportButtonContextMenu($("#btnExport"));
 
-		$("#searchWord").focus();
-
 		doSearch();
 	});
 });

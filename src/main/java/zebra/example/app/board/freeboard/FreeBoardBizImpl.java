@@ -209,7 +209,7 @@ public class FreeBoardBizImpl extends BaseBiz implements FreeBoardBiz {
 		try {
 			String pageTitle = "Free Board List";
 			String fileName = "FreeBoardList";
-			String[] columnHeader = {"article_id", "writer_name", "writer_email", "article_subject", "created_date"};
+			String[] columnHeader = {"article_id", "writer_name", "writer_email", "article_subject", "created_date", "updated_date"};
 
 			exportHelper = ExportUtil.getExportHelper(requestDataSet.getValue("fileType"));
 			exportHelper.setPageTitle(pageTitle);

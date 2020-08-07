@@ -99,26 +99,28 @@
 		<colgroup>
 			<col width="3%"/>
 			<col width="*"/>
-			<col width="5%"/>
-			<col width="18%"/>
-			<col width="8%"/>
-			<col width="8%"/>
-			<col width="5%"/>
+			<col width="4%"/>
+			<col width="15%"/>
+			<col width="7%"/>
+			<col width="7%"/>
+			<col width="6%"/>
+			<col width="4%"/>
 		</colgroup>
 		<thead>
 			<tr class="noBorderHor">
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="fwk.bbs.title.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.bbs.gridHeader.subject"/></th>
+				<th class="thGrid"><mc:msg key="fwk.bbs.gridHeader.subject"/></th>
 				<th class="thGrid"><mc:msg key="fwk.bbs.gridHeader.file"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.bbs.gridHeader.writer"/></th>
-				<th class="thGrid sortable:date"><mc:msg key="fwk.bbs.gridHeader.createdDate"/></th>
-				<th class="thGrid sortable:numeric"><mc:msg key="fwk.bbs.gridHeader.visitCount"/></th>
+				<th class="thGrid"><mc:msg key="fwk.bbs.gridHeader.writer"/></th>
+				<th class="thGrid"><mc:msg key="fwk.bbs.gridHeader.createdDate"/></th>
+				<th class="thGrid"><mc:msg key="fwk.bbs.gridHeader.updatedDate"/></th>
+				<th class="thGrid"><mc:msg key="fwk.bbs.gridHeader.visitCount"/></th>
 				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
 			<tr class="noBorderHor noStripe">
-				<td class="tdGrid Ct" colspan="7"><mc:msg key="I002"/></td>
+				<td class="tdGrid Ct" colspan="8"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
 	</table>

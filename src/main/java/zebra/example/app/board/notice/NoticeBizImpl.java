@@ -207,7 +207,7 @@ public class NoticeBizImpl extends BaseBiz implements NoticeBiz {
 		try {
 			pageTitle = "Notice Board List";
 			fileName = "NoticeBoardList";
-			columnHeader = new String[]{"article_id", "writer_name", "writer_email", "article_subject", "created_date"};
+			columnHeader = new String[]{"article_id", "writer_name", "writer_email", "article_subject", "created_date", "updated_date"};
 
 			exportHelper = ExportUtil.getExportHelper(fileType);
 			exportHelper.setPageTitle(pageTitle);

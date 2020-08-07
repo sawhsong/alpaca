@@ -37,29 +37,36 @@ public class BoardArticleCreationJob extends QuartzJobBean {
 		try {
 			SysBoard sysBoard = new SysBoard();
 
-			contents += "BoardArticleCreationJob System generated article - "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss")+"\n";
-			contents += "context.getFireInstanceId() : "+context.getFireInstanceId()+"\n";
-			contents += "context.getJobRunTime() : "+CommonUtil.toString(context.getJobRunTime()/1000, "#,##0.00")+"\n";
-			contents += "context.getRefireCount() : "+context.getRefireCount()+"\n";
-			contents += "context.getFireTime() : "+CommonUtil.toString(context.getFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"\n";
-			contents += "context.getPreviousFireTime() : "+CommonUtil.toString(context.getPreviousFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"\n";
-			contents += "context.getNextFireTime() : "+CommonUtil.toString(context.getNextFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"\n";
+			logger.debug("BoardArticleCreationJob Begin : "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss"));
 
 			sysBoard.setArticleId(uid);
-
-			logger.debug("BoardArticleCreationJob Begin : "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss"));
 			if (CommonUtil.toInt(CommonUtil.substring(uid, 0, 5)) % 2 == 0) {
 				sysBoard.setBoardType(CommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
+
+				contents += "BoardArticleCreationJob System generated article - "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss")+"\n";
+				contents += "context.getFireInstanceId() : "+context.getFireInstanceId()+"\n";
+				contents += "context.getJobRunTime() : "+CommonUtil.toString(context.getJobRunTime()/1000, "#,##0.00")+"\n";
+				contents += "context.getRefireCount() : "+context.getRefireCount()+"\n";
+				contents += "context.getFireTime() : "+CommonUtil.toString(context.getFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"\n";
+				contents += "context.getPreviousFireTime() : "+CommonUtil.toString(context.getPreviousFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"\n";
+				contents += "context.getNextFireTime() : "+CommonUtil.toString(context.getNextFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"\n";
 			} else {
 				JobDetail jobDetail = context.getJobDetail();
 				JobDataMap jobDataMap = jobDetail.getJobDataMap();
 
 				sysBoard.setBoardType(CommonCodeManager.getCodeByConstants("BOARD_TYPE_FREE"));
 
-				contents += "jobDetail.getDescription() : "+jobDetail.getDescription()+"\n";
+				contents += "BoardArticleCreationJob System generated article - "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss")+"</br>";
+				contents += "context.getFireInstanceId() : "+context.getFireInstanceId()+"</br>";
+				contents += "context.getJobRunTime() : "+CommonUtil.toString(context.getJobRunTime()/1000, "#,##0.00")+"</br>";
+				contents += "context.getRefireCount() : "+context.getRefireCount()+"</br>";
+				contents += "context.getFireTime() : "+CommonUtil.toString(context.getFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"</br>";
+				contents += "context.getPreviousFireTime() : "+CommonUtil.toString(context.getPreviousFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"</br>";
+				contents += "context.getNextFireTime() : "+CommonUtil.toString(context.getNextFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"</br>";
+				contents += "jobDetail.getDescription() : "+jobDetail.getDescription()+"</br>";
 				for (Iterator keys = jobDataMap.keySet().iterator(); keys.hasNext();) {
 					String key = (String)keys.next();
-					contents += "jobDataMap("+key+") : "+jobDataMap.get(key)+"\n";
+					contents += "jobDataMap("+key+") : "+jobDataMap.get(key)+"</br>";
 				}
 			}
 			sysBoard.setWriterId("0");
