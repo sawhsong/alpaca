@@ -23,18 +23,12 @@ $(function() {
 				}]
 			});
 		} else {
-			commonJs.confirm({
-				contents:com.message.Q001,
-				buttons:[{
-					caption:com.caption.yes,
-					callback:function() {
-						exeSave();
-					}
-				}, {
-					caption:com.caption.no,
-					callback:function() {
-					}
-				}]
+			commonJs.doSave({
+				url:"/zebra/framework/domaindictionary/exeInsert.do",
+				callback:function() {
+					parent.popup.close();
+					parent.doSearch();
+				}
 			});
 		}
 	});
@@ -52,38 +46,10 @@ $(function() {
 	/*!
 	 * process
 	 */
-	exeSave = function() {
-		commonJs.ajaxSubmit({
-			url:"/zebra/framework/domaindictionary/exeInsert.do",
-			dataType:"json",
-			formId:"fmDefault",
-			success:function(data, textStatus) {
-				var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-				if (result.isSuccess == true || result.isSuccess == "true") {
-					commonJs.openDialog({
-						type:com.message.I000,
-						contents:result.message,
-						blind:true,
-						buttons:[{
-							caption:com.caption.ok,
-							callback:function() {
-								parent.popup.close();
-								parent.doSearch();
-							}
-						}]
-					});
-				} else {
-					commonJs.error(result.message);
-				}
-			}
-		});
-	};
 
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		$("#domainName").focus();
 	});
 });

@@ -26,20 +26,16 @@ $(function() {
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q001,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					exeSave();
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}]
+		commonJs.doSave({
+			url:"/zebra/framework/domaindictionary/exeUpdate.do",
+			data:{
+				domainId:domainId
+			},
+			callback:function() {
+				parent.popup.close();
+				parent.doSearch();
+			}
 		});
-
 	});
 
 	$("#btnClose").click(function(event) {
@@ -55,42 +51,11 @@ $(function() {
 	/*!
 	 * process
 	 */
-	exeSave = function() {
-		commonJs.ajaxSubmit({
-			url:"/zebra/framework/domaindictionary/exeUpdate.do",
-			dataType:"json",
-			formId:"fmDefault",
-			data:{
-				domainId:domainId
-			},
-			success:function(data, textStatus) {
-				var result = commonJs.parseAjaxResult(data, textStatus, "json");
 
-				if (result.isSuccess == true || result.isSuccess == "true") {
-					commonJs.openDialog({
-						type:com.message.I000,
-						contents:result.message,
-						width:280,
-						blind:true,
-						buttons:[{
-							caption:com.caption.ok,
-							callback:function() {
-								parent.popup.close();
-								parent.doSearch();
-							}
-						}]
-					});
-				} else {
-					commonJs.error(result.message);
-				}
-			}
-		});
-	};
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
 		parent.popup.setHeader(framework.header.popHeaderEdit);
-		$("#domainName").focus();
 	});
 });

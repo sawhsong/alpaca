@@ -45,20 +45,10 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanel");
 
 		if (commonJs.doValidate($("#fmDefault"))) {
-			setTimeout(function() {
-				commonJs.ajaxSubmit({
-					formId:"fmDefault",
-					url:"/zebra/framework/domaindictionary/getList.do",
-					dataType:"json",
-					success:function(data, textStatus) {
-						var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-						if (result.isSuccess == true || result.isSuccess == "true") {
-							renderDataGridTable(result);
-						}
-					}
-				});
-			}, 200);
+			commonJs.doSearch({
+				url:"/zebra/framework/domaindictionary/getList.do",
+				callback:renderDataGridTable
+			});
 		}
 	};
 
@@ -164,46 +154,9 @@ $(function() {
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q002,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					exeDelete();
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}],
-			blind:true
-		});
-	};
-
-	exeDelete = function() {
-		commonJs.ajaxSubmit({
+		commonJs.doDelete({
 			url:"/zebra/framework/domaindictionary/exeDelete.do",
-			dataType:"json",
-			formId:"fmDefault",
-			success:function(data, textStatus) {
-				var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-				if (result.isSuccess == true || result.isSuccess == "true") {
-					commonJs.openDialog({
-						type:com.message.I000,
-						contents:result.message,
-						blind:true,
-						buttons:[{
-							caption:com.caption.ok,
-							callback:function() {
-								doSearch();
-							}
-						}]
-					});
-				} else {
-					commonJs.error(result.message);
-				}
-			}
+			callback:doSearch
 		});
 	};
 
@@ -233,40 +186,17 @@ $(function() {
 	};
 
 	exeExport = function(menuObject) {
-		$("[name=fileType]").remove();
-		$("[name=dataRange]").remove();
-
 		if (searchResultDataCount <= 0) {
 			commonJs.warn(com.message.I001);
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q003,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					popup = commonJs.openPopup({
-						popupId:"exportFile",
-						url:"/zebra/framework/domaindictionary/exeExport.do",
-						paramData:{
-							fileType:menuObject.fileType,
-							dataRange:menuObject.dataRange
-						},
-						header:framework.header.fileExport,
-						blind:false,
-						width:200,
-						height:100
-					});
-					// needs delayed time - sometimes causing the error [getOutputStream() has already been called for this response]
-					setTimeout(function() {popup.close();}, 3000);
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}],
-			blind:true
+		commonJs.doExport({
+			url:"/zebra/framework/domaindictionary/exeExport.do",
+			data:{
+				fileType:menuObject.fileType,
+				dataRange:menuObject.dataRange
+			}
 		});
 	};
 
@@ -287,8 +217,6 @@ $(function() {
 				doSearch();
 			}
 		});
-
-		$("#searchWord").focus();
 
 		commonJs.setExportButtonContextMenu($("#btnExport"));
 

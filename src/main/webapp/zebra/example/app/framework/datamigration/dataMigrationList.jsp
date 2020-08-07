@@ -116,46 +116,50 @@
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainer">
-	<div id="divSourceDataTable" style="float:left;width:50%;">
-		<table id="tblSourceData" class="tblGrid sort autosort">
-			<colgroup>
-				<col width="3%"/>
-				<col width="33%"/>
-				<col width="*"/>
-			</colgroup>
-			<thead>
-				<tr>
-					<th class="thGrid"><i id="icnCheckSourceData" class="fa fa-check-square-o fa-lg icnEn"></i></th>
-					<th class="thGrid sortable:alphanumeric">Table Name</th>
-					<th class="thGrid">Table Description</th>
-				</tr>
-			</thead>
-			<tbody id="tblSourceDataBody">
-				<tr>
-					<td class="tdGrid Ct" colspan="3"><mc:msg key="I002"/></td>
-				</tr>
-			</tbody>
-		</table>
+	<div id="divSource" style="float:left;width:50%;">
+		<div id="divSourceDataTable">
+			<table id="tblSourceData" class="tblGrid sort autosort">
+				<colgroup>
+					<col width="3%"/>
+					<col width="33%"/>
+					<col width="*"/>
+				</colgroup>
+				<thead>
+					<tr>
+						<th class="thGrid"><i id="icnCheckSourceData" class="fa fa-check-square-o fa-lg icnEn"></i></th>
+						<th class="thGrid sortable:alphanumeric">Table Name</th>
+						<th class="thGrid">Table Description</th>
+					</tr>
+				</thead>
+				<tbody id="tblSourceDataBody">
+					<tr>
+						<td class="tdGrid Ct" colspan="3"><mc:msg key="I002"/></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		<div id="divSourceDataPagingArea"></div>
 	</div>
-	<div id="divTargetDataTable" style="float:right;width:49%;">
-		<table id="tblTargetData" class="tblGrid sort autosort">
-			<colgroup>
-				<col width="34%"/>
-				<col width="*"/>
-			</colgroup>
-			<thead>
-				<tr>
-					<th class="thGrid sortable:alphanumeric">Table Name</th>
-					<th class="thGrid">Table Description</th>
-				</tr>
-			</thead>
-			<tbody id="tblTargetDataBody">
-				<tr>
-					<td class="tdGrid Ct" colspan="2"><mc:msg key="I002"/></td>
-				</tr>
-			</tbody>
-		</table>
+	<div id="divTarget" style="float:right;width:49%;">
+		<div id="divTargetDataTable">
+			<table id="tblTargetData" class="tblGrid sort autosort">
+				<colgroup>
+					<col width="34%"/>
+					<col width="*"/>
+				</colgroup>
+				<thead>
+					<tr>
+						<th class="thGrid sortable:alphanumeric">Table Name</th>
+						<th class="thGrid">Table Description</th>
+					</tr>
+				</thead>
+				<tbody id="tblTargetDataBody">
+					<tr>
+						<td class="tdGrid Ct" colspan="2"><mc:msg key="I002"/></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		<div id="divTargetDataPagingArea"></div>
 	</div>
 </div>

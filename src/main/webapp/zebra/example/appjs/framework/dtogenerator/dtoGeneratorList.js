@@ -128,8 +128,6 @@ $(function() {
 			pagingArea:$("#divPagingArea"),
 			isPageable:false,
 			displayRowCount:true,
-			isFilter:false,
-			filterColumn:[1, 2],
 			totalResultRows:result.totalResultRows,
 			script:"exeSearch"
 		});
@@ -184,10 +182,9 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.dtoGeneratorAction);
-		});
+//		$("[name=icnAction]").each(function(index) {
+//			$(this).contextMenu(ctxMenu.dtoGeneratorAction);
+//		});
 		exeSearch();
-		$("#tableName").focus();
 	});
 });

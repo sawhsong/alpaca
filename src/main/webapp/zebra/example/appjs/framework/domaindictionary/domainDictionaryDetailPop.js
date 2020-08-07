@@ -50,53 +50,17 @@ $(function() {
 		}
 
 		if (param.mode == "Delete") {
-			commonJs.confirm({
-				contents:com.message.Q002,
-				buttons:[{
-					caption:com.caption.yes,
-					callback:function() {
-						exeDelete(params);
-					}
-				}, {
-					caption:com.caption.no,
-					callback:function() {
-					}
-				}]
+			commonJs.doDelete({
+				url:"/zebra/framework/domaindictionary/exeDelete.do",
+				data:{domainId:params.data.domainId},
+				callback:function() {
+					parent.popup.close();
+					parent.doSearch();
+				}
 			});
 		} else {
-			commonJs.doSubmit(params);
+			commonJs.doSimpleProcessForPage(params);
 		}
-	};
-
-	exeDelete = function(params) {
-		commonJs.ajaxSubmit({
-			url:"/zebra/framework/domaindictionary/exeDelete.do",
-			dataType:"json",
-			formId:"fmDefault",
-			data:{
-				domainId:params.data.domainId
-			},
-			success:function(data, textStatus) {
-				var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-				if (result.isSuccess == true || result.isSuccess == "true") {
-					commonJs.openDialog({
-						type:com.message.I000,
-						contents:result.message,
-						blind:true,
-						buttons:[{
-							caption:com.caption.ok,
-							callback:function() {
-								parent.popup.close();
-								parent.doSearch();
-							}
-						}]
-					});
-				} else {
-					commonJs.error(result.message);
-				}
-			}
-		});
 	};
 
 	/*!
