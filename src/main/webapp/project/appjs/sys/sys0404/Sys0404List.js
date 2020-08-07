@@ -139,7 +139,7 @@ $(function() {
 		var popParam = {
 			popupId:"authGroup"+param.mode,
 			url:url,
-			paramData:{
+			data:{
 				mode:param.mode,
 				groupId:commonJs.nvl(param.groupId, "")
 			},
@@ -239,7 +239,7 @@ $(function() {
 					popup = commonJs.openPopup({
 						popupId:"exportFile",
 						url:"/sys/0404/exeExport.do",
-						paramData:{
+						data:{
 							fileType:menuObject.fileType,
 							dataRange:menuObject.dataRange
 						},

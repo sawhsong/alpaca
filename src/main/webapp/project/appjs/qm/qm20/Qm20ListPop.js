@@ -41,7 +41,7 @@ $(function() {
 		popupLookup = commonJs.openPopup({
 			popupId:"EmpOrgLookup",
 			url:"/common/lookup/getDefault.do",
-			paramData:{
+			data:{
 				lookupType:"EmploymentOrg",
 				keyFieldId:"empOrgId",
 				valueFieldId:"empOrgName",

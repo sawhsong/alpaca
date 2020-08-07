@@ -115,7 +115,7 @@ $(function() {
 		parent.popup = parent.commonJs.openPopup({
 			popupId:popupId,
 			url:url,
-			paramData:{opportunityId:opportunityId},
+			data:{opportunityId:opportunityId},
 			header:popupId,
 			width:width,
 			height:height

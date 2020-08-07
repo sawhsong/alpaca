@@ -202,7 +202,7 @@ $(function() {
 		popupUserProfile = commonJs.openPopup({
 			popupId:"UserProfile",
 			url:"/login/getUserProfile.do",
-			paramData:{
+			data:{
 				userId:userId
 			},
 			header:"User Profile Detail",
@@ -226,7 +226,7 @@ $(function() {
 		popupQuickMenu = commonJs.openPopup({
 			popupId:menuId,
 			url:menuUrl,
-			paramData:{
+			data:{
 				menuId:menuId
 			},
 			header:menuName,

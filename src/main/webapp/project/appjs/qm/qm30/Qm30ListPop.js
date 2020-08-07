@@ -40,7 +40,7 @@ $(function() {
 		popupLookup = commonJs.openPopup({
 			popupId:"ESEmployeeLookup",
 			url:"/common/lookup/getDefault.do",
-			paramData:{
+			data:{
 				lookupType:"EsEmployee",
 				keyFieldId:"cscId",
 				valueFieldId:"cscName",
@@ -58,7 +58,7 @@ $(function() {
 		popupLookup = commonJs.openPopup({
 			popupId:"ESEmployeeLookup",
 			url:"/common/lookup/getDefault.do",
-			paramData:{
+			data:{
 				lookupType:"EsEmployee",
 				keyFieldId:"crmId",
 				valueFieldId:"crmName",

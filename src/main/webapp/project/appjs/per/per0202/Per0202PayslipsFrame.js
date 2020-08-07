@@ -87,7 +87,7 @@ $(function() {
 		parent.popup = parent.commonJs.openPopup({
 			popupId:"PreviewPayslip",
 			url:"/common/payment/getDefault.do",
-			paramData:{
+			data:{
 				actionName:"previewPayslip",
 				personId:personId,
 				paymentId:paymentId,

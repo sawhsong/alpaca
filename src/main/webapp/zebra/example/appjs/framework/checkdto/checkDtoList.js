@@ -35,7 +35,7 @@ $(function() {
 			popupId:"DTOGeneratorInfo",
 			url:"/zebra/framework/dtogenerator/getGeneratorInfo.do",
 			header:framework.header.popHeaderGenerator,
-			paramData:{dataSource:$("#dataSourceToCheck").val()},
+			data:{dataSource:$("#dataSourceToCheck").val()},
 			blind:true,
 			width:1000,
 			height:520
@@ -179,7 +179,7 @@ $(function() {
 		popupDetail = commonJs.openPopup({
 			popupId:"TableDetail",
 			url:"/zebra/framework/dtogenerator/getDetail.do",
-			paramData:{
+			data:{
 				tableName:tableName,
 				dataSource:$("#dataSourceToCheck").val()
 			},

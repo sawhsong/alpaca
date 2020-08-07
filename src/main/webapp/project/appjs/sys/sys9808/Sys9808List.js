@@ -20,7 +20,7 @@ $(function() {
 			popupId:"GeneratorInfo",
 			url:"/sys/9808/getGeneratorInfo.do",
 			header:"Source Code Generator",
-			paramData:{dataSource:$("#dataSource").val()},
+			data:{dataSource:$("#dataSource").val()},
 			blind:true,
 			width:1000,
 			height:480
@@ -117,7 +117,7 @@ $(function() {
 		popupDetail = commonJs.openPopup({
 			popupId:"TableDetail",
 			url:"/sys/9808/getDetail.do",
-			paramData:{
+			data:{
 				tableName:tableName,
 				dataSource:$("#dataSource").val()
 			},

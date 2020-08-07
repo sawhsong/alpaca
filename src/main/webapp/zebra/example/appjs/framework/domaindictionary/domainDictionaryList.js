@@ -135,7 +135,7 @@ $(function() {
 		var popParam = {
 			popupId:"domainDictionary"+param.mode,
 			url:url,
-			paramData:{
+			data:{
 				mode:param.mode,
 				domainId:commonJs.nvl(param.domainId, "")
 			},

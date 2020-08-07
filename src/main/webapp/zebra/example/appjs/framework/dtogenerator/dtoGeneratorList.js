@@ -19,7 +19,7 @@ $(function() {
 			popupId:"DTOGeneratorInfo",
 			url:"/zebra/framework/dtogenerator/getGeneratorInfo.do",
 			header:framework.header.popHeaderGenerator,
-			paramData:{dataSource:$("#dataSource").val()},
+			data:{dataSource:$("#dataSource").val()},
 			blind:true,
 			width:1000,
 			height:520
@@ -60,20 +60,11 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanel");
 
 		if (commonJs.doValidate($("#fmDefault"))) {
-			setTimeout(function() {
-				commonJs.ajaxSubmit({
-					formId:"fmDefault",
-					url:"/zebra/framework/dtogenerator/getList.do",
-					dataType:"json",
-					success:function(data, textStatus) {
-						var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-						if (result.isSuccess == true || result.isSuccess == "true") {
-							renderDataGridTable(result);
-						}
-					}
-				});
-			}, 200);
+			commonJs.doSearch({
+				url:"/zebra/framework/dtogenerator/getList.do",
+				data:{},
+				callback:renderDataGridTable
+			});
 		}
 	};
 
@@ -143,7 +134,7 @@ $(function() {
 		popupDetail = commonJs.openPopup({
 			popupId:"TableDetail",
 			url:"/zebra/framework/dtogenerator/getDetail.do",
-			paramData:{
+			data:{
 				tableName:tableName,
 				dataSource:$("#dataSource").val()
 			},

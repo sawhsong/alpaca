@@ -180,7 +180,7 @@ $(function() {
 		var popParam = {
 			popupId:"Sys9802"+param.mode,
 			url:url,
-			paramData:{
+			data:{
 				mode:param.mode,
 				assignmentId:val
 			},

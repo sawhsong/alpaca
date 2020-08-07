@@ -188,7 +188,7 @@ $(function() {
 		var popParam = {
 			popupId:"Sys9804"+param.mode,
 			url:url,
-			paramData:{
+			data:{
 				mode:param.mode,
 				invoiceId:val
 			},

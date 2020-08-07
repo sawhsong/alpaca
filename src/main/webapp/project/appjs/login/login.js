@@ -68,7 +68,7 @@ $(function() {
 				params = {
 					popupId:"ResetPassword",
 					url:"/login/resetPassword.do",
-					paramData:{},
+					data:{},
 					header:login.header.resetPassword,
 					blind:false,
 					draggable:false,
@@ -79,7 +79,7 @@ $(function() {
 				params = {
 					popupId:"Request Register",
 					url:"/login/requestRegister.do",
-					paramData:{},
+					data:{},
 					header:login.header.requestRegister,
 					blind:false,
 					draggable:false,

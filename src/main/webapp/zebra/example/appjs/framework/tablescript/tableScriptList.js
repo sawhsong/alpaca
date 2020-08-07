@@ -150,7 +150,7 @@ $(function() {
 		var popParam = {
 			popupId:"tableScript"+param.mode,
 			url:url,
-			paramData:{
+			data:{
 				mode:param.mode,
 				fileName:commonJs.nvl(param.fileName, "")
 			},

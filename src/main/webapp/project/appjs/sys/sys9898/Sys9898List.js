@@ -103,7 +103,7 @@ $(function() {
 		popup = commonJs.openPopup({
 			popupId:"ViewSQL",
 			url:"/sys/9898/getSql.do",
-			paramData:{
+			data:{
 				sqlId:sqlId,
 				dataSource:$("#dataSource").val()
 			},
