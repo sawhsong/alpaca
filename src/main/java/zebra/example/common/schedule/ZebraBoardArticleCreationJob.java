@@ -46,7 +46,7 @@ public class ZebraBoardArticleCreationJob extends QuartzJobBean {
 			contents += "context.getNextFireTime() : "+CommonUtil.toString(context.getNextFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"\n";
 
 			zebraBoard.setArticleId(uid);
-			if (CommonUtil.toDouble(CommonUtil.substring(uid, uid.length()-4)) % 2 == 0) {
+			if (CommonUtil.toInt(CommonUtil.substring(uid, uid.length()-5)) % 2 == 0) {
 				zebraBoard.setBoardType(ZebraCommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
 			} else {
 				JobDetail jobDetail = context.getJobDetail();

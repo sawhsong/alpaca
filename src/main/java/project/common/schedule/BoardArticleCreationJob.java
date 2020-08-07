@@ -46,7 +46,7 @@ public class BoardArticleCreationJob extends QuartzJobBean {
 			contents += "context.getNextFireTime() : "+CommonUtil.toString(context.getNextFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"\n";
 
 			sysBoard.setArticleId(uid);
-			if (CommonUtil.toDouble(CommonUtil.substring(uid, uid.length()-4)) % 2 == 0) {
+			if (CommonUtil.toInt(CommonUtil.substring(uid, uid.length()-5)) % 2 == 0) {
 				sysBoard.setBoardType(CommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
 			} else {
 				JobDetail jobDetail = context.getJobDetail();
