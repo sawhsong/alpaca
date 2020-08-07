@@ -46,7 +46,9 @@ public class ZebraBoardArticleCreationJob extends QuartzJobBean {
 			contents += "context.getNextFireTime() : "+CommonUtil.toString(context.getNextFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"\n";
 
 			zebraBoard.setArticleId(uid);
-			if (CommonUtil.toInt(CommonUtil.substring(uid, uid.length()-5)) % 2 == 0) {
+
+			logger.debug("ZebraBoardArticleCreationJob Begin : "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss"));
+			if (CommonUtil.toInt(CommonUtil.substring(uid, 0, 5)) % 2 == 0) {
 				zebraBoard.setBoardType(ZebraCommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
 			} else {
 				JobDetail jobDetail = context.getJobDetail();
@@ -71,6 +73,8 @@ public class ZebraBoardArticleCreationJob extends QuartzJobBean {
 			zebraBoard.setRefArticleId("-1");
 
 			zebraBoardDao.insert(zebraBoard);
+
+			logger.debug("ZebraBoardArticleCreationJob End : "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss"));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			logger.error(ex);

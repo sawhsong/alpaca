@@ -46,7 +46,9 @@ public class BoardArticleCreationJob extends QuartzJobBean {
 			contents += "context.getNextFireTime() : "+CommonUtil.toString(context.getNextFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"\n";
 
 			sysBoard.setArticleId(uid);
-			if (CommonUtil.toInt(CommonUtil.substring(uid, uid.length()-5)) % 2 == 0) {
+
+			logger.debug("BoardArticleCreationJob Begin : "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss"));
+			if (CommonUtil.toInt(CommonUtil.substring(uid, 0, 5)) % 2 == 0) {
 				sysBoard.setBoardType(CommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
 			} else {
 				JobDetail jobDetail = context.getJobDetail();
@@ -71,6 +73,8 @@ public class BoardArticleCreationJob extends QuartzJobBean {
 			sysBoard.setParentArticleId("-1");
 
 			sysBoardDao.insert(sysBoard);
+
+			logger.debug("BoardArticleCreationJob End : "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss"));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			logger.error(ex);
