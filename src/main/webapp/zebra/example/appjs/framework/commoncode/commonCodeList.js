@@ -34,7 +34,7 @@ $(function() {
 		if (event.which == 13) {
 			var element = event.target;
 
-			if ($(element).is("[name=searchWord]")) {
+			if ($(element).is("[name=commonCodeType]")) {
 				doSearch();
 			}
 		}
@@ -47,20 +47,11 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanel");
 
 		if (commonJs.doValidate($("#fmDefault"))) {
-			setTimeout(function() {
-				commonJs.ajaxSubmit({
-					formId:"fmDefault",
-					url:"/zebra/framework/commoncode/getList.do",
-					dataType:"json",
-					success:function(data, textStatus) {
-						var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-						if (result.isSuccess == true || result.isSuccess == "true") {
-							renderDataGridTable(result);
-						}
-					}
-				});
-			}, 200);
+			commonJs.doSearch({
+				url:"/zebra/framework/commoncode/getList.do",
+				data:{},
+				callback:renderDataGridTable
+			});
 		}
 	};
 
@@ -118,8 +109,6 @@ $(function() {
 			attachTo:$("#divDataArea"),
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
-			isFilter:false,
-			filterColumn:[1, 2, 3],
 			totalResultRows:result.totalResultRows,
 			script:"doSearch"
 		});
@@ -173,47 +162,9 @@ $(function() {
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q002,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					exeDelete();
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}],
-			blind:true
-		});
-	};
-
-	exeDelete = function() {
-		commonJs.ajaxSubmit({
+		commonJs.doDelete({
 			url:"/zebra/framework/commoncode/exeDelete.do",
-			dataType:"json",
-			formId:"fmDefault",
-			success:function(data, textStatus) {
-				var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-				if (result.isSuccess == true || result.isSuccess == "true") {
-					commonJs.openDialog({
-						type:com.message.I000,
-						contents:result.message,
-						blind:true,
-						width:300,
-						buttons:[{
-							caption:com.caption.ok,
-							callback:function() {
-								doSearch();
-							}
-						}]
-					});
-				} else {
-					commonJs.error(result.message);
-				}
-			}
+			callback:doSearch
 		});
 	};
 
@@ -250,40 +201,17 @@ $(function() {
 	};
 
 	exeExport = function(menuObject) {
-		$("[name=fileType]").remove();
-		$("[name=dataRange]").remove();
-
 		if (searchResultDataCount <= 0) {
 			commonJs.warn(com.message.I001);
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q003,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					popup = commonJs.openPopup({
-						popupId:"exportFile",
-						url:"/zebra/framework/commoncode/exeExport.do",
-						data:{
-							fileType:menuObject.fileType,
-							dataRange:menuObject.dataRange
-						},
-						header:framework.header.fileExport,
-						blind:false,
-						width:200,
-						height:100
-					});
-					// needs delayed time - sometimes causing the error [getOutputStream() has already been called for this response]
-					setTimeout(function() {popup.close();}, 3000);
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}],
-			blind:true
+		commonJs.doExport({
+			url:"/zebra/framework/commoncode/exeExport.do",
+			data:{
+				fileType:menuObject.fileType,
+				dataRange:menuObject.dataRange
+			}
 		});
 	};
 
@@ -291,10 +219,6 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.commonAction);
-		});
-
 		commonJs.setAutoComplete($("#commonCodeType"), {
 			url:"/zebra/common/autoCompletion/",
 			method:"getCommonCodeType",
@@ -304,8 +228,6 @@ $(function() {
 				doSearch();
 			}
 		});
-
-		$("#commonCodeType").focus();
 
 		commonJs.setExportButtonContextMenu($("#btnExport"));
 

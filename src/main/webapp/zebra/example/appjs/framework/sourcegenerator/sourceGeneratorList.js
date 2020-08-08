@@ -60,20 +60,11 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanel");
 
 		if (commonJs.doValidate($("#fmDefault"))) {
-			setTimeout(function() {
-				commonJs.ajaxSubmit({
-					url:"/zebra/framework/sourcegenerator/getList.do",
-					dataType:"json",
-					formId:"fmDefault",
-					success:function(data, textStatus) {
-						var result = commonJs.parseAjaxResult(data, textStatus, "json");
-		
-						if (result.isSuccess == true || result.isSuccess == "true") {
-							renderDataGridTable(result);
-						}
-					}
-				});
-			}, 200);
+			commonJs.doSearch({
+				url:"/zebra/framework/sourcegenerator/getList.do",
+				data:{},
+				callback:renderDataGridTable
+			});
 		}
 	};
 

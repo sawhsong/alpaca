@@ -173,9 +173,6 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-//		$("[name=icnAction]").each(function(index) {
-//			$(this).contextMenu(ctxMenu.dtoGeneratorAction);
-//		});
 		exeSearch();
 	});
 });

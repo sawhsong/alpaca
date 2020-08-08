@@ -41,9 +41,9 @@ create table sys_user (
     update_user_id                  varchar2(30),                                               -- Update User UID
     update_date                     date,                                                       -- Update Date
 
-    constraint fk_1220900131318091 foreign key(auth_group_id) references sys_auth_group(group_id),
+    constraint fk_45421652490600 foreign key(auth_group_id) references sys_auth_group(group_id),
     constraint pk_sys_user primary key(user_id),
-    constraint uk_1220900131401383 unique(login_id, login_password)
+    constraint uk_45421687631800 unique(login_id, login_password)
     using index tablespace alpaca_idx storage(initial 50k next 50k pctincrease 0)
 )
 pctfree 20 pctused 80 tablespace alpaca_data storage(initial 100k next 100k maxextents 2000 pctincrease 0);

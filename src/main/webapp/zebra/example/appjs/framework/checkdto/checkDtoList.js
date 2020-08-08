@@ -252,11 +252,6 @@ $(function() {
 	/*!
 	 * load event (document / window)
 	 */
-	setGridSize = function() {
-		$("#divScrollablePanel").height($("#divScrollablePanel").outerHeight() + 18);
-	};
-
 	$(window).load(function() {
-		setGridSize();
 	});
 });

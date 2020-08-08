@@ -102,6 +102,8 @@ $(function() {
 			totalResultRows:result.totalResultRows
 		});
 
+		resizeListTable("tblSourceData");
+
 		commonJs.hideProcMessageOnElement("tblSourceData");
 	};
 
@@ -148,6 +150,8 @@ $(function() {
 			displayRowCount:true,
 			totalResultRows:result.totalResultRows
 		});
+
+		resizeListTable("tblTargetData");
 
 		commonJs.hideProcMessageOnElement("tblTargetData");
 	};
@@ -252,16 +256,33 @@ $(function() {
 			}
 		});
 	};
+
+	resizeListTable = function(tableId) {
+		var attachToHeight, tableHeight;
+
+		if (tableId == "tblSourceData") {
+			attachToHeight = $("#divSourceDataTable").outerHeight();
+			tableHeight = $("#tblSourceData").outerHeight();
+			if (attachToHeight > tableHeight) {
+				if ($("#systemGeneratedTableForFixedHeadertblSourceData").length > 0) {
+					$("#systemGeneratedTableForFixedHeadertblSourceData").remove();
+				}
+			}
+		} else if (tableId == "tblTargetData") {
+			attachToHeight = $("#divTargetDataTable").outerHeight();
+			tableHeight = $("#tblTargetData").outerHeight();
+			if (attachToHeight > tableHeight) {
+				if ($("#systemGeneratedTableForFixedHeadertblTargetData").length > 0) {
+					$("#systemGeneratedTableForFixedHeadertblTargetData").remove();
+				}
+			}
+		}
+	}
 	/*!
 	 * load event (document / window)
 	 */
-	setGridSize = function() {
-		$("#divScrollablePanel").height($("#divScrollablePanel").outerHeight() + 18);
-	};
-
 	$(window).load(function() {
 		setActionButtonContextMenu();
-		setGridSize();
 		doSourceDataSearch();
 		doTargetDataSearch();
 	});

@@ -132,7 +132,7 @@
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
-			<tr>
+			<tr class="noStripe">
 				<td colspan="10" style="padding:0px;border-top:0px"><ul id="ulColumnDetailHolder"></ul></td>
 			</tr>
 		</tbody>
@@ -161,7 +161,7 @@
 			<col width="18%"/>
 			<col width="*"/>
 		</colgroup>
-		<tr class="noBorderAll">
+		<tr class="noBorderAll noStripe">
 			<th id="thDragHander" class="thGrid dragHandler" title="<mc:msg key="fwk.commoncode.msg.drag"/>"><i id="iDragHandler" class="fa fa-lg fa-sort"></i></th>
 			<th id="thDeleteButton" class="thGrid deleteButton" title="<mc:msg key="fwk.commoncode.msg.delete"/>"><i id="iDeleteButton" class="fa fa-lg fa-times"></i></th>
 			<td class="tdGrid Ct"><ui:text name="columnName" style="text-transform:uppercase" checkName="fwk.tablescript.header.colName" options="mandatory" script="onchange:validate(this)"/></td>

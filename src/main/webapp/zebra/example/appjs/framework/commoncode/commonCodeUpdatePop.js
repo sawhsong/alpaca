@@ -31,18 +31,14 @@ $(function() {
 			});
 		});
 
-		commonJs.confirm({
-			contents:com.message.Q001,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					exeSave();
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}]
+		var detailLength = $("#ulCommonCodeDetailHolder .dummyDetail").length;
+		commonJs.doSave({
+			url:"/zebra/framework/commoncode/exeUpdate.do",
+			data:{detailLength:detailLength},
+			callback:function() {
+				parent.popup.close();
+				parent.doSearch();
+			}
 		});
 	});
 
@@ -110,41 +106,6 @@ $(function() {
 	/*!
 	 * process
 	 */
-	exeSave = function() {
-		var detailLength = $("#ulCommonCodeDetailHolder .dummyDetail").length;
-
-		commonJs.ajaxSubmit({
-			url:"/zebra/framework/commoncode/exeUpdate.do",
-			dataType:"json",
-			formId:"fmDefault",
-			data:{
-				commonCodeForUpdate:codeType,
-				detailLength:detailLength
-			},
-			success:function(data, textStatus) {
-				var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-				if (result.isSuccess == true || result.isSuccess == "true") {
-					commonJs.openDialog({
-						type:com.message.I000,
-						contents:result.message,
-						blind:true,
-						width:300,
-						buttons:[{
-							caption:com.caption.ok,
-							callback:function() {
-								parent.popup.close();
-								parent.doSearch();
-							}
-						}]
-					});
-				} else {
-					commonJs.error(result.message);
-				}
-			}
-		});
-	};
-
 	setSortable = function() {
 		$("#ulCommonCodeDetailHolder").sortable({
 			axis:"y",
@@ -214,7 +175,6 @@ $(function() {
 
 	$(window).load(function() {
 		parent.popup.setHeader(framework.header.popHeaderEdit);
-		$("#codeTypeMaster").focus();
 		setSortable();
 
 		setTimeout(function() {

@@ -136,7 +136,7 @@ var masterRow = <%=masterRow%>;
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
-			<tr>
+			<tr class="noStripe">
 				<td colspan="7" style="padding:0px;border-top:0px"><ul id="ulCommonCodeDetailHolder"></ul></td>
 			</tr>
 		</tbody>
@@ -162,7 +162,7 @@ var masterRow = <%=masterRow%>;
 			<col width="32%"/>
 			<col width="*"/>
 		</colgroup>
-		<tr class="noBorderAll">
+		<tr class="noBorderAll noStripe">
 			<th id="thDragHander" class="thGrid dragHandler" title="<mc:msg key="fwk.commoncode.msg.drag"/>"><ui:icon id="iDragHandler" className="fa-lg fa-sort"/></th>
 			<th id="thDeleteButton" class="thGrid deleteButton" title="<mc:msg key="fwk.commoncode.msg.delete"/>"><ui:icon id="iDeleteButton" className="fa-lg fa-times"/></th>
 			<td class="tdGrid ct"><ui:text name="commonCodeDetail" style="text-transform:uppercase" checkName="fwk.commoncode.header.commonCode" options="mandatory"/></td>
