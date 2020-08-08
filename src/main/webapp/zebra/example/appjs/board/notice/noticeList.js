@@ -57,8 +57,7 @@ $(function() {
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
 				url:"/zebra/board/notice/getList.do",
-				data:{},
-				callback:renderDataGridTable
+				onSuccess:renderDataGridTable
 			});
 		}
 	};
@@ -283,10 +282,8 @@ $(function() {
 
 		commonJs.doExport({
 			url:"/zebra/board/notice/exeExport.do",
-			data:{
-				fileType:menuObject.fileType,
-				dataRange:menuObject.dataRange
-			}
+			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
+			menuObject:menuObject
 		});
 	};
 

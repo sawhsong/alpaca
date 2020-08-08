@@ -44,13 +44,10 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanel");
 
 		if (commonJs.doValidate($("#fmDefault"))) {
-			setTimeout(function() {
-				commonJs.doSearch({
-					url:"/bbs/0202/getList.do",
-					dataType:"json",
-					onSuccess:renderDataGridTable
-				});
-			}, 200);
+			commonJs.doSearch({
+				url:"/bbs/0202/getList.do",
+				onSuccess:renderDataGridTable
+			});
 		}
 	};
 
@@ -112,8 +109,6 @@ $(function() {
 			attachTo:$("#divDataArea"),
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
-			isFilter:false,
-			filterColumn:[],
 			totalResultRows:result.totalResultRows,
 			script:"doSearch"
 		});
@@ -147,61 +142,52 @@ $(function() {
 	};
 
 	getAttachedFile = function(img) {
-		commonJs.ajaxSubmit({
+		commonJs.doSimpleProcess({
 			url:"/bbs/0202/getAttachedFile.do",
-			dataType:"json",
-			data:{
-				articleId:$(img).attr("articleId")
-			},
-			blind:false,
-			success:function(data, textStatus) {
-				var result = commonJs.parseAjaxResult(data, textStatus, "json");
+			data:{articleId:$(img).attr("articleId")},
+			callback:function(result) {
+				var dataSet = result.dataSet;
+				attchedFileContextMenu = [];
 
-				if (result.isSuccess == true || result.isSuccess == "true") {
-					var dataSet = result.dataSet;
-					attchedFileContextMenu = [];
+				for (var i=0; i<dataSet.getRowCnt(); i++) {
+					var repositoryPath = dataSet.getValue(i, "REPOSITORY_PATH");
+					var originalName = dataSet.getValue(i, "ORIGINAL_NAME");
+					var newName = dataSet.getValue(i, "NEW_NAME");
+					var fileIcon = dataSet.getValue(i, "FILE_ICON");
+					var fileSize = (dataSet.getValue(i, "FILE_SIZE")/1024)+1;
 
-					for (var i=0; i<dataSet.getRowCnt(); i++) {
-						var repositoryPath = dataSet.getValue(i, "REPOSITORY_PATH");
-						var originalName = dataSet.getValue(i, "ORIGINAL_NAME");
-						var newName = dataSet.getValue(i, "NEW_NAME");
-						var fileIcon = dataSet.getValue(i, "FILE_ICON");
-						var fileSize = dataSet.getValue(i, "FILE_SIZE")/1024;
+					attchedFileContextMenu.push({
+						name:originalName+" ("+commonJs.getNumberMask(fileSize, "0,0")+") KB",
+						title:originalName,
+						img:fileIcon,
+						repositoryPath:repositoryPath,
+						originalName:originalName,
+						newName:newName,
+						fun:function() {
+							var index = $(this).index();
 
-						attchedFileContextMenu.push({
-							name:originalName+" ("+commonJs.getNumberMask(fileSize, "0,0")+") KB",
-							title:originalName,
-							img:fileIcon,
-							repositoryPath:repositoryPath,
-							originalName:originalName,
-							newName:newName,
-							fun:function() {
-								var index = $(this).index();
-
-								downloadFile({
-									repositoryPath:attchedFileContextMenu[index].repositoryPath,
-									originalName:attchedFileContextMenu[index].originalName,
-									newName:attchedFileContextMenu[index].newName
-								});
-							}
-						});
-					}
-
-					$(img).contextMenu(attchedFileContextMenu, {
-						classPrefix:com.constants.ctxClassPrefixGrid,
-						displayAround:"trigger",
-						position:"bottom",
-						horAdjust:0,
-						verAdjust:2
+							downloadFile({
+								repositoryPath:attchedFileContextMenu[index].repositoryPath,
+								originalName:attchedFileContextMenu[index].originalName,
+								newName:attchedFileContextMenu[index].newName
+							});
+						}
 					});
 				}
+
+				$(img).contextMenu(attchedFileContextMenu, {
+					classPrefix:com.constants.ctxClassPrefixGrid,
+					displayAround:"trigger",
+					position:"bottom",
+					horAdjust:0,
+					verAdjust:2
+				});
 			}
 		});
 	};
 
 	downloadFile = function(param) {
-		commonJs.doSubmit({
-			form:"fmDefault",
+		commonJs.doSimpleProcessForPage({
 			action:"/download.do",
 			data:{
 				repositoryPath:param.repositoryPath,
@@ -217,7 +203,6 @@ $(function() {
 	$(window).load(function() {
 		commonJs.setFieldDateMask("fromDate");
 		commonJs.setFieldDateMask("toDate");
-		$("#searchWord").focus();
 		doSearch();
 	});
 });

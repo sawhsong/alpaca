@@ -56,23 +56,10 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanel");
 
 		if (commonJs.doValidate($("#fmDefault"))) {
-			setTimeout(function() {
-				commonJs.ajaxSubmit({
-					url:"/bbs/0204/getList.do",
-					dataType:"json",
-					formId:"fmDefault",
-					success:function(data, textStatus) {
-						var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-						if (result.isSuccess == true || result.isSuccess == "true") {
-							renderDataGridTable(result);
-						} else {
-							commonJs.error(result.message);
-							commonJs.hideProcMessageOnElement("divScrollablePanel");
-						}
-					}
-				});
-			}, 200);
+			commonJs.doSearch({
+				url:"/bbs/0204/getList.do",
+				onSuccess:renderDataGridTable
+			});
 		}
 	};
 
@@ -142,8 +129,6 @@ $(function() {
 			attachTo:$("#divDataArea"),
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
-			isFilter:false,
-			filterColumn:[],
 			totalResultRows:result.totalResultRows,
 			script:"doSearch"
 		});
@@ -181,11 +166,11 @@ $(function() {
 	};
 
 	getInsert = function() {
-		commonJs.doSubmit({action:"/bbs/0204/getInsert.do"});
+		commonJs.doSimpleProcessForPage({action:"/bbs/0204/getInsert.do"});
 	};
 
 	getDetail = function(articleId) {
-		commonJs.doSubmit({
+		commonJs.doSimpleProcessForPage({
 			action:"/bbs/0204/getDetail.do",
 			data:{
 				articleId:articleId
@@ -202,8 +187,7 @@ $(function() {
 			action = "/bbs/0204/getInsert.do";
 		}
 
-		commonJs.doSubmit({
-			form:"fmDefault",
+		commonJs.doSimpleProcessForPage({
 			action:action,
 			data:{
 				mode:param.mode,
@@ -218,43 +202,9 @@ $(function() {
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q002,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					commonJs.ajaxSubmit({
-						url:"/bbs/0204/exeDelete.do",
-						dataType:"json",
-						formId:"fmDefault",
-						success:function(data, textStatus) {
-							var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-							if (result.isSuccess == true || result.isSuccess == "true") {
-								commonJs.openDialog({
-									type:com.message.I000,
-									contents:result.message,
-									blind:true,
-									width:300,
-									buttons:[{
-										caption:com.caption.ok,
-										callback:function() {
-											doSearch();
-										}
-									}]
-								});
-							} else {
-								commonJs.warn(result.message);
-							}
-						}
-					});
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}],
-			blind:true
+		commonJs.doDelete({
+			url:"/bbs/0204/exeDelete.do",
+			onSuccess:doSearch
 		});
 	};
 
@@ -327,7 +277,6 @@ $(function() {
 		commonJs.setFieldDateMask("fromDate");
 		commonJs.setFieldDateMask("toDate");
 		commonJs.setExportButtonContextMenu($("#btnExport"));
-		$("#searchWord").focus();
 		doSearch();
 	});
 });

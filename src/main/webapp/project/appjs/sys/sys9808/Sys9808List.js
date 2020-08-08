@@ -100,8 +100,6 @@ $(function() {
 			pagingArea:$("#divPagingArea"),
 			isPageable:false,
 			displayRowCount:true,
-			isFilter:false,
-			filterColumn:[1, 2],
 			totalResultRows:result.totalResultRows,
 			script:"doSearch"
 		});
@@ -156,9 +154,5 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.dtoGeneratorAction);
-		});
-//		doSearch();
 	});
 });

@@ -7,7 +7,7 @@ var searchResultDataCount = 0;
 var langCode = commonJs.upperCase(jsconfig.get("langCode"));
 var dateFormat = jsconfig.get("dateFormatJs");
 
-jsconfig.put("scrollablePanelHeightAdjust", -3);
+jsconfig.put("scrollablePanelHeightAdjust", 0);
 
 $(function() {
 	/*!
@@ -46,23 +46,11 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanel");
 
 		if (commonJs.doValidate($("#fmDefault"))) {
-			setTimeout(function() {
-				commonJs.ajaxSubmit({
-					url:"/sys/0202/getList.do",
-					dataType:"json",
-					formId:"fmDefault",
-					success:function(data, textStatus) {
-						var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-						if (result.isSuccess == true || result.isSuccess == "true") {
-							renderDataGridTable(result);
-						} else {
-							commonJs.error(result.message);
-							commonJs.hideProcMessageOnElement("divScrollablePanel");
-						}
-					}
-				});
-			}, 500);
+			commonJs.doSearch({
+				url:"/sys/0202/getList.do",
+				data:{},
+				callback:renderDataGridTable
+			});
 		}
 	};
 
@@ -119,8 +107,6 @@ $(function() {
 			attachTo:$("#divDataArea"),
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
-			isFilter:false,
-			filterColumn:[],
 			totalResultRows:result.totalResultRows,
 			script:"doSearch"
 		});
@@ -174,43 +160,9 @@ $(function() {
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q002,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					commonJs.ajaxSubmit({
-						url:"/sys/0202/exeDelete.do",
-						dataType:"json",
-						formId:"fmDefault",
-						success:function(data, textStatus) {
-							var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-							if (result.isSuccess == true || result.isSuccess == "true") {
-								commonJs.openDialog({
-									type:com.message.I000,
-									contents:result.message,
-									blind:true,
-									width:300,
-									buttons:[{
-										caption:com.caption.ok,
-										callback:function() {
-											doSearch();
-										}
-									}]
-								});
-							} else {
-								commonJs.error(result.message);
-							}
-						}
-					});
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}],
-			blind:true
+		commonJs.doDelete({
+			url:"/sys/0202/exeDelete.do",
+			callback:doSearch
 		});
 	};
 
@@ -245,39 +197,15 @@ $(function() {
 	};
 
 	exeExport = function(menuObject) {
-		$("[name=fileType]").remove();
-		$("[name=dataRange]").remove();
-
 		if (searchResultDataCount <= 0) {
 			commonJs.warn(com.message.I001);
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q003,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					popup = commonJs.openPopup({
-						popupId:"exportFile",
-						url:"/sys/0202/exeExport.do",
-						data:{
-							fileType:menuObject.fileType,
-							dataRange:menuObject.dataRange
-						},
-						header:"exportFile",
-						blind:false,
-						width:200,
-						height:100
-					});
-					setTimeout(function() {popup.close();}, 3000);
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}],
-			blind:true
+		commonJs.doExport({
+			url:"/sys/0202/exeExport.do",
+			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
+			menuObject:menuObject
 		});
 	};
 
@@ -295,7 +223,6 @@ $(function() {
 			}
 		});
 
-		$("#commonCodeType").focus();
 		commonJs.setExportButtonContextMenu($("#btnExport"));
 		doSearch();
 	});

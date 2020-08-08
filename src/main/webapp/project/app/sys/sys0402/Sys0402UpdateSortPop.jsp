@@ -44,7 +44,7 @@ var dsMenu2 = commonJs.getDataSetFromJavaDataSet("<%=dsMenu2.toStringForJs()%>")
 <%/************************************************************************************************
 * Page & Header
 ************************************************************************************************/%>
-<body>
+<body style="overflow:hidden;">
 <form id="fmDefault" name="fmDefault" method="post" action="">
 <div id="divPopupWindowHolder">
 <div id="divFixedPanelPopup">

@@ -166,6 +166,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 			sysUser.setUserName(requestDataSet.getValue("userName"));
 			sysUser.setLoginId(requestDataSet.getValue("loginId"));
 			sysUser.setLoginPassword(requestDataSet.getValue("password"));
+			sysUser.setPersonId("1");
 			sysUser.setAuthGroupId(requestDataSet.getValue("authGroup"));
 			sysUser.setLanguage(requestDataSet.getValue("language"));
 			sysUser.setThemeType(requestDataSet.getValue("themeType"));

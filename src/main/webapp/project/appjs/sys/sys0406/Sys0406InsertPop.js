@@ -18,23 +18,8 @@ $(function() {
 				}
 			}
 
-			$("#fmDefault").attr("enctype", "multipart/form-data");
-
-			commonJs.confirm({
-				contents:com.message.Q001,
-				buttons:[{
-					caption:com.caption.yes,
-					callback:function() {
-						commonJs.doSubmit({
-							form:"fmDefault",
-							action:"/sys/0406/exeInsert.do"
-						});
-					}
-				}, {
-					caption:com.caption.no,
-					callback:function() {
-					}
-				}]
+			commonJs.doSaveWithFileForPage({
+				action:"/sys/0406/exeInsert.do"
 			});
 		}
 	});
@@ -57,6 +42,5 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		$("#photoPath").focus();
 	});
 });

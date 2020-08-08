@@ -221,8 +221,8 @@ $(function() {
 
 		commonJs.doExport({
 			url:"/per/0202/exeExport.do",
-			menuObject:menuObject,
-			data:commonJs.serialiseObject($("#divSearchCriteriaArea"))
+			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
+			menuObject:menuObject
 		});
 	};
 

@@ -129,7 +129,7 @@
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
-			<tr>
+			<tr class="noStripe">
 				<td colspan="8" style="padding:0px;border-top:0px"><ul id="ulCommonCodeDetailHolder"></ul></td>
 			</tr>
 		</tbody>

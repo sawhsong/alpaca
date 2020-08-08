@@ -127,8 +127,6 @@ $(function() {
 			attachTo:$("#divGridWrapper"),
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
-			isFilter:false,
-			filterColumn:[],
 			totalResultRows:result.totalResultRows,
 			script:"doSearch"
 		});
@@ -194,9 +192,6 @@ $(function() {
 	};
 
 	exeExport = function(menuObject) {
-		$("[name=fileType]").remove();
-		$("[name=dataRange]").remove();
-
 		if (searchResultDataCount <= 0) {
 			commonJs.warn(com.message.I001);
 			return;
@@ -311,7 +306,5 @@ $(function() {
 				return false;
 			}
 		});
-
-//		doSearch();
 	});
 });

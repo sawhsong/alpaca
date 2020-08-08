@@ -208,10 +208,8 @@ $(function() {
 
 		commonJs.doExport({
 			url:"/zebra/framework/commoncode/exeExport.do",
-			data:{
-				fileType:menuObject.fileType,
-				dataRange:menuObject.dataRange
-			}
+			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
+			menuObject:menuObject
 		});
 	};
 

@@ -138,8 +138,6 @@ $(function() {
 			attachTo:$("#divGridWrapper"),
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
-			isFilter:false,
-			filterColumn:[],
 			totalResultRows:result.totalResultRows,
 			script:"doSearch"
 		});
@@ -274,7 +272,5 @@ $(function() {
 				return false;
 			}
 		});
-
-//		doSearch();
 	});
 });

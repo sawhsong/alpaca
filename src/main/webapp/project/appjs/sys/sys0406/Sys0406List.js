@@ -7,6 +7,8 @@ var popup = null;
 var searchResultDataCount = 0;
 var toDateFormat = jsconfig.get("dateFormatJs");
 
+jsconfig.put("scrollablePanelHeightAdjust", 6);
+
 $(function() {
 	/*!
 	 * event
@@ -93,23 +95,11 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanel");
 
 		if (commonJs.doValidate($("#fmDefault"))) {
-			setTimeout(function() {
-				commonJs.ajaxSubmit({
-					url:"/sys/0406/getList.do",
-					dataType:"json",
-					formId:"fmDefault",
-					success:function(data, textStatus) {
-						var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-						if (result.isSuccess == true || result.isSuccess == "true") {
-							renderDataGridTable(result);
-						} else {
-							commonJs.error(result.message);
-							commonJs.hideProcMessageOnElement("divScrollablePanel");
-						}
-					}
-				});
-			}, 200);
+			commonJs.doSearch({
+				url:"/sys/0406/getList.do",
+				data:{},
+				callback:renderDataGridTable
+			});
 		}
 	};
 
@@ -159,8 +149,6 @@ $(function() {
 			attachTo:$("#divDataArea"),
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
-			isFilter:false,
-			filterColumn:[],
 			totalResultRows:result.totalResultRows,
 			script:"doSearch"
 		});
@@ -198,7 +186,7 @@ $(function() {
 		} else if (param.mode == "UpdateUserType") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.type;
-			width = 330; height = 180;
+			width = 330; height = 186;
 		} else if (param.mode == "UpdateUserStatus") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.status;
@@ -206,7 +194,7 @@ $(function() {
 		} else if (param.mode == "UpdateActiveStatus") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.active;
-			width = 330; height = 180;
+			width = 330; height = 186;
 		}
 
 		if (url.indexOf("getActionContextMenu") != -1) {
@@ -238,43 +226,9 @@ $(function() {
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q002,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					commonJs.ajaxSubmit({
-						url:"/sys/0406/exeDelete.do",
-						dataType:"json",
-						formId:"fmDefault",
-						success:function(data, textStatus) {
-							var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-							if (result.isSuccess == true || result.isSuccess == "true") {
-								commonJs.openDialog({
-									type:com.message.I000,
-									contents:result.message,
-									blind:true,
-									width:300,
-									buttons:[{
-										caption:com.caption.ok,
-										callback:function() {
-											doSearch();
-										}
-									}]
-								});
-							} else {
-								commonJs.error(result.message);
-							}
-						}
-					});
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}],
-			blind:true
+		commonJs.doDelete({
+			url:"/sys/0406/exeDelete.do",
+			callback:doSearch
 		});
 	};
 
@@ -303,68 +257,23 @@ $(function() {
 	};
 
 	exeExport = function(menuObject) {
-		$("[name=fileType]").remove();
-		$("[name=dataRange]").remove();
-
 		if (searchResultDataCount <= 0) {
 			commonJs.warn(com.message.I001);
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q003,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					popup = commonJs.openPopup({
-						popupId:"exportFile",
-						url:"/sys/0406/exeExport.do",
-						data:{
-							fileType:menuObject.fileType,
-							dataRange:menuObject.dataRange
-						},
-						header:"exportFile",
-						blind:false,
-						width:200,
-						height:100
-					});
-					setTimeout(function() {popup.close();}, 3000);
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}],
-			blind:true
+		commonJs.doExport({
+			url:"/sys/0406/exeExport.do",
+			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
+			menuObject:menuObject
 		});
 	};
 
 	exeActionContextMenu = function(param) {
-		commonJs.ajaxSubmit({
+		commonJs.doSimpleProcess({
 			url:"/sys/0406/exeActionContextMenu.do",
-			dataType:"json",
-			formId:"fmDefault",
 			data:param,
-			success:function(data, textStatus) {
-				var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-				if (result.isSuccess == true || result.isSuccess == "true") {
-					commonJs.openDialog({
-						type:com.message.I000,
-						contents:result.message,
-						blind:true,
-						width:300,
-						buttons:[{
-							caption:com.caption.yes,
-							callback:function() {
-								doSearch();
-							}
-						}]
-					});
-				} else {
-					commonJs.error(result.message);
-				}
-			}
+			callback:doSearch
 		});
 	};
 
@@ -400,8 +309,6 @@ $(function() {
 				doSearch();
 			}
 		});
-
-		$("#userName").focus();
 
 		doSearch();
 	});

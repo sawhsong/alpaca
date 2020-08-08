@@ -44,51 +44,19 @@ $(function() {
 		}
 
 		if (param.mode == "Delete") {
-			commonJs.confirm({
-				contents:com.message.Q002,
-				buttons:[{
-					caption:com.caption.yes,
-					callback:function() {
-						commonJs.ajaxSubmit({
-							url:action,
-							dataType:"json",
-							formId:"fmDefault",
-							data:{
-								paramValue:paramValue,
-								menuId:menuId
-							},
-							success:function(data, textStatus) {
-								var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-								if (result.isSuccess == true || result.isSuccess == "true") {
-									commonJs.openDialog({
-										type:com.message.I000,
-										contents:result.message,
-										blind:true,
-										width:300,
-										buttons:[{
-											caption:com.caption.ok,
-											callback:function() {
-												parent.popup.close();
-												parent.doSearch();
-											}
-										}]
-									});
-								} else {
-									commonJs.error(result.message);
-								}
-							}
-						});
-					}
-				}, {
-					caption:com.caption.no,
-					callback:function() {
-					}
-				}]
+			commonJs.doDelete({
+				url:action,
+				data:{
+					paramValue:paramValue,
+					menuId:menuId
+				},
+				callback:function() {
+					parent.popup.close();
+					parent.doSearch();
+				}
 			});
 		} else {
-			commonJs.doSubmit({
-				form:"fmDefault",
+			commonJs.doSimpleProcessForPage({
 				action:action,
 				data:{
 					mode:param.mode,

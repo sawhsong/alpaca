@@ -88,8 +88,8 @@ insert into sys_common_code values('USER_THEME_TYPE', 'THEME009',   'Cupertino',
 insert into sys_common_code values('USER_THEME_TYPE', 'THEME010',   'Humanity',        'Humanity',        'Humanity',        'USER_THEME_TYPE_010',        '011', 'Y', 'Y', '0', sysdate, null, null);
 
 insert into sys_common_code values('USER_TYPE', '0000000000', 'User Type',     'User Type',     'User Type',     'USER_TYPE_0000000000',    '000', 'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('USER_TYPE', 'INTERNAL',   'Internal User', 'Internal User', 'Internal User', 'USER_TYPE_TYPE_INTERNAL', '001', 'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('USER_TYPE', 'EXTERNAL',   'External User', 'External User', 'External User', 'USER_TYPE_TYPE_EXTERNAL', '002', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('USER_TYPE', 'INTERNAL',   'Internal User', 'Internal User', 'Internal User', 'USER_TYPE_INTERNAL', '001', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('USER_TYPE', 'EXTERNAL',   'External User', 'External User', 'External User', 'USER_TYPE_EXTERNAL', '002', 'Y', 'Y', '0', sysdate, null, null);
 
 insert into sys_common_code values('USER_STATUS','0000000000', 'User type', 'User type', 'User type', 'USER_STATUS_0000000000', '000', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('USER_STATUS','RR',         'Requested', 'Requested', 'Requested', 'USER_STATUS_RR',         '001', 'Y', 'Y', '0', sysdate, null, null);

@@ -14,6 +14,10 @@
 	String defaultUserType = CommonCodeManager.getCodeByConstants("USER_TYPE_EXTERNAL");
 	String defaultUserStatus = CommonCodeManager.getCodeByConstants("USER_STATUS_NU");
 	String defaultActive = CommonCodeManager.getCodeByConstants("IS_ACTIVE_Y");
+
+	pageContext.setAttribute("defaultUserType", defaultUserType);
+	pageContext.setAttribute("defaultUserStatus", defaultUserStatus);
+	pageContext.setAttribute("defaultActive", defaultActive);
 %>
 <%/************************************************************************************************
 * HTML
@@ -75,11 +79,15 @@ var mode = "<%=mode%>";
 				<td class="tdEdit">
 <%
 				for (int i=0; i<authGroupDataSet.getRowCnt(); i++) {
-					String checked = (i == (authGroupDataSet.getRowCnt() - 1)) ? "checked" : "";
+					String rdoText = authGroupDataSet.getValue(i, "GROUP_NAME");
+					String rdoValue = authGroupDataSet.getValue(i, "GROUP_ID");
+					String isSelected = (i == (authGroupDataSet.getRowCnt() - 1)) ? "true" : "";
+
+					pageContext.setAttribute("rdoText", rdoText);
+					pageContext.setAttribute("rdoValue", rdoValue);
+					pageContext.setAttribute("isSelected", isSelected);
 %>
-					<label class="lblRadioEn block">
-						<input type="radio" name="authGroup" class="rdoEn" value="<%=authGroupDataSet.getValue(i, "GROUP_ID")%>" <%=checked%>/><%=authGroupDataSet.getValue(i, "GROUP_NAME")%>
-					</label>
+					<ui:radio name="authGroup" text="${rdoText}" value="${rdoValue}" displayType="block" isCustomised="true" isSelected="${isSelected}"/>
 <%
 				}
 %>
@@ -92,7 +100,7 @@ var mode = "<%=mode%>";
 			<caption class="captionEdit"><mc:msg key="sys0406.msg.selectType"/></caption>
 			<tr>
 				<td class="tdEdit">
-					<ui:ccradio name="userType" codeType="USER_TYPE" selectedValue="<%=defaultUserType%>" displayType="block"/>
+					<ui:ccradio name="userType" codeType="USER_TYPE" selectedValue="${defaultUserType}" displayType="block" isCustomised="true"/>
 				</td>
 			</tr>
 		</table>
@@ -102,7 +110,7 @@ var mode = "<%=mode%>";
 			<caption class="captionEdit"><mc:msg key="sys0406.msg.selectStatus"/></caption>
 			<tr>
 				<td class="tdEdit">
-					<ui:ccradio name="userStatus" codeType="USER_STATUS" selectedValue="<%=defaultUserStatus%>" displayType="block"/>
+					<ui:ccradio name="userStatus" codeType="USER_STATUS" selectedValue="${defaultUserStatus}" displayType="block" isCustomised="true"/>
 				</td>
 			</tr>
 		</table>
@@ -112,7 +120,7 @@ var mode = "<%=mode%>";
 			<caption class="captionEdit"><mc:msg key="sys0406.msg.selectActive"/></caption>
 			<tr>
 				<td class="tdEdit">
-					<ui:ccradio name="activeStatus" codeType="IS_ACTIVE" selectedValue="<%=defaultActive%>" displayType="block"/>
+					<ui:ccradio name="activeStatus" codeType="IS_ACTIVE" selectedValue="${defaultActive}" displayType="block" isCustomised="true"/>
 				</td>
 			</tr>
 		</table>

@@ -69,7 +69,9 @@ $(function() {
 		if (param.mode == "Delete") {
 			commonJs.doDelete({
 				url:"/zebra/board/notice/exeDelete.do",
-				data:{articleId:params.data.articleId},
+				data:{
+					articleId:params.data.articleId
+				},
 				callback:function() {
 					parent.popup.close();
 					parent.doSearch();

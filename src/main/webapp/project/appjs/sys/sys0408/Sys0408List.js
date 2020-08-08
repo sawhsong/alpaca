@@ -16,46 +16,14 @@ $(function() {
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q001,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					commonJs.ajaxSubmit({
-						url:"/sys/0408/exeInsert.do",
-						dataType:"json",
-						formId:"fmDefault",
-						success:function(data, textStatus) {
-							var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-							if (result.isSuccess == true || result.isSuccess == "true") {
-								commonJs.openDialog({
-									type:com.message.I000,
-									contents:result.message,
-									blind:true,
-									width:300,
-									buttons:[{
-										caption:com.caption.ok,
-										callback:function() {
-											commonJs.doSubmit({
-												formId:"fmDefault",
-												action:"/sys/0408/getList.do"
-											});
-										}
-									}]
-								});
-							} else {
-								commonJs.error(result.message);
-								commonJs.hideProcMessageOnElement("divScrollablePanel");
-							}
-						}
-					});
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}]
+		commonJs.doSave({
+			url:"/sys/0408/exeInsert.do",
+			data:{},
+			callback:function() {
+				commonJs.doSimpleProcessForPage({
+					action:"/sys/0408/getList.do"
+				});
+			}
 		});
 	});
 

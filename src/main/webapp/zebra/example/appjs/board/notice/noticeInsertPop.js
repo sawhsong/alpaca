@@ -9,7 +9,9 @@ $(function() {
 		if (commonJs.doValidate("fmDefault")) {
 			commonJs.doSaveWithFile({
 				url:"/zebra/board/notice/exeInsert.do",
-				data:{articleId:articleId},
+				data:{
+					articleId:articleId
+				},
 				callback:function() {
 					parent.popup.close();
 					parent.doSearch();
