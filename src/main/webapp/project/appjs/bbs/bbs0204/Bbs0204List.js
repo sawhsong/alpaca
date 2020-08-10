@@ -159,7 +159,7 @@ $(function() {
 			action = "/bbs/0204/getDetail.do";
 		}
 
-		commonJs.doSubmit({
+		commonJs.doSimpleProcessForPage({
 			action:action,
 			data:param
 		});

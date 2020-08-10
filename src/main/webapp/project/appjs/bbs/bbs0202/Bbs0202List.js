@@ -145,7 +145,7 @@ $(function() {
 		commonJs.doSimpleProcess({
 			url:"/bbs/0202/getAttachedFile.do",
 			data:{articleId:$(img).attr("articleId")},
-			callback:function(result) {
+			onSuccess:function(result) {
 				var dataSet = result.dataSet;
 				attchedFileContextMenu = [];
 
