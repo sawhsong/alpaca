@@ -76,7 +76,7 @@ $(function() {
 				var iLevel = parseInt(dataSet.getValue(i, "LEVEL")) - 1;
 				var gridTr = new UiGridTr();
 
-				gridTr.setClassName("noBorderHor noStripe");
+				gridTr.setClassName("noBorderHor");
 
 				var uiChk = new UiCheckbox();
 				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "ARTICLE_ID"));
@@ -186,7 +186,7 @@ $(function() {
 
 		commonJs.doDelete({
 			url:"/sys/9904/exeDelete.do",
-			callback:doSearch
+			onSuccess:doSearch
 		});
 	};
 
@@ -202,8 +202,8 @@ $(function() {
 		});
 
 		ctxMenu.boardAction[0].fun = function() {getDetail(articleId);};
-		ctxMenu.boardAction[1].fun = function() {openPopup({mode:"Edit", articleId:articleId});};
-		ctxMenu.boardAction[2].fun = function() {openPopup({mode:"Reply", articleId:articleId});};
+		ctxMenu.boardAction[1].fun = function() {doProcess({mode:"Edit", articleId:articleId});};
+		ctxMenu.boardAction[2].fun = function() {doProcess({mode:"Reply", articleId:articleId});};
 		ctxMenu.boardAction[3].fun = function() {doDelete();};
 
 		$(img).contextMenu(ctxMenu.boardAction, {
@@ -221,7 +221,7 @@ $(function() {
 			data:{
 				articleId:$(img).attr("articleId")
 			},
-			callback:function(result) {
+			onSuccess:function(result) {
 				var dataSet = result.dataSet;
 				attchedFileContextMenu = [];
 

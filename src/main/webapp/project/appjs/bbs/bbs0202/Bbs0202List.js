@@ -64,7 +64,7 @@ $(function() {
 				var iLevel = parseInt(dataSet.getValue(i, "LEVEL")) - 1;
 				var gridTr = new UiGridTr();
 
-				gridTr.setClassName("noBorderHor noStripe");
+				gridTr.setClassName("noBorderHor");
 
 				if (iLevel > 0) {
 					for (var j=0; j<iLevel; j++) {

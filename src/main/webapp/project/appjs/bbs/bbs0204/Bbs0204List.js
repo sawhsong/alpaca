@@ -76,7 +76,7 @@ $(function() {
 				var iLevel = parseInt(dataSet.getValue(i, "LEVEL")) - 1;
 				var gridTr = new UiGridTr();
 
-				gridTr.setClassName("noBorderHor noStripe");
+				gridTr.setClassName("noBorderHor");
 
 				var uiChk = new UiCheckbox();
 				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "ARTICLE_ID"));
@@ -106,7 +106,8 @@ $(function() {
 				gridTr.addChild(gridTd);
 
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "WRITER_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "CREATED_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "INSERT_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "UPDATE_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(dataSet.getValue(i, "HIT_CNT"), "#,###")));
 
 				var iconAction = new UiIcon();
@@ -119,7 +120,7 @@ $(function() {
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:7").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:8").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
@@ -233,40 +234,73 @@ $(function() {
 		});
 	};
 
-	exeExport = function(menuObject) {
-		$("[name=fileType]").remove();
-		$("[name=dataRange]").remove();
+	getAttachedFile = function(img) {
+		commonJs.doSimpleProcess({
+			url:"/bbs/0204/getAttachedFile.do",
+			data:{articleId:$(img).attr("articleId")},
+			onSuccess:function(result) {
+				var dataSet = result.dataSet;
+				attchedFileContextMenu = [];
 
+				for (var i=0; i<dataSet.getRowCnt(); i++) {
+					var repositoryPath = dataSet.getValue(i, "REPOSITORY_PATH");
+					var originalName = dataSet.getValue(i, "ORIGINAL_NAME");
+					var newName = dataSet.getValue(i, "NEW_NAME");
+					var fileIcon = dataSet.getValue(i, "FILE_ICON");
+					var fileSize = (dataSet.getValue(i, "FILE_SIZE")/1024)+1;
+
+					attchedFileContextMenu.push({
+						name:originalName+" ("+commonJs.getNumberMask(fileSize, "0,0")+") KB",
+						title:originalName,
+						img:fileIcon,
+						repositoryPath:repositoryPath,
+						originalName:originalName,
+						newName:newName,
+						fun:function() {
+							var index = $(this).index();
+
+							downloadFile({
+								repositoryPath:attchedFileContextMenu[index].repositoryPath,
+								originalName:attchedFileContextMenu[index].originalName,
+								newName:attchedFileContextMenu[index].newName
+							});
+						}
+					});
+				}
+
+				$(img).contextMenu(attchedFileContextMenu, {
+					classPrefix:com.constants.ctxClassPrefixGrid,
+					displayAround:"trigger",
+					position:"bottom",
+					horAdjust:0,
+					verAdjust:2,
+					containment:$("#divScrollablePanel")
+				});
+			}
+		});
+	};
+
+	downloadFile = function(param) {
+		commonJs.doSimpleProcessForPage({
+			action:"/download.do",
+			data:{
+				repositoryPath:param.repositoryPath,
+				originalName:param.originalName,
+				newName:param.newName
+			}
+		});
+	};
+
+	exeExport = function(menuObject) {
 		if (searchResultDataCount <= 0) {
 			commonJs.warn(com.message.I001);
 			return;
 		}
 
-		commonJs.confirm({
-			contents:com.message.Q003,
-			buttons:[{
-				caption:com.caption.yes,
-				callback:function() {
-					popup = commonJs.openPopup({
-						popupId:"exportFile",
-						url:"/bbs/0204/exeExport.do",
-						data:{
-							fileType:menuObject.fileType,
-							dataRange:menuObject.dataRange
-						},
-						header:"exportFile",
-						blind:false,
-						width:200,
-						height:100
-					});
-					setTimeout(function() {popup.close();}, 3000);
-				}
-			}, {
-				caption:com.caption.no,
-				callback:function() {
-				}
-			}],
-			blind:true
+		commonJs.doExport({
+			url:"/bbs/0204/exeExport.do",
+			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
+			menuObject:menuObject
 		});
 	};
 

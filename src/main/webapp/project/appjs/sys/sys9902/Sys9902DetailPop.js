@@ -73,7 +73,7 @@ $(function() {
 				data:{
 					articleId:articleId
 				},
-				callback:function() {
+				onSuccess:function() {
 					parent.popup.close();
 					parent.doSearch();
 				}

@@ -8,6 +8,7 @@
 ************************************************************************************************/%>
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
+	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
 	SysBoard sysBoard = (SysBoard)paramEntity.getObject("sysBoard");
 	DataSet fileDataSet = (DataSet)paramEntity.getObject("fileDataSet");
 %>
@@ -28,6 +29,7 @@
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
+var articleId = "<%=requestDataSet.getValue("articleId")%>";
 </script>
 </head>
 <%/************************************************************************************************

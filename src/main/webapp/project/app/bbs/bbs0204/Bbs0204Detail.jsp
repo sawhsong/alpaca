@@ -28,6 +28,7 @@
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
+var articleId = "<%=sysBoard.getArticleId()%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -84,7 +85,7 @@
 		<tr>
 			<th class="thEdit Rt"><mc:msg key="page.com.updateDate"/></th>
 			<td class="tdEdit"><%=CommonUtil.toViewDateString(sysBoard.getUpdateDate())%></td>
-			<th class="thEdit Rt"><mc:msg key="bbs0204.header.hitCount"/></th>
+			<th class="thEdit Rt"><mc:msg key="bbs0204.header.hitCnt"/></th>
 			<td class="tdEdit"><%=CommonUtil.getNumberMask(sysBoard.getHitCnt())%></td>
 		</tr>
 		<tr>

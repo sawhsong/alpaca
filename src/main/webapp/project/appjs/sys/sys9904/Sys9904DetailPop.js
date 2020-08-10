@@ -75,7 +75,7 @@ $(function() {
 			commonJs.doDelete({
 				url:actionString,
 				data:{articleId:params.data.articleId},
-				callback:function() {
+				onSuccess:function() {
 					commonJs.doSimpleProcessForPage({
 						action:"/sys/9904/getDefault.do"
 					});

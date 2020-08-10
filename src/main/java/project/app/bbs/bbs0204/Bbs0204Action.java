@@ -43,6 +43,15 @@ public class Bbs0204Action extends BaseAction {
 		return "update";
 	}
 
+	public String getAttachedFile() throws Exception {
+		try {
+			biz.getAttachedFile(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
 	public String exeInsert() throws Exception {
 		try {
 			biz.exeInsert(paramEntity);

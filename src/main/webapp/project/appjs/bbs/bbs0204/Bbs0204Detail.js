@@ -40,8 +40,7 @@ $(function() {
 	};
 
 	exeDownload = function(repositoryPath, originalName, newName) {
-		commonJs.doSubmit({
-			form:"fmDefault",
+		commonJs.doSimpleProcessForPage({
 			action:"/download.do",
 			data:{
 				repositoryPath:repositoryPath,
@@ -73,48 +72,19 @@ $(function() {
 		};
 
 		if (param.mode == "Delete") {
-			commonJs.confirm({
-				contents:com.message.Q002,
-				buttons:[{
-					caption:com.caption.yes,
-					callback:function() {
-						commonJs.ajaxSubmit({
-							url:action,
-							dataType:"json",
-							formId:"fmDefault",
-							data:{
-								articleId:params.data.articleId
-							},
-							success:function(data, textStatus) {
-								var result = commonJs.parseAjaxResult(data, textStatus, "json");
-
-								if (result.isSuccess == true || result.isSuccess == "true") {
-									commonJs.openDialog({
-										type:com.message.I000,
-										contents:result.message,
-										blind:true,
-										width:300,
-										buttons:[{
-											caption:com.caption.ok,
-											callback:function() {
-												commonJs.doSubmit({action:"/bbs/0204/getDefault.do"});
-											}
-										}]
-									});
-								} else {
-									commonJs.error(result.message);
-								}
-							}
-						});
-					}
-				}, {
-					caption:com.caption.no,
-					callback:function() {
-					}
-				}]
+			commonJs.doDelete({
+				url:action,
+				data:{
+					articleId:params.data.articleId
+				},
+				callback:function() {
+					commonJs.doSimpleProcessForPage({
+						action:"/bbs/0204/getDefault.do"
+					});
+				}
 			});
 		} else {
-			commonJs.doSubmit(params);
+			commonJs.doSimpleProcessForPage(params);
 		}
 	};
 

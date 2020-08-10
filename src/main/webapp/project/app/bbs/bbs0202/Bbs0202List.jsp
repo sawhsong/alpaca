@@ -113,7 +113,7 @@
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
-			<tr class="noBorderHor noStripe">
+			<tr class="noBorderHor">
 				<td class="tdGrid Ct" colspan="6"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>

@@ -100,26 +100,28 @@
 		<colgroup>
 			<col width="3%"/>
 			<col width="*"/>
-			<col width="5%"/>
+			<col width="4%"/>
 			<col width="15%"/>
-			<col width="10%"/>
-			<col width="8%"/>
-			<col width="5%"/>
+			<col width="7%"/>
+			<col width="7%"/>
+			<col width="6%"/>
+			<col width="4%"/>
 		</colgroup>
 		<thead>
 			<tr class="noBorderHor">
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="bbs0204.grid.subject"/></th>
+				<th class="thGrid"><mc:msg key="bbs0204.grid.articleSubject"/></th>
 				<th class="thGrid"><mc:msg key="bbs0204.grid.file"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="bbs0204.grid.writerName"/></th>
-				<th class="thGrid sortable:date"><mc:msg key="bbs0204.grid.date"/></th>
-				<th class="thGrid sortable:numeric"><mc:msg key="bbs0204.grid.hitCount"/></th>
+				<th class="thGrid"><mc:msg key="bbs0204.grid.writerName"/></th>
+				<th class="thGrid"><mc:msg key="bbs0204.grid.dateInserted"/></th>
+				<th class="thGrid"><mc:msg key="bbs0204.grid.dateUpdated"/></th>
+				<th class="thGrid"><mc:msg key="bbs0204.grid.hitCnt"/></th>
 				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
-			<tr class="noBorderHor noStripe">
-				<td class="tdGrid Ct" colspan="7"><mc:msg key="I002"/></td>
+			<tr class="noBorderHor">
+				<td class="tdGrid Ct" colspan="8"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
 	</table>

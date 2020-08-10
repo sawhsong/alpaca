@@ -59,7 +59,7 @@ $(function() {
 			commonJs.doSearch({
 				url:"/sys/9902/getList.do",
 				data:{},
-				callback:renderDataGridTable
+				onSuccess:renderDataGridTable
 			});
 		}
 	};
@@ -77,7 +77,7 @@ $(function() {
 				var iLevel = parseInt(dataSet.getValue(i, "LEVEL")) - 1;
 				var gridTr = new UiGridTr();
 
-				gridTr.setClassName("noBorderHor noStripe");
+				gridTr.setClassName("noBorderHor");
 
 				var uiChk = new UiCheckbox();
 				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "ARTICLE_ID"));
@@ -190,7 +190,7 @@ $(function() {
 
 		commonJs.doDelete({
 			url:"/sys/9902/exeDelete.do",
-			callback:doSearch
+			onSuccess:doSearch
 		});
 	};
 
@@ -223,7 +223,7 @@ $(function() {
 		commonJs.doSimpleProcess({
 			url:"/sys/9902/getAttachedFile.do",
 			data:{articleId:$(img).attr("articleId")},
-			callback:function(result) {
+			onSuccess:function(result) {
 				var dataSet = result.dataSet;
 				attchedFileContextMenu = [];
 
