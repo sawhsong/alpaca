@@ -69,7 +69,7 @@ $(function() {
 		commonJs.doSave({
 			url:"/sys/9806/doSaveOrg.do",
 			data:{},
-			callback:function() {
+			onSuccess:function() {
 				commonJs.showProcMessageOnElement("divOrg");
 				setOrgInfo();
 				setTimeout(function() {
@@ -87,7 +87,7 @@ $(function() {
 		commonJs.doSave({
 			url:"/sys/9806/doSaveBillingCodeCreationType.do",
 			data:{},
-			callback:function() {
+			onSuccess:function() {
 				commonJs.showProcMessageOnElement("divBillingCode");
 				setBillingCodeInfo();
 				setTimeout(function() {
@@ -105,7 +105,7 @@ $(function() {
 		commonJs.doSave({
 			url:"/sys/9806/doSaveAccntShift.do",
 			data:{},
-			callback:function() {
+			onSuccess:function() {
 				commonJs.showProcMessageOnElement("divAccountShift");
 				setTimeout(function() {
 					$("#btnClearAccntShift").trigger("click");
@@ -123,7 +123,7 @@ $(function() {
 		commonJs.doSave({
 			url:"/sys/9806/doUpdateEoExpenseStatus.do",
 			data:{},
-			callback:function() {
+			onSuccess:function() {
 				commonJs.showProcMessageOnElement("divEoExpenseStatus");
 
 				setTimeout(function() {
@@ -138,24 +138,10 @@ $(function() {
 		addShiftOrg();
 	});
 
-	$("#orgId").blur(function() {
-		if (commonJs.isEmpty($(this).val())) {
-			$("#orgName").val("");
-			setOrgInfo();
-		}
-	});
-
 	$("#orgName").blur(function() {
 		if (commonJs.isEmpty($(this).val())) {
 			$("#orgId").val("");
 			setOrgInfo();
-		}
-	});
-
-	$("#billingCodeId").blur(function() {
-		if (commonJs.isEmpty($(this).val())) {
-			$("#billingCode").val("");
-			setBillingCodeInfo();
 		}
 	});
 
@@ -182,6 +168,7 @@ $(function() {
 	setOrgInfo = function() {
 		var val = $("#orgId").val();
 		if (commonJs.isEmpty(val)) {
+			$("#orgIdToDisplay").val("");
 			$("#orgNameTo").val("");
 			$("#abnTo").val("");
 			$("#acnTo").val("");
@@ -190,8 +177,9 @@ $(function() {
 				url:"/sys/9806/getOrgInfo.do",
 				data:{organisationId:val},
 				noForm:true,
-				callback:function(result) {
+				onSuccess:function(result) {
 					var ds = result.dataSet;
+					$("#orgIdToDisplay").val(val);
 					$("#orgNameTo").val(ds.getValue(0, "organisationName"));
 					$("#abnTo").val(ds.getValue(0, "abn"));
 					$("#acnTo").val(ds.getValue(0, "acn"));
@@ -212,8 +200,12 @@ $(function() {
 				url:"/sys/9806/getBillingCodeInfo.do",
 				data:{billingCodeId:val},
 				noForm:true,
-				callback:function(result) {
+				onSuccess:function(result) {
 					var ds = result.dataSet;
+
+					$("#billingCodeIdToDisplay").val(ds.getValue(0, "billingCodeId"));
+					$("#billingCodeToDisplay").val(ds.getValue(0, "billingCode"));
+
 					$("#billingCodeCreationTypeFrom").val(ds.getValue(0, "periodsCreationType"));
 					commonJs.refreshBootstrapSelectbox("billingCodeCreationTypeFrom");
 					$("#billingCodeCreationTypeTo").val(ds.getValue(0, "periodsCreationType"));
@@ -257,97 +249,58 @@ $(function() {
 			animate:100
 		});
 
-		commonJs.setAutoComplete($("#orgId"), {
-			method:"getOrgById",
-			label:"org_name_with_org_id",
-			value:"organisation_id",
-			minLength:2,
-			focus: function(event, ui) {
-				$("#orgId").val(ui.item.value);
-				$("#orgName").val(ui.item.label);
-				return false;
-			},
-			change:function(event, ui) {
-				if (commonJs.isEmpty($("#orgName").val())) {
-					$("#orgId").val("");
-					$("#orgName").val("");
-				}
-			},
-			select:function(event, ui) {
-				$("#orgId").val(ui.item.value);
-				$("#orgName").val(ui.item.label);
-				setOrgInfo();
-				return false;
-			}
-		});
-
 		commonJs.setAutoComplete($("#orgName"), {
-			method:"getOrgByName",
+			method:"getOrgByNameOrId",
 			label:"org_name_with_org_id",
 			value:"organisation_id",
 			minLength:2,
 			focus: function(event, ui) {
 				$("#orgId").val(ui.item.value);
+				$("#orgIdToDisplay").val(ui.item.value);
 				$("#orgName").val(ui.item.label);
 				return false;
 			},
 			change:function(event, ui) {
 				if (commonJs.isEmpty($("#orgName").val())) {
 					$("#orgId").val("");
+					$("#orgIdToDisplay").val("");
 					$("#orgName").val("");
 				}
 			},
 			select:function(event, ui) {
 				$("#orgId").val(ui.item.value);
+				$("#orgIdToDisplay").val(ui.item.value);
 				$("#orgName").val(ui.item.label);
 				setOrgInfo();
-				return false;
-			}
-		});
-
-		commonJs.setAutoComplete($("#billingCodeId"), {
-			method:"getBillingCodeById",
-			label:"display_column",
-			value:"billing_code_id",
-			minLength:2,
-			focus: function(event, ui) {
-				$("#billingCodeId").val(ui.item.value);
-				$("#billingCode").val(ui.item.label);
-				return false;
-			},
-			change:function(event, ui) {
-				if (commonJs.isEmpty($("#billingCode").val())) {
-					$("#billingCodeId").val("");
-					$("#billingCode").val("");
-				}
-			},
-			select:function(event, ui) {
-				$("#billingCodeId").val(ui.item.value);
-				$("#billingCode").val(ui.item.label);
-				setBillingCodeInfo();
 				return false;
 			}
 		});
 
 		commonJs.setAutoComplete($("#billingCode"), {
-			method:"getBillingCodeByCode",
+			method:"getBillingCodeByCodeOrId",
 			label:"display_column",
 			value:"billing_code_id",
 			minLength:2,
 			focus: function(event, ui) {
 				$("#billingCodeId").val(ui.item.value);
+				$("#billingCodeIdToDisplay").val(ui.item.value);
 				$("#billingCode").val(ui.item.label);
+				$("#billingCodeToDisplay").val(ui.item.label);
 				return false;
 			},
 			change:function(event, ui) {
 				if (commonJs.isEmpty($("#billingCode").val())) {
 					$("#billingCodeId").val("");
+					$("#billingCodeIdToDisplay").val("");
 					$("#billingCode").val("");
+					$("#billingCodeToDisplay").val("");
 				}
 			},
 			select:function(event, ui) {
 				$("#billingCodeId").val(ui.item.value);
+				$("#billingCodeIdToDisplay").val(ui.item.value);
 				$("#billingCode").val(ui.item.label);
+				$("#billingCodeToDisplay").val(ui.item.label);
 				setBillingCodeInfo();
 				return false;
 			}

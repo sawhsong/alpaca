@@ -66,6 +66,7 @@ public class Sys9806BizImpl extends BaseBiz implements Sys9806Biz {
 			hpOrganisationDDao.setDataSourceName(dataSource);
 			hpOrganisationD = hpOrganisationDDao.getOrganisationByOrganisationId(organisationId);
 
+			result.addColumn("organisationId", CommonUtil.toStringForId(hpOrganisationD.getOrganisationId()));
 			result.addColumn("organisationName", hpOrganisationD.getOrganisationName());
 			result.addColumn("abn", CommonUtil.getFormatString(CommonUtil.removeString(hpOrganisationD.getAbn(), "-"), "??-???-???-???"));
 			result.addColumn("acn", CommonUtil.getFormatString(hpOrganisationD.getAcn(), "???-???-???"));
@@ -90,6 +91,8 @@ public class Sys9806BizImpl extends BaseBiz implements Sys9806Biz {
 			hpBillingCodeDao.setDataSourceName(dataSource);
 			hpBillingCode = hpBillingCodeDao.getBillingCodeByBillingCodeId(billingCodeId);
 
+			result.addColumn("billingCodeId", CommonUtil.toStringForId(hpBillingCode.getBillingCodeId()));
+			result.addColumn("billingCode", hpBillingCode.getBillingCode());
 			result.addColumn("periodsCreationType", hpBillingCode.getPeriodsCreationType());
 
 			paramEntity.setAjaxResponseDataSet(result);

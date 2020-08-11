@@ -72,12 +72,10 @@
 					<table class="tblEdit">
 						<colgroup>
 							<col width="15%"/>
-							<col width="20%"/>
-							<col width="15%"/>
 							<col width="*"/>
 						</colgroup>
 						<tr>
-							<td class="tdEdit" colspan="4">
+							<td class="tdEdit" colspan="2">
 								<div class="divButtonArea">
 									<div class="divButtonAreaRight">
 										<ui:buttonGroup>
@@ -89,27 +87,29 @@
 							</td>
 						</tr>
 						<tr>
-							<th class="thEdit rt search"><mc:msg key="sys9806.search.orgId"/></th>
-							<td class="tdEdit search"><ui:text name="orgId"/></td>
-							<th class="thEdit rt search"><mc:msg key="sys9806.search.orgName"/></th>
-							<td class="tdEdit search"><ui:text name="orgName"/></td>
+							<th class="thEdit rt search"><mc:msg key="sys9806.search.org"/></th>
+							<td class="tdEdit search"><ui:hidden name="orgId"/><ui:text name="orgName"/></td>
 						</tr>
 						<tr>
-							<td class="tdEdit ct" colspan="4">
+							<td class="tdEdit ct" colspan="2">
 								<table class="tblEdit">
 									<colgroup>
-										<col width="30%"/>
-										<col width="*"/>
+										<col width="18%"/>
+										<col width="32%"/>
+										<col width="18%"/>
+										<col width="32%"/>
 									</colgroup>
 									<tr>
+										<th class="thEdit rt"><mc:msg key="sys9806.header.orgId"/></th>
+										<td class="tdEdit" colspan="3"><ui:text name="orgIdToDisplay" status="disabled"/></td>
+									</tr>
+									<tr>
 										<th class="thEdit rt mandatory"><mc:msg key="sys9806.header.orgName"/></th>
-										<td class="tdEdit"><ui:text name="orgNameTo" options="mandatory"/></td>
+										<td class="tdEdit" colspan="3"><ui:text name="orgNameTo" options="mandatory"/></td>
 									</tr>
 									<tr>
 										<th class="thEdit rt"><mc:msg key="sys9806.header.abn"/></th>
 										<td class="tdEdit"><ui:text name="abnTo"/></td>
-									</tr>
-									<tr>
 										<th class="thEdit rt"><mc:msg key="sys9806.header.acn"/></th>
 										<td class="tdEdit"><ui:text name="acnTo"/></td>
 									</tr>
@@ -126,9 +126,9 @@
 				<div id="divAccountShift">
 					<table class="tblEdit">
 						<colgroup>
-							<col width="7%"/>
-							<col width="*"/>
-							<col width="1%"/>
+							<col width="15%"/>
+							<col width="80%"/>
+							<col width="5%"/>
 						</colgroup>
 						<tr>
 							<td class="tdEdit" colspan="3">
@@ -186,12 +186,10 @@
 					<table class="tblEdit">
 						<colgroup>
 							<col width="15%"/>
-							<col width="20%"/>
-							<col width="15%"/>
 							<col width="*"/>
 						</colgroup>
 						<tr>
-							<td class="tdEdit" colspan="4">
+							<td class="tdEdit" colspan="2">
 								<div class="divButtonArea">
 									<div class="divButtonAreaRight">
 										<ui:buttonGroup>
@@ -203,25 +201,31 @@
 							</td>
 						</tr>
 						<tr>
-							<th class="thEdit rt search"><mc:msg key="sys9806.search.billingCodeId"/></th>
-							<td class="tdEdit search"><ui:text name="billingCodeId"/></td>
 							<th class="thEdit rt search"><mc:msg key="sys9806.search.billingCode"/></th>
-							<td class="tdEdit search"><ui:text name="billingCode"/></td>
+							<td class="tdEdit search"><ui:hidden name="billingCodeId"/><ui:text name="billingCode"/></td>
 						</tr>
 						<tr>
-							<td class="tdEdit ct" colspan="4">
+							<td class="tdEdit ct" colspan="2">
 								<table class="tblEdit">
 									<colgroup>
-										<col width="50%"/>
-										<col width="*"/>
+										<col width="15%"/>
+										<col width="35%"/>
+										<col width="15%"/>
+										<col width="35%"/>
 									</colgroup>
 									<tr>
-										<th class="thEdit ct"><mc:msg key="sys9806.header.typeFrom"/></th>
-										<th class="thEdit ct mandatory"><mc:msg key="sys9806.header.typeTo"/></th>
+										<th class="thEdit rt"><mc:msg key="sys9806.header.billingCodeId"/></th>
+										<td class="tdEdit"><ui:text name="billingCodeIdToDisplay" status="disabled"/></td>
+										<th class="thEdit rt"><mc:msg key="sys9806.header.billingCode"/></th>
+										<td class="tdEdit"><ui:text name="billingCodeToDisplay" status="disabled"/></td>
 									</tr>
 									<tr>
-										<td class="tdEdit ct"><ui:ccselect name="billingCodeCreationTypeFrom" codeType="BILLING_CODE_PERIODS_CREATION_TYPE" caption="==Select==" status="disabled"/></td>
-										<td class="tdEdit ct"><ui:ccselect name="billingCodeCreationTypeTo" codeType="BILLING_CODE_PERIODS_CREATION_TYPE" caption="==Select==" options="mandatory"/></td>
+										<th class="thEdit ct" style="height:26px;" colspan="2"><mc:msg key="sys9806.header.typeFrom"/></th>
+										<th class="thEdit ct mandatory" style="height:26px;" colspan="2"><mc:msg key="sys9806.header.typeTo"/></th>
+									</tr>
+									<tr>
+										<td class="tdEdit ct" colspan="2"><ui:ccselect name="billingCodeCreationTypeFrom" codeType="BILLING_CODE_PERIODS_CREATION_TYPE" caption="==Select==" status="disabled"/></td>
+										<td class="tdEdit ct" colspan="2"><ui:ccselect name="billingCodeCreationTypeTo" codeType="BILLING_CODE_PERIODS_CREATION_TYPE" caption="==Select==" options="mandatory"/></td>
 									</tr>
 								</table>
 							</td>
