@@ -87,7 +87,7 @@ $(function() {
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
 				url:"/per/0202/getList.do",
-				callback:renderGridData
+				onSuccess:renderGridData
 			});
 		}
 	};
@@ -135,7 +135,7 @@ $(function() {
 	};
 
 	getPersonDetail = function(personId) {
-		commonJs.doSubmit({
+		commonJs.doSimpleProcessForPage({
 			action:"/per/0202/getPersonDetailFrameContainer.do",
 			data:{personId:personId}
 		});
@@ -181,7 +181,7 @@ $(function() {
 
 		commonJs.doDelete({
 			url:"/per/0202/exeDelete.do",
-			callback:doSearch
+			onSuccess:doSearch
 		});
 	};
 
