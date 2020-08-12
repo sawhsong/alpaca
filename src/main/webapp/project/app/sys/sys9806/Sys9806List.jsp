@@ -220,8 +220,8 @@
 										<td class="tdEdit"><ui:text name="billingCodeToDisplay" status="disabled"/></td>
 									</tr>
 									<tr>
-										<th class="thEdit ct" style="height:26px;" colspan="2"><mc:msg key="sys9806.header.typeFrom"/></th>
-										<th class="thEdit ct mandatory" style="height:26px;" colspan="2"><mc:msg key="sys9806.header.typeTo"/></th>
+										<th class="thEdit ct" style="height:38px;" colspan="2"><mc:msg key="sys9806.header.typeFrom"/></th>
+										<th class="thEdit ct mandatory" style="height:38px;" colspan="2"><mc:msg key="sys9806.header.typeTo"/></th>
 									</tr>
 									<tr>
 										<td class="tdEdit ct" colspan="2"><ui:ccselect name="billingCodeCreationTypeFrom" codeType="BILLING_CODE_PERIODS_CREATION_TYPE" caption="==Select==" status="disabled"/></td>

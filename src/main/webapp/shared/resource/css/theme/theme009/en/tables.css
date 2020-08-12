@@ -9,7 +9,7 @@
 /* Table caption : do not use for fixedHeader table with scroll instead use panel */
 table caption {padding:8px 8px;font-size:1.0em;font-weight:bold;border-top-left-radius:4px;border-top-right-radius:4px;
 	color:#3F3731;
-	border:1px solid #CDC3B7;
+	border:1px solid #EEE6DF;
 	border-bottom:0px;
 	background-color:#EDE4D4;
 }
@@ -143,11 +143,11 @@ table.tblAdminTool caption {padding:8px 8px;font-size:1.0em;font-weight:bold;bor
 .tblEdit {width:100%;}
 .thEdit {padding:6px 6px;
 	color:#B85700;
-	border:1px solid #CDC3B7;
+	border:1px solid #EEE6DF;
 	background:#FBF9F8;
 }
 .tblEdit td {padding:6px 6px;
-	border:1px solid #CDC3B7;
+	border:1px solid #EEE6DF;
 }
 .tblEdit tfoot td {padding:6px 6px;}
 
@@ -155,18 +155,18 @@ table.tblAdminTool caption {padding:8px 8px;font-size:1.0em;font-weight:bold;bor
  * Grid style Tables
  */
 .tblGrid {width:100%;box-shadow:0px 0px 0px rgba(0, 0, 0, .2);
-	border-bottom:1px solid #CDC3B7;
+	border-bottom:1px solid #EEE6DF;
 }
 .thGrid {padding:8px 4px;text-align:center;
-	border:1px solid #CDC3B7;
+	border:1px solid #EEE6DF;
 	background:#FBF9F8;
 }
 .tblGrid td {padding:6px 4px;
-	border:1px solid #CDC3B7;
+	border:1px solid #EEE6DF;
 }
 .tblGrid tbody tr:last-child td {}
 .tblGrid tfoot td {padding:6px 4px;
-	border:1px solid #CDC3B7;
+	border:1px solid #EEE6DF;
 	background:#FBF9F8;
 }
 .tblGrid tfoot tr:first-child td {}
@@ -182,24 +182,24 @@ table.tblAdminTool caption {padding:8px 8px;font-size:1.0em;font-weight:bold;bor
 }
 
 .tblGrid tr.noBorderHor td, .tblGrid tr.noBorderHor th {
-	border-top:0px solid #CDC3B7;
-	border-bottom:0px solid #CDC3B7;
+	border-top:0px solid #EEE6DF;
+	border-bottom:0px solid #EEE6DF;
 }
 .tblGrid tr.noBorderHor:first-child th {
-	border-top:1px solid #CDC3B7;
+	border-top:1px solid #EEE6DF;
 }
 .tblGrid tr.noBorderHor:first-child td {
-	border-top:1px solid #CDC3B7;
+	border-top:1px solid #EEE6DF;
 }
 .tblGrid tr.noBorderVer td, .tblGrid tr.noBorderVer th {
-	border-left:0px solid #CDC3B7;
-	border-right:0px solid #CDC3B7;
+	border-left:0px solid #EEE6DF;
+	border-right:0px solid #EEE6DF;
 }
 .tblGrid tr.noBorderAll td, .tblGrid tr.noBorderAll th {
-	border:0px solid #CDC3B7;
+	border:0px solid #EEE6DF;
 }
 .tblGrid tr.noBorderAll:first-child th, .tblGrid tr.noBorderAll:first-child td {
-	border-top:1px solid #CDC3B7;
+	border-top:1px solid #EEE6DF;
 }
 
 /**

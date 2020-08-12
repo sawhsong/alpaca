@@ -9,7 +9,7 @@
 /* Table caption : do not use for fixedHeader table with scroll instead use panel */
 table caption {padding:8px 8px;font-size:1.0em;font-weight:bold;border-top-left-radius:4px;border-top-right-radius:4px;
 	color:#555555;
-	border:1px solid #FBCB09;
+	border:1px solid #FDE695;
 	border-bottom:0px;
 	background-color:#FEF9E2;
 }
@@ -143,11 +143,11 @@ table.tblAdminTool caption {padding:8px 8px;font-size:1.0em;font-weight:bold;bor
 .tblEdit {width:100%;}
 .thEdit {padding:6px 6px;
 	color:#555555;
-	border:1px solid #FBCB09;
-	background:#FEF9E2;
+	border:1px solid #FDE695;
+	background:#FFFAF2;
 }
 .tblEdit td {padding:6px 6px;
-	border:1px solid #FBCB09;
+	border:1px solid #FDE695;
 }
 .tblEdit tfoot td {padding:6px 6px;}
 
@@ -155,68 +155,68 @@ table.tblAdminTool caption {padding:8px 8px;font-size:1.0em;font-weight:bold;bor
  * Grid style Tables
  */
 .tblGrid {width:100%;box-shadow:0px 0px 0px rgba(0, 0, 0, .2);
-	border-bottom:1px solid #CCCCCC;
+	border-bottom:1px solid #FDE695;
 }
 .thGrid {padding:8px 4px;text-align:center;
-	border:1px solid #CCCCCC;
-	background:#FDF5CE;
+	border:1px solid #FDE695;
+	background:#FFFAF2;
 }
 .tblGrid td {padding:6px 4px;
-	border:1px solid #CCCCCC;
+	border:1px solid #FDE695;
 }
 .tblGrid tbody tr:last-child td {}
 .tblGrid tfoot td {padding:6px 4px;
-	border:1px solid #CCCCCC;
-	background:#FDF5CE;
+	border:1px solid #FDE695;
+	background:#FFFAF2;
 }
 .tblGrid tfoot tr:first-child td {}
 .tblGrid tfoot tr:last-child td {}
 .tblGrid tr:not(.default):not(.active):not(.info):not(.success):not(.warning):not(.danger):not(.noStripe):hover td {transition:background .2s;
-	background:#FDF5CE;
+	background:#FFFAF2;
 }
 .tblGrid tr:not(.default):not(.active):not(.info):not(.success):not(.warning):not(.danger):not(.noStripe):nth-child(even) {
-	background:#FFFDF4;
+	background:#FFFFF9;
 }
 .tblGrid tfoot tr:not(.default):not(.active):not(.info):not(.success):not(.warning):not(.danger):not(.noStripe):hover td {
 	background:#F5F5F5;
 }
 
 .tblGrid tr.noBorderHor td, .tblGrid tr.noBorderHor th {
-	border-top:0px solid #CCCCCC;
-	border-bottom:0px solid #CCCCCC;
+	border-top:0px solid #FDE695;
+	border-bottom:0px solid #FDE695;
 }
 .tblGrid tr.noBorderHor:first-child th {
-	border-top:1px solid #CCCCCC;
+	border-top:1px solid #FDE695;
 }
 .tblGrid tr.noBorderHor:first-child td {
-	border-top:1px solid #CCCCCC;
+	border-top:1px solid #FDE695;
 }
 .tblGrid tr.noBorderVer td, .tblGrid tr.noBorderVer th {
-	border-left:0px solid #CCCCCC;
-	border-right:0px solid #CCCCCC;
+	border-left:0px solid #FDE695;
+	border-right:0px solid #FDE695;
 }
 .tblGrid tr.noBorderAll td, .tblGrid tr.noBorderAll th {
-	border:0px solid #CCCCCC;
+	border:0px solid #FDE695;
 }
 .tblGrid tr.noBorderAll:first-child th, .tblGrid tr.noBorderAll:first-child td {
-	border-top:1px solid #CCCCCC;
+	border-top:1px solid #FDE695;
 }
 
 /**
  * Default Tables - No border - add .withPadding class in table tag for padding
  */
 .tblDefault {width:100%;
-	border:0px solid #CCCCCC;
+	border:0px solid #FDE695;
 }
 .thDefault {padding:0px 0px;
 	color:#555555;
-	border:0px solid #CCCCCC;
+	border:0px solid #FDE695;
 }
 .tblDefault td {padding:0px 0px;
-	border:0px solid #CCCCCC;
+	border:0px solid #FDE695;
 }
 .tblDefault tfoot td {padding:0px 0px;
-	border:0px solid #CCCCCC;
+	border:0px solid #FDE695;
 }
 
 table.withPadding th, table.withPadding td {padding:4px 4px;}
