@@ -40,7 +40,7 @@ public class ZebraBoardArticleCreationJob extends QuartzJobBean {
 			logger.debug("ZebraBoardArticleCreationJob Begin : "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss"));
 
 			zebraBoard.setArticleId(uid);
-			if (CommonUtil.toInt(CommonUtil.substring(uid, 0, 5)) % 2 == 0) {
+			if (CommonUtil.toInt(CommonUtil.substring(uid, 0, 3)) % 2 == 0) {
 				zebraBoard.setBoardType(ZebraCommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
 
 				contents += "ZebraBoardArticleCreationJob System generated article - "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss")+"\n";

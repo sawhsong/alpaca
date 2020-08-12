@@ -40,7 +40,7 @@ public class BoardArticleCreationJob extends QuartzJobBean {
 			logger.debug("BoardArticleCreationJob Begin : "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss"));
 
 			sysBoard.setArticleId(uid);
-			if (CommonUtil.toInt(CommonUtil.substring(uid, 0, 5)) % 2 == 0) {
+			if (CommonUtil.toInt(CommonUtil.substring(uid, 0, 3)) % 2 == 0) {
 				sysBoard.setBoardType(CommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
 
 				contents += "BoardArticleCreationJob System generated article - "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss")+"\n";
