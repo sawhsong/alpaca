@@ -19,6 +19,7 @@
 	DataSet dsMenuHeaderPage = MenuManager.getMenu(authGroupIdHeaderPage, "", "1", "1");
 	DataSet dsQuickMenuHeaderPage = MenuManager.getQuickMenu();
 
+	boolean hasQuickMenuAccessHeaderPage = (dsMenuHeaderPage.getRowIndex("PATH", "QM") >= 0) ? true : false;
 	String quickMenuNameHeaderPage = dsQuickMenuHeaderPage.getValue("MENU_NAME_"+languageCodeHeaderPage);
 	String quickMenuIconHeaderPage = dsQuickMenuHeaderPage.getValue("MENU_ICON");
 
@@ -39,6 +40,7 @@
 </style>
 <script type="text/javascript">
 var popupUserProfile, popupQuickMenu;
+var hasQuickMenuAccessHeaderPage = "<%=hasQuickMenuAccessHeaderPage%>";
 var authGroupIdHeaderPage = "<%=authGroupIdHeaderPage%>";
 
 $(function() {
@@ -160,8 +162,6 @@ $(function() {
 					menuUrl:quickMenu.getValue(i, "MENU_URL"),
 					fun:function() {
 						var index = $(this).index();
-
-// 						alert(ctxMenu[index].img);
 						doQuickMenu(ctxMenu[index].name, ctxMenu[index].menuId, ctxMenu[index].menuUrl);
 					}
 				});
@@ -208,7 +208,7 @@ $(function() {
 			header:"User Profile Detail",
 			blind:true,
 			width:720,
-			height:340
+			height:346
 		});
 	};
 
@@ -242,9 +242,11 @@ $(function() {
 
 	$(window).load(function() {
 		setThemeSelectorContextMenu();
-		if (!commonJs.isEmpty(authGroupIdHeaderPage)) {
+
+		if (commonJs.toBoolean(hasQuickMenuAccessHeaderPage)) {
 			setQuickMenuContextMenu();
 		}
+
 		setLoginUserContextMenu();
 	});
 });
@@ -307,7 +309,7 @@ $(function() {
 		</div>
 		<div id="divMainMenuAreaRight">
 <%
-		if (CommonUtil.isNotBlank(authGroupIdHeaderPage)) {
+		if (hasQuickMenuAccessHeaderPage) {
 %>
 			<div id="divQuickMenu" class="headerMainMenus">
 				<a id="aQuickMenu" style="background:url(<mc:cp key="imgThemeCom"/>/<%=quickMenuIconHeaderPage%>_<mc:cp key="headMainMenuIconColor"/>.png) no-repeat 0px 50%;padding:4px 0px 4px 25px;">

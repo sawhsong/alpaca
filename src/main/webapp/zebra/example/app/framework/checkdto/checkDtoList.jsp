@@ -109,7 +109,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="divSourceDataPagingArea" class="areaContainer"></div>
+		<div id="divSourceDataPagingArea"></div>
 	</div>
 	<div id="divTarget" style="float:right;width:29%;">
 		<div id="divTargetDataTable">
@@ -131,7 +131,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="divTargetDataPagingArea" class="areaContainer"></div>
+		<div id="divTargetDataPagingArea"></div>
 	</div>
 </div>
 <%/************************************************************************************************
