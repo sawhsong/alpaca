@@ -82,6 +82,7 @@ $(function() {
 			attachTo:$("#divGridWrapper"),
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
+			pagingAlign:"center",
 			totalResultRows:totalResultRows,
 			script:"doSearch"
 		});
