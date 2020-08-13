@@ -1,5 +1,7 @@
 package project.app.login;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -182,6 +184,7 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 		DataSet dsFile = paramEntity.getRequestFileDataSet();
 		String userId = requestDataSet.getValue("userId");
 		String rootPath = (String)MemoryBean.get("applicationRealPath");
+		String appSrcRootPath = ConfigUtil.getProperty("path.app.src.web");
 		String pathToSave = ConfigUtil.getProperty("path.image.photo");
 		SysUser sysUser = new SysUser();
 		HttpSession session = paramEntity.getSession();
@@ -202,11 +205,13 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 			sysUser.setUpdateDate(CommonUtil.toDate(CommonUtil.getSysdate()));
 
 			if (dsFile.getRowCnt() > 0) {
-				String fileName = dsFile.getValue("NEW_NAME"), fullPath = "";
+				String fileName = dsFile.getValue("NEW_NAME"), fullPath = "", copyToPath = "";
 
 				fileName = userId+"_"+fileName;
 				fullPath = rootPath+pathToSave+"/"+fileName;
+				copyToPath = appSrcRootPath+pathToSave+"/"+fileName;
 				FileUtil.moveFile(dsFile, fullPath);
+				FileUtil.copyFile(new File(fullPath), new File(copyToPath));
 
 				sysUser.setPhotoPath(pathToSave+"/"+fileName);
 			}
