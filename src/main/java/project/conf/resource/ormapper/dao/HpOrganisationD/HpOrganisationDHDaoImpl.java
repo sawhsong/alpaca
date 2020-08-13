@@ -62,7 +62,7 @@ public class HpOrganisationDHDaoImpl extends BaseHDao implements HpOrganisationD
 
 		queryAdvisor.addAutoFillCriteria(orgId, "organisation_id = '"+orgId+"'");
 		queryAdvisor.addAutoFillCriteria(orgName, "lower(organisation_name) like '%"+orgName+"%'");
-		queryAdvisor.addAutoFillCriteria(orgType, "organisation_type = '"+orgType+"%'");
+		queryAdvisor.addAutoFillCriteria(orgType, "organisation_type = '"+orgType+"'");
 		queryAdvisor.addAutoFillCriteria(orgRelationship, "lower(relationship) like '%"+orgRelationship+"%'");
 		queryAdvisor.addAutoFillCriteria(cscId, "es_payroll_consultant = '"+cscId+"'");
 		queryAdvisor.addAutoFillCriteria(crmId, "es_account_manager = '"+crmId+"'");

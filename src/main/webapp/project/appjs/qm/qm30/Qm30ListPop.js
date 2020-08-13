@@ -119,7 +119,7 @@ $(function() {
 			data:{orgId:orgId},
 			noForm:true,
 			showPostMessage:false,
-			callback:function(result) {
+			onSuccess:function(result) {
 				var ds = result.dataSet;
 				commonJs.copyToClipboard(ds.getValue(0, "ORGANISATION_ID"));
 
@@ -136,7 +136,7 @@ $(function() {
 			commonJs.doSearch({
 				url:"/qm/30/getList.do",
 				dataType:"html",
-				callback:renderGridData
+				onSuccess:renderGridData
 			});
 		}
 	};
@@ -326,7 +326,5 @@ $(function() {
 				return false;
 			}
 		});
-
-		doSearch();
 	});
 });

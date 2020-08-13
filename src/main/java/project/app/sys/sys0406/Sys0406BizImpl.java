@@ -5,6 +5,8 @@
  *************************************************************************************************/
 package project.app.sys.sys0406;
 
+import java.io.File;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,6 +156,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		String defaultFileName = "DefaultUser_128_Black.png";
 		String userId = CommonUtil.uid();
 		String rootPath = (String)MemoryBean.get("applicationRealPath");
+		String appSrcRootPath = ConfigUtil.getProperty("path.app.src.web");
 		String pathToSave = ConfigUtil.getProperty("path.image.photo");
 		SysUser sysUser = new SysUser();
 		int result = -1;
@@ -182,11 +185,13 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 
 			if (fileDataSet.getRowCnt() > 0) {
 				String fileName = fileDataSet.getValue("NEW_NAME");
-				String fullPath = "";
+				String fullPath = "", copyToPath = "";
 
 				fileName = userId + "_" + fileName;
 				fullPath = rootPath + pathToSave + "/" + fileName;
+				copyToPath = appSrcRootPath+pathToSave+"/"+fileName;
 				FileUtil.moveFile(fileDataSet, fullPath);
+				FileUtil.copyFile(new File(fullPath), new File(copyToPath));
 
 				sysUser.setPhotoPath(pathToSave + "/" + fileName);
 			} else {
@@ -212,6 +217,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		HttpSession session = paramEntity.getSession();
 		String userId = requestDataSet.getValue("userId");
 		String rootPath = (String)MemoryBean.get("applicationRealPath");
+		String appSrcRootPath = ConfigUtil.getProperty("path.app.src.web");
 		String pathToSave = ConfigUtil.getProperty("path.image.photo");
 		SysUser sysUser = new SysUser();
 		int result = -1;
@@ -239,11 +245,13 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 
 			if (fileDataSet.getRowCnt() > 0) {
 				String fileName = fileDataSet.getValue("NEW_NAME");
-				String fullPath = "";
+				String fullPath = "", copyToPath = "";
 
 				fileName = userId + "_" + fileName;
 				fullPath = rootPath + pathToSave + "/" + fileName;
+				copyToPath = appSrcRootPath+pathToSave+"/"+fileName;
 				FileUtil.moveFile(fileDataSet, fullPath);
+				FileUtil.copyFile(new File(fullPath), new File(copyToPath));
 
 				sysUser.setPhotoPath(pathToSave + "/" + fileName);
 			}

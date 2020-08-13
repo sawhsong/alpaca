@@ -106,7 +106,7 @@
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainer">
 	<div id="divGridWrapper">
-		<table id="tblGrid" class="tblGrid sort autosort" style="width:2600px">
+		<table id="tblGrid" class="tblGrid sort autosort" style="width:2600px;">
 			<colgroup>
 				<col width="2%"/>
 				<col width="10%"/>

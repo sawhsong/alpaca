@@ -231,7 +231,7 @@ $(function() {
 					for (var i=0; i<ds.getRowCnt(); i++) {
 						var gridTr = new UiGridTr();
 
-						gridTr.setClassName("noBorderAll noStripe");
+						gridTr.setClassName("noBorderAll");
 
 						gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "ARTICLE_SUBJECT")).setScript("goDetail('Notice', '"+ds.getValue(i, "ARTICLE_ID")+"')")));
 						gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "WRITER_NAME")));
@@ -269,7 +269,7 @@ $(function() {
 					for (var i=0; i<ds.getRowCnt(); i++) {
 						var gridTr = new UiGridTr();
 
-						gridTr.setClassName("noBorderAll noStripe");
+						gridTr.setClassName("noBorderAll");
 
 						gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "ARTICLE_SUBJECT")).setScript("goDetail('FreeBoard', '"+ds.getValue(i, "ARTICLE_ID")+"')")));
 						gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "WRITER_NAME")));

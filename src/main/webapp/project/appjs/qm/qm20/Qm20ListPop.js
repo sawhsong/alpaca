@@ -94,7 +94,7 @@ $(function() {
 			noForm:true,
 			showPostMessage:false,
 			data:{keyValues:keyValues},
-			callback:function(result) {
+			onSuccess:function(result) {
 				var ds = result.dataSet;
 
 				commonJs.copyToClipboard(ds.getValue(0, "PERSON_NUMBER"));
@@ -109,7 +109,7 @@ $(function() {
 
 		commonJs.doSearch({
 			url:"/qm/20/getList.do",
-			callback:renderGridData
+			onSuccess:renderGridData
 		});
 	};
 
@@ -256,7 +256,5 @@ $(function() {
 				return false;
 			}
 		});
-
-		doSearch();
 	});
 });

@@ -46,7 +46,24 @@ comment on column sys_menu.update_date     is 'Update Date';
  * Data        : Menu Info - Use Excel file to initialise data (SYS_MENU.xlsx)
  */
 delete sys_menu;
-
+/*
+insert into sys_menu
+select 'QM40' as menu_id,
+       'QM' as parent_menu_id,
+       'Find Assignment' as menu_name_ko,
+       'Find Assignment' as menu_name_en,
+       '/qm/40/getDefault.do' as menu_url,
+       'QM40' as menu_icon,
+       '000004' as sort_order,
+       'Find Assignment' as description,
+       'Y' as is_active,
+       '0' as insert_user_id,
+       sysdate as insert_date,
+       '0' as update_user_id,
+       sysdate as update_date
+  from dual
+;
+*/
 -- PERCI Menu
 /*
  select connect_by_root sequence_number||'/'||sub_menu_id as my_root,

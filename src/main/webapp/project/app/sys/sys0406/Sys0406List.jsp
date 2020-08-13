@@ -141,7 +141,7 @@
 		</thead>
 		<tbody id="tblGridBody">
 			<tr>
-				<td class="tdGridCt" colspan="10"><mc:msg key="I002"/></td>
+				<td class="tdGrid Ct" colspan="10"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
 	</table>

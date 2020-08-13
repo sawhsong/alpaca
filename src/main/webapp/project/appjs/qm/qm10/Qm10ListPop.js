@@ -14,7 +14,7 @@ $(function() {
 		commonJs.doSave({
 			url:"/qm/10/exeSave.do",
 			showPostMessage:false,
-			callback:function(result) {
+			onSuccess:function(result) {
 				parent.$("#divDbInfo").html("Database : "+$("#dataSource").val());
 				parent.popupQuickMenu.close();
 			}
