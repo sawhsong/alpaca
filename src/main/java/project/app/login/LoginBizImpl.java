@@ -189,7 +189,7 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 		SysUser sysUser = new SysUser();
 		HttpSession session = paramEntity.getSession();
 		int result = -1;
-		File files[];
+		File files[], tempFile;
 
 		try {
 			sysUser = sysUserDao.getUserByUserId(userId);
@@ -221,14 +221,20 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 				}
 				FileUtil.moveFile(dsFile, fullPath);
 
-				files = new File(appSrcRootPath+pathToSave).listFiles();
-				for (File file : files) {
-					if (CommonUtil.startsWith(file.getName(), userId+"_")) {
-						FileUtil.forceDelete(file);
-						break;
+				try {
+					tempFile = new File(appSrcRootPath+pathToSave);
+					if (tempFile != null && tempFile.isDirectory()) {
+						files = new File(appSrcRootPath+pathToSave).listFiles();
+						for (File file : files) {
+							if (CommonUtil.startsWith(file.getName(), userId+"_")) {
+								FileUtil.forceDelete(file);
+								break;
+							}
+						}
+						FileUtil.copyFile(new File(fullPath), new File(copyToPath));
 					}
+				} catch (Exception e) {
 				}
-				FileUtil.copyFile(new File(fullPath), new File(copyToPath));
 
 				sysUser.setPhotoPath(pathToSave+"/"+fileName);
 			}

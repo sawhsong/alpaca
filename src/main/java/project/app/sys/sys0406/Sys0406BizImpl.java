@@ -161,7 +161,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		SysUser sysUser = new SysUser();
 		int result = -1;
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
-		File files[];
+		File files[], tempFile;
 
 		try {
 			sysUserDao.setDataSourceName(dataSource);
@@ -201,14 +201,20 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 				}
 				FileUtil.moveFile(fileDataSet, fullPath);
 
-				files = new File(appSrcRootPath+pathToSave).listFiles();
-				for (File file : files) {
-					if (CommonUtil.startsWith(file.getName(), userId+"_")) {
-						FileUtil.forceDelete(file);
-						break;
+				try {
+					tempFile = new File(appSrcRootPath+pathToSave);
+					if (tempFile != null && tempFile.isDirectory()) {
+						files = new File(appSrcRootPath+pathToSave).listFiles();
+						for (File file : files) {
+							if (CommonUtil.startsWith(file.getName(), userId+"_")) {
+								FileUtil.forceDelete(file);
+								break;
+							}
+						}
+						FileUtil.copyFile(new File(fullPath), new File(copyToPath));
 					}
+				} catch (Exception e) {
 				}
-				FileUtil.copyFile(new File(fullPath), new File(copyToPath));
 
 				sysUser.setPhotoPath(pathToSave + "/" + fileName);
 			} else {
@@ -239,7 +245,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		SysUser sysUser = new SysUser();
 		int result = -1;
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
-		File files[];
+		File files[], tempFile;
 
 		try {
 			sysUserDao.setDataSourceName(dataSource);
@@ -278,14 +284,20 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 				}
 				FileUtil.moveFile(fileDataSet, fullPath);
 
-				files = new File(appSrcRootPath+pathToSave).listFiles();
-				for (File file : files) {
-					if (CommonUtil.startsWith(file.getName(), userId+"_")) {
-						FileUtil.forceDelete(file);
-						break;
+				try {
+					tempFile = new File(appSrcRootPath+pathToSave);
+					if (tempFile != null && tempFile.isDirectory()) {
+						files = new File(appSrcRootPath+pathToSave).listFiles();
+						for (File file : files) {
+							if (CommonUtil.startsWith(file.getName(), userId+"_")) {
+								FileUtil.forceDelete(file);
+								break;
+							}
+						}
+						FileUtil.copyFile(new File(fullPath), new File(copyToPath));
 					}
+				} catch (Exception e) {
 				}
-				FileUtil.copyFile(new File(fullPath), new File(copyToPath));
 
 				sysUser.setPhotoPath(pathToSave + "/" + fileName);
 			}
