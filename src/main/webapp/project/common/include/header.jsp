@@ -31,6 +31,9 @@
 	String organisationIdHeaderPage = CommonUtil.nvl((String)session.getAttribute("OrganisationIdForAdminTool"));
 	String organisationInfoHeaderPage = "";
 	if (CommonUtil.isNotBlank(organisationIdHeaderPage)) {organisationInfoHeaderPage = (String)session.getAttribute("OrganisationNameForAdminTool")+" ("+organisationIdHeaderPage+")";}
+	String assignmentIdHeaderPage = CommonUtil.nvl((String)session.getAttribute("AssignmentIdForAdminTool"));
+	String assignmentInfoHeaderPage = "";
+	if (CommonUtil.isNotBlank(assignmentIdHeaderPage)) {assignmentInfoHeaderPage = (String)session.getAttribute("AssignmentNumberForAdminTool");}
 %>
 <%/************************************************************************************************
 * Stylesheet & Javascript
@@ -218,8 +221,10 @@ $(function() {
 		if (menuId == "QM10") {
 			width = 400, height = 230;
 		} else if (menuId == "QM20") {
-			width = 1800, height = 950;
+			width = 1800, height = 940;
 		} else if (menuId == "QM30") {
+			width = 1800, height = 940;
+		} else if (menuId == "QM40") {
 			width = 1800, height = 940;
 		}
 
@@ -268,6 +273,7 @@ $(function() {
 					<div id="divDbInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(databaseHeaderPage)) {%>Database : <%=databaseHeaderPage%><%}%></div>
 					<div id="divPersonInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(personInfoHeaderPage)) {%> / Person : <%=personInfoHeaderPage%><%}%></div>
 					<div id="divOrgInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(organisationInfoHeaderPage)) {%> / Org : <%=organisationInfoHeaderPage%><%}%></div>
+					<div id="divAsgInfo" class="sessionDesc"><%if (CommonUtil.isNotBlank(assignmentInfoHeaderPage)) {%> / Asg : <%=assignmentInfoHeaderPage%><%}%></div>
 				</div>
 				<div class="divGblMenuBreak"></div>
 				<div class="headerGblMenus" style="margin-top:-1px;"><a id="aDeleteSessionDesc" class="fa fa-trash fa-lg aEn" title="Delete all session values"></a></div>
