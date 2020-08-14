@@ -184,11 +184,12 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 		DataSet dsFile = paramEntity.getRequestFileDataSet();
 		String userId = requestDataSet.getValue("userId");
 		String rootPath = (String)MemoryBean.get("applicationRealPath");
-		String appSrcRootPath = ConfigUtil.getProperty("path.app.src.web");
+		String appSrcRootPath = (String)MemoryBean.get("applicationSrcPathWeb");
 		String pathToSave = ConfigUtil.getProperty("path.image.photo");
 		SysUser sysUser = new SysUser();
 		HttpSession session = paramEntity.getSession();
 		int result = -1;
+		File files[];
 
 		try {
 			sysUser = sysUserDao.getUserByUserId(userId);
@@ -210,7 +211,23 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 				fileName = userId+"_"+fileName;
 				fullPath = rootPath+pathToSave+"/"+fileName;
 				copyToPath = appSrcRootPath+pathToSave+"/"+fileName;
+
+				files = new File(rootPath+pathToSave).listFiles();
+				for (File file : files) {
+					if (CommonUtil.startsWith(file.getName(), userId+"_")) {
+						FileUtil.forceDelete(file);
+						break;
+					}
+				}
 				FileUtil.moveFile(dsFile, fullPath);
+
+				files = new File(appSrcRootPath+pathToSave).listFiles();
+				for (File file : files) {
+					if (CommonUtil.startsWith(file.getName(), userId+"_")) {
+						FileUtil.forceDelete(file);
+						break;
+					}
+				}
 				FileUtil.copyFile(new File(fullPath), new File(copyToPath));
 
 				sysUser.setPhotoPath(pathToSave+"/"+fileName);

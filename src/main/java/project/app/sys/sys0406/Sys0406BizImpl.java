@@ -156,11 +156,12 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		String defaultFileName = "DefaultUser_128_Black.png";
 		String userId = CommonUtil.uid();
 		String rootPath = (String)MemoryBean.get("applicationRealPath");
-		String appSrcRootPath = ConfigUtil.getProperty("path.app.src.web");
+		String appSrcRootPath = (String)MemoryBean.get("applicationSrcPathWeb");
 		String pathToSave = ConfigUtil.getProperty("path.image.photo");
 		SysUser sysUser = new SysUser();
 		int result = -1;
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+		File files[];
 
 		try {
 			sysUserDao.setDataSourceName(dataSource);
@@ -190,7 +191,23 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 				fileName = userId + "_" + fileName;
 				fullPath = rootPath + pathToSave + "/" + fileName;
 				copyToPath = appSrcRootPath+pathToSave+"/"+fileName;
+
+				files = new File(rootPath+pathToSave).listFiles();
+				for (File file : files) {
+					if (CommonUtil.startsWith(file.getName(), userId+"_")) {
+						FileUtil.forceDelete(file);
+						break;
+					}
+				}
 				FileUtil.moveFile(fileDataSet, fullPath);
+
+				files = new File(appSrcRootPath+pathToSave).listFiles();
+				for (File file : files) {
+					if (CommonUtil.startsWith(file.getName(), userId+"_")) {
+						FileUtil.forceDelete(file);
+						break;
+					}
+				}
 				FileUtil.copyFile(new File(fullPath), new File(copyToPath));
 
 				sysUser.setPhotoPath(pathToSave + "/" + fileName);
@@ -217,11 +234,12 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		HttpSession session = paramEntity.getSession();
 		String userId = requestDataSet.getValue("userId");
 		String rootPath = (String)MemoryBean.get("applicationRealPath");
-		String appSrcRootPath = ConfigUtil.getProperty("path.app.src.web");
+		String appSrcRootPath = (String)MemoryBean.get("applicationSrcPathWeb");
 		String pathToSave = ConfigUtil.getProperty("path.image.photo");
 		SysUser sysUser = new SysUser();
 		int result = -1;
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+		File files[];
 
 		try {
 			sysUserDao.setDataSourceName(dataSource);
@@ -250,7 +268,23 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 				fileName = userId + "_" + fileName;
 				fullPath = rootPath + pathToSave + "/" + fileName;
 				copyToPath = appSrcRootPath+pathToSave+"/"+fileName;
+
+				files = new File(rootPath + pathToSave).listFiles();
+				for (File file : files) {
+					if (CommonUtil.startsWith(file.getName(), userId+"_")) {
+						FileUtil.forceDelete(file);
+						break;
+					}
+				}
 				FileUtil.moveFile(fileDataSet, fullPath);
+
+				files = new File(appSrcRootPath+pathToSave).listFiles();
+				for (File file : files) {
+					if (CommonUtil.startsWith(file.getName(), userId+"_")) {
+						FileUtil.forceDelete(file);
+						break;
+					}
+				}
 				FileUtil.copyFile(new File(fullPath), new File(copyToPath));
 
 				sysUser.setPhotoPath(pathToSave + "/" + fileName);
