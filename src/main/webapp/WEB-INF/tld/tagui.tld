@@ -658,6 +658,9 @@
 			<name>isBootstrap</name><required>false</required><rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
+			<name>hasCaption</name><required>false</required><rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
 			<name>checkName</name><required>false</required><rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>

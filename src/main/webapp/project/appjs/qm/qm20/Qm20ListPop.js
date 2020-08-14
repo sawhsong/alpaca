@@ -3,7 +3,7 @@
  * - Qm20ListPop.js
  *************************************************************************************************/
 var dateFormat = jsconfig.get("dateFormatJs");
-jsconfig.put("fixedScrollablePanelHeight", 746);
+jsconfig.put("fixedScrollablePanelHeight", 700);
 jsconfig.put("scrollablePanelHeightAdjust", 0);
 
 $(function() {

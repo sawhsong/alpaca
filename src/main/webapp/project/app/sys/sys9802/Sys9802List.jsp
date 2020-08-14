@@ -61,36 +61,21 @@
 			<col width="7%"/>
 			<col width="8%"/>
 			<col width="7%"/>
+			<col width="17%"/>
+			<col width="6%"/>
+			<col width="18%"/>
 			<col width="8%"/>
-			<col width="6%"/>
-			<col width="16%"/>
-			<col width="6%"/>
-			<col width="16%"/>
-			<col width="9%"/>
 			<col width="*"/>
 		</colgroup>
 		<tr>
 			<th class="thSearch rt"><mc:msg key="sys9802.search.asgId"/></th>
 			<td class="tdSearch"><ui:text name="asgId"/></td>
-			<th class="thSearch rt"><mc:msg key="sys9802.search.personNumber"/></th>
-			<td class="tdSearch">
-				<ui:hidden name="personId"/>
-				<ui:text name="personNumber"/>
-			</td>
-			<th class="thSearch rt"><mc:msg key="sys9802.search.personName"/></th>
-			<td class="tdSearch">
-				<ui:text name="personName"/>
-			</td>
+			<th class="thSearch rt"><mc:msg key="sys9802.search.person"/></th>
+			<td class="tdSearch"><ui:hidden name="personId"/><ui:text name="personName"/></td>
 			<th class="thSearch rt"><mc:msg key="sys9802.search.billingCode"/></th>
-			<td class="tdSearch">
-				<ui:hidden name="billingCodeId"/>
-				<ui:text name="billingCode" className="hor"/>
-			</td>
+			<td class="tdSearch"><ui:hidden name="billingCodeId"/><ui:text name="billingCode" className="hor"/></td>
 			<th class="thSearch rt"><mc:msg key="sys9802.search.billingOrg"/></th>
-			<td class="tdSearch">
-				<ui:hidden name="billingOrgId"/>
-				<ui:text name="billingOrgName" className="hor"/>
-			</td>
+			<td class="tdSearch"><ui:hidden name="billingOrgId"/><ui:text name="billingOrgName" className="hor"/></td>
 		</tr>
 	</table>
 </div>

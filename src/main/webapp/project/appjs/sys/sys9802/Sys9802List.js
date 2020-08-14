@@ -17,6 +17,12 @@ $(function() {
 		commonJs.clearSearchCriteria();
 	});
 
+	$("#personName").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#personId").val("");
+		}
+	});
+
 	$("#billingCode").blur(function() {
 		if (commonJs.isEmpty($(this).val())) {
 			$("#billingCodeId").val("");
@@ -211,32 +217,8 @@ $(function() {
 		setActionButtonContextMenu();
 		commonJs.setExportButtonContextMenu($("#btnExport"));
 
-		commonJs.setAutoComplete($("#personNumber"), {
-			method:"getPersonNumber",
-			label:"full_name_with_person_number",
-			value:"person_id",
-			minLength:2,
-			focus: function(event, ui) {
-				$("#personId").val(ui.item.value);
-				$("#personNumber").val(ui.item.label);
-				return false;
-			},
-			change:function(event, ui) {
-				if (commonJs.isEmpty($("#personNumber").val())) {
-					$("#personId").val("");
-					$("#personNumber").val("");
-				}
-			},
-			select:function(event, ui) {
-				$("#personId").val(ui.item.value);
-				$("#personNumber").val(ui.item.label);
-				doSearch();
-				return false;
-			}
-		});
-
 		commonJs.setAutoComplete($("#personName"), {
-			method:"getPersonName",
+			method:"getPersonByNameOrPersonNumber",
 			label:"full_name_with_person_number",
 			value:"person_id",
 			minLength:2,

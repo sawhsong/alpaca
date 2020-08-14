@@ -36,6 +36,12 @@ $(function() {
 		parent.popupQuickMenu.close();
 	});
 
+	$("#personName").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#personId").val("");
+		}
+	});
+
 	$("#billingCode").blur(function() {
 		if (commonJs.isEmpty($(this).val())) {
 			$("#billingCodeId").val("");
@@ -45,12 +51,6 @@ $(function() {
 	$("#billingOrgName").blur(function() {
 		if (commonJs.isEmpty($(this).val())) {
 			$("#billingOrgId").val("");
-		}
-	});
-
-	$("#personName").blur(function() {
-		if (commonJs.isEmpty($(this).val())) {
-			$("#personId").val("");
 		}
 	});
 
