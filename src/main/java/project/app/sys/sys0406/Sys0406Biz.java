@@ -19,4 +19,5 @@ public interface Sys0406Biz {
 	public ParamEntity exeDelete(ParamEntity paramEntity) throws Exception;
 	public ParamEntity exeActionContextMenu(ParamEntity paramEntity) throws Exception;
 	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getAuthorityGroup(ParamEntity paramEntity) throws Exception;
 }

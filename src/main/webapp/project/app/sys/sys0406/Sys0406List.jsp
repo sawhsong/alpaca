@@ -77,15 +77,7 @@
 					<td class="tdDefault"><ui:text name="loginId" style="width:200px"/></td>
 					<th class="thDefault rt"><mc:msg key="sys0406.search.auth"/></th>
 					<td class="tdDefault">
-						<ui:select name="authGroup">
-							<option value="">==Select==</option>
-<%
-						for (int i=0; i<authGroupDataSet.getRowCnt(); i++) {
-%>
-							<option value="<%=authGroupDataSet.getValue(i, "GROUP_ID")%>"><%=authGroupDataSet.getValue(i, "GROUP_NAME")%></option>
-<%
-						}
-%>
+						<ui:select name="authGroup" hasCaption="true">
 						</ui:select>
 					</td>
 				</tr>

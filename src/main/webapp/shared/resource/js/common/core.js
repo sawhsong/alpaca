@@ -1330,6 +1330,9 @@ var nony = {
 		option = $.extend({}, opt, param);
 		$(jqObject).autocomplete(option);
 	},
+	getSelectOptionObject : function(value, text) {
+		return "<option value=\""+value+"\">"+text+"</option>";
+	},
 	/*!
 	 * popup / dialog / calendar
 	 */
@@ -1852,7 +1855,12 @@ var nony = {
 						}
 					});
 				} else if (msgHandleType == "popup") {
-					commonJs.error(result.message);
+					commonJs.openDialog({
+						type:com.message.E000,
+						contents:result.message,
+						width:450
+					});
+
 					try {
 						$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
 						$.nony.hideProcMessage();

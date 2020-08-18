@@ -106,4 +106,13 @@ public class Sys0406Action extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "export";
 	}
+
+	public String getAuthorityGroup() throws Exception {
+		try {
+			biz.getAuthorityGroup(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }

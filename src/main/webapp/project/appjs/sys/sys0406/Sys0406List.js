@@ -273,7 +273,22 @@ $(function() {
 		commonJs.doSimpleProcess({
 			url:"/sys/0406/exeActionContextMenu.do",
 			data:param,
-			callback:doSearch
+			onSuccess:doSearch
+		});
+	};
+
+	setAuthorityGroupSelectbox = function() {
+		commonJs.doSearch({
+			url:"/sys/0406/getAuthorityGroup.do",
+			noForm:true,
+			onSuccess:function(result) {
+				var ds = result.dataSet;
+				for (var i=0; i<ds.getRowCnt(); i++) {
+					$("#authGroup").append(commonJs.getSelectOptionObject(ds.getValue(i, "GROUP_ID"), ds.getValue(i, "GROUP_NAME")));
+				}
+
+				$("#authGroup").selectpicker("refresh");
+			}
 		});
 	};
 
@@ -310,6 +325,6 @@ $(function() {
 			}
 		});
 
-		doSearch();
+		setAuthorityGroupSelectbox();
 	});
 });

@@ -35,7 +35,6 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
-			setAuthorityGroup(paramEntity);
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -56,8 +55,6 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 			queryAdvisor.setObject("langCode", langCode);
 			queryAdvisor.setRequestDataSet(requestDataSet);
 			queryAdvisor.setPagination(true);
-
-			setAuthorityGroup(paramEntity);
 
 			paramEntity.setAjaxResponseDataSet(sysUserDao.getUserDataSetBySearchCriteria(queryAdvisor));
 			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
@@ -420,6 +417,25 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 			paramEntity.setSuccess(true);
 			paramEntity.setFileToExport(exportHelper.createFile());
 			paramEntity.setFileNameToExport(exportHelper.getFileName());
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getAuthorityGroup(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
+		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			sysAuthGroupDao.setDataSourceName(dataSource);
+
+			queryAdvisor.addOrderByClause("group_id");
+
+			paramEntity.setAjaxResponseDataSet(sysAuthGroupDao.getAllAuthGroupDataSet(queryAdvisor));
+			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
+			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}
