@@ -45,6 +45,27 @@ $(function() {
 	/*!
 	 * process
 	 */
+	setAuthorityGroupSelectbox = function() {
+		commonJs.doSearch({
+			url:"/sys/0406/getAuthorityGroup.do",
+			noForm:true,
+			onSuccess:function(result) {
+				var ds = result.dataSet;
+				var html = "";
+
+				for (var i=0; i<ds.getRowCnt(); i++) {
+					var groupId = ds.getValue(i, "GROUP_ID"), groupName = ds.getValue(i, "GROUP_NAME"), isChecked = false;
+					if (groupId == defaultAuthGroup) {
+						isChecked = true;
+					}
+					html += commonJs.getUiRadio({name:"authGroup", value:groupId, text:groupName, displayType:"block", isCustomised:true, isSelected:isChecked});
+				}
+
+				$("#tdAuthGroup").html(html);
+			}
+		});
+	};
+
 	showSectionByMode = function() {
 		var divId = "";
 
@@ -63,6 +84,7 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
+		setAuthorityGroupSelectbox();
 		showSectionByMode();
 	});
 });

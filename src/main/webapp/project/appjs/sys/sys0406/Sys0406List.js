@@ -33,7 +33,7 @@ $(function() {
 		commonJs.toggleCheckboxes("chkForDel");
 	});
 
-	$("#authGroup").change(function() {
+	$("#authGroupCon").change(function() {
 		doSearch();
 	});
 
@@ -284,10 +284,10 @@ $(function() {
 			onSuccess:function(result) {
 				var ds = result.dataSet;
 				for (var i=0; i<ds.getRowCnt(); i++) {
-					$("#authGroup").append(commonJs.getSelectOptionObject(ds.getValue(i, "GROUP_ID"), ds.getValue(i, "GROUP_NAME")));
+					$("#authGroupCon").append(commonJs.getSelectOptionObject(ds.getValue(i, "GROUP_ID"), ds.getValue(i, "GROUP_NAME")));
 				}
 
-				$("#authGroup").selectpicker("refresh");
+				$("#authGroupCon").selectpicker("refresh");
 			}
 		});
 	};

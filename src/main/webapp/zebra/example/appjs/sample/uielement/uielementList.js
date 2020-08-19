@@ -285,6 +285,14 @@ $(function() {
 			horAdjust : 0,
 			verAdjust : 0
 		});
+
+		$("#tdRadioFromJs").html(commonJs.getUiRadio({
+			name:"radioFromJs",
+			value:"1",
+			text:"Group Name",
+			displayType:"block",
+			isCustomised:true
+		}));
 	});
 
 //	$(function() {

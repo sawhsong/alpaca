@@ -670,6 +670,10 @@
 								<a id="btnGetCustomRadioValue" type="button" class="btn btn-primary"><i class="fa fa-list-alt fa-lg"></i> Get Value</a>
 							</td>
 						</tr>
+						<tr>
+							<th class="thEdit">Raio - From js</th>
+							<td class="tdEdit" id="tdRadioFromJs"></td>
+						</tr>
 					</table>
 				</div>
 			</div>

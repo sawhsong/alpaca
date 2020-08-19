@@ -134,7 +134,6 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 
 	public ParamEntity getActionContextMenu(ParamEntity paramEntity) throws Exception {
 		try {
-			setAuthorityGroup(paramEntity);
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -436,14 +435,5 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 			throw new FrameworkException(paramEntity, ex);
 		}
 		return paramEntity;
-	}
-
-	private void setAuthorityGroup(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
-		QueryAdvisor qaAuth = paramEntity.getQueryAdvisor();
-		qaAuth.addOrderByClause("group_id");
-		sysAuthGroupDao.setDataSourceName(dataSource);
-		paramEntity.setObject("authGroupDataSet", sysAuthGroupDao.getAllAuthGroupDataSet(qaAuth));
 	}
 }

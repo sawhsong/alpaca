@@ -76,7 +76,7 @@
 					<th class="thDefault rt"><mc:msg key="sys0406.search.id"/></th>
 					<td class="tdDefault"><ui:text name="loginId" style="width:200px"/></td>
 					<th class="thDefault rt"><mc:msg key="sys0406.search.auth"/></th>
-					<td class="tdDefault"><ui:select name="authGroup" hasCaption="true"> </ui:select></td>
+					<td class="tdDefault"><ui:select name="authGroupCon" hasCaption="true"> </ui:select></td>
 				</tr>
 				<tr>
 					<th class="thDefault rt"><mc:msg key="sys0406.search.type"/></th>

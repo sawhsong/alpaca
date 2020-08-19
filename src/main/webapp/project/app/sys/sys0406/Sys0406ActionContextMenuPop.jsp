@@ -11,6 +11,7 @@
 	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
 	DataSet authGroupDataSet = (DataSet)paramEntity.getObject("authGroupDataSet");
 	String mode = requestDataSet.getValue("mode");
+	String defaultAuthGroup = "Z";
 	String defaultUserType = CommonCodeManager.getCodeByConstants("USER_TYPE_EXTERNAL");
 	String defaultUserStatus = CommonCodeManager.getCodeByConstants("USER_STATUS_NU");
 	String defaultActive = CommonCodeManager.getCodeByConstants("IS_ACTIVE_Y");
@@ -37,6 +38,7 @@
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
 var mode = "<%=mode%>";
+var defaultAuthGroup = "<%=defaultAuthGroup%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -76,22 +78,7 @@ var mode = "<%=mode%>";
 		<table class="tblEdit">
 			<caption class="captionEdit"><mc:msg key="sys0406.msg.selectAuth"/></caption>
 			<tr>
-				<td class="tdEdit">
-<%
-				for (int i=0; i<authGroupDataSet.getRowCnt(); i++) {
-					String rdoText = authGroupDataSet.getValue(i, "GROUP_NAME");
-					String rdoValue = authGroupDataSet.getValue(i, "GROUP_ID");
-					String isSelected = (i == (authGroupDataSet.getRowCnt() - 1)) ? "true" : "";
-
-					pageContext.setAttribute("rdoText", rdoText);
-					pageContext.setAttribute("rdoValue", rdoValue);
-					pageContext.setAttribute("isSelected", isSelected);
-%>
-					<ui:radio name="authGroup" text="${rdoText}" value="${rdoValue}" displayType="block" isCustomised="true" isSelected="${isSelected}"/>
-<%
-				}
-%>
-				</td>
+				<td class="tdEdit" id="tdAuthGroup"></td>
 			</tr>
 		</table>
 	</div>
