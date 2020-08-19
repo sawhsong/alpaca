@@ -42,7 +42,10 @@ $(function() {
 			onSuccess:function(result) {
 				var ds = result.dataSet;
 				for (var i=0; i<ds.getRowCnt(); i++) {
-					$("#authGroup").append(commonJs.getSelectOptionObject(ds.getValue(i, "GROUP_ID"), ds.getValue(i, "GROUP_NAME")));
+					$("#authGroup").append(commonJs.getUiSelectOption({
+						value:ds.getValue(i, "GROUP_ID"),
+						text:ds.getValue(i, "GROUP_NAME")
+					}));
 				}
 
 				$("#authGroup").selectpicker("val", defaultAuthGroup);
