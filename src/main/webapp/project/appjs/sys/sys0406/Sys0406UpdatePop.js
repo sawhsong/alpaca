@@ -11,9 +11,7 @@ $(function() {
 
 		if (commonJs.doValidate("fmDefault")) {
 			if (!commonJs.isEmpty(fileValue)) {
-				fileValue = fileValue.substring(fileValue.lastIndexOf(".")+1);
-				if (!(fileValue.toLowerCase() == "png" || fileValue.toLowerCase() == "jpg" || fileValue.toLowerCase() == "gif" || fileValue.toLowerCase() == "jpeg")) {
-					commonJs.doValidatorMessage($("#photoPath"), "notUploadable");
+				if (!commonJs.isUploadableImageFile($("#photoPath"), fileValue)) {
 					return;
 				}
 			}
@@ -37,10 +35,26 @@ $(function() {
 	/*!
 	 * process
 	 */
+	setAuthorityGroupSelectbox = function() {
+		commonJs.doSearch({
+			url:"/sys/0406/getAuthorityGroup.do",
+			noForm:true,
+			onSuccess:function(result) {
+				var ds = result.dataSet;
+				for (var i=0; i<ds.getRowCnt(); i++) {
+					$("#authGroup").append(commonJs.getSelectOptionObject(ds.getValue(i, "GROUP_ID"), ds.getValue(i, "GROUP_NAME")));
+				}
+
+				$("#authGroup").selectpicker("val", authGroupId);
+				$("#authGroup").selectpicker("refresh");
+			}
+		});
+	};
 
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
+		setAuthorityGroupSelectbox();
 	});
 });

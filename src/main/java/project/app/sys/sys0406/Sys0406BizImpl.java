@@ -98,8 +98,6 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		try {
 			sysUserDao.setDataSourceName(dataSource);
 
-			setAuthorityGroup(paramEntity);
-
 			paramEntity.setObject("maxRowPerPage", maxRowPerPage);
 			paramEntity.setObject("pageNumPerPage", pageNumPerPage);
 			paramEntity.setObject("photoPath", photoPath);
@@ -121,8 +119,6 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 
 		try {
 			sysUserDao.setDataSourceName(dataSource);
-
-			setAuthorityGroup(paramEntity);
 
 			paramEntity = getDetail(paramEntity);
 			paramEntity.setObject("maxRowPerPage", maxRowPerPage);

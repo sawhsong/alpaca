@@ -34,6 +34,7 @@
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
+var defaultAuthGroup = "<%=defaultAuthGroup%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -107,17 +108,7 @@
 			<th class="thEdit rt mandatory"><mc:msg key="sys0406.header.startupUrl"/></th>
 			<td class="tdEdit"><ui:text name="defaultStartUrl" checkName="sys0406.header.startupUrl" options="mandatory"/></td>
 			<th class="thEdit rt mandatory"><mc:msg key="sys0406.header.authGroup"/></th>
-			<td class="tdEdit">
-				<ui:select name="authGroup" checkName="sys0406.header.authGroup" options="mandatory">
-<%
-				for (int i=0; i<authGroupDataSet.getRowCnt(); i++) {
-					String selected = (CommonUtil.equals(authGroupDataSet.getValue(i, "GROUP_ID"), defaultAuthGroup)) ? "selected" : "";
-%>
-					<option value="<%=authGroupDataSet.getValue(i, "GROUP_ID")%>" <%=selected%>><%=authGroupDataSet.getValue(i, "GROUP_NAME")%></option>
-<%
-				}
-%>
-				</ui:select>
+			<td class="tdEdit"><ui:select name="authGroup" checkName="sys0406.header.authGroup" options="mandatory"> </ui:select>
 			</td>
 		</tr>
 		<tr>
