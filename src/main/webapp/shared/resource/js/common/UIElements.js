@@ -27,7 +27,7 @@ var uiElements = {
 
 		params.isBootstrap = (params.isBootstrap == false) ? false : true;
 
-		var html = "", langCode = jsconfig.get("langCode"), disabledString = "", classSuffix = "", attrStr = "", classNameCustomised = "", attrs = new Array(), attr = new Array();
+		var html = "", disabledString = "", classSuffix = "", attrStr = "", classNameCustomised = "", attrs = new Array(), attr = new Array();
 
 		if ($.nony.toBoolean(params.isCustomised)) {
 			isBootstrap = "true";

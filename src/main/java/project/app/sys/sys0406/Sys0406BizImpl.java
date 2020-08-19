@@ -353,7 +353,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 			sysUserDao.setDataSourceName(dataSource);
 
 			if (CommonUtil.equals(mode, "UpdateAuthGroup")) {
-				sysUser.addUpdateColumn("auth_group_id", requestDataSet.getValue("authGroup"));
+				sysUser.addUpdateColumn("auth_group_id", requestDataSet.getValue("authGroupToUpdate"));
 			} else if (CommonUtil.equals(mode, "UpdateUserType")) {
 				sysUser.addUpdateColumn("user_type", requestDataSet.getValue("userType"));
 			} else if (CommonUtil.equals(mode, "UpdateUserStatus")) {

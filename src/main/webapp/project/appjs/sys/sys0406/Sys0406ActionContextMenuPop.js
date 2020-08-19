@@ -15,7 +15,7 @@ $(function() {
 					callback:function() {
 						parent.exeActionContextMenu({
 							mode:mode,
-							authGroup:commonJs.getCheckedValueFromRadio("authGroup"),
+							authGroupToUpdate:commonJs.getCheckedValueFromRadio("authGroupToUpdate"),
 							userType:commonJs.getCheckedValueFromRadio("userType"),
 							userStatus:commonJs.getCheckedValueFromRadio("userStatus"),
 							activeStatus:commonJs.getCheckedValueFromRadio("activeStatus")
@@ -58,7 +58,7 @@ $(function() {
 					if (groupId == defaultAuthGroup) {
 						isChecked = true;
 					}
-					html += commonJs.getUiRadio({name:"authGroup", value:groupId, text:groupName, displayType:"block", isCustomised:true, isSelected:isChecked});
+					html += commonJs.getUiRadio({name:"authGroupToUpdate", value:groupId, text:groupName, displayType:"block", isCustomised:true, isSelected:isChecked});
 				}
 
 				$("#tdAuthGroup").html(html);

@@ -97,7 +97,7 @@ public class SysUserHDaoImpl extends BaseHDao implements SysUserDao {
 		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
 		String loginId = requestDataSet.getValue("loginId");
 		String userName = requestDataSet.getValue("userName");
-		String authGroup = requestDataSet.getValue("authGroupCon");
+		String authGroup = requestDataSet.getValue("authGroup");
 		String userType = requestDataSet.getValue("userType");
 		String userStatus = requestDataSet.getValue("userStatus");
 		String isActive = requestDataSet.getValue("isActive");
