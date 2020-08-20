@@ -41,25 +41,44 @@ $(function() {
 
 			commonJs.doSimpleProcess({
 				url:"/login/login.do",
-				callback:function(result) {
+				onSuccess:function(result) {
 					var dataSet = result.dataSet;
 					var actionString = dataSet.getValue(0, "DEFAULT_START_URL");
 
-					commonJs.openDialog({
-						type:com.message.I000,
-						contents:result.message+" "+dataSet.getValue(0, "USER_NAME")+"!",
-						blind:true,
+//					commonJs.openDialog({
+//						type:com.message.I000,
+//						contents:result.message+" "+dataSet.getValue(0, "USER_NAME")+"!",
+//						blind:true,
+//						draggable:false,
+//						width:350,
+//						buttons:[{
+//							caption:com.caption.ok,
+//							callback:function() {
+//								commonJs.doSubmit({
+//									formId:"fmDefault",
+//									action:actionString
+//								});
+//							}
+//						}]
+//					});
+
+					commonJs.openPopup({
+						popupId:"2-Factor Authentication",
+//						url:"/login/generateScretKey.do",
+						url:"/login/getAuthentication.do",
+						data:{},
+						header:"Authentication",
+						blind:false,
 						draggable:false,
-						width:350,
-						buttons:[{
-							caption:com.caption.ok,
-							callback:function() {
-								commonJs.doSubmit({
-									formId:"fmDefault",
-									action:actionString
-								});
-							}
-						}]
+						width:400,
+						height:240
+					});
+				},
+				onError:function(result) {
+					commonJs.openDialog({
+						type:com.message.E000,
+						contents:result.message,
+						width:260
 					});
 				}
 			});

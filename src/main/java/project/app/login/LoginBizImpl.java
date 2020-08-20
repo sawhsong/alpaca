@@ -1,12 +1,16 @@
 package project.app.login;
 
 import java.io.File;
+import java.security.SecureRandom;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.Base32;
+import org.apache.commons.codec.binary.Hex;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import de.taimos.totp.TOTP;
 import project.common.extend.BaseBiz;
 import project.common.module.commoncode.CommonCodeManager;
 import project.conf.resource.ormapper.dao.SysUser.SysUserDao;
@@ -269,5 +273,65 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 			throw new FrameworkException(paramEntity, ex);
 		}
 		return paramEntity;
+	}
+
+	public ParamEntity generateScretKey(ParamEntity paramEntity) throws Exception {
+		DataSet resultDataSet = new DataSet();
+		SecureRandom random = new SecureRandom();
+		byte[] bytes = new byte[20];
+		Base32 base32 = new Base32();
+		String key = "";
+
+		try {
+			random.nextBytes(bytes);
+			key = base32.encodeToString(bytes);
+
+			resultDataSet.addColumn("key", key);
+
+			paramEntity.setAjaxResponseDataSet(resultDataSet);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getTOTPCode(ParamEntity paramEntity) throws Exception {
+		String secretKey = "VW2GP3MI7DKSXC3Y2FFBZSUXO5J2XZ7S";
+		String lastCode = "", code = "";
+		DataSet resultDataSet = new DataSet();
+
+		try {
+			while (true) {
+				code = getTOTPCode(secretKey);
+
+				if (CommonUtil.equals(code, lastCode)) {
+					logger.debug("Authentication Code : "+code);
+					resultDataSet.addColumn("code", lastCode);
+
+					paramEntity.setAjaxResponseDataSet(resultDataSet);
+					paramEntity.setSuccess(true);
+
+					return paramEntity;
+				}
+
+				lastCode = code;
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+				};
+			}
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+	}
+
+	private String getTOTPCode(String secretKey) {
+		Base32 base32 = new Base32();
+		String hexKey = "";
+
+		byte[] bytes = base32.decode(secretKey);
+		hexKey = Hex.encodeHexString(bytes);
+		return TOTP.getOTP(hexKey);
 	}
 }

@@ -710,6 +710,19 @@
 			<artifactId>serializer</artifactId>
 			<version>2.7.2</version>
 		</dependency>
+
+		<!-- 2FA Test Begin -->
+		<dependency>
+			<groupId>de.taimos</groupId>
+			<artifactId>totp</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<!-- 2FA Test End -->
 	</dependencies>
 	<build>
 		<finalName>alpaca</finalName>

@@ -169,4 +169,33 @@ public class LoginAction extends BaseAction {
 		System.runFinalization();
 		return "index";
 	}
+
+	/*
+	 * 2FA Test Begin
+	 */
+	public String getAuthentication() throws Exception {
+		biz.index(paramEntity);
+		return "authenticate";
+	}
+
+	public String generateScretKey() throws Exception {
+		try {
+			biz.generateScretKey(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getTOTPCode() throws Exception {
+		try {
+			biz.getTOTPCode(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+	/*
+	 * 2FA Test End
+	 */
 }
