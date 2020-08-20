@@ -15,6 +15,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import zebra.util.CommonUtil;
+import zebra.util.ConfigUtil;
 
 public class HibernateQueryManager {
 	private Logger logger = LogManager.getLogger(HibernateQueryManager.class);
@@ -60,7 +61,10 @@ public class HibernateQueryManager {
 						}
 
 						fileName = (fileName.substring(fileName.indexOf("/WEB-INF/classes/"), fileName.length())).replaceAll("/WEB-INF/classes/", "");
-						logger.debug("Registered to HibernateQueryManager : " + fileName);
+
+						if (CommonUtil.toBoolean(ConfigUtil.getProperty("log.debug.config"))) {
+							logger.debug("Registered to HibernateQueryManager : " + fileName);
+						}
 					}
 				} catch (Exception ex) {
 					logger.error(ex);
