@@ -298,29 +298,36 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 
 	public ParamEntity getTOTPCode(ParamEntity paramEntity) throws Exception {
 		String secretKey = "VW2GP3MI7DKSXC3Y2FFBZSUXO5J2XZ7S";
-		String lastCode = "", code = "";
+//		String lastCode = "", code = "";
 		DataSet resultDataSet = new DataSet();
 
 		try {
-			while (true) {
-				code = getTOTPCode(secretKey);
+			resultDataSet.addColumn("code", getTOTPCode(secretKey));
 
-				if (CommonUtil.equals(code, lastCode)) {
-					logger.debug("Authentication Code : "+code);
-					resultDataSet.addColumn("code", lastCode);
+			paramEntity.setAjaxResponseDataSet(resultDataSet);
+			paramEntity.setSuccess(true);
 
-					paramEntity.setAjaxResponseDataSet(resultDataSet);
-					paramEntity.setSuccess(true);
+			return paramEntity;
 
-					return paramEntity;
-				}
-
-				lastCode = code;
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-				};
-			}
+//			while (true) {
+//				code = getTOTPCode(secretKey);
+//
+//				if (CommonUtil.equals(code, lastCode)) {
+//					logger.debug("Authentication Code : "+code);
+//					resultDataSet.addColumn("code", code);
+//
+//					paramEntity.setAjaxResponseDataSet(resultDataSet);
+//					paramEntity.setSuccess(true);
+//
+//					return paramEntity;
+//				}
+//
+//				lastCode = code;
+//				try {
+//					Thread.sleep(1000);
+//				} catch (InterruptedException e) {
+//				};
+//			}
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}

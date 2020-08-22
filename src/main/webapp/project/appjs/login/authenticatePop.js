@@ -1,20 +1,22 @@
 /**
- * resetPasswordPop.js
+ * authenticatePop.js
  */
 var popup = null;
-var code = "";
 
 $(function() {
 	/*!
 	 * event
 	 */
 	$("#btnSubmitCode").click(function(event) {
+		var code = "";
+
 		if (!commonJs.doValidate("fmDefault")) {
 			return;
 		}
 
+		code = getTOTPCode();
 		if (code != $("#authenticationCode").val()) {
-			commonJs.error("Authentication code is not correct!");
+			commonJs.error("Authentication code is not correct!<br/>Please try again!");
 			$("#authenticationCode").val("");
 			$("#authenticationCode").focus();
 			return;
@@ -52,15 +54,16 @@ $(function() {
 	 * process
 	 */
 	getTOTPCode = function() {
+		var code = "";
 		commonJs.doSimpleProcess({
 			url:"/login/getTOTPCode.do",
 			noForm:true,
 			onSuccess:function(result) {
 				var ds = result.dataSet;
-
 				code = ds.getValue(0, "code");
 			}
 		});
+		return code;
 	};
 
 	/*!
@@ -68,12 +71,16 @@ $(function() {
 	 */
 	$(window).load(function() {
 		setTimeout(function() {
-			getTOTPCode();
 			$("[name=authenticationCode]").focus();
 		}, 400);
 
-		setInterval(function() {
-			getTOTPCode();
-		}, 30000);
+//		setTimeout(function() {
+//			getTOTPCode();
+//			$("[name=authenticationCode]").focus();
+//		}, 400);
+//
+//		setInterval(function() {
+//			getTOTPCode();
+//		}, 30000);
 	});
 });
