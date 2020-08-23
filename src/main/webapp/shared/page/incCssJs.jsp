@@ -62,6 +62,10 @@ jsconfig.put("themeId", "${sessionScope.themeId}");
 jsconfig.put("maxRowsPerPage", "${sessionScope.maxRowsPerPage}");
 jsconfig.put("pageNumsPerPage", "${sessionScope.pageNumsPerPage}");
 /*!
+ * loggin
+ */
+jsconfig.put("use2fa", "<mc:cp key="use2fa"/>");
+/*!
  * paths
  */
 jsconfig.put("shareRoot", "<mc:cp key="sharedRoot"/>");

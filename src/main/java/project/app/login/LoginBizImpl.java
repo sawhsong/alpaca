@@ -298,47 +298,24 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 
 	public ParamEntity getTOTPCode(ParamEntity paramEntity) throws Exception {
 		String secretKey = "VW2GP3MI7DKSXC3Y2FFBZSUXO5J2XZ7S";
-//		String lastCode = "", code = "";
+		Base32 base32 = new Base32();
 		DataSet resultDataSet = new DataSet();
+		byte[] bytes;
+		String hexKey = "";
 
 		try {
-			resultDataSet.addColumn("code", getTOTPCode(secretKey));
+			bytes = base32.decode(secretKey);
+			hexKey = Hex.encodeHexString(bytes);
+			TOTP.getOTP(hexKey);
+
+			resultDataSet.addColumn("code", TOTP.getOTP(hexKey));
 
 			paramEntity.setAjaxResponseDataSet(resultDataSet);
 			paramEntity.setSuccess(true);
 
 			return paramEntity;
-
-//			while (true) {
-//				code = getTOTPCode(secretKey);
-//
-//				if (CommonUtil.equals(code, lastCode)) {
-//					logger.debug("Authentication Code : "+code);
-//					resultDataSet.addColumn("code", code);
-//
-//					paramEntity.setAjaxResponseDataSet(resultDataSet);
-//					paramEntity.setSuccess(true);
-//
-//					return paramEntity;
-//				}
-//
-//				lastCode = code;
-//				try {
-//					Thread.sleep(1000);
-//				} catch (InterruptedException e) {
-//				};
-//			}
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}
-	}
-
-	private String getTOTPCode(String secretKey) {
-		Base32 base32 = new Base32();
-		String hexKey = "";
-
-		byte[] bytes = base32.decode(secretKey);
-		hexKey = Hex.encodeHexString(bytes);
-		return TOTP.getOTP(hexKey);
 	}
 }

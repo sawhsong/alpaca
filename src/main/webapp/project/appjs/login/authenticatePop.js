@@ -73,14 +73,5 @@ $(function() {
 		setTimeout(function() {
 			$("[name=authenticationCode]").focus();
 		}, 400);
-
-//		setTimeout(function() {
-//			getTOTPCode();
-//			$("[name=authenticationCode]").focus();
-//		}, 400);
-//
-//		setInterval(function() {
-//			getTOTPCode();
-//		}, 30000);
 	});
 });

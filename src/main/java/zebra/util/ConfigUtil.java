@@ -40,7 +40,8 @@ public class ConfigUtil {
 
 		// Web Resource Paths
 		if (CommonUtil.isBlank(rtnString)) {
-			if (CommonUtil.equalsIgnoreCase(key, "sharedRoot")) {rtnString = ConfigUtil.getProperty("path.shared.root");}
+			if (CommonUtil.equalsIgnoreCase(key, "use2fa")) {rtnString = ConfigUtil.getProperty("loggin.use2fa");}
+			else if (CommonUtil.equalsIgnoreCase(key, "sharedRoot")) {rtnString = ConfigUtil.getProperty("path.shared.root");}
 			else if (CommonUtil.equalsIgnoreCase(key, "sharedPage")) {rtnString = ConfigUtil.getProperty("path.shared.page");}
 			else if (CommonUtil.equalsIgnoreCase(key, "sharedCss")) {rtnString = ConfigUtil.getProperty("path.shared.css");}
 			else if (CommonUtil.equalsIgnoreCase(key, "sharedImg")) {rtnString = ConfigUtil.getProperty("path.shared.img");}
