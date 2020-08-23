@@ -8,14 +8,19 @@ $(function() {
 	 * event
 	 */
 	$("#btnSubmitCode").click(function(event) {
-		var code = "";
+		var isAuthenticated = false;
 
 		if (!commonJs.doValidate("fmDefault")) {
 			return;
 		}
 
-		code = getTOTPCode();
-		if (code != $("#authenticationCode").val()) {
+		if ("Y" == jsconfig.get("google2fa")) {
+			isAuthenticated = doAuthentication("google2fa");
+		} else if ("Y" == jsconfig.get("emailKey")) {
+			isAuthenticated = doAuthentication("emailKey");
+		}
+
+		if (!isAuthenticated) {
 			commonJs.error("Authentication code is not correct!<br/>Please try again!");
 			$("#authenticationCode").val("");
 			$("#authenticationCode").focus();
@@ -53,17 +58,23 @@ $(function() {
 	/*!
 	 * process
 	 */
-	getTOTPCode = function() {
-		var code = "";
+	doAuthentication = function(mode) {
+		var isAuthenticated;
+
 		commonJs.doSimpleProcess({
-			url:"/login/getTOTPCode.do",
+			url:"/login/doAuthentication.do",
+			data:{
+				mode:mode,
+				inputCode:$("#authenticationCode").val()
+			},
 			noForm:true,
 			onSuccess:function(result) {
 				var ds = result.dataSet;
-				code = ds.getValue(0, "code");
+				isAuthenticated = commonJs.toBoolean(ds.getValue(0, "isAuthenticated"));
 			}
 		});
-		return code;
+
+		return isAuthenticated;
 	};
 
 	/*!

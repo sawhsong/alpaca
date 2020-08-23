@@ -57,6 +57,7 @@ public class LoginAction extends BaseAction {
 				session.setAttribute("maxRowsPerPage", CommonUtil.toString(sysUser.getMaxRowPerPage(), "###"));
 				session.setAttribute("pageNumsPerPage", CommonUtil.toString(sysUser.getPageNumPerPage(), "###"));
 				session.setAttribute("SysUser", sysUser);
+				session.setAttribute("AuthenticationKey", (String)paramEntity.getObject("authenticationKey"));
 
 				MemoryBean.set(session.getId(), session);
 
@@ -187,9 +188,9 @@ public class LoginAction extends BaseAction {
 		return "ajaxResponse";
 	}
 
-	public String getTOTPCode() throws Exception {
+	public String doAuthentication() throws Exception {
 		try {
-			biz.getTOTPCode(paramEntity);
+			biz.doAuthentication(paramEntity);
 		} catch (Exception ex) {
 		}
 		setRequestAttribute("paramEntity", paramEntity);

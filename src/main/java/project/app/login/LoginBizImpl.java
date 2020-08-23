@@ -2,6 +2,7 @@ package project.app.login;
 
 import java.io.File;
 import java.security.SecureRandom;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -137,6 +138,8 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 		SysUser sysUser = new SysUser();
 		String loginId = requestDataSet.getValue("loginId");
 		String password = requestDataSet.getValue("password");
+		String loginAuthEmailKey = ConfigUtil.getProperty("login.auth.emailKey");
+		String email = "", authKey = "";
 
 		try {
 			// Check with LoginID
@@ -152,6 +155,15 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 			}
 
 			paramEntity.setObject("sysUser", sysUser);
+
+			if (CommonUtil.toBoolean(loginAuthEmailKey)) {
+				Random random = new Random();
+
+				email = sysUser.getEmail();
+				authKey = CommonUtil.leftPad(CommonUtil.toString(random.nextInt(999999)), 6, "0");
+				paramEntity.setObject("authenticationKey", authKey);
+				loginMessageSender.sendAuthKey(sysUser, email, authKey);
+			}
 
 			paramEntity.setSuccess(true);
 			paramEntity.setMessage("I903", getMessage("I903", paramEntity));
@@ -275,6 +287,9 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 		return paramEntity;
 	}
 
+	/*!
+	 * ToDo : secret key must be generated for each user and saved in user table when user account created
+	 */
 	public ParamEntity generateScretKey(ParamEntity paramEntity) throws Exception {
 		DataSet resultDataSet = new DataSet();
 		SecureRandom random = new SecureRandom();
@@ -296,19 +311,29 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 		return paramEntity;
 	}
 
-	public ParamEntity getTOTPCode(ParamEntity paramEntity) throws Exception {
+	public ParamEntity doAuthentication(ParamEntity paramEntity) throws Exception {
 		String secretKey = "VW2GP3MI7DKSXC3Y2FFBZSUXO5J2XZ7S";
-		Base32 base32 = new Base32();
+		HttpSession session = paramEntity.getSession();
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		DataSet resultDataSet = new DataSet();
+		Base32 base32 = new Base32();
 		byte[] bytes;
-		String hexKey = "";
+		String mode = requestDataSet.getValue("mode");
+		String inputCode = requestDataSet.getValue("inputCode");
+		String isAuthenticated = "", hexKey = "", authCode = "";
 
 		try {
-			bytes = base32.decode(secretKey);
-			hexKey = Hex.encodeHexString(bytes);
-			TOTP.getOTP(hexKey);
+			if (CommonUtil.equalsIgnoreCase(mode, "google2fa")) {
+				bytes = base32.decode(secretKey);
+				hexKey = Hex.encodeHexString(bytes);
+				authCode = TOTP.getOTP(hexKey);
+				isAuthenticated = CommonUtil.equals(inputCode, authCode) ? "true" : "false";
+			} else if (CommonUtil.equalsIgnoreCase(mode, "emailKey")) {
+				authCode = (String)session.getAttribute("AuthenticationKey");
+				isAuthenticated = CommonUtil.equals(inputCode, authCode) ? "true" : "false";
+			}
 
-			resultDataSet.addColumn("code", TOTP.getOTP(hexKey));
+			resultDataSet.addColumn("isAuthenticated", isAuthenticated);
 
 			paramEntity.setAjaxResponseDataSet(resultDataSet);
 			paramEntity.setSuccess(true);

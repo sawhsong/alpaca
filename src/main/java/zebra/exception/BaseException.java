@@ -27,7 +27,7 @@ public class BaseException extends Exception {
 	public BaseException(Exception ex) {
 		if (ex instanceof SQLException) {
 			this.code = CommonUtil.toString(((SQLException)ex).getErrorCode());
-			this.message = CommonUtil.replace(CommonUtil.replace(CommonUtil.replace(ex.getMessage(), "\n", ""), "\"", ""),"\'","");
+			this.message = CommonUtil.removeString(ex.getMessage(), new String[] {"\n", "\t", "\"", "\'"});
 		} else {
 			this.code = "E000";
 			this.message = (ex.getMessage() == null) ? ex.toString() : ex.getMessage();
@@ -44,7 +44,7 @@ public class BaseException extends Exception {
 			this.message = ((UndeclaredThrowableException)ex).getUndeclaredThrowable().getCause().getMessage();
 		} else if (ex instanceof SQLException) {
 			this.code = "ORA-"+CommonUtil.toString(((SQLException)ex).getErrorCode());
-			this.message = CommonUtil.replace(CommonUtil.replace(CommonUtil.replace(ex.getMessage(), "\n", ""), "\"", ""),"\'","");
+			this.message = CommonUtil.removeString(ex.getMessage(), new String[] {"\n", "\t", "\"", "\'"});
 		} else if (ex instanceof FrameworkException) {
 			this.code = ((FrameworkException)ex).getCode();
 			this.message = ((FrameworkException)ex).getMessage();

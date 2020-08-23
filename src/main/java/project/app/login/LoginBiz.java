@@ -12,5 +12,5 @@ public interface LoginBiz {
 	public ParamEntity setSessionValuesForAdminTool(ParamEntity paramEntity) throws Exception;
 
 	public ParamEntity generateScretKey(ParamEntity paramEntity) throws Exception;
-	public ParamEntity getTOTPCode(ParamEntity paramEntity) throws Exception;
+	public ParamEntity doAuthentication(ParamEntity paramEntity) throws Exception;
 }

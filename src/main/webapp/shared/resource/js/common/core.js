@@ -878,6 +878,7 @@ var nony = {
 			val = $.nony.replace(val, "'", "&#39;");
 //			val = $.nony.replace(val, " ", "&nbsp;");
 			val = $.nony.replace(val, "\n", "<br/>");
+			val = $.nony.replace(val, "\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
 //			val = $.nony.replace(val, "<br>", "\n");
 		}
 		return val;

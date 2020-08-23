@@ -62,9 +62,10 @@ jsconfig.put("themeId", "${sessionScope.themeId}");
 jsconfig.put("maxRowsPerPage", "${sessionScope.maxRowsPerPage}");
 jsconfig.put("pageNumsPerPage", "${sessionScope.pageNumsPerPage}");
 /*!
- * loggin
+ * loggin authentication
  */
-jsconfig.put("use2fa", "<mc:cp key="use2fa"/>");
+jsconfig.put("google2fa", "<mc:cp key="google2fa"/>");
+jsconfig.put("emailKey", "<mc:cp key="emailKey"/>");
 /*!
  * paths
  */

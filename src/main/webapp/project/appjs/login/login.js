@@ -45,9 +45,10 @@ $(function() {
 					var dataSet = result.dataSet;
 					var actionString = dataSet.getValue(0, "DEFAULT_START_URL");
 
-					if ("Y" == jsconfig.get("use2fa")) {
+					if ("Y" == jsconfig.get("google2fa") || "Y" == jsconfig.get("emailKey")) {
 						commonJs.openPopup({
 							popupId:"2-Factor Authentication",
+							/* ToDo : secret key must be generated for each user and saved in user table when user account created */
 //							url:"/login/generateScretKey.do",
 							url:"/login/getAuthentication.do",
 							data:{},
