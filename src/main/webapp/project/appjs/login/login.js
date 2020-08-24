@@ -53,7 +53,7 @@ $(function() {
 							url:"/login/getAuthentication.do",
 							data:{},
 							header:"Authentication",
-							blind:false,
+							blind:true,
 							draggable:false,
 							width:400,
 							height:240

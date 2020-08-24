@@ -38,6 +38,7 @@ body {background:#FFFFFF;}
 .additionalLink {padding-top:20px;font-size:13px;}
 .passwordLink {float:left;width:50%;text-align:left;}
 .registerLink {float:right;width:50%;text-align:right;}
+.bottomBlank {padding-bottom:22%;}
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
@@ -79,6 +80,7 @@ body {background:#FFFFFF;}
 		</div>
 	</div>
 </div>
+<div class="bottomBlank"></div>
 </form>
 </body>
 </html>
