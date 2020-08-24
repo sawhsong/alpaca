@@ -59,6 +59,19 @@ $(function() {
 							height:240
 						});
 					} else {
+						commonJs.doSimpleProcess({
+							url:"/login/doAuthentication.do",
+							data:{
+								mode:"noAuth"
+							},
+							noForm:true,
+							onSuccess:function(result) {
+								var ds = result.dataSet;
+								isAuthenticated = commonJs.toBoolean(ds.getValue(0, "isAuthenticated"));
+							}
+						});
+
+
 						commonJs.openDialog({
 							type:com.message.I000,
 							contents:result.message+" "+dataSet.getValue(0, "USER_NAME")+"!",

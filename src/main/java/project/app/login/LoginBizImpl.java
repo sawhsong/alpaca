@@ -328,13 +328,17 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 				hexKey = Hex.encodeHexString(bytes);
 				authCode = TOTP.getOTP(hexKey);
 				isAuthenticated = CommonUtil.equals(inputCode, authCode) ? "true" : "false";
+				paramEntity.setObject("authenticationKey", authCode);
 			} else if (CommonUtil.equalsIgnoreCase(mode, "emailKey")) {
 				authCode = (String)session.getAttribute("AuthenticationKey");
 				isAuthenticated = CommonUtil.equals(inputCode, authCode) ? "true" : "false";
+			} else {
+				isAuthenticated = "true";
 			}
 
 			resultDataSet.addColumn("isAuthenticated", isAuthenticated);
 
+			paramEntity.setObject("isAuthenticated", isAuthenticated);
 			paramEntity.setAjaxResponseDataSet(resultDataSet);
 			paramEntity.setSuccess(true);
 

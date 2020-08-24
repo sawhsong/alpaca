@@ -191,6 +191,11 @@ public class LoginAction extends BaseAction {
 	public String doAuthentication() throws Exception {
 		try {
 			biz.doAuthentication(paramEntity);
+
+			if (paramEntity.isSuccess()) {
+				session.setAttribute("AuthenticationKey", (String)paramEntity.getObject("authenticationKey"));
+				session.setAttribute("IsAuthenticated", CommonUtil.toBoolean((String)paramEntity.getObject("isAuthenticated")));
+			}
 		} catch (Exception ex) {
 		}
 		setRequestAttribute("paramEntity", paramEntity);
