@@ -39,6 +39,7 @@ public class LoginInterceptor implements Interceptor {
 		Map sessionMap = context.getSession();
 		Object action = invocation.getAction();
 		String userId = "", returnValue = "";
+		boolean isAuthenticated;
 
 //		for (Iterator iter = context.getContextMap().entrySet().iterator(); iter.hasNext();) {
 //			Entry entry = (Entry)iter.next();
@@ -65,13 +66,15 @@ public class LoginInterceptor implements Interceptor {
 		if (action instanceof LoginAction) {
 			if (CommonUtil.equalsIgnoreCase(invocation.getProxy().getMethod(), "getUserProfile")) {
 				userId = (String)sessionMap.get("UserId");
-				if (CommonUtil.isBlank(userId)) {
+				isAuthenticated = CommonUtil.toBoolean(CommonUtil.nvl((String)sessionMap.get("IsAuthenticated"), "false"));
+				if (CommonUtil.isBlank(userId) || !isAuthenticated) {
 					returnValue = "checkScreenForLogin";
 				}
 			}
 		} else {
 			userId = (String)sessionMap.get("UserId");
-			if (CommonUtil.isBlank(userId)) {
+			isAuthenticated = CommonUtil.toBoolean(CommonUtil.nvl((String)sessionMap.get("IsAuthenticated"), "false"));
+			if (CommonUtil.isBlank(userId) || !isAuthenticated) {
 				if (isAjaxCall(request)) {
 					returnValue = "ajaxSessionTimeout";
 				} else {
