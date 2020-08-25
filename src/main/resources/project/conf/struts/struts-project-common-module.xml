@@ -9,6 +9,10 @@
 		<action name="autoCompletion/*" class="project.common.module.autocompletion.AutoCompletionAction" method="{1}">
 		</action>
 
+		<!--/* Feed */-->
+		<action name="feed/*" class="project.common.module.feed.FeedAction" method="{1}">
+		</action>
+
 		<!--/* Common Key Value Lookup */-->
 		<action name="lookup/*" class="project.common.module.commonlookup.CommonLookupAction" method="{1}">
 			<result name="employmentOrg" type="debugDispatcherResult">/project/common/module/commonlookup/EmploymentOrganisationLookupPop.jsp</result>

@@ -1115,7 +1115,7 @@ var nony = {
 	 * jQuery UI
 	 */
 	setAccordion : function(params) {
-		var containerString;
+		var containerString, headerTag;
 
 		// Accordion container - Id or Class name
 		if ($.nony.isEmpty(params) || ($.nony.isEmpty(params.containerId) && $.nony.isEmpty(params.containerClass))) {

@@ -194,6 +194,19 @@ $(function() {
 	/*!
 	 * event
 	 */
+	$("h3 span .icnEn").click(function(event) {
+		var id = $(this).attr("id");
+
+		if (id == "icnRefreshABCNews") {loadAbcNewsFeed();}
+		if (id == "icnRefreshNotice") {doSearchNotice();}
+		if (id == "icnRefreshChart1") {loadChart1();}
+		if (id == "icnRefreshNewsComAu") {loadNewsComAuFeed();}
+		if (id == "icnRefreshFreeBoard") {doSearchFreeBoard();}
+		if (id == "icnRefreshChart2") {loadChart2();}
+
+		event.preventDefault();
+		event.stopPropagation();
+	});
 
 	/*!
 	 * process
@@ -215,6 +228,11 @@ $(function() {
 		$("#hdnLeftMenuUrl").val(leftMenuUrl);
 
 		commonJs.doSubmit({form:$("form:eq(0)"), action:leftMenuUrl});
+	};
+
+	openNewsArticle = function(linkUrl) {
+		var win = window.open(linkUrl, "_blank");
+		win.focus();
 	};
 
 	doSearchNotice = function() {
@@ -297,7 +315,7 @@ $(function() {
 		commonJs.showProcMessageOnElement("divChart1");
 
 		$("#divChart1").html("");
-		$("#divChart1").html("<canvas id=\"cvChart1\"></canvas>");
+		$("#divChart1").html("<canvas id=\"cvChart1\" style=\"width:100%;height:360px;\"></canvas>");
 
 		setTimeout(function() {
 			var ctx = $("#cvChart1")[0].getContext("2d");
@@ -325,14 +343,76 @@ $(function() {
 		commonJs.showProcMessageOnElement("divChart2");
 
 		$("#divChart2").html("");
-		$("#divChart2").html("<canvas id=\"cvChart2\"></canvas>");
+		$("#divChart2").html("<canvas id=\"cvChart2\" style=\"width:100%;height:360px;\"></canvas>");
 
 		setTimeout(function() {
 			var ctx = $("#cvChart2")[0].getContext("2d");
 			window.myPie = new Chart(ctx, config);
 
-			commonJs.hideProcMessageOnElement("divChart1");
+			commonJs.hideProcMessageOnElement("divChart2");
 		}, 1000);
+	};
+
+	loadAbcNewsFeed = function() {
+		commonJs.showProcMessageOnElement("divABCNews");
+		commonJs.doSearch({
+			url:"/common/feed/getRssAbcJustin.do",
+			noForm:true,
+			data:{url:"https://www.abc.net.au/news/feed/51120/rss.xml"},
+			onSuccess:function(result) {
+				var ds = result.dataSet;
+				var html = "";
+
+				$("#tbodyGridABCNews").html("");
+
+				for (var i=0; i<ds.getRowCnt(); i++) {
+					var gridTr = new UiGridTr();
+
+					gridTr.setClassName("noBorderVer noStripe");
+
+					gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "header")).setScript("openNewsArticle('"+ds.getValue(i, "link")+"')").setStyle("font-weight:bold;vertical-align:top;"))
+																	 .addTextAfterChild("<br/><br/>"+ds.getValue(i, "contents")+ds.getValue(i, "date")));
+					gridTr.addChild(new UiGridTd().addClassName("Rt").addChild(new UiImage().setSrc(ds.getValue(i, "img")).setStyle("width:100%;height:75px;border-radius:10px;").setScript("openNewsArticle('"+ds.getValue(i, "link")+"')")).setStyle("vertical-align:top;"))
+
+					html += gridTr.toHtmlString();
+				}
+
+				$("#tbodyGridABCNews").append(html);
+
+				commonJs.hideProcMessageOnElement("divABCNews");
+			}
+		});
+	};
+
+	loadNewsComAuFeed = function() {
+		commonJs.showProcMessageOnElement("divNewsComAu");
+		commonJs.doSearch({
+			url:"/common/feed/getRssNewsComAuWorld.do",
+			noForm:true,
+			data:{url:"https://www.news.com.au/content-feeds/latest-news-world/"},
+			onSuccess:function(result) {
+				var ds = result.dataSet;
+				var html = "";
+
+				$("#tbodyGridNewsComAu").html("");
+
+				for (var i=0; i<ds.getRowCnt(); i++) {
+					var gridTr = new UiGridTr();
+
+					gridTr.setClassName("noBorderVer noStripe");
+
+					gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "header")).setScript("openNewsArticle('"+ds.getValue(i, "link")+"')").setStyle("font-weight:bold;vertical-align:top;"))
+																	 .addTextAfterChild("<br/><br/>"+ds.getValue(i, "contents")+"<br/><br/>"+ds.getValue(i, "date")));
+					gridTr.addChild(new UiGridTd().addClassName("Rt").addChild(new UiImage().setSrc(ds.getValue(i, "img")).setStyle("width:100%;height:75px;border-radius:10px;").setScript("openNewsArticle('"+ds.getValue(i, "link")+"')")).setStyle("vertical-align:top;"))
+
+					html += gridTr.toHtmlString();
+				}
+
+				$("#tbodyGridNewsComAu").html(html);
+
+				commonJs.hideProcMessageOnElement("divNewsComAu");
+			}
+		});
 	};
 
 	/*!
@@ -350,5 +430,7 @@ $(function() {
 		doSearchFreeBoard();
 		loadChart1();
 		loadChart2();
+		loadAbcNewsFeed();
+		loadNewsComAuFeed();
 	});
 });

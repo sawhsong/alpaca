@@ -711,7 +711,7 @@
 			<version>2.7.2</version>
 		</dependency>
 
-		<!-- 2FA Test Begin -->
+		<!-- Google 2FA Begin -->
 		<dependency>
 			<groupId>de.taimos</groupId>
 			<artifactId>totp</artifactId>
@@ -722,7 +722,13 @@
 			<artifactId>javase</artifactId>
 			<version>3.2.1</version>
 		</dependency>
-		<!-- 2FA Test End -->
+		<!-- Google 2FA End -->
+
+		<dependency>
+			<groupId>rome</groupId>
+			<artifactId>rome</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>alpaca</finalName>
