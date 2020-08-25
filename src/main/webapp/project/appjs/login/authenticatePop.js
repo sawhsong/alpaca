@@ -8,41 +8,15 @@ $(function() {
 	 * event
 	 */
 	$("#btnSubmitCode").click(function(event) {
-		var isAuthenticated = false;
-
 		if (!commonJs.doValidate("fmDefault")) {
 			return;
 		}
 
 		if ("Y" == jsconfig.get("google2fa")) {
-			isAuthenticated = doAuthentication("google2fa");
+			doAuthentication("google2fa");
 		} else if ("Y" == jsconfig.get("emailKey")) {
-			isAuthenticated = doAuthentication("emailKey");
+			doAuthentication("emailKey");
 		}
-
-		if (!isAuthenticated) {
-			commonJs.error("Authentication code is not correct!<br/>Please try again!");
-			$("#authenticationCode").val("");
-			$("#authenticationCode").focus();
-			return;
-		}
-
-		commonJs.openDialog({
-			type:com.message.I000,
-			contents:com.message.I903+" "+userName+"!",
-			blind:true,
-			draggable:false,
-			width:350,
-			buttons:[{
-				caption:com.caption.ok,
-				callback:function() {
-					parent.commonJs.doSubmit({
-						formId:"fmDefault",
-						action:defaultStartUrl
-					});
-				}
-			}]
-		});
 	});
 
 	$(document).keypress(function(event) {
@@ -59,8 +33,6 @@ $(function() {
 	 * process
 	 */
 	doAuthentication = function(mode) {
-		var isAuthenticated;
-
 		commonJs.doSimpleProcess({
 			url:"/login/doAuthentication.do",
 			data:{
@@ -71,10 +43,47 @@ $(function() {
 			onSuccess:function(result) {
 				var ds = result.dataSet;
 				isAuthenticated = commonJs.toBoolean(ds.getValue(0, "isAuthenticated"));
+
+				if (!isAuthenticated) {
+					commonJs.error("Authentication code is not correct!<br/>Please try again!");
+					$("#authenticationCode").val("");
+					$("#authenticationCode").focus();
+					return;
+				}
+
+				commonJs.openDialog({
+					type:com.message.I000,
+					contents:com.message.I903+" "+userName+"!",
+					blind:true,
+					draggable:false,
+					width:350,
+					buttons:[{
+						caption:com.caption.ok,
+						callback:function() {
+							parent.commonJs.doSubmit({
+								formId:"fmDefault",
+								action:defaultStartUrl
+							});
+						}
+					}]
+				});
+			},
+			onError:function(result) {
+				commonJs.openDialog({
+					type:com.message.E000,
+					contents:result.message,
+					blind:false,
+					draggable:false,
+					width:350,
+					buttons:[{
+						caption:com.caption.ok,
+						callback:function() {
+							return;
+						}
+					}]
+				});
 			}
 		});
-
-		return isAuthenticated;
 	};
 
 	/*!

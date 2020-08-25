@@ -46,10 +46,28 @@ $(function() {
 					var actionString = dataSet.getValue(0, "DEFAULT_START_URL");
 
 					if ("Y" == jsconfig.get("google2fa") || "Y" == jsconfig.get("emailKey")) {
+						if ("Y" == jsconfig.get("google2fa")) {
+							var key = dataSet.getValue(0, "AUTHENTICATION_SECRET_KEY");
+							if (commonJs.isBlank(key)) {
+								commonJs.openDialog({
+									type:com.message.E000,
+									contents:com.message.E913,
+									blind:true,
+									draggable:false,
+									width:350,
+									buttons:[{
+										caption:com.caption.ok,
+										callback:function() {
+											return;
+										}
+									}]
+								});
+								return;
+							}
+						}
+
 						commonJs.openPopup({
 							popupId:"2-Factor Authentication",
-							/* ToDo : secret key must be generated for each user and saved in user table when user account created */
-//							url:"/login/generateScretKey.do",
 							url:"/login/getAuthentication.do",
 							data:{},
 							header:"Authentication",
@@ -59,6 +77,7 @@ $(function() {
 							height:240
 						});
 					} else {
+						var message = result.message+" "+dataSet.getValue(0, "USER_NAME")+"!";
 						commonJs.doSimpleProcess({
 							url:"/login/doAuthentication.do",
 							data:{
@@ -71,7 +90,7 @@ $(function() {
 
 								commonJs.openDialog({
 									type:com.message.I000,
-									contents:result.message+" "+dataSet.getValue(0, "USER_NAME")+"!",
+									contents:message,
 									blind:true,
 									draggable:false,
 									width:350,

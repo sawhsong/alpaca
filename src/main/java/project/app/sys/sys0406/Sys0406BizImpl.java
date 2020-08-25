@@ -172,6 +172,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 			sysUser.setPageNumPerPage(CommonUtil.toDouble(requestDataSet.getValue("pageNumsPerPage")));
 			sysUser.setUserStatus(requestDataSet.getValue("userStatus"));
 			sysUser.setDefaultStartUrl(requestDataSet.getValue("defaultStartUrl"));
+			sysUser.setAuthenticationSecretKey(CommonUtil.getAuthenticationSecretKey());
 			sysUser.setIsActive(requestDataSet.getValue("isActive"));
 			sysUser.setInsertUserId((String)session.getAttribute("UserId"));
 			sysUser.setInsertDate(CommonUtil.toDate(CommonUtil.getSysdate()));
@@ -256,6 +257,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 			sysUser.setUserStatus(requestDataSet.getValue("userStatus"));
 			sysUser.setDefaultStartUrl(requestDataSet.getValue("defaultStartUrl"));
 			sysUser.setIsActive(requestDataSet.getValue("isActive"));
+			sysUser.setAuthenticationSecretKey(requestDataSet.getValue("authenticationSecretKey"));
 			sysUser.setUpdateUserId((String)session.getAttribute("UserId"));
 			sysUser.setUpdateDate(CommonUtil.toDate(CommonUtil.getSysdate()));
 

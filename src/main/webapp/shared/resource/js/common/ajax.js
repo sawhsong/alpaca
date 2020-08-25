@@ -131,7 +131,7 @@
 						data = "";
 						data += "[Error Code : "+xhr.status+"]<br/>";
 						data += "[Message Code : "+result.messageCode+"]<br/>";
-						data += "[Message]<br/>"+$.nony.stringToHtml(result.message);
+						data += "Message :<br/>"+$.nony.stringToHtml(result.message);
 						width = 500;
 					} else {
 						data = "[Error Code : "+xhr.status+"]<br/>"+$.nony.removeString($.nony.stringToHtml(data), "<br/>");
@@ -274,7 +274,7 @@
 						data = "";
 						data += "[Error Code : "+xhr.status+"]<br/>";
 						data += "[Message Code : "+result.messageCode+"]<br/>";
-						data += "[Message]<br/>"+$.nony.stringToHtml(result.message);
+						data += "Message :<br/>"+$.nony.stringToHtml(result.message);
 						width = 500;
 					} else {
 						data = "[Error Code : "+xhr.status+"]<br/>"+$.nony.removeString($.nony.stringToHtml(data), "<br/>");

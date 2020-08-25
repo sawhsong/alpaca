@@ -36,14 +36,15 @@ create table sys_user (
     reset_term_condition            varchar2(30),                                               -- From PERCI(For What?)
     is_portal_user                  varchar2(30),                                               -- From PERCI(For What?)
     portal_org_profile_id           varchar2(30),                                               -- From PERCI(For What?)
+    authentication_secret_key       varchar2(50),                                               -- Secreet key for google authentication
     insert_user_id                  varchar2(30),                                               -- Insert User UID
     insert_date                     date                default sysdate,                        -- Insert Date
     update_user_id                  varchar2(30),                                               -- Update User UID
     update_date                     date,                                                       -- Update Date
 
-    constraint fk_45421652490600 foreign key(auth_group_id) references sys_auth_group(group_id),
+    constraint fk_11231033383400 foreign key(auth_group_id) references sys_auth_group(group_id),
     constraint pk_sys_user primary key(user_id),
-    constraint uk_45421687631800 unique(login_id, login_password)
+    constraint uk_11231060761600 unique(login_id, login_password)
     using index tablespace alpaca_idx storage(initial 50k next 50k pctincrease 0)
 )
 pctfree 20 pctused 80 tablespace alpaca_data storage(initial 100k next 100k maxextents 2000 pctincrease 0);
@@ -79,6 +80,7 @@ comment on column sys_user.reset_password                                       
 comment on column sys_user.reset_term_condition                                  is 'From PERCI(For What?)';
 comment on column sys_user.is_portal_user                                        is 'From PERCI(For What?)';
 comment on column sys_user.portal_org_profile_id                                 is 'From PERCI(For What?)';
+comment on column sys_user.authentication_secret_key                             is 'Secreet key for google authentication';
 comment on column sys_user.insert_user_id                                        is 'Insert User UID';
 comment on column sys_user.insert_date                                           is 'Insert Date';
 comment on column sys_user.update_user_id                                        is 'Update User UID';
@@ -92,11 +94,11 @@ comment on column sys_user.update_date                                          
 delete sys_user;
 
 insert into sys_user values('0', 'Dustin', 'dustin', 'dustin', '0', '0', 'EN', 'THEME000', 'INTERNAL', 'dsa@entitysolutions.com.au', 50, 5, 'NU',
-	'/shared/resource/image/photo/DefaultUser_128_Black.png', '/index/dashboard.do', 'Y', 'System Admin - Dustin', 'Y', null, null, null, null, null, null, 'ipro-default', null, 'N', 'N', 'Y', '1',
+	'/shared/resource/image/photo/DefaultUser_128_Black.png', '/index/dashboard.do', 'Y', 'System Admin - Dustin', 'Y', null, null, null, null, null, null, 'ipro-default', null, 'N', 'N', 'Y', '1', null,
 	'0', sysdate, null, null
 );
 insert into sys_user values('1', 'Admin', 'admin', 'admin', '1', '1', 'EN', 'THEME000', 'INTERNAL', 'dsa@entitysolutions.com.au', 50, 5, 'NU',
-	'/shared/resource/image/photo/DefaultUser_128_Black.png', '/index/dashboard.do', 'Y', 'General Admin - Admin', 'Y', null, null, null, null, null, null, 'ipro-default', null, 'N', 'N', 'Y', '1',
+	'/shared/resource/image/photo/DefaultUser_128_Black.png', '/index/dashboard.do', 'Y', 'General Admin - Admin', 'Y', null, null, null, null, null, null, 'ipro-default', null, 'N', 'N', 'Y', '1', null,
 	'0', sysdate, null, null
 );
 
@@ -133,6 +135,7 @@ select user_id as user_id,
        reset_term_condition as reset_term_condition,
        is_portal_user as is_portal_user,
        portal_org_profile_id as portal_org_profile_id,
+       null as authentication_secret_key,
        '0' as insert_user_id,
        sysdate as insert_date,
        null as update_user_id,

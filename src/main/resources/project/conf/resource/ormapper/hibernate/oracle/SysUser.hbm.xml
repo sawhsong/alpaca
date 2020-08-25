@@ -22,6 +22,7 @@
 		<property name="userName" column="USER_NAME" not-null="true" type="java.lang.String" length="50"/>
 		<property name="userStatus" column="USER_STATUS" not-null="true" type="java.lang.String" length="30"/>
 		<property name="userType" column="USER_TYPE" not-null="true" type="java.lang.String" length="30"/>
+		<property name="authenticationSecretKey" column="AUTHENTICATION_SECRET_KEY" type="java.lang.String" length="50"/>
 		<property name="defaultStartUrl" column="DEFAULT_START_URL" type="java.lang.String" length="100"/>
 		<property name="description" column="DESCRIPTION" type="java.lang.String" length="1000"/>
 		<property name="disabledDate" column="DISABLED_DATE" type="java.util.Date"/>
@@ -60,6 +61,7 @@
 		       USER_NAME,
 		       USER_STATUS,
 		       USER_TYPE,
+		       AUTHENTICATION_SECRET_KEY,
 		       DEFAULT_START_URL,
 		       DESCRIPTION,
 		       TO_CHAR(DISABLED_DATE, 'yyyymmddhh24miss') AS DISABLED_DATE,
@@ -86,6 +88,7 @@
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -105,6 +108,7 @@
 		       USER_NAME,
 		       USER_STATUS,
 		       USER_TYPE,
+		       AUTHENTICATION_SECRET_KEY,
 		       DEFAULT_START_URL,
 		       DESCRIPTION,
 		       DISABLED_DATE,
@@ -141,6 +145,7 @@
 		       ${USER_NAME},
 		       ${USER_STATUS},
 		       ${USER_TYPE},
+		       ${AUTHENTICATION_SECRET_KEY},
 		       ${DEFAULT_START_URL},
 		       ${DESCRIPTION},
 		       ${DISABLED_DATE},
@@ -181,6 +186,7 @@
 		       USER_NAME = ${USER_NAME},
 		       USER_STATUS = ${USER_STATUS},
 		       USER_TYPE = ${USER_TYPE},
+		       AUTHENTICATION_SECRET_KEY = ${AUTHENTICATION_SECRET_KEY},
 		       DEFAULT_START_URL = ${DEFAULT_START_URL},
 		       DESCRIPTION = ${DESCRIPTION},
 		       DISABLED_DATE = ${DISABLED_DATE},

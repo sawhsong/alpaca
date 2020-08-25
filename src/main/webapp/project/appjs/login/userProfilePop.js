@@ -6,7 +6,7 @@ $(function() {
 	 * event
 	 */
 	$("#btnEdit").click(function(event) {
-		parent.popupUserProfile.resizeTo(0, 116);
+		parent.popupUserProfile.resizeTo(0, 124);
 
 		commonJs.doSubmit({
 			form:"fmDefault",

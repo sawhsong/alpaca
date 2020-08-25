@@ -2,19 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--/*
  * Framework Generated MyBatis DTO Mapper XML Source
- * - SYS_USER - User Info
+ * - SYS_USER - User Info - Use Excel file to initialise data (SYS_USER_1.xlsx, SYS_USER_2.xlsx)
  */-->
 <mapper namespace="project.conf.resource.ormapper.mybatis.oracle.SysUser.SysUserMapper">
 	<resultMap id="hashmap" type="java.util.HashMap"></resultMap>
 
 	<select id="selectAll" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-		SELECT USER_ID,
-		       AUTH_GROUP_ID,
-		       IS_ACTIVE,
-		       LANGUAGE,
+		SELECT AUTH_GROUP_ID,
+		       USER_ID,
 		       LOGIN_ID,
 		       LOGIN_PASSWORD,
+		       IS_ACTIVE,
+		       LANGUAGE,
 		       MAX_ROW_PER_PAGE,
 		       PAGE_NUM_PER_PAGE,
 		       PERSON_ID,
@@ -22,6 +22,8 @@
 		       USER_NAME,
 		       USER_STATUS,
 		       USER_TYPE,
+		       AUTHENTICATION_SECRET_KEY,
+		       DEFAULT_START_URL,
 		       DESCRIPTION,
 		       TO_CHAR(DISABLED_DATE, 'yyyymmddhh24miss') AS DISABLED_DATE,
 		       EMAIL,
@@ -47,19 +49,19 @@
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
-		 FOR UPDATE
+
 	]]>
 	</select>
 
 	<insert id="insert" parameterType="hashmap">
 	<![CDATA[
 		INSERT INTO SYS_USER (
-		       USER_ID,
 		       AUTH_GROUP_ID,
-		       IS_ACTIVE,
-		       LANGUAGE,
+		       USER_ID,
 		       LOGIN_ID,
 		       LOGIN_PASSWORD,
+		       IS_ACTIVE,
+		       LANGUAGE,
 		       MAX_ROW_PER_PAGE,
 		       PAGE_NUM_PER_PAGE,
 		       PERSON_ID,
@@ -67,6 +69,8 @@
 		       USER_NAME,
 		       USER_STATUS,
 		       USER_TYPE,
+		       AUTHENTICATION_SECRET_KEY,
+		       DEFAULT_START_URL,
 		       DESCRIPTION,
 		       DISABLED_DATE,
 		       EMAIL,
@@ -89,12 +93,12 @@
 		       UPDATE_USER_ID
 		       )
 		VALUES (
-		       ${USER_ID},
 		       ${AUTH_GROUP_ID},
-		       ${IS_ACTIVE},
-		       ${LANGUAGE},
+		       ${USER_ID},
 		       ${LOGIN_ID},
 		       ${LOGIN_PASSWORD},
+		       ${IS_ACTIVE},
+		       ${LANGUAGE},
 		       ${MAX_ROW_PER_PAGE},
 		       ${PAGE_NUM_PER_PAGE},
 		       ${PERSON_ID},
@@ -102,6 +106,8 @@
 		       ${USER_NAME},
 		       ${USER_STATUS},
 		       ${USER_TYPE},
+		       ${AUTHENTICATION_SECRET_KEY},
+		       ${DEFAULT_START_URL},
 		       ${DESCRIPTION},
 		       ${DISABLED_DATE},
 		       ${EMAIL},
@@ -129,12 +135,12 @@
 	<insert id="insertWithDto" parameterType="project.conf.resource.ormapper.dto.oracle.SysUser">
 	<![CDATA[
 		INSERT INTO SYS_USER (
-		       USER_ID,
 		       AUTH_GROUP_ID,
-		       IS_ACTIVE,
-		       LANGUAGE,
+		       USER_ID,
 		       LOGIN_ID,
 		       LOGIN_PASSWORD,
+		       IS_ACTIVE,
+		       LANGUAGE,
 		       MAX_ROW_PER_PAGE,
 		       PAGE_NUM_PER_PAGE,
 		       PERSON_ID,
@@ -142,6 +148,8 @@
 		       USER_NAME,
 		       USER_STATUS,
 		       USER_TYPE,
+		       AUTHENTICATION_SECRET_KEY,
+		       DEFAULT_START_URL,
 		       DESCRIPTION,
 		       DISABLED_DATE,
 		       EMAIL,
@@ -164,12 +172,12 @@
 		       UPDATE_USER_ID
 		       )
 		VALUES (
-		       #{userId,jdbcType=VARCHAR},
 		       #{authGroupId,jdbcType=VARCHAR},
-		       #{isActive,jdbcType=VARCHAR},
-		       #{language,jdbcType=VARCHAR},
+		       #{userId,jdbcType=VARCHAR},
 		       #{loginId,jdbcType=VARCHAR},
 		       #{loginPassword,jdbcType=VARCHAR},
+		       #{isActive,jdbcType=VARCHAR},
+		       #{language,jdbcType=VARCHAR},
 		       #{maxRowPerPage,jdbcType=NUMERIC},
 		       #{pageNumPerPage,jdbcType=NUMERIC},
 		       #{personId,jdbcType=VARCHAR},
@@ -177,6 +185,8 @@
 		       #{userName,jdbcType=VARCHAR},
 		       #{userStatus,jdbcType=VARCHAR},
 		       #{userType,jdbcType=VARCHAR},
+		       #{authenticationSecretKey,jdbcType=VARCHAR},
+		       #{defaultStartUrl,jdbcType=VARCHAR},
 		       #{description,jdbcType=VARCHAR},
 		       #{disabledDate,jdbcType=TIME},
 		       #{email,jdbcType=VARCHAR},
@@ -204,10 +214,10 @@
 	<update id="update" parameterType="hashmap">
 		UPDATE SYS_USER
 		   SET AUTH_GROUP_ID = ${AUTH_GROUP_ID},
-		       IS_ACTIVE = ${IS_ACTIVE},
-		       LANGUAGE = ${LANGUAGE},
 		       LOGIN_ID = ${LOGIN_ID},
 		       LOGIN_PASSWORD = ${LOGIN_PASSWORD},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       LANGUAGE = ${LANGUAGE},
 		       MAX_ROW_PER_PAGE = ${MAX_ROW_PER_PAGE},
 		       PAGE_NUM_PER_PAGE = ${PAGE_NUM_PER_PAGE},
 		       PERSON_ID = ${PERSON_ID},
@@ -215,6 +225,8 @@
 		       USER_NAME = ${USER_NAME},
 		       USER_STATUS = ${USER_STATUS},
 		       USER_TYPE = ${USER_TYPE},
+		       AUTHENTICATION_SECRET_KEY = ${AUTHENTICATION_SECRET_KEY},
+		       DEFAULT_START_URL = ${DEFAULT_START_URL},
 		       DESCRIPTION = ${DESCRIPTION},
 		       DISABLED_DATE = ${DISABLED_DATE},
 		       EMAIL = ${EMAIL},
@@ -242,10 +254,10 @@
 	<update id="updateWithDto" parameterType="project.conf.resource.ormapper.dto.oracle.SysUser">
 		UPDATE SYS_USER
 		   SET AUTH_GROUP_ID = #{authGroupId,jdbcType=VARCHAR},
-		       IS_ACTIVE = #{isActive,jdbcType=VARCHAR},
-		       LANGUAGE = #{language,jdbcType=VARCHAR},
 		       LOGIN_ID = #{loginId,jdbcType=VARCHAR},
 		       LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR},
+		       IS_ACTIVE = #{isActive,jdbcType=VARCHAR},
+		       LANGUAGE = #{language,jdbcType=VARCHAR},
 		       MAX_ROW_PER_PAGE = #{maxRowPerPage,jdbcType=NUMERIC},
 		       PAGE_NUM_PER_PAGE = #{pageNumPerPage,jdbcType=NUMERIC},
 		       PERSON_ID = #{personId,jdbcType=VARCHAR},
@@ -253,6 +265,8 @@
 		       USER_NAME = #{userName,jdbcType=VARCHAR},
 		       USER_STATUS = #{userStatus,jdbcType=VARCHAR},
 		       USER_TYPE = #{userType,jdbcType=VARCHAR},
+		       AUTHENTICATION_SECRET_KEY = #{authenticationSecretKey,jdbcType=VARCHAR},
+		       DEFAULT_START_URL = #{defaultStartUrl,jdbcType=VARCHAR},
 		       DESCRIPTION = #{description,jdbcType=VARCHAR},
 		       DISABLED_DATE = #{disabledDate,jdbcType=TIME},
 		       EMAIL = #{email,jdbcType=VARCHAR},

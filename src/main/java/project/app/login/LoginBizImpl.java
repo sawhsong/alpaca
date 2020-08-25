@@ -1,7 +1,6 @@
 package project.app.login;
 
 import java.io.File;
-import java.security.SecureRandom;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -103,7 +102,7 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 			sysUser.setUserName(requestDataSet.getValue("userName"));
 			sysUser.setLoginId(requestDataSet.getValue("loginId"));
 			sysUser.setLoginPassword(requestDataSet.getValue("password"));
-			sysUser.setAuthGroupId("Z"); //SysAuthGroup.GroupId(Not Selected)
+			sysUser.setAuthGroupId("Z");
 			sysUser.setLanguage(ConfigUtil.getProperty("etc.default.language"));
 			sysUser.setThemeType(ConfigUtil.getProperty("view.theme.default"));
 			sysUser.setMaxRowPerPage(CommonUtil.toDouble(CommonUtil.split(ConfigUtil.getProperty("view.data.maxRowsPerPage"), ConfigUtil.getProperty("delimiter.data"))[2]));
@@ -113,6 +112,7 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 			sysUser.setUserStatus(CommonCodeManager.getCodeByConstants("USER_STATUS_RR"));
 			sysUser.setPhotoPath(photoPathName);
 			sysUser.setIsActive(CommonCodeManager.getCodeByConstants("IS_ACTIVE_N"));
+			sysUser.setAuthenticationSecretKey(CommonUtil.getAuthenticationSecretKey());
 			sysUser.setInsertUserId("0");
 
 			result = sysUserDao.insert(sysUser);
@@ -218,6 +218,7 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 			sysUser.setMaxRowPerPage(CommonUtil.toDouble(requestDataSet.getValue("maxRowsPerPage")));
 			sysUser.setPageNumPerPage(CommonUtil.toDouble(requestDataSet.getValue("pageNumsPerPage")));
 			sysUser.setEmail(requestDataSet.getValue("email"));
+			sysUser.setAuthenticationSecretKey(requestDataSet.getValue("authenticationSecretKey"));
 			sysUser.setUpdateUserId((String)session.getAttribute("UserId"));
 			sysUser.setUpdateDate(CommonUtil.toDate(CommonUtil.getSysdate()));
 
@@ -287,32 +288,41 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 		return paramEntity;
 	}
 
-	/*!
-	 * ToDo : secret key must be generated for each user and saved in user table when user account created
-	 */
-	public ParamEntity generateScretKey(ParamEntity paramEntity) throws Exception {
+	public ParamEntity hasAuthKey(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
 		DataSet resultDataSet = new DataSet();
-		SecureRandom random = new SecureRandom();
-		byte[] bytes = new byte[20];
-		Base32 base32 = new Base32();
-		String key = "";
 
 		try {
-			random.nextBytes(bytes);
-			key = base32.encodeToString(bytes);
+			SysUser sysUser = (SysUser)session.getAttribute("SysUser");
 
-			resultDataSet.addColumn("key", key);
+			resultDataSet.addColumn("hasAuthKey", CommonUtil.isNotBlank(sysUser.getAuthenticationSecretKey()) ? "true" : "false");
 
 			paramEntity.setAjaxResponseDataSet(resultDataSet);
 			paramEntity.setSuccess(true);
+
+			return paramEntity;
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}
-		return paramEntity;
+	}
+
+	public ParamEntity getAuthenticationSecretKey(ParamEntity paramEntity) throws Exception {
+		DataSet resultDataSet = new DataSet();
+
+		try {
+			resultDataSet.addColumn("authenticationSecretKey", CommonUtil.getAuthenticationSecretKey());
+
+			paramEntity.setAjaxResponseDataSet(resultDataSet);
+			paramEntity.setSuccess(true);
+
+			return paramEntity;
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
 	}
 
 	public ParamEntity doAuthentication(ParamEntity paramEntity) throws Exception {
-		String secretKey = "VW2GP3MI7DKSXC3Y2FFBZSUXO5J2XZ7S";
+		String secretKey = "";
 		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		DataSet resultDataSet = new DataSet();
@@ -324,6 +334,13 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 
 		try {
 			if (CommonUtil.equalsIgnoreCase(mode, "google2fa")) {
+				SysUser sysUser = (SysUser)session.getAttribute("SysUser");
+				secretKey = sysUser.getAuthenticationSecretKey();
+
+				if (CommonUtil.isBlank(secretKey)) {
+					throw new FrameworkException("E913", getMessage("E913", paramEntity));
+				}
+
 				bytes = base32.decode(secretKey);
 				hexKey = Hex.encodeHexString(bytes);
 				authCode = TOTP.getOTP(hexKey);

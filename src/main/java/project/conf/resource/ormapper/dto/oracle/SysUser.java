@@ -43,6 +43,8 @@ public class SysUser extends BaseDto implements Serializable {
 	private String USER_STATUS;
 	private String userType;
 	private String USER_TYPE;
+	private String authenticationSecretKey;
+	private String AUTHENTICATION_SECRET_KEY;
 	private String defaultStartUrl;
 	private String DEFAULT_START_URL;
 	private String description;
@@ -239,6 +241,15 @@ public class SysUser extends BaseDto implements Serializable {
 	public void setUserType(String userType) throws Exception {
 		this.userType = userType;
 		setValueFromAccessor("USER_TYPE", userType);
+	}
+
+	public String getAuthenticationSecretKey() {
+		return authenticationSecretKey;
+	}
+
+	public void setAuthenticationSecretKey(String authenticationSecretKey) throws Exception {
+		this.authenticationSecretKey = authenticationSecretKey;
+		setValueFromAccessor("AUTHENTICATION_SECRET_KEY", authenticationSecretKey);
 	}
 
 	public String getDefaultStartUrl() {
@@ -474,10 +485,10 @@ public class SysUser extends BaseDto implements Serializable {
 		dataSet.setValue(dataSet.getRowCnt()-1, columnName, value);
 		for (int i=0; i<field.length; i++) {
 			if (field[i].getName().equals(CommonUtil.toCamelCaseStartLowerCase(columnName))) {
-				if (CommonUtil.containsIgnoreCase(getFrwVarNumberColumn(), columnName)) {
+				if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 					field[i].set(this, CommonUtil.toDouble(value));
-				} else if (CommonUtil.containsIgnoreCase(getFrwVarDateColumn(), columnName)) {
-					if (CommonUtil.equalsIgnoreCase(value, "SYSDATE")) {
+				} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+					if (CommonUtil.equalsIgnoreCase(value, "SYSDATE") || CommonUtil.containsIgnoreCase(value, "SYSDATE")) {
 						field[i].set(this, CommonUtil.toDate(CommonUtil.getSysdate()));
 					} else {
 						field[i].set(this, CommonUtil.toDate(value));
@@ -527,9 +538,9 @@ public class SysUser extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.containsIgnoreCase(getFrwVarNumberColumn(), columnName)) {
+		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.containsIgnoreCase(getFrwVarDateColumn(), columnName)) {
+		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -578,6 +589,7 @@ public class SysUser extends BaseDto implements Serializable {
 		str += "userName : "+userName+"\n";
 		str += "userStatus : "+userStatus+"\n";
 		str += "userType : "+userType+"\n";
+		str += "authenticationSecretKey : "+authenticationSecretKey+"\n";
 		str += "defaultStartUrl : "+defaultStartUrl+"\n";
 		str += "description : "+description+"\n";
 		str += "disabledDate : "+disabledDate+"\n";
@@ -624,6 +636,7 @@ public class SysUser extends BaseDto implements Serializable {
 		str += "<column name=\"userName\" value=\""+userName+"\">";
 		str += "<column name=\"userStatus\" value=\""+userStatus+"\">";
 		str += "<column name=\"userType\" value=\""+userType+"\">";
+		str += "<column name=\"authenticationSecretKey\" value=\""+authenticationSecretKey+"\">";
 		str += "<column name=\"defaultStartUrl\" value=\""+defaultStartUrl+"\">";
 		str += "<column name=\"description\" value=\""+description+"\">";
 		str += "<column name=\"disabledDate\" value=\""+disabledDate+"\">";
@@ -670,6 +683,7 @@ public class SysUser extends BaseDto implements Serializable {
 		str += "\"userName\":\""+userName+"\", ";
 		str += "\"userStatus\":\""+userStatus+"\", ";
 		str += "\"userType\":\""+userType+"\", ";
+		str += "\"authenticationSecretKey\":\""+authenticationSecretKey+"\", ";
 		str += "\"defaultStartUrl\":\""+defaultStartUrl+"\", ";
 		str += "\"description\":\""+description+"\", ";
 		str += "\"disabledDate\":\""+disabledDate+"\", ";
