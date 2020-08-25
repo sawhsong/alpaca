@@ -156,6 +156,13 @@ var authGroupId = "<%=authGroupId%>";
 			<td class="tdEdit"><ui:ccselect name="isActive" codeType="IS_ACTIVE" selectedValue="<%=sysUser.getIsActive()%>" options="mandatory"/></td>
 		</tr>
 		<tr>
+			<th class="thEdit rt">Authentication Key</th>
+			<td class="tdEdit" colspan="3">
+				<ui:text name="authenticationSecretKey" value="<%=sysUser.getAuthenticationSecretKey()%>" checkName="Authentication Key" className="hor" style="width:45%;"/>
+				<ui:button id="btnGetAuthenticationSecretKey" caption="Generate Key" iconClass="fa-key"/>
+			</td>
+		</tr>
+		<tr>
 			<th class="thEdit rt"><mc:msg key="sys0406.header.insertUser"/></th>
 			<td class="tdEdit"><ui:text name="insertUser" value="<%=sysUser.getInsertUserName()%>" status="display"/></td>
 			<th class="thEdit rt"><mc:msg key="sys0406.header.insertDate"/></th>

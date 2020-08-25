@@ -172,7 +172,7 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 			sysUser.setPageNumPerPage(CommonUtil.toDouble(requestDataSet.getValue("pageNumsPerPage")));
 			sysUser.setUserStatus(requestDataSet.getValue("userStatus"));
 			sysUser.setDefaultStartUrl(requestDataSet.getValue("defaultStartUrl"));
-			sysUser.setAuthenticationSecretKey(CommonUtil.getAuthenticationSecretKey());
+			sysUser.setAuthenticationSecretKey(requestDataSet.getValue("authenticationSecretKey"));
 			sysUser.setIsActive(requestDataSet.getValue("isActive"));
 			sysUser.setInsertUserId((String)session.getAttribute("UserId"));
 			sysUser.setInsertDate(CommonUtil.toDate(CommonUtil.getSysdate()));
@@ -437,5 +437,44 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 			throw new FrameworkException(paramEntity, ex);
 		}
 		return paramEntity;
+	}
+
+	public ParamEntity hasAuthKey(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+		DataSet resultDataSet = new DataSet();
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		String userId = requestDataSet.getValue("userId");
+		SysUser sysUser;
+
+		try {
+			sysUserDao.setDataSourceName(dataSource);
+
+			sysUser = sysUserDao.getUserByUserId(userId);
+
+			resultDataSet.addColumn("hasAuthKey", CommonUtil.isNotBlank(sysUser.getAuthenticationSecretKey()) ? "true" : "false");
+
+			paramEntity.setAjaxResponseDataSet(resultDataSet);
+			paramEntity.setSuccess(true);
+
+			return paramEntity;
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+	}
+
+	public ParamEntity getAuthenticationSecretKey(ParamEntity paramEntity) throws Exception {
+		DataSet resultDataSet = new DataSet();
+
+		try {
+			resultDataSet.addColumn("authenticationSecretKey", CommonUtil.getAuthenticationSecretKey());
+
+			paramEntity.setAjaxResponseDataSet(resultDataSet);
+			paramEntity.setSuccess(true);
+
+			return paramEntity;
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
 	}
 }

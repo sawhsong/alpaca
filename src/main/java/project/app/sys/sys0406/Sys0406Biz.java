@@ -20,4 +20,6 @@ public interface Sys0406Biz {
 	public ParamEntity exeActionContextMenu(ParamEntity paramEntity) throws Exception;
 	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getAuthorityGroup(ParamEntity paramEntity) throws Exception;
+	public ParamEntity hasAuthKey(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getAuthenticationSecretKey(ParamEntity paramEntity) throws Exception;
 }

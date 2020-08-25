@@ -126,6 +126,10 @@ var userId = "<%=sysUser.getUserId()%>";
 			<td class="tdEdit"><%=CommonCodeManager.getCodeDescription("IS_ACTIVE", sysUser.getIsActive())%></td>
 		</tr>
 		<tr>
+			<th class="thEdit rt">Authentication Key</th>
+			<td class="tdEdit" colspan="3"><%=sysUser.getAuthenticationSecretKey()%></td>
+		</tr>
+		<tr>
 			<th class="thEdit rt"><mc:msg key="sys0406.header.insertUser"/></th>
 			<td class="tdEdit"><%=sysUser.getInsertUserName()%></td>
 			<th class="thEdit rt"><mc:msg key="sys0406.header.insertDate"/></th>

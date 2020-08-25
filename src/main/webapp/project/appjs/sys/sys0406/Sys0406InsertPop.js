@@ -26,6 +26,19 @@ $(function() {
 		parent.popup.close();
 	});
 
+	$("#btnGetAuthenticationSecretKey").click(function(event) {
+		if ("disabled" != $(this).attr("disabled")) {
+			commonJs.doSearch({
+				url:"/sys/0406/getAuthenticationSecretKey.do",
+				noForm:true,
+				onSuccess:function(result) {
+					var ds = result.dataSet;
+					$("#authenticationSecretKey").val(ds.getValue(0, "authenticationSecretKey"));
+				}
+			});
+		}
+	});
+
 	$(document).keypress(function(event) {
 		if (event.which == 13) {
 			var element = event.target;

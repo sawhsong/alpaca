@@ -165,20 +165,20 @@ $(function() {
 	};
 
 	openPopup = function(param) {
-		var url = "", header = "", width = 940, height = 516;
+		var url = "", header = "", width = 960, height = 516;
 
 		if (param.mode == "Detail") {
 			url = "/sys/0406/getDetail.do";
 			header = com.header.popHeaderDetail;
-			height = 450;
+			height = 476;
 		} else if (param.mode == "New") {
 			url = "/sys/0406/getInsert.do";
 			header = com.header.popHeaderEdit;
-			height = 620;
+			height = 654;
 		} else if (param.mode == "Edit") {
 			url = "/sys/0406/getUpdate.do";
 			header = com.header.popHeaderEdit;
-			height = 620;
+			height = 654;
 		} else if (param.mode == "UpdateAuthGroup") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.auth;

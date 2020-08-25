@@ -26,6 +26,19 @@ $(function() {
 		parent.popup.close();
 	});
 
+	$("#btnGetAuthenticationSecretKey").click(function(event) {
+		if ("disabled" != $(this).attr("disabled")) {
+			commonJs.doSearch({
+				url:"/sys/0406/getAuthenticationSecretKey.do",
+				noForm:true,
+				onSuccess:function(result) {
+					var ds = result.dataSet;
+					$("#authenticationSecretKey").val(ds.getValue(0, "authenticationSecretKey"));
+				}
+			});
+		}
+	});
+
 	$(document).keypress(function(event) {
 		if (event.which == 13) {
 			var element = event.target;
@@ -54,10 +67,28 @@ $(function() {
 		});
 	};
 
+	setButtonStatus = function() {
+		commonJs.doSearch({
+			url:"/sys/0406/hasAuthKey.do",
+			noForm:true,
+			data:{userId:$("#userId").val()},
+			onSuccess:function(result) {
+				var ds = result.dataSet;
+				var hasAuthKey = commonJs.toBoolean(ds.getValue(0, "hasAuthKey"));
+
+				if (hasAuthKey) {
+					$("#authenticationSecretKey").removeClass("txtEn").addClass("txtDis").attr("readonly", true);
+					$("#btnGetAuthenticationSecretKey").attr("disabled", true);
+				}
+			}
+		});
+	};
+
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
 		setAuthorityGroupSelectbox();
+		setButtonStatus();
 	});
 });
