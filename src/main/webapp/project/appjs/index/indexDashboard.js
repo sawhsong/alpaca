@@ -358,7 +358,10 @@ $(function() {
 		commonJs.doSearch({
 			url:"/common/feed/getRssAbcJustin.do",
 			noForm:true,
-			data:{url:"https://www.abc.net.au/news/feed/51120/rss.xml"},
+			data:{
+				url:"https://www.abc.net.au/news/feed/51120/rss.xml",
+				countOfRows:10
+			},
 			onSuccess:function(result) {
 				var ds = result.dataSet;
 				var html = "";
@@ -370,9 +373,9 @@ $(function() {
 
 					gridTr.setClassName("noBorderVer noStripe");
 
-					gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "header")).setScript("openNewsArticle('"+ds.getValue(i, "link")+"')").setStyle("font-weight:bold;vertical-align:top;"))
+					gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "header")).setScript("openNewsArticle('"+ds.getValue(i, "link")+"')").setStyle("font-weight:bold;")).setStyle("vertical-align:top;")
 																	 .addTextAfterChild("<br/><br/>"+ds.getValue(i, "contents")+ds.getValue(i, "date")));
-					gridTr.addChild(new UiGridTd().addClassName("Rt").addChild(new UiImage().setSrc(ds.getValue(i, "img")).setStyle("width:100%;height:75px;border-radius:10px;").setScript("openNewsArticle('"+ds.getValue(i, "link")+"')")).setStyle("vertical-align:top;"))
+					gridTr.addChild(new UiGridTd().addClassName("Rt").addChild(new UiImage().setSrc(ds.getValue(i, "img")).setStyle("width:100%;height:75px;border-radius:10px;").setScript("openNewsArticle('"+ds.getValue(i, "link")+"')"))).setStyle("vertical-align:top;")
 
 					html += gridTr.toHtmlString();
 				}
@@ -389,7 +392,10 @@ $(function() {
 		commonJs.doSearch({
 			url:"/common/feed/getRssNewsComAuWorld.do",
 			noForm:true,
-			data:{url:"https://www.news.com.au/content-feeds/latest-news-world/"},
+			data:{
+				url:"https://www.news.com.au/content-feeds/latest-news-world/",
+				countOfRows:10
+			},
 			onSuccess:function(result) {
 				var ds = result.dataSet;
 				var html = "";

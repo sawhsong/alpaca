@@ -29,6 +29,7 @@ public class FeedBizImpl extends BaseBiz implements FeedBiz {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		DataSet dsRs = new DataSet();
 		String url = requestDataSet.getValue("url");
+		int countOfRows = CommonUtil.toInt(requestDataSet.getValue("countOfRows"));
 		SyndFeedInput input = new SyndFeedInput();
 		URL feedUrl = new URL(url);
 		SyndFeed feed;
@@ -44,7 +45,7 @@ public class FeedBizImpl extends BaseBiz implements FeedBiz {
 				List<?> feedList = feed.getEntries();
 
 				for (Object obj : feedList) {
-					if (index == 5) {break;}
+					if (index == countOfRows) {break;}
 
 					SyndEntryImpl entry = (SyndEntryImpl)obj;
 
@@ -88,6 +89,7 @@ public class FeedBizImpl extends BaseBiz implements FeedBiz {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		DataSet dsRs = new DataSet();
 		String url = requestDataSet.getValue("url");
+		int countOfRows = CommonUtil.toInt(requestDataSet.getValue("countOfRows"));
 		SyndFeedInput input = new SyndFeedInput();
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
@@ -109,7 +111,7 @@ public class FeedBizImpl extends BaseBiz implements FeedBiz {
 				List<?> feedList = feed.getEntries();
 
 				for (Object obj : feedList) {
-					if (index == 5) {break;}
+					if (index == countOfRows) {break;}
 
 					SyndEntryImpl entry = (SyndEntryImpl)obj;
 
