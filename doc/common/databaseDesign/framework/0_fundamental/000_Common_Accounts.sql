@@ -5,6 +5,7 @@
 create user alpaca identified by alpaca;
 grant connect, resource to alpaca;
 grant create synonym, create view, create database link, create public synonym, drop public synonym to alpaca;
+grant unlimited tablespace to alpaca;
 
 /**
  * Create DB Link
@@ -20,18 +21,15 @@ create database link perci_live connect to PERCI identified by "OfA!g69b=HTuyrf"
 /**
  * Table space(Index, Data)
  */
+-- system
+alter database datafile 'C:\oraclexe\app\oracle\oradata\xe\system.DBF' autoextend on next 1M maxsize unlimited;
+
 -- alpaca
-create tablespace alpaca_idx
-datafile 'C:\oraclexe\app\oracle\oradata\Alpaca\Alpaca_IDX.DBF' size 1m extent management local segment space management auto;
+create tablespace alpaca_idx datafile 'C:\oraclexe\app\oracle\oradata\Alpaca\Alpaca_IDX.DBF' size 1m extent management local segment space management auto;
+create tablespace alpaca_data datafile 'C:\oraclexe\app\oracle\oradata\Alpaca\Alpaca_DATA.DBF' size 1m extent management local segment space management auto;
 
-create tablespace alpaca_data
-datafile 'C:\oraclexe\app\oracle\oradata\Alpaca\Alpaca_DATA.DBF' size 1m extent management local segment space management auto;
-
-alter database datafile
-'C:\oraclexe\app\oracle\oradata\Alpaca\Alpaca_IDX.DBF' autoextend on;
-
-alter database datafile
-'C:\oraclexe\app\oracle\oradata\Alpaca\Alpaca_DATA.DBF' autoextend on;
+alter database datafile 'C:\oraclexe\app\oracle\oradata\Alpaca\Alpaca_IDX.DBF' autoextend on next 1M maxsize unlimited;
+alter database datafile 'C:\oraclexe\app\oracle\oradata\Alpaca\Alpaca_DATA.DBF' autoextend on next 1M maxsize unlimited;
 
 /**
  * To turn off oracle password expiration
