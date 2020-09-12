@@ -52,7 +52,7 @@ public class HpOrganisationDHDaoImpl extends BaseHDao implements HpOrganisationD
 	public DataSet getOrganisationDataSetForQuickMenu(QueryAdvisor queryAdvisor) throws Exception {
 		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
 		String orgId = requestDataSet.getValue("orgId");
-		String orgName = CommonUtil.lowerCase(requestDataSet.getValue("orgName"));
+		String orgLike = CommonUtil.lowerCase(requestDataSet.getValue("orgLike"));
 		String orgType = requestDataSet.getValue("orgType");
 		String orgRelationship = CommonUtil.lowerCase(requestDataSet.getValue("orgRelationship"));
 		String cscId = requestDataSet.getValue("cscId");
@@ -61,7 +61,11 @@ public class HpOrganisationDHDaoImpl extends BaseHDao implements HpOrganisationD
 		String orgCountry = requestDataSet.getValue("orgCountryName");
 
 		queryAdvisor.addAutoFillCriteria(orgId, "organisation_id = '"+orgId+"'");
-		queryAdvisor.addAutoFillCriteria(orgName, "lower(organisation_name) like '%"+orgName+"%'");
+		if (CommonUtil.isNumeric(orgLike)) {
+			queryAdvisor.addAutoFillCriteria(orgLike, "organisation_id like '"+orgLike+"%'");
+		} else {
+			queryAdvisor.addAutoFillCriteria(orgLike, "lower(organisation_name) like lower('%"+orgLike+"%')");
+		}
 		queryAdvisor.addAutoFillCriteria(orgType, "organisation_type = '"+orgType+"'");
 		queryAdvisor.addAutoFillCriteria(orgRelationship, "lower(relationship) like '%"+orgRelationship+"%'");
 		queryAdvisor.addAutoFillCriteria(cscId, "es_payroll_consultant = '"+cscId+"'");

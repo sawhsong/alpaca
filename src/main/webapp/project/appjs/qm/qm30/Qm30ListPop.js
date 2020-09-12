@@ -72,6 +72,12 @@ $(function() {
 		});
 	});
 
+	$("#orgEquals").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#orgId").val("");
+		}
+	});
+
 	$("#cscName").blur(function() {
 		if (commonJs.isEmpty($(this).val())) {
 			$("#cscId").val("");
@@ -88,6 +94,9 @@ $(function() {
 		var code = event.keyCode || event.which, element = event.target;
 
 		if (code == 13) {
+			if ($(element).is("[name=orgLike]") && !commonJs.isEmpty($("#orgLike").val())) {
+				doSearch();
+			}
 		}
 
 		if (code == 9) {
@@ -231,33 +240,25 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		commonJs.setAutoComplete($("#orgId"), {
-			method:"getOrgById",
+		commonJs.setAutoComplete($("#orgEquals"), {
+			method:"getOrgByNameOrId",
 			label:"org_name_with_org_id",
 			value:"organisation_id",
 			minLength:2,
 			focus: function(event, ui) {
 				$("#orgId").val(ui.item.value);
+				$("#orgEquals").val(ui.item.label);
 				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#orgEquals").val())) {
+					$("#orgId").val("");
+					$("#orgEquals").val("");
+				}
 			},
 			select:function(event, ui) {
 				$("#orgId").val(ui.item.value);
-				doSearch();
-				return false;
-			}
-		});
-
-		commonJs.setAutoComplete($("#orgName"), {
-			method:"getOrgByName",
-			label:"org_name_with_org_id",
-			value:"organisation_name",
-			minLength:2,
-			focus: function(event, ui) {
-				$("#orgName").val(ui.item.value);
-				return false;
-			},
-			select:function(event, ui) {
-				$("#orgName").val(ui.item.value);
+				$("#orgEquals").val(ui.item.label);
 				doSearch();
 				return false;
 			}

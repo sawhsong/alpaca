@@ -63,10 +63,10 @@
 			<col width="24%"/>
 		</colgroup>
 		<tr>
-			<th class="thSearch rt"><mc:msg key="qm.search.personNumber"/></th>
-			<td class="tdSearch"><ui:text name="personNumber" style="width:280px"/></td>
-			<th class="thSearch rt"><mc:msg key="qm.search.personName"/></th>
-			<td class="tdSearch"><ui:text name="name" style="width:280px"/></td>
+			<th class="thSearch rt">Person equals</th>
+			<td class="tdSearch"><ui:hidden name="personId"/><ui:text name="personEquals" style="width:280px"/></td>
+			<th class="thSearch rt">Person like</th>
+			<td class="tdSearch"><ui:text name="personLike" style="width:280px"/></td>
 			<th class="thSearch rt"><mc:msg key="qm.search.personEmail"/></th>
 			<td class="tdSearch"><ui:text name="email" style="width:280px"/></td>
 		</tr>

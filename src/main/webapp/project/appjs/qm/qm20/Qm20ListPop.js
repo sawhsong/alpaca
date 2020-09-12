@@ -55,6 +55,12 @@ $(function() {
 		});
 	});
 
+	$("#personEquals").blur(function() {
+		if (commonJs.isEmpty($(this).val())) {
+			$("#personId").val("");
+		}
+	});
+
 	$("#empOrgName").blur(function() {
 		if (commonJs.isEmpty($(this).val())) {
 			$("#empOrgId").val("");
@@ -65,6 +71,9 @@ $(function() {
 		var code = event.keyCode || event.which, element = event.target;
 
 		if (code == 13) {
+			if ($(element).is("[name=personLike]") && !commonJs.isEmpty($("#personLike").val())) {
+				doSearch();
+			}
 		}
 
 		if (code == 9) {
@@ -201,33 +210,25 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		commonJs.setAutoComplete($("#personNumber"), {
-			method:"getPersonNumber",
+		commonJs.setAutoComplete($("#personEquals"), {
+			method:"getPersonByNameOrPersonNumber",
 			label:"full_name_with_person_number",
-			value:"person_number",
+			value:"person_id",
 			minLength:3,
 			focus: function(event, ui) {
-				$("#personNumber").val(ui.item.value);
+				$("#personId").val(ui.item.value);
+				$("#personEquals").val(ui.item.label);
 				return false;
 			},
-			select:function(event, ui) {
-				$("#personNumber").val(ui.item.value);
-				doSearch();
-				return false;
-			}
-		});
-
-		commonJs.setAutoComplete($("#name"), {
-			method:"getPersonName",
-			label:"full_name_with_person_number",
-			value:"full_name",
-			minLength:3,
-			focus: function(event, ui) {
-				$("#name").val(ui.item.value);
-				return false;
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#personEquals").val())) {
+					$("#personId").val("");
+					$("#personEquals").val("");
+				}
 			},
 			select:function(event, ui) {
-				$("#name").val(ui.item.value);
+				$("#personId").val(ui.item.value);
+				$("#personEquals").val(ui.item.label);
 				doSearch();
 				return false;
 			}

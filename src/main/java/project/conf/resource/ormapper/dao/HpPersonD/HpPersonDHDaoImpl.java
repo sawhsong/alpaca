@@ -21,15 +21,19 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 	public DataSet getPersonDataSetByCriteria(QueryAdvisor queryAdvisor) throws Exception {
 		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
 		String dateFormat = ConfigUtil.getProperty("format.date.java");
-		String personNumber = requestDataSet.getValue("personNumber");
-		String name = requestDataSet.getValue("name");
+		String personId = requestDataSet.getValue("personId");
+		String personLike = requestDataSet.getValue("personLike");
 		String email = requestDataSet.getValue("email");
 		String empOrgId = requestDataSet.getValue("empOrgId");
 		String mobile = CommonUtil.removeString(requestDataSet.getValue("mobile"), " ", "-");
 		String personType = CommonUtil.lowerCase(requestDataSet.getValue("personType"));
 
-		queryAdvisor.addAutoFillCriteria(personNumber, "person_number = '"+personNumber+"'");
-		queryAdvisor.addAutoFillCriteria(name, "full_name = '"+name+"'");
+		queryAdvisor.addAutoFillCriteria(personId, "person_id = '"+personId+"'");
+		if (CommonUtil.isNumeric(personLike)) {
+			queryAdvisor.addAutoFillCriteria(personLike, "person_number like '"+personLike+"%'");
+		} else {
+			queryAdvisor.addAutoFillCriteria(personLike, "lower(full_name) like lower('%"+personLike+"%')");
+		}
 		queryAdvisor.addAutoFillCriteria(email, "payslip_email like '"+email+"%'");
 		queryAdvisor.addAutoFillCriteria(empOrgId, "employment_company_org_id = '"+empOrgId+"'");
 		queryAdvisor.addAutoFillCriteria(mobile, "person_id in (select person_id from hp_address_contact_d where telephone_mobile like '"+mobile+"%')");
@@ -61,15 +65,19 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 	public DataSet getPersonDataSetForQuickMenu(QueryAdvisor queryAdvisor) throws Exception {
 		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
 		String dateFormat = ConfigUtil.getProperty("format.date.java");
-		String personNumber = requestDataSet.getValue("personNumber");
-		String name = requestDataSet.getValue("name");
+		String personId = requestDataSet.getValue("personId");
+		String personLike = requestDataSet.getValue("personLike");
 		String email = requestDataSet.getValue("email");
 		String empOrgId = requestDataSet.getValue("empOrgId");
 		String mobile = CommonUtil.removeString(requestDataSet.getValue("mobile"), " ", "-");
 		String personType = CommonUtil.lowerCase(requestDataSet.getValue("personType"));
 
-		queryAdvisor.addAutoFillCriteria(personNumber, "per.person_number = '"+personNumber+"'");
-		queryAdvisor.addAutoFillCriteria(name, "per.full_name = '"+name+"'");
+		queryAdvisor.addAutoFillCriteria(personId, "per.person_id = '"+personId+"'");
+		if (CommonUtil.isNumeric(personLike)) {
+			queryAdvisor.addAutoFillCriteria(personLike, "per.person_number like '"+personLike+"%'");
+		} else {
+			queryAdvisor.addAutoFillCriteria(personLike, "lower(per.full_name) like lower('%"+personLike+"%')");
+		}
 		queryAdvisor.addAutoFillCriteria(email, "per.payslip_email like '"+email+"%'");
 		queryAdvisor.addAutoFillCriteria(empOrgId, "per.employment_company_org_id = '"+empOrgId+"'");
 		queryAdvisor.addAutoFillCriteria(mobile, "per.person_id in (select person_id from hp_address_contact_d where telephone_mobile like '"+mobile+"%')");

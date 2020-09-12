@@ -9,10 +9,11 @@
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
 	HpPersonD hpPersonD = (HpPersonD)session.getAttribute("HpPersonDQuickSearch");
-	String personNumber = "", personName = "";
+	String personId = "", personNumber = "", personNameToDisplay = "";
 	if (hpPersonD != null) {
+		personId = CommonUtil.toStringForId(hpPersonD.getPersonId());
 		personNumber = hpPersonD.getPersonNumber();
-		personName = hpPersonD.getFullName();
+		personNameToDisplay = hpPersonD.getFullName()+" ("+personNumber+")";
 	}
 %>
 <%/************************************************************************************************
@@ -75,10 +76,10 @@
 					<col width="24%"/>
 				</colgroup>
 				<tr>
-					<th class="thDefault rt"><mc:msg key="per0202.search.personNumber"/></th>
-					<td class="tdDefault"><ui:text name="personNumber" value="<%=personNumber%>" style="width:280px"/></td>
-					<th class="thDefault rt"><mc:msg key="per0202.search.name"/></th>
-					<td class="tdDefault"><ui:text name="name" value="<%=personName%>" style="width:280px"/></td>
+					<th class="thDefault rt">Person equals</th>
+					<td class="tdDefault"><ui:hidden name="personId" value="<%=personId%>"/><ui:text name="personEquals" value="<%=personNameToDisplay%>" style="width:280px"/></td>
+					<th class="thDefault rt">Person like</th>
+					<td class="tdDefault"><ui:text name="personLike" value="<%=personNumber%>" style="width:280px"/></td>
 					<th class="thDefault rt"><mc:msg key="per0202.search.email"/></th>
 					<td class="tdDefault"><ui:text name="email" style="width:280px"/></td>
 				</tr>

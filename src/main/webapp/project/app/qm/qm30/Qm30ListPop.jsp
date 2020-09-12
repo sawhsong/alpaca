@@ -64,10 +64,10 @@
 			<col width="*"/>
 		</colgroup>
 		<tr>
-			<th class="thSearch rt"><mc:msg key="qm.search.orgId"/></th>
-			<td class="tdSearch"><ui:text name="orgId" style="width:210px"/></td>
-			<th class="thSearch rt"><mc:msg key="qm.search.orgName"/></th>
-			<td class="tdSearch"><ui:text name="orgName" style="width:210px"/></td>
+			<th class="thSearch rt">Organisation equals</th>
+			<td class="tdSearch"><ui:hidden name="orgId"/><ui:text name="orgEquals" style="width:210px"/></td>
+			<th class="thSearch rt">Organisation like</th>
+			<td class="tdSearch"><ui:text name="orgLike" style="width:210px"/></td>
 			<th class="thSearch rt"><mc:msg key="qm.search.orgType"/></th>
 			<td class="tdSearch"><ui:ccselect name="orgType" caption="==Select==" codeType="ORGANISATION_TYPES"/></td>
 			<th class="thSearch rt"><mc:msg key="qm.search.orgState"/></th>
