@@ -144,9 +144,9 @@ $(function() {
 	};
 
 	getPersonDetail = function(personId) {
+		$("#personId").val(personId);
 		commonJs.doSimpleProcessForPage({
-			action:"/per/0202/getPersonDetailFrameContainer.do",
-			data:{personId:personId}
+			action:"/per/0202/getPersonDetailFrameContainer.do"
 		});
 	};
 
