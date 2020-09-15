@@ -36,6 +36,7 @@
 			<scope>system</scope>
 			<systemPath>${webapp.lib}/bcprov-ext-jdk15on-160.jar</systemPath>
 		</dependency>
+<!--
 		<dependency>
 			<groupId>ds</groupId>
 			<artifactId>ojdbc</artifactId>
@@ -43,6 +44,44 @@
 			<scope>system</scope>
 			<systemPath>${webapp.lib}/ojdbc7.jar</systemPath>
 		</dependency>
+-->
+		<!-- Oracle ATD - Begin -->
+		<dependency>
+			<groupId>ds</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>${version.userdefined}</version>
+			<scope>system</scope>
+			<systemPath>${webapp.lib}/ojdbc8.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>ds</groupId>
+			<artifactId>ucp</artifactId>
+			<version>${version.userdefined}</version>
+			<scope>system</scope>
+			<systemPath>${webapp.lib}/ucp.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>ds</groupId>
+			<artifactId>oraclepki</artifactId>
+			<version>${version.userdefined}</version>
+			<scope>system</scope>
+			<systemPath>${webapp.lib}/oraclepki.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>ds</groupId>
+			<artifactId>osdt_core</artifactId>
+			<version>${version.userdefined}</version>
+			<scope>system</scope>
+			<systemPath>${webapp.lib}/osdt_core.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>ds</groupId>
+			<artifactId>osdt_cert</artifactId>
+			<version>${version.userdefined}</version>
+			<scope>system</scope>
+			<systemPath>${webapp.lib}/osdt_cert.jar</systemPath>
+		</dependency>
+		<!-- Oracle ATD - End -->
 		<dependency>
 			<groupId>ds</groupId>
 			<artifactId>ss_css2</artifactId>
