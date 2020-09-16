@@ -13,24 +13,18 @@
 
 	<!-- /*Default Datasource*/ -->
 	<!-- DriverManager -->
+<!--
 	<bean id="driverManager" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<!-- log4sql (운영시점에는 Oracle로 변경할것 - log4sql seems not to support dbcp2, use log4jdbc instead)-->
 		<property name="driverClassName" value="${jdbc.driver.driverClassName}"/>
-<!-- 		<property name="driverClassName" value="${jdbc.log4sql.driverClassName}"/> -->
-<!-- 		<property name="driverClassName" value="${jdbc.log4jdbc.driverClassName}"/> -->
 		<property name="url" value="${jdbc.driver.url}"/>
-<!-- 		<property name="url" value="${jdbc.log4jdbc.url}"/> -->
 		<property name="username" value="${jdbc.user.name}"/>
 		<property name="password" value="${jdbc.user.pass}"/>
 	</bean>
+-->
 	<!-- ConnectionPool -->
 	<bean id="connectionPool" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource" destroy-method="close">
-		<!-- log4sql (운영시점에는 Oracle로 변경할것 - this seems not to support dbcp2)-->
 		<property name="driverClassName" value="${jdbc.driver.driverClassName}"/>
-<!-- 		<property name="driverClassName" value="${jdbc.log4sql.driverClassName}"/> -->
-<!-- 		<property name="driverClassName" value="${jdbc.log4jdbc.driverClassName}"/> -->
 		<property name="url" value="${jdbc.driver.url}"/>
-<!-- 		<property name="url" value="${jdbc.log4jdbc.url}"/> -->
 		<property name="username" value="${jdbc.user.name}"/>
 		<property name="password" value="${jdbc.user.pass}"/>
 	</bean>
@@ -44,24 +38,21 @@
 -->
 
 	<!-- /*Additional Datasource*/ -->
+<!--
 	<bean id="driverManager_alpaca" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.driver.driverClassName}"/>
 		<property name="url" value="${jdbc.driver.url_alpaca}"/>
 		<property name="username" value="${jdbc.user.name_alpaca}"/>
 		<property name="password" value="${jdbc.user.pass_alpaca}"/>
 	</bean>
+-->
 	<bean id="connectionPool_alpaca" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driver.driverClassName}"/>
 		<property name="url" value="${jdbc.driver.url_alpaca}"/>
 		<property name="username" value="${jdbc.user.name_alpaca}"/>
 		<property name="password" value="${jdbc.user.pass_alpaca}"/>
 	</bean>
-<!--
-	<bean id="jndiFactory_alpaca" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:comp/env/jdbc/${jdbc.jndi.name_alpaca}"/>
-		<property name="resourceRef" value="true"/>
-	</bean>
--->
+
 <!--
 	<bean id="driverManager_perciTest" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.driver.driverClassName}"/>
@@ -76,14 +67,16 @@
 		<property name="password" value="${jdbc.user.pass_perciTest}"/>
 	</bean>
 -->
-<!--
-	<bean id="jndiFactory_perciTest" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:comp/env/jdbc/${jdbc.jndi.name_perciTest}"/>
-		<property name="resourceRef" value="true"/>
-	</bean>
--->
 
 	<!-- oracle ucp - Begin -->
+<!--
+	<bean id="driverManager_perciTest" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driver.driverClassName}"/>
+		<property name="url" value="${jdbc.driver.url_perciTest}"/>
+		<property name="username" value="${jdbc.user.name_perciTest}"/>
+		<property name="password" value="${jdbc.user.pass_perciTest}"/>
+	</bean>
+-->
 	<bean id="connectionPool_perciTest" class="oracle.ucp.jdbc.PoolDataSourceImpl">
 		<property name="connectionFactoryClassName" value="oracle.jdbc.pool.OracleDataSource"/>
 		<property name="URL" value="${jdbc.driver.url_perciTest}"/>
@@ -95,24 +88,20 @@
 	</bean>
 	<!-- oracle ucp - End -->
 
+<!--
 	<bean id="driverManager_perciProd" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.driver.driverClassName}"/>
 		<property name="url" value="${jdbc.driver.url_perciProd}"/>
 		<property name="username" value="${jdbc.user.name_perciProd}"/>
 		<property name="password" value="${jdbc.user.pass_perciProd}"/>
 	</bean>
+-->
 	<bean id="connectionPool_perciProd" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driver.driverClassName}"/>
 		<property name="url" value="${jdbc.driver.url_perciProd}"/>
 		<property name="username" value="${jdbc.user.name_perciProd}"/>
 		<property name="password" value="${jdbc.user.pass_perciProd}"/>
 	</bean>
-<!--
-	<bean id="jndiFactory_perciProd" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:comp/env/jdbc/${jdbc.jndi.name_perciProd}"/>
-		<property name="resourceRef" value="true"/>
-	</bean>
--->
 
 
 	<!-- Spring JDBC & MyBatis 둘 다 가능 (JdbcDaoSupport, NamedParameterJdbcDaoSupport) & Message Source Accessor -->
