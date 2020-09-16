@@ -74,6 +74,10 @@ $(function() {
 			if ($(element).is("[name=personLike]") && !commonJs.isEmpty($("#personLike").val())) {
 				doSearch();
 			}
+
+			if ($(element).is("[name=personIdLike]") && !commonJs.isEmpty($("#personIdLike").val())) {
+				doSearch();
+			}
 		}
 
 		if (code == 9) {

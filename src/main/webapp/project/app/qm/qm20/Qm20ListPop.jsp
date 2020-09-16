@@ -55,20 +55,24 @@
 	<table class="tblSearch">
 		<caption><mc:msg key="page.com.searchCriteria"/></caption>
 		<colgroup>
-			<col width="10%"/>
-			<col width="23%"/>
-			<col width="10%"/>
-			<col width="23%"/>
-			<col width="10%"/>
-			<col width="24%"/>
+			<col width="9%"/>
+			<col width="20%"/>
+			<col width="9%"/>
+			<col width="20%"/>
+			<col width="9%"/>
+			<col width="20%"/>
+			<col width="9%"/>
+			<col width="*"/>
 		</colgroup>
 		<tr>
 			<th class="thSearch rt">Person equals</th>
 			<td class="tdSearch"><ui:hidden name="personId"/><ui:text name="personEquals" style="width:280px"/></td>
 			<th class="thSearch rt">Person like</th>
 			<td class="tdSearch"><ui:text name="personLike" style="width:280px"/></td>
-			<th class="thSearch rt"><mc:msg key="qm.search.personEmail"/></th>
-			<td class="tdSearch"><ui:text name="email" style="width:280px"/></td>
+			<th class="thSearch rt">Person Id like</th>
+			<td class="tdSearch"><ui:text name="personIdLike" style="width:280px"/></td>
+			<th class="thSearch rt"></th>
+			<td class="tdSearch"></td>
 		</tr>
 		<tr>
 			<th class="thSearch rt"><mc:msg key="qm.search.empOrg"/></th>
@@ -79,6 +83,8 @@
 			</td>
 			<th class="thSearch rt"><mc:msg key="qm.search.personType"/></th>
 			<td class="tdSearch"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/></td>
+			<th class="thSearch rt"><mc:msg key="qm.search.personEmail"/></th>
+			<td class="tdSearch"><ui:text name="email" style="width:280px"/></td>
 			<th class="thSearch rt"><mc:msg key="per0202.search.mobile"/></th>
 			<td class="tdSearch"><ui:text name="mobile" style="width:280px"/></td>
 		</tr>

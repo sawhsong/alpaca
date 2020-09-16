@@ -23,6 +23,7 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 		String dateFormat = ConfigUtil.getProperty("format.date.java");
 		String personId = requestDataSet.getValue("personId");
 		String personLike = requestDataSet.getValue("personLike");
+		String personIdLike = requestDataSet.getValue("personIdLike");
 		String email = requestDataSet.getValue("email");
 		String empOrgId = requestDataSet.getValue("empOrgId");
 		String mobile = CommonUtil.removeString(requestDataSet.getValue("mobile"), " ", "-");
@@ -34,6 +35,7 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 		} else {
 			queryAdvisor.addAutoFillCriteria(personLike, "lower(full_name) like lower('%"+personLike+"%')");
 		}
+		queryAdvisor.addAutoFillCriteria(personIdLike, "person_id like '"+personIdLike+"%'");
 		queryAdvisor.addAutoFillCriteria(email, "payslip_email like '"+email+"%'");
 		queryAdvisor.addAutoFillCriteria(empOrgId, "employment_company_org_id = '"+empOrgId+"'");
 		queryAdvisor.addAutoFillCriteria(mobile, "person_id in (select person_id from hp_address_contact_d where telephone_mobile like '"+mobile+"%')");
@@ -67,6 +69,7 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 		String dateFormat = ConfigUtil.getProperty("format.date.java");
 		String personId = requestDataSet.getValue("personId");
 		String personLike = requestDataSet.getValue("personLike");
+		String personIdLike = requestDataSet.getValue("personIdLike");
 		String email = requestDataSet.getValue("email");
 		String empOrgId = requestDataSet.getValue("empOrgId");
 		String mobile = CommonUtil.removeString(requestDataSet.getValue("mobile"), " ", "-");
@@ -78,6 +81,7 @@ public class HpPersonDHDaoImpl extends BaseHDao implements HpPersonDDao {
 		} else {
 			queryAdvisor.addAutoFillCriteria(personLike, "lower(per.full_name) like lower('%"+personLike+"%')");
 		}
+		queryAdvisor.addAutoFillCriteria(personIdLike, "per.person_id like '"+personIdLike+"%'");
 		queryAdvisor.addAutoFillCriteria(email, "per.payslip_email like '"+email+"%'");
 		queryAdvisor.addAutoFillCriteria(empOrgId, "per.employment_company_org_id = '"+empOrgId+"'");
 		queryAdvisor.addAutoFillCriteria(mobile, "per.person_id in (select person_id from hp_address_contact_d where telephone_mobile like '"+mobile+"%')");
