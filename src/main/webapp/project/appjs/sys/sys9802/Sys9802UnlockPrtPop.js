@@ -6,10 +6,12 @@ $(function() {
 	/*!
 	 * event
 	 */
-	$("#btnUnlock").click(function(event) {
-		var val = commonJs.getCheckedValueFromRadio("rdoForAction");
+	$("#icnCheck").click(function(event) {
+		commonJs.toggleCheckboxes("chkForAction");
+	});
 
-		if (commonJs.isEmpty(val)) {
+	$("#btnUnlock").click(function(event) {
+		if (commonJs.getCountChecked("chkForAction") == 0) {
 			commonJs.warn(com.message.I902);
 			return;
 		}
@@ -44,6 +46,9 @@ $(function() {
 			$("#tblGrid").fixedHeaderTable({
 				attachTo:$("#divDataArea")
 			});
+
+			$("#icnCheck").trigger("click");
+			commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForAction]"));
 		}, 400);
 	});
 });

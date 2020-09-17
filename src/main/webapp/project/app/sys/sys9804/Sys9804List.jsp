@@ -60,18 +60,18 @@
 	<table class="tblSearch">
 		<caption><mc:msg key="page.com.searchCriteria"/></caption>
 		<colgroup>
-			<col width="6%"/>
-			<col width="8%"/>
-			<col width="6%"/>
-			<col width="*"/>
 			<col width="5%"/>
-			<col width="11%"/>
 			<col width="6%"/>
-			<col width="11%"/>
-			<col width="7%"/>
+			<col width="5%"/>
+			<col width="17%"/>
+			<col width="5%"/>
+			<col width="*"/>
+			<col width="6%"/>
+			<col width="13%"/>
+			<col width="6%"/>
 			<col width="8%"/>
+			<col width="6%"/>
 			<col width="7%"/>
-			<col width="8%"/>
 		</colgroup>
 		<tr>
 			<th class="thSearch rt"><mc:msg key="sys9804.search.invoiceId"/></th>
@@ -138,7 +138,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th class="thGrid"><ui:icon id="icnRdo" className="fa-dot-circle-o fa-lg" status="display"/></th>
+					<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9804.grid.id"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9804.grid.number"/></th>
 					<th class="thGrid"><mc:msg key="sys9804.grid.groupInvoiceId"/></th>

@@ -80,6 +80,7 @@ $(function() {
 		$("#tblGridBody").append($(html));
 		setGridTable(result.totalResultRows);
 
+		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkToSend]"));
 		commonJs.hideProcMessageOnElement("divScrollablePanelFrame");
 	};
 

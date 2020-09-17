@@ -139,6 +139,7 @@ $(function() {
 			$(this).contextMenu(contextMenu);
 		});
 
+		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForGenerate]"));
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 

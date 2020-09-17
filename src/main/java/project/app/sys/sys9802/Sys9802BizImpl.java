@@ -73,17 +73,17 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 	public ParamEntity getUnlockPrt(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		String chkForAction = dsReq.getValue("chkForAction");
+		String assignmentIds[] = CommonUtil.splitWithTrim(chkForAction, ConfigUtil.getProperty("delimiter.record"));
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			qa.setObject("dataSource", dataSource);
 			qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
-			qa.addAutoFillCriteria(dsReq.getValue("assignmentId"), "assignment_id = '"+dsReq.getValue("assignmentId")+"'");
 
 			prtAssignmentSetupDao.setDataSourceName(dataSource);
-			paramEntity.setObject("assignment", assignmentBS.getAssignmentList(qa));
-			paramEntity.setObject("prtSetup", prtAssignmentSetupDao.getByAssignmentId(dsReq.getValue("assignmentId")));
+			paramEntity.setObject("prtSetup", prtAssignmentSetupDao.getByAssignmentIdsForUnlockPrt(assignmentIds));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -128,14 +128,15 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 
 	public ParamEntity doUnlockPrt(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
-		String assignmentId = dsReq.getValue("rdoForAction");
+		String chkForAction = dsReq.getValue("chkForAction");
+		String assignmentIds[] = CommonUtil.splitWithTrim(chkForAction, ConfigUtil.getProperty("delimiter.record"));
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		int result = 0;
 
 		try {
 			prtAssignmentSetupDao.setDataSourceName(dataSource);
-			result = prtAssignmentSetupDao.deleteByAssignmentId(assignmentId);
+			result = prtAssignmentSetupDao.deleteByAssignmentIds(assignmentIds);
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
 			}

@@ -144,6 +144,7 @@ $(function() {
 			$(this).contextMenu(ctxMenu.boardAction);
 		});
 
+		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForDel]"));
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 

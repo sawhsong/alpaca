@@ -117,6 +117,14 @@ $(function() {
 				});
 			}
 		}
+
+		$("[name=chkToAssign]").each(function(index) {
+			if ($(this).is(":checked")) {
+				$(this).parents("tr").addClass("checkedTr");
+			} else {
+				$(this).parents("tr").removeClass("checkedTr");
+			}
+		});
 	});
 
 	$("#authGroup").change(function() {
@@ -148,8 +156,10 @@ $(function() {
 
 			if (!commonJs.isEmpty(groupId) && groupId.indexOf(selectedAuthGroup) != -1) {
 				$(this).prop("checked", true);
+				$(this).addClass("checkedTr");
 			} else {
 				$(this).prop("checked", false);
+				$(this).removeClass("checkedTr");
 			}
 		});
 	};

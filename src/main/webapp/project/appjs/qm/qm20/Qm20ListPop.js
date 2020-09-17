@@ -173,18 +173,7 @@ $(function() {
 			$(this).contextMenu(ctxMenu.commonQmAction);
 		});
 
-		$("[name=rdoForSave]").each(function(index) {
-			$(this).bind("click", function() {
-				$("#tblGridBody tr").each(function(rowIdx) {
-					if (index == rowIdx) {
-						$(this).attr("style", "background:#FEFAE5");
-					} else {
-						$(this).removeAttr("style");
-					}
-				});
-			});
-		});
-
+		commonJs.bindToggleTrBackgoundWithRadiobox($("[name=rdoForSave]"));
 		commonJs.hideProcMessageOnElement("divScrollablePanelPopup");
 	};
 

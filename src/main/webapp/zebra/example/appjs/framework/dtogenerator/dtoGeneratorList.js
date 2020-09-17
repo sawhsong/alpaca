@@ -127,6 +127,7 @@ $(function() {
 			$(this).contextMenu(ctxMenu.dtoGeneratorAction);
 		});
 
+		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForGenerate]"));
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 

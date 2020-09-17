@@ -9,7 +9,6 @@
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
 	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
-	DataSet assignment = (DataSet)paramEntity.getObject("assignment");
 	DataSet prtSetup = (DataSet)paramEntity.getObject("prtSetup");
 	String mode = requestDataSet.getValue("mode");
 %>
@@ -55,29 +54,7 @@ var mode = "<%=mode%>";
 	</div>
 </div>
 <div id="divSearchCriteriaArea"></div>
-<div id="divInformArea" class="areaContainerPopup">
-	<table class="tblInform">
-		<caption class="captionInform"><mc:msg key="sys9802.caption.asgInfo"/></caption>
-		<colgroup>
-			<col width="18%"/>
-			<col width="20%"/>
-			<col width="25%"/>
-			<col width="*"/>
-		</colgroup>
-		<tr>
-			<th class="thInform Rt"><mc:msg key="sys9802.header.asgId"/></th>
-			<td class="tdInform"><%=CommonUtil.getNumberMask(assignment.getValue("ASSIGNMENT_ID"), "####")%></td>
-			<th class="thInform Rt"><mc:msg key="sys9802.header.asgNumber"/></th>
-			<td class="tdInform"><%=assignment.getValue("ASSIGNMENT_NUMBER")%></td>
-		</tr>
-		<tr>
-			<th class="thInform Rt"><mc:msg key="sys9802.header.lastInvoiceDate"/></th>
-			<td class="tdInform"><%=assignment.getValue("LAST_INVOICE_DATE")%></td>
-			<th class="thInform Rt"><mc:msg key="sys9802.header.lastPaidDate"/></th>
-			<td class="tdInform"><%=assignment.getValue("LAST_PAID_DATE")%></td>
-		</tr>
-	</table>
-</div>
+<div id="divInformArea"></div>
 <%/************************************************************************************************
 * End of fixed panel
 ************************************************************************************************/%>
@@ -91,28 +68,32 @@ var mode = "<%=mode%>";
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
 				<col width="2%"/>
-				<col width="*"/>
-				<col width="11%"/>
-				<col width="12%"/>
-				<col width="12%"/>
+				<col width="6%"/>
 				<col width="13%"/>
-				<col width="11%"/>
-				<col width="8%"/>
-				<col width="9%"/>
 				<col width="7%"/>
+				<col width="6%"/>
+				<col width="6%"/>
+				<col width="*"/>
+				<col width="15%"/>
+				<col width="9%"/>
+				<col width="10%"/>
+				<col width="6%"/>
+				<col width="4%"/>
 			</colgroup>
 		<thead id="tblGridHead">
 			<tr>
-				<th class="thGrid"><ui:icon id="icnRdo" className="fa-dot-circle-o fa-lg" status="display"/></th>
-				<th class="thGrid">PRT_ASSIGNMENT_SETUP_ID</th>
-				<th class="thGrid">ASSIGNMENT_ID</th>
-				<th class="thGrid">PRT_ORGANISATION_ID</th>
-				<th class="thGrid">PRT_DOCUMENT_ID</th>
-				<th class="thGrid">PRT_COH_SCENARIO_ID</th>
-				<th class="thGrid">PRT_WORKING_STATE</th>
-				<th class="thGrid">CREATED_BY</th>
-				<th class="thGrid">CREATION_DATE</th>
-				<th class="thGrid">IS_ACTIVE</th>
+				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+				<th class="thGrid">Assignment Id</th>
+				<th class="thGrid">Assignment Number</th>
+				<th class="thGrid">Last Invoice Date</th>
+				<th class="thGrid">Last Paid Date</th>
+				<th class="thGrid">PRT Setup Id</th>
+				<th class="thGrid">PRT Organisation</th>
+				<th class="thGrid">PRT Scenario</th>
+				<th class="thGrid">PRT Working State</th>
+				<th class="thGrid">Created By</th>
+				<th class="thGrid">Creation Date</th>
+				<th class="thGrid">Is Active</th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
@@ -121,14 +102,16 @@ var mode = "<%=mode%>";
 			for (int i=0; i<prtSetup.getRowCnt(); i++) {
 %>
 			<tr>
-				<td class="tdGrid Ct"><input type="radio" id="" name="rdoForAction" class="rdoEn inTblGrid" value="<%=prtSetup.getValue(i, "ASSIGNMENT_ID")%>"/></td>
-				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "PRT_ASSIGNMENT_SETUP_ID")%></td>
+				<td class="tdGrid Ct"><input type="checkbox" id="" name="chkForAction" class="chkEn inTblGrid" value="<%=prtSetup.getValue(i, "ASSIGNMENT_ID")%>"/></td>
 				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "ASSIGNMENT_ID")%></td>
-				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "PRT_ORGANISATION_ID")%></td>
-				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "PRT_DOCUMENT_ID")%></td>
-				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "PRT_COH_SCENARIO_ID")%></td>
-				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "PRT_WORKING_STATE")%></td>
-				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "CREATED_BY")%></td>
+				<td class="tdGrid Lt"><%=prtSetup.getValue(i, "ASSIGNMENT_NUMBER")%></td>
+				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "LAST_INVOICE_DATE")%></td>
+				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "LAST_PAID_DATE")%></td>
+				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "PRT_ASSIGNMENT_SETUP_ID")%></td>
+				<td class="tdGrid Lt"><%=prtSetup.getValue(i, "PRT_ORGANISATION")%></td>
+				<td class="tdGrid Lt"><%=prtSetup.getValue(i, "PRT_SCENARIO")%></td>
+				<td class="tdGrid Lt"><%=prtSetup.getValue(i, "PRT_WORKING_STATE_MEANING")%></td>
+				<td class="tdGrid Lt"><%=prtSetup.getValue(i, "CREATED_BY_NAME")%></td>
 				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "CREATION_DATE")%></td>
 				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "IS_ACTIVE")%></td>
 			</tr>
@@ -137,7 +120,7 @@ var mode = "<%=mode%>";
 		} else {
 %>
 			<tr>
-				<td class="tdGrid Ct" colspan="10"><mc:msg key="I001"/></td>
+				<td class="tdGrid Ct" colspan="12"><mc:msg key="I001"/></td>
 			</tr>
 <%
 		}

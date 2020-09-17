@@ -25,6 +25,10 @@ $(function() {
 		commonJs.openCalendar(event, "dateTo");
 	});
 
+	$("#icnCheck").click(function(event) {
+		commonJs.toggleCheckboxes("chkForAction");
+	});
+
 	$("#personName").blur(function() {
 		if (commonJs.isEmpty($(this).val())) {
 			$("#personId").val("");
@@ -100,7 +104,7 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiRadio().setName("rdoForAction").setValue(ds.getValue(i, "INVOICE_ID"))));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setName("chkForAction").setValue(ds.getValue(i, "INVOICE_ID"))));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "INVOICE_ID")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "INVOICE_NUMBER")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "PARENT_INVOICE_ID")));
@@ -142,18 +146,7 @@ $(function() {
 			script:"doSearch"
 		});
 
-		$("[name=rdoForAction]").each(function(index) {
-			$(this).bind("click", function() {
-				$("#tblGridBody tr").each(function(rowIdx) {
-					if (index == rowIdx) {
-						$(this).attr("style", "background:#FEFAE5");
-					} else {
-						$(this).removeAttr("style");
-					}
-				});
-			});
-		});
-
+		commonJs.bindToggleTrBackgoundWithRadiobox($("[name=rdoForAction]"));
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 
@@ -163,22 +156,37 @@ $(function() {
 
 	openPopup = function(param) {
 		var url = "", header = com.header.popHeaderEdit, width = 0, height = 0;
-		var val = commonJs.getCheckedValueFromRadio("rdoForAction");
 
-		if (param.mode != "Detail") {
-			if (commonJs.isEmpty(val)) {
-				commonJs.warn(com.message.I902);
-				return;
-			}
+		if (commonJs.getCountChecked("chkForAction") == 0) {
+			commonJs.warn(com.message.I902);
+			return;
 		}
 
 		if (param.mode == "Detail") {
 			url = "/sys/9804/getDetail.do";
 			width = 1900, height = 990;
 		} else if (param.mode == "UpdateStatus") {
+			if (commonJs.getCountChecked("chkForAction") > 1) {
+				commonJs.openDialog({
+					type:com.message.W000,
+					width:360,
+					contents:"You can select only one Invoice to update status."
+				});
+				return;
+			}
+
 			url = "/sys/9804/getUpdateStatus.do";
 			width = 700, height = 500;
 		} else if (param.mode == "UpdateInvoiceSubTotal") {
+			if (commonJs.getCountChecked("chkForAction") > 1) {
+				commonJs.openDialog({
+					type:com.message.W000,
+					width:360,
+					contents:"You can select only one Invoice to update invoice sub total."
+				});
+				return;
+			}
+
 			url = "/sys/9804/getUpdateInvoiceSubTotal.do";
 			width = 700, height = 400;
 		}
@@ -188,7 +196,8 @@ $(function() {
 			url:url,
 			data:{
 				mode:param.mode,
-				invoiceId:val
+				chkForAction:commonJs.getCheckedValueFromCheckbox($("[name=chkForAction]")),
+				invoiceId:commonJs.getCheckedValueFromCheckbox($("[name=chkForAction]"))
 			},
 			header:header,
 			blind:true,
@@ -226,7 +235,7 @@ $(function() {
 		commonJs.setFieldDateMask("dateTo");
 
 		commonJs.setAutoComplete($("#personName"), {
-			method:"getPersonName",
+			method:"getPersonByNameOrPersonNumber",
 			label:"full_name_with_person_number",
 			value:"person_id",
 			minLength:2,
@@ -250,7 +259,7 @@ $(function() {
 		});
 
 		commonJs.setAutoComplete($("#billingOrgName"), {
-			method:"getBillingOrgByName",
+			method:"getBillingOrgByNameOrId",
 			label:"org_name_with_org_id",
 			value:"organisation_id",
 			minLength:2,

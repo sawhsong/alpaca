@@ -60,13 +60,13 @@
 		<property name="username" value="${jdbc.user.name_perciTest}"/>
 		<property name="password" value="${jdbc.user.pass_perciTest}"/>
 	</bean>
+-->
 	<bean id="connectionPool_perciTest" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driver.driverClassName}"/>
 		<property name="url" value="${jdbc.driver.url_perciTest}"/>
 		<property name="username" value="${jdbc.user.name_perciTest}"/>
 		<property name="password" value="${jdbc.user.pass_perciTest}"/>
 	</bean>
--->
 
 	<!-- oracle ucp - Begin -->
 <!--
@@ -76,7 +76,6 @@
 		<property name="username" value="${jdbc.user.name_perciTest}"/>
 		<property name="password" value="${jdbc.user.pass_perciTest}"/>
 	</bean>
--->
 	<bean id="connectionPool_perciTest" class="oracle.ucp.jdbc.PoolDataSourceImpl">
 		<property name="connectionFactoryClassName" value="oracle.jdbc.pool.OracleDataSource"/>
 		<property name="URL" value="${jdbc.driver.url_perciTest}"/>
@@ -86,6 +85,7 @@
 		<property name="minPoolSize" value="5"/>
 		<property name="maxPoolSize" value="10"/>
 	</bean>
+-->
 	<!-- oracle ucp - End -->
 
 <!--

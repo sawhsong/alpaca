@@ -151,13 +151,10 @@ $(function() {
 
 	openPopup = function(param) {
 		var url = "", header = com.header.popHeaderDetail, width = 0, height = 0;
-		var val = commonJs.getCheckedValueFromRadio("chkForAction");
 
-		if (param.mode != "Detail") {
-			if (commonJs.isEmpty(val)) {
-				commonJs.warn(com.message.I902);
-				return;
-			}
+		if (commonJs.getCountChecked("chkForAction") == 0) {
+			commonJs.warn(com.message.I902);
+			return;
 		}
 
 		if (param.mode == "Detail") {
@@ -165,11 +162,29 @@ $(function() {
 			width = 1900, height = 990;
 		} else if (param.mode == "UnlockPrt") {
 			url = "/sys/9802/getUnlockPrt.do";
-			width = 1480, height = 500;
+			width = 1800, height = 600;
 		} else if (param.mode == "UpdateWorkingState") {
+			if (commonJs.getCountChecked("chkForAction") > 1) {
+				commonJs.openDialog({
+					type:com.message.W000,
+					width:360,
+					contents:"You can select only one Assignment to update Working State."
+				});
+				return;
+			}
+
 			url = "/sys/9802/getUpdateWorkingState.do";
 			width = 700, height = 400;
 		} else if (param.mode == "UpdateEndUser") {
+			if (commonJs.getCountChecked("chkForAction") > 1) {
+				commonJs.openDialog({
+					type:com.message.W000,
+					width:360,
+					contents:"You can select only one Assignment to update End User."
+				});
+				return;
+			}
+
 			url = "/sys/9802/getUpdateEndUser.do";
 			width = 700, height = 500;
 		}
@@ -179,7 +194,8 @@ $(function() {
 			url:url,
 			data:{
 				mode:param.mode,
-				assignmentId:val
+				chkForAction:commonJs.getCheckedValueFromCheckbox($("[name=chkForAction]")),
+				assignmentId:commonJs.getCheckedValueFromCheckbox($("[name=chkForAction]"))
 			},
 			header:header,
 			blind:true,
