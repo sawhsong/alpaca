@@ -220,3 +220,8 @@ table.tblAdminTool caption {padding:8px 8px;font-size:1.0em;font-weight:bold;bor
 }
 
 table.withPadding th, table.withPadding td {padding:4px 4px;}
+
+/**
+ * Change tr background color when check boxes in the tr>td are checked (for grid table)
+ */
+.checkedTr {background:#FEFAE5 !important;}

@@ -17,6 +17,10 @@ $(function() {
 		commonJs.clearSearchCriteria();
 	});
 
+	$("#icnCheck").click(function(event) {
+		commonJs.toggleCheckboxes("chkForAction");
+	});
+
 	$("#personName").blur(function() {
 		if (commonJs.isEmpty($(this).val())) {
 			$("#personId").val("");
@@ -102,7 +106,7 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiRadio().setName("rdoForAction").setValue(ds.getValue(i, "ASSIGNMENT_ID"))));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setName("chkForAction").setValue(ds.getValue(i, "ASSIGNMENT_ID"))));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ASSIGNMENT_NUMBER")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "PERSON_NAME"), 50)));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "HAS_PRT")));
@@ -137,18 +141,7 @@ $(function() {
 			script:"doSearch"
 		});
 
-		$("[name=rdoForAction]").each(function(index) {
-			$(this).bind("click", function() {
-				$("#tblGridBody tr").each(function(rowIdx) {
-					if (index == rowIdx) {
-						$(this).attr("style", "background:#FEFAE5");
-					} else {
-						$(this).removeAttr("style");
-					}
-				});
-			});
-		});
-
+		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForAction]"));
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 
@@ -158,7 +151,7 @@ $(function() {
 
 	openPopup = function(param) {
 		var url = "", header = com.header.popHeaderDetail, width = 0, height = 0;
-		var val = commonJs.getCheckedValueFromRadio("rdoForAction");
+		var val = commonJs.getCheckedValueFromRadio("chkForAction");
 
 		if (param.mode != "Detail") {
 			if (commonJs.isEmpty(val)) {
@@ -242,7 +235,7 @@ $(function() {
 		});
 
 		commonJs.setAutoComplete($("#billingCode"), {
-			method:"getBillingCodeByCode",
+			method:"getBillingCodeByCodeOrId",
 			label:"display_column",
 			value:"billing_code_id",
 			minLength:2,
@@ -266,7 +259,7 @@ $(function() {
 		});
 
 		commonJs.setAutoComplete($("#billingOrgName"), {
-			method:"getBillingOrgByName",
+			method:"getBillingOrgByNameOrId",
 			label:"org_name_with_org_id",
 			value:"organisation_id",
 			minLength:2,
