@@ -39,13 +39,29 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		String asgId = dsReq.getValue("asgId");
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
+			if (CommonUtil.contains(asgId, "*")) {
+				asgId = CommonUtil.replace(asgId, "*", "%");
+				qa.addAutoFillCriteria(asgId, "assignment_id like '"+asgId+"'");
+			} else if (CommonUtil.contains(asgId, ",")) {
+				String asgIds[] = CommonUtil.splitWithTrim(asgId, ",");
+				String ids = "";
+
+				for (String id : asgIds) {
+					ids += CommonUtil.isBlank(ids) ? "'"+id+"'" : ",'"+id+"'";
+				}
+				qa.addAutoFillCriteria(asgId, "assignment_id in ("+ids+")");
+			} else {
+				qa.addAutoFillCriteria(asgId, "assignment_id like '"+asgId+"%'");
+			}
+
 			qa.setObject("dataSource", dataSource);
 			qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
-			qa.addAutoFillCriteria(dsReq.getValue("asgId"), "assignment_id like '"+dsReq.getValue("asgId")+"%'");
+
 			qa.addAutoFillCriteria(dsReq.getValue("personId"), "person_id = '"+dsReq.getValue("personId")+"'");
 			qa.addAutoFillCriteria(dsReq.getValue("billingCodeId"), "billing_code_id = '"+dsReq.getValue("billingCodeId")+"'");
 			qa.addAutoFillCriteria(dsReq.getValue("billingOrgId"), "billing_organisation_id = '"+dsReq.getValue("billingOrgId")+"'");
@@ -94,13 +110,22 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 	public ParamEntity getUpdateWorkingState(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		String chkForAction = dsReq.getValue("chkForAction");
+		String assignmentIds[] = CommonUtil.splitWithTrim(chkForAction, ConfigUtil.getProperty("delimiter.record"));
+		String ids = "";
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			qa.setObject("dataSource", dataSource);
+			for (String id : assignmentIds) {
+				ids += CommonUtil.isBlank(ids) ? "'"+id+"'" : ",'"+id+"'";
+			}
 
-			paramEntity.setObject("assignment", assignmentBS.getAssignmentByAssignmentId(qa, dsReq.getValue("assignmentId")));
+			qa.setObject("dataSource", dataSource);
+			qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
+			qa.addAutoFillCriteria(ids, "assignment_id in ("+ids+")");
+
+			paramEntity.setObject("assignmentDataSet", assignmentBS.getAssignmentList(qa));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -111,14 +136,22 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 	public ParamEntity getUpdateEndUser(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		String chkForAction = dsReq.getValue("chkForAction");
+		String assignmentIds[] = CommonUtil.splitWithTrim(chkForAction, ConfigUtil.getProperty("delimiter.record"));
+		String ids = "";
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			qa.setObject("dataSource", dataSource);
+			for (String id : assignmentIds) {
+				ids += CommonUtil.isBlank(ids) ? "'"+id+"'" : ",'"+id+"'";
+			}
 
-			paramEntity.setObject("assignment", assignmentBS.getAssignmentByAssignmentId(qa, dsReq.getValue("assignmentId")));
-			paramEntity.setObject("assignmentDataSet", assignmentBS.getAssignmentAsDataSetByAssignmentId(qa, dsReq.getValue("assignmentId")));
+			qa.setObject("dataSource", dataSource);
+			qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
+			qa.addAutoFillCriteria(ids, "assignment_id in ("+ids+")");
+
+			paramEntity.setObject("assignmentDataSet", assignmentBS.getAssignmentList(qa));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -152,7 +185,8 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 	public ParamEntity doUpdateWorkingState(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		QueryAdvisor qa = paramEntity.getQueryAdvisor();
-		String assignmentId = dsReq.getValue("assignmentId");
+		String chkForAction = dsReq.getValue("chkForAction");
+		String assignmentIds[] = CommonUtil.splitWithTrim(chkForAction, ConfigUtil.getProperty("delimiter.record"));
 		String workingStateTo = dsReq.getValue("workingStateTo");
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
@@ -161,7 +195,7 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 		try {
 			qa.setObject("dataSource", dataSource);
 
-			result = assignmentBS.updateWorkingState(qa, assignmentId, workingStateTo);
+			result = assignmentBS.updateWorkingState(qa, assignmentIds, workingStateTo);
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
 			}
@@ -177,7 +211,8 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 	public ParamEntity doUpdateEndUser(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		QueryAdvisor qa = paramEntity.getQueryAdvisor();
-		String assignmentId = dsReq.getValue("assignmentId");
+		String chkForAction = dsReq.getValue("chkForAction");
+		String assignmentIds[] = CommonUtil.splitWithTrim(chkForAction, ConfigUtil.getProperty("delimiter.record"));
 		String endUserToId = dsReq.getValue("endUserToId");
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
@@ -186,7 +221,7 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 		try {
 			qa.setObject("dataSource", dataSource);
 
-			result = assignmentBS.updateEndUser(qa, assignmentId, endUserToId);
+			result = assignmentBS.updateEndUser(qa, assignmentIds, endUserToId);
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
 			}

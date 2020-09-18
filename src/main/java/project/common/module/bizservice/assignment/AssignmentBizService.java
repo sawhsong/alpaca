@@ -14,6 +14,6 @@ public interface AssignmentBizService {
 	public DataSet getNotiToOrganisations(QueryAdvisor queryAdvisor, String assignmentId) throws Exception;
 	public String getManagementFeeByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception;
 	public String getPayrollTaxByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception;
-	public int updateWorkingState(QueryAdvisor queryAdvisor, String assignmentId, String toWorkingState) throws Exception;
-	public int updateEndUser(QueryAdvisor queryAdvisor, String assignmentId, String toEndUserId) throws Exception;
+	public int updateWorkingState(QueryAdvisor queryAdvisor, String assignmentIds[], String toWorkingState) throws Exception;
+	public int updateEndUser(QueryAdvisor queryAdvisor, String assignmentIds[], String toEndUserId) throws Exception;
 }

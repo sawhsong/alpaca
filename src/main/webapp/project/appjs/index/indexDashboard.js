@@ -373,9 +373,9 @@ $(function() {
 
 					gridTr.setClassName("noBorderVer noStripe");
 
-					gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "header")).setScript("openNewsArticle('"+ds.getValue(i, "link")+"')").setStyle("font-weight:bold;")).setStyle("vertical-align:top;")
-																	 .addTextAfterChild("<br/><br/>"+ds.getValue(i, "contents")+ds.getValue(i, "date")));
-					gridTr.addChild(new UiGridTd().addClassName("Rt").addChild(new UiImage().setSrc(ds.getValue(i, "img")).setStyle("width:100%;height:75px;border-radius:10px;").setScript("openNewsArticle('"+ds.getValue(i, "link")+"')"))).setStyle("vertical-align:top;")
+					gridTr.addChild(new UiGridTd().addClassName("Lt noEllipsis").addChild(new UiAnchor().setText(ds.getValue(i, "header")).setScript("openNewsArticle('"+ds.getValue(i, "link")+"')").setStyle("font-weight:bold;")).setStyle("vertical-align:top;")
+																				.addTextAfterChild("<br/><br/>"+ds.getValue(i, "contents")+ds.getValue(i, "date")));
+					gridTr.addChild(new UiGridTd().addClassName("Rt noEllipsis").addChild(new UiImage().setSrc(ds.getValue(i, "img")).setStyle("width:100%;height:75px;border-radius:10px;").setScript("openNewsArticle('"+ds.getValue(i, "link")+"')"))).setStyle("vertical-align:top;")
 
 					html += gridTr.toHtmlString();
 				}
@@ -407,9 +407,9 @@ $(function() {
 
 					gridTr.setClassName("noBorderVer noStripe");
 
-					gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "header")).setScript("openNewsArticle('"+ds.getValue(i, "link")+"')").setStyle("font-weight:bold;vertical-align:top;"))
-																	 .addTextAfterChild("<br/><br/>"+ds.getValue(i, "contents")+"<br/><br/>"+ds.getValue(i, "date")));
-					gridTr.addChild(new UiGridTd().addClassName("Rt").addChild(new UiImage().setSrc(ds.getValue(i, "img")).setStyle("width:100%;height:75px;border-radius:10px;").setScript("openNewsArticle('"+ds.getValue(i, "link")+"')")).setStyle("vertical-align:top;"))
+					gridTr.addChild(new UiGridTd().addClassName("Lt noEllipsis").addChild(new UiAnchor().setText(ds.getValue(i, "header")).setScript("openNewsArticle('"+ds.getValue(i, "link")+"')").setStyle("font-weight:bold;vertical-align:top;"))
+																				.addTextAfterChild("<br/><br/>"+ds.getValue(i, "contents")+"<br/><br/>"+ds.getValue(i, "date")));
+					gridTr.addChild(new UiGridTd().addClassName("Rt noEllipsis").addChild(new UiImage().setSrc(ds.getValue(i, "img")).setStyle("width:100%;height:75px;border-radius:10px;").setScript("openNewsArticle('"+ds.getValue(i, "link")+"')")).setStyle("vertical-align:top;"))
 
 					html += gridTr.toHtmlString();
 				}

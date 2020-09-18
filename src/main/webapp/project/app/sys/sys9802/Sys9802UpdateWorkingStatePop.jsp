@@ -9,7 +9,7 @@
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
 	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
-	HpAssignmentsD assignment = (HpAssignmentsD)paramEntity.getObject("assignment");
+	DataSet asgDataSet = (DataSet)paramEntity.getObject("assignmentDataSet");
 	String mode = requestDataSet.getValue("mode");
 %>
 <%/************************************************************************************************
@@ -30,7 +30,6 @@
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
 var mode = "<%=mode%>";
-var assignmentId = "<%=requestDataSet.getValue("assignmentId")%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -57,19 +56,16 @@ var assignmentId = "<%=requestDataSet.getValue("assignmentId")%>";
 <div id="divSearchCriteriaArea"></div>
 <div id="divInformArea" class="areaContainerPopup">
 	<table class="tblInform">
-		<caption class="captionInform"><mc:msg key="sys9802.caption.asgInfo"/></caption>
 		<colgroup>
-			<col width="18%"/>
-			<col width="20%"/>
-			<col width="25%"/>
+			<col width="17%"/>
 			<col width="*"/>
 		</colgroup>
+		<tbody>
 		<tr>
-			<th class="thInform Rt"><mc:msg key="sys9802.header.asgId"/></th>
-			<td class="tdInform"><%=CommonUtil.getNumberMask(assignment.getAssignmentId(), "####")%></td>
-			<th class="thInform Rt"><mc:msg key="sys9802.header.asgNumber"/></th>
-			<td class="tdInform"><%=assignment.getAssignmentNumber()%></td>
+			<th class="thInform Rt">Update Working State To</th>
+			<td class="tdInform"><ui:ccselect name="workingStateTo" codeType="STATES"/></td>
 		</tr>
+		</tbody>
 	</table>
 </div>
 <%/************************************************************************************************
@@ -82,20 +78,52 @@ var assignmentId = "<%=requestDataSet.getValue("assignmentId")%>";
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
-	<table class="tblEdit">
-		<caption class="captionDefault"><mc:msg key="sys9802.header.workingState"/></caption>
+	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="50%"/>
-			<col width="50%"/>
-		</colgroup>
-		<tr>
-			<th class="thEdit Ct"><mc:msg key="sys9802.header.from"/></th>
-			<th class="thEdit Ct"><mc:msg key="sys9802.header.to"/></th>
-		</tr>
-		<tr>
-			<td class="tdEdit Ct"><ui:ccselect name="workingStateFrom" codeType="STATES" selectedValue="<%=assignment.getWorkingState()%>" status="disabled"/></td>
-			<td class="tdEdit Ct"><ui:ccselect name="workingStateTo" codeType="STATES"/></td>
-		</tr>
+				<col width="4%"/>
+				<col width="11%"/>
+				<col width="*"/>
+				<col width="14%"/>
+				<col width="12%"/>
+				<col width="21%"/>
+				<col width="9%"/>
+			</colgroup>
+		<thead id="tblGridHead">
+			<tr>
+				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+				<th class="thGrid">Assignment Id</th>
+				<th class="thGrid">Assignment Number</th>
+				<th class="thGrid">Last Invoice Date</th>
+				<th class="thGrid">Last Paid Date</th>
+				<th class="thGrid">Working State</th>
+				<th class="thGrid">Is Active</th>
+			</tr>
+		</thead>
+		<tbody id="tblGridBody">
+<%
+		if (asgDataSet.getRowCnt() > 0) {
+			for (int i=0; i<asgDataSet.getRowCnt(); i++) {
+%>
+			<tr>
+				<td class="tdGrid Ct"><input type="checkbox" id="" name="chkForAction" class="chkEn inTblGrid" value="<%=asgDataSet.getValue(i, "ASSIGNMENT_ID")%>"/></td>
+				<td class="tdGrid Ct"><%=asgDataSet.getValue(i, "ASSIGNMENT_ID")%></td>
+				<td class="tdGrid Lt"><%=asgDataSet.getValue(i, "ASSIGNMENT_NUMBER")%></td>
+				<td class="tdGrid Ct"><%=asgDataSet.getValue(i, "LAST_INVOICE_DATE")%></td>
+				<td class="tdGrid Ct"><%=asgDataSet.getValue(i, "LAST_PAID_DATE")%></td>
+				<td class="tdGrid Lt"><%=asgDataSet.getValue(i, "WORKING_STATE_MEANING")%></td>
+				<td class="tdGrid Ct"><%=asgDataSet.getValue(i, "ASG_ACTIVE")%></td>
+			</tr>
+<%
+			}
+		} else {
+%>
+			<tr>
+				<td class="tdGrid Ct" colspan="7"><mc:msg key="I001"/></td>
+			</tr>
+<%
+		}
+%>
+		</tbody>
 	</table>
 </div>
 <div id="divPagingArea"></div>

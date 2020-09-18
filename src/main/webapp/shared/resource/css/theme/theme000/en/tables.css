@@ -161,9 +161,10 @@ table.tblAdminTool caption {padding:8px 8px;font-size:1.0em;font-weight:bold;bor
 	border:1px solid #DDDDDD;
 	background:#F5F5F5;
 }
-.tblGrid td {padding:6px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+.tblGrid td {padding:6px 4px;
 	border:1px solid #DDDDDD;
 }
+.tblGrid td:not(.noEllipsis) {white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .tblGrid tbody tr:last-child td {}
 .tblGrid tfoot td {padding:6px 4px;
 	border:1px solid #DDDDDD;

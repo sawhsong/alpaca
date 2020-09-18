@@ -44,14 +44,30 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		String invoiceId = dsReq.getValue("invoiceId");
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		String dateFormat = ConfigUtil.getProperty("format.date.java");
 
 		try {
+			if (CommonUtil.contains(invoiceId, "*")) {
+				invoiceId = CommonUtil.replace(invoiceId, "*", "%");
+				qa.addAutoFillCriteria(invoiceId, "inv.invoice_id like '"+invoiceId+"'");
+			} else if (CommonUtil.contains(invoiceId, ",")) {
+				String invoiceIds[] = CommonUtil.splitWithTrim(invoiceId, ",");
+				String ids = "";
+
+				for (String id : invoiceIds) {
+					ids += CommonUtil.isBlank(ids) ? "'"+id+"'" : ",'"+id+"'";
+				}
+				qa.addAutoFillCriteria(invoiceId, "inv.invoice_id in ("+ids+")");
+			} else {
+				qa.addAutoFillCriteria(invoiceId, "inv.invoice_id like '"+invoiceId+"%'");
+			}
+
 			qa.setObject("dataSource", dataSource);
 			qa.addVariable("dateFormat", dateFormat);
-			qa.addAutoFillCriteria(dsReq.getValue("invoiceId"), "inv.invoice_id like '"+dsReq.getValue("invoiceId")+"%'");
+
 			qa.addAutoFillCriteria(dsReq.getValue("dateFrom"), "trunc(inv.invoice_date) >= to_date('"+dsReq.getValue("dateFrom")+"', '"+dateFormat+"')");
 			qa.addAutoFillCriteria(dsReq.getValue("dateTo"), "trunc(inv.invoice_date) <= to_date('"+dsReq.getValue("dateTo")+"', '"+dateFormat+"')");
 			qa.addAutoFillCriteria(dsReq.getValue("billingOrgId"), "inv.pay_to_organisation_id = '"+dsReq.getValue("billingOrgId")+"'");

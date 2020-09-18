@@ -6,10 +6,22 @@ $(function() {
 	/*!
 	 * event
 	 */
+	$("#icnCheck").click(function(event) {
+		commonJs.toggleCheckboxes("chkForAction");
+	});
+
 	$("#btnEdit").click(function(event) {
+		if (!commonJs.doValidate("fmDefault")) {
+			return;
+		}
+
+		if (commonJs.getCountChecked("chkForAction") == 0) {
+			commonJs.warn(com.message.I902);
+			return;
+		}
+
 		commonJs.doSave({
 			url:"/sys/9802/doUpdateEndUser.do",
-			data:{assignmentId:assignmentId},
 			callback:function() {
 				parent.popup.close();
 				parent.doSearch();
@@ -56,5 +68,14 @@ $(function() {
 				return false;
 			}
 		});
+
+		setTimeout(function() {
+			$("#tblGrid").fixedHeaderTable({
+				attachTo:$("#divDataArea")
+			});
+
+			$("#icnCheck").trigger("click");
+			commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForAction]"));
+		}, 400);
 	});
 });

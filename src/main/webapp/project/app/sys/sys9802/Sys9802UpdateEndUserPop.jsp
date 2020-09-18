@@ -9,10 +9,8 @@
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
 	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
-	HpAssignmentsD assignment = (HpAssignmentsD)paramEntity.getObject("assignment");
-	DataSet assignmentDataSet = (DataSet)paramEntity.getObject("assignmentDataSet");
+	DataSet asgDataSet = (DataSet)paramEntity.getObject("assignmentDataSet");
 	String mode = requestDataSet.getValue("mode");
-	String endUserFrom = assignmentDataSet.getValue("EU_ORGANISATION_NAME")+" ("+assignmentDataSet.getValue("EU_ORGANISATION_ID")+")";
 %>
 <%/************************************************************************************************
 * HTML
@@ -32,7 +30,6 @@
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
 var mode = "<%=mode%>";
-var assignmentId = "<%=requestDataSet.getValue("assignmentId")%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -59,18 +56,13 @@ var assignmentId = "<%=requestDataSet.getValue("assignmentId")%>";
 <div id="divSearchCriteriaArea"></div>
 <div id="divInformArea" class="areaContainerPopup">
 	<table class="tblInform">
-		<caption class="captionInform"><mc:msg key="sys9802.caption.asgInfo"/></caption>
 		<colgroup>
-			<col width="18%"/>
-			<col width="20%"/>
-			<col width="25%"/>
+			<col width="17%"/>
 			<col width="*"/>
 		</colgroup>
 		<tr>
-			<th class="thInform Rt"><mc:msg key="sys9802.header.asgId"/></th>
-			<td class="tdInform"><%=CommonUtil.getNumberMask(assignment.getAssignmentId(), "####")%></td>
-			<th class="thInform Rt"><mc:msg key="sys9802.header.asgNumber"/></th>
-			<td class="tdInform"><%=assignment.getAssignmentNumber()%></td>
+			<th class="thInform Rt">Update End User To</th>
+			<td class="tdInform"><ui:hidden name="endUserToId"/><ui:text name="endUserToName" options="mandatory" checkName="End User To" style="width:50%"/></td>
 		</tr>
 	</table>
 </div>
@@ -84,20 +76,52 @@ var assignmentId = "<%=requestDataSet.getValue("assignmentId")%>";
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
-	<table class="tblEdit">
-		<caption class="captionDefault">End User</caption>
+	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="50%"/>
-			<col width="50%"/>
-		</colgroup>
-		<tr>
-			<th class="thEdit Ct"><mc:msg key="sys9802.header.from"/></th>
-			<th class="thEdit Ct"><mc:msg key="sys9802.header.to"/></th>
-		</tr>
-		<tr>
-			<td class="tdEdit Ct"><ui:text name="endUserFrom" value="<%=endUserFrom%>" status="disabled"/></td>
-			<td class="tdEdit Ct"><ui:hidden name="endUserToId"/><ui:text name="endUserToName" options="mandatory" checkName="End User To"/></td>
-		</tr>
+				<col width="3%"/>
+				<col width="11%"/>
+				<col width="25%"/>
+				<col width="13%"/>
+				<col width="12%"/>
+				<col width="*"/>
+				<col width="8%"/>
+			</colgroup>
+		<thead id="tblGridHead">
+			<tr>
+				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+				<th class="thGrid">Assignment Id</th>
+				<th class="thGrid">Assignment Number</th>
+				<th class="thGrid">Last Invoice Date</th>
+				<th class="thGrid">Last Paid Date</th>
+				<th class="thGrid">End User</th>
+				<th class="thGrid">Is Active</th>
+			</tr>
+		</thead>
+		<tbody id="tblGridBody">
+<%
+		if (asgDataSet.getRowCnt() > 0) {
+			for (int i=0; i<asgDataSet.getRowCnt(); i++) {
+%>
+			<tr>
+				<td class="tdGrid Ct"><input type="checkbox" id="" name="chkForAction" class="chkEn inTblGrid" value="<%=asgDataSet.getValue(i, "ASSIGNMENT_ID")%>"/></td>
+				<td class="tdGrid Ct"><%=asgDataSet.getValue(i, "ASSIGNMENT_ID")%></td>
+				<td class="tdGrid Lt"><%=asgDataSet.getValue(i, "ASSIGNMENT_NUMBER")%></td>
+				<td class="tdGrid Ct"><%=asgDataSet.getValue(i, "LAST_INVOICE_DATE")%></td>
+				<td class="tdGrid Ct"><%=asgDataSet.getValue(i, "LAST_PAID_DATE")%></td>
+				<td class="tdGrid Lt"><%=asgDataSet.getValue(i, "EU_ORGANISATION_NAME")%></td>
+				<td class="tdGrid Ct"><%=asgDataSet.getValue(i, "ASG_ACTIVE")%></td>
+			</tr>
+<%
+			}
+		} else {
+%>
+			<tr>
+				<td class="tdGrid Ct" colspan="7"><mc:msg key="I001"/></td>
+			</tr>
+<%
+		}
+%>
+		</tbody>
 	</table>
 </div>
 <div id="divPagingArea"></div>

@@ -164,29 +164,11 @@ $(function() {
 			url = "/sys/9802/getUnlockPrt.do";
 			width = 1800, height = 600;
 		} else if (param.mode == "UpdateWorkingState") {
-			if (commonJs.getCountChecked("chkForAction") > 1) {
-				commonJs.openDialog({
-					type:com.message.W000,
-					width:360,
-					contents:"You can select only one Assignment to update Working State."
-				});
-				return;
-			}
-
 			url = "/sys/9802/getUpdateWorkingState.do";
-			width = 700, height = 400;
+			width = 1000, height = 500;
 		} else if (param.mode == "UpdateEndUser") {
-			if (commonJs.getCountChecked("chkForAction") > 1) {
-				commonJs.openDialog({
-					type:com.message.W000,
-					width:360,
-					contents:"You can select only one Assignment to update End User."
-				});
-				return;
-			}
-
 			url = "/sys/9802/getUpdateEndUser.do";
-			width = 700, height = 500;
+			width = 1100, height = 500;
 		}
 
 		var popParam = {
@@ -194,10 +176,9 @@ $(function() {
 			url:url,
 			data:{
 				mode:param.mode,
-				chkForAction:commonJs.getCheckedValueFromCheckbox($("[name=chkForAction]")),
-				assignmentId:commonJs.getCheckedValueFromCheckbox($("[name=chkForAction]"))
+				chkForAction:commonJs.getCheckedValueFromCheckbox($("[name=chkForAction]"))
 			},
-			header:header,
+			header:param.mode,
 			blind:true,
 			width:width,
 			height:height

@@ -106,28 +106,38 @@ public class AssignmentBizServiceImpl extends BaseBiz implements AssignmentBizSe
 		return ds.getValue("PAYROLL_TAX");
 	}
 
-	public int updateWorkingState(QueryAdvisor queryAdvisor, String assignmentId, String toWorkingState) throws Exception {
+	public int updateWorkingState(QueryAdvisor queryAdvisor, String assignmentIds[], String toWorkingState) throws Exception {
 		HpAssignmentsD hpAssignmentsD = new HpAssignmentsD();
+		String ids = "";
+
+		for (String id : assignmentIds) {
+			ids += CommonUtil.isBlank(ids) ? "'"+id+"'" : ",'"+id+"'";
+		}
 
 		hpAssignmentsD.addUpdateColumn("working_state", toWorkingState);
 		hpAssignmentsD.addUpdateColumn("last_updated_by", "1");
 		hpAssignmentsD.addUpdateColumn("last_update_date", "sysdate", "Date");
 
-		queryAdvisor.addWhereClause("assignment_id = '"+assignmentId+"'");
+		queryAdvisor.addWhereClause("assignment_id in ("+ids+")");
 
 		hpAssignmentsDDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
 
 		return hpAssignmentsDDao.updateAssignmentByColumn(queryAdvisor, hpAssignmentsD);
 	}
 
-	public int updateEndUser(QueryAdvisor queryAdvisor, String assignmentId, String toEndUserId) throws Exception {
+	public int updateEndUser(QueryAdvisor queryAdvisor, String assignmentIds[], String toEndUserId) throws Exception {
 		HpAssignmentsD hpAssignmentsD = new HpAssignmentsD();
+		String ids = "";
+
+		for (String id : assignmentIds) {
+			ids += CommonUtil.isBlank(ids) ? "'"+id+"'" : ",'"+id+"'";
+		}
 
 		hpAssignmentsD.addUpdateColumn("eu_organisation_id", toEndUserId);
 		hpAssignmentsD.addUpdateColumn("last_updated_by", "1");
 		hpAssignmentsD.addUpdateColumn("last_update_date", "sysdate", "Date");
 
-		queryAdvisor.addWhereClause("assignment_id = '"+assignmentId+"'");
+		queryAdvisor.addWhereClause("assignment_id in ("+ids+")");
 
 		hpAssignmentsDDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
 
