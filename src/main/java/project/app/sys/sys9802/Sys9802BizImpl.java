@@ -172,7 +172,7 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 		try {
 			prtAssignmentSetupDao.setDataSourceName(dataSource);
 			result = prtAssignmentSetupDao.deleteByAssignmentIds(assignmentIds);
-			if (result <= 0) {
+			if (result < 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
 			}
 
