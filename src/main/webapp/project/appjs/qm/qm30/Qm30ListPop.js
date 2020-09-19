@@ -161,14 +161,14 @@ $(function() {
 
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiRadio().setName("rdoForSave").setValue(ds.getValue(i, "ORGANISATION_ID"))));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "ORGANISATION_ID")).setScript("doSave('"+ds.getValue(i, "ORGANISATION_ID")+"')")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(commonJs.abbreviate(ds.getValue(i, "ORGANISATION_NAME"), 50)).setScript("doSave('"+ds.getValue(i, "ORGANISATION_ID")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "ORGANISATION_NAME")).setScript("doSave('"+ds.getValue(i, "ORGANISATION_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ORGANISATION_TYPE_MEANING")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "RELATIONSHIP")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ABN")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ACN")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "STATE_MEANING")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "COUNTRY")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "ADDRESS"), 50)));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ADDRESS")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "FIRST_CONTACT_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "CSC_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "CDM_CRM_NAME")));
@@ -254,7 +254,7 @@ $(function() {
 		});
 
 		commonJs.setAutoComplete($("#cscName"), {
-			method:"getEsEmployeeByName",
+			method:"getEsEmployeeByNameOrPersonNumber",
 			label:"full_name_with_person_number",
 			value:"person_id",
 			minLength:2,
@@ -278,7 +278,7 @@ $(function() {
 		});
 
 		commonJs.setAutoComplete($("#crmName"), {
-			method:"getEsEmployeeByName",
+			method:"getEsEmployeeByNameOrPersonNumber",
 			label:"full_name_with_person_number",
 			value:"person_id",
 			minLength:2,
@@ -307,7 +307,7 @@ $(function() {
 			value:"country_name",
 			minLength:2,
 			focus: function(event, ui) {
-				$("#orgCountryName").val(ui.item.label);
+				$("#orgCountryName").val(ui.item.value);
 				return false;
 			},
 			select:function(event, ui) {

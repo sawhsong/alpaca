@@ -38,13 +38,14 @@ public class Qm40BizImpl extends BaseBiz implements Qm40Biz {
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		String asgId = dsReq.getValue("asgId");
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			qa.setObject("dataSource", dataSource);
 			qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
-			qa.addAutoFillCriteria(dsReq.getValue("asgId"), "assignment_id like '"+dsReq.getValue("asgId")+"%'");
+			qa.addAutoFillCriteria(asgId, "assignment_id "+CommonUtil.getSearchCriteriaWhereClauseString(asgId));
 			qa.addAutoFillCriteria(dsReq.getValue("personId"), "person_id = '"+dsReq.getValue("personId")+"'");
 			qa.addAutoFillCriteria(dsReq.getValue("billingCodeId"), "billing_code_id = '"+dsReq.getValue("billingCodeId")+"'");
 			qa.addAutoFillCriteria(dsReq.getValue("billingOrgId"), "billing_organisation_id = '"+dsReq.getValue("billingOrgId")+"'");

@@ -50,24 +50,9 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 		String dateFormat = ConfigUtil.getProperty("format.date.java");
 
 		try {
-			if (CommonUtil.contains(invoiceId, "*")) {
-				invoiceId = CommonUtil.replace(invoiceId, "*", "%");
-				qa.addAutoFillCriteria(invoiceId, "inv.invoice_id like '"+invoiceId+"'");
-			} else if (CommonUtil.contains(invoiceId, ",")) {
-				String invoiceIds[] = CommonUtil.splitWithTrim(invoiceId, ",");
-				String ids = "";
-
-				for (String id : invoiceIds) {
-					ids += CommonUtil.isBlank(ids) ? "'"+id+"'" : ",'"+id+"'";
-				}
-				qa.addAutoFillCriteria(invoiceId, "inv.invoice_id in ("+ids+")");
-			} else {
-				qa.addAutoFillCriteria(invoiceId, "inv.invoice_id like '"+invoiceId+"%'");
-			}
-
 			qa.setObject("dataSource", dataSource);
 			qa.addVariable("dateFormat", dateFormat);
-
+			qa.addAutoFillCriteria(invoiceId, "inv.invoice_id "+CommonUtil.getSearchCriteriaWhereClauseString(invoiceId));
 			qa.addAutoFillCriteria(dsReq.getValue("dateFrom"), "trunc(inv.invoice_date) >= to_date('"+dsReq.getValue("dateFrom")+"', '"+dateFormat+"')");
 			qa.addAutoFillCriteria(dsReq.getValue("dateTo"), "trunc(inv.invoice_date) <= to_date('"+dsReq.getValue("dateTo")+"', '"+dateFormat+"')");
 			qa.addAutoFillCriteria(dsReq.getValue("billingOrgId"), "inv.pay_to_organisation_id = '"+dsReq.getValue("billingOrgId")+"'");
@@ -234,24 +219,9 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 					"Invoice Type", "Status", "Pay To Org Id", "Pay To Org Name", "Person Numnber", "Person Name", "Period Start", "Period End",
 					"Generation Type", "Created Date", "Created By", "Updated Date", "Updated By", "Source", "Source Id"};
 
-			if (CommonUtil.contains(invoiceId, "*")) {
-				invoiceId = CommonUtil.replace(invoiceId, "*", "%");
-				qa.addAutoFillCriteria(invoiceId, "inv.invoice_id like '"+invoiceId+"'");
-			} else if (CommonUtil.contains(invoiceId, ",")) {
-				String invoiceIds[] = CommonUtil.splitWithTrim(invoiceId, ",");
-				String ids = "";
-
-				for (String id : invoiceIds) {
-					ids += CommonUtil.isBlank(ids) ? "'"+id+"'" : ",'"+id+"'";
-				}
-				qa.addAutoFillCriteria(invoiceId, "inv.invoice_id in ("+ids+")");
-			} else {
-				qa.addAutoFillCriteria(invoiceId, "inv.invoice_id like '"+invoiceId+"%'");
-			}
-
 			qa.setObject("dataSource", dataSource);
 			qa.addVariable("dateFormat", dateFormat);
-
+			qa.addAutoFillCriteria(invoiceId, "inv.invoice_id "+CommonUtil.getSearchCriteriaWhereClauseString(invoiceId));
 			qa.addAutoFillCriteria(dsReq.getValue("dateFrom"), "trunc(inv.invoice_date) >= to_date('"+dsReq.getValue("dateFrom")+"', '"+dateFormat+"')");
 			qa.addAutoFillCriteria(dsReq.getValue("dateTo"), "trunc(inv.invoice_date) <= to_date('"+dsReq.getValue("dateTo")+"', '"+dateFormat+"')");
 			qa.addAutoFillCriteria(dsReq.getValue("billingOrgId"), "hbc.billing_organization_id = '"+dsReq.getValue("billingOrgId")+"'");

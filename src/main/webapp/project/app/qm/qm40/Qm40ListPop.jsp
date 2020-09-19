@@ -55,10 +55,10 @@
 	<table class="tblSearch withPadding">
 		<colgroup>
 			<col width="7%"/>
-			<col width="8%"/>
-			<col width="6%"/>
+			<col width="12%"/>
+			<col width="5%"/>
 			<col width="18%"/>
-			<col width="6%"/>
+			<col width="7%"/>
 			<col width="20%"/>
 			<col width="10%"/>
 			<col width="*"/>

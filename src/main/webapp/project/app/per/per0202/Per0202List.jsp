@@ -68,22 +68,22 @@
 		<div class="panel-body">
 			<table class="tblDefault withPadding">
 				<colgroup>
-					<col width="9%"/>
-					<col width="20%"/>
-					<col width="9%"/>
-					<col width="20%"/>
-					<col width="9%"/>
-					<col width="20%"/>
-					<col width="9%"/>
+					<col width="8%"/>
+					<col width="18%"/>
+					<col width="11%"/>
+					<col width="18%"/>
+					<col width="6%"/>
+					<col width="18%"/>
+					<col width="7%"/>
 					<col width="*"/>
 				</colgroup>
 				<tr>
 					<th class="thDefault rt">Person equals</th>
-					<td class="tdDefault"><ui:hidden name="personId" value="<%=personId%>"/><ui:text name="personEquals" value="<%=personNameToDisplay%>" style="width:280px"/></td>
-					<th class="thDefault rt">Person like</th>
-					<td class="tdDefault"><ui:text name="personLike" value="<%=personNumber%>" style="width:280px"/></td>
+					<td class="tdDefault"><ui:hidden name="personId" value="<%=personId%>"/><ui:text name="personEquals" value="<%=personNameToDisplay%>" style="width:95%"/></td>
+					<th class="thDefault rt">Person Number/Name like</th>
+					<td class="tdDefault"><ui:text name="personLike" value="<%=personNumber%>" style="width:95%"/></td>
 					<th class="thSearch rt">Person Id like</th>
-					<td class="tdSearch"><ui:text name="personIdLike" style="width:280px"/></td>
+					<td class="tdSearch"><ui:text name="personIdLike" style="width:95%"/></td>
 					<th class="thSearch rt"></th>
 					<td class="tdSearch"></td>
 				</tr>
@@ -91,15 +91,15 @@
 					<th class="thDefault rt"><mc:msg key="per0202.search.empOrg"/></th>
 					<td class="tdDefault">
 						<ui:hidden name="empOrgId"/>
-						<ui:text name="empOrgName" className="hor" style="width:280px"/>
+						<ui:text name="empOrgName" className="hor" style="width:95%"/>
 <%-- 						<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/> --%>
 					</td>
 					<th class="thDefault rt"><mc:msg key="per0202.search.personType"/></th>
-					<td class="tdDefault"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:280px"/></td>
+					<td class="tdDefault"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:95%"/></td>
 					<th class="thDefault rt"><mc:msg key="per0202.search.email"/></th>
-					<td class="tdDefault"><ui:text name="email" style="width:280px"/></td>
+					<td class="tdDefault"><ui:text name="email" style="width:95%"/></td>
 					<th class="thDefault rt"><mc:msg key="per0202.search.mobile"/></th>
-					<td class="tdDefault"><ui:text name="mobile" style="width:280px"/></td>
+					<td class="tdDefault"><ui:text name="mobile" style="width:100%"/></td>
 				</tr>
 			</table>
 		</div>

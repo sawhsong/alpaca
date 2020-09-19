@@ -65,9 +65,9 @@
 		</colgroup>
 		<tr>
 			<th class="thSearch rt">Organisation equals</th>
-			<td class="tdSearch"><ui:hidden name="orgId"/><ui:text name="orgEquals" style="width:210px"/></td>
+			<td class="tdSearch"><ui:hidden name="orgId"/><ui:text name="orgEquals" style="width:95%"/></td>
 			<th class="thSearch rt">Organisation like</th>
-			<td class="tdSearch"><ui:text name="orgLike" style="width:210px"/></td>
+			<td class="tdSearch"><ui:text name="orgLike" style="width:95%"/></td>
 			<th class="thSearch rt"><mc:msg key="qm.search.orgType"/></th>
 			<td class="tdSearch"><ui:ccselect name="orgType" caption="==Select==" codeType="ORGANISATION_TYPES"/></td>
 			<th class="thSearch rt"><mc:msg key="qm.search.orgState"/></th>
@@ -77,17 +77,17 @@
 			<th class="thSearch rt"><mc:msg key="qm.search.csc"/></th>
 			<td class="tdSearch">
 				<ui:hidden name="cscId"/>
-				<ui:text name="cscName" className="hor" style="width:210px"/>
+				<ui:text name="cscName" className="hor" style="width:95%"/>
 <%-- 				<ui:icon id="icnCscSearch" className="fa-search hor"/> --%>
 			</td>
 			<th class="thSearch rt"><mc:msg key="qm.search.crm"/></th>
 			<td class="tdSearch">
 				<ui:hidden name="crmId"/>
-				<ui:text name="crmName" className="hor" style="width:210px"/>
+				<ui:text name="crmName" className="hor" style="width:95%"/>
 <%-- 				<ui:icon id="icnCrmSearch" className="fa-search hor"/> --%>
 			</td>
 			<th class="thSearch rt"><mc:msg key="qm.search.orgCountry"/></th>
-			<td class="tdSearch"><ui:text name="orgCountryName" className="hor"/></td>
+			<td class="tdSearch"><ui:text name="orgCountryName" className="hor" style="width:95%"/></td>
 			<th class="thSearch rt"></th>
 			<td class="tdSearch"></td>
 		</tr>
