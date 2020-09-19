@@ -32,8 +32,8 @@ public class Sys9804Action extends BaseAction {
 		return "detail";
 	}
 
-	public String getUpdateStatus() throws Exception {
-		biz.getUpdateStatus(paramEntity);
+	public String getUpdateInvoiceStatus() throws Exception {
+		biz.getUpdateInvoiceStatus(paramEntity);
 		return "updateStatus";
 	}
 
@@ -42,9 +42,9 @@ public class Sys9804Action extends BaseAction {
 		return "updateInvoiceSubTotal";
 	}
 
-	public String doUpdateStatus() throws Exception {
+	public String doUpdateInvoiceStatus() throws Exception {
 		try {
-			biz.doUpdateStatus(paramEntity);
+			biz.doUpdateInvoiceStatus(paramEntity);
 		} catch (Exception ex) {
 		}
 		setRequestAttribute("paramEntity", paramEntity);

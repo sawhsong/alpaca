@@ -9,9 +9,8 @@
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
 	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
-	HpInvoice invoice = (HpInvoice)paramEntity.getObject("invoice");
+	DataSet invoice = (DataSet)paramEntity.getObject("invoice");
 	String mode = requestDataSet.getValue("mode");
-	String dateFormat = ConfigUtil.getProperty("format.date.java");
 %>
 <%/************************************************************************************************
 * HTML
@@ -31,7 +30,6 @@
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
 var mode = "<%=mode%>";
-var invoiceId = "<%=requestDataSet.getValue("invoiceId")%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -58,18 +56,13 @@ var invoiceId = "<%=requestDataSet.getValue("invoiceId")%>";
 <div id="divSearchCriteriaArea"></div>
 <div id="divInformArea" class="areaContainerPopup">
 	<table class="tblInform">
-		<caption class="captionInform"><mc:msg key="sys9804.caption.invoiceInfo"/></caption>
 		<colgroup>
-			<col width="18%"/>
-			<col width="20%"/>
-			<col width="25%"/>
+			<col width="11%"/>
 			<col width="*"/>
 		</colgroup>
 		<tr>
-			<th class="thInform Rt"><mc:msg key="sys9804.header.invoiceId"/></th>
-			<td class="tdInform"><%=CommonUtil.getNumberMask(invoice.getInvoiceId(), "####")%></td>
-			<th class="thInform Rt"><mc:msg key="sys9804.header.invoiceDate"/></th>
-			<td class="tdInform"><%=CommonUtil.toString(invoice.getInvoiceDate(), dateFormat)%></td>
+			<th class="thInform Rt">Update Invoice Status To</th>
+			<td class="tdInform"><ui:ccselect name="statusTo" codeType="INVOICE_STATUS"/></td>
 		</tr>
 	</table>
 </div>
@@ -83,20 +76,67 @@ var invoiceId = "<%=requestDataSet.getValue("invoiceId")%>";
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
-	<table class="tblEdit">
-		<caption class="captionDefault"><mc:msg key="sys9804.header.status"/></caption>
+	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="50%"/>
-			<col width="50%"/>
-		</colgroup>
-		<tr>
-			<th class="thEdit Ct"><mc:msg key="sys9804.header.from"/></th>
-			<th class="thEdit Ct"><mc:msg key="sys9804.header.to"/></th>
-		</tr>
-		<tr>
-			<td class="tdEdit Ct"><ui:ccselect name="statusFrom" codeType="INVOICE_STATUS" selectedValue="<%=invoice.getStatus()%>" status="disabled"/></td>
-			<td class="tdEdit Ct"><ui:ccselect name="statusTo" codeType="INVOICE_STATUS"/></td>
-		</tr>
+				<col width="2%"/>
+				<col width="6%"/>
+				<col width="9%"/>
+				<col width="8%"/>
+				<col width="6%"/>
+				<col width="7%"/>
+				<col width="7%"/>
+				<col width="6%"/>
+				<col width="8%"/>
+				<col width="*"/>
+				<col width="6%"/>
+				<col width="6%"/>
+			</colgroup>
+		<thead id="tblGridHead">
+			<tr>
+				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+				<th class="thGrid">Invoice Id</th>
+				<th class="thGrid">Invoice Number</th>
+				<th class="thGrid">Group Invoice Id</th>
+				<th class="thGrid">Invoice Date</th>
+				<th class="thGrid">Invoice Amount</th>
+				<th class="thGrid">GST Amount</th>
+				<th class="thGrid">Total</th>
+				<th class="thGrid">Status</th>
+				<th class="thGrid">Invoice To</th>
+				<th class="thGrid">Period Start</th>
+				<th class="thGrid">Period End</th>
+			</tr>
+		</thead>
+		<tbody id="tblGridBody">
+<%
+		if (invoice.getRowCnt() > 0) {
+			for (int i=0; i<invoice.getRowCnt(); i++) {
+%>
+			<tr>
+				<td class="tdGrid Ct"><input type="checkbox" id="" name="chkForAction" class="chkEn inTblGrid" value="<%=invoice.getValue(i, "INVOICE_ID")%>"/></td>
+				<td class="tdGrid Ct"><%=invoice.getValue(i, "INVOICE_ID")%></td>
+				<td class="tdGrid Ct"><%=invoice.getValue(i, "INVOICE_NUMBER")%></td>
+				<td class="tdGrid Ct"><%=invoice.getValue(i, "PARENT_INVOICE_ID")%></td>
+				<td class="tdGrid Ct"><%=invoice.getValue(i, "INVOICE_DATE")%></td>
+				<td class="tdGrid Rt"><%=CommonUtil.getNumberMask(invoice.getValue(i, "INVOICE_AMOUNT"), "#,##0.00")%></td>
+				<td class="tdGrid Rt"><%=CommonUtil.getNumberMask(invoice.getValue(i, "GST_AMOUNT"), "#,##0.00")%></td>
+				<td class="tdGrid Rt"><%=CommonUtil.toString(CommonUtil.toDouble(invoice.getValue(i, "INVOICE_AMOUNT")) - CommonUtil.toDouble(invoice.getValue(i, "GST_AMOUNT")), "#,##0.00")%></td>
+				<td class="tdGrid Lt"><%=invoice.getValue(i, "STATUS_MEANING")%></td>
+				<td class="tdGrid Lt"><%=invoice.getValue(i, "PAY_TO_ORG_NAME")%></td>
+				<td class="tdGrid Ct"><%=invoice.getValue(i, "CON_PERIOD_START_DATE")%></td>
+				<td class="tdGrid Ct"><%=invoice.getValue(i, "CON_PERIOD_END_DATE")%></td>
+			</tr>
+<%
+			}
+		} else {
+%>
+			<tr>
+				<td class="tdGrid Ct" colspan="12"><mc:msg key="I001"/></td>
+			</tr>
+<%
+		}
+%>
+		</tbody>
 	</table>
 </div>
 <div id="divPagingArea"></div>

@@ -61,14 +61,14 @@
 		<caption><mc:msg key="page.com.searchCriteria"/></caption>
 		<colgroup>
 			<col width="5%"/>
-			<col width="8%"/>
-			<col width="5%"/>
+			<col width="7%"/>
+			<col width="6%"/>
 			<col width="17%"/>
 			<col width="5%"/>
 			<col width="*"/>
 			<col width="6%"/>
 			<col width="13%"/>
-			<col width="6%"/>
+			<col width="7%"/>
 			<col width="7%"/>
 			<col width="7%"/>
 			<col width="7%"/>

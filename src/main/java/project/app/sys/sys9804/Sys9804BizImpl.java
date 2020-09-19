@@ -95,16 +95,26 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 		return paramEntity;
 	}
 
-	public ParamEntity getUpdateStatus(ParamEntity paramEntity) throws Exception {
+	public ParamEntity getUpdateInvoiceStatus(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		QueryAdvisor qa = paramEntity.getQueryAdvisor();
+		String chkForAction = dsReq.getValue("chkForAction");
+		String assignmentIds[] = CommonUtil.splitWithTrim(chkForAction, ConfigUtil.getProperty("delimiter.record"));
+		String ids = "";
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			qa.setObject("dataSource", dataSource);
+			for (String id : assignmentIds) {
+				ids += CommonUtil.isBlank(ids) ? "'"+id+"'" : ",'"+id+"'";
+			}
 
-			paramEntity.setObject("invoice", invoiceBS.getInvoiceByInvoiceId(qa, dsReq.getValue("invoiceId")));
+			qa.setObject("dataSource", dataSource);
+			qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
+			qa.addAutoFillCriteria(ids, "inv.invoice_id in ("+ids+")");
+			qa.addOrderByClause("inv.invoice_id desc");
+
+			paramEntity.setObject("invoice", invoiceBS.getInvoiceList(qa));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -129,10 +139,11 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 		return paramEntity;
 	}
 
-	public ParamEntity doUpdateStatus(ParamEntity paramEntity) throws Exception {
+	public ParamEntity doUpdateInvoiceStatus(ParamEntity paramEntity) throws Exception {
 		DataSet dsReq = paramEntity.getRequestDataSet();
 		QueryAdvisor qa = paramEntity.getQueryAdvisor();
-		String invoiceId = dsReq.getValue("invoiceId");
+		String chkForAction = dsReq.getValue("chkForAction");
+		String assignmentIds[] = CommonUtil.splitWithTrim(chkForAction, ConfigUtil.getProperty("delimiter.record"));
 		String statusTo = dsReq.getValue("statusTo");
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
@@ -141,7 +152,7 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 		try {
 			qa.setObject("dataSource", dataSource);
 
-			result = invoiceBS.updateStatus(qa, invoiceId, statusTo);
+			result = invoiceBS.updateStatus(qa, assignmentIds, statusTo);
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
 			}
@@ -207,6 +218,7 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		ExportHelper exportHelper;
 		String columnHeader[], fileHeader[];
+		String invoiceId = dsReq.getValue("invoiceId");
 		String pageTitle, fileName;
 		String fileType = dsReq.getValue("fileType");
 		String dataRange = dsReq.getValue("dataRange");
@@ -222,9 +234,24 @@ public class Sys9804BizImpl extends BaseBiz implements Sys9804Biz {
 					"Invoice Type", "Status", "Pay To Org Id", "Pay To Org Name", "Person Numnber", "Person Name", "Period Start", "Period End",
 					"Generation Type", "Created Date", "Created By", "Updated Date", "Updated By", "Source", "Source Id"};
 
+			if (CommonUtil.contains(invoiceId, "*")) {
+				invoiceId = CommonUtil.replace(invoiceId, "*", "%");
+				qa.addAutoFillCriteria(invoiceId, "inv.invoice_id like '"+invoiceId+"'");
+			} else if (CommonUtil.contains(invoiceId, ",")) {
+				String invoiceIds[] = CommonUtil.splitWithTrim(invoiceId, ",");
+				String ids = "";
+
+				for (String id : invoiceIds) {
+					ids += CommonUtil.isBlank(ids) ? "'"+id+"'" : ",'"+id+"'";
+				}
+				qa.addAutoFillCriteria(invoiceId, "inv.invoice_id in ("+ids+")");
+			} else {
+				qa.addAutoFillCriteria(invoiceId, "inv.invoice_id like '"+invoiceId+"%'");
+			}
+
 			qa.setObject("dataSource", dataSource);
 			qa.addVariable("dateFormat", dateFormat);
-			qa.addAutoFillCriteria(dsReq.getValue("invoiceId"), "inv.invoice_id like '"+dsReq.getValue("invoiceId")+"%'");
+
 			qa.addAutoFillCriteria(dsReq.getValue("dateFrom"), "trunc(inv.invoice_date) >= to_date('"+dsReq.getValue("dateFrom")+"', '"+dateFormat+"')");
 			qa.addAutoFillCriteria(dsReq.getValue("dateTo"), "trunc(inv.invoice_date) <= to_date('"+dsReq.getValue("dateTo")+"', '"+dateFormat+"')");
 			qa.addAutoFillCriteria(dsReq.getValue("billingOrgId"), "hbc.billing_organization_id = '"+dsReq.getValue("billingOrgId")+"'");

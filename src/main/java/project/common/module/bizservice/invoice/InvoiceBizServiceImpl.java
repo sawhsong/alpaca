@@ -7,6 +7,7 @@ import project.conf.resource.ormapper.dto.oracle.HpInvoice;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 import zebra.example.common.extend.BaseBiz;
+import zebra.util.CommonUtil;
 
 public class InvoiceBizServiceImpl extends BaseBiz implements InvoiceBizService {
 	@Autowired
@@ -25,14 +26,19 @@ public class InvoiceBizServiceImpl extends BaseBiz implements InvoiceBizService 
 		return hpInvoiceDao.getByInvoiceId(invoiceId);
 	}
 
-	public int updateStatus(QueryAdvisor queryAdvisor, String invoiceId, String toStatus) throws Exception {
+	public int updateStatus(QueryAdvisor queryAdvisor, String invoiceIds[], String toStatus) throws Exception {
 		HpInvoice hpInvoice = new HpInvoice();
+		String ids = "";
+
+		for (String id : invoiceIds) {
+			ids += CommonUtil.isBlank(ids) ? "'"+id+"'" : ",'"+id+"'";
+		}
 
 		hpInvoice.addUpdateColumn("status", toStatus);
 		hpInvoice.addUpdateColumn("last_updated_by", "1");
 		hpInvoice.addUpdateColumn("last_update_date", "sysdate", "Date");
 
-		queryAdvisor.addWhereClause("invoice_id = '"+invoiceId+"'");
+		queryAdvisor.addWhereClause("invoice_id in ("+ids+")");
 
 		hpInvoiceDao.setDataSourceName((String)queryAdvisor.getObject("dataSource"));
 

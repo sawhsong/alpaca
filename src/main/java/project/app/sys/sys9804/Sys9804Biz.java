@@ -11,9 +11,9 @@ public interface Sys9804Biz {
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception;
-	public ParamEntity getUpdateStatus(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getUpdateInvoiceStatus(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getUpdateInvoiceSubTotal(ParamEntity paramEntity) throws Exception;
-	public ParamEntity doUpdateStatus(ParamEntity paramEntity) throws Exception;
+	public ParamEntity doUpdateInvoiceStatus(ParamEntity paramEntity) throws Exception;
 	public ParamEntity doUpdateInvoiceSubTotal(ParamEntity paramEntity) throws Exception;
 	public ParamEntity doCalculateAmount(ParamEntity paramEntity) throws Exception;
 	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception;

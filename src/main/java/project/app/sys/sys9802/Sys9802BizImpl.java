@@ -124,6 +124,7 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 			qa.setObject("dataSource", dataSource);
 			qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
 			qa.addAutoFillCriteria(ids, "assignment_id in ("+ids+")");
+			qa.addOrderByClause("person_name, assignment_id desc");
 
 			paramEntity.setObject("assignmentDataSet", assignmentBS.getAssignmentList(qa));
 			paramEntity.setSuccess(true);
@@ -150,6 +151,7 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 			qa.setObject("dataSource", dataSource);
 			qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
 			qa.addAutoFillCriteria(ids, "assignment_id in ("+ids+")");
+			qa.addOrderByClause("person_name, assignment_id desc");
 
 			paramEntity.setObject("assignmentDataSet", assignmentBS.getAssignmentList(qa));
 			paramEntity.setSuccess(true);
@@ -241,6 +243,7 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 		HttpSession session = paramEntity.getSession();
 		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		ExportHelper exportHelper;
+		String asgId = dsReq.getValue("asgId");
 		String columnHeader[], fileHeader[];
 		String pageTitle, fileName;
 		String fileType = dsReq.getValue("fileType");
@@ -256,9 +259,23 @@ public class Sys9802BizImpl extends BaseBiz implements Sys9802Biz {
 					"EU Org Id", "EU Org Name", "Is Active", "Assignment Start Date", "Assignment End Date", "Billing Code", "Billing Code Id", "Pay Method Id", "Pay Method",
 					"Is Preferred", "Has Workcover", "Has PRT", "Working State", "Last Invoice Date", "Last Paid Date"};
 
+			if (CommonUtil.contains(asgId, "*")) {
+				asgId = CommonUtil.replace(asgId, "*", "%");
+				qa.addAutoFillCriteria(asgId, "assignment_id like '"+asgId+"'");
+			} else if (CommonUtil.contains(asgId, ",")) {
+				String asgIds[] = CommonUtil.splitWithTrim(asgId, ",");
+				String ids = "";
+
+				for (String id : asgIds) {
+					ids += CommonUtil.isBlank(ids) ? "'"+id+"'" : ",'"+id+"'";
+				}
+				qa.addAutoFillCriteria(asgId, "assignment_id in ("+ids+")");
+			} else {
+				qa.addAutoFillCriteria(asgId, "assignment_id like '"+asgId+"%'");
+			}
+
 			qa.setObject("dataSource", dataSource);
 			qa.addVariable("dateFormat", ConfigUtil.getProperty("format.date.java"));
-			qa.addAutoFillCriteria(dsReq.getValue("asgId"), "assignment_id like '"+dsReq.getValue("asgId")+"%'");
 			qa.addAutoFillCriteria(dsReq.getValue("personId"), "person_id = '"+dsReq.getValue("personId")+"'");
 			qa.addAutoFillCriteria(dsReq.getValue("billingCodeId"), "billing_code_id = '"+dsReq.getValue("billingCodeId")+"'");
 			qa.addAutoFillCriteria(dsReq.getValue("billingOrgId"), "billing_organisation_id = '"+dsReq.getValue("billingOrgId")+"'");

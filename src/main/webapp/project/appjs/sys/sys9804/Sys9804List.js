@@ -166,17 +166,8 @@ $(function() {
 			url = "/sys/9804/getDetail.do";
 			width = 1900, height = 990;
 		} else if (param.mode == "UpdateStatus") {
-			if (commonJs.getCountChecked("chkForAction") > 1) {
-				commonJs.openDialog({
-					type:com.message.W000,
-					width:360,
-					contents:"You can select only one Invoice to update status."
-				});
-				return;
-			}
-
-			url = "/sys/9804/getUpdateStatus.do";
-			width = 700, height = 500;
+			url = "/sys/9804/getUpdateInvoiceStatus.do";
+			width = 1500, height = 700;
 		} else if (param.mode == "UpdateInvoiceSubTotal") {
 			if (commonJs.getCountChecked("chkForAction") > 1) {
 				commonJs.openDialog({
