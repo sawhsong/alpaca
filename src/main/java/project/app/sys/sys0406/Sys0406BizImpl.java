@@ -47,11 +47,8 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		String langCode = (String)session.getAttribute("langCode");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysUserDao.setDataSourceName(dataSource);
-
 			queryAdvisor.setObject("langCode", langCode);
 			queryAdvisor.setRequestDataSet(requestDataSet);
 			queryAdvisor.setPagination(true);
@@ -66,15 +63,11 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 	}
 
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String userId = requestDataSet.getValue("userId");
 		SysUser sysUser = new SysUser();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysUserDao.setDataSourceName(dataSource);
-
 			sysUser = sysUserDao.getUserByUserId(userId);
 			sysUser.setInsertUserName(DataHelper.getUserNameById(sysUser.getInsertUserId()));
 			sysUser.setUpdateUserName(DataHelper.getUserNameById(sysUser.getUpdateUserId()));
@@ -88,16 +81,12 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 	}
 
 	public ParamEntity getInsert(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		String[] maxRowPerPage = CommonUtil.split(ConfigUtil.getProperty("view.data.maxRowsPerPage"), ConfigUtil.getProperty("delimiter.data"));
 		String[] pageNumPerPage = CommonUtil.split(ConfigUtil.getProperty("view.data.pageNumsPerPage"), ConfigUtil.getProperty("delimiter.data"));
 		String photoPath = ConfigUtil.getProperty("path.image.photo")+"/"+"DefaultUser_128_Black.png";
 		String defaultAuthGroup = "Z";
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysUserDao.setDataSourceName(dataSource);
-
 			paramEntity.setObject("maxRowPerPage", maxRowPerPage);
 			paramEntity.setObject("pageNumPerPage", pageNumPerPage);
 			paramEntity.setObject("photoPath", photoPath);
@@ -110,16 +99,12 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 	}
 
 	public ParamEntity getUpdate(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		String[] maxRowPerPage = CommonUtil.split(ConfigUtil.getProperty("view.data.maxRowsPerPage"), ConfigUtil.getProperty("delimiter.data"));
 		String[] pageNumPerPage = CommonUtil.split(ConfigUtil.getProperty("view.data.pageNumsPerPage"), ConfigUtil.getProperty("delimiter.data"));
 		String photoPath = ConfigUtil.getProperty("path.image.photo")+"/"+"DefaultUser_128_Black.png";
 		String defaultAuthGroup = "Z";
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysUserDao.setDataSourceName(dataSource);
-
 			paramEntity = getDetail(paramEntity);
 			paramEntity.setObject("maxRowPerPage", maxRowPerPage);
 			paramEntity.setObject("pageNumPerPage", pageNumPerPage);
@@ -152,12 +137,9 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		String pathToSave = ConfigUtil.getProperty("path.image.photo");
 		SysUser sysUser = new SysUser();
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		File files[], tempFile;
 
 		try {
-			sysUserDao.setDataSourceName(dataSource);
-
 			sysUser.setUserId(userId);
 			sysUser.setUserName(requestDataSet.getValue("userName"));
 			sysUser.setLoginId(requestDataSet.getValue("loginId"));
@@ -237,12 +219,9 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		String pathToSave = ConfigUtil.getProperty("path.image.photo");
 		SysUser sysUser = new SysUser();
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		File files[], tempFile;
 
 		try {
-			sysUserDao.setDataSourceName(dataSource);
-
 			sysUser = sysUserDao.getUserByUserId(userId);
 
 			sysUser.setUserName(requestDataSet.getValue("userName"));
@@ -312,17 +291,13 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 	}
 
 	public ParamEntity exeDelete(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String userId = requestDataSet.getValue("userId");
 		String chkForDel = requestDataSet.getValue("chkForDel");
 		String userIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysUserDao.setDataSourceName(dataSource);
-
 			if (CommonUtil.isBlank(userId)) {
 				result = sysUserDao.delete(userIds);
 			} else {
@@ -342,18 +317,14 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 	}
 
 	public ParamEntity exeActionContextMenu(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String mode = requestDataSet.getValue("mode");
 		String chkForDel = requestDataSet.getValue("chkForDel");
 		String userIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
 		SysUser sysUser = new SysUser();
 		int result = 0;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysUserDao.setDataSourceName(dataSource);
-
 			if (CommonUtil.equals(mode, "UpdateAuthGroup")) {
 				sysUser.addUpdateColumn("auth_group_id", requestDataSet.getValue("authGroupToUpdate"));
 			} else if (CommonUtil.equals(mode, "UpdateUserType")) {
@@ -386,14 +357,11 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 		ExportHelper exportHelper;
 		String dataRange = requestDataSet.getValue("dataRange");
 		String langCode = (String)session.getAttribute("langCode");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			String pageTitle = "User List";
 			String fileName = "UserList";
 			String[] columnHeader = {"user_id", "user_name", "login_id", "auth_group_name", "user_type", "user_status", "email", "is_active", "update_date"};
-
-			sysUserDao.setDataSourceName(dataSource);
 
 			exportHelper = ExportUtil.getExportHelper(requestDataSet.getValue("fileType"));
 			exportHelper.setPageTitle(pageTitle);
@@ -421,13 +389,9 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 	}
 
 	public ParamEntity getAuthorityGroup(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysAuthGroupDao.setDataSourceName(dataSource);
-
 			queryAdvisor.addOrderByClause("group_id");
 
 			paramEntity.setAjaxResponseDataSet(sysAuthGroupDao.getAllAuthGroupDataSet(queryAdvisor));
@@ -440,16 +404,12 @@ public class Sys0406BizImpl extends BaseBiz implements Sys0406Biz {
 	}
 
 	public ParamEntity hasAuthKey(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 		DataSet resultDataSet = new DataSet();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String userId = requestDataSet.getValue("userId");
 		SysUser sysUser;
 
 		try {
-			sysUserDao.setDataSourceName(dataSource);
-
 			sysUser = sysUserDao.getUserByUserId(userId);
 
 			resultDataSet.addColumn("hasAuthKey", CommonUtil.isNotBlank(sysUser.getAuthenticationSecretKey()) ? "true" : "false");

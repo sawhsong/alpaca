@@ -57,11 +57,8 @@ public class Sys0408BizImpl extends BaseBiz implements Sys0408Biz {
 		String menuIds[] = CommonUtil.splitWithTrim(chkToAssign, ConfigUtil.getProperty("delimiter.record"));
 		SysMenuAuthLink sysMenuAuthLink = new SysMenuAuthLink();
 		int resultDelete = 0, resultInsert = 0;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysMenuAuthLinkDao.setDataSourceName(dataSource);
-
 			resultDelete = sysMenuAuthLinkDao.deleteByAuthGroupId(authGroupId);
 
 			if (CommonUtil.isNotBlank(chkToAssign)) {
@@ -93,11 +90,9 @@ public class Sys0408BizImpl extends BaseBiz implements Sys0408Biz {
 	}
 
 	private void setAuthorityGroup(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		QueryAdvisor qaAuth = paramEntity.getQueryAdvisor();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
 		qaAuth.addOrderByClause("group_id");
-		sysAuthGroupDao.setDataSourceName(dataSource);
 		paramEntity.setObject("authGroupDataSet", sysAuthGroupDao.getAllAuthGroupDataSet(qaAuth));
 	}
 }

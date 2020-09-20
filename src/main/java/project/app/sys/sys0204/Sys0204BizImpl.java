@@ -36,14 +36,10 @@ public class Sys0204BizImpl extends BaseBiz implements Sys0204Biz {
 	}
 
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysCountryCurrencyDao.setDataSourceName(dataSource);
-
 			queryAdvisor.setRequestDataSet(requestDataSet);
 			queryAdvisor.setPagination(true);
 
@@ -57,15 +53,11 @@ public class Sys0204BizImpl extends BaseBiz implements Sys0204Biz {
 	}
 
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String countryCurrencyId = requestDataSet.getValue("countryCurrencyId");
 		SysCountryCurrency sysCountryCurrency;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysCountryCurrencyDao.setDataSourceName(dataSource);
-
 			sysCountryCurrency = sysCountryCurrencyDao.getCountryCurrencyByCountryCurrencyId(countryCurrencyId);
 			sysCountryCurrency.setInsertUserName(DataHelper.getUserNameById(sysCountryCurrency.getInsertUserId()));
 			sysCountryCurrency.setUpdateUserName(DataHelper.getUserNameById(sysCountryCurrency.getUpdateUserId()));
@@ -102,11 +94,8 @@ public class Sys0204BizImpl extends BaseBiz implements Sys0204Biz {
 		String countryCurrencyId = CommonUtil.uid();
 		SysCountryCurrency sysCountryCurrency = new SysCountryCurrency();
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysCountryCurrencyDao.setDataSourceName(dataSource);
-
 			sysCountryCurrency.setCountryCurrencyId(countryCurrencyId);
 			sysCountryCurrency.setCurrencyName(requestDataSet.getValue("currencyName"));
 			sysCountryCurrency.setCurrencySymbol(requestDataSet.getValue("currencySymbol"));
@@ -139,11 +128,8 @@ public class Sys0204BizImpl extends BaseBiz implements Sys0204Biz {
 		String countryCurrencyId = requestDataSet.getValue("countryCurrencyId");
 		SysCountryCurrency sysCountryCurrency = new SysCountryCurrency();
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysCountryCurrencyDao.setDataSourceName(dataSource);
-
 			sysCountryCurrency = sysCountryCurrencyDao.getCountryCurrencyByCountryCurrencyId(countryCurrencyId);
 
 			sysCountryCurrency.setCurrencyName(requestDataSet.getValue("currencyName"));
@@ -172,17 +158,13 @@ public class Sys0204BizImpl extends BaseBiz implements Sys0204Biz {
 	}
 
 	public ParamEntity exeDelete(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String countryCurrencyId = requestDataSet.getValue("countryCurrencyId");
 		String chkForDel = requestDataSet.getValue("chkForDel");
 		String countryCurrencyIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysCountryCurrencyDao.setDataSourceName(dataSource);
-
 			if (CommonUtil.isBlank(countryCurrencyId)) {
 				result = sysCountryCurrencyDao.delete(countryCurrencyIds);
 			} else {
@@ -202,19 +184,15 @@ public class Sys0204BizImpl extends BaseBiz implements Sys0204Biz {
 	}
 
 	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		ExportHelper exportHelper;
 		String dataRange = requestDataSet.getValue("dataRange");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			String pageTitle = "Country Currency Code List";
 			String fileName = "CountryCurrencyCodeList";
 			String[] columnHeader = {"currency_name", "currency_alphabetic_code", "currency_symbol", "country_name", "country_code_3"};
-
-			sysCountryCurrencyDao.setDataSourceName(dataSource);
 
 			exportHelper = ExportUtil.getExportHelper(requestDataSet.getValue("fileType"));
 			exportHelper.setPageTitle(pageTitle);

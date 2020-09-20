@@ -40,14 +40,10 @@ public class Sys9902BizImpl extends BaseBiz implements Sys9902Biz {
 	}
 
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysBoardDao.setDataSourceName(dataSource);
-
 			queryAdvisor.setRequestDataSet(requestDataSet);
 			queryAdvisor.setPagination(true);
 
@@ -61,15 +57,10 @@ public class Sys9902BizImpl extends BaseBiz implements Sys9902Biz {
 	}
 
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String articleId = requestDataSet.getValue("articleId");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysBoardDao.setDataSourceName(dataSource);
-			sysBoardFileDao.setDataSourceName(dataSource);
-
 			paramEntity.setObject("sysBoard", sysBoardDao.getBoardByArticleId(articleId));
 			paramEntity.setObject("fileDataSet", sysBoardFileDao.getBoardFileListDataSetByArticleId(articleId));
 
@@ -102,12 +93,9 @@ public class Sys9902BizImpl extends BaseBiz implements Sys9902Biz {
 	}
 
 	public ParamEntity getAttachedFile(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysBoardFileDao.setDataSourceName(dataSource);
 			paramEntity.setAjaxResponseDataSet(sysBoardFileDao.getBoardFileListDataSetByArticleId(requestDataSet.getValue("articleId")));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
@@ -124,11 +112,8 @@ public class Sys9902BizImpl extends BaseBiz implements Sys9902Biz {
 		String uid = CommonUtil.uid();
 		String loggedInUserId = (String)session.getAttribute("UserId");
 		int result = -1;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysBoardDao.setDataSourceName(dataSource);
-
 			sysBoard.setArticleId(uid);
 			sysBoard.setBoardType(CommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
 			sysBoard.setWriterId(loggedInUserId);
@@ -164,11 +149,8 @@ public class Sys9902BizImpl extends BaseBiz implements Sys9902Biz {
 		String loggedInUserId = (String)session.getAttribute("UserId");
 		SysBoard sysBoard;
 		int result = 0;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysBoardDao.setDataSourceName(dataSource);
-
 			sysBoard = sysBoardDao.getBoardByArticleId(articleId);
 			sysBoard.setArticleId(articleId);
 			sysBoard.setWriterId(loggedInUserId);
@@ -194,17 +176,13 @@ public class Sys9902BizImpl extends BaseBiz implements Sys9902Biz {
 	}
 
 	public ParamEntity exeDelete(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String articleId = requestDataSet.getValue("articleId");
 		String chkForDel = requestDataSet.getValue("chkForDel");
 		String articleIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
 		int result = 0;
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
-			sysBoardDao.setDataSourceName(dataSource);
-
 			if (CommonUtil.isBlank(articleId)) {
 				result = sysBoardDao.delete(articleIds);
 			} else {
@@ -224,7 +202,6 @@ public class Sys9902BizImpl extends BaseBiz implements Sys9902Biz {
 	}
 
 	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		ExportHelper exportHelper;
@@ -232,14 +209,11 @@ public class Sys9902BizImpl extends BaseBiz implements Sys9902Biz {
 		String pageTitle, fileName;
 		String fileType = requestDataSet.getValue("fileType");
 		String dataRange = requestDataSet.getValue("dataRange");
-		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
 
 		try {
 			pageTitle = "Board List";
 			fileName = "BoardList";
 			columnHeader = new String[]{"article_id", "writer_name", "writer_email", "article_subject", "created_date"};
-
-			sysBoardDao.setDataSourceName(dataSource);
 
 			exportHelper = ExportUtil.getExportHelper(fileType);
 			exportHelper.setPageTitle(pageTitle);
