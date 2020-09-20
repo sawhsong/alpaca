@@ -162,7 +162,7 @@ $(function() {
 			width = 1900, height = 990;
 		} else if (param.mode == "UnlockPrt") {
 			url = "/sys/9802/getUnlockPrt.do";
-			width = 1800, height = 600;
+			width = 1900, height = 600;
 		} else if (param.mode == "UpdateWorkingState") {
 			url = "/sys/9802/getUpdateWorkingState.do";
 			width = 1000, height = 500;

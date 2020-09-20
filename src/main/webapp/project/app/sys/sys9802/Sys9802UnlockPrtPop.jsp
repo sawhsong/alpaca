@@ -68,32 +68,34 @@ var mode = "<%=mode%>";
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
 				<col width="2%"/>
-				<col width="6%"/>
-				<col width="13%"/>
-				<col width="7%"/>
-				<col width="6%"/>
-				<col width="6%"/>
-				<col width="*"/>
-				<col width="15%"/>
-				<col width="9%"/>
-				<col width="10%"/>
-				<col width="6%"/>
 				<col width="4%"/>
+				<col width="12%"/>
+				<col width="6%"/>
+				<col width="5%"/>
+				<col width="4%"/>
+				<col width="9%"/>
+				<col width="9%"/>
+				<col width="*"/>
+				<col width="5%"/>
+				<col width="10%"/>
+				<col width="15%"/>
+				<col width="5%"/>
 			</colgroup>
 		<thead id="tblGridHead">
 			<tr>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
-				<th class="thGrid">Assignment Id</th>
+				<th class="thGrid">Asg Id</th>
 				<th class="thGrid">Assignment Number</th>
-				<th class="thGrid">Last Invoice Date</th>
-				<th class="thGrid">Last Paid Date</th>
-				<th class="thGrid">PRT Setup Id</th>
-				<th class="thGrid">PRT Organisation</th>
-				<th class="thGrid">PRT Scenario</th>
+				<th class="thGrid">Last Invoiced</th>
+				<th class="thGrid">Last Paid</th>
+				<th class="thGrid">PRT Id</th>
+				<th class="thGrid">PRT Status</th>
 				<th class="thGrid">PRT Working State</th>
+				<th class="thGrid">PRT Organisation</th>
+				<th class="thGrid">Percentage</th>
 				<th class="thGrid">Created By</th>
-				<th class="thGrid">Creation Date</th>
-				<th class="thGrid">Is Active</th>
+				<th class="thGrid">PRT Scenario</th>
+				<th class="thGrid">Created Date</th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
@@ -108,19 +110,20 @@ var mode = "<%=mode%>";
 				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "LAST_INVOICE_DATE")%></td>
 				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "LAST_PAID_DATE")%></td>
 				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "PRT_ASSIGNMENT_SETUP_ID")%></td>
-				<td class="tdGrid Lt"><%=prtSetup.getValue(i, "PRT_ORGANISATION")%></td>
-				<td class="tdGrid Lt"><%=prtSetup.getValue(i, "PRT_SCENARIO")%></td>
+				<td class="tdGrid Lt"><%=prtSetup.getValue(i, "PRT_STATUS_MEANING")%></td>
 				<td class="tdGrid Lt"><%=prtSetup.getValue(i, "PRT_WORKING_STATE_MEANING")%></td>
+				<td class="tdGrid Lt"><%=prtSetup.getValue(i, "PRT_ORGANISATION")%></td>
+				<td class="tdGrid Rt"><%=CommonUtil.getNumberMask(prtSetup.getValue(i, "PRT_PERCENTAGE"), "#,##0.00")%></td>
 				<td class="tdGrid Lt"><%=prtSetup.getValue(i, "CREATED_BY_NAME")%></td>
+				<td class="tdGrid Lt"><%=prtSetup.getValue(i, "PRT_SCENARIO")%></td>
 				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "CREATION_DATE")%></td>
-				<td class="tdGrid Ct"><%=prtSetup.getValue(i, "IS_ACTIVE")%></td>
 			</tr>
 <%
 			}
 		} else {
 %>
 			<tr>
-				<td class="tdGrid Ct" colspan="12"><mc:msg key="I001"/></td>
+				<td class="tdGrid Ct" colspan="13"><mc:msg key="I001"/></td>
 			</tr>
 <%
 		}

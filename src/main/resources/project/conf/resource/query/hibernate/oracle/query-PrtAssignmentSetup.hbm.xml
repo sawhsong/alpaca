@@ -35,6 +35,8 @@
 		       (select scenario from prt_coh_scenario where prt_coh_scenario_id = pas.prt_coh_scenario_id) as prt_scenario,
 		       pas.prt_working_state,
 		       (select meaning from sys_common_lookups where lookup_type = 'STATES' and lookup_code = pas.prt_working_state) as prt_working_state_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'PRT_STATUS' and lookup_code = asg.prt_status) as prt_status_meaning,
+		       (select rate_percentage from prt_rate where state_code = pas.prt_working_state and trunc(sysdate) between trunc(fin_year_start_date) and trunc(fin_year_end_date)) as prt_percentage,
 		       pas.created_by,
 		       (select full_name from hp_person_d where person_id = pas.created_by) as created_by_name,
 		       to_char(pas.creation_date, '${dateFormat}') as creation_date,
