@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import project.common.extend.BaseAction;
 import project.conf.resource.ormapper.dto.oracle.HpPersonD;
 import project.conf.resource.ormapper.dto.oracle.SysUsers;
+import zebra.util.CommonUtil;
 
 public class Qm20Action extends BaseAction {
 	@Autowired
@@ -37,12 +38,12 @@ public class Qm20Action extends BaseAction {
 				HpPersonD hpPersonD = (HpPersonD)paramEntity.getObject("hpPersonD");
 				SysUsers sysUsers = (SysUsers)paramEntity.getObject("sysUsers");
 
-				session.setAttribute("PersonIdForAdminTool", hpPersonD.getPersonId());
+				session.setAttribute("PersonIdForAdminTool", CommonUtil.toStringForId(hpPersonD.getPersonId()));
 				session.setAttribute("PersonNumberForAdminTool", hpPersonD.getPersonNumber());
 				session.setAttribute("PersonFullNameForAdminTool", hpPersonD.getFullName());
 				session.setAttribute("HpPersonDForAdminTool", hpPersonD);
 
-				session.setAttribute("PersonIdQuickSearch", hpPersonD.getPersonId());
+				session.setAttribute("PersonIdQuickSearch", CommonUtil.toStringForId(hpPersonD.getPersonId()));
 				session.setAttribute("PersonNumberQuickSearch", hpPersonD.getPersonNumber());
 				session.setAttribute("PersonFullNameQuickSearch", hpPersonD.getFullName());
 				session.setAttribute("HpPersonDQuickSearch", hpPersonD);

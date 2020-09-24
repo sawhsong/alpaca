@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import project.common.extend.BaseAction;
 import project.conf.resource.ormapper.dto.oracle.HpPersonD;
 import zebra.data.DataSet;
+import zebra.util.CommonUtil;
 
 public class Per0202Action extends BaseAction {
 	@Autowired
@@ -35,12 +36,12 @@ public class Per0202Action extends BaseAction {
 		if (paramEntity.isSuccess()) {
 			HpPersonD hpPersonD = (HpPersonD)paramEntity.getObject("hpPersonD");
 
-			session.setAttribute("PersonIdForAdminTool", hpPersonD.getPersonId());
+			session.setAttribute("PersonIdForAdminTool", CommonUtil.toStringForId(hpPersonD.getPersonId()));
 			session.setAttribute("PersonNumberForAdminTool", hpPersonD.getPersonNumber());
 			session.setAttribute("PersonFullNameForAdminTool", hpPersonD.getFullName());
 			session.setAttribute("HpPersonDForAdminTool", hpPersonD);
 
-			session.setAttribute("PersonIdQuickSearch", hpPersonD.getPersonId());
+			session.setAttribute("PersonIdQuickSearch", CommonUtil.toStringForId(hpPersonD.getPersonId()));
 			session.setAttribute("PersonNumberQuickSearch", hpPersonD.getPersonNumber());
 			session.setAttribute("PersonFullNameQuickSearch", hpPersonD.getFullName());
 			session.setAttribute("HpPersonDQuickSearch", hpPersonD);

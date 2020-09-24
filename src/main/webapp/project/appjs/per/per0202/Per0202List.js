@@ -233,6 +233,9 @@ $(function() {
 			return;
 		}
 
+		commonJs.error("Not ready yet!");
+		return;
+
 		commonJs.doExport({
 			url:"/per/0202/exeExport.do",
 			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),

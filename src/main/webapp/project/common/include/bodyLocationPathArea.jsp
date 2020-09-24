@@ -4,7 +4,8 @@
 ************************************************************************************************/%>
 <%
 	SysUser sysUserLocationPathArea = (SysUser)session.getAttribute("SysUser");
-	String authGroupIdLocationPath = "99"; //sysUserLocationPathArea.getAuthGroupId();
+// 	String authGroupIdLocationPath = sysUserLocationPathArea.getAuthGroupId();
+	String authGroupIdLocationPath = "99";
 	boolean isVisibleAdminToolLocationPath = CommonUtil.toBoolean((String)session.getAttribute("isVisibleAdminTool"));
 %>
 

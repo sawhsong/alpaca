@@ -49,6 +49,34 @@ public class HpOrganisationDHDaoImpl extends BaseHDao implements HpOrganisationD
 		return selectAsDataSet(queryAdvisor, "query.HpOrganisationD.getDataSetByOrganisationIds");
 	}
 
+	public DataSet getOrganisationDataSetByCriteria(QueryAdvisor queryAdvisor) throws Exception {
+		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
+		String orgId = requestDataSet.getValue("orgId");
+		String orgLike = CommonUtil.lowerCase(requestDataSet.getValue("orgLike"));
+		String tmpOrgLike = CommonUtil.removeString(orgLike, "*", ",");
+		String orgType = requestDataSet.getValue("orgType");
+		String cscId = requestDataSet.getValue("cscId");
+		String crmId = requestDataSet.getValue("crmId");
+		String orgState = requestDataSet.getValue("orgState");
+		String orgCountry = requestDataSet.getValue("orgCountryName");
+
+		queryAdvisor.addAutoFillCriteria(orgId, "organisation_id = '"+orgId+"'");
+		if (CommonUtil.isNumeric(tmpOrgLike)) {
+			queryAdvisor.addAutoFillCriteria(orgLike, "organisation_id "+CommonUtil.getSearchCriteriaWhereClauseString(orgLike));
+		} else {
+			queryAdvisor.addAutoFillCriteria(orgLike, "lower(organisation_name) "+CommonUtil.getSearchCriteriaWhereClauseString(orgLike));
+		}
+		queryAdvisor.addAutoFillCriteria(orgType, "organisation_type = '"+orgType+"'");
+		queryAdvisor.addAutoFillCriteria(cscId, "es_payroll_consultant = '"+cscId+"'");
+		queryAdvisor.addAutoFillCriteria(crmId, "es_account_manager = '"+crmId+"'");
+		queryAdvisor.addAutoFillCriteria(orgState, "state = '"+orgState+"'");
+		queryAdvisor.addAutoFillCriteria(orgCountry, "country = '"+orgCountry+"'");
+
+		queryAdvisor.addOrderByClause("organisation_name");
+
+		return selectAsDataSet(queryAdvisor, "query.HpOrganisationD.getOrganisationDataSetByCriteria");
+	}
+
 	public DataSet getOrganisationDataSetForQuickMenu(QueryAdvisor queryAdvisor) throws Exception {
 		DataSet requestDataSet = queryAdvisor.getRequestDataSet();
 		String orgId = requestDataSet.getValue("orgId");
