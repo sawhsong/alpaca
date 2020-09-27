@@ -45,4 +45,18 @@ public class Org0202Action extends BaseAction {
 		}
 		return "organisationDetailFrameContainer";
 	}
+
+	public String getOrganisation() throws Exception {
+		biz.getOrganisation(paramEntity);
+		return "basicinfo";
+	}
+
+	public String getBasicInfo() throws Exception {
+		try {
+			biz.getBasicInfo(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
 }

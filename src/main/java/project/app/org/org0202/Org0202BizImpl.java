@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import project.common.extend.BaseBiz;
 import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
 import project.conf.resource.ormapper.dto.oracle.HpOrganisationD;
+import project.conf.resource.ormapper.dto.oracle.HpPersonD;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
 import zebra.data.QueryAdvisor;
@@ -66,6 +67,59 @@ public class Org0202BizImpl extends BaseBiz implements Org0202Biz {
 			hpOrganisationD = hpOrganisationDDao.getOrganisationByOrganisationId(organisationId);
 
 			paramEntity.setObject("hpOrganisationD", hpOrganisationD);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getOrganisation(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		String organisationId = dsRequest.getValue("organisationId");
+		HpOrganisationD hpOrganisationD;
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+			hpOrganisationDDao.setDataSourceName(dataSource);
+			hpOrganisationD = hpOrganisationDDao.getOrganisationByOrganisationId(organisationId);
+
+			paramEntity.setObject("hpOrganisationD", hpOrganisationD);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getBasicInfo(ParamEntity paramEntity) throws Exception {
+		DataSet dsRequest = paramEntity.getRequestDataSet();
+		String personId = dsRequest.getValue("personId");
+		HpPersonD hpPersonD, referral;
+		HpOrganisationD hpOrganisationD, referralOrg;
+		DataSet personDataSet;
+		String dateFormatFrom = ConfigUtil.getProperty("format.default.dateTime"), dateFormatTo = ConfigUtil.getProperty("format.date.java");
+		HttpSession session = paramEntity.getSession();
+		String dataSource = CommonUtil.nvl((String)session.getAttribute("DatabaseQuickSearch"), ConfigUtil.getProperty("jdbc.user.name"));
+
+		try {
+//			hpPersonDDao.setDataSourceName(dataSource);
+//			hpOrganisationDDao.setDataSourceName(dataSource);
+//
+//			hpPersonD = hpPersonDDao.getPersonByPersonId(personId);
+//			referral = hpPersonDDao.getPersonByPersonId(CommonUtil.toString(hpPersonD.getReferralId()));
+//			hpOrganisationD = hpOrganisationDDao.getOrganisationByOrganisationId(CommonUtil.toString(hpPersonD.getEmploymentCompanyOrgId()));
+//			referralOrg = hpOrganisationDDao.getOrganisationByOrganisationId(CommonUtil.toString(hpPersonD.getReferralOrganisationId()));
+//
+//			personDataSet = hpPersonD.getDataSet();
+//			personDataSet.setValue("DATE_OF_BIRTH", CommonUtil.changeDateFormat(personDataSet.getValue("DATE_OF_BIRTH"), dateFormatFrom, dateFormatTo));
+//			personDataSet.setValue("FIRST_CONTACT", CommonUtil.changeDateFormat(personDataSet.getValue("FIRST_CONTACT"), dateFormatFrom, dateFormatTo));
+//			personDataSet.addColumn("EMPLOYMENT_COMPANY_ORG_NAME", CommonUtil.nvl(hpOrganisationD.getOrganisationName())+" ("+CommonUtil.nvl(CommonUtil.toString(hpOrganisationD.getOrganisationId()))+")");
+//			personDataSet.addColumn("REFERRAL_NAME", CommonUtil.isBlank(referral.getFullName()) ? "" : CommonUtil.nvl(referral.getFullName())+" ("+CommonUtil.nvl(referral.getPersonNumber())+")");
+//			personDataSet.addColumn("REFERRAL_ORGANISATION_NAME", CommonUtil.isBlank(referralOrg.getOrganisationName()) ? "" : CommonUtil.nvl(referralOrg.getOrganisationName())+" ("+CommonUtil.nvl(CommonUtil.toString(referralOrg.getOrganisationId()))+")");
+
+//			paramEntity.setAjaxResponseDataSet(personDataSet);
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);

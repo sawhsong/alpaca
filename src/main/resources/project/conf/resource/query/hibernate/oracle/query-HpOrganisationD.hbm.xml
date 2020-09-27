@@ -99,9 +99,9 @@
 		       es_migration_administrator as migration_administrator,
 		       (select full_name from hp_person_d where person_id = es_migration_administrator) as migration_administrator_name,
 		       customer_category,
-		       (select meaning from sys_common_lookups where lookup_type = 'ORGANISATION_TYPES' and lookup_code = customer_category) as customer_category_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'CUSTOMER_CATEGORY' and lookup_code = customer_category) as customer_category_meaning,
 		       customer_stream,
-		       (select meaning from sys_common_lookups where lookup_type = 'CUSTOMER_STREAM' and lookup_code = customer_stream) as customer_stream_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'CUSTOMER_STREAM_ORG' and lookup_code = customer_stream) as customer_stream_meaning,
 		       tax_invoice_acceptance_type,
 		       (select meaning from sys_common_lookups where lookup_type = 'TAX_INVOICE_ACCEPTANCE_TYPE' and lookup_code = tax_invoice_acceptance_type) as tax_invoice_acceptance_meaning
 		  from hp_organisation_d
@@ -145,9 +145,9 @@
 		       es_migration_administrator as migration_administrator,
 		       (select full_name from hp_person_d where person_id = es_migration_administrator) as migration_administrator_name,
 		       customer_category,
-		       (select meaning from sys_common_lookups where lookup_type = 'ORGANISATION_TYPES' and lookup_code = customer_category) as customer_category_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'CUSTOMER_CATEGORY' and lookup_code = customer_category) as customer_category_meaning,
 		       customer_stream,
-		       (select meaning from sys_common_lookups where lookup_type = 'CUSTOMER_STREAM' and lookup_code = customer_stream) as customer_stream_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'CUSTOMER_STREAM_ORG' and lookup_code = customer_stream) as customer_stream_meaning,
 		       tax_invoice_acceptance_type,
 		       (select meaning from sys_common_lookups where lookup_type = 'TAX_INVOICE_ACCEPTANCE_TYPE' and lookup_code = tax_invoice_acceptance_type) as tax_invoice_acceptance_meaning
 		  from hp_organisation_d
@@ -191,9 +191,9 @@
 		       es_migration_administrator as migration_administrator,
 		       (select full_name from hp_person_d where person_id = es_migration_administrator) as migration_administrator_name,
 		       customer_category,
-		       (select meaning from sys_common_lookups where lookup_type = 'ORGANISATION_TYPES' and lookup_code = customer_category) as customer_category_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'CUSTOMER_CATEGORY' and lookup_code = customer_category) as customer_category_meaning,
 		       customer_stream,
-		       (select meaning from sys_common_lookups where lookup_type = 'CUSTOMER_STREAM' and lookup_code = customer_stream) as customer_stream_meaning,
+		       (select meaning from sys_common_lookups where lookup_type = 'CUSTOMER_STREAM_ORG' and lookup_code = customer_stream) as customer_stream_meaning,
 		       tax_invoice_acceptance_type,
 		       (select meaning from sys_common_lookups where lookup_type = 'TAX_INVOICE_ACCEPTANCE_TYPE' and lookup_code = tax_invoice_acceptance_type) as tax_invoice_acceptance_meaning
 		  from hp_organisation_d
