@@ -61,6 +61,8 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	private String CUSTOMER_CATEGORY;
 	private String customerStream;
 	private String CUSTOMER_STREAM;
+	private String customerType;
+	private String CUSTOMER_TYPE;
 	private String email;
 	private String EMAIL;
 	private double esAccountManager;
@@ -125,6 +127,8 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	private String POSTAL_SUBURB;
 	private String postCode;
 	private String POST_CODE;
+	private String product;
+	private String PRODUCT;
 	private String referenceNo1;
 	private String REFERENCE_NO_1;
 	private String referenceNo2;
@@ -133,6 +137,8 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	private String REFERENCE_NO_3;
 	private String relationship;
 	private String RELATIONSHIP;
+	private String role;
+	private String ROLE;
 	private String specialRequirements;
 	private String SPECIAL_REQUIREMENTS;
 	private String sroNumber;
@@ -143,6 +149,8 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	private String STP_BMS_ID;
 	private String suburb;
 	private String SUBURB;
+	private String swimLane;
+	private String SWIM_LANE;
 	private String taxInvoiceAcceptanceType;
 	private String TAX_INVOICE_ACCEPTANCE_TYPE;
 	private String terminationNotice;
@@ -384,6 +392,15 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	public void setCustomerStream(String customerStream) throws Exception {
 		this.customerStream = customerStream;
 		setValueFromAccessor("CUSTOMER_STREAM", customerStream);
+	}
+
+	public String getCustomerType() {
+		return customerType;
+	}
+
+	public void setCustomerType(String customerType) throws Exception {
+		this.customerType = customerType;
+		setValueFromAccessor("CUSTOMER_TYPE", customerType);
 	}
 
 	public String getEmail() {
@@ -674,6 +691,15 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		setValueFromAccessor("POST_CODE", postCode);
 	}
 
+	public String getProduct() {
+		return product;
+	}
+
+	public void setProduct(String product) throws Exception {
+		this.product = product;
+		setValueFromAccessor("PRODUCT", product);
+	}
+
 	public String getReferenceNo1() {
 		return referenceNo1;
 	}
@@ -708,6 +734,15 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	public void setRelationship(String relationship) throws Exception {
 		this.relationship = relationship;
 		setValueFromAccessor("RELATIONSHIP", relationship);
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) throws Exception {
+		this.role = role;
+		setValueFromAccessor("ROLE", role);
 	}
 
 	public String getSpecialRequirements() {
@@ -753,6 +788,15 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	public void setSuburb(String suburb) throws Exception {
 		this.suburb = suburb;
 		setValueFromAccessor("SUBURB", suburb);
+	}
+
+	public String getSwimLane() {
+		return swimLane;
+	}
+
+	public void setSwimLane(String swimLane) throws Exception {
+		this.swimLane = swimLane;
+		setValueFromAccessor("SWIM_LANE", swimLane);
 	}
 
 	public String getTaxInvoiceAcceptanceType() {
@@ -939,6 +983,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "csiReviewDate : "+csiReviewDate+"\n";
 		str += "customerCategory : "+customerCategory+"\n";
 		str += "customerStream : "+customerStream+"\n";
+		str += "customerType : "+customerType+"\n";
 		str += "email : "+email+"\n";
 		str += "esAccountManager : "+esAccountManager+"\n";
 		str += "esBdManager : "+esBdManager+"\n";
@@ -971,15 +1016,18 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "postalState : "+postalState+"\n";
 		str += "postalSuburb : "+postalSuburb+"\n";
 		str += "postCode : "+postCode+"\n";
+		str += "product : "+product+"\n";
 		str += "referenceNo1 : "+referenceNo1+"\n";
 		str += "referenceNo2 : "+referenceNo2+"\n";
 		str += "referenceNo3 : "+referenceNo3+"\n";
 		str += "relationship : "+relationship+"\n";
+		str += "role : "+role+"\n";
 		str += "specialRequirements : "+specialRequirements+"\n";
 		str += "sroNumber : "+sroNumber+"\n";
 		str += "state : "+state+"\n";
 		str += "stpBmsId : "+stpBmsId+"\n";
 		str += "suburb : "+suburb+"\n";
+		str += "swimLane : "+swimLane+"\n";
 		str += "taxInvoiceAcceptanceType : "+taxInvoiceAcceptanceType+"\n";
 		str += "terminationNotice : "+terminationNotice+"\n";
 		str += "webAddress : "+webAddress+"\n";
@@ -1017,6 +1065,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "<column name=\"csiReviewDate\" value=\""+csiReviewDate+"\">";
 		str += "<column name=\"customerCategory\" value=\""+customerCategory+"\">";
 		str += "<column name=\"customerStream\" value=\""+customerStream+"\">";
+		str += "<column name=\"customerType\" value=\""+customerType+"\">";
 		str += "<column name=\"email\" value=\""+email+"\">";
 		str += "<column name=\"esAccountManager\" value=\""+esAccountManager+"\">";
 		str += "<column name=\"esBdManager\" value=\""+esBdManager+"\">";
@@ -1049,15 +1098,18 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "<column name=\"postalState\" value=\""+postalState+"\">";
 		str += "<column name=\"postalSuburb\" value=\""+postalSuburb+"\">";
 		str += "<column name=\"postCode\" value=\""+postCode+"\">";
+		str += "<column name=\"product\" value=\""+product+"\">";
 		str += "<column name=\"referenceNo1\" value=\""+referenceNo1+"\">";
 		str += "<column name=\"referenceNo2\" value=\""+referenceNo2+"\">";
 		str += "<column name=\"referenceNo3\" value=\""+referenceNo3+"\">";
 		str += "<column name=\"relationship\" value=\""+relationship+"\">";
+		str += "<column name=\"role\" value=\""+role+"\">";
 		str += "<column name=\"specialRequirements\" value=\""+specialRequirements+"\">";
 		str += "<column name=\"sroNumber\" value=\""+sroNumber+"\">";
 		str += "<column name=\"state\" value=\""+state+"\">";
 		str += "<column name=\"stpBmsId\" value=\""+stpBmsId+"\">";
 		str += "<column name=\"suburb\" value=\""+suburb+"\">";
+		str += "<column name=\"swimLane\" value=\""+swimLane+"\">";
 		str += "<column name=\"taxInvoiceAcceptanceType\" value=\""+taxInvoiceAcceptanceType+"\">";
 		str += "<column name=\"terminationNotice\" value=\""+terminationNotice+"\">";
 		str += "<column name=\"webAddress\" value=\""+webAddress+"\">";
@@ -1095,6 +1147,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "\"csiReviewDate\":\""+csiReviewDate+"\", ";
 		str += "\"customerCategory\":\""+customerCategory+"\", ";
 		str += "\"customerStream\":\""+customerStream+"\", ";
+		str += "\"customerType\":\""+customerType+"\", ";
 		str += "\"email\":\""+email+"\", ";
 		str += "\"esAccountManager\":\""+esAccountManager+"\", ";
 		str += "\"esBdManager\":\""+esBdManager+"\", ";
@@ -1127,15 +1180,18 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "\"postalState\":\""+postalState+"\", ";
 		str += "\"postalSuburb\":\""+postalSuburb+"\", ";
 		str += "\"postCode\":\""+postCode+"\", ";
+		str += "\"product\":\""+product+"\", ";
 		str += "\"referenceNo1\":\""+referenceNo1+"\", ";
 		str += "\"referenceNo2\":\""+referenceNo2+"\", ";
 		str += "\"referenceNo3\":\""+referenceNo3+"\", ";
 		str += "\"relationship\":\""+relationship+"\", ";
+		str += "\"role\":\""+role+"\", ";
 		str += "\"specialRequirements\":\""+specialRequirements+"\", ";
 		str += "\"sroNumber\":\""+sroNumber+"\", ";
 		str += "\"state\":\""+state+"\", ";
 		str += "\"stpBmsId\":\""+stpBmsId+"\", ";
 		str += "\"suburb\":\""+suburb+"\", ";
+		str += "\"swimLane\":\""+swimLane+"\", ";
 		str += "\"taxInvoiceAcceptanceType\":\""+taxInvoiceAcceptanceType+"\", ";
 		str += "\"terminationNotice\":\""+terminationNotice+"\", ";
 		str += "\"webAddress\":\""+webAddress+"\", ";

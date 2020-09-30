@@ -55,7 +55,7 @@ var organisationId = "<%=organisationId%>";
 <div id="divSearchCriteriaArea">
 </div>
 <div id="divInformArea" class="areaContainerFrame">
-	<div id="divOrganisationHeader" class="alert alert-info"><%=hpOrganisationD.getOrganisationName()%> (<%=hpOrganisationD.getOrganisationId()%>)</div>
+	<div id="divOrganisationHeader" class="alert alert-info"><%=hpOrganisationD.getOrganisationName()%> (<%=organisationId%>)</div>
 </div>
 <%/************************************************************************************************
 * End of fixed panel
@@ -68,84 +68,108 @@ var organisationId = "<%=organisationId%>";
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerFrame">
 	<div id="divFrameDataAreaWrapper" style="overflow:auto">
-		<div id="divLeft" class="accordion" style="width:45%;float:left">
+		<div id="divLeft" class="accordion" style="width:49%;float:left">
 			<div class="accordionGroup">
-				<h3 id="hOrganisationDetails">Organisation Details</h3>
+				<h3>Organisation Details</h3>
 				<div id="divOrganisationDetails" class="accordionContents">
 					<table id="tblOrganisationDetails" class="tblEdit">
 						<colgroup>
-							<col width="25%"/>
-							<col width="*"/>
+							<col width="15%"/>
+							<col width="35%"/>
+							<col width="15%"/>
+							<col width="35%"/>
 						</colgroup>
 						<tbody>
 							<tr>
 								<th class="thEdit rt">Is Dormant?</th>
-								<td class="tdEdit"><ui:ccradio name="isDormant" codeType="SIMPLE_YN" isCustomised="true"/></td>
-							</tr>
-							<tr>
-								<th class="thEdit rt">First Contact</th>
-								<td class="tdEdit"><ui:text name="firstContactDate" status="display"/></td>
+								<td class="tdEdit"><ui:ccradio name="isDormant" codeType="SIMPLE_YN"  isCustomised="true"/></td>
+								<th class="thEdit rt mandatory">Organisation Id</th>
+								<td class="tdEdit"><ui:text name="organisationId" status="display"/></td>
 							</tr>
 							<tr>
 								<th class="thEdit rt mandatory">Organisation Name</th>
-								<td class="tdEdit"><ui:text name="organisationName" options="mandatory" checkName="Organisation Name"/></td>
+								<td class="tdEdit" colspan="3"><ui:text name="organisationName" options="mandatory" checkName="Organisation Name"/></td>
 							</tr>
 							<tr>
-								<th class="thEdit rt mandatory">ABN</th>
-								<td class="tdEdit"><ui:text name="abn" options="mandatory" checkName="ABN"/></td>
+								<th class="thEdit rt">First Contact</th>
+								<td class="tdEdit"><ui:text name="firstContactDate" className="Ct hor" style="width:90px" option="date"/><ui:icon id="icnFirstContactDate" className="fa-calendar hor"/></td>
+								<th class="thEdit rt"></th>
+								<td class="tdEdit"></td>
 							</tr>
 							<tr>
-								<th class="thEdit rt">ACN</th>
-								<td class="tdEdit"><ui:text name="acn"/></td>
+								<th class="thEdit rt">Address</th>
+								<td class="tdEdit" colspan="3"><ui:text name="addressLine" status="display"/></td>
 							</tr>
 							<tr>
-								<th class="thEdit rt">Branch Number</th>
-								<td class="tdEdit"><ui:text name="branchNumber"/></td>
-							</tr>
-							<tr>
-								<th class="thEdit rt">Tax Invoice Acceptance Type</th>
-								<td class="tdEdit"><ui:ccselect name="taxInvoiceAcceptanceType" codeType="TAX_INVOICE_ACCEPTANCE_TYPE"/></td>
-							</tr>
-							<tr>
-								<th class="thEdit rt">Registered for GST(AU/NZ)?</th>
-								<td class="tdEdit"><ui:ccradio name="gstReg" codeType="SIMPLE_YN" isCustomised="true"/></td>
-							</tr>
-							<tr>
-								<th class="thEdit rt">NZ GST Number</th>
-								<td class="tdEdit"><ui:text name="gstNumber"/></td>
-							</tr>
-							<tr>
-								<th class="thEdit rt">State</th>
-								<td class="tdEdit"><ui:text name="state" status="display"/></td>
-							</tr>
-							<tr>
-								<th class="thEdit rt mandatory">Organisation Type</th>
-								<td class="tdEdit"><ui:ccselect name="organisationType" codeType="ORGANISATION_TYPES" attribute="data-width:100%" options="mandatory" checkName="Organisation Type"/></td>
-							</tr>
-							<tr>
-								<th class="thEdit rt mandatory">Relationship</th>
-								<td class="tdEdit"><ui:ccselect name="relationship" codeType="ORG_RELATIONSHIP" isMultiple="true" attribute="data-width:100%" options="mandatory" checkName="Relationship"/></td>
-							</tr>
-							<tr>
+								<th class="thEdit rt">Jurisdiction</th>
+								<td class="tdEdit"><ui:text name="country" status="display"/></td>
 								<th class="thEdit rt">Web Address</th>
 								<td class="tdEdit"><ui:text name="webAddress"/></td>
 							</tr>
 							<tr>
-								<th class="thEdit rt">Referral</th>
-								<td class="tdEdit"><ui:hidden name="referralId"/><ui:text name="referralName"/></td>
+								<th class="thEdit rt">Role</th>
+								<td class="tdEdit"><ui:ccselect name="role" codeType="ORGANISATION_ROLE" isMultiple="true" attribute="data-width:100%" checkName="Organisation Role"/></td>
+								<th class="thEdit rt mandatory">Relationship</th>
+								<td class="tdEdit"><ui:ccselect name="relationship" codeType="ORGANISATION_RELATIONSHIP" isMultiple="true" attribute="data-width:100%" options="mandatory" checkName="Relationship"/></td>
 							</tr>
 							<tr>
-								<th class="thEdit rt">Referral Organisation</th>
-								<td class="tdEdit"><ui:hidden name="referralOrganisationId"/><ui:text name="referralOrganisationName"/></td>
+								<th class="thEdit rt">Overview</th>
+								<td class="tdEdit" colspan="3"><ui:txa id="organisationOverview" name="organisationOverview" style="height:70px;"/></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="accordionGroup">
+				<h3>Customer Details</h3>
+				<div id="divCustomerDetails" class="accordionContents">
+					<table id="tblCustomerDetails" class="tblEdit">
+						<colgroup>
+							<col width="15%"/>
+							<col width="35%"/>
+							<col width="15%"/>
+							<col width="35%"/>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th class="thEdit rt">Product</th>
+								<td class="tdEdit"><ui:ccselect name="product" codeType="ORGANISATION_PRODUCT" isMultiple="true" attribute="data-width:100%" checkName="Product"/></td>
+								<th class="thEdit rt mandatory">Organisation Type</th>
+								<td class="tdEdit"><ui:ccselect name="product" codeType="ORGANISATION_TYPES" attribute="data-width:100%" checkName="Organisation Type"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Customer Type</th>
+								<td class="tdEdit"><ui:ccselect name="customerType" codeType="ORGANISATION_CUSTOMER_TYPE" attribute="data-width:100%"/></td>
+								<th class="thEdit rt">Customer Category</th>
+								<td class="tdEdit"><ui:ccselect name="customerCategory" codeType="CUSTOMER_CATEGORY" attribute="data-width:100%"/></td>
+							</tr>
+							<tr>
+								<th class="thEdit rt">Swim Lane</th>
+								<td class="tdEdit"><ui:ccselect name="swimLane" codeType="SWIM_LANE" attribute="data-width:100%"/></td>
+								<th class="thEdit rt"></th>
+								<td class="tdEdit"></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
-		<div id="divRight" class="accordion" style="width:54%;float:right">
+		<div id="divRight" class="accordion" style="width:50%;float:right">
+			<div class="accordionGroup" style="width:49%;float:left;">
+				<h3>Company Details</h3>
+				<div id="divCompanyDetails" class="accordionContents">
+					CompanyDetails
+				</div>
+			</div>
+			<div class="accordionGroup" style="width:50%;float:right;">
+				<h3>Entity Relationship / Internal Details</h3>
+				<div id="divRelationshipInternalDetails" class="accordionContents">
+					RelationshipInternalDetails
+				</div>
+			</div>
+			<div class="breaker"></div>
 			<div class="accordionGroup">
-				<h3 id="hCommsHistory">Communication History - Latest 50</h3>
+				<h3>Communication History - Latest 50</h3>
 				<div id="divCommsHistory" class="accordionContents">
 					<div class="divButtonArea">
 						<div class="divButtonAreaLeft"></div>
@@ -161,9 +185,9 @@ var organisationId = "<%=organisationId%>";
 				</div>
 			</div>
 			<div class="accordionGroup">
-				<h3 id="hAdditionalInfo">Additional Information</h3>
+				<h3>Additional Information</h3>
 				<div id="divAdditionalInfo" class="accordionContents">
-					<div id="personalComment" style="padding:6px;height:255px;border:1px solid #cccccc;border-radius:3px;overflow:auto;"></div>
+					Additional Information
 				</div>
 			</div>
 		</div>

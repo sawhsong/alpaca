@@ -31,6 +31,7 @@
 		<property name="csiReviewDate" column="CSI_REVIEW_DATE" type="java.util.Date"/>
 		<property name="customerCategory" column="CUSTOMER_CATEGORY" type="java.lang.String" length="30"/>
 		<property name="customerStream" column="CUSTOMER_STREAM" type="java.lang.String" length="200"/>
+		<property name="customerType" column="CUSTOMER_TYPE" type="java.lang.String" length="100"/>
 		<property name="email" column="EMAIL" type="java.lang.String" length="100"/>
 		<property name="esAccountManager" column="ES_ACCOUNT_MANAGER" type="java.lang.Double"/>
 		<property name="esBdManager" column="ES_BD_MANAGER" type="java.lang.Double"/>
@@ -63,15 +64,18 @@
 		<property name="postalState" column="POSTAL_STATE" type="java.lang.String" length="30"/>
 		<property name="postalSuburb" column="POSTAL_SUBURB" type="java.lang.String" length="50"/>
 		<property name="postCode" column="POST_CODE" type="java.lang.String" length="30"/>
+		<property name="product" column="PRODUCT" type="java.lang.String" length="100"/>
 		<property name="referenceNo1" column="REFERENCE_NO_1" type="java.lang.String" length="200"/>
 		<property name="referenceNo2" column="REFERENCE_NO_2" type="java.lang.String" length="200"/>
 		<property name="referenceNo3" column="REFERENCE_NO_3" type="java.lang.String" length="200"/>
 		<property name="relationship" column="RELATIONSHIP" type="java.lang.String" length="500"/>
+		<property name="role" column="ROLE" type="java.lang.String" length="100"/>
 		<property name="specialRequirements" column="SPECIAL_REQUIREMENTS" type="java.lang.String" length="4000"/>
 		<property name="sroNumber" column="SRO_NUMBER" type="java.lang.String" length="15"/>
 		<property name="state" column="STATE" type="java.lang.String" length="30"/>
 		<property name="stpBmsId" column="STP_BMS_ID" type="java.lang.String" length="200"/>
 		<property name="suburb" column="SUBURB" type="java.lang.String" length="50"/>
+		<property name="swimLane" column="SWIM_LANE" type="java.lang.String" length="30"/>
 		<property name="taxInvoiceAcceptanceType" column="TAX_INVOICE_ACCEPTANCE_TYPE" type="java.lang.String" length="10"/>
 		<property name="terminationNotice" column="TERMINATION_NOTICE" type="java.lang.String" length="12"/>
 		<property name="webAddress" column="WEB_ADDRESS" type="java.lang.String" length="150"/>
@@ -101,6 +105,7 @@
 		       TO_CHAR(CSI_REVIEW_DATE, 'yyyymmddhh24miss') AS CSI_REVIEW_DATE,
 		       CUSTOMER_CATEGORY,
 		       CUSTOMER_STREAM,
+		       CUSTOMER_TYPE,
 		       EMAIL,
 		       ES_ACCOUNT_MANAGER,
 		       ES_BD_MANAGER,
@@ -133,15 +138,18 @@
 		       POSTAL_STATE,
 		       POSTAL_SUBURB,
 		       POST_CODE,
+		       PRODUCT,
 		       REFERENCE_NO_1,
 		       REFERENCE_NO_2,
 		       REFERENCE_NO_3,
 		       RELATIONSHIP,
+		       ROLE,
 		       SPECIAL_REQUIREMENTS,
 		       SRO_NUMBER,
 		       STATE,
 		       STP_BMS_ID,
 		       SUBURB,
+		       SWIM_LANE,
 		       TAX_INVOICE_ACCEPTANCE_TYPE,
 		       TERMINATION_NOTICE,
 		       WEB_ADDRESS
@@ -150,6 +158,7 @@
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -178,6 +187,7 @@
 		       CSI_REVIEW_DATE,
 		       CUSTOMER_CATEGORY,
 		       CUSTOMER_STREAM,
+		       CUSTOMER_TYPE,
 		       EMAIL,
 		       ES_ACCOUNT_MANAGER,
 		       ES_BD_MANAGER,
@@ -210,15 +220,18 @@
 		       POSTAL_STATE,
 		       POSTAL_SUBURB,
 		       POST_CODE,
+		       PRODUCT,
 		       REFERENCE_NO_1,
 		       REFERENCE_NO_2,
 		       REFERENCE_NO_3,
 		       RELATIONSHIP,
+		       ROLE,
 		       SPECIAL_REQUIREMENTS,
 		       SRO_NUMBER,
 		       STATE,
 		       STP_BMS_ID,
 		       SUBURB,
+		       SWIM_LANE,
 		       TAX_INVOICE_ACCEPTANCE_TYPE,
 		       TERMINATION_NOTICE,
 		       WEB_ADDRESS
@@ -246,6 +259,7 @@
 		       ${CSI_REVIEW_DATE},
 		       ${CUSTOMER_CATEGORY},
 		       ${CUSTOMER_STREAM},
+		       ${CUSTOMER_TYPE},
 		       ${EMAIL},
 		       ${ES_ACCOUNT_MANAGER},
 		       ${ES_BD_MANAGER},
@@ -278,15 +292,18 @@
 		       ${POSTAL_STATE},
 		       ${POSTAL_SUBURB},
 		       ${POST_CODE},
+		       ${PRODUCT},
 		       ${REFERENCE_NO_1},
 		       ${REFERENCE_NO_2},
 		       ${REFERENCE_NO_3},
 		       ${RELATIONSHIP},
+		       ${ROLE},
 		       ${SPECIAL_REQUIREMENTS},
 		       ${SRO_NUMBER},
 		       ${STATE},
 		       ${STP_BMS_ID},
 		       ${SUBURB},
+		       ${SWIM_LANE},
 		       ${TAX_INVOICE_ACCEPTANCE_TYPE},
 		       ${TERMINATION_NOTICE},
 		       ${WEB_ADDRESS}
@@ -318,6 +335,7 @@
 		       CSI_REVIEW_DATE = ${CSI_REVIEW_DATE},
 		       CUSTOMER_CATEGORY = ${CUSTOMER_CATEGORY},
 		       CUSTOMER_STREAM = ${CUSTOMER_STREAM},
+		       CUSTOMER_TYPE = ${CUSTOMER_TYPE},
 		       EMAIL = ${EMAIL},
 		       ES_ACCOUNT_MANAGER = ${ES_ACCOUNT_MANAGER},
 		       ES_BD_MANAGER = ${ES_BD_MANAGER},
@@ -350,15 +368,18 @@
 		       POSTAL_STATE = ${POSTAL_STATE},
 		       POSTAL_SUBURB = ${POSTAL_SUBURB},
 		       POST_CODE = ${POST_CODE},
+		       PRODUCT = ${PRODUCT},
 		       REFERENCE_NO_1 = ${REFERENCE_NO_1},
 		       REFERENCE_NO_2 = ${REFERENCE_NO_2},
 		       REFERENCE_NO_3 = ${REFERENCE_NO_3},
 		       RELATIONSHIP = ${RELATIONSHIP},
+		       ROLE = ${ROLE},
 		       SPECIAL_REQUIREMENTS = ${SPECIAL_REQUIREMENTS},
 		       SRO_NUMBER = ${SRO_NUMBER},
 		       STATE = ${STATE},
 		       STP_BMS_ID = ${STP_BMS_ID},
 		       SUBURB = ${SUBURB},
+		       SWIM_LANE = ${SWIM_LANE},
 		       TAX_INVOICE_ACCEPTANCE_TYPE = ${TAX_INVOICE_ACCEPTANCE_TYPE},
 		       TERMINATION_NOTICE = ${TERMINATION_NOTICE},
 		       WEB_ADDRESS = ${WEB_ADDRESS}
