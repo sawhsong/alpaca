@@ -33,6 +33,7 @@
 		<property name="customerStream" column="CUSTOMER_STREAM" type="java.lang.String" length="200"/>
 		<property name="customerType" column="CUSTOMER_TYPE" type="java.lang.String" length="100"/>
 		<property name="email" column="EMAIL" type="java.lang.String" length="100"/>
+		<property name="entityStaffContact" column="ENTITY_STAFF_CONTACT" type="java.lang.Double"/>
 		<property name="esAccountManager" column="ES_ACCOUNT_MANAGER" type="java.lang.Double"/>
 		<property name="esBdManager" column="ES_BD_MANAGER" type="java.lang.Double"/>
 		<property name="esCsConsultant" column="ES_CS_CONSULTANT" type="java.lang.Double"/>
@@ -47,6 +48,7 @@
 		<property name="gstNumber" column="GST_NUMBER" type="java.lang.String" length="25"/>
 		<property name="gstReg" column="GST_REG" type="java.lang.String" length="1"/>
 		<property name="history" column="HISTORY" type="java.lang.String" length="4000"/>
+		<property name="jurisdiction" column="JURISDICTION" type="java.lang.String" length="200"/>
 		<property name="mainContact" column="MAIN_CONTACT" type="java.lang.Double"/>
 		<property name="mobile" column="MOBILE" type="java.lang.String" length="20"/>
 		<property name="msaEndDate" column="MSA_END_DATE" type="java.util.Date"/>
@@ -107,6 +109,7 @@
 		       CUSTOMER_STREAM,
 		       CUSTOMER_TYPE,
 		       EMAIL,
+		       ENTITY_STAFF_CONTACT,
 		       ES_ACCOUNT_MANAGER,
 		       ES_BD_MANAGER,
 		       ES_CS_CONSULTANT,
@@ -121,6 +124,7 @@
 		       GST_NUMBER,
 		       GST_REG,
 		       HISTORY,
+		       JURISDICTION,
 		       MAIN_CONTACT,
 		       MOBILE,
 		       TO_CHAR(MSA_END_DATE, 'yyyymmddhh24miss') AS MSA_END_DATE,
@@ -189,6 +193,7 @@
 		       CUSTOMER_STREAM,
 		       CUSTOMER_TYPE,
 		       EMAIL,
+		       ENTITY_STAFF_CONTACT,
 		       ES_ACCOUNT_MANAGER,
 		       ES_BD_MANAGER,
 		       ES_CS_CONSULTANT,
@@ -203,6 +208,7 @@
 		       GST_NUMBER,
 		       GST_REG,
 		       HISTORY,
+		       JURISDICTION,
 		       MAIN_CONTACT,
 		       MOBILE,
 		       MSA_END_DATE,
@@ -261,6 +267,7 @@
 		       ${CUSTOMER_STREAM},
 		       ${CUSTOMER_TYPE},
 		       ${EMAIL},
+		       ${ENTITY_STAFF_CONTACT},
 		       ${ES_ACCOUNT_MANAGER},
 		       ${ES_BD_MANAGER},
 		       ${ES_CS_CONSULTANT},
@@ -275,6 +282,7 @@
 		       ${GST_NUMBER},
 		       ${GST_REG},
 		       ${HISTORY},
+		       ${JURISDICTION},
 		       ${MAIN_CONTACT},
 		       ${MOBILE},
 		       ${MSA_END_DATE},
@@ -337,6 +345,7 @@
 		       CUSTOMER_STREAM = ${CUSTOMER_STREAM},
 		       CUSTOMER_TYPE = ${CUSTOMER_TYPE},
 		       EMAIL = ${EMAIL},
+		       ENTITY_STAFF_CONTACT = ${ENTITY_STAFF_CONTACT},
 		       ES_ACCOUNT_MANAGER = ${ES_ACCOUNT_MANAGER},
 		       ES_BD_MANAGER = ${ES_BD_MANAGER},
 		       ES_CS_CONSULTANT = ${ES_CS_CONSULTANT},
@@ -351,6 +360,7 @@
 		       GST_NUMBER = ${GST_NUMBER},
 		       GST_REG = ${GST_REG},
 		       HISTORY = ${HISTORY},
+		       JURISDICTION = ${JURISDICTION},
 		       MAIN_CONTACT = ${MAIN_CONTACT},
 		       MOBILE = ${MOBILE},
 		       MSA_END_DATE = ${MSA_END_DATE},

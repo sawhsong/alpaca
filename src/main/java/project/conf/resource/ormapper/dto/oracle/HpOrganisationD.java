@@ -65,6 +65,8 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	private String CUSTOMER_TYPE;
 	private String email;
 	private String EMAIL;
+	private double entityStaffContact;
+	private String ENTITY_STAFF_CONTACT;
 	private double esAccountManager;
 	private String ES_ACCOUNT_MANAGER;
 	private double esBdManager;
@@ -93,6 +95,8 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	private String GST_REG;
 	private String history;
 	private String HISTORY;
+	private String jurisdiction;
+	private String JURISDICTION;
 	private double mainContact;
 	private String MAIN_CONTACT;
 	private String mobile;
@@ -186,7 +190,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		updateColumnsDataSet.addName(updateColumnsDataSetHeader);
 		setFrwVarPrimaryKey("ORGANISATION_ID");
 		setFrwVarDateColumn("CREATION_DATE,FROM_DATE,LAST_UPDATE_DATE,TO_DATE,CSI_EXECUTION_DATE,CSI_REVIEW_DATE,FIRST_CONTACT_DATE,MSA_END_DATE,MSA_EXECUTION_DATE,MSA_START_DATE");
-		setFrwVarNumberColumn("ORGANISATION_ID,CREATED_BY,LAST_UPDATED_BY,AUTHORIZED_PERSON,BUSINESS_GROUP_ID,ES_ACCOUNT_MANAGER,ES_BD_MANAGER,ES_CS_CONSULTANT,ES_CUSTOMER_ADMINISTRATOR,ES_EXEC_RELATIONSHIP,ES_MIGRATION_ADMINISTRATOR,ES_MIGRATION_CONSULTANT,ES_PAYROLL_CONSULTANT,MAIN_CONTACT");
+		setFrwVarNumberColumn("ORGANISATION_ID,CREATED_BY,LAST_UPDATED_BY,AUTHORIZED_PERSON,BUSINESS_GROUP_ID,ENTITY_STAFF_CONTACT,ES_ACCOUNT_MANAGER,ES_BD_MANAGER,ES_CS_CONSULTANT,ES_CUSTOMER_ADMINISTRATOR,ES_EXEC_RELATIONSHIP,ES_MIGRATION_ADMINISTRATOR,ES_MIGRATION_CONSULTANT,ES_PAYROLL_CONSULTANT,MAIN_CONTACT");
 		setFrwVarClobColumn("");
 		setFrwVarDefaultColumn("");
 		setFrwVarDefaultValue("");
@@ -412,6 +416,15 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		setValueFromAccessor("EMAIL", email);
 	}
 
+	public double getEntityStaffContact() {
+		return entityStaffContact;
+	}
+
+	public void setEntityStaffContact(double entityStaffContact) throws Exception {
+		this.entityStaffContact = entityStaffContact;
+		setValueFromAccessor("ENTITY_STAFF_CONTACT", CommonUtil.toString(entityStaffContact));
+	}
+
 	public double getEsAccountManager() {
 		return esAccountManager;
 	}
@@ -536,6 +549,15 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	public void setHistory(String history) throws Exception {
 		this.history = history;
 		setValueFromAccessor("HISTORY", history);
+	}
+
+	public String getJurisdiction() {
+		return jurisdiction;
+	}
+
+	public void setJurisdiction(String jurisdiction) throws Exception {
+		this.jurisdiction = jurisdiction;
+		setValueFromAccessor("JURISDICTION", jurisdiction);
 	}
 
 	public double getMainContact() {
@@ -985,6 +1007,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "customerStream : "+customerStream+"\n";
 		str += "customerType : "+customerType+"\n";
 		str += "email : "+email+"\n";
+		str += "entityStaffContact : "+entityStaffContact+"\n";
 		str += "esAccountManager : "+esAccountManager+"\n";
 		str += "esBdManager : "+esBdManager+"\n";
 		str += "esCsConsultant : "+esCsConsultant+"\n";
@@ -999,6 +1022,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "gstNumber : "+gstNumber+"\n";
 		str += "gstReg : "+gstReg+"\n";
 		str += "history : "+history+"\n";
+		str += "jurisdiction : "+jurisdiction+"\n";
 		str += "mainContact : "+mainContact+"\n";
 		str += "mobile : "+mobile+"\n";
 		str += "msaEndDate : "+msaEndDate+"\n";
@@ -1067,6 +1091,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "<column name=\"customerStream\" value=\""+customerStream+"\">";
 		str += "<column name=\"customerType\" value=\""+customerType+"\">";
 		str += "<column name=\"email\" value=\""+email+"\">";
+		str += "<column name=\"entityStaffContact\" value=\""+entityStaffContact+"\">";
 		str += "<column name=\"esAccountManager\" value=\""+esAccountManager+"\">";
 		str += "<column name=\"esBdManager\" value=\""+esBdManager+"\">";
 		str += "<column name=\"esCsConsultant\" value=\""+esCsConsultant+"\">";
@@ -1081,6 +1106,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "<column name=\"gstNumber\" value=\""+gstNumber+"\">";
 		str += "<column name=\"gstReg\" value=\""+gstReg+"\">";
 		str += "<column name=\"history\" value=\""+history+"\">";
+		str += "<column name=\"jurisdiction\" value=\""+jurisdiction+"\">";
 		str += "<column name=\"mainContact\" value=\""+mainContact+"\">";
 		str += "<column name=\"mobile\" value=\""+mobile+"\">";
 		str += "<column name=\"msaEndDate\" value=\""+msaEndDate+"\">";
@@ -1149,6 +1175,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "\"customerStream\":\""+customerStream+"\", ";
 		str += "\"customerType\":\""+customerType+"\", ";
 		str += "\"email\":\""+email+"\", ";
+		str += "\"entityStaffContact\":\""+entityStaffContact+"\", ";
 		str += "\"esAccountManager\":\""+esAccountManager+"\", ";
 		str += "\"esBdManager\":\""+esBdManager+"\", ";
 		str += "\"esCsConsultant\":\""+esCsConsultant+"\", ";
@@ -1163,6 +1190,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "\"gstNumber\":\""+gstNumber+"\", ";
 		str += "\"gstReg\":\""+gstReg+"\", ";
 		str += "\"history\":\""+history+"\", ";
+		str += "\"jurisdiction\":\""+jurisdiction+"\", ";
 		str += "\"mainContact\":\""+mainContact+"\", ";
 		str += "\"mobile\":\""+mobile+"\", ";
 		str += "\"msaEndDate\":\""+msaEndDate+"\", ";
