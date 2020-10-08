@@ -9,6 +9,7 @@ import project.conf.resource.ormapper.dto.oracle.HpOrganisationD;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 import zebra.util.CommonUtil;
+import zebra.util.ConfigUtil;
 
 public class HpOrganisationDHDaoImpl extends BaseHDao implements HpOrganisationDDao {
 	public int updateColumns(String organisationId, HpOrganisationD hpOrganisationD) throws Exception {
@@ -36,14 +37,14 @@ public class HpOrganisationDHDaoImpl extends BaseHDao implements HpOrganisationD
 
 	public DataSet getDataSetByOrganisationIds(String... organisationIds) throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		String dateFormat = ConfigUtil.getProperty("format.date.java");
 		String ids = "";
-		String excludeOrgIds = "'1811', '3071', '3', '93191'";
 
 		for (String id : organisationIds) {
 			ids += (CommonUtil.isBlank(ids)) ? "'"+id+"'" : ", "+"'"+id+"'";
 		}
 		queryAdvisor.addVariable("organisationIds", ids);
-		queryAdvisor.addAutoFillCriteria(excludeOrgIds, "organisation_id not in ("+excludeOrgIds+")");
+		queryAdvisor.addVariable("dateFormat", dateFormat);
 		queryAdvisor.addOrderByClause("organisation_name");
 
 		return selectAsDataSet(queryAdvisor, "query.HpOrganisationD.getDataSetByOrganisationIds");

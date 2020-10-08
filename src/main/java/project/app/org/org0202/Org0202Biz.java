@@ -12,5 +12,6 @@ public interface Org0202Biz {
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getOrganisationDetailFrameContainer(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getOrganisation(ParamEntity paramEntity) throws Exception;
-	public ParamEntity getBasicInfo(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getOrganisationDetail(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getCommunicationHistory(ParamEntity paramEntity) throws Exception;
 }

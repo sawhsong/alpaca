@@ -28,4 +28,15 @@ public class HpContactHistoryHDaoImpl extends BaseHDao implements HpContactHisto
 
 		return selectAsDataSet(queryAdvisor, "query.HpContactHistory.getContactHistoryForCommunicationListByPersonId");
 	}
+
+	public DataSet getDataSetForOrgCommsHistoryByOrganisationId(String organisationId) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		String dateFormat = ConfigUtil.getProperty("format.date.java");
+
+		queryAdvisor.addVariable("dateFormat", dateFormat);
+		queryAdvisor.addVariable("organisationId", organisationId);
+		queryAdvisor.addVariable("numberOfRows", "50");
+
+		return selectAsDataSet(queryAdvisor, "query.HpContactHistory.getDataSetForOrgCommsHistoryByOrganisationId");
+	}
 }

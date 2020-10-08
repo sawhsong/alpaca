@@ -51,9 +51,18 @@ public class Org0202Action extends BaseAction {
 		return "basicinfo";
 	}
 
-	public String getBasicInfo() throws Exception {
+	public String getOrganisationDetail() throws Exception {
 		try {
-			biz.getBasicInfo(paramEntity);
+			biz.getOrganisationDetail(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getCommunicationHistory() throws Exception {
+		try {
+			biz.getCommunicationHistory(paramEntity);
 		} catch (Exception ex) {
 		}
 		setRequestAttribute("paramEntity", paramEntity);

@@ -1,175 +1,333 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202PersonalFrame.js
+ * - Org0202BasicInfoFrame.js
  *************************************************************************************************/
 $(function() {
 	/*!
 	 * event
 	 */
-	$("#icnDateOfBirth").click(function(event) {
-		commonJs.openCalendar(event, "dateOfBirth");
+	$("#icnMsaExecutionDate").click(function(event) {
+		commonJs.openCalendar(event, "msaExecutionDate");
 	});
 
-	$("#icnFirstContact").click(function(event) {
-		commonJs.openCalendar(event, "firstContact");
-	});
-
-	$("#employmentCompanyOrgName").blur(function() {
-		if (commonJs.isEmpty($(this).val())) {
-			$("#employmentCompanyOrgId").val("");
-		}
-	});
-
-	$("#referralName").blur(function() {
-		if (commonJs.isEmpty($(this).val())) {
-			$("#referralId").val("");
-		}
-	});
-
-	$("#referralOrganisationName").blur(function() {
-		if (commonJs.isEmpty($(this).val())) {
-			$("#referralOrganisationId").val("");
-		}
-	});
-
-	$("#btnDownloadComms").click(function() {
-		var val = commonJs.htmlToString($("#commsHistory").html());
-		val = commonJs.replace(val, "<strong>");
-		val = commonJs.replace(val, "</strong>");
+	$("#btnDownloadCommunication").click(function() {
+		var val = commonJs.htmlToString($("#communicationHistory").html());
+		val = commonJs.replace(val, "<strong>", "");
+		val = commonJs.replace(val, "</strong>", "");
 		commonJs.downloadContentAsFile("CommunicationHistory.txt", val);
 	});
 
 	/*!
 	 * process
 	 */
-	setEditor = function() {
-//		$("#personalComment").ckeditor({
-//			height:246,
-//			toolbar:com.constants.toolbarSimple
-//		});
+	setFieldMask = function() {
+		commonJs.setFieldDateMask("msaExecutionDate");
+		commonJs.setFieldNumberMask("abn", "99-999-999-999");
+		commonJs.setFieldNumberMask("acn", "999-999-999");
 	};
 
-	setWrapperSize = function() {
-//commonJs.printLog({message:"divFrameWindowHolder : "+$("#divFrameWindowHolder").height()});
-//commonJs.printLog({message:"divFixedPanelFrame : "+$("#divFixedPanelFrame").height()});
-//commonJs.printLog({message:"divScrollablePanelFrame : "+$("#divScrollablePanelFrame").height()});
-		$("#divDataArea").height(722); // divFrameWindowHolder - divFixedPanelFrame - additional height
-		$("#divFrameDataAreaWrapper").height($("#divScrollablePanelFrame").height());
+	doBlurEvent = function($jqObj) {
+		var id = $jqObj.attr("id"), name = commonJs.replace(id, "Name", "Id");
+		var nameForTest = ["jurisdictionName", "authorizedPersonName", "esBdManagerName", "esAccountManagerName", "esExecRelationshipName",
+			"esPayrollConsultantName", "esCustomerAdministratorName", "entityStaffContactName"];
+		var nameFieldValue = $jqObj.val();
+
+		if (commonJs.isIn(id, nameForTest) && commonJs.isEmpty(nameFieldValue)) {
+			$("#"+name).val("");
+		}
 	};
 
-	setFieldPersonDetailValues = function(ds) {
-		var personType = ds.getValue(0, "PERSON_TYPE").toUpperCase().split(",");
+	setAutoComplete = function() {
+		commonJs.setAutoComplete($("#jurisdictionName"), {
+			method:"getCountryName",
+			label:"country_name",
+			value:"country_name",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#jurisdictionId").val(ui.item.value);
+				$("#jurisdictionName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#jurisdictionName").val())) {
+					$("#jurisdictionId").val("");
+					$("#jurisdictionName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#jurisdictionId").val(ui.item.value);
+				$("#jurisdictionName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#authorizedPersonName"), {
+			method:"getPersonByNameOrPersonNumber",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#authorizedPersonId").val(ui.item.value);
+				$("#authorizedPersonName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#authorizedPersonName").val())) {
+					$("#authorizedPersonId").val("");
+					$("#authorizedPersonName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#authorizedPersonId").val(ui.item.value);
+				$("#authorizedPersonName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#esBdManagerName"), {
+			method:"getEsEmployeeByNameOrPersonNumber",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#esBdManagerId").val(ui.item.value);
+				$("#esBdManagerName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#esBdManagerName").val())) {
+					$("#esBdManagerId").val("");
+					$("#esBdManagerName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#esBdManagerId").val(ui.item.value);
+				$("#esBdManagerName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#esAccountManagerName"), {
+			method:"getEsEmployeeByNameOrPersonNumber",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#esAccountManagerId").val(ui.item.value);
+				$("#esAccountManagerName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#esAccountManagerName").val())) {
+					$("#esAccountManagerId").val("");
+					$("#esAccountManagerName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#esAccountManagerId").val(ui.item.value);
+				$("#esAccountManagerName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#esExecRelationshipName"), {
+			method:"getEsEmployeeByNameOrPersonNumber",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#esExecRelationshipId").val(ui.item.value);
+				$("#esExecRelationshipName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#esExecRelationshipName").val())) {
+					$("#esExecRelationshipId").val("");
+					$("#esExecRelationshipName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#esExecRelationshipId").val(ui.item.value);
+				$("#esExecRelationshipName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#esPayrollConsultantName"), {
+			method:"getEsEmployeeByNameOrPersonNumber",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#esPayrollConsultantId").val(ui.item.value);
+				$("#esPayrollConsultantName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#esPayrollConsultantName").val())) {
+					$("#esPayrollConsultantId").val("");
+					$("#esPayrollConsultantName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#esPayrollConsultantId").val(ui.item.value);
+				$("#esPayrollConsultantName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#esCustomerAdministratorName"), {
+			method:"getEsEmployeeByNameOrPersonNumber",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#esCustomerAdministratorId").val(ui.item.value);
+				$("#esCustomerAdministratorName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#esCustomerAdministratorName").val())) {
+					$("#esCustomerAdministratorId").val("");
+					$("#esCustomerAdministratorName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#esCustomerAdministratorId").val(ui.item.value);
+				$("#esCustomerAdministratorName").val(ui.item.label);
+				return false;
+			}
+		});
+
+		commonJs.setAutoComplete($("#entityStaffContactName"), {
+			method:"getEsEmployeeByNameOrPersonNumber",
+			label:"full_name_with_person_number",
+			value:"person_id",
+			minLength:2,
+			focus: function(event, ui) {
+				$("#entityStaffContactId").val(ui.item.value);
+				$("#entityStaffContactName").val(ui.item.label);
+				return false;
+			},
+			change:function(event, ui) {
+				if (commonJs.isEmpty($("#entityStaffContactName").val())) {
+					$("#entityStaffContactId").val("");
+					$("#entityStaffContactName").val("");
+				}
+			},
+			select:function(event, ui) {
+				$("#entityStaffContactId").val(ui.item.value);
+				$("#entityStaffContactName").val(ui.item.label);
+				return false;
+			}
+		});
+	};
+
+	getOrganisationDetail = function() {
+		commonJs.showProcMessageOnElement("divLeft");
+		commonJs.showProcMessageOnElement("divCustomerDetails");
+		commonJs.showProcMessageOnElement("divRelationshipInternalDetails");
+
+		commonJs.doSimpleProcess({
+			url:"/org/0202/getOrganisationDetail.do",
+			noForm:true,
+			data:{organisationId:organisationId},
+			callback:function(result) {
+				var ds = result.dataSet;
+				setFieldOrganisationDetailValues(ds);
+			}
+		});
+
+		setTimeout(function() {
+			commonJs.hideProcMessageOnElement("divLeft");
+			commonJs.hideProcMessageOnElement("divCustomerDetails");
+			commonJs.hideProcMessageOnElement("divRelationshipInternalDetails");
+		}, 1000);
+	};
+
+	setFieldOrganisationDetailValues = function(ds) {
+		var role = !commonJs.isBlank(ds.getValue(0, "ROLE")) ? ds.getValue(0, "ROLE").split(",") : "";
+		var relationship = !commonJs.isBlank(ds.getValue(0, "RELATIONSHIP")) ? ds.getValue(0, "RELATIONSHIP").split(",") : "";
+		var product = !commonJs.isBlank(ds.getValue(0, "PRODUCT")) ? ds.getValue(0, "PRODUCT").split(",") : "";
 
 		try {
-			$("#personNumber").val(ds.getValue(0, "PERSON_NUMBER"));
-			$("[name=prefix]").filter("[value="+ds.getValue(0, "PREFIX")+"]").attr("checked", true);
-			$("#surname").val(ds.getValue(0, "SURNAME"));
-			$("#firstName").val(ds.getValue(0, "FIRST_NAME"));
-			$("#middleName").val(ds.getValue(0, "MIDDLE_NAME"));
-			$("#preferredName").val(ds.getValue(0, "PREFERRED_NAME"));
-			$("#dateOfBirth").val(ds.getValue(0, "DATE_OF_BIRTH"));
-			$("#firstContact").val(ds.getValue(0, "FIRST_CONTACT"));
-			$("[name=maritalStatus]").filter("[value="+ds.getValue(0, "MARITAL_STATUS")+"]").attr("checked", true);
-			$("[name=gender]").filter("[value="+ds.getValue(0, "GENDER")+"]").attr("checked", true);
-			$("#employmentCompanyOrgId").val(ds.getValue(0, "EMPLOYMENT_COMPANY_ORG_ID"));
-			$("#employmentCompanyOrgName").val(ds.getValue(0, "EMPLOYMENT_COMPANY_ORG_NAME"));
-			$("#title").val(ds.getValue(0, "TITLE"));
-			$("#referralId").val(ds.getValue(0, "REFERRAL_ID"));
-			$("#referralName").val(ds.getValue(0, "REFERRAL_NAME"));
-			$("#referralOrganisationId").val(ds.getValue(0, "REFERRAL_ORGANISATION_ID"));
-			$("#referralOrganisationName").val(ds.getValue(0, "REFERRAL_ORGANISATION_NAME"));
+			$("#organisationId").val(ds.getValue(0, "ORGANISATION_ID"));
+			$("#organisationName").val(ds.getValue(0, "ORGANISATION_NAME"));
+			$("#jurisdictionId").val(ds.getValue(0, "JURISDICTION"));
+			$("#jurisdictionName").val(ds.getValue(0, "JURISDICTION"));
+			$("#abn").val(ds.getValue(0, "ABN"));
+			$("#acn").val(ds.getValue(0, "ACN"));
+			$("[name=gstReg]").filter("[value="+ds.getValue(0, "GST_REG")+"]").attr("checked", true);
+			$("#gstNumber").val(ds.getValue(0, "GST_NUMBER"));
+			$("#authorizedPersonId").val(ds.getValue(0, "AUTHORIZED_PERSON"));
+			$("#authorizedPersonName").val(!commonJs.isBlank(ds.getValue(0, "AUTHORIZED_PERSON_NAME")) ? ds.getValue(0, "AUTHORIZED_PERSON_NAME")+" ("+ds.getValue(0, "AUTHORIZED_PERSON_NUMBER")+")" : "");
+			$("#stpBmsId").val(ds.getValue(0, "STP_BMS_ID"));
+			$("#branchNumber").val(ds.getValue(0, "BRANCH_NUMBER"));
+			$("#msaExecutionDate").val(ds.getValue(0, "MSA_EXECUTION_DATE_FORMAT"));
+			$("#esBdManagerId").val(ds.getValue(0, "ES_BD_MANAGER"));
+			$("#esBdManagerName").val(!commonJs.isBlank(ds.getValue(0, "ES_BD_MANAGER_NAME")) ? ds.getValue(0, "ES_BD_MANAGER_NAME")+" ("+ds.getValue(0, "ES_BD_MANAGER_NUMBER")+")" : "");
+			$("#esAccountManagerId").val(ds.getValue(0, "ES_ACCOUNT_MANAGER"));
+			$("#esAccountManagerName").val(!commonJs.isBlank(ds.getValue(0, "ES_ACCOUNT_MANAGER_NAME")) ? ds.getValue(0, "ES_ACCOUNT_MANAGER_NAME")+" ("+ds.getValue(0, "ES_ACCOUNT_MANAGER_NUMBER")+")" : "");
+			$("#esExecRelationshipId").val(ds.getValue(0, "ES_EXEC_RELATIONSHIP"));
+			$("#esExecRelationshipName").val(!commonJs.isBlank(ds.getValue(0, "ES_EXEC_RELATIONSHIP_NAME")) ? ds.getValue(0, "ES_EXEC_RELATIONSHIP_NAME")+" ("+ds.getValue(0, "ES_EXEC_RELATIONSHIP_NUMBER")+")" : "");
+			$("#esPayrollConsultantId").val(ds.getValue(0, "ES_PAYROLL_CONSULTANT"));
+			$("#esPayrollConsultantName").val(!commonJs.isBlank(ds.getValue(0, "ES_PAYROLL_CONSULTANT_NAME")) ? ds.getValue(0, "ES_PAYROLL_CONSULTANT_NAME")+" ("+ds.getValue(0, "ES_PAYROLL_CONSULTANT_NUMBER")+")" : "");
+			$("#esCustomerAdministratorId").val(ds.getValue(0, "ES_CUSTOMER_ADMINISTRATOR"));
+			$("#esCustomerAdministratorName").val(!commonJs.isBlank(ds.getValue(0, "ES_CUSTOMER_ADMINISTRATOR_NAME")) ? ds.getValue(0, "ES_CUSTOMER_ADMINISTRATOR_NAME")+" ("+ds.getValue(0, "ES_CUSTOMER_ADMINISTRATOR_NUMBER")+")" : "");
+			$("#entityStaffContactId").val(ds.getValue(0, "ENTITY_STAFF_CONTACT"));
+			$("#entityStaffContactName").val(!commonJs.isBlank(ds.getValue(0, "ENTITY_STAFF_CONTACT_NAME")) ? ds.getValue(0, "ENTITY_STAFF_CONTACT_NAME")+" ("+ds.getValue(0, "ENTITY_STAFF_CONTACT_NUMBER")+")" : "");
+			$("#organisationOverview").val(ds.getValue(0, "ORGANISATION_OVERVIEW"));
+
+			$("#taxInvoiceAcceptanceType").selectpicker("val", ds.getValue(0, "TAX_INVOICE_ACCEPTANCE_TYPE"));
+			$("#taxInvoiceAcceptanceType").selectpicker("refresh");
+
+			$("#customerType").selectpicker("val", ds.getValue(0, "CUSTOMER_TYPE"));
+			$("#customerType").selectpicker("refresh");
+
+			$("#customerCategory").selectpicker("val", ds.getValue(0, "CUSTOMER_CATEGORY"));
+			$("#customerCategory").selectpicker("refresh");
+
+			$("#swimLane").selectpicker("val", ds.getValue(0, "SWIM_LANE"));
+			$("#swimLane").selectpicker("refresh");
+
+			if (!commonJs.isBlank(role)) {
+				$("#role").selectpicker("val", role);
+				$("#role").selectpicker("refresh");
+			}
+
+			if (!commonJs.isBlank(role)) {
+				$("#relationship").selectpicker("val", relationship);
+				$("#relationship").selectpicker("refresh");
+			}
+
+			if (!commonJs.isBlank(role)) {
+				$("#product").selectpicker("val", product);
+				$("#product").selectpicker("refresh");
+			}
 		} catch(e) {}
-
-		setTimeout(function() {
-			setPersonType(personType);
-		}, 500);
 	};
 
-	setPersonType = function(personType) {
-		$("#personType").selectpicker("val", personType);
-		$("#personType").selectpicker("refresh");
-	};
-
-	setPersonalCommentFieldValues = function(ds) {
-//		$("#personalComment").val(ds.getValue(0, "DESCRIPTION"));
-		$("#personalComment").html(commonJs.stringToHtml(ds.getValue(0, "DESCRIPTION")));
-	};
-
-	setCommsHistoryFieldValues = function(ds) {
-		var html = "";
-
-//		for (var i=0; i<ds.getRowCnt(); i++) {
-//			html += commonJs.htmlToString(ds.getValue(i, "CON_DATE"))+"\n";
-//			html += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
-//			html += commonJs.htmlToString(ds.getValue(i, "COMMENTS"))+"\n";
-//			html += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\n";
-//		}
-//
-//		$("#commsHistory").val(html);
-
-		for (var i=0; i<ds.getRowCnt(); i++) {
-			html += "<strong>"+commonJs.stringToHtml(ds.getValue(i, "CON_DATE"))+"</strong>"+"<br/>";
-			html += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>";
-			html += commonJs.stringToHtml(ds.getValue(i, "COMMENTS"))+"<br/>";
-			html += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/><br/>";
-		}
-		$("#commsHistory").html(html);
-	};
-
-	getPersonDetail = function() {
-		commonJs.showProcMessageOnElement("divPersonDetails");
+	getCommunicationHistory = function() {
+		commonJs.showProcMessageOnElement("divCommunicationHistory");
 
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getPersonDetail.do",
-			noForm:true,
-			data:{personId:personId},
-			callback:function(result) {
-				var ds = result.dataSet;
-				setFieldPersonDetailValues(ds);
-			}
-		});
-
-		setTimeout(function() {
-			commonJs.hideProcMessageOnElement("divPersonDetails");
-		}, 1000);
-	};
-
-	getPersonalComment = function() {
-		commonJs.showProcMessageOnElement("divPersonalComment");
-
-		commonJs.doSimpleProcess({
-			url:"/per/0202/getPersonalComment.do",
-			dataType:"html",
-			noForm:true,
-			data:{personId:personId},
-			callback:function(result) {
-				var ds = result.dataSet;
-				setPersonalCommentFieldValues(ds);
-			}
-		});
-
-		setTimeout(function() {
-			commonJs.hideProcMessageOnElement("divPersonalComment");
-		}, 1000);
-	};
-
-	getCommsHistory = function() {
-		commonJs.showProcMessageOnElement("divCommsHistory");
-
-		commonJs.doSimpleProcess({
-			url:"/per/0202/getCommsHistory.do",
+			url:"/org/0202/getCommunicationHistory.do",
 			noForm:true,
 			dataType:"html",
-			data:{personId:personId},
+			data:{organisationId:organisationId},
 			callback:function(result) {
 				var ds = result.dataSet;
-				setCommsHistoryFieldValues(ds);
+				setCommunicationHistoryFieldValues(ds);
 			}
 		});
 
 		setTimeout(function() {
-			commonJs.hideProcMessageOnElement("divCommsHistory");
-		}, 1000);
+			commonJs.hideProcMessageOnElement("divCommunicationHistory");
+		}, 400);
+	};
+
+	setCommunicationHistoryFieldValues = function(ds) {
+		$("#communicationHistory").html(commonJs.stringToHtml(ds.getValue(0, "HTML")));
 	};
 
 	/*
@@ -183,85 +341,16 @@ $(function() {
 			icons:null
 		});
 
-		commonJs.setFieldDateMask("dateOfBirth");
-		commonJs.setFieldDateMask("firstContact");
-		setEditor();
+		setFieldMask();
+		setAutoComplete();
 
-		commonJs.setAutoComplete($("#employmentCompanyOrgName"), {
-			method:"getOrgByNameOrId",
-			label:"org_name_with_org_id",
-			value:"organisation_id",
-			minLength:2,
-			focus: function(event, ui) {
-				$("#employmentCompanyOrgId").val(ui.item.value);
-				$("#employmentCompanyOrgName").val(ui.item.label);
-				return false;
-			},
-			change:function(event, ui) {
-				if (commonJs.isEmpty($("#employmentCompanyOrgName").val())) {
-					$("#employmentCompanyOrgId").val("");
-					$("#employmentCompanyOrgName").val("");
-				}
-			},
-			select:function(event, ui) {
-				$("#employmentCompanyOrgId").val(ui.item.value);
-				$("#employmentCompanyOrgName").val(ui.item.label);
-				return false;
-			}
+		$("input[type=text]").blur(function(event) {
+			doBlurEvent($(this));
 		});
-
-		commonJs.setAutoComplete($("#referralName"), {
-			method:"getPersonByNameOrPersonNumber",
-			label:"full_name_with_person_number",
-			value:"person_id",
-			minLength:2,
-			focus: function(event, ui) {
-				$("#referralId").val(ui.item.value);
-				$("#referralName").val(ui.item.label);
-				return false;
-			},
-			change:function(event, ui) {
-				if (commonJs.isEmpty($("#referralName").val())) {
-					$("#referralId").val("");
-					$("#referralName").val("");
-				}
-			},
-			select:function(event, ui) {
-				$("#referralId").val(ui.item.value);
-				$("#referralName").val(ui.item.label);
-				return false;
-			}
-		});
-
-		commonJs.setAutoComplete($("#referralOrganisationName"), {
-			method:"getOrgByNameOrId",
-			label:"org_name_with_org_id",
-			value:"organisation_id",
-			minLength:2,
-			focus: function(event, ui) {
-				$("#referralOrganisationId").val(ui.item.value);
-				$("#referralOrganisationName").val(ui.item.label);
-				return false;
-			},
-			change:function(event, ui) {
-				if (commonJs.isEmpty($("#referralOrganisationName").val())) {
-					$("#referralOrganisationId").val("");
-					$("#referralOrganisationName").val("");
-				}
-			},
-			select:function(event, ui) {
-				$("#referralOrganisationId").val(ui.item.value);
-				$("#referralOrganisationName").val(ui.item.label);
-				return false;
-			}
-		});
-
-		setWrapperSize();
 
 		setTimeout(function() {
-			getPersonDetail();
-			getPersonalComment();
-			getCommsHistory();
+			getOrganisationDetail();
+			getCommunicationHistory();
 		}, 400);
 	});
 });

@@ -198,8 +198,8 @@
 	margin-top: -8px;
 }
 .ui-accordion .ui-accordion-content {
-	margin-bottom:10px; /* Dustin changed */
-	padding:10px 10px; /* Dustin changed */
+	margin-bottom:6px; /* Dustin changed */
+	padding:6px 6px; /* Dustin changed */
 	border-top:0;
 	overflow:auto;
 	box-shadow:0px 1px 1px rgba(0, 0, 0, .1); /* Dustin changed */

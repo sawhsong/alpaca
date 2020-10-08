@@ -115,4 +115,34 @@
 		       contact_id desc
 	]]>
 	</sql-query>
+
+	<sql-query name="query.HpContactHistory.getDataSetForOrgCommsHistoryByOrganisationId">
+	<![CDATA[
+		select *
+		  from (select contact.contact_id,
+		               contact.contact_type,
+		               (select meaning from sys_common_lookups where lookup_type = 'CONTACT_TYPE' and lookup_code = contact.contact_type) as contact_type_meaning,
+		               contact.activity_type,
+		               (select meaning from sys_common_lookups where lookup_type = 'ACTIVITY_TYPE' and lookup_code = contact.activity_type) as activity_type_meaning,
+		               to_char(contact.contact_date, '${dateFormat}') as contact_date,
+		               contact.entity_employee_id,
+		               (select full_name from hp_person_d where person_id = contact.entity_employee_id) as entity_employee_name,
+		               contact.copy_to_person,
+		               contact.copy_to_organisation,
+		               contact.comments,
+		               contact.person_id,
+		               contact.organisation_id,
+		               contact.contact_time
+		          from hp_comms_org_link orglink,
+		               hp_contact_history contact
+		         where orglink.organisation_id = '${organisationId}'
+		           and orglink.contact_id = contact.contact_id
+		         order by contact.contact_date desc,
+		               contact.contact_time desc,
+		               contact.contact_type,
+		               contact.activity_type
+		       )
+		 where rownum <= ${numberOfRows}
+	]]>
+	</sql-query>
 </hibernate-mapping>

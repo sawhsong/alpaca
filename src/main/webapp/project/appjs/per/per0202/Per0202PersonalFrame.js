@@ -34,8 +34,8 @@ $(function() {
 
 	$("#btnDownloadComms").click(function() {
 		var val = commonJs.htmlToString($("#commsHistory").html());
-		val = commonJs.replace(val, "<strong>");
-		val = commonJs.replace(val, "</strong>");
+		val = commonJs.replace(val, "<strong>", "");
+		val = commonJs.replace(val, "</strong>", "");
 		commonJs.downloadContentAsFile("CommunicationHistory.txt", val);
 	});
 
