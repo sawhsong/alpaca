@@ -242,7 +242,7 @@ $(function() {
 			commonJs.hideProcMessageOnElement("divLeft");
 			commonJs.hideProcMessageOnElement("divCustomerDetails");
 			commonJs.hideProcMessageOnElement("divRelationshipInternalDetails");
-		}, 1000);
+		}, 800);
 	};
 
 	setFieldOrganisationDetailValues = function(ds) {
@@ -255,8 +255,8 @@ $(function() {
 			$("#organisationName").val(ds.getValue(0, "ORGANISATION_NAME"));
 			$("#jurisdictionId").val(ds.getValue(0, "JURISDICTION"));
 			$("#jurisdictionName").val(ds.getValue(0, "JURISDICTION"));
-			$("#abn").val(ds.getValue(0, "ABN"));
-			$("#acn").val(ds.getValue(0, "ACN"));
+			$("#abn").val(commonJs.getFormatString(ds.getValue(0, "ABN"), "??-???-???-???"));
+			$("#acn").val(commonJs.getFormatString(ds.getValue(0, "ACN"), "???-???-???"));
 			$("[name=gstReg]").filter("[value="+ds.getValue(0, "GST_REG")+"]").attr("checked", true);
 			$("#gstNumber").val(ds.getValue(0, "GST_NUMBER"));
 			$("#authorizedPersonId").val(ds.getValue(0, "AUTHORIZED_PERSON"));
@@ -323,7 +323,7 @@ $(function() {
 
 		setTimeout(function() {
 			commonJs.hideProcMessageOnElement("divCommunicationHistory");
-		}, 400);
+		}, 800);
 	};
 
 	setCommunicationHistoryFieldValues = function(ds) {
@@ -350,7 +350,10 @@ $(function() {
 
 		setTimeout(function() {
 			getOrganisationDetail();
-			getCommunicationHistory();
 		}, 400);
+
+		setTimeout(function() {
+			getCommunicationHistory();
+		}, 1000);
 	});
 });
