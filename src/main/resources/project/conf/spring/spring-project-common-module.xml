@@ -9,6 +9,7 @@
 	<bean id="menuManager" name="menuManager" class="${name.package.project}.common.module.menu.MenuManager" parent="baseBiz">
 		<property name="sysMenuDao" ref="sysMenuDao"/>
 		<property name="sysMenuAuthLinkDao" ref="sysMenuAuthLinkDao"/>
+		<property name="sysFavoriteMenuDao" ref="sysFavoriteMenuDao"/>
 	</bean>
 
 	<!--/* CommonCode */-->

@@ -113,14 +113,14 @@
 /**
  * Main menu - Right - User loggedin(ul)
  */
-#divLoggedInUser, #divQuickMenu {float:left;
+#divLoggedInUser, #divQuickMenu, #divFavoriteMenu {float:left;
 	border-left:1px solid #d19405;
 	border-right:0px solid #d19405;
 }
 #aLoggedInUser {
 	background:url('/shared/resource/image/theme/theme005/common/icnUser-loggedIn_Black.png') no-repeat 0px 0px
 }
-#divLoggedInUser.selected, #divQuickMenu.selected {
+#divLoggedInUser.selected, #divQuickMenu.selected, #divFavoriteMenu.selected {
 /* 	background-color:#F3B701; */
 	background:#ffdd57 url("/shared/resource/css/jquery-ui/theme005/images/ui-bg_gloss-wave_70_ffdd57_500x100.png") 50% 50% repeat-x;
 }

@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import project.common.extend.BaseBiz;
+import project.conf.resource.ormapper.dao.SysFavoriteMenu.SysFavoriteMenuDao;
 import project.conf.resource.ormapper.dao.SysMenu.SysMenuDao;
 import project.conf.resource.ormapper.dao.SysMenuAuthLink.SysMenuAuthLinkDao;
 import zebra.config.MemoryBean;
@@ -15,6 +16,7 @@ public class MenuManager extends BaseBiz {
 	private static Logger logger = LogManager.getLogger(MenuManager.class);
 	private static SysMenuDao sysMenuDao;
 	private static SysMenuAuthLinkDao sysMenuAuthLinkDao;
+	private static SysFavoriteMenuDao sysFavoriteMenuDao;
 
 	public static SysMenuDao getSysMenuDao() {
 		return sysMenuDao;
@@ -32,9 +34,17 @@ public class MenuManager extends BaseBiz {
 		MenuManager.sysMenuAuthLinkDao = sysMenuAuthLinkDao;
 	}
 
+	public static SysFavoriteMenuDao getSysFavoriteMenuDao() {
+		return sysFavoriteMenuDao;
+	}
+
+	public static void setSysFavoriteMenuDao(SysFavoriteMenuDao sysFavoriteMenuDao) {
+		MenuManager.sysFavoriteMenuDao = sysFavoriteMenuDao;
+	}
+
 	public static void loadMenu() throws Exception {
-		MemoryBean.set("menuDataSet", MenuManager.getMenuDataSet());
-		MemoryBean.set("quickMenuDataSet", MenuManager.getQuickMenuDataSet());
+		MemoryBean.set("menuDataSet", getMenuDataSet());
+		MemoryBean.set("quickMenuDataSet", getQuickMenuDataSet());
 
 		if (CommonUtil.toBoolean(ConfigUtil.getProperty("log.debug.config"))) {
 			logger.debug("[MemoryBean] - Project Menu has been loaded.");
@@ -131,5 +141,9 @@ public class MenuManager extends BaseBiz {
 
 	public static DataSet getQuickMenu() throws Exception {
 		return (DataSet)MemoryBean.get("quickMenuDataSet");
+	}
+
+	public static DataSet getFavoriteMenuDataSet(String userId) throws Exception {
+		return sysFavoriteMenuDao.getDataSetByUserId(userId);
 	}
 }

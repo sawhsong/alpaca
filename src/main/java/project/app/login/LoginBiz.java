@@ -12,5 +12,9 @@ public interface LoginBiz {
 	public ParamEntity setSessionValuesForAdminTool(ParamEntity paramEntity) throws Exception;
 	public ParamEntity hasAuthKey(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getAuthenticationSecretKey(ParamEntity paramEntity) throws Exception;
+	public ParamEntity saveFavoriteMenu(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getFavoriteMenu(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getFavoriteMenuList(ParamEntity paramEntity) throws Exception;
+	public ParamEntity doDeleteFavoriteMenu(ParamEntity paramEntity) throws Exception;
 	public ParamEntity doAuthentication(ParamEntity paramEntity) throws Exception;
 }

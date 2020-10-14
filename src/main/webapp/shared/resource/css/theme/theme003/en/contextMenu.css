@@ -6,6 +6,8 @@
  * Copyright (c) 2013 Sudhanshu Yadav.
  * Dual licensed under the MIT and GPL licenses
  */
+/* Common for Context menu css */
+.contextMenu-breaker {height:1px;background-color:#aaaaaa;border:0px;margin:4px 2px;}
 
 /* Default Context menu css */
 .iw-contextMenu {display:none;z-index:1000;overflow:auto;box-shadow:2px 2px 5px rgba(0, 0, 0, 0.2);font-weight:500;

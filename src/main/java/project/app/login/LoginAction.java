@@ -10,6 +10,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseAction;
+import project.common.module.menu.MenuManager;
 import project.conf.resource.ormapper.dto.oracle.SysUser;
 import zebra.config.MemoryBean;
 import zebra.data.DataSet;
@@ -58,6 +59,8 @@ public class LoginAction extends BaseAction {
 				session.setAttribute("pageNumsPerPage", CommonUtil.toString(sysUser.getPageNumPerPage(), "###"));
 				session.setAttribute("SysUser", sysUser);
 				session.setAttribute("AuthenticationKey", (String)paramEntity.getObject("authenticationKey"));
+
+				session.setAttribute("FavoriteMenuDataSet", MenuManager.getFavoriteMenuDataSet(sysUser.getUserId()));
 
 				MemoryBean.set(session.getId(), session);
 
@@ -181,6 +184,35 @@ public class LoginAction extends BaseAction {
 		return "ajaxResponse";
 	}
 
+	public String saveFavoriteMenu() throws Exception {
+		try {
+			biz.saveFavoriteMenu(paramEntity);
+
+			if (paramEntity.isSuccess()) {
+				String userId = (String)session.getAttribute("UserId");
+
+				session.setAttribute("FavoriteMenuDataSet", MenuManager.getFavoriteMenuDataSet(userId));
+			}
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getFavoriteMenu() throws Exception {
+		biz.getFavoriteMenu(paramEntity);
+		return "favoriteMenu";
+	}
+
+	public String getFavoriteMenuList() throws Exception {
+		try {
+			biz.getFavoriteMenuList(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
 	public String logout() throws Exception {
 		MemoryBean.remove(session.getId());
 		session.invalidate();
@@ -192,6 +224,21 @@ public class LoginAction extends BaseAction {
 	public String getAuthentication() throws Exception {
 		biz.index(paramEntity);
 		return "authenticate";
+	}
+
+	public String doDeleteFavoriteMenu() throws Exception {
+		try {
+			biz.doDeleteFavoriteMenu(paramEntity);
+
+			if (paramEntity.isSuccess()) {
+				String userId = (String)session.getAttribute("UserId");
+
+				session.setAttribute("FavoriteMenuDataSet", MenuManager.getFavoriteMenuDataSet(userId));
+			}
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
 	}
 
 	public String doAuthentication() throws Exception {

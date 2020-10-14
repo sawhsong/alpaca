@@ -108,13 +108,13 @@
 /**
  * Main menu - Right - User loggedin(ul)
  */
-#divLoggedInUser, #divQuickMenu {float:left;
+#divLoggedInUser, #divQuickMenu, #divFavoriteMenu {float:left;
 	border-left:1px solid #CDC3B8;
 	border-right:0px solid #CDC3B8;
 }
 #aLoggedInUser {
 	background:url('/shared/resource/image/theme/theme009/common/icnUser-loggedIn_White.png') no-repeat 0px 0px
 }
-#divLoggedInUser.selected, #divQuickMenu.selected {
+#divLoggedInUser.selected, #divQuickMenu.selected, #divFavoriteMenu.selected {
 	background-color:#A96D2C;
 }

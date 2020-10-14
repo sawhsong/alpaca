@@ -13,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import de.taimos.totp.TOTP;
 import project.common.extend.BaseBiz;
 import project.common.module.commoncode.CommonCodeManager;
+import project.common.module.menu.MenuManager;
+import project.conf.resource.ormapper.dao.SysFavoriteMenu.SysFavoriteMenuDao;
 import project.conf.resource.ormapper.dao.SysUser.SysUserDao;
+import project.conf.resource.ormapper.dto.oracle.SysFavoriteMenu;
 import project.conf.resource.ormapper.dto.oracle.SysUser;
 import zebra.config.MemoryBean;
 import zebra.data.DataSet;
@@ -26,6 +29,8 @@ import zebra.util.FileUtil;
 public class LoginBizImpl extends BaseBiz implements LoginBiz {
 	@Autowired
 	private SysUserDao sysUserDao;
+	@Autowired
+	private SysFavoriteMenuDao sysFavoriteMenuDao;
 	@Autowired
 	private LoginMessageSender loginMessageSender;
 
@@ -319,6 +324,77 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}
+	}
+
+	public ParamEntity saveFavoriteMenu(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		HttpSession session = paramEntity.getSession();
+		String menuId = requestDataSet.getValue("menuId");
+		String userId = (String)session.getAttribute("UserId");
+		DataSet favoriteMenu = MenuManager.getFavoriteMenuDataSet(userId);
+		SysFavoriteMenu sysFavoriteMenu = new SysFavoriteMenu();
+
+		try {
+			if (favoriteMenu.getRowIndex("LEFT_MENU_ID", menuId) < 0) {
+				sysFavoriteMenu.setUserId(userId);
+				sysFavoriteMenu.setMenuId(menuId);
+				sysFavoriteMenu.setInsertUserId(userId);
+				sysFavoriteMenu.setInsertDate(CommonUtil.getSysdateAsDate());
+
+				sysFavoriteMenuDao.insert(sysFavoriteMenu);
+			}
+
+			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getFavoriteMenu(ParamEntity paramEntity) throws Exception {
+		try {
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity getFavoriteMenuList(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
+		String userId = (String)session.getAttribute("UserId");
+
+		try {
+			paramEntity.setAjaxResponseDataSet(MenuManager.getFavoriteMenuDataSet(userId));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity doDeleteFavoriteMenu(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		HttpSession session = paramEntity.getSession();
+		String chkForDel = requestDataSet.getValue("chkForDel");
+		String menuIds[] = CommonUtil.splitWithTrim(chkForDel, ConfigUtil.getProperty("delimiter.record"));
+		String userId = (String)session.getAttribute("UserId");
+		int result = 0;
+
+		try {
+			result = sysFavoriteMenuDao.delete(userId, menuIds);
+
+			if (result <= 0) {
+				throw new FrameworkException("E801", getMessage("E801", paramEntity));
+			}
+
+			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
 	}
 
 	public ParamEntity doAuthentication(ParamEntity paramEntity) throws Exception {

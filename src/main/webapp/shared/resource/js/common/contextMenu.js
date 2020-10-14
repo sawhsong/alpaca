@@ -692,43 +692,49 @@
 				// Dustin - ul -> div (because of bootstrap)
 //				var menuList = $('<ul class="'+option.classPrefix+'-contextMenu '+option.classPrefix+'-created '+option.classPrefix+'-cm-menu" id="'+option.classPrefix+'-contextMenu' + randomNum + '"></ul>');
 				var menuList = $('<div class="'+option.classPrefix+'-contextMenu '+option.classPrefix+'-created '+option.classPrefix+'-cm-menu" id="'+option.classPrefix+'-contextMenu' + randomNum + '"></div>');
-				$.each(selector, function(index,selObj) {
+				$.each(selector, function(index, selObj) {
 					var name = selObj.name,
 						fun = selObj.fun || function(){},
 						subMenu = selObj.subMenu,
-						img = selObj.img || '',
+						img = selObj.img || "",
 						title = selObj.title || "",
 						className = selObj.className || "",
+						style = selObj.style || "",
 						disable = selObj.disable,
-						list = $('<li title="' + title + '" class="' + className + '" userData="'+selObj.userData+'">' + name + '</li>');
+						list = $('<li title="' + title + '" class="' + className + '" userData="'+selObj.userData+'" style="'+style+'">' + name + '</li>');
 
-					if (img) {
-						// Dustin : to use image / icon font
-						if (img.indexOf("/shared") != -1) {
-							list.prepend('<img src="' + img + '" align="absmiddle" class="'+option.classPrefix+'-mIcon"/>');
-						} else {
-							if ($.nony.startsWith(img, "fa-")) {
-								list.prepend("<i class='fa "+img+" fa-lg'></i>&nbsp;&nbsp;&nbsp;&nbsp;");
+					if (name == "breaker") {
+						list = $('<hr class="contextMenu-breaker"/>');
+						menuList.append(list);
+					} else {
+						if (img) {
+							// Dustin : to use image / icon font
+							if (img.indexOf("/shared") != -1) {
+								list.prepend('<img src="' + img + '" align="absmiddle" class="'+option.classPrefix+'-mIcon"/>');
 							} else {
-								list.prepend("<span class='glyphicon "+img+"' style='font-size:1.1em'></span>&nbsp;&nbsp;&nbsp;&nbsp;");
+								if ($.nony.startsWith(img, "fa-")) {
+									list.prepend("<i class='fa "+img+" fa-lg'></i>&nbsp;&nbsp;&nbsp;&nbsp;");
+								} else {
+									list.prepend("<span class='glyphicon "+img+"' style='font-size:1.1em'></span>&nbsp;&nbsp;&nbsp;&nbsp;");
+								}
 							}
 						}
-					}
 
-					//to add disable
-					if (disable) {
-						list.addClass(option.classPrefix+'-mDisable');
-					}
+						//to add disable
+						if (disable) {
+							list.addClass(option.classPrefix+'-mDisable');
+						}
 
-					list.bind('click.contextMenu', function(e){
-						fun.call(this,{trigger:baseTrigger,menu:menuList},e);
-					});
+						list.bind('click.contextMenu', function(e){
+							fun.call(this,{trigger:baseTrigger,menu:menuList},e);
+						});
 
-					//to create sub menu
-					menuList.append(list);
-					if (subMenu) {
-						list.append('<div class="'+option.classPrefix+'-cm-arrow-right" />');
-						iMethods.subMenu(list, subMenu, baseTrigger, option);
+						//to create sub menu
+						menuList.append(list);
+						if (subMenu) {
+							list.append('<div class="'+option.classPrefix+'-cm-arrow-right" />');
+							iMethods.subMenu(list, subMenu, baseTrigger, option);
+						}
 					}
 				});
 

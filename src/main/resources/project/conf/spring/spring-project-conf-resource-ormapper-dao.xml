@@ -661,4 +661,6 @@
     <bean class="${name.package.project}.conf.resource.ormapper.dao.EoExpenseD.EoExpenseDHDaoImpl" id="eoExpenseDDao" init-method="init" name="eoExpenseDDao" parent="baseHDao" scope="prototype"/>
     <!--PrtAssignmentDocLink DAO-->
     <bean class="${name.package.project}.conf.resource.ormapper.dao.PrtAssignmentDocLink.PrtAssignmentDocLinkHDaoImpl" id="prtAssignmentDocLinkDao" init-method="init" name="prtAssignmentDocLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--SysFavoriteMenu DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysFavoriteMenu.SysFavoriteMenuHDaoImpl" id="sysFavoriteMenuDao" init-method="init" name="sysFavoriteMenuDao" parent="baseHDao" scope="prototype"/>
 </beans>

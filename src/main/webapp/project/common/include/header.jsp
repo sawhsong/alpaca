@@ -18,6 +18,7 @@
 	DataSet dsThemeTypeHeaderPage = CommonCodeManager.getCodeDataSetByCodeType("USER_THEME_TYPE");
 	DataSet dsMenuHeaderPage = MenuManager.getMenu(authGroupIdHeaderPage, "", "1", "1");
 	DataSet dsQuickMenuHeaderPage = MenuManager.getQuickMenu();
+	DataSet dsFavoriteMenuHeaderPage = (DataSet)session.getAttribute("FavoriteMenuDataSet");
 
 	boolean hasQuickMenuAccessHeaderPage = (dsMenuHeaderPage.getRowIndex("PATH", "QM") >= 0) ? true : false;
 	String quickMenuNameHeaderPage = dsQuickMenuHeaderPage.getValue("MENU_NAME_"+languageCodeHeaderPage);
@@ -42,7 +43,7 @@
 .sessionDesc {float:left;}
 </style>
 <script type="text/javascript">
-var popupUserProfile, popupQuickMenu;
+var popupUserProfile, popupQuickMenu, popupFavoriteMenu;
 var hasQuickMenuAccessHeaderPage = "<%=hasQuickMenuAccessHeaderPage%>";
 var authGroupIdHeaderPage = "<%=authGroupIdHeaderPage%>";
 
@@ -72,6 +73,22 @@ $(function() {
 	$("#aQuickMenu").click(function() {
 		$("#divQuickMenu").addClass("selected");
 		$("#divQuickMenu").trigger("click");
+		$("#divFavoriteMenu").removeClass("selected");
+		$("#divLoggedInUser").removeClass("selected");
+	});
+
+	$("#aFavoriteMenu").click(function() {
+		$("#divFavoriteMenu").addClass("selected");
+		$("#divFavoriteMenu").trigger("click");
+		$("#divQuickMenu").removeClass("selected");
+		$("#divLoggedInUser").removeClass("selected");
+	});
+
+	$("#aLoggedInUser").click(function() {
+		$("#divLoggedInUser").addClass("selected");
+		$("#divLoggedInUser").trigger("click");
+		$("#divQuickMenu").removeClass("selected");
+		$("#divFavoriteMenu").removeClass("selected");
 	});
 
 	$("#aDeleteSessionDesc").click(function() {
@@ -91,11 +108,6 @@ $(function() {
 				}
 			}
 		});
-	});
-
-	$("#aLoggedInUser").click(function() {
-		$("#divLoggedInUser").addClass("selected");
-		$("#divLoggedInUser").trigger("click");
 	});
 
 	doMainMenu = function(menuId, menuName, menuUrl) {
@@ -148,6 +160,88 @@ $(function() {
 			heightAdjust:5,
 			horAdjust:-5,
 			verAdjust:-3
+		});
+	};
+
+	setFavoriteMenuContextMenu = function() {
+		var favMenu = commonJs.getDataSetFromJavaDataSet("<%=dsFavoriteMenuHeaderPage.toStringForJs()%>");
+		var languageCode = jsconfig.get("langCode").toUpperCase();
+		var ctxMenu = [];
+
+		ctxMenu.push({
+			name:"Add To Favorite Menu",
+			img:"fa-plus-square",
+			fun:function() {
+				var leftMenuId = $("[name=hdnLeftMenuId]").val();
+
+				if (commonJs.isBlank(leftMenuId)) {
+					commonJs.error("Please open left menu.");
+				} else {
+					if (favMenu.getRowIndex("LEFT_MENU_ID", leftMenuId) >= 0) {
+						commonJs.warn("Menu item has already been added.");
+					} else {
+						commonJs.doSave({
+							url:"/login/saveFavoriteMenu.do",
+							noForm:true,
+							data:{menuId:leftMenuId},
+							onSuccess:function(result) {
+								doLeftMenu($("[name=hdnLeftMenuId]").val(), $("[name=hdnLeftMenuName]").val(), $("[name=hdnLeftMenuUrl]").val());
+							}
+						});
+					}
+				}
+			}
+		});
+		ctxMenu.push({
+			name:"Delete Favorite Menu",
+			img:"fa-trash",
+			fun:function() {
+				popupFavoriteMenu = commonJs.openPopup({
+					popupId:"DeleteFavoriteMenu",
+					url:"/login/getFavoriteMenu.do",
+					data:{},
+					header:"Favorite Menu",
+					blind:false,
+					draggable:true,
+					width:900,
+					height:500
+				});
+			}
+		});
+
+		for (var i=0; i<favMenu.getRowCnt(); i++) {
+			if (i == 0) {
+				ctxMenu.push({name:"breaker"});
+			}
+
+			ctxMenu.push({
+				name:favMenu.getValue(i, "LEFT_MENU_NAME_"+languageCode),
+				menuId:favMenu.getValue(i, "LEFT_MENU_ID"),
+				menuUrl:favMenu.getValue(i, "LEFT_MENU_URL"),
+				headerMenuName:favMenu.getValue(i, "HEADER_MENU_NAME_"+languageCode),
+				headerMenuId:favMenu.getValue(i, "HEADER_MENU_ID"),
+				headerMenuUrl:favMenu.getValue(i, "HEADER_MENU_URL"),
+				fun:function() {
+					var index = $(this).index();
+
+					$("[name=hdnHeaderMenuId]").val(ctxMenu[index].headerMenuId);
+					$("[name=hdnHeaderMenuName]").val(ctxMenu[index].headerMenuName);
+					$("[name=hdnHeaderMenuUrl]").val(ctxMenu[index].headerMenuUrl);
+					doLeftMenu(ctxMenu[index].menuId, ctxMenu[index].name, ctxMenu[index].menuUrl);
+				}
+			});
+		}
+
+		$("#divFavoriteMenu").contextMenu(ctxMenu, {
+			classPrefix:com.constants.ctxClassPrefixHeader,
+			effectDuration:100,
+			effect:"fade",
+			borderRadius:"bottom 3px",
+			displayAround:"trigger",
+			position:"bottom",
+			onClose:function() {
+				$("#divFavoriteMenu").removeClass("selected");
+			}
 		});
 	};
 
@@ -247,6 +341,7 @@ $(function() {
 
 	$(window).load(function() {
 		setThemeSelectorContextMenu();
+		setFavoriteMenuContextMenu();
 
 		if (commonJs.toBoolean(hasQuickMenuAccessHeaderPage)) {
 			setQuickMenuContextMenu();
@@ -314,6 +409,11 @@ $(function() {
 %>
 		</div>
 		<div id="divMainMenuAreaRight">
+			<div id="divFavoriteMenu" class="headerMainMenus">
+				<a id="aFavoriteMenu" style="background:url(<mc:cp key="imgThemeCom"/>/icnStar_<mc:cp key="headMainMenuIconColor"/>.png) no-repeat 0px 50%;padding:4px 0px 4px 25px;">
+					Favorite Menu
+				</a>
+			</div>
 <%
 		if (hasQuickMenuAccessHeaderPage) {
 %>
