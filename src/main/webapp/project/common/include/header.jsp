@@ -411,7 +411,7 @@ $(function() {
 		<div id="divMainMenuAreaRight">
 			<div id="divFavoriteMenu" class="headerMainMenus">
 				<a id="aFavoriteMenu" style="background:url(<mc:cp key="imgThemeCom"/>/icnStar_<mc:cp key="headMainMenuIconColor"/>.png) no-repeat 0px 50%;padding:4px 0px 4px 25px;">
-					Favorite Menu
+					Bookmarks
 				</a>
 			</div>
 <%
