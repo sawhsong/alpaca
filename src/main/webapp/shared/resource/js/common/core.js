@@ -1373,6 +1373,7 @@ var nony = {
 //		});
 
 		option = $.extend({}, opt, param);
+		$(jqObject).attr("placeholder", "Auto Complete");
 		$(jqObject).autocomplete(option);
 	},
 	/*!
@@ -1877,7 +1878,7 @@ var nony = {
 							location.replace("/index/index.do");
 						}
 					}],
-					width:330,
+//					width:330,
 					blind:true
 				});
 			}
@@ -1898,9 +1899,9 @@ var nony = {
 					});
 				} else if (msgHandleType == "popup") {
 					commonJs.openDialog({
+//						width:450,
 						type:com.message.E000,
-						contents:result.message,
-						width:450
+						contents:result.message
 					});
 
 					try {

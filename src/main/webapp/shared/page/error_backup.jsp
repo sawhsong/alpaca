@@ -24,36 +24,61 @@ if (CommonUtil.toBoolean(request.getHeader("isAjaxCallForFramework"))) {
 <style type="text/css">
 body {
 	padding:10px 10px;
-	font:12px/1.2 "Verdana", "Malgun Gothic", "Sans-serif";
+	font:12px/1.2 "Consolas", "Malgun Gothic", "Sans-serif";
 }
 .errorCodeBox {
 	margin:0px auto;
 	padding:10px 0px 10px 0px;
+	text-align:center;
 	font-weight:bold;
 	color:#CD0A0A;
 	width:200px;
+	border:1px solid #CD0A0A;
+	border-radius:5px;
+	background:-webkit-linear-gradient(top, #FFF7F4 50%, #FEF1EC 20%, #FFF9F7);
+	background:-moz-linear-gradient(top, #FFF7F4 50%, #FEF1EC 20%, #FFF9F7);
+	background:-ms-linear-gradient(top, #FFF7F4 50%, #FEF1EC 20%, #FFF9F7);
+	background:linear-gradient(top, #FFF7F4 50%, #FEF1EC 20%, #FFF9F7);
+	box-shadow:1px 1px 2px rgba(0,0,0,.2);
 }
 .errorIcon {
-	margin:7px 12px 0px 14px;
+	margin:7px 0px 0px 14px;
 	float:left;
 }
 .errorTitle {
 	line-height:1.5;
-}
-.errorMessageBox {
-	margin:0px auto;
-	padding:10px 0px 10px 0px;
-	text-align:center;
 	color:#CD0A0A;
-	width:95%;
-	line-height:1.5;
 }
-.errorMessage {}
 .buttonBox {
 	margin:0px auto;
 	padding:10px 0px 10px 0px;
 	text-align:center;
 	font-weight:bold;
+}
+.messageSections {
+}
+.sectionLabel1 {
+	display:inline;
+	font-weight:bold;
+	color:#5050C7;
+	cursor:pointer;
+}
+.sectionLabel2 {
+	padding:0px 0px 0px 30px;
+	display:inline;
+	font-weight:bold;
+	color:#008080;
+	cursor:pointer;
+}
+.sectionContents {
+	padding:0px 0px 0px 60px;
+}
+.attributeLabel {
+	display:inline;
+	color:#D14424;
+}
+.prePrintStackTrace {
+	font-family:"Consolas";
 }
 .button {
 	display:inline-block;
@@ -101,6 +126,18 @@ $(function() {
 	clickButton = function() {
 		history.go(-1);
 	};
+
+	$(document).ready(function() {
+		$(".sectionContents").hide();
+		$(".sectionContents:first").toggle("blind");
+	});
+
+	$(document).click(function(event) {
+		var className = $(event.target).attr("class");
+		if (className == "sectionLabel1" || className == "sectionLabel2") {
+			$(event.target).next().toggle("blind");
+		}
+	});
 });
 </script>
 </head>
@@ -116,17 +153,38 @@ $(function() {
 <div class="errorCodeBox">
 	<div class="errorIcon"><img src="/shared/resource/image/icon/error.png"/></div>
 	<div class="errorTitle">
-		Exception occurred !<br/>
+		Exception occurred!<br/>
 		[Error Code : ${requestScope["javax.servlet.error.status_code"]}]
-	</div>
-</div>
-<div class="errorMessageBox">
-	<div class="errorMessage">
-		Error Message : ${requestScope["javax.servlet.error.message"]}
 	</div>
 </div>
 <div class="buttonBox">
 	<a class="button red" onclick="clickButton()">Back</a>
+</div>
+<div style="clear:both;height:5px;"></div>
+<div class="messageSections">
+	<div class="sectionLabel1">Error Message</div>
+	<div class="sectionContents" style="color:#D14424">
+		<div>jspException : ${requestScope["javax.servlet.jsp.jspException"]}</div>
+		<div>message : ${requestScope["javax.servlet.error.message"]}</div>
+	</div>
+</div>
+<div class="messageSections">
+	<div class="sectionLabel1">java.lang.Throwable</div>
+	<div class="messageSections">
+		<div class="sectionLabel2">Exception</div>
+		<div class="sectionContents">
+<%
+		out.println("<div class='attributeLabel'>Exception</div> : "+exception+"<br/>");
+		if (exception != null) {
+			out.println("<div class='attributeLabel'>Cause</div> : "+exception.getCause()+"<br/>");
+			out.println("<div class='attributeLabel'>Message</div> : "+exception.getMessage()+"<br/>");
+			out.println("<div class='attributeLabel'>printStackTrace()</div> : <pre class='prePrintStackTrace'>");
+			exception.printStackTrace(new PrintWriter(out));
+			out.println("</pre>");
+		}
+%>
+		</div>
+	</div>
 </div>
 <%/************************************************************************************************
 * Right & Footer

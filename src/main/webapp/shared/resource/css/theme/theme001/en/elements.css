@@ -6,6 +6,10 @@
 /**
  * Common
  */
+/* Placeholder */
+::-webkit-input-placeholder {color:#000000;opacity:0.3;font-style:italic;}
+:-ms-input-placeholder {color:#000000;opacity:0.3;font-style:italic;}
+::placeholder {color:#000000;opacity:0.3;font-style:italic;}
 
 /* Anchor */
 a {color:#0000DF;text-decoration:none;}

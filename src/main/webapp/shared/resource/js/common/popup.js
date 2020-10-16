@@ -250,7 +250,7 @@
 			this.width = params.width;									// Popup width (Popup:[350], Dialog:[250])
 			this.height = params.height;								// Popup height (Popup:[200], Dialog:[150])
 			this.limitHeightForMax = params.limitHeightForMax = 100;	// Size for height limited (for only Dialog. Not editable)
-			this.minWidth = params.minWidth = 250;						// Minimum width of dialog (for only Dialog. Not editable)
+			this.minWidth = params.minWidth = 200;						// Minimum width of dialog (for only Dialog. Not editable)
 			this.maxWidth = params.maxWidth = 800;						// Maximum width of dialog (for only Dialog. Not editable)
 			this.minHeight = params.minHeight = 35;						// Minimum height of dialog (for only Dialog. Not editable)
 			this.left = params.left;									// Left position ([center])
@@ -401,11 +401,12 @@
 				} else {
 					params.dialogContentsWidth = $(table).outerWidth();
 				}
+				params.dialogContentsWidth = params.dialogContentsWidth+10;
 			} else {
 				params.dialogContentsWidth = (params.width);
 			}
 
-			params.dialogContentsHeight = $(table).outerHeight()+6;
+			params.dialogContentsHeight = $(table).outerHeight()+10;
 
 			$(table).remove();
 		},
