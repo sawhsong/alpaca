@@ -1340,8 +1340,9 @@ var nony = {
 
 							$(jqObject).autocomplete("option", "source", dataSource);
 						} else {
-							throw new Error(com.message.error);
-							return;
+							$.nony._doAjaxErrorProc(param, data, result);
+//							throw new Error(com.message.error);
+//							return;
 						}
 					}
 				});
@@ -1838,7 +1839,6 @@ var nony = {
 					type:com.message.I000,
 					contents:result.message,
 					blind:true,
-					width:300,
 					buttons:[{
 						caption:com.caption.ok,
 						callback:function() {
@@ -1878,7 +1878,6 @@ var nony = {
 							location.replace("/index/index.do");
 						}
 					}],
-//					width:330,
 					blind:true
 				});
 			}
@@ -1899,7 +1898,6 @@ var nony = {
 					});
 				} else if (msgHandleType == "popup") {
 					commonJs.openDialog({
-//						width:450,
 						type:com.message.E000,
 						contents:result.message
 					});

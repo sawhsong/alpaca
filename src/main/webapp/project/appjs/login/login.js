@@ -93,7 +93,6 @@ $(function() {
 									contents:message,
 									blind:true,
 									draggable:false,
-									width:350,
 									buttons:[{
 										caption:com.caption.ok,
 										callback:function() {

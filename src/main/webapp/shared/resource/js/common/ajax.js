@@ -99,7 +99,6 @@
 										location.replace("/index/index.do");
 									}
 								}],
-								width:330,
 								blind:true
 							});
 						}
@@ -242,7 +241,6 @@
 										location.replace("/index/index.do");
 									}
 								}],
-								width:330,
 								blind:true
 							});
 						}

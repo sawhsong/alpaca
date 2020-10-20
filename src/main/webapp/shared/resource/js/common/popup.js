@@ -250,7 +250,7 @@
 			this.width = params.width;									// Popup width (Popup:[350], Dialog:[250])
 			this.height = params.height;								// Popup height (Popup:[200], Dialog:[150])
 			this.limitHeightForMax = params.limitHeightForMax = 100;	// Size for height limited (for only Dialog. Not editable)
-			this.minWidth = params.minWidth = 200;						// Minimum width of dialog (for only Dialog. Not editable)
+			this.minWidth = params.minWidth = 150;						// Minimum width of dialog (for only Dialog. Not editable)
 			this.maxWidth = params.maxWidth = 800;						// Maximum width of dialog (for only Dialog. Not editable)
 			this.minHeight = params.minHeight = 35;						// Minimum height of dialog (for only Dialog. Not editable)
 			this.left = params.left;									// Left position ([center])
@@ -381,34 +381,29 @@
 			else {$(this.popupBase).css("top", this.top);}
 		},
 		_checkContentsHeight : function(params) {
-			var html = "", htmlDiv = "", contentMessage = "", table, div, tableOnBody;
+			var html = "", testElement, outerWidth = 0;
 
-			contentMessage = $.nony.replace(params.contents, "\n", "<br/>");
+			html += "<table><tr><td style='padding:2px 4px;line-height:16px;white-space:nowrap;font-size:12px'>"+$.nony.replace(params.contents, "\n", "<br/>")+"</td></tr></table>";
 
-			html += "<table><tr>";
-			html += "<td style='vertical-align:top;padding-right:4px;'><img src='"+jsconfig.get("imgThemeCom")+"/"+params.type+".png"+"'/></td>";
-			html += "<td style='padding:2px 4px;line-height:16px;white-space:nowrap;font-size:12px'>"+contentMessage+"</td>";
-			html += "</tr></table>";
+			testElement = $(html);
+			$(testElement).appendTo("body");
 
-			table = $(html);
-			$("body").append($(table));
+			outerWidth = ($(testElement).outerWidth() + 35);
 
 			if ($.nony.isEmpty(params.width)) {
-				if ($(table).outerWidth() < params.minWidth) {
+				if (outerWidth < params.minWidth) {
 					params.dialogContentsWidth = params.minWidth;
-				} else if ($(table).outerWidth() > params.maxWidth) {
+				} else if (outerWidth > params.maxWidth) {
 					params.dialogContentsWidth = params.maxWidth;
 				} else {
-					params.dialogContentsWidth = $(table).outerWidth();
+					params.dialogContentsWidth = outerWidth;
 				}
-				params.dialogContentsWidth = params.dialogContentsWidth+10;
 			} else {
 				params.dialogContentsWidth = (params.width);
 			}
 
-			params.dialogContentsHeight = $(table).outerHeight()+10;
-
-			$(table).remove();
+			params.dialogContentsHeight = $(testElement).outerHeight()+6;
+			$(testElement).remove();
 		},
 		_setEffect : function() {
 			var onLoad = this.onLoad;
