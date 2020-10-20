@@ -64,7 +64,6 @@ $(function() {
 					draggable:false,
 					modal:true,
 					blind:false,
-					width:330,
 					oncloseCallback:function() {
 						doProcess();
 					}

@@ -54,7 +54,6 @@ $(function() {
 									contents:com.message.E913,
 									blind:true,
 									draggable:false,
-									width:350,
 									buttons:[{
 										caption:com.caption.ok,
 										callback:function() {
@@ -80,9 +79,7 @@ $(function() {
 						var message = result.message+" "+dataSet.getValue(0, "USER_NAME")+"!";
 						commonJs.doSimpleProcess({
 							url:"/login/doAuthentication.do",
-							data:{
-								mode:"noAuth"
-							},
+							data:{mode:"noAuth"},
 							noForm:true,
 							onSuccess:function(result) {
 								var ds = result.dataSet;
@@ -110,8 +107,7 @@ $(function() {
 				onError:function(result) {
 					commonJs.openDialog({
 						type:com.message.E000,
-						contents:result.message,
-						width:260
+						contents:result.message
 					});
 				}
 			});
@@ -136,7 +132,7 @@ $(function() {
 					blind:false,
 					draggable:false,
 					width:400,
-					height:406
+					height:410
 				};
 			}
 

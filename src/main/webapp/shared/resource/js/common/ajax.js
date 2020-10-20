@@ -131,16 +131,13 @@
 						data += "[Error Code : "+xhr.status+"]<br/>";
 						data += "[Message Code : "+result.messageCode+"]<br/>";
 						data += "Message :<br/>"+$.nony.stringToHtml(result.message);
-						width = 500;
 					} else {
 						data = "[Error Code : "+xhr.status+"]<br/>"+$.nony.removeString($.nony.stringToHtml(data), "<br/>");
-						width = 480
 					}
 
 					$.nony.openDialog({
 						type:"Error",
 						contents:data,
-						width:width,
 						buttons:[{
 							caption:com.caption.ok,
 							callback:function() {
@@ -273,16 +270,13 @@
 						data += "[Error Code : "+xhr.status+"]<br/>";
 						data += "[Message Code : "+result.messageCode+"]<br/>";
 						data += "Message :<br/>"+$.nony.stringToHtml(result.message);
-						width = 500;
 					} else {
 						data = "[Error Code : "+xhr.status+"]<br/>"+$.nony.removeString($.nony.stringToHtml(data), "<br/>");
-						width = 480
 					}
 
 					$.nony.openDialog({
 						type:"Error",
 						contents:data,
-						width:width,
 						buttons:[{
 							caption:com.caption.ok,
 							callback:function() {

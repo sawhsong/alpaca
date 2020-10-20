@@ -237,12 +237,6 @@ $(function() {
 				setFieldOrganisationDetailValues(ds);
 			}
 		});
-
-		setTimeout(function() {
-			commonJs.hideProcMessageOnElement("divLeft");
-			commonJs.hideProcMessageOnElement("divCustomerDetails");
-			commonJs.hideProcMessageOnElement("divRelationshipInternalDetails");
-		}, 800);
 	};
 
 	setFieldOrganisationDetailValues = function(ds) {
@@ -304,6 +298,12 @@ $(function() {
 				$("#product").selectpicker("val", product);
 				$("#product").selectpicker("refresh");
 			}
+
+			setTimeout(function() {
+				commonJs.hideProcMessageOnElement("divLeft");
+				commonJs.hideProcMessageOnElement("divCustomerDetails");
+				commonJs.hideProcMessageOnElement("divRelationshipInternalDetails");
+			}, 400);
 		} catch(e) {}
 	};
 
@@ -320,14 +320,12 @@ $(function() {
 				setCommunicationHistoryFieldValues(ds);
 			}
 		});
-
-		setTimeout(function() {
-			commonJs.hideProcMessageOnElement("divCommunicationHistory");
-		}, 800);
 	};
 
 	setCommunicationHistoryFieldValues = function(ds) {
 		$("#communicationHistory").html(commonJs.stringToHtml(ds.getValue(0, "HTML")));
+
+		setTimeout(() => commonJs.hideProcMessageOnElement("divCommunicationHistory"), 800);
 	};
 
 	/*
@@ -337,8 +335,7 @@ $(function() {
 		commonJs.setAccordion({
 			containerClass:"accordion",
 			multipleExpand:true,
-			expandAll:true,
-			icons:null
+			expandAll:true
 		});
 
 		setFieldMask();
@@ -348,12 +345,7 @@ $(function() {
 			doBlurEvent($(this));
 		});
 
-		setTimeout(function() {
-			getOrganisationDetail();
-		}, 400);
-
-		setTimeout(function() {
-			getCommunicationHistory();
-		}, 1000);
+		setTimeout(() => getOrganisationDetail(), 400);
+		setTimeout(() => getCommunicationHistory(), 800);
 	});
 });

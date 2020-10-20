@@ -179,8 +179,7 @@ $(function() {
 		commonJs.setAccordion({
 			containerClass:"accordion",
 			multipleExpand:true,
-			expandAll:true,
-			icons:null
+			expandAll:true
 		});
 
 		commonJs.setFieldDateMask("dateOfBirth");

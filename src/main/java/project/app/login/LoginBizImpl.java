@@ -54,6 +54,7 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 		SysUser sysUser = new SysUser();
 		String randomString = CommonUtil.getRandomAlphanumeric(12);
 		String loginId = requestDataSet.getValue("loginId");
+		String email = requestDataSet.getValue("email");
 		int result = -1;
 
 		try {
@@ -61,6 +62,12 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 			userDataSet = sysUserDao.getUserInfoDataSetByLoginId(loginId);
 			if (userDataSet.getRowCnt() <= 0) {
 				throw new FrameworkException("E907", getMessage("E907", paramEntity));
+			}
+
+			// Check if the email is matching
+			userDataSet = sysUserDao.getUserInfoDataSetByLoginIdAndEmail(loginId, email);
+			if (userDataSet.getRowCnt() <= 0) {
+				throw new FrameworkException("E914", getMessage("E914", paramEntity));
 			}
 
 			// Initailise the password

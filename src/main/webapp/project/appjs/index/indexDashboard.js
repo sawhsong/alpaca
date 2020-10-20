@@ -428,15 +428,14 @@ $(function() {
 		commonJs.setAccordion({
 			containerClass:"accordion",
 			multipleExpand:true,
-			expandAll:true,
-			icons:null
+			expandAll:true
 		});
 
+		loadAbcNewsFeed();
+		loadNewsComAuFeed();
 		doSearchNotice();
 		doSearchFreeBoard();
 		loadChart1();
 		loadChart2();
-		loadAbcNewsFeed();
-		loadNewsComAuFeed();
 	});
 });
