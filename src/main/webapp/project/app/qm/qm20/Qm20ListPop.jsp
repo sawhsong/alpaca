@@ -56,18 +56,18 @@
 		<caption><mc:msg key="page.com.searchCriteria"/></caption>
 		<colgroup>
 			<col width="8%"/>
-			<col width="18%"/>
-			<col width="11%"/>
-			<col width="18%"/>
+			<col width="19%"/>
 			<col width="6%"/>
-			<col width="18%"/>
+			<col width="19%"/>
+			<col width="7%"/>
+			<col width="19%"/>
 			<col width="7%"/>
 			<col width="*"/>
 		</colgroup>
 		<tr>
 			<th class="thSearch rt">Person equals</th>
 			<td class="tdSearch"><ui:hidden name="personId"/><ui:text name="personEquals" style="width:95%"/></td>
-			<th class="thSearch rt">Person Number/Name like</th>
+			<th class="thSearch rt">Person like</th>
 			<td class="tdSearch"><ui:text name="personLike" style="width:95%"/></td>
 			<th class="thSearch rt">Person Id like</th>
 			<td class="tdSearch"><ui:text name="personIdLike" style="width:95%"/></td>
@@ -82,7 +82,7 @@
 <%-- 				<ui:icon id="icnEmpOrgSearch" className="fa-search hor"/> --%>
 			</td>
 			<th class="thSearch rt"><mc:msg key="qm.search.personType"/></th>
-			<td class="tdSearch"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:95%"/></td>
+			<td class="tdSearch"><ui:ccselect name="personType" codeType="PERSON_TYPES" isMultiple="true" attribute="data-size:20;data-width:291px"/></td>
 			<th class="thSearch rt"><mc:msg key="qm.search.personEmail"/></th>
 			<td class="tdSearch"><ui:text name="email" style="width:95%"/></td>
 			<th class="thSearch rt"><mc:msg key="per0202.search.mobile"/></th>

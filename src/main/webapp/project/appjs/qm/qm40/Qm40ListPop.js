@@ -234,6 +234,11 @@ $(function() {
 			label:"org_name_with_org_id",
 			value:"organisation_id",
 			minLength:2,
+			position:{
+				my:"right top",
+				at:"right bottom",
+				collision:"fit flip"
+			},
 			focus: function(event, ui) {
 				$("#billingOrgId").val(ui.item.value);
 				$("#billingOrgName").val(ui.item.label);

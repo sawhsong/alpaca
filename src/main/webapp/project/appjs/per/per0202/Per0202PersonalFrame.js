@@ -62,15 +62,15 @@ $(function() {
 
 		try {
 			$("#personNumber").val(ds.getValue(0, "PERSON_NUMBER"));
-			$("[name=prefix]").filter("[value="+ds.getValue(0, "PREFIX")+"]").attr("checked", true);
+			commonJs.setRadioValue("prefix", ds.getValue(0, "PREFIX"));
 			$("#surname").val(ds.getValue(0, "SURNAME"));
 			$("#firstName").val(ds.getValue(0, "FIRST_NAME"));
 			$("#middleName").val(ds.getValue(0, "MIDDLE_NAME"));
 			$("#preferredName").val(ds.getValue(0, "PREFERRED_NAME"));
 			$("#dateOfBirth").val(ds.getValue(0, "DATE_OF_BIRTH"));
 			$("#firstContact").val(ds.getValue(0, "FIRST_CONTACT"));
-			$("[name=maritalStatus]").filter("[value="+ds.getValue(0, "MARITAL_STATUS")+"]").attr("checked", true);
-			$("[name=gender]").filter("[value="+ds.getValue(0, "GENDER")+"]").attr("checked", true);
+			commonJs.setRadioValue("maritalStatus", ds.getValue(0, "MARITAL_STATUS"));
+			commonJs.setRadioValue("gender", ds.getValue(0, "GENDER"));
 			$("#employmentCompanyOrgId").val(ds.getValue(0, "EMPLOYMENT_COMPANY_ORG_ID"));
 			$("#employmentCompanyOrgName").val(ds.getValue(0, "EMPLOYMENT_COMPANY_ORG_NAME"));
 			$("#title").val(ds.getValue(0, "TITLE"));

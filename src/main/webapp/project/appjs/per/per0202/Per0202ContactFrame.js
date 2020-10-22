@@ -27,10 +27,10 @@ $(function() {
 
 	setRadioCheckValues = function() {
 		try {
-			$("[name=preferredEmail]").filter("[value="+preferredEmail+"]").attr("checked", true);
-			$("[name=excludeFromBulkEmail]").filter("[value="+excludeFromBulkEmail+"]").attr("checked", true);
-			$("[name=executiveRelationship]").filter("[value="+executiveRelationship+"]").attr("checked", true);
-			$("[name=operationalRelationship]").filter("[value="+operationalRelationship+"]").attr("checked", true);
+			commonJs.setRadioValue("preferredEmail", preferredEmail);
+			commonJs.setRadioValue("excludeFromBulkEmail", excludeFromBulkEmail);
+			commonJs.setRadioValue("executiveRelationship", executiveRelationship);
+			commonJs.setRadioValue("operationalRelationship", operationalRelationship);
 		} catch(e) {}
 	};
 
@@ -41,8 +41,7 @@ $(function() {
 		commonJs.setAccordion({
 			containerClass:"accordion",
 			multipleExpand:true,
-			expandAll:true,
-			icons:null
+			expandAll:true
 		});
 
 		setRadioCheckValues();

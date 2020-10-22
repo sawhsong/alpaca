@@ -156,7 +156,7 @@ $(function() {
 		if (param.mode == "Detail") {
 			url = "/sys/0402/getDetail.do";
 			header = com.header.popHeaderDetail;
-			height = 300;
+			height = 306;
 		} else if (param.mode == "New") {
 			url = "/sys/0402/getInsert.do";
 			header = com.header.popHeaderEdit;

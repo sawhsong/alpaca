@@ -124,16 +124,12 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYSLIP_EMAIL")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "MOBILE")));
 
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("personId:"+ds.getValue(i, "PERSON_ID")).setScript("doAction(this)");
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
-
 				html += gridTr.toHtmlString();
 			}
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:9").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:8").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
@@ -185,43 +181,6 @@ $(function() {
 		};
 
 		popup = commonJs.openPopup(popParam);
-	};
-
-	doDelete = function() {
-		if (commonJs.getCountChecked("chkForDel") == 0) {
-			commonJs.warn(com.message.I902);
-			return;
-		}
-
-		commonJs.doDelete({
-			url:"/per/0202/exeDelete.do",
-			onSuccess:doSearch
-		});
-	};
-
-	doAction = function(img) {
-		var articleId = $(img).attr("articleId");
-
-		$("input:checkbox[name=chkForDel]").each(function(index) {
-			if (!$(this).is(":disabled") && $(this).val() == articleId) {
-				$(this).prop("checked", true);
-			} else {
-				$(this).prop("checked", false);
-			}
-		});
-
-		ctxMenu.boardAction[0].fun = function() {getPersonDetail(articleId);};
-		ctxMenu.boardAction[1].fun = function() {openPopup({mode:"Edit", articleId:articleId});};
-		ctxMenu.boardAction[2].fun = function() {openPopup({mode:"Reply", articleId:articleId});};
-		ctxMenu.boardAction[3].fun = function() {doDelete();};
-
-		$(img).contextMenu(ctxMenu.boardAction, {
-			classPrefix:com.constants.ctxClassPrefixGrid,
-			displayAround:"trigger",
-			position:"bottom",
-			horAdjust:0,
-			verAdjust:2
-		});
 	};
 
 	exeExport = function(menuObject) {

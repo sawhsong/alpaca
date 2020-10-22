@@ -251,7 +251,7 @@ $(function() {
 			$("#jurisdictionName").val(ds.getValue(0, "JURISDICTION"));
 			$("#abn").val(commonJs.getFormatString(ds.getValue(0, "ABN"), "??-???-???-???"));
 			$("#acn").val(commonJs.getFormatString(ds.getValue(0, "ACN"), "???-???-???"));
-			$("[name=gstReg]").filter("[value="+ds.getValue(0, "GST_REG")+"]").attr("checked", true);
+			commonJs.setRadioValue("gstReg", ds.getValue(0, "GST_REG"));
 			$("#gstNumber").val(ds.getValue(0, "GST_NUMBER"));
 			$("#authorizedPersonId").val(ds.getValue(0, "AUTHORIZED_PERSON"));
 			$("#authorizedPersonName").val(!commonJs.isBlank(ds.getValue(0, "AUTHORIZED_PERSON_NAME")) ? ds.getValue(0, "AUTHORIZED_PERSON_NAME")+" ("+ds.getValue(0, "AUTHORIZED_PERSON_NUMBER")+")" : "");
