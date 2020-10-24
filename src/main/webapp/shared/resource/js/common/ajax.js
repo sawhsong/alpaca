@@ -99,6 +99,7 @@
 										location.replace("/index/index.do");
 									}
 								}],
+								width:340,
 								blind:true
 							});
 						}
@@ -238,6 +239,7 @@
 										location.replace("/index/index.do");
 									}
 								}],
+								width:340,
 								blind:true
 							});
 						}

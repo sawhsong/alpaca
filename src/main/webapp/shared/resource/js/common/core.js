@@ -1878,6 +1878,7 @@ var nony = {
 							location.replace("/index/index.do");
 						}
 					}],
+					width:340,
 					blind:true
 				});
 			}

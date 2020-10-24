@@ -22,7 +22,7 @@ $(function() {
 					}
 				}],
 				draggable:false,
-				width:330,
+				width:340,
 				blind:true
 			});
 		} else {
@@ -39,7 +39,7 @@ $(function() {
 					}
 				}],
 				draggable:false,
-				width:330,
+				width:340,
 				blind:true
 			});
 		} else {
@@ -56,7 +56,7 @@ $(function() {
 					}
 				}],
 				draggable:false,
-				width:330,
+				width:340,
 				blind:true
 			});
 		} else {
