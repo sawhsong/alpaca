@@ -116,8 +116,8 @@
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.personName"/></th>
 					<th class="thGrid"><mc:msg key="sys9802.grid.hasPrt"/></th>
 					<th class="thGrid"><mc:msg key="sys9802.grid.hasWc"/></th>
-					<th class="thGrid"><mc:msg key="sys9802.grid.lastInv"/></th>
-					<th class="thGrid"><mc:msg key="sys9802.grid.lastPay"/></th>
+					<th class="thGrid caution"><mc:msg key="sys9802.grid.lastInv"/></th>
+					<th class="thGrid caution"><mc:msg key="sys9802.grid.lastPay"/></th>
 					<th class="thGrid"><mc:msg key="sys9802.grid.workingState"/></th>
 					<th class="thGrid sortable:date"><mc:msg key="sys9802.grid.asgStartDate"/></th>
 					<th class="thGrid sortable:date"><mc:msg key="sys9802.grid.asgEndDate"/></th>

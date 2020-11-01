@@ -86,8 +86,8 @@ var mode = "<%=mode%>";
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
 				<th class="thGrid">Asg Id</th>
 				<th class="thGrid">Assignment Number</th>
-				<th class="thGrid">Last Invoiced</th>
-				<th class="thGrid">Last Paid</th>
+				<th class="thGrid caution">Last Invoiced</th>
+				<th class="thGrid caution">Last Paid</th>
 				<th class="thGrid">PRT Id</th>
 				<th class="thGrid">PRT Status</th>
 				<th class="thGrid">PRT Working State</th>

@@ -57,6 +57,10 @@ table > tbody > tr.danger:hover, table > tbody > tr > td.danger:hover {
 	background-color:#ebcccc;
 }
 
+/* Highlight / Fill-in Color in field */
+.highlight {background:#fef87a !important;}
+.caution {color:#f81a01;background:#fef87a !important;}
+
 /* Table in Panel */
 div.panel > table {border-bottom:0px;}
 div.panel > table th:first-child, div.panel > table td:first-child {border-left:0px;}
