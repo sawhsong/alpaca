@@ -133,6 +133,8 @@
 						<tr>
 							<td class="tdEdit" colspan="3">
 								<div class="divButtonArea">
+									<div class="divButtonAreaLeft" id="orgCntAdded" style="padding-top:6px;color:#e17009;font-weight:bold;">
+									</div>
 									<div class="divButtonAreaRight">
 										<ui:buttonGroup>
 											<ui:button id="btnClearAccntShift" caption="button.com.clear" iconClass="fa-refresh"/>

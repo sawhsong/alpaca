@@ -8,6 +8,8 @@ $(function() {
 	/*!
 	 * event
 	 */
+	$("#selectedShiftOrg").change(() => countShiftOrgSelect());
+
 	$("#btnClearOrg").click(function(event) {
 		$(document).find("#divOrg").find(":input").each(function() {
 			if ($(this).prop("type") == "checkbox" || $(this).prop("type") == "radio") {
@@ -46,6 +48,8 @@ $(function() {
 			$(this).remove();
 		});
 		commonJs.refreshBootstrapSelectbox("selectedShiftOrg");
+
+		countShiftOrgSelect();
 	});
 
 	$("#btnClearEoExpenseStatus").click(function(event) {
@@ -233,6 +237,18 @@ $(function() {
 
 			$("#shiftOrgId").val("");
 			$("#shiftOrgName").val("");
+
+			countShiftOrgSelect();
+		}
+	};
+
+	countShiftOrgSelect = function() {
+		var selLength = $("#selectedShiftOrg :selected").length;
+
+		if (selLength > 0) {
+			$("#orgCntAdded").html("Number of Organisation selected : "+$("#selectedShiftOrg :selected").length);
+		} else {
+			$("#orgCntAdded").html("");
 		}
 	};
 
