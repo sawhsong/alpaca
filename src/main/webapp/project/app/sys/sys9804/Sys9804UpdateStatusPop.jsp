@@ -57,7 +57,7 @@ var mode = "<%=mode%>";
 <div id="divInformArea" class="areaContainerPopup">
 	<table class="tblInform">
 		<colgroup>
-			<col width="11%"/>
+			<col width="12%"/>
 			<col width="*"/>
 		</colgroup>
 		<tr>
