@@ -73,7 +73,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		String inputValue = requestDataSet.getValue("inputValue");
 
 		try {
-			queryAdvisor.addAutoFillCriteria(inputValue, "lower(login_id) like lower('"+inputValue+"%')");
+			queryAdvisor.addAutoFillCriteria(inputValue, "lower(login_id) like lower('%"+inputValue+"%')");
 			queryAdvisor.addOrderByClause("login_id");
 			paramEntity.setAjaxResponseDataSet(sysUserDao.getUserNameDataSetForAutoCompletion(queryAdvisor));
 			paramEntity.setSuccess(true);
@@ -156,7 +156,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		try {
 			hpOrganisationDDao.setDataSourceName(dataSource);
 
-			queryAdvisor.addAutoFillCriteria(inputValue, "lower(organisation_name) like lower('"+inputValue+"%')");
+			queryAdvisor.addAutoFillCriteria(inputValue, "lower(organisation_name) like lower('%"+inputValue+"%')");
 			queryAdvisor.addOrderByClause("organisation_name asc");
 
 			paramEntity.setAjaxResponseDataSet(hpOrganisationDDao.getOrgInfoDataSetForAutoCompletion(queryAdvisor));
@@ -180,7 +180,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 			if (CommonUtil.isNumeric(inputValue)) {
 				queryAdvisor.addAutoFillCriteria(inputValue, "organisation_id like '"+inputValue+"%'");
 			} else {
-				queryAdvisor.addAutoFillCriteria(inputValue, "lower(organisation_name) like lower('"+inputValue+"%')");
+				queryAdvisor.addAutoFillCriteria(inputValue, "lower(organisation_name) like lower('%"+inputValue+"%')");
 			}
 			queryAdvisor.addOrderByClause("organisation_name asc");
 
@@ -202,7 +202,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		try {
 			hpOrganisationDDao.setDataSourceName(dataSource);
 
-			queryAdvisor.addAutoFillCriteria(inputValue, "lower(organisation_name) like lower('"+inputValue+"%')");
+			queryAdvisor.addAutoFillCriteria(inputValue, "lower(organisation_name) like lower('%"+inputValue+"%')");
 			queryAdvisor.addOrderByClause("organisation_name asc");
 
 			paramEntity.setAjaxResponseDataSet(hpOrganisationDDao.getBillingOrgByNameForAutoCompletion(queryAdvisor));
@@ -226,7 +226,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 			if (CommonUtil.isNumeric(inputValue)) {
 				queryAdvisor.addAutoFillCriteria(inputValue, "organisation_id like '"+inputValue+"%'");
 			} else {
-				queryAdvisor.addAutoFillCriteria(inputValue, "lower(organisation_name) like lower('"+inputValue+"%')");
+				queryAdvisor.addAutoFillCriteria(inputValue, "lower(organisation_name) like lower('%"+inputValue+"%')");
 			}
 			queryAdvisor.addOrderByClause("organisation_name asc");
 
@@ -311,7 +311,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		try {
 			hpPersonDDao.setDataSourceName(dataSource);
 
-			queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('"+inputValue+"%')");
+			queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('%"+inputValue+"%')");
 			queryAdvisor.addOrderByClause("full_name");
 
 			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getPersonBasicInfoForAutoCompletion(queryAdvisor));
@@ -353,7 +353,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		try {
 			hpPersonDDao.setDataSourceName(dataSource);
 
-			queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('"+inputValue+"%')");
+			queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('%"+inputValue+"%')");
 			queryAdvisor.addOrderByClause("full_name");
 
 			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getPersonBasicInfoForAutoCompletion(queryAdvisor));
@@ -377,7 +377,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 			if (CommonUtil.isNumeric(inputValue)) {
 				queryAdvisor.addAutoFillCriteria(inputValue, "person_number like '"+inputValue+"%'");
 			} else {
-				queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('"+inputValue+"%')");
+				queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('%"+inputValue+"%')");
 			}
 			queryAdvisor.addOrderByClause("full_name");
 
@@ -420,7 +420,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 		try {
 			hpPersonDDao.setDataSourceName(dataSource);
 
-			queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('"+inputValue+"%')");
+			queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('%"+inputValue+"%')");
 			queryAdvisor.addOrderByClause("full_name");
 
 			paramEntity.setAjaxResponseDataSet(hpPersonDDao.getEsEmployeeByNameForAutoCompletion(queryAdvisor));
@@ -444,7 +444,7 @@ public class AutoCompletionBizImpl extends BaseBiz implements AutoCompletionBiz 
 			if (CommonUtil.isNumeric(inputValue)) {
 				queryAdvisor.addAutoFillCriteria(inputValue, "person_number like '"+inputValue+"%'");
 			} else {
-				queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('"+inputValue+"%')");
+				queryAdvisor.addAutoFillCriteria(inputValue, "lower(full_name) like lower('%"+inputValue+"%')");
 			}
 			queryAdvisor.addOrderByClause("full_name");
 
