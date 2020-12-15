@@ -350,20 +350,15 @@
 			} else {
 //				$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment));
 			}
-//commonJs.printLog({message:"$(options.attachTo).height(1) : "+$(options.attachTo).height()});
-//commonJs.printLog({message:"$scrollablePanel.height() : "+$scrollablePanel.height()});
-//commonJs.printLog({message:"pagingAreaHeight : "+pagingAreaHeight});
-//commonJs.printLog({message:"options.attachToHeight : "+options.attachToHeight});
+
+			var hFix = ($.nony.isInIgnoreCase(jsconfig.get("themeId"), ["theme000", "theme008"])) ? 0 : 1;
 			if (!$.nony.isEmpty(options.attachToHeight) || options.attachToHeight > 0) {
 				$(options.attachTo).height(options.attachToHeight);
 			} else {
-				$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment));
+				$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment) - hFix);
 			}
 //			$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment));
 
-//commonJs.printLog({message:"attachToHeight : "+attachToHeight});
-//commonJs.printLog({message:"$(options.attachTo).height(2) : "+$(options.attachTo).height()});
-//commonJs.printLog({message:"$(this).height() : "+$(this).height()});
 			if ($(this).height() <= $(options.attachTo).height()) {
 				$(options.attachTo).height($(this).height() + (heightAdjustment - 4));
 			}

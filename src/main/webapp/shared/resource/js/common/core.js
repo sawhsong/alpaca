@@ -1653,6 +1653,7 @@ var nony = {
 		}
 
 		var fixedScrollablePanelHeight = $.nony.nvl(jsconfig.get("fixedScrollablePanelHeight"), 0);
+		var hFix = ($.nony.isInIgnoreCase(jsconfig.get("themeId"), ["theme000", "theme008"])) ? 0 : 6;
 		if (isPopup) {
 			if (fixedScrollablePanelHeight > 0) {
 				$("#divScrollablePanelPopup").height(fixedScrollablePanelHeight);
@@ -1674,7 +1675,7 @@ var nony = {
 				$("#divScrollablePanel").height(fixedScrollablePanelHeight);
 			} else {
 				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 2;
-				$("#divScrollablePanel").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection))+"px");
+				$("#divScrollablePanel").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection) + hFix)+"px");
 			}
 		}
 //commonJs.printLog({message:"isTabFrame(core.js) : "+isTabFrame});
