@@ -117,25 +117,24 @@
 <div id="divDataArea" class="areaContainer">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="2%"/>
-			<col width="5%"/>
+			<col width="4%"/>
 			<col width="13%"/>
 			<col width="13%"/>
 			<col width="*"/>
 			<col width="21%"/>
 			<col width="16%"/>
-			<col width="8%"/>
-			<col width="4%"/>
+			<col width="5%"/>
+			<col width="7%"/>
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.personNumber"/></th>
+				<th class="thGrid"><mc:msg key="per0202.grid.personNumber"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.surname"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.firstName"/></th>
 				<th class="thGrid"><mc:msg key="per0202.grid.personType"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="per0202.grid.empOrg"/></th>
 				<th class="thGrid"><mc:msg key="per0202.grid.payslipEmail"/></th>
+				<th class="thGrid">No. of Asg</th>
 				<th class="thGrid"><mc:msg key="per0202.grid.mobile"/></th>
 			</tr>
 		</thead>

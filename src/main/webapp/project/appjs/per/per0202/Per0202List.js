@@ -12,11 +12,7 @@ $(function() {
 	 * event
 	 */
 	$("#btnNew").click(function(event) {
-		openPopup({mode:"New"});
-	});
-
-	$("#btnDelete").click(function(event) {
-		doDelete();
+		getPersonDetail("");
 	});
 
 	$("#btnSearch").click(function(event) {
@@ -43,22 +39,6 @@ $(function() {
 			width:880,
 			height:680
 		});
-	});
-
-	$("#icnCheck").click(function(event) {
-		commonJs.toggleCheckboxes("chkForDel");
-	});
-
-	$("#personEquals").blur(function() {
-		if (commonJs.isEmpty($(this).val())) {
-			$("#personId").val("");
-		}
-	});
-
-	$("#empOrgName").blur(function() {
-		if (commonJs.isEmpty($(this).val())) {
-			$("#empOrgId").val("");
-		}
 	});
 
 	$(document).keydown(function(event) {
@@ -114,14 +94,16 @@ $(function() {
 		if (ds.getRowCnt() > 0) {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
+				var asgCnt = commonJs.getNumberMask(ds.getValue(i, "NUMBER_OF_ASSIGNMENT"), "#,##0");
+				var activeAsgCnt = commonJs.getNumberMask(ds.getValue(i, "NUMBER_OF_ACTIVE_ASSIGNMENT"), "#,##0");
 
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setName("chkForDel").setValue(ds.getValue(i, "PERSON_ID"))));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_NUMBER")).setScript("getPersonDetail('"+ds.getValue(i, "PERSON_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "SURNAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "FIRST_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "PERSON_TYPE"), 50)));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "EMPLOYMENT_ORG_NAME"), 50)));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PERSON_TYPE")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "EMPLOYMENT_ORG_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYSLIP_EMAIL")));
+				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(asgCnt+" ("+activeAsgCnt+")"));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "MOBILE")));
 
 				html += gridTr.toHtmlString();
@@ -151,38 +133,6 @@ $(function() {
 		});
 	};
 
-	openPopup = function(param) {
-		var url = "", header = "";
-		var height = 510;
-
-		if (param.mode == "Detail") {
-			url = "/per/0202/getPersonDetailFrameContainer.do";
-			header = com.header.popHeaderDetail;
-		} else if (param.mode == "New" || param.mode == "Reply") {
-			url = "/per/0202/getInsert.do";
-			header = com.header.popHeaderEdit;
-		} else if (param.mode == "Edit") {
-			url = "/per/0202/getUpdate.do";
-			header = com.header.popHeaderEdit;
-			height = 634;
-		}
-
-		var popParam = {
-			popupId:"notice"+param.mode,
-			url:url,
-			data:{
-				mode:param.mode,
-				articleId:commonJs.nvl(param.articleId, "")
-			},
-			header:header,
-			blind:true,
-			width:800,
-			height:height
-		};
-
-		popup = commonJs.openPopup(popParam);
-	};
-
 	exeExport = function(menuObject) {
 		$("[name=fileType]").remove();
 		$("[name=dataRange]").remove();
@@ -207,6 +157,7 @@ $(function() {
 	 */
 	$(window).load(function() {
 		commonJs.setExportButtonContextMenu($("#btnExport"));
+		commonJs.setEvent("blur", [$("#personEquals"), $("#empOrgName")], commonJs.clearValueOnBlur);
 
 		commonJs.setAutoComplete($("#personEquals"), {
 			method:"getPersonByNameOrPersonNumber",

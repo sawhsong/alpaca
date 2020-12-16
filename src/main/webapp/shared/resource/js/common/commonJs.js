@@ -136,6 +136,11 @@ var commonJs = {
 	 */
 	printLog : function(params) {$.nony.printLog(params);},
 	/*!
+	 * Bind event and function
+	 */
+	setEvent : function(eventName, objArr, callback) {$.nony.setEvent(eventName, objArr, callback);},
+	clearValueOnBlur : function(jqObj) {$.nony.clearValueOnBlur(jqObj);},
+	/*!
 	 * etc
 	 */
 	setFieldDateMask : function(elementId) {$.nony.setFieldDateMask(elementId);},

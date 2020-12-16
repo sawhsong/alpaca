@@ -915,6 +915,25 @@ var nony = {
 		return moment.unix(moment());
 	},
 	/*!
+	 * Bind event and function
+	 */
+	setEvent : function(eventName, objArr, callback) {
+		if ($.nony.isBlank(eventName) || objArr == null) {return;}
+
+		for (var index in objArr) {
+			$(objArr[index]).bind(eventName, function() {
+				callback($(this));
+			});
+		}
+	},
+	clearValueOnBlur : function(jqObj) {
+		if (jqObj == null) {return;}
+
+		if ($.nony.isEmpty($(jqObj).val())) {
+			$(jqObj).val("");
+		}
+	},
+	/*!
 	 * utilities etc
 	 */
 	// used by validator
