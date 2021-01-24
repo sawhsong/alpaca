@@ -40,5 +40,4 @@ public class Bbs0202Action extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
-	
 }
