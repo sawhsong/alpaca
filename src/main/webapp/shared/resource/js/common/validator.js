@@ -37,7 +37,7 @@
 						return this._execError($(elem), this._messages["mandatory_"+jsconfig.get("langCode")], "select");
 					}
 
-					if (!$.nony.isEmpty(option) && (option == "Numeric" || option == "numeric") && $.nony.toNumber($(elem).val()) == 0) {
+					if (!$.nony.isEmpty(option) && (option == "Numeric" || option == "numeric") && $.nony.toNumber($.nony.trim($(elem).val())) == 0) {
 						return this._execError($(elem), this._messages["numeric_"+jsconfig.get("langCode")], "select");
 					}
 				}
