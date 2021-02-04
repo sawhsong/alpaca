@@ -1831,6 +1831,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 							resultElement.setAttribute("type", "debugDispatcherResult");
 							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdUpperCamelCase + "Detail"+pageNameSuffix);
 							actionElement.appendChild(resultElement);
+							packageElement.appendChild(actionElement);
 						}
 
 						if (CommonUtil.toBoolean(isCreateEdit)) {
@@ -1840,6 +1841,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 							resultElement.setAttribute("type", "debugDispatcherResult");
 							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdUpperCamelCase + "Edit"+pageNameSuffix);
 							actionElement.appendChild(resultElement);
+							packageElement.appendChild(actionElement);
 						}
 
 						if (CommonUtil.toBoolean(isCreateInsert)) {
@@ -1848,6 +1850,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 							resultElement.setAttribute("type", "debugDispatcherResult");
 							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdUpperCamelCase + "Insert"+pageNameSuffix);
 							actionElement.appendChild(resultElement);
+							packageElement.appendChild(actionElement);
 						}
 
 						if (CommonUtil.toBoolean(isCreateUpdate)) {
