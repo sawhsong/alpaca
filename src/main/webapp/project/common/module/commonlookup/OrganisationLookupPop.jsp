@@ -14,6 +14,7 @@
 	String popupToSetValue = requestDataSet.getValue("popupToSetValue");
 	String popupName = requestDataSet.getValue("popupName");
 	String lookupValue = requestDataSet.getValue("lookupValue");
+	String callback = requestDataSet.getValue("callback");
 %>
 <%/************************************************************************************************
 * HTML
@@ -35,8 +36,11 @@
 var keyFieldId = "<%=keyFieldId%>";
 var valueFieldId = "<%=valueFieldId%>";
 var popupName = "<%=popupName%>";
-var popupToSetValue = eval("<%=popupToSetValue%>");
+var popupToSetValue = "<%=popupToSetValue%>";
+var popupToSetValueObject = eval("<%=popupToSetValue%>");
 var lookupValue = "<%=lookupValue%>";
+var popupObject = eval(popupName);
+var callback = "<%=callback%>";
 </script>
 </head>
 <%/************************************************************************************************
