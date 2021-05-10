@@ -26,7 +26,7 @@ var uiElements = {
 
 		html += "<input type=\"hidden\"";
 		html += " id=\""+$.nony.nvl(params.id, params.name)+"\"";
-		html += " name=\""+name+"\"";
+		html += " name=\""+params.name+"\"";
 
 		if ($.nony.isNotBlank(params.className)) {html += " class=\""+params.className+"\"";}
 		if ($.nony.isNotBlank(params.value)) {html += " value=\""+params.value+"\"";}
@@ -90,7 +90,7 @@ var uiElements = {
 
 		html += "<input type=\"text\"";
 		html += " id=\""+$.nony.nvl(params.id, params.name)+"\"";
-		html += " name=\""+name+"\"";
+		html += " name=\""+params.name+"\"";
 
 		if ($.nony.isNotBlank(className)) {html += " class=\""+className+"\"";}
 		if ($.nony.isNotBlank(params.value)) {html += " value=\""+params.value+"\"";}
