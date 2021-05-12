@@ -57,7 +57,8 @@ var uiElements = {
 		 * attribute
 		 * status
 		 */
-		var html = "", className = ""; classNamePrefix = "", scriptStr = "", attrStr = "", scripts = new Array(), eventFunc = new Array(), attrs = new Array(), attr = new Array();
+		var html = "", className = ""; classNamePrefix = "", scriptStr = "", attrStr = "", options = "";
+		var scripts = new Array(), eventFunc = new Array(), attrs = new Array(), attr = new Array();
 
 		if ($.nony.containsIgnoreCase(params.status, "disabled")) {
 			options += ($.nony.isBlank(params.options)) ? "readonly" : " readonly";
@@ -133,7 +134,7 @@ var uiElements = {
 
 		params.isBootstrap = (params.isBootstrap == false) ? false : true;
 
-		var html = "", disabledString = "", classSuffix = "", attrStr = "", classNameCustomised = "", attrs = new Array(), attr = new Array();
+		var html = "", langCode = jsconfig.get("langCode"), disabledString = "", classSuffix = "", attrStr = "", classNameCustomised = "", attrs = new Array(), attr = new Array();
 
 		if ($.nony.toBoolean(params.isCustomised)) {
 			isBootstrap = "true";
