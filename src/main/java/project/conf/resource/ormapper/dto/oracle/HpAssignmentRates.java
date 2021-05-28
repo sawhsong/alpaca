@@ -31,6 +31,8 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 	private String CHARGE_PERIOD;
 	private double chargeRate;
 	private String CHARGE_RATE;
+	private String dayType;
+	private String DAY_TYPE;
 	private String displayOnExpense;
 	private String DISPLAY_ON_EXPENSE;
 	private String displayOnTimesheet;
@@ -39,8 +41,14 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 	private String ELEMENT_ID;
 	private String enableFlag;
 	private String ENABLE_FLAG;
+	private String endTime;
+	private String END_TIME;
 	private String gstExempt;
 	private String GST_EXEMPT;
+	private String overTimeEnd;
+	private String OVER_TIME_END;
+	private String overTimeStart;
+	private String OVER_TIME_START;
 	private String period;
 	private String PERIOD;
 	private String preferred;
@@ -49,8 +57,12 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 	private String RATE_NAME;
 	private String recurringRate;
 	private String RECURRING_RATE;
+	private String startTime;
+	private String START_TIME;
 	private double taxablePercentage;
 	private String TAXABLE_PERCENTAGE;
+	private String useAward;
+	private String USE_AWARD;
 	private String insertUserName;
 	private String INSERT_USER_NAME;
 	private String updateUserName;
@@ -153,6 +165,15 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 		setValueFromAccessor("CHARGE_RATE", CommonUtil.toString(chargeRate));
 	}
 
+	public String getDayType() {
+		return dayType;
+	}
+
+	public void setDayType(String dayType) throws Exception {
+		this.dayType = dayType;
+		setValueFromAccessor("DAY_TYPE", dayType);
+	}
+
 	public String getDisplayOnExpense() {
 		return displayOnExpense;
 	}
@@ -189,6 +210,15 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 		setValueFromAccessor("ENABLE_FLAG", enableFlag);
 	}
 
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) throws Exception {
+		this.endTime = endTime;
+		setValueFromAccessor("END_TIME", endTime);
+	}
+
 	public String getGstExempt() {
 		return gstExempt;
 	}
@@ -196,6 +226,24 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 	public void setGstExempt(String gstExempt) throws Exception {
 		this.gstExempt = gstExempt;
 		setValueFromAccessor("GST_EXEMPT", gstExempt);
+	}
+
+	public String getOverTimeEnd() {
+		return overTimeEnd;
+	}
+
+	public void setOverTimeEnd(String overTimeEnd) throws Exception {
+		this.overTimeEnd = overTimeEnd;
+		setValueFromAccessor("OVER_TIME_END", overTimeEnd);
+	}
+
+	public String getOverTimeStart() {
+		return overTimeStart;
+	}
+
+	public void setOverTimeStart(String overTimeStart) throws Exception {
+		this.overTimeStart = overTimeStart;
+		setValueFromAccessor("OVER_TIME_START", overTimeStart);
 	}
 
 	public String getPeriod() {
@@ -234,6 +282,15 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 		setValueFromAccessor("RECURRING_RATE", recurringRate);
 	}
 
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) throws Exception {
+		this.startTime = startTime;
+		setValueFromAccessor("START_TIME", startTime);
+	}
+
 	public double getTaxablePercentage() {
 		return taxablePercentage;
 	}
@@ -241,6 +298,15 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 	public void setTaxablePercentage(double taxablePercentage) throws Exception {
 		this.taxablePercentage = taxablePercentage;
 		setValueFromAccessor("TAXABLE_PERCENTAGE", CommonUtil.toString(taxablePercentage));
+	}
+
+	public String getUseAward() {
+		return useAward;
+	}
+
+	public void setUseAward(String useAward) throws Exception {
+		this.useAward = useAward;
+		setValueFromAccessor("USE_AWARD", useAward);
 	}
 
 	public String getInsertUserName() {
@@ -340,9 +406,9 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -385,16 +451,22 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 		str += "assigmentId : "+assigmentId+"\n";
 		str += "chargePeriod : "+chargePeriod+"\n";
 		str += "chargeRate : "+chargeRate+"\n";
+		str += "dayType : "+dayType+"\n";
 		str += "displayOnExpense : "+displayOnExpense+"\n";
 		str += "displayOnTimesheet : "+displayOnTimesheet+"\n";
 		str += "elementId : "+elementId+"\n";
 		str += "enableFlag : "+enableFlag+"\n";
+		str += "endTime : "+endTime+"\n";
 		str += "gstExempt : "+gstExempt+"\n";
+		str += "overTimeEnd : "+overTimeEnd+"\n";
+		str += "overTimeStart : "+overTimeStart+"\n";
 		str += "period : "+period+"\n";
 		str += "preferred : "+preferred+"\n";
 		str += "rateName : "+rateName+"\n";
 		str += "recurringRate : "+recurringRate+"\n";
+		str += "startTime : "+startTime+"\n";
 		str += "taxablePercentage : "+taxablePercentage+"\n";
+		str += "useAward : "+useAward+"\n";
 		str += "insertUserName : "+insertUserName+"\n";
 		str += "updateUserName : "+updateUserName+"\n";
 
@@ -414,16 +486,22 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 		str += "<column name=\"assigmentId\" value=\""+assigmentId+"\">";
 		str += "<column name=\"chargePeriod\" value=\""+chargePeriod+"\">";
 		str += "<column name=\"chargeRate\" value=\""+chargeRate+"\">";
+		str += "<column name=\"dayType\" value=\""+dayType+"\">";
 		str += "<column name=\"displayOnExpense\" value=\""+displayOnExpense+"\">";
 		str += "<column name=\"displayOnTimesheet\" value=\""+displayOnTimesheet+"\">";
 		str += "<column name=\"elementId\" value=\""+elementId+"\">";
 		str += "<column name=\"enableFlag\" value=\""+enableFlag+"\">";
+		str += "<column name=\"endTime\" value=\""+endTime+"\">";
 		str += "<column name=\"gstExempt\" value=\""+gstExempt+"\">";
+		str += "<column name=\"overTimeEnd\" value=\""+overTimeEnd+"\">";
+		str += "<column name=\"overTimeStart\" value=\""+overTimeStart+"\">";
 		str += "<column name=\"period\" value=\""+period+"\">";
 		str += "<column name=\"preferred\" value=\""+preferred+"\">";
 		str += "<column name=\"rateName\" value=\""+rateName+"\">";
 		str += "<column name=\"recurringRate\" value=\""+recurringRate+"\">";
+		str += "<column name=\"startTime\" value=\""+startTime+"\">";
 		str += "<column name=\"taxablePercentage\" value=\""+taxablePercentage+"\">";
+		str += "<column name=\"useAward\" value=\""+useAward+"\">";
 		str += "<column name=\"insertUserName\" value=\""+insertUserName+"\">";
 		str += "<column name=\"updateUserName\" value=\""+updateUserName+"\">";
 
@@ -443,16 +521,22 @@ public class HpAssignmentRates extends BaseDto implements Serializable {
 		str += "\"assigmentId\":\""+assigmentId+"\", ";
 		str += "\"chargePeriod\":\""+chargePeriod+"\", ";
 		str += "\"chargeRate\":\""+chargeRate+"\", ";
+		str += "\"dayType\":\""+dayType+"\", ";
 		str += "\"displayOnExpense\":\""+displayOnExpense+"\", ";
 		str += "\"displayOnTimesheet\":\""+displayOnTimesheet+"\", ";
 		str += "\"elementId\":\""+elementId+"\", ";
 		str += "\"enableFlag\":\""+enableFlag+"\", ";
+		str += "\"endTime\":\""+endTime+"\", ";
 		str += "\"gstExempt\":\""+gstExempt+"\", ";
+		str += "\"overTimeEnd\":\""+overTimeEnd+"\", ";
+		str += "\"overTimeStart\":\""+overTimeStart+"\", ";
 		str += "\"period\":\""+period+"\", ";
 		str += "\"preferred\":\""+preferred+"\", ";
 		str += "\"rateName\":\""+rateName+"\", ";
 		str += "\"recurringRate\":\""+recurringRate+"\", ";
+		str += "\"startTime\":\""+startTime+"\", ";
 		str += "\"taxablePercentage\":\""+taxablePercentage+"\", ";
+		str += "\"useAward\":\""+useAward+"\", ";
 		str += "\"insertUserName\":\""+insertUserName+"\", ";
 		str += "\"updateUserName\":\""+updateUserName+"\"";
 

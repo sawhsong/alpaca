@@ -36,6 +36,7 @@
 		<property name="previousFirstName" column="PREVIOUS_FIRST_NAME" type="java.lang.String" length="100"/>
 		<property name="previousMiddleName" column="PREVIOUS_MIDDLE_NAME" type="java.lang.String" length="60"/>
 		<property name="previousSurname" column="PREVIOUS_SURNAME" type="java.lang.String" length="60"/>
+		<property name="primaryEmail" column="PRIMARY_EMAIL" type="java.lang.String" length="100"/>
 		<property name="seniorTaxOffsetClaimed" column="SENIOR_TAX_OFFSET_CLAIMED" type="java.lang.String" length="1"/>
 		<property name="sfssDebt" column="SFSS_DEBT" type="java.lang.String" length="1"/>
 		<property name="specialRebatesClaimed" column="SPECIAL_REBATES_CLAIMED" type="java.lang.String" length="1"/>
@@ -77,6 +78,7 @@
 		       PREVIOUS_FIRST_NAME,
 		       PREVIOUS_MIDDLE_NAME,
 		       PREVIOUS_SURNAME,
+		       PRIMARY_EMAIL,
 		       SENIOR_TAX_OFFSET_CLAIMED,
 		       SFSS_DEBT,
 		       SPECIAL_REBATES_CLAIMED,
@@ -92,6 +94,7 @@
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -125,6 +128,7 @@
 		       PREVIOUS_FIRST_NAME,
 		       PREVIOUS_MIDDLE_NAME,
 		       PREVIOUS_SURNAME,
+		       PRIMARY_EMAIL,
 		       SENIOR_TAX_OFFSET_CLAIMED,
 		       SFSS_DEBT,
 		       SPECIAL_REBATES_CLAIMED,
@@ -164,6 +168,7 @@
 		       ${PREVIOUS_FIRST_NAME},
 		       ${PREVIOUS_MIDDLE_NAME},
 		       ${PREVIOUS_SURNAME},
+		       ${PRIMARY_EMAIL},
 		       ${SENIOR_TAX_OFFSET_CLAIMED},
 		       ${SFSS_DEBT},
 		       ${SPECIAL_REBATES_CLAIMED},
@@ -207,6 +212,7 @@
 		       PREVIOUS_FIRST_NAME = ${PREVIOUS_FIRST_NAME},
 		       PREVIOUS_MIDDLE_NAME = ${PREVIOUS_MIDDLE_NAME},
 		       PREVIOUS_SURNAME = ${PREVIOUS_SURNAME},
+		       PRIMARY_EMAIL = ${PRIMARY_EMAIL},
 		       SENIOR_TAX_OFFSET_CLAIMED = ${SENIOR_TAX_OFFSET_CLAIMED},
 		       SFSS_DEBT = ${SFSS_DEBT},
 		       SPECIAL_REBATES_CLAIMED = ${SPECIAL_REBATES_CLAIMED},

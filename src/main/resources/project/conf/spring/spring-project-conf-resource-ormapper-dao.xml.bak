@@ -663,6 +663,4 @@
     <bean class="${name.package.project}.conf.resource.ormapper.dao.PrtAssignmentDocLink.PrtAssignmentDocLinkHDaoImpl" id="prtAssignmentDocLinkDao" init-method="init" name="prtAssignmentDocLinkDao" parent="baseHDao" scope="prototype"/>
     <!--SysFavoriteMenu DAO-->
     <bean class="${name.package.project}.conf.resource.ormapper.dao.SysFavoriteMenu.SysFavoriteMenuHDaoImpl" id="sysFavoriteMenuDao" init-method="init" name="sysFavoriteMenuDao" parent="baseHDao" scope="prototype"/>
-    <!--ModernAward DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.ModernAward.ModernAwardHDaoImpl" id="modernAwardDao" init-method="init" name="modernAwardDao" parent="baseHDao" scope="prototype"/>
 </beans>

@@ -71,6 +71,8 @@ public class TfndReportPayeeRecord extends BaseDto implements Serializable {
 	private String PREVIOUS_MIDDLE_NAME;
 	private String previousSurname;
 	private String PREVIOUS_SURNAME;
+	private String primaryEmail;
+	private String PRIMARY_EMAIL;
 	private String seniorTaxOffsetClaimed;
 	private String SENIOR_TAX_OFFSET_CLAIMED;
 	private String sfssDebt;
@@ -373,6 +375,15 @@ public class TfndReportPayeeRecord extends BaseDto implements Serializable {
 		setValueFromAccessor("PREVIOUS_SURNAME", previousSurname);
 	}
 
+	public String getPrimaryEmail() {
+		return primaryEmail;
+	}
+
+	public void setPrimaryEmail(String primaryEmail) throws Exception {
+		this.primaryEmail = primaryEmail;
+		setValueFromAccessor("PRIMARY_EMAIL", primaryEmail);
+	}
+
 	public String getSeniorTaxOffsetClaimed() {
 		return seniorTaxOffsetClaimed;
 	}
@@ -560,9 +571,9 @@ public class TfndReportPayeeRecord extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -625,6 +636,7 @@ public class TfndReportPayeeRecord extends BaseDto implements Serializable {
 		str += "previousFirstName : "+previousFirstName+"\n";
 		str += "previousMiddleName : "+previousMiddleName+"\n";
 		str += "previousSurname : "+previousSurname+"\n";
+		str += "primaryEmail : "+primaryEmail+"\n";
 		str += "seniorTaxOffsetClaimed : "+seniorTaxOffsetClaimed+"\n";
 		str += "sfssDebt : "+sfssDebt+"\n";
 		str += "specialRebatesClaimed : "+specialRebatesClaimed+"\n";
@@ -674,6 +686,7 @@ public class TfndReportPayeeRecord extends BaseDto implements Serializable {
 		str += "<column name=\"previousFirstName\" value=\""+previousFirstName+"\">";
 		str += "<column name=\"previousMiddleName\" value=\""+previousMiddleName+"\">";
 		str += "<column name=\"previousSurname\" value=\""+previousSurname+"\">";
+		str += "<column name=\"primaryEmail\" value=\""+primaryEmail+"\">";
 		str += "<column name=\"seniorTaxOffsetClaimed\" value=\""+seniorTaxOffsetClaimed+"\">";
 		str += "<column name=\"sfssDebt\" value=\""+sfssDebt+"\">";
 		str += "<column name=\"specialRebatesClaimed\" value=\""+specialRebatesClaimed+"\">";
@@ -723,6 +736,7 @@ public class TfndReportPayeeRecord extends BaseDto implements Serializable {
 		str += "\"previousFirstName\":\""+previousFirstName+"\", ";
 		str += "\"previousMiddleName\":\""+previousMiddleName+"\", ";
 		str += "\"previousSurname\":\""+previousSurname+"\", ";
+		str += "\"primaryEmail\":\""+primaryEmail+"\", ";
 		str += "\"seniorTaxOffsetClaimed\":\""+seniorTaxOffsetClaimed+"\", ";
 		str += "\"sfssDebt\":\""+sfssDebt+"\", ";
 		str += "\"specialRebatesClaimed\":\""+specialRebatesClaimed+"\", ";

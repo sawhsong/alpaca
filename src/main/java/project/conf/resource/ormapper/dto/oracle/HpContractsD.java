@@ -41,6 +41,10 @@ public class HpContractsD extends BaseDto implements Serializable {
 	private String DIRECTOR_GURANTEE;
 	private String eboInvoicing;
 	private String EBO_INVOICING;
+	private String empEngagementType;
+	private String EMP_ENGAGEMENT_TYPE;
+	private String engagingEntity;
+	private String ENGAGING_ENTITY;
 	private double lastUpdatedBy;
 	private String LAST_UPDATED_BY;
 	private Date lastUpdateDate;
@@ -210,6 +214,24 @@ public class HpContractsD extends BaseDto implements Serializable {
 	public void setEboInvoicing(String eboInvoicing) throws Exception {
 		this.eboInvoicing = eboInvoicing;
 		setValueFromAccessor("EBO_INVOICING", eboInvoicing);
+	}
+
+	public String getEmpEngagementType() {
+		return empEngagementType;
+	}
+
+	public void setEmpEngagementType(String empEngagementType) throws Exception {
+		this.empEngagementType = empEngagementType;
+		setValueFromAccessor("EMP_ENGAGEMENT_TYPE", empEngagementType);
+	}
+
+	public String getEngagingEntity() {
+		return engagingEntity;
+	}
+
+	public void setEngagingEntity(String engagingEntity) throws Exception {
+		this.engagingEntity = engagingEntity;
+		setValueFromAccessor("ENGAGING_ENTITY", engagingEntity);
 	}
 
 	public double getLastUpdatedBy() {
@@ -417,9 +439,9 @@ public class HpContractsD extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -467,6 +489,8 @@ public class HpContractsD extends BaseDto implements Serializable {
 		str += "curAgreementStartDate : "+curAgreementStartDate+"\n";
 		str += "directorGurantee : "+directorGurantee+"\n";
 		str += "eboInvoicing : "+eboInvoicing+"\n";
+		str += "empEngagementType : "+empEngagementType+"\n";
+		str += "engagingEntity : "+engagingEntity+"\n";
 		str += "lastUpdatedBy : "+lastUpdatedBy+"\n";
 		str += "lastUpdateDate : "+lastUpdateDate+"\n";
 		str += "lateFee : "+lateFee+"\n";
@@ -503,6 +527,8 @@ public class HpContractsD extends BaseDto implements Serializable {
 		str += "<column name=\"curAgreementStartDate\" value=\""+curAgreementStartDate+"\">";
 		str += "<column name=\"directorGurantee\" value=\""+directorGurantee+"\">";
 		str += "<column name=\"eboInvoicing\" value=\""+eboInvoicing+"\">";
+		str += "<column name=\"empEngagementType\" value=\""+empEngagementType+"\">";
+		str += "<column name=\"engagingEntity\" value=\""+engagingEntity+"\">";
 		str += "<column name=\"lastUpdatedBy\" value=\""+lastUpdatedBy+"\">";
 		str += "<column name=\"lastUpdateDate\" value=\""+lastUpdateDate+"\">";
 		str += "<column name=\"lateFee\" value=\""+lateFee+"\">";
@@ -539,6 +565,8 @@ public class HpContractsD extends BaseDto implements Serializable {
 		str += "\"curAgreementStartDate\":\""+curAgreementStartDate+"\", ";
 		str += "\"directorGurantee\":\""+directorGurantee+"\", ";
 		str += "\"eboInvoicing\":\""+eboInvoicing+"\", ";
+		str += "\"empEngagementType\":\""+empEngagementType+"\", ";
+		str += "\"engagingEntity\":\""+engagingEntity+"\", ";
 		str += "\"lastUpdatedBy\":\""+lastUpdatedBy+"\", ";
 		str += "\"lastUpdateDate\":\""+lastUpdateDate+"\", ";
 		str += "\"lateFee\":\""+lateFee+"\", ";

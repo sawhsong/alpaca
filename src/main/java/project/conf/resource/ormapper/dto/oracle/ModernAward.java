@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated DTO Source
- * - EXPENSE_ATTACHMENT_LINK - 
+ * - MODERN_AWARD - 
  *************************************************************************************************/
 package project.conf.resource.ormapper.dto.oracle;
 
@@ -13,20 +13,26 @@ import zebra.util.CommonUtil;
 import project.common.extend.BaseDto;
 
 @SuppressWarnings("unused")
-public class ExpenseAttachmentLink extends BaseDto implements Serializable {
+public class ModernAward extends BaseDto implements Serializable {
 	/**
 	 * Columns
 	 */
-	private double linkId;
-	private String LINK_ID;
-	private double documentId;
-	private String DOCUMENT_ID;
-	private double expenseClaimId;
-	private String EXPENSE_CLAIM_ID;
-	private String fileIcon;
-	private String FILE_ICON;
-	private double fileSize;
-	private String FILE_SIZE;
+	private double modernAwardId;
+	private String MODERN_AWARD_ID;
+	private double createdBy;
+	private String CREATED_BY;
+	private Date creationDate;
+	private String CREATION_DATE;
+	private String isActive;
+	private String IS_ACTIVE;
+	private double lastUpdatedBy;
+	private String LAST_UPDATED_BY;
+	private Date lastUpdateDate;
+	private String LAST_UPDATE_DATE;
+	private String modernAwardCode;
+	private String MODERN_AWARD_CODE;
+	private String modernAwardName;
+	private String MODERN_AWARD_NAME;
 	private String insertUserName;
 	private String INSERT_USER_NAME;
 	private String updateUserName;
@@ -36,7 +42,7 @@ public class ExpenseAttachmentLink extends BaseDto implements Serializable {
 	 * Constructor
 	 */
 	@SuppressWarnings("rawtypes")
-	public ExpenseAttachmentLink() throws Exception {
+	public ModernAward() throws Exception {
 		Class cls = getClass();
 		Field field[] = cls.getDeclaredFields();
 
@@ -54,9 +60,9 @@ public class ExpenseAttachmentLink extends BaseDto implements Serializable {
 
 		dataSet.addRow();
 		updateColumnsDataSet.addName(updateColumnsDataSetHeader);
-		setFrwVarPrimaryKey("LINK_ID");
-		setFrwVarDateColumn("");
-		setFrwVarNumberColumn("LINK_ID,DOCUMENT_ID,EXPENSE_CLAIM_ID,FILE_SIZE");
+		setFrwVarPrimaryKey("MODERN_AWARD_ID");
+		setFrwVarDateColumn("CREATION_DATE,LAST_UPDATE_DATE");
+		setFrwVarNumberColumn("MODERN_AWARD_ID,CREATED_BY,LAST_UPDATED_BY");
 		setFrwVarClobColumn("");
 		setFrwVarDefaultColumn("");
 		setFrwVarDefaultValue("");
@@ -66,49 +72,76 @@ public class ExpenseAttachmentLink extends BaseDto implements Serializable {
 	/**
 	 * Accessors
 	 */
-	public double getLinkId() {
-		return linkId;
+	public double getModernAwardId() {
+		return modernAwardId;
 	}
 
-	public void setLinkId(double linkId) throws Exception {
-		this.linkId = linkId;
-		setValueFromAccessor("LINK_ID", CommonUtil.toString(linkId));
+	public void setModernAwardId(double modernAwardId) throws Exception {
+		this.modernAwardId = modernAwardId;
+		setValueFromAccessor("MODERN_AWARD_ID", CommonUtil.toString(modernAwardId));
 	}
 
-	public double getDocumentId() {
-		return documentId;
+	public double getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setDocumentId(double documentId) throws Exception {
-		this.documentId = documentId;
-		setValueFromAccessor("DOCUMENT_ID", CommonUtil.toString(documentId));
+	public void setCreatedBy(double createdBy) throws Exception {
+		this.createdBy = createdBy;
+		setValueFromAccessor("CREATED_BY", CommonUtil.toString(createdBy));
 	}
 
-	public double getExpenseClaimId() {
-		return expenseClaimId;
+	public Date getCreationDate() {
+		return creationDate;
 	}
 
-	public void setExpenseClaimId(double expenseClaimId) throws Exception {
-		this.expenseClaimId = expenseClaimId;
-		setValueFromAccessor("EXPENSE_CLAIM_ID", CommonUtil.toString(expenseClaimId));
+	public void setCreationDate(Date creationDate) throws Exception {
+		this.creationDate = creationDate;
+		setValueFromAccessor("CREATION_DATE", CommonUtil.toString(creationDate));
 	}
 
-	public String getFileIcon() {
-		return fileIcon;
+	public String getIsActive() {
+		return isActive;
 	}
 
-	public void setFileIcon(String fileIcon) throws Exception {
-		this.fileIcon = fileIcon;
-		setValueFromAccessor("FILE_ICON", fileIcon);
+	public void setIsActive(String isActive) throws Exception {
+		this.isActive = isActive;
+		setValueFromAccessor("IS_ACTIVE", isActive);
 	}
 
-	public double getFileSize() {
-		return fileSize;
+	public double getLastUpdatedBy() {
+		return lastUpdatedBy;
 	}
 
-	public void setFileSize(double fileSize) throws Exception {
-		this.fileSize = fileSize;
-		setValueFromAccessor("FILE_SIZE", CommonUtil.toString(fileSize));
+	public void setLastUpdatedBy(double lastUpdatedBy) throws Exception {
+		this.lastUpdatedBy = lastUpdatedBy;
+		setValueFromAccessor("LAST_UPDATED_BY", CommonUtil.toString(lastUpdatedBy));
+	}
+
+	public Date getLastUpdateDate() {
+		return lastUpdateDate;
+	}
+
+	public void setLastUpdateDate(Date lastUpdateDate) throws Exception {
+		this.lastUpdateDate = lastUpdateDate;
+		setValueFromAccessor("LAST_UPDATE_DATE", CommonUtil.toString(lastUpdateDate));
+	}
+
+	public String getModernAwardCode() {
+		return modernAwardCode;
+	}
+
+	public void setModernAwardCode(String modernAwardCode) throws Exception {
+		this.modernAwardCode = modernAwardCode;
+		setValueFromAccessor("MODERN_AWARD_CODE", modernAwardCode);
+	}
+
+	public String getModernAwardName() {
+		return modernAwardName;
+	}
+
+	public void setModernAwardName(String modernAwardName) throws Exception {
+		this.modernAwardName = modernAwardName;
+		setValueFromAccessor("MODERN_AWARD_NAME", modernAwardName);
 	}
 
 	public String getInsertUserName() {
@@ -246,11 +279,14 @@ public class ExpenseAttachmentLink extends BaseDto implements Serializable {
 	public String toString() {
 		String str = "";
 
-		str += "linkId : "+linkId+"\n";
-		str += "documentId : "+documentId+"\n";
-		str += "expenseClaimId : "+expenseClaimId+"\n";
-		str += "fileIcon : "+fileIcon+"\n";
-		str += "fileSize : "+fileSize+"\n";
+		str += "modernAwardId : "+modernAwardId+"\n";
+		str += "createdBy : "+createdBy+"\n";
+		str += "creationDate : "+creationDate+"\n";
+		str += "isActive : "+isActive+"\n";
+		str += "lastUpdatedBy : "+lastUpdatedBy+"\n";
+		str += "lastUpdateDate : "+lastUpdateDate+"\n";
+		str += "modernAwardCode : "+modernAwardCode+"\n";
+		str += "modernAwardName : "+modernAwardName+"\n";
 		str += "insertUserName : "+insertUserName+"\n";
 		str += "updateUserName : "+updateUserName+"\n";
 
@@ -263,11 +299,14 @@ public class ExpenseAttachmentLink extends BaseDto implements Serializable {
 	public String toXmlString() {
 		String str = "";
 
-		str += "<column name=\"linkId\" value=\""+linkId+"\">";
-		str += "<column name=\"documentId\" value=\""+documentId+"\">";
-		str += "<column name=\"expenseClaimId\" value=\""+expenseClaimId+"\">";
-		str += "<column name=\"fileIcon\" value=\""+fileIcon+"\">";
-		str += "<column name=\"fileSize\" value=\""+fileSize+"\">";
+		str += "<column name=\"modernAwardId\" value=\""+modernAwardId+"\">";
+		str += "<column name=\"createdBy\" value=\""+createdBy+"\">";
+		str += "<column name=\"creationDate\" value=\""+creationDate+"\">";
+		str += "<column name=\"isActive\" value=\""+isActive+"\">";
+		str += "<column name=\"lastUpdatedBy\" value=\""+lastUpdatedBy+"\">";
+		str += "<column name=\"lastUpdateDate\" value=\""+lastUpdateDate+"\">";
+		str += "<column name=\"modernAwardCode\" value=\""+modernAwardCode+"\">";
+		str += "<column name=\"modernAwardName\" value=\""+modernAwardName+"\">";
 		str += "<column name=\"insertUserName\" value=\""+insertUserName+"\">";
 		str += "<column name=\"updateUserName\" value=\""+updateUserName+"\">";
 
@@ -280,11 +319,14 @@ public class ExpenseAttachmentLink extends BaseDto implements Serializable {
 	public String toJsonString() {
 		String str = "";
 
-		str += "\"linkId\":\""+linkId+"\", ";
-		str += "\"documentId\":\""+documentId+"\", ";
-		str += "\"expenseClaimId\":\""+expenseClaimId+"\", ";
-		str += "\"fileIcon\":\""+fileIcon+"\", ";
-		str += "\"fileSize\":\""+fileSize+"\", ";
+		str += "\"modernAwardId\":\""+modernAwardId+"\", ";
+		str += "\"createdBy\":\""+createdBy+"\", ";
+		str += "\"creationDate\":\""+creationDate+"\", ";
+		str += "\"isActive\":\""+isActive+"\", ";
+		str += "\"lastUpdatedBy\":\""+lastUpdatedBy+"\", ";
+		str += "\"lastUpdateDate\":\""+lastUpdateDate+"\", ";
+		str += "\"modernAwardCode\":\""+modernAwardCode+"\", ";
+		str += "\"modernAwardName\":\""+modernAwardName+"\", ";
 		str += "\"insertUserName\":\""+insertUserName+"\", ";
 		str += "\"updateUserName\":\""+updateUserName+"\"";
 

@@ -51,8 +51,16 @@ public class PortalUserTf extends BaseDto implements Serializable {
 	private String SOURCE;
 	private double sourceId;
 	private String SOURCE_ID;
+	private Date submissionDate;
+	private String SUBMISSION_DATE;
+	private double transformedBy;
+	private String TRANSFORMED_BY;
 	private double transformAssignmentId;
 	private String TRANSFORM_ASSIGNMENT_ID;
+	private Date transformDate;
+	private String TRANSFORM_DATE;
+	private String transformType;
+	private String TRANSFORM_TYPE;
 	private String insertUserName;
 	private String INSERT_USER_NAME;
 	private String updateUserName;
@@ -81,8 +89,8 @@ public class PortalUserTf extends BaseDto implements Serializable {
 		dataSet.addRow();
 		updateColumnsDataSet.addName(updateColumnsDataSetHeader);
 		setFrwVarPrimaryKey("USER_TF_ID");
-		setFrwVarDateColumn("CREATION_DATE,LAST_UPDATE_DATE,START_DATE,FINISH_DATE");
-		setFrwVarNumberColumn("USER_TF_ID,CREATED_BY,LAST_UPDATED_BY,PERSON_ID,TF_ID,DAYS_COMPLETE,SOURCE_ID,TRANSFORM_ASSIGNMENT_ID");
+		setFrwVarDateColumn("CREATION_DATE,LAST_UPDATE_DATE,START_DATE,FINISH_DATE,SUBMISSION_DATE,TRANSFORM_DATE");
+		setFrwVarNumberColumn("USER_TF_ID,CREATED_BY,LAST_UPDATED_BY,PERSON_ID,TF_ID,DAYS_COMPLETE,SOURCE_ID,TRANSFORMED_BY,TRANSFORM_ASSIGNMENT_ID");
 		setFrwVarClobColumn("");
 		setFrwVarDefaultColumn("STATUS,CC_PRIMARY,CC_SECONDARY,IS_ACTIVE");
 		setFrwVarDefaultValue("S,Y,Y,N");
@@ -245,6 +253,24 @@ public class PortalUserTf extends BaseDto implements Serializable {
 		setValueFromAccessor("SOURCE_ID", CommonUtil.toString(sourceId));
 	}
 
+	public Date getSubmissionDate() {
+		return submissionDate;
+	}
+
+	public void setSubmissionDate(Date submissionDate) throws Exception {
+		this.submissionDate = submissionDate;
+		setValueFromAccessor("SUBMISSION_DATE", CommonUtil.toString(submissionDate));
+	}
+
+	public double getTransformedBy() {
+		return transformedBy;
+	}
+
+	public void setTransformedBy(double transformedBy) throws Exception {
+		this.transformedBy = transformedBy;
+		setValueFromAccessor("TRANSFORMED_BY", CommonUtil.toString(transformedBy));
+	}
+
 	public double getTransformAssignmentId() {
 		return transformAssignmentId;
 	}
@@ -252,6 +278,24 @@ public class PortalUserTf extends BaseDto implements Serializable {
 	public void setTransformAssignmentId(double transformAssignmentId) throws Exception {
 		this.transformAssignmentId = transformAssignmentId;
 		setValueFromAccessor("TRANSFORM_ASSIGNMENT_ID", CommonUtil.toString(transformAssignmentId));
+	}
+
+	public Date getTransformDate() {
+		return transformDate;
+	}
+
+	public void setTransformDate(Date transformDate) throws Exception {
+		this.transformDate = transformDate;
+		setValueFromAccessor("TRANSFORM_DATE", CommonUtil.toString(transformDate));
+	}
+
+	public String getTransformType() {
+		return transformType;
+	}
+
+	public void setTransformType(String transformType) throws Exception {
+		this.transformType = transformType;
+		setValueFromAccessor("TRANSFORM_TYPE", transformType);
 	}
 
 	public String getInsertUserName() {
@@ -351,9 +395,9 @@ public class PortalUserTf extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -406,7 +450,11 @@ public class PortalUserTf extends BaseDto implements Serializable {
 		str += "isActive : "+isActive+"\n";
 		str += "source : "+source+"\n";
 		str += "sourceId : "+sourceId+"\n";
+		str += "submissionDate : "+submissionDate+"\n";
+		str += "transformedBy : "+transformedBy+"\n";
 		str += "transformAssignmentId : "+transformAssignmentId+"\n";
+		str += "transformDate : "+transformDate+"\n";
+		str += "transformType : "+transformType+"\n";
 		str += "insertUserName : "+insertUserName+"\n";
 		str += "updateUserName : "+updateUserName+"\n";
 
@@ -436,7 +484,11 @@ public class PortalUserTf extends BaseDto implements Serializable {
 		str += "<column name=\"isActive\" value=\""+isActive+"\">";
 		str += "<column name=\"source\" value=\""+source+"\">";
 		str += "<column name=\"sourceId\" value=\""+sourceId+"\">";
+		str += "<column name=\"submissionDate\" value=\""+submissionDate+"\">";
+		str += "<column name=\"transformedBy\" value=\""+transformedBy+"\">";
 		str += "<column name=\"transformAssignmentId\" value=\""+transformAssignmentId+"\">";
+		str += "<column name=\"transformDate\" value=\""+transformDate+"\">";
+		str += "<column name=\"transformType\" value=\""+transformType+"\">";
 		str += "<column name=\"insertUserName\" value=\""+insertUserName+"\">";
 		str += "<column name=\"updateUserName\" value=\""+updateUserName+"\">";
 
@@ -466,7 +518,11 @@ public class PortalUserTf extends BaseDto implements Serializable {
 		str += "\"isActive\":\""+isActive+"\", ";
 		str += "\"source\":\""+source+"\", ";
 		str += "\"sourceId\":\""+sourceId+"\", ";
+		str += "\"submissionDate\":\""+submissionDate+"\", ";
+		str += "\"transformedBy\":\""+transformedBy+"\", ";
 		str += "\"transformAssignmentId\":\""+transformAssignmentId+"\", ";
+		str += "\"transformDate\":\""+transformDate+"\", ";
+		str += "\"transformType\":\""+transformType+"\", ";
 		str += "\"insertUserName\":\""+insertUserName+"\", ";
 		str += "\"updateUserName\":\""+updateUserName+"\"";
 

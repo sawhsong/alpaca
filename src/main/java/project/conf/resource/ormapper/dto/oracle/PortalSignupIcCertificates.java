@@ -51,6 +51,8 @@ public class PortalSignupIcCertificates extends BaseDto implements Serializable 
 	private String PUBL_LIAB_EXPIRY;
 	private String sendOffline;
 	private String SEND_OFFLINE;
+	private String workingState;
+	private String WORKING_STATE;
 	private double wrkrsCompDocCntntId;
 	private String WRKRS_COMP_DOC_CNTNT_ID;
 	private Date wrkrsCompExpiry;
@@ -247,6 +249,15 @@ public class PortalSignupIcCertificates extends BaseDto implements Serializable 
 		setValueFromAccessor("SEND_OFFLINE", sendOffline);
 	}
 
+	public String getWorkingState() {
+		return workingState;
+	}
+
+	public void setWorkingState(String workingState) throws Exception {
+		this.workingState = workingState;
+		setValueFromAccessor("WORKING_STATE", workingState);
+	}
+
 	public double getWrkrsCompDocCntntId() {
 		return wrkrsCompDocCntntId;
 	}
@@ -362,9 +373,9 @@ public class PortalSignupIcCertificates extends BaseDto implements Serializable 
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -417,6 +428,7 @@ public class PortalSignupIcCertificates extends BaseDto implements Serializable 
 		str += "publLiabDocCntntId : "+publLiabDocCntntId+"\n";
 		str += "publLiabExpiry : "+publLiabExpiry+"\n";
 		str += "sendOffline : "+sendOffline+"\n";
+		str += "workingState : "+workingState+"\n";
 		str += "wrkrsCompDocCntntId : "+wrkrsCompDocCntntId+"\n";
 		str += "wrkrsCompExpiry : "+wrkrsCompExpiry+"\n";
 		str += "insertUserName : "+insertUserName+"\n";
@@ -448,6 +460,7 @@ public class PortalSignupIcCertificates extends BaseDto implements Serializable 
 		str += "<column name=\"publLiabDocCntntId\" value=\""+publLiabDocCntntId+"\">";
 		str += "<column name=\"publLiabExpiry\" value=\""+publLiabExpiry+"\">";
 		str += "<column name=\"sendOffline\" value=\""+sendOffline+"\">";
+		str += "<column name=\"workingState\" value=\""+workingState+"\">";
 		str += "<column name=\"wrkrsCompDocCntntId\" value=\""+wrkrsCompDocCntntId+"\">";
 		str += "<column name=\"wrkrsCompExpiry\" value=\""+wrkrsCompExpiry+"\">";
 		str += "<column name=\"insertUserName\" value=\""+insertUserName+"\">";
@@ -479,6 +492,7 @@ public class PortalSignupIcCertificates extends BaseDto implements Serializable 
 		str += "\"publLiabDocCntntId\":\""+publLiabDocCntntId+"\", ";
 		str += "\"publLiabExpiry\":\""+publLiabExpiry+"\", ";
 		str += "\"sendOffline\":\""+sendOffline+"\", ";
+		str += "\"workingState\":\""+workingState+"\", ";
 		str += "\"wrkrsCompDocCntntId\":\""+wrkrsCompDocCntntId+"\", ";
 		str += "\"wrkrsCompExpiry\":\""+wrkrsCompExpiry+"\", ";
 		str += "\"insertUserName\":\""+insertUserName+"\", ";

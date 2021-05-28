@@ -22,6 +22,7 @@
 		<property name="documentType" column="DOCUMENT_TYPE" type="java.lang.String" length="150"/>
 		<property name="dueDate" column="DUE_DATE" type="java.util.Date"/>
 		<property name="expiryDate" column="EXPIRY_DATE" type="java.util.Date"/>
+		<property name="financialYear" column="FINANCIAL_YEAR" type="java.lang.String" length="30"/>
 		<property name="followUpDate" column="FOLLOW_UP_DATE" type="java.util.Date"/>
 		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
 		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
@@ -54,6 +55,7 @@
 		       DOCUMENT_TYPE,
 		       TO_CHAR(DUE_DATE, 'yyyymmddhh24miss') AS DUE_DATE,
 		       TO_CHAR(EXPIRY_DATE, 'yyyymmddhh24miss') AS EXPIRY_DATE,
+		       FINANCIAL_YEAR,
 		       TO_CHAR(FOLLOW_UP_DATE, 'yyyymmddhh24miss') AS FOLLOW_UP_DATE,
 		       IS_ACTIVE,
 		       LAST_UPDATED_BY,
@@ -74,6 +76,7 @@
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -93,6 +96,7 @@
 		       DOCUMENT_TYPE,
 		       DUE_DATE,
 		       EXPIRY_DATE,
+		       FINANCIAL_YEAR,
 		       FOLLOW_UP_DATE,
 		       IS_ACTIVE,
 		       LAST_UPDATED_BY,
@@ -123,6 +127,7 @@
 		       ${DOCUMENT_TYPE},
 		       ${DUE_DATE},
 		       ${EXPIRY_DATE},
+		       ${FINANCIAL_YEAR},
 		       ${FOLLOW_UP_DATE},
 		       ${IS_ACTIVE},
 		       ${LAST_UPDATED_BY},
@@ -157,6 +162,7 @@
 		       DOCUMENT_TYPE = ${DOCUMENT_TYPE},
 		       DUE_DATE = ${DUE_DATE},
 		       EXPIRY_DATE = ${EXPIRY_DATE},
+		       FINANCIAL_YEAR = ${FINANCIAL_YEAR},
 		       FOLLOW_UP_DATE = ${FOLLOW_UP_DATE},
 		       IS_ACTIVE = ${IS_ACTIVE},
 		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},

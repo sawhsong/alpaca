@@ -26,7 +26,11 @@
 		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
 		<property name="source" column="SOURCE" type="java.lang.String" length="50"/>
 		<property name="sourceId" column="SOURCE_ID" type="java.lang.Double"/>
+		<property name="submissionDate" column="SUBMISSION_DATE" type="java.util.Date"/>
+		<property name="transformedBy" column="TRANSFORMED_BY" type="java.lang.Double"/>
 		<property name="transformAssignmentId" column="TRANSFORM_ASSIGNMENT_ID" type="java.lang.Double"/>
+		<property name="transformDate" column="TRANSFORM_DATE" type="java.util.Date"/>
+		<property name="transformType" column="TRANSFORM_TYPE" type="java.lang.String" length="1"/>
 	</class>
 
 	<sql-query name="portalUserTf.selectAll">
@@ -48,12 +52,17 @@
 		       IS_ACTIVE,
 		       SOURCE,
 		       SOURCE_ID,
-		       TRANSFORM_ASSIGNMENT_ID
+		       TO_CHAR(SUBMISSION_DATE, 'yyyymmddhh24miss') AS SUBMISSION_DATE,
+		       TRANSFORMED_BY,
+		       TRANSFORM_ASSIGNMENT_ID,
+		       TO_CHAR(TRANSFORM_DATE, 'yyyymmddhh24miss') AS TRANSFORM_DATE,
+		       TRANSFORM_TYPE
 		  FROM PORTAL_USER_TF
 		 WHERE 1 = 1
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -77,7 +86,11 @@
 		       IS_ACTIVE,
 		       SOURCE,
 		       SOURCE_ID,
-		       TRANSFORM_ASSIGNMENT_ID
+		       SUBMISSION_DATE,
+		       TRANSFORMED_BY,
+		       TRANSFORM_ASSIGNMENT_ID,
+		       TRANSFORM_DATE,
+		       TRANSFORM_TYPE
 		       )
 		VALUES (
 		       ${USER_TF_ID},
@@ -97,7 +110,11 @@
 		       ${IS_ACTIVE},
 		       ${SOURCE},
 		       ${SOURCE_ID},
-		       ${TRANSFORM_ASSIGNMENT_ID}
+		       ${SUBMISSION_DATE},
+		       ${TRANSFORMED_BY},
+		       ${TRANSFORM_ASSIGNMENT_ID},
+		       ${TRANSFORM_DATE},
+		       ${TRANSFORM_TYPE}
 		       )
 	]]>
 	</sql-query>
@@ -121,7 +138,11 @@
 		       IS_ACTIVE = ${IS_ACTIVE},
 		       SOURCE = ${SOURCE},
 		       SOURCE_ID = ${SOURCE_ID},
-		       TRANSFORM_ASSIGNMENT_ID = ${TRANSFORM_ASSIGNMENT_ID}
+		       SUBMISSION_DATE = ${SUBMISSION_DATE},
+		       TRANSFORMED_BY = ${TRANSFORMED_BY},
+		       TRANSFORM_ASSIGNMENT_ID = ${TRANSFORM_ASSIGNMENT_ID},
+		       TRANSFORM_DATE = ${TRANSFORM_DATE},
+		       TRANSFORM_TYPE = ${TRANSFORM_TYPE}
 		 WHERE 1 = 1
 		   ${frameworkGeneratedWhere}
 	]]>

@@ -12,18 +12,23 @@
 
 		<property name="documentId" column="DOCUMENT_ID" type="java.lang.Double"/>
 		<property name="expenseClaimId" column="EXPENSE_CLAIM_ID" type="java.lang.Double"/>
+		<property name="fileIcon" column="FILE_ICON" type="java.lang.String" length="300"/>
+		<property name="fileSize" column="FILE_SIZE" type="java.lang.Double"/>
 	</class>
 
 	<sql-query name="expenseAttachmentLink.selectAll">
 	<![CDATA[
 		SELECT LINK_ID,
 		       DOCUMENT_ID,
-		       EXPENSE_CLAIM_ID
+		       EXPENSE_CLAIM_ID,
+		       FILE_ICON,
+		       FILE_SIZE
 		  FROM EXPENSE_ATTACHMENT_LINK
 		 WHERE 1 = 1
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -32,12 +37,16 @@
 		INSERT INTO EXPENSE_ATTACHMENT_LINK (
 		       LINK_ID,
 		       DOCUMENT_ID,
-		       EXPENSE_CLAIM_ID
+		       EXPENSE_CLAIM_ID,
+		       FILE_ICON,
+		       FILE_SIZE
 		       )
 		VALUES (
 		       ${LINK_ID},
 		       ${DOCUMENT_ID},
-		       ${EXPENSE_CLAIM_ID}
+		       ${EXPENSE_CLAIM_ID},
+		       ${FILE_ICON},
+		       ${FILE_SIZE}
 		       )
 	]]>
 	</sql-query>
@@ -46,7 +55,9 @@
 	<![CDATA[
 		UPDATE EXPENSE_ATTACHMENT_LINK
 		   SET DOCUMENT_ID = ${DOCUMENT_ID},
-		       EXPENSE_CLAIM_ID = ${EXPENSE_CLAIM_ID}
+		       EXPENSE_CLAIM_ID = ${EXPENSE_CLAIM_ID},
+		       FILE_ICON = ${FILE_ICON},
+		       FILE_SIZE = ${FILE_SIZE}
 		 WHERE 1 = 1
 		   ${frameworkGeneratedWhere}
 	]]>

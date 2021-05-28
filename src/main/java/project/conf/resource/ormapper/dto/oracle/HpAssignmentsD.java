@@ -93,6 +93,8 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	private String ELEMENT_4;
 	private double element5;
 	private String ELEMENT_5;
+	private String engagementContractType;
+	private String ENGAGEMENT_CONTRACT_TYPE;
 	private String equipmentDetails;
 	private String EQUIPMENT_DETAILS;
 	private String equipmentRequiredYn;
@@ -129,6 +131,10 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	private String IS_START_END_TIME;
 	private String jobTitle;
 	private String JOB_TITLE;
+	private String modernAwardDescription;
+	private String MODERN_AWARD_DESCRIPTION;
+	private double modernAwardId;
+	private String MODERN_AWARD_ID;
 	private String payrollNotes;
 	private String PAYROLL_NOTES;
 	private String payslipEmail;
@@ -195,6 +201,8 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	private String TIMESHEET_UNITS;
 	private String unit;
 	private String UNIT;
+	private String useAwardCalculation;
+	private String USE_AWARD_CALCULATION;
 	private String useDeliverables;
 	private String USE_DELIVERABLES;
 	private String useExpense;
@@ -238,7 +246,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		updateColumnsDataSet.addName(updateColumnsDataSetHeader);
 		setFrwVarPrimaryKey("ASSIGNMENT_ID,FROM_DATE,TO_DATE");
 		setFrwVarDateColumn("FROM_DATE,TO_DATE,CREATION_DATE,LAST_UPDATE_DATE,ASSIGNMENT_END_DATE,ASSIGNMENT_START_DATE");
-		setFrwVarNumberColumn("ASSIGNMENT_ID,CREATED_BY,LAST_UPDATED_BY,PERSON_ID,BILLING_ORGANISATION_ID,EU_ORGANISATION_ID,BILLING_CODE_ID,BILLING_ORGANISATION_PERSON_ID,BUSINESS_GROUP_ID,DELIVERABLES_APPROVER_1,DELIVERABLES_APPROVER_2,DELIVERABLES_APPROVER_3,DELIVERABLES_APPR_NOTI_TO_ID,DELIVERABLES_APPR_NOTI_TO_ORG,ELEMENT_1,ELEMENT_2,ELEMENT_3,ELEMENT_4,ELEMENT_5,ETS_APPROVAL_NOTIFICATION_TO,EU_CONTACT_PERSON_ID,EXPENSE_APPROVAL_NOTI_TO_ID,EXPENSE_APPROVAL_NOTI_TO_ORG,EXPENSE_APPROVER_1,EXPENSE_APPROVER_2,EXPENSE_APPROVER_3,PAY_METHOD_ID,RATE,RATE1,RATE2,RATE3,RATE4,RATE5,TIMECARD_APPROVAL_ID,TIMECARD_SECONDARY_APPROVAL_ID,TIMECARD_TERTIARY_APPROVAL_ID,WC_ORG_CODE_RATE_LINK_ID");
+		setFrwVarNumberColumn("ASSIGNMENT_ID,CREATED_BY,LAST_UPDATED_BY,PERSON_ID,BILLING_ORGANISATION_ID,EU_ORGANISATION_ID,BILLING_CODE_ID,BILLING_ORGANISATION_PERSON_ID,BUSINESS_GROUP_ID,DELIVERABLES_APPROVER_1,DELIVERABLES_APPROVER_2,DELIVERABLES_APPROVER_3,DELIVERABLES_APPR_NOTI_TO_ID,DELIVERABLES_APPR_NOTI_TO_ORG,ELEMENT_1,ELEMENT_2,ELEMENT_3,ELEMENT_4,ELEMENT_5,ETS_APPROVAL_NOTIFICATION_TO,EU_CONTACT_PERSON_ID,EXPENSE_APPROVAL_NOTI_TO_ID,EXPENSE_APPROVAL_NOTI_TO_ORG,EXPENSE_APPROVER_1,EXPENSE_APPROVER_2,EXPENSE_APPROVER_3,MODERN_AWARD_ID,PAY_METHOD_ID,RATE,RATE1,RATE2,RATE3,RATE4,RATE5,TIMECARD_APPROVAL_ID,TIMECARD_SECONDARY_APPROVAL_ID,TIMECARD_TERTIARY_APPROVAL_ID,WC_ORG_CODE_RATE_LINK_ID");
 		setFrwVarClobColumn("");
 		setFrwVarDefaultColumn("ASG_ACTIVE");
 		setFrwVarDefaultValue("Y");
@@ -590,6 +598,15 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		setValueFromAccessor("ELEMENT_5", CommonUtil.toString(element5));
 	}
 
+	public String getEngagementContractType() {
+		return engagementContractType;
+	}
+
+	public void setEngagementContractType(String engagementContractType) throws Exception {
+		this.engagementContractType = engagementContractType;
+		setValueFromAccessor("ENGAGEMENT_CONTRACT_TYPE", engagementContractType);
+	}
+
 	public String getEquipmentDetails() {
 		return equipmentDetails;
 	}
@@ -750,6 +767,24 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	public void setJobTitle(String jobTitle) throws Exception {
 		this.jobTitle = jobTitle;
 		setValueFromAccessor("JOB_TITLE", jobTitle);
+	}
+
+	public String getModernAwardDescription() {
+		return modernAwardDescription;
+	}
+
+	public void setModernAwardDescription(String modernAwardDescription) throws Exception {
+		this.modernAwardDescription = modernAwardDescription;
+		setValueFromAccessor("MODERN_AWARD_DESCRIPTION", modernAwardDescription);
+	}
+
+	public double getModernAwardId() {
+		return modernAwardId;
+	}
+
+	public void setModernAwardId(double modernAwardId) throws Exception {
+		this.modernAwardId = modernAwardId;
+		setValueFromAccessor("MODERN_AWARD_ID", CommonUtil.toString(modernAwardId));
 	}
 
 	public String getPayrollNotes() {
@@ -1049,6 +1084,15 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		setValueFromAccessor("UNIT", unit);
 	}
 
+	public String getUseAwardCalculation() {
+		return useAwardCalculation;
+	}
+
+	public void setUseAwardCalculation(String useAwardCalculation) throws Exception {
+		this.useAwardCalculation = useAwardCalculation;
+		setValueFromAccessor("USE_AWARD_CALCULATION", useAwardCalculation);
+	}
+
 	public String getUseDeliverables() {
 		return useDeliverables;
 	}
@@ -1219,9 +1263,9 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -1295,6 +1339,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "element3 : "+element3+"\n";
 		str += "element4 : "+element4+"\n";
 		str += "element5 : "+element5+"\n";
+		str += "engagementContractType : "+engagementContractType+"\n";
 		str += "equipmentDetails : "+equipmentDetails+"\n";
 		str += "equipmentRequiredYn : "+equipmentRequiredYn+"\n";
 		str += "etsApprovalNotificationTo : "+etsApprovalNotificationTo+"\n";
@@ -1313,6 +1358,8 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "isDaily : "+isDaily+"\n";
 		str += "isStartEndTime : "+isStartEndTime+"\n";
 		str += "jobTitle : "+jobTitle+"\n";
+		str += "modernAwardDescription : "+modernAwardDescription+"\n";
+		str += "modernAwardId : "+modernAwardId+"\n";
 		str += "payrollNotes : "+payrollNotes+"\n";
 		str += "payslipEmail : "+payslipEmail+"\n";
 		str += "payArrangement : "+payArrangement+"\n";
@@ -1346,6 +1393,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "timesheetName : "+timesheetName+"\n";
 		str += "timesheetUnits : "+timesheetUnits+"\n";
 		str += "unit : "+unit+"\n";
+		str += "useAwardCalculation : "+useAwardCalculation+"\n";
 		str += "useDeliverables : "+useDeliverables+"\n";
 		str += "useExpense : "+useExpense+"\n";
 		str += "wcOrganisationTypeFlag : "+wcOrganisationTypeFlag+"\n";
@@ -1403,6 +1451,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "<column name=\"element3\" value=\""+element3+"\">";
 		str += "<column name=\"element4\" value=\""+element4+"\">";
 		str += "<column name=\"element5\" value=\""+element5+"\">";
+		str += "<column name=\"engagementContractType\" value=\""+engagementContractType+"\">";
 		str += "<column name=\"equipmentDetails\" value=\""+equipmentDetails+"\">";
 		str += "<column name=\"equipmentRequiredYn\" value=\""+equipmentRequiredYn+"\">";
 		str += "<column name=\"etsApprovalNotificationTo\" value=\""+etsApprovalNotificationTo+"\">";
@@ -1421,6 +1470,8 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "<column name=\"isDaily\" value=\""+isDaily+"\">";
 		str += "<column name=\"isStartEndTime\" value=\""+isStartEndTime+"\">";
 		str += "<column name=\"jobTitle\" value=\""+jobTitle+"\">";
+		str += "<column name=\"modernAwardDescription\" value=\""+modernAwardDescription+"\">";
+		str += "<column name=\"modernAwardId\" value=\""+modernAwardId+"\">";
 		str += "<column name=\"payrollNotes\" value=\""+payrollNotes+"\">";
 		str += "<column name=\"payslipEmail\" value=\""+payslipEmail+"\">";
 		str += "<column name=\"payArrangement\" value=\""+payArrangement+"\">";
@@ -1454,6 +1505,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "<column name=\"timesheetName\" value=\""+timesheetName+"\">";
 		str += "<column name=\"timesheetUnits\" value=\""+timesheetUnits+"\">";
 		str += "<column name=\"unit\" value=\""+unit+"\">";
+		str += "<column name=\"useAwardCalculation\" value=\""+useAwardCalculation+"\">";
 		str += "<column name=\"useDeliverables\" value=\""+useDeliverables+"\">";
 		str += "<column name=\"useExpense\" value=\""+useExpense+"\">";
 		str += "<column name=\"wcOrganisationTypeFlag\" value=\""+wcOrganisationTypeFlag+"\">";
@@ -1511,6 +1563,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "\"element3\":\""+element3+"\", ";
 		str += "\"element4\":\""+element4+"\", ";
 		str += "\"element5\":\""+element5+"\", ";
+		str += "\"engagementContractType\":\""+engagementContractType+"\", ";
 		str += "\"equipmentDetails\":\""+equipmentDetails+"\", ";
 		str += "\"equipmentRequiredYn\":\""+equipmentRequiredYn+"\", ";
 		str += "\"etsApprovalNotificationTo\":\""+etsApprovalNotificationTo+"\", ";
@@ -1529,6 +1582,8 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "\"isDaily\":\""+isDaily+"\", ";
 		str += "\"isStartEndTime\":\""+isStartEndTime+"\", ";
 		str += "\"jobTitle\":\""+jobTitle+"\", ";
+		str += "\"modernAwardDescription\":\""+modernAwardDescription+"\", ";
+		str += "\"modernAwardId\":\""+modernAwardId+"\", ";
 		str += "\"payrollNotes\":\""+payrollNotes+"\", ";
 		str += "\"payslipEmail\":\""+payslipEmail+"\", ";
 		str += "\"payArrangement\":\""+payArrangement+"\", ";
@@ -1562,6 +1617,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "\"timesheetName\":\""+timesheetName+"\", ";
 		str += "\"timesheetUnits\":\""+timesheetUnits+"\", ";
 		str += "\"unit\":\""+unit+"\", ";
+		str += "\"useAwardCalculation\":\""+useAwardCalculation+"\", ";
 		str += "\"useDeliverables\":\""+useDeliverables+"\", ";
 		str += "\"useExpense\":\""+useExpense+"\", ";
 		str += "\"wcOrganisationTypeFlag\":\""+wcOrganisationTypeFlag+"\", ";

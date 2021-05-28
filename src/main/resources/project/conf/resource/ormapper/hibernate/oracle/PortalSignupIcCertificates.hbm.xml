@@ -26,6 +26,7 @@
 		<property name="publLiabDocCntntId" column="PUBL_LIAB_DOC_CNTNT_ID" type="java.lang.Double"/>
 		<property name="publLiabExpiry" column="PUBL_LIAB_EXPIRY" type="java.util.Date"/>
 		<property name="sendOffline" column="SEND_OFFLINE" type="java.lang.String" length="1"/>
+		<property name="workingState" column="WORKING_STATE" type="java.lang.String" length="10"/>
 		<property name="wrkrsCompDocCntntId" column="WRKRS_COMP_DOC_CNTNT_ID" type="java.lang.Double"/>
 		<property name="wrkrsCompExpiry" column="WRKRS_COMP_EXPIRY" type="java.util.Date"/>
 	</class>
@@ -49,6 +50,7 @@
 		       PUBL_LIAB_DOC_CNTNT_ID,
 		       TO_CHAR(PUBL_LIAB_EXPIRY, 'yyyymmddhh24miss') AS PUBL_LIAB_EXPIRY,
 		       SEND_OFFLINE,
+		       WORKING_STATE,
 		       WRKRS_COMP_DOC_CNTNT_ID,
 		       TO_CHAR(WRKRS_COMP_EXPIRY, 'yyyymmddhh24miss') AS WRKRS_COMP_EXPIRY
 		  FROM PORTAL_SIGNUP_IC_CERTIFICATES
@@ -56,6 +58,7 @@
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -79,6 +82,7 @@
 		       PUBL_LIAB_DOC_CNTNT_ID,
 		       PUBL_LIAB_EXPIRY,
 		       SEND_OFFLINE,
+		       WORKING_STATE,
 		       WRKRS_COMP_DOC_CNTNT_ID,
 		       WRKRS_COMP_EXPIRY
 		       )
@@ -100,6 +104,7 @@
 		       ${PUBL_LIAB_DOC_CNTNT_ID},
 		       ${PUBL_LIAB_EXPIRY},
 		       ${SEND_OFFLINE},
+		       ${WORKING_STATE},
 		       ${WRKRS_COMP_DOC_CNTNT_ID},
 		       ${WRKRS_COMP_EXPIRY}
 		       )
@@ -125,6 +130,7 @@
 		       PUBL_LIAB_DOC_CNTNT_ID = ${PUBL_LIAB_DOC_CNTNT_ID},
 		       PUBL_LIAB_EXPIRY = ${PUBL_LIAB_EXPIRY},
 		       SEND_OFFLINE = ${SEND_OFFLINE},
+		       WORKING_STATE = ${WORKING_STATE},
 		       WRKRS_COMP_DOC_CNTNT_ID = ${WRKRS_COMP_DOC_CNTNT_ID},
 		       WRKRS_COMP_EXPIRY = ${WRKRS_COMP_EXPIRY}
 		 WHERE 1 = 1

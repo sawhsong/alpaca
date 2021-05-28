@@ -49,6 +49,7 @@
 		<property name="element3" column="ELEMENT_3" type="java.lang.Double"/>
 		<property name="element4" column="ELEMENT_4" type="java.lang.Double"/>
 		<property name="element5" column="ELEMENT_5" type="java.lang.Double"/>
+		<property name="engagementContractType" column="ENGAGEMENT_CONTRACT_TYPE" type="java.lang.String" length="200"/>
 		<property name="equipmentDetails" column="EQUIPMENT_DETAILS" type="java.lang.String" length="4000"/>
 		<property name="equipmentRequiredYn" column="EQUIPMENT_REQUIRED_YN" type="java.lang.String" length="1"/>
 		<property name="etsApprovalNotificationTo" column="ETS_APPROVAL_NOTIFICATION_TO" type="java.lang.Double"/>
@@ -67,6 +68,8 @@
 		<property name="isDaily" column="IS_DAILY" type="java.lang.String" length="2"/>
 		<property name="isStartEndTime" column="IS_START_END_TIME" type="java.lang.String" length="2"/>
 		<property name="jobTitle" column="JOB_TITLE" type="java.lang.String" length="1000"/>
+		<property name="modernAwardDescription" column="MODERN_AWARD_DESCRIPTION" type="java.lang.String" length="2000"/>
+		<property name="modernAwardId" column="MODERN_AWARD_ID" type="java.lang.Double"/>
 		<property name="payrollNotes" column="PAYROLL_NOTES" type="java.lang.String" length="4000"/>
 		<property name="payslipEmail" column="PAYSLIP_EMAIL" type="java.lang.String" length="100"/>
 		<property name="payArrangement" column="PAY_ARRANGEMENT" type="java.lang.String" length="10"/>
@@ -100,6 +103,7 @@
 		<property name="timesheetName" column="TIMESHEET_NAME" type="java.lang.String" length="100"/>
 		<property name="timesheetUnits" column="TIMESHEET_UNITS" type="java.lang.String" length="5"/>
 		<property name="unit" column="UNIT" type="java.lang.String" length="15"/>
+		<property name="useAwardCalculation" column="USE_AWARD_CALCULATION" type="java.lang.String" length="1"/>
 		<property name="useDeliverables" column="USE_DELIVERABLES" type="java.lang.String" length="1"/>
 		<property name="useExpense" column="USE_EXPENSE" type="java.lang.String" length="1"/>
 		<property name="wcOrganisationTypeFlag" column="WC_ORGANISATION_TYPE_FLAG" type="java.lang.String" length="10"/>
@@ -149,6 +153,7 @@
 		       ELEMENT_3,
 		       ELEMENT_4,
 		       ELEMENT_5,
+		       ENGAGEMENT_CONTRACT_TYPE,
 		       EQUIPMENT_DETAILS,
 		       EQUIPMENT_REQUIRED_YN,
 		       ETS_APPROVAL_NOTIFICATION_TO,
@@ -167,6 +172,8 @@
 		       IS_DAILY,
 		       IS_START_END_TIME,
 		       JOB_TITLE,
+		       MODERN_AWARD_DESCRIPTION,
+		       MODERN_AWARD_ID,
 		       PAYROLL_NOTES,
 		       PAYSLIP_EMAIL,
 		       PAY_ARRANGEMENT,
@@ -200,6 +207,7 @@
 		       TIMESHEET_NAME,
 		       TIMESHEET_UNITS,
 		       UNIT,
+		       USE_AWARD_CALCULATION,
 		       USE_DELIVERABLES,
 		       USE_EXPENSE,
 		       WC_ORGANISATION_TYPE_FLAG,
@@ -257,6 +265,7 @@
 		       ELEMENT_3,
 		       ELEMENT_4,
 		       ELEMENT_5,
+		       ENGAGEMENT_CONTRACT_TYPE,
 		       EQUIPMENT_DETAILS,
 		       EQUIPMENT_REQUIRED_YN,
 		       ETS_APPROVAL_NOTIFICATION_TO,
@@ -275,6 +284,8 @@
 		       IS_DAILY,
 		       IS_START_END_TIME,
 		       JOB_TITLE,
+		       MODERN_AWARD_DESCRIPTION,
+		       MODERN_AWARD_ID,
 		       PAYROLL_NOTES,
 		       PAYSLIP_EMAIL,
 		       PAY_ARRANGEMENT,
@@ -308,6 +319,7 @@
 		       TIMESHEET_NAME,
 		       TIMESHEET_UNITS,
 		       UNIT,
+		       USE_AWARD_CALCULATION,
 		       USE_DELIVERABLES,
 		       USE_EXPENSE,
 		       WC_ORGANISATION_TYPE_FLAG,
@@ -355,6 +367,7 @@
 		       ${ELEMENT_3},
 		       ${ELEMENT_4},
 		       ${ELEMENT_5},
+		       ${ENGAGEMENT_CONTRACT_TYPE},
 		       ${EQUIPMENT_DETAILS},
 		       ${EQUIPMENT_REQUIRED_YN},
 		       ${ETS_APPROVAL_NOTIFICATION_TO},
@@ -373,6 +386,8 @@
 		       ${IS_DAILY},
 		       ${IS_START_END_TIME},
 		       ${JOB_TITLE},
+		       ${MODERN_AWARD_DESCRIPTION},
+		       ${MODERN_AWARD_ID},
 		       ${PAYROLL_NOTES},
 		       ${PAYSLIP_EMAIL},
 		       ${PAY_ARRANGEMENT},
@@ -406,6 +421,7 @@
 		       ${TIMESHEET_NAME},
 		       ${TIMESHEET_UNITS},
 		       ${UNIT},
+		       ${USE_AWARD_CALCULATION},
 		       ${USE_DELIVERABLES},
 		       ${USE_EXPENSE},
 		       ${WC_ORGANISATION_TYPE_FLAG},
@@ -455,6 +471,7 @@
 		       ELEMENT_3 = ${ELEMENT_3},
 		       ELEMENT_4 = ${ELEMENT_4},
 		       ELEMENT_5 = ${ELEMENT_5},
+		       ENGAGEMENT_CONTRACT_TYPE = ${ENGAGEMENT_CONTRACT_TYPE},
 		       EQUIPMENT_DETAILS = ${EQUIPMENT_DETAILS},
 		       EQUIPMENT_REQUIRED_YN = ${EQUIPMENT_REQUIRED_YN},
 		       ETS_APPROVAL_NOTIFICATION_TO = ${ETS_APPROVAL_NOTIFICATION_TO},
@@ -473,6 +490,8 @@
 		       IS_DAILY = ${IS_DAILY},
 		       IS_START_END_TIME = ${IS_START_END_TIME},
 		       JOB_TITLE = ${JOB_TITLE},
+		       MODERN_AWARD_DESCRIPTION = ${MODERN_AWARD_DESCRIPTION},
+		       MODERN_AWARD_ID = ${MODERN_AWARD_ID},
 		       PAYROLL_NOTES = ${PAYROLL_NOTES},
 		       PAYSLIP_EMAIL = ${PAYSLIP_EMAIL},
 		       PAY_ARRANGEMENT = ${PAY_ARRANGEMENT},
@@ -506,6 +525,7 @@
 		       TIMESHEET_NAME = ${TIMESHEET_NAME},
 		       TIMESHEET_UNITS = ${TIMESHEET_UNITS},
 		       UNIT = ${UNIT},
+		       USE_AWARD_CALCULATION = ${USE_AWARD_CALCULATION},
 		       USE_DELIVERABLES = ${USE_DELIVERABLES},
 		       USE_EXPENSE = ${USE_EXPENSE},
 		       WC_ORGANISATION_TYPE_FLAG = ${WC_ORGANISATION_TYPE_FLAG},

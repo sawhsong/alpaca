@@ -22,6 +22,8 @@
 		<property name="curAgreementStartDate" column="CUR_AGREEMENT_START_DATE" type="java.util.Date"/>
 		<property name="directorGurantee" column="DIRECTOR_GURANTEE" type="java.lang.String" length="200"/>
 		<property name="eboInvoicing" column="EBO_INVOICING" type="java.lang.String" length="100"/>
+		<property name="empEngagementType" column="EMP_ENGAGEMENT_TYPE" type="java.lang.String" length="500"/>
+		<property name="engagingEntity" column="ENGAGING_ENTITY" type="java.lang.String" length="1000"/>
 		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
 		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
 		<property name="lateFee" column="LATE_FEE" type="java.lang.String" length="200"/>
@@ -50,6 +52,8 @@
 		       TO_CHAR(CUR_AGREEMENT_START_DATE, 'yyyymmddhh24miss') AS CUR_AGREEMENT_START_DATE,
 		       DIRECTOR_GURANTEE,
 		       EBO_INVOICING,
+		       EMP_ENGAGEMENT_TYPE,
+		       ENGAGING_ENTITY,
 		       LAST_UPDATED_BY,
 		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
 		       LATE_FEE,
@@ -67,6 +71,7 @@
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -85,6 +90,8 @@
 		       CUR_AGREEMENT_START_DATE,
 		       DIRECTOR_GURANTEE,
 		       EBO_INVOICING,
+		       EMP_ENGAGEMENT_TYPE,
+		       ENGAGING_ENTITY,
 		       LAST_UPDATED_BY,
 		       LAST_UPDATE_DATE,
 		       LATE_FEE,
@@ -111,6 +118,8 @@
 		       ${CUR_AGREEMENT_START_DATE},
 		       ${DIRECTOR_GURANTEE},
 		       ${EBO_INVOICING},
+		       ${EMP_ENGAGEMENT_TYPE},
+		       ${ENGAGING_ENTITY},
 		       ${LAST_UPDATED_BY},
 		       ${LAST_UPDATE_DATE},
 		       ${LATE_FEE},
@@ -142,6 +151,8 @@
 		       CUR_AGREEMENT_START_DATE = ${CUR_AGREEMENT_START_DATE},
 		       DIRECTOR_GURANTEE = ${DIRECTOR_GURANTEE},
 		       EBO_INVOICING = ${EBO_INVOICING},
+		       EMP_ENGAGEMENT_TYPE = ${EMP_ENGAGEMENT_TYPE},
+		       ENGAGING_ENTITY = ${ENGAGING_ENTITY},
 		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
 		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
 		       LATE_FEE = ${LATE_FEE},

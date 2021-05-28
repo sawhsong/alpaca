@@ -39,10 +39,16 @@ public class PortalSignupResidency extends BaseDto implements Serializable {
 	private String DOC_CONTENT_ID_2;
 	private double docContentId3;
 	private String DOC_CONTENT_ID_3;
+	private String migrationAssistance;
+	private String MIGRATION_ASSISTANCE;
+	private String prType;
+	private String PR_TYPE;
 	private String residencyType;
 	private String RESIDENCY_TYPE;
 	private String transformed;
 	private String TRANSFORMED;
+	private String visaType;
+	private String VISA_TYPE;
 	private String insertUserName;
 	private String INSERT_USER_NAME;
 	private String updateUserName;
@@ -181,6 +187,24 @@ public class PortalSignupResidency extends BaseDto implements Serializable {
 		setValueFromAccessor("DOC_CONTENT_ID_3", CommonUtil.toString(docContentId3));
 	}
 
+	public String getMigrationAssistance() {
+		return migrationAssistance;
+	}
+
+	public void setMigrationAssistance(String migrationAssistance) throws Exception {
+		this.migrationAssistance = migrationAssistance;
+		setValueFromAccessor("MIGRATION_ASSISTANCE", migrationAssistance);
+	}
+
+	public String getPrType() {
+		return prType;
+	}
+
+	public void setPrType(String prType) throws Exception {
+		this.prType = prType;
+		setValueFromAccessor("PR_TYPE", prType);
+	}
+
 	public String getResidencyType() {
 		return residencyType;
 	}
@@ -197,6 +221,15 @@ public class PortalSignupResidency extends BaseDto implements Serializable {
 	public void setTransformed(String transformed) throws Exception {
 		this.transformed = transformed;
 		setValueFromAccessor("TRANSFORMED", transformed);
+	}
+
+	public String getVisaType() {
+		return visaType;
+	}
+
+	public void setVisaType(String visaType) throws Exception {
+		this.visaType = visaType;
+		setValueFromAccessor("VISA_TYPE", visaType);
 	}
 
 	public String getInsertUserName() {
@@ -296,9 +329,9 @@ public class PortalSignupResidency extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -345,8 +378,11 @@ public class PortalSignupResidency extends BaseDto implements Serializable {
 		str += "docContentId1 : "+docContentId1+"\n";
 		str += "docContentId2 : "+docContentId2+"\n";
 		str += "docContentId3 : "+docContentId3+"\n";
+		str += "migrationAssistance : "+migrationAssistance+"\n";
+		str += "prType : "+prType+"\n";
 		str += "residencyType : "+residencyType+"\n";
 		str += "transformed : "+transformed+"\n";
+		str += "visaType : "+visaType+"\n";
 		str += "insertUserName : "+insertUserName+"\n";
 		str += "updateUserName : "+updateUserName+"\n";
 
@@ -370,8 +406,11 @@ public class PortalSignupResidency extends BaseDto implements Serializable {
 		str += "<column name=\"docContentId1\" value=\""+docContentId1+"\">";
 		str += "<column name=\"docContentId2\" value=\""+docContentId2+"\">";
 		str += "<column name=\"docContentId3\" value=\""+docContentId3+"\">";
+		str += "<column name=\"migrationAssistance\" value=\""+migrationAssistance+"\">";
+		str += "<column name=\"prType\" value=\""+prType+"\">";
 		str += "<column name=\"residencyType\" value=\""+residencyType+"\">";
 		str += "<column name=\"transformed\" value=\""+transformed+"\">";
+		str += "<column name=\"visaType\" value=\""+visaType+"\">";
 		str += "<column name=\"insertUserName\" value=\""+insertUserName+"\">";
 		str += "<column name=\"updateUserName\" value=\""+updateUserName+"\">";
 
@@ -395,8 +434,11 @@ public class PortalSignupResidency extends BaseDto implements Serializable {
 		str += "\"docContentId1\":\""+docContentId1+"\", ";
 		str += "\"docContentId2\":\""+docContentId2+"\", ";
 		str += "\"docContentId3\":\""+docContentId3+"\", ";
+		str += "\"migrationAssistance\":\""+migrationAssistance+"\", ";
+		str += "\"prType\":\""+prType+"\", ";
 		str += "\"residencyType\":\""+residencyType+"\", ";
 		str += "\"transformed\":\""+transformed+"\", ";
+		str += "\"visaType\":\""+visaType+"\", ";
 		str += "\"insertUserName\":\""+insertUserName+"\", ";
 		str += "\"updateUserName\":\""+updateUserName+"\"";
 

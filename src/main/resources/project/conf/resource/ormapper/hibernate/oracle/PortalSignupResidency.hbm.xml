@@ -20,8 +20,11 @@
 		<property name="docContentId1" column="DOC_CONTENT_ID_1" type="java.lang.Double"/>
 		<property name="docContentId2" column="DOC_CONTENT_ID_2" type="java.lang.Double"/>
 		<property name="docContentId3" column="DOC_CONTENT_ID_3" type="java.lang.Double"/>
+		<property name="migrationAssistance" column="MIGRATION_ASSISTANCE" type="java.lang.String" length="1"/>
+		<property name="prType" column="PR_TYPE" type="java.lang.String" length="50"/>
 		<property name="residencyType" column="RESIDENCY_TYPE" type="java.lang.String" length="40"/>
 		<property name="transformed" column="TRANSFORMED" type="java.lang.String" length="1"/>
+		<property name="visaType" column="VISA_TYPE" type="java.lang.String" length="50"/>
 	</class>
 
 	<sql-query name="portalSignupResidency.selectAll">
@@ -37,13 +40,17 @@
 		       DOC_CONTENT_ID_1,
 		       DOC_CONTENT_ID_2,
 		       DOC_CONTENT_ID_3,
+		       MIGRATION_ASSISTANCE,
+		       PR_TYPE,
 		       RESIDENCY_TYPE,
-		       TRANSFORMED
+		       TRANSFORMED,
+		       VISA_TYPE
 		  FROM PORTAL_SIGNUP_RESIDENCY
 		 WHERE 1 = 1
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -61,8 +68,11 @@
 		       DOC_CONTENT_ID_1,
 		       DOC_CONTENT_ID_2,
 		       DOC_CONTENT_ID_3,
+		       MIGRATION_ASSISTANCE,
+		       PR_TYPE,
 		       RESIDENCY_TYPE,
-		       TRANSFORMED
+		       TRANSFORMED,
+		       VISA_TYPE
 		       )
 		VALUES (
 		       ${USER_TF_ID},
@@ -76,8 +86,11 @@
 		       ${DOC_CONTENT_ID_1},
 		       ${DOC_CONTENT_ID_2},
 		       ${DOC_CONTENT_ID_3},
+		       ${MIGRATION_ASSISTANCE},
+		       ${PR_TYPE},
 		       ${RESIDENCY_TYPE},
-		       ${TRANSFORMED}
+		       ${TRANSFORMED},
+		       ${VISA_TYPE}
 		       )
 	]]>
 	</sql-query>
@@ -95,8 +108,11 @@
 		       DOC_CONTENT_ID_1 = ${DOC_CONTENT_ID_1},
 		       DOC_CONTENT_ID_2 = ${DOC_CONTENT_ID_2},
 		       DOC_CONTENT_ID_3 = ${DOC_CONTENT_ID_3},
+		       MIGRATION_ASSISTANCE = ${MIGRATION_ASSISTANCE},
+		       PR_TYPE = ${PR_TYPE},
 		       RESIDENCY_TYPE = ${RESIDENCY_TYPE},
-		       TRANSFORMED = ${TRANSFORMED}
+		       TRANSFORMED = ${TRANSFORMED},
+		       VISA_TYPE = ${VISA_TYPE}
 		 WHERE 1 = 1
 		   ${frameworkGeneratedWhere}
 	]]>

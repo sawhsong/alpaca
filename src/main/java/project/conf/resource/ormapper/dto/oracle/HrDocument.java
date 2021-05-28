@@ -43,6 +43,8 @@ public class HrDocument extends BaseDto implements Serializable {
 	private String DUE_DATE;
 	private Date expiryDate;
 	private String EXPIRY_DATE;
+	private String financialYear;
+	private String FINANCIAL_YEAR;
 	private Date followUpDate;
 	private String FOLLOW_UP_DATE;
 	private String isActive;
@@ -227,6 +229,15 @@ public class HrDocument extends BaseDto implements Serializable {
 	public void setExpiryDate(Date expiryDate) throws Exception {
 		this.expiryDate = expiryDate;
 		setValueFromAccessor("EXPIRY_DATE", CommonUtil.toString(expiryDate));
+	}
+
+	public String getFinancialYear() {
+		return financialYear;
+	}
+
+	public void setFinancialYear(String financialYear) throws Exception {
+		this.financialYear = financialYear;
+		setValueFromAccessor("FINANCIAL_YEAR", financialYear);
 	}
 
 	public Date getFollowUpDate() {
@@ -461,9 +472,9 @@ public class HrDocument extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -512,6 +523,7 @@ public class HrDocument extends BaseDto implements Serializable {
 		str += "documentType : "+documentType+"\n";
 		str += "dueDate : "+dueDate+"\n";
 		str += "expiryDate : "+expiryDate+"\n";
+		str += "financialYear : "+financialYear+"\n";
 		str += "followUpDate : "+followUpDate+"\n";
 		str += "isActive : "+isActive+"\n";
 		str += "lastUpdatedBy : "+lastUpdatedBy+"\n";
@@ -552,6 +564,7 @@ public class HrDocument extends BaseDto implements Serializable {
 		str += "<column name=\"documentType\" value=\""+documentType+"\">";
 		str += "<column name=\"dueDate\" value=\""+dueDate+"\">";
 		str += "<column name=\"expiryDate\" value=\""+expiryDate+"\">";
+		str += "<column name=\"financialYear\" value=\""+financialYear+"\">";
 		str += "<column name=\"followUpDate\" value=\""+followUpDate+"\">";
 		str += "<column name=\"isActive\" value=\""+isActive+"\">";
 		str += "<column name=\"lastUpdatedBy\" value=\""+lastUpdatedBy+"\">";
@@ -592,6 +605,7 @@ public class HrDocument extends BaseDto implements Serializable {
 		str += "\"documentType\":\""+documentType+"\", ";
 		str += "\"dueDate\":\""+dueDate+"\", ";
 		str += "\"expiryDate\":\""+expiryDate+"\", ";
+		str += "\"financialYear\":\""+financialYear+"\", ";
 		str += "\"followUpDate\":\""+followUpDate+"\", ";
 		str += "\"isActive\":\""+isActive+"\", ";
 		str += "\"lastUpdatedBy\":\""+lastUpdatedBy+"\", ";
