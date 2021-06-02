@@ -80,6 +80,12 @@ $(function() {
 			for (var i=0; i<dataSet.getRowCnt(); i++) {
 				var uiGridTr = new UiGridTr();
 
+				var uiTd3 = new UiGridTd(), uiIcon = new UiIcon();
+				uiIcon.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("tableName:"+dataSet.getValue(i, "TABLE_NAME"))
+					.addAttribute("title:"+com.caption.action).setScript("doAction(this)");
+				uiTd3.addClassName("Ct").addChild(uiIcon);
+				uiGridTr.addChild(uiTd3);
+
 				var uiTd0 = new UiGridTd(), uiChk = new UiCheckbox();
 				uiChk.setId("chkForGenerate").setName("chkForGenerate").setValue(dataSet.getValue(i, "TABLE_NAME"));
 				uiTd0.addClassName("Ct").addChild(uiChk);
@@ -93,12 +99,6 @@ $(function() {
 				var uiTd2 = new UiGridTd();
 				uiTd2.addClassName("Lt").setText(dataSet.getValue(i, "COMMENTS"));
 				uiGridTr.addChild(uiTd2);
-
-				var uiTd3 = new UiGridTd(), uiIcon = new UiIcon();
-				uiIcon.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("tableName:"+dataSet.getValue(i, "TABLE_NAME"))
-					.addAttribute("title:"+com.caption.action).setScript("doAction(this)");
-				uiTd3.addClassName("Ct").addChild(uiIcon);
-				uiGridTr.addChild(uiTd3);
 
 				html += uiGridTr.toHtmlString();
 			}

@@ -67,7 +67,7 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ACTION_STATUS_MEANING")));
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("nextActionId:"+ds.getValue(i, "NEXT_ACTION_ID")).setScript("doAction(this)");
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("nextActionId:"+ds.getValue(i, "NEXT_ACTION_ID")).setScript("doAction(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();

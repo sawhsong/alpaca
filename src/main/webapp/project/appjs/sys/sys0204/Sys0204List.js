@@ -83,7 +83,7 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(dataSet.getValue(i, "UPDATE_DATE"), dateFormat)));
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("countryCurrencyId:"+dataSet.getValue(i, "COUNTRY_CURRENCY_ID"))
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("countryCurrencyId:"+dataSet.getValue(i, "COUNTRY_CURRENCY_ID"))
 					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 

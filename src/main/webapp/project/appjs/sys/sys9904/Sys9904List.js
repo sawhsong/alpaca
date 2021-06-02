@@ -111,7 +111,7 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(dataSet.getValue(i, "HIT_CNT"), "#,###")));
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
 					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 

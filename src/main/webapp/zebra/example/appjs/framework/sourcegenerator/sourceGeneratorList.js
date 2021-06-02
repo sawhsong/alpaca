@@ -91,6 +91,16 @@ $(function() {
 				menuId = dataSet.getValue(i, "ROOT")+delimiter+dataSet.getValue(i, "MENU_ID");
 				style += (isLeaf != 1) ? "font-weight:bold;" : "";
 
+				var tdAction = new UiGridTd();
+				tdAction.addClassName("Ct");
+				if (isActive) {
+					var iconAction = new UiIcon();
+					iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("menuId:"+menuId)
+					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
+					tdAction.addChild(iconAction);
+				}
+				gridTr.addChild(tdAction);
+
 				var tdSelect = new UiGridTd();
 				tdSelect.addClassName("Ct");
 				if (isActive) {
@@ -105,16 +115,6 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "MENU_URL")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "DESCRIPTION")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "CREATION_DATE")));
-
-				var tdAction = new UiGridTd();
-				tdAction.addClassName("Ct");
-				if (isActive) {
-					var iconAction = new UiIcon();
-					iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("menuId:"+menuId)
-					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
-					tdAction.addChild(iconAction);
-				}
-				gridTr.addChild(tdAction);
 
 				html += gridTr.toHtmlString();
 			}

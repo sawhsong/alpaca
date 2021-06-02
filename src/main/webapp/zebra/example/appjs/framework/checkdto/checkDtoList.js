@@ -84,6 +84,10 @@ $(function() {
 				var dtoName = dataSet.getValue(i, "DTO_NAME");
 				var className = dataSet.getValue(i, "CLASS_NAME");
 
+				var uiIcon = new UiIcon();
+				uiIcon.setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("tableName:"+tableName).addAttribute("className:"+className).setScript("doAction(this)");
+				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiIcon));
+
 				var uiChk = new UiCheckbox();
 				uiChk.setId("chkForGenerate").setName("chkForGenerate").setValue(tableName);
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
@@ -93,10 +97,6 @@ $(function() {
 
 				uiGridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(dataSet.getValue(i, "COMMENTS"), 75)));
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "IS_DIFFERENT")));
-
-				var uiIcon = new UiIcon();
-				uiIcon.setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("tableName:"+tableName).addAttribute("className:"+className).setScript("doAction(this)");
-				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiIcon));
 
 				html += uiGridTr.toHtmlString();
 			}

@@ -82,7 +82,7 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setName("chkForGenerate").setValue(ds.getValue(i, "TABLE_NAME"))));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "TABLE_NAME")).setScript("getDetail('"+ds.getValue(i, "TABLE_NAME")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "COMMENTS")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiIcon().setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("tableName:"+ds.getValue(i, "TABLE_NAME")).setScript("doAction(this)")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiIcon().setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("tableName:"+ds.getValue(i, "TABLE_NAME")).setScript("doAction(this)")));
 
 				html += gridTr.toHtmlString();
 			}

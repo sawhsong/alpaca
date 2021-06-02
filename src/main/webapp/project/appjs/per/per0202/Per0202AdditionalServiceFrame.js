@@ -65,7 +65,7 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "CREATED_DATE")));
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg").addAttribute("serviceId:"+ds.getValue(i, "SERVICE_ID")).setScript("doAction(this)");
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("serviceId:"+ds.getValue(i, "SERVICE_ID")).setScript("doAction(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();

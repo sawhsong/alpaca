@@ -58,7 +58,7 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "CSM_NAME")));
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-tasks fa-lg")
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg")
 				.addAttribute("opportunityId:"+ds.getValue(i, "OPPORTUNITY_ID")).addAttribute("status:"+ds.getValue(i, "STATUS"))
 				.setScript("doAction(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));

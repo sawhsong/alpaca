@@ -85,21 +85,21 @@
 		<div id="divSourceDataTable">
 			<table id="tblSourceData" class="tblGrid sort autosort">
 				<colgroup>
+					<col width="2%"/>
 					<col width="3%"/>
 					<col width="23%"/>
 					<col width="21%"/>
 					<col width="*"/>
 					<col width="9%"/>
-					<col width="5%"/>
 				</colgroup>
 				<thead>
 					<tr>
+						<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 						<th class="thGrid"><i id="icnCheckSourceData" class="fa fa-check-square-o fa-lg icnEn"></i></th>
 						<th class="thGrid sortable:alphanumeric">Table Name</th>
 						<th class="thGrid sortable:alphanumeric">DTO Name</th>
 						<th class="thGrid">Table Description</th>
 						<th class="thGrid sortable:alphanumeric">Is Different</th>
-						<th class="thGrid">Action</th>
 					</tr>
 				</thead>
 				<tbody id="tblSourceDataBody">

@@ -97,6 +97,7 @@
 <div id="divDataArea" class="areaContainer">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
+			<col width="2%"/>
 			<col width="3%"/>
 			<col width="*"/>
 			<col width="4%"/>
@@ -104,10 +105,10 @@
 			<col width="7%"/>
 			<col width="7%"/>
 			<col width="6%"/>
-			<col width="4%"/>
 		</colgroup>
 		<thead>
 			<tr class="noBorderHor">
+				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="fwk.notice.title.selectToDelete"/></th>
 				<th class="thGrid"><mc:msg key="fwk.notice.gridHeader.subject"/></th>
 				<th class="thGrid"><mc:msg key="fwk.notice.gridHeader.file"/></th>
@@ -115,7 +116,6 @@
 				<th class="thGrid"><mc:msg key="fwk.notice.gridHeader.createdDate"/></th>
 				<th class="thGrid"><mc:msg key="fwk.notice.gridHeader.updatedDate"/></th>
 				<th class="thGrid"><mc:msg key="fwk.notice.gridHeader.visitCount"/></th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
