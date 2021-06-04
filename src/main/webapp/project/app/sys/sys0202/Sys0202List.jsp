@@ -55,14 +55,18 @@
 		</ui:buttonGroup>
 	</div>
 </div>
-<div id="divAdminToolArea"><%@ include file="/project/common/include/bodyAdminToolArea.jsp"%></div>
 <div id="divSearchCriteriaArea" class="areaContainer">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<label for="commonCodeType" class="lblEn hor"><mc:msg key="sys0202.searchHeader.codeType"/></label>
-			<ui:text name="commonCodeType" className="hor" style="text-transform:uppercase;width:280px"/>
-		</div>
-	</div>
+	<table class="tblSearch">
+		<caption><mc:msg key="page.com.searchCriteria"/></caption>
+		<colgroup>
+			<col width="8%"/>
+			<col width="*"/>
+		</colgroup>
+		<tr>
+			<th class="thSearch rt"><mc:msg key="sys0202.searchHeader.codeType"/></th>
+			<td class="tdSearch"><ui:text name="commonCodeType" className="hor" style="text-transform:uppercase;width:280px"/></td>
+		</tr>
+	</table>
 </div>
 <div id="divInformArea"></div>
 <%/************************************************************************************************
@@ -77,7 +81,8 @@
 <div id="divDataArea" class="areaContainer">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="2%"/>
+			<col width="3%"/>
+			<col width="3%"/>
 			<col width="20%"/>
 			<col width="25%"/>
 			<col width="*"/>
@@ -85,10 +90,10 @@
 			<col width="5%"/>
 			<col width="7%"/>
 			<col width="7%"/>
-			<col width="3%"/>
 		</colgroup>
 		<thead>
 			<tr>
+				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0202.gridHeader.codeType"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0202.gridHeader.codeMeaning"/></th>
@@ -97,7 +102,6 @@
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0202.gridHeader.isDefault"/></th>
 				<th class="thGrid sortable:date"><mc:msg key="page.com.insertDate"/></th>
 				<th class="thGrid sortable:date"><mc:msg key="page.com.updateDate"/></th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

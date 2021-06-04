@@ -72,13 +72,13 @@ div.panel > table caption {border-left:0px;border-right:0px;}
  */
 .tblSearch {width:100%;border:1px solid #CFDAE9;}
 table.tblSearch caption {padding:8px 8px;font-size:1.0em;font-weight:bold;border-top-left-radius:4px;border-top-right-radius:4px;
-	color:#555555;
-	border:1px solid #CFDAE9;
+	color:#026890;
+	border:1px solid #CBDEED;
 	border-bottom:0px;
-	background-color:#F2F5F9;
+	background-color:#BCE4F5;
 }
 .thSearch {padding:2px 6px;
-	color:#555555;
+	color:#026890;
 	background:#FFFFFF;
 }
 .tblSearch td {padding:2px 6px;border:0px solid #FFFFFF;}
