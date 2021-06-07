@@ -75,7 +75,7 @@ $(function() {
 				var iLevel = parseInt(dataSet.getValue(i, "LEVEL")) - 1;
 				var gridTr = new UiGridTr();
 
-				gridTr.setClassName("noBorderHor noStripe");
+				gridTr.setClassName("noStripe");
 
 				var iconAction = new UiIcon();
 				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))

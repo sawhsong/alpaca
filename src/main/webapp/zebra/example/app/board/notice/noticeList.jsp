@@ -56,33 +56,32 @@
 	</div>
 </div>
 <div id="divSearchCriteriaArea" class="areaContainer">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<table class="tblDefault">
-				<colgroup>
-					<col width="50%"/>
-					<col width="50%"/>
-				</colgroup>
-				<tr>
-					<td class="tdDefault">
-						<label for="searchType" class="lblEn hor"><mc:msg key="fwk.notice.searchHeader.searchType"/></label>
-						<div style="float:left;padding-right:4px;">
-							<ui:ccselect name="searchType" codeType="BOARD_SEARCH_TYPE" caption="==Select==" checkName="Search Type" source="framework"/>
-						</div>
-						<ui:text name="searchWord" className="hor" style="width:280px"/>
-					</td>
-					<td class="tdDefault">
-						<label for="fromDate" class="lblEn hor"><mc:msg key="fwk.notice.searchHeader.searchPeriod"/></label>
-						<ui:text name="fromDate" className="Ct hor" style="width:100px" checkName="From Date" option="date"/>
-						<ui:icon id="icnFromDate" className="fa-calendar hor" title="From Date"/>
-						<div class="horGap20" style="padding:6px 8px 6px 0px;">-</div>
-						<ui:text name="toDate" className="Ct hor" style="width:100px" checkName="To Date" option="date"/>
-						<ui:icon id="icnToDate" className="fa-calendar hor" title="To Date"/>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
+	<table class="tblSearch">
+		<caption><mc:msg key="page.com.searchCriteria"/></caption>
+		<colgroup>
+			<col width="5%"/>
+			<col width="24%"/>
+			<col width="7%"/>
+			<col width="*"/>
+		</colgroup>
+		<tr>
+			<th class="thSearch rt"><mc:msg key="fwk.notice.searchHeader.searchType"/></th>
+			<td class="tdSearch">
+				<div style="float:left;padding-right:4px;">
+					<ui:ccselect name="searchType" codeType="BOARD_SEARCH_TYPE" caption="==Select==" checkName="Search Type" source="framework"/>
+				</div>
+				<ui:text name="searchWord" className="hor" style="width:280px"/>
+			</td>
+			<th class="thSearch rt"><mc:msg key="fwk.notice.searchHeader.searchPeriod"/></th>
+			<td class="tdSearch">
+				<ui:text name="fromDate" className="Ct hor" style="width:100px" checkName="From Date" option="date"/>
+				<ui:icon id="icnFromDate" className="fa-calendar hor" title="From Date"/>
+				<div class="horGap20" style="padding:6px 8px 6px 0px;">-</div>
+				<ui:text name="toDate" className="Ct hor" style="width:100px" checkName="To Date" option="date"/>
+				<ui:icon id="icnToDate" className="fa-calendar hor" title="To Date"/>
+			</td>
+		</tr>
+	</table>
 </div>
 <div id="divInformArea"></div>
 <%/************************************************************************************************
@@ -97,7 +96,7 @@
 <div id="divDataArea" class="areaContainer">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="2%"/>
+			<col width="3%"/>
 			<col width="3%"/>
 			<col width="*"/>
 			<col width="4%"/>
@@ -107,9 +106,9 @@
 			<col width="6%"/>
 		</colgroup>
 		<thead>
-			<tr class="noBorderHor">
+			<tr>
 				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="fwk.notice.title.selectToDelete"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
 				<th class="thGrid"><mc:msg key="fwk.notice.gridHeader.subject"/></th>
 				<th class="thGrid"><mc:msg key="fwk.notice.gridHeader.file"/></th>
 				<th class="thGrid"><mc:msg key="fwk.notice.gridHeader.writer"/></th>
@@ -119,7 +118,7 @@
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
-			<tr class="noBorderHor noStripe">
+			<tr>
 				<td class="tdGrid Ct" colspan="8"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
