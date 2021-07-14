@@ -200,7 +200,7 @@ $(function() {
 		if (id == "icnRefreshABCNews") {loadAbcNewsFeed();}
 		if (id == "icnRefreshNotice") {doSearchNotice();}
 		if (id == "icnRefreshChart1") {loadChart1();}
-		if (id == "icnRefreshNewsComAu") {loadNewsComAuFeed();}
+		if (id == "icnRefreshSbsComAu") {loadSbsComAuFeed();}
 		if (id == "icnRefreshFreeBoard") {doSearchFreeBoard();}
 		if (id == "icnRefreshChart2") {loadChart2();}
 
@@ -373,9 +373,9 @@ $(function() {
 
 					gridTr.setClassName("noBorderVer noStripe");
 
-					gridTr.addChild(new UiGridTd().addClassName("Lt noEllipsis").addChild(new UiAnchor().setText(ds.getValue(i, "header")).setScript("openNewsArticle('"+ds.getValue(i, "link")+"')").setStyle("font-weight:bold;")).setStyle("vertical-align:top;")
-																				.addTextAfterChild("<br/><br/>"+ds.getValue(i, "contents")+ds.getValue(i, "date")));
-					gridTr.addChild(new UiGridTd().addClassName("Rt noEllipsis").addChild(new UiImage().setSrc(ds.getValue(i, "img")).setStyle("width:100%;height:75px;border-radius:10px;").setScript("openNewsArticle('"+ds.getValue(i, "link")+"')"))).setStyle("vertical-align:top;")
+					gridTr.addChild(new UiGridTd().addClassName("Lt noEllipsis").addChild(new UiAnchor().setText(ds.getValue(i, "header")).setScript("openNewsArticle('"+ds.getValue(i, "link")+"')").setStyle("font-weight:bold;font-size:1.2em;vertical-align:top"))
+																				.addTextAfterChild("<br/><br/>"+ds.getValue(i, "contents")+"<br/><br/>"+ds.getValue(i, "date")));
+					gridTr.addChild(new UiGridTd().addClassName("Rt noEllipsis").addChild(new UiImage().setSrc(ds.getValue(i, "img")).setStyle("width:100%;height:80px;border-radius:8px;").setScript("openNewsArticle('"+ds.getValue(i, "link")+"')"))).setStyle("vertical-align:top;")
 
 					html += gridTr.toHtmlString();
 				}
@@ -387,36 +387,36 @@ $(function() {
 		});
 	};
 
-	loadNewsComAuFeed = function() {
-		commonJs.showProcMessageOnElement("divNewsComAu");
+	loadSbsComAuFeed = function() {
+		commonJs.showProcMessageOnElement("divSbsComAu");
 		commonJs.doSearch({
-			url:"/common/feed/getRssNewsComAuWorld.do",
+			url:"/common/feed/getRssSbsComAuNews.do",
 			noForm:true,
 			data:{
-				url:"https://www.news.com.au/content-feeds/latest-news-world/",
+				url:"https://www.sbs.com.au/news/feed",
 				countOfRows:10
 			},
 			onSuccess:function(result) {
 				var ds = result.dataSet;
 				var html = "";
 
-				$("#tbodyGridNewsComAu").html("");
+				$("#tbodyGridSbsComAu").html("");
 
 				for (var i=0; i<ds.getRowCnt(); i++) {
 					var gridTr = new UiGridTr();
 
 					gridTr.setClassName("noBorderVer noStripe");
 
-					gridTr.addChild(new UiGridTd().addClassName("Lt noEllipsis").addChild(new UiAnchor().setText(ds.getValue(i, "header")).setScript("openNewsArticle('"+ds.getValue(i, "link")+"')").setStyle("font-weight:bold;vertical-align:top;"))
+					gridTr.addChild(new UiGridTd().addClassName("Lt noEllipsis").addChild(new UiAnchor().setText(ds.getValue(i, "header")).setScript("openNewsArticle('"+ds.getValue(i, "link")+"')").setStyle("font-weight:bold;font-size:1.2em;vertical-align:top;"))
 																				.addTextAfterChild("<br/><br/>"+ds.getValue(i, "contents")+"<br/><br/>"+ds.getValue(i, "date")));
-					gridTr.addChild(new UiGridTd().addClassName("Rt noEllipsis").addChild(new UiImage().setSrc(ds.getValue(i, "img")).setStyle("width:100%;height:75px;border-radius:10px;").setScript("openNewsArticle('"+ds.getValue(i, "link")+"')")).setStyle("vertical-align:top;"))
+					gridTr.addChild(new UiGridTd().addClassName("Rt noEllipsis").addChild(new UiImage().setSrc(ds.getValue(i, "img")).setStyle("width:100%;height:80px;border-radius:8px;").setScript("openNewsArticle('"+ds.getValue(i, "link")+"')")).setStyle("vertical-align:top;"))
 
 					html += gridTr.toHtmlString();
 				}
 
-				$("#tbodyGridNewsComAu").html(html);
+				$("#tbodyGridSbsComAu").html(html);
 
-				commonJs.hideProcMessageOnElement("divNewsComAu");
+				commonJs.hideProcMessageOnElement("divSbsComAu");
 			}
 		});
 	};
@@ -432,7 +432,7 @@ $(function() {
 		});
 
 		loadAbcNewsFeed();
-		loadNewsComAuFeed();
+		loadSbsComAuFeed();
 		doSearchNotice();
 		doSearchFreeBoard();
 		loadChart1();

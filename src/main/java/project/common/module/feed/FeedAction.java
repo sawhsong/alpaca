@@ -19,9 +19,9 @@ public class FeedAction extends BaseAction {
 		return "ajaxResponse";
 	}
 
-	public String getRssNewsComAuWorld() throws Exception {
+	public String getRssSbsComAuNews() throws Exception {
 		try {
-			biz.getRssNewsComAuWorld(paramEntity);
+			biz.getRssSbsComAuNews(paramEntity);
 		} catch (Exception ex) {
 			return "ajaxResponse";
 		} finally {

@@ -134,18 +134,18 @@
 		</div>
 		<div id="divRight" class="accordion" style="width:49%;float:right">
 			<div class="accordionGroup">
-				<h3 id="hNewsComAu">news.com.au - world
-					<span id="spanHeaderNewsComAu" style="float:right;">
-						<ui:icon id="icnRefreshNewsComAu" className="fa-refresh fa-lg" title="Refresh"/>
+				<h3 id="hNewsComAu">sbs.com.au - news
+					<span id="spanHeaderSbsComAu" style="float:right;">
+						<ui:icon id="icnRefreshSbsComAu" className="fa-refresh fa-lg" title="Refresh"/>
 					</span>
 				</h3>
-				<div id="divNewsComAu" class="accordionContents" style="height:360px;">
-					<table id="tblGridNewsComAu" class="tblGrid">
+				<div id="divSbsComAu" class="accordionContents" style="height:360px;">
+					<table id="tblGridSbsComAu" class="tblGrid">
 						<colgroup>
 							<col width="*"/>
 							<col width="20%"/>
 						</colgroup>
-						<tbody id="tbodyGridNewsComAu">
+						<tbody id="tbodyGridSbsComAu">
 						</tbody>
 					</table>
 				</div>

@@ -3,14 +3,11 @@ package project.common.module.feed;
 import java.net.URL;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.jdom.Element;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
+import com.sun.syndication.feed.synd.SyndEnclosure;
 import com.sun.syndication.feed.synd.SyndEntryImpl;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.SyndFeedInput;
@@ -85,15 +82,14 @@ public class FeedBizImpl extends BaseBiz implements FeedBiz {
 		return paramEntity;
 	}
 
-	public ParamEntity getRssNewsComAuWorld(ParamEntity paramEntity) throws Exception {
+	@SuppressWarnings("unchecked")
+	public ParamEntity getRssSbsComAuNews(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		DataSet dsRs = new DataSet();
 		String url = requestDataSet.getValue("url");
 		int countOfRows = CommonUtil.toInt(requestDataSet.getValue("countOfRows"));
 		SyndFeedInput input = new SyndFeedInput();
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-		Document document;
 		URL feedUrl = new URL(url);
 		SyndFeed feed;
 		String header[] = new String[] {"header", "link", "contents", "img", "date"};
@@ -104,8 +100,6 @@ public class FeedBizImpl extends BaseBiz implements FeedBiz {
 			dsRs.addName(header);
 			feed = input.build(new XmlReader(feedUrl));
 			docBuilderFactory.setValidating(false);
-			document = docBuilder.parse(feedUrl.openStream());
-			NodeList nodeList = document.getElementsByTagName("item");
 
 			if (feed != null) {
 				List<?> feedList = feed.getEntries();
@@ -119,11 +113,23 @@ public class FeedBizImpl extends BaseBiz implements FeedBiz {
 					dsRs.setValue(dsRs.getRowCnt()-1, "header", entry.getTitle());
 					dsRs.setValue(dsRs.getRowCnt()-1, "link", entry.getLink());
 					dsRs.setValue(dsRs.getRowCnt()-1, "contents", entry.getDescription().getValue());
-					dsRs.setValue(dsRs.getRowCnt()-1, "date", CommonUtil.toString(feed.getPublishedDate(), dateFormat));
+					dsRs.setValue(dsRs.getRowCnt()-1, "date", CommonUtil.toString(entry.getPublishedDate(), dateFormat));
 
-					Node imgNode = searchNode(nodeList.item(index).getChildNodes(), "image");
-					Node imgUrl = searchNode(imgNode.getChildNodes(), "url");
-					dsRs.setValue(dsRs.getRowCnt()-1, "img", imgUrl.getTextContent());
+					List<SyndEnclosure> enclosures = (List<SyndEnclosure>)entry.getEnclosures();
+					for (SyndEnclosure enclosure : enclosures) {
+						boolean foundImage = false;
+						String type = enclosure.getType();
+
+						if (CommonUtil.contains(type, "image")) {
+							dsRs.setValue(dsRs.getRowCnt()-1, "img", enclosure.getUrl());
+							foundImage = true;
+							break;
+						}
+
+						if (foundImage) {
+							break;
+						}
+					}
 
 					index++;
 				}
@@ -135,20 +141,5 @@ public class FeedBizImpl extends BaseBiz implements FeedBiz {
 			throw new FrameworkException(paramEntity, ex);
 		}
 		return paramEntity;
-	}
-
-	private Node searchNode(NodeList nodeList, String nodeName) {
-		Node nodeRtn = null;
-
-		for (int i=0; i<nodeList.getLength(); i++) {
-			Node node = nodeList.item(i);
-			if (CommonUtil.equals(node.getNodeName(), nodeName)) {
-				return node;
-			}
-
-			searchNode(node.getChildNodes(), nodeName);
-		}
-
-		return nodeRtn;
 	}
 }
