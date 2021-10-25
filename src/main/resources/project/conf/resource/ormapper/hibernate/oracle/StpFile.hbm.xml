@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - STP_FILE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.StpFile" table="STP_FILE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="active" column="ACTIVE" type="java.lang.String" length="2"/>
+		<property name="atoFileStatus" column="ATO_FILE_STATUS" type="java.lang.String" length="20"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String" length="4000"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="description" column="DESCRIPTION" type="java.lang.String" length="2000"/>
+		<property name="endDate" column="END_DATE" type="java.util.Date"/>
+		<property name="errorLog" column="ERROR_LOG" type="java.lang.String" length="0"/>
+		<property name="fileId" column="FILE_ID" type="java.lang.Double"/>
+		<property name="fileName" column="FILE_NAME" type="java.lang.String" length="100"/>
+		<property name="fromDate" column="FROM_DATE" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="logFile" column="LOG_FILE" type="java.lang.String" length="4000"/>
+		<property name="status" column="STATUS" type="java.lang.String" length="10"/>
+		<property name="stpFile" column="STP_FILE" type="java.lang.String" length="4000"/>
+		<property name="submissionDate" column="SUBMISSION_DATE" type="java.util.Date"/>
+		<property name="submissionId" column="SUBMISSION_ID" type="java.lang.String" length="35"/>
+		<property name="type" column="TYPE" type="java.lang.String" length="20"/>
+		<property name="uploadedBy" column="UPLOADED_BY" type="java.lang.String" length="200"/>
+	</class>
+
+	<sql-query name="stpFile.selectAll">
+	<![CDATA[
+		SELECT ACTIVE,
+		       ATO_FILE_STATUS,
+		       BUSINESS_GROUP_ID,
+		       COMMENTS,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       DESCRIPTION,
+		       TO_CHAR(END_DATE, 'yyyymmddhh24miss') AS END_DATE,
+		       ERROR_LOG,
+		       FILE_ID,
+		       FILE_NAME,
+		       TO_CHAR(FROM_DATE, 'yyyymmddhh24miss') AS FROM_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       LOG_FILE,
+		       STATUS,
+		       STP_FILE,
+		       TO_CHAR(SUBMISSION_DATE, 'yyyymmddhh24miss') AS SUBMISSION_DATE,
+		       SUBMISSION_ID,
+		       TYPE,
+		       UPLOADED_BY
+		  FROM STP_FILE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="stpFile.insert">
+	<![CDATA[
+		INSERT INTO STP_FILE (
+		       ACTIVE,
+		       ATO_FILE_STATUS,
+		       BUSINESS_GROUP_ID,
+		       COMMENTS,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       DESCRIPTION,
+		       END_DATE,
+		       ERROR_LOG,
+		       FILE_ID,
+		       FILE_NAME,
+		       FROM_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       LOG_FILE,
+		       STATUS,
+		       STP_FILE,
+		       SUBMISSION_DATE,
+		       SUBMISSION_ID,
+		       TYPE,
+		       UPLOADED_BY
+		       )
+		VALUES (
+		       ${ACTIVE},
+		       ${ATO_FILE_STATUS},
+		       ${BUSINESS_GROUP_ID},
+		       ${COMMENTS},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${DESCRIPTION},
+		       ${END_DATE},
+		       ${ERROR_LOG},
+		       ${FILE_ID},
+		       ${FILE_NAME},
+		       ${FROM_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${LOG_FILE},
+		       ${STATUS},
+		       ${STP_FILE},
+		       ${SUBMISSION_DATE},
+		       ${SUBMISSION_ID},
+		       ${TYPE},
+		       ${UPLOADED_BY}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="stpFile.update">
+	<![CDATA[
+		UPDATE STP_FILE
+		   SET ACTIVE = ${ACTIVE},
+		       ATO_FILE_STATUS = ${ATO_FILE_STATUS},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       COMMENTS = ${COMMENTS},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       DESCRIPTION = ${DESCRIPTION},
+		       END_DATE = ${END_DATE},
+		       ERROR_LOG = ${ERROR_LOG},
+		       FILE_ID = ${FILE_ID},
+		       FILE_NAME = ${FILE_NAME},
+		       FROM_DATE = ${FROM_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       LOG_FILE = ${LOG_FILE},
+		       STATUS = ${STATUS},
+		       STP_FILE = ${STP_FILE},
+		       SUBMISSION_DATE = ${SUBMISSION_DATE},
+		       SUBMISSION_ID = ${SUBMISSION_ID},
+		       TYPE = ${TYPE},
+		       UPLOADED_BY = ${UPLOADED_BY}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="stpFile.updateColumns">
+	<![CDATA[
+		UPDATE STP_FILE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="stpFile.delete">
+	<![CDATA[
+		DELETE STP_FILE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

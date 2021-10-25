@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_HELP_FEEDBACK - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalHelpFeedback" table="PORTAL_HELP_FEEDBACK" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="entryId" column="ENTRY_ID" type="java.lang.Double"></id>
+
+		<property name="comments" column="COMMENTS" not-null="true" type="java.lang.String" length="1000"/>
+		<property name="company" column="COMPANY" not-null="true" type="java.lang.String" length="200"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="email" column="EMAIL" not-null="true" type="java.lang.String" length="100"/>
+		<property name="firstName" column="FIRST_NAME" not-null="true" type="java.lang.String" length="100"/>
+		<property name="lastName" column="LAST_NAME" not-null="true" type="java.lang.String" length="60"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="phone" column="PHONE" not-null="true" type="java.lang.String" length="20"/>
+		<property name="positionTitle" column="POSITION_TITLE" not-null="true" type="java.lang.String" length="60"/>
+		<property name="state" column="STATE" not-null="true" type="java.lang.String" length="30"/>
+		<property name="title" column="TITLE" not-null="true" type="java.lang.String" length="5"/>
+		<property name="fax" column="FAX" type="java.lang.String" length="20"/>
+		<property name="mobile" column="MOBILE" type="java.lang.String" length="20"/>
+		<property name="newsletterSubscribe" column="NEWSLETTER_SUBSCRIBE" type="java.lang.String" length="5"/>
+		<property name="referralMode" column="REFERRAL_MODE" type="java.lang.String" length="20"/>
+	</class>
+
+	<sql-query name="portalHelpFeedback.selectAll">
+	<![CDATA[
+		SELECT ENTRY_ID,
+		       COMMENTS,
+		       COMPANY,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       EMAIL,
+		       FIRST_NAME,
+		       LAST_NAME,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       PHONE,
+		       POSITION_TITLE,
+		       STATE,
+		       TITLE,
+		       FAX,
+		       MOBILE,
+		       NEWSLETTER_SUBSCRIBE,
+		       REFERRAL_MODE
+		  FROM PORTAL_HELP_FEEDBACK
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalHelpFeedback.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_HELP_FEEDBACK (
+		       ENTRY_ID,
+		       COMMENTS,
+		       COMPANY,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       EMAIL,
+		       FIRST_NAME,
+		       LAST_NAME,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       PHONE,
+		       POSITION_TITLE,
+		       STATE,
+		       TITLE,
+		       FAX,
+		       MOBILE,
+		       NEWSLETTER_SUBSCRIBE,
+		       REFERRAL_MODE
+		       )
+		VALUES (
+		       ${ENTRY_ID},
+		       ${COMMENTS},
+		       ${COMPANY},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${EMAIL},
+		       ${FIRST_NAME},
+		       ${LAST_NAME},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${PHONE},
+		       ${POSITION_TITLE},
+		       ${STATE},
+		       ${TITLE},
+		       ${FAX},
+		       ${MOBILE},
+		       ${NEWSLETTER_SUBSCRIBE},
+		       ${REFERRAL_MODE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalHelpFeedback.update">
+	<![CDATA[
+		UPDATE PORTAL_HELP_FEEDBACK
+		   SET COMMENTS = ${COMMENTS},
+		       COMPANY = ${COMPANY},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       EMAIL = ${EMAIL},
+		       FIRST_NAME = ${FIRST_NAME},
+		       LAST_NAME = ${LAST_NAME},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       PHONE = ${PHONE},
+		       POSITION_TITLE = ${POSITION_TITLE},
+		       STATE = ${STATE},
+		       TITLE = ${TITLE},
+		       FAX = ${FAX},
+		       MOBILE = ${MOBILE},
+		       NEWSLETTER_SUBSCRIBE = ${NEWSLETTER_SUBSCRIBE},
+		       REFERRAL_MODE = ${REFERRAL_MODE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalHelpFeedback.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_HELP_FEEDBACK
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalHelpFeedback.delete">
+	<![CDATA[
+		DELETE PORTAL_HELP_FEEDBACK
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

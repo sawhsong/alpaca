@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_SIGNUP_NZIC_TAX_DETAILS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalSignupNzicTaxDetails" table="PORTAL_SIGNUP_NZIC_TAX_DETAILS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="nzIcTaxDetailsId" column="NZ_IC_TAX_DETAILS_ID" type="java.lang.Double"></id>
+
+		<property name="userTfId" column="USER_TF_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="declarationIpAddress" column="DECLARATION_IP_ADDRESS" type="java.lang.String" length="200"/>
+		<property name="declarationPersonDesignation" column="DECLARATION_PERSON_DESIGNATION" type="java.lang.String" length="200"/>
+		<property name="declarationPersonName" column="DECLARATION_PERSON_NAME" type="java.lang.String" length="200"/>
+		<property name="declarationSigned" column="DECLARATION_SIGNED" type="java.lang.String" length="1"/>
+		<property name="declarationSignedDate" column="DECLARATION_SIGNED_DATE" type="java.util.Date"/>
+		<property name="docContentId" column="DOC_CONTENT_ID" type="java.lang.Double"/>
+		<property name="fullName" column="FULL_NAME" type="java.lang.String" length="200"/>
+		<property name="irdNumber" column="IRD_NUMBER" type="java.lang.String" length="30"/>
+		<property name="isTaxRateFromProvided" column="IS_TAX_RATE_FROM_PROVIDED" type="java.lang.String" length="1"/>
+		<property name="schedulePayActivityNumber" column="SCHEDULE_PAY_ACTIVITY_NUMBER" type="java.lang.String" length="30"/>
+		<property name="strCertificateStatus" column="STR_CERTIFICATE_STATUS" type="java.lang.String" length="20"/>
+		<property name="taxRate" column="TAX_RATE" type="java.lang.String" length="5"/>
+	</class>
+
+	<sql-query name="portalSignupNzicTaxDetails.selectAll">
+	<![CDATA[
+		SELECT USER_TF_ID,
+		       NZ_IC_TAX_DETAILS_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       DECLARATION_IP_ADDRESS,
+		       DECLARATION_PERSON_DESIGNATION,
+		       DECLARATION_PERSON_NAME,
+		       DECLARATION_SIGNED,
+		       TO_CHAR(DECLARATION_SIGNED_DATE, 'yyyymmddhh24miss') AS DECLARATION_SIGNED_DATE,
+		       DOC_CONTENT_ID,
+		       FULL_NAME,
+		       IRD_NUMBER,
+		       IS_TAX_RATE_FROM_PROVIDED,
+		       SCHEDULE_PAY_ACTIVITY_NUMBER,
+		       STR_CERTIFICATE_STATUS,
+		       TAX_RATE
+		  FROM PORTAL_SIGNUP_NZIC_TAX_DETAILS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupNzicTaxDetails.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_SIGNUP_NZIC_TAX_DETAILS (
+		       USER_TF_ID,
+		       NZ_IC_TAX_DETAILS_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       DECLARATION_IP_ADDRESS,
+		       DECLARATION_PERSON_DESIGNATION,
+		       DECLARATION_PERSON_NAME,
+		       DECLARATION_SIGNED,
+		       DECLARATION_SIGNED_DATE,
+		       DOC_CONTENT_ID,
+		       FULL_NAME,
+		       IRD_NUMBER,
+		       IS_TAX_RATE_FROM_PROVIDED,
+		       SCHEDULE_PAY_ACTIVITY_NUMBER,
+		       STR_CERTIFICATE_STATUS,
+		       TAX_RATE
+		       )
+		VALUES (
+		       ${USER_TF_ID},
+		       ${NZ_IC_TAX_DETAILS_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${DECLARATION_IP_ADDRESS},
+		       ${DECLARATION_PERSON_DESIGNATION},
+		       ${DECLARATION_PERSON_NAME},
+		       ${DECLARATION_SIGNED},
+		       ${DECLARATION_SIGNED_DATE},
+		       ${DOC_CONTENT_ID},
+		       ${FULL_NAME},
+		       ${IRD_NUMBER},
+		       ${IS_TAX_RATE_FROM_PROVIDED},
+		       ${SCHEDULE_PAY_ACTIVITY_NUMBER},
+		       ${STR_CERTIFICATE_STATUS},
+		       ${TAX_RATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupNzicTaxDetails.update">
+	<![CDATA[
+		UPDATE PORTAL_SIGNUP_NZIC_TAX_DETAILS
+		   SET USER_TF_ID = ${USER_TF_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       DECLARATION_IP_ADDRESS = ${DECLARATION_IP_ADDRESS},
+		       DECLARATION_PERSON_DESIGNATION = ${DECLARATION_PERSON_DESIGNATION},
+		       DECLARATION_PERSON_NAME = ${DECLARATION_PERSON_NAME},
+		       DECLARATION_SIGNED = ${DECLARATION_SIGNED},
+		       DECLARATION_SIGNED_DATE = ${DECLARATION_SIGNED_DATE},
+		       DOC_CONTENT_ID = ${DOC_CONTENT_ID},
+		       FULL_NAME = ${FULL_NAME},
+		       IRD_NUMBER = ${IRD_NUMBER},
+		       IS_TAX_RATE_FROM_PROVIDED = ${IS_TAX_RATE_FROM_PROVIDED},
+		       SCHEDULE_PAY_ACTIVITY_NUMBER = ${SCHEDULE_PAY_ACTIVITY_NUMBER},
+		       STR_CERTIFICATE_STATUS = ${STR_CERTIFICATE_STATUS},
+		       TAX_RATE = ${TAX_RATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupNzicTaxDetails.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_SIGNUP_NZIC_TAX_DETAILS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupNzicTaxDetails.delete">
+	<![CDATA[
+		DELETE PORTAL_SIGNUP_NZIC_TAX_DETAILS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

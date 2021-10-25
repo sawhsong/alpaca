@@ -1,0 +1,363 @@
+/**************************************************************************************************
+ * Framework Generated DTO Source
+ * - HP_COMMS_LINK_MIGRATION - 
+ *************************************************************************************************/
+package project.conf.resource.ormapper.dto.oracle;
+
+import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.util.Date;
+
+import zebra.data.DataSet;
+import zebra.util.CommonUtil;
+import project.common.extend.BaseDto;
+
+@SuppressWarnings("unused")
+public class HpCommsLinkMigration extends BaseDto implements Serializable {
+	/**
+	 * Columns
+	 */
+	private double contactId;
+	private String CONTACT_ID;
+	private String flag;
+	private String FLAG;
+	private String isPrimary;
+	private String IS_PRIMARY;
+	private double linkId;
+	private String LINK_ID;
+	private double organisationId;
+	private String ORGANISATION_ID;
+	private String organisationName;
+	private String ORGANISATION_NAME;
+	private double personId;
+	private String PERSON_ID;
+	private String personName;
+	private String PERSON_NAME;
+	private String remark;
+	private String REMARK;
+	private double rowCount;
+	private String ROW_COUNT;
+	private String insertUserName;
+	private String INSERT_USER_NAME;
+	private String updateUserName;
+	private String UPDATE_USER_NAME;
+
+	/**
+	 * Constructor
+	 */
+	@SuppressWarnings("rawtypes")
+	public HpCommsLinkMigration() throws Exception {
+		Class cls = getClass();
+		Field field[] = cls.getDeclaredFields();
+
+		for (int i=0; i<field.length; i++) {
+			if (field[i].getType().isInstance(dataSet) || field[i].getType().isInstance(updateColumnsDataSet) || field[i].getName().equals("updateColumnsDataSetHeader") ||
+				field[i].getName().equals("FRW_VAR_PRIMARY_KEY") || field[i].getName().equals("FRW_VAR_DATE_COLUMN") ||
+				field[i].getName().equals("FRW_VAR_NUMBER_COLUMN") || field[i].getName().equals("FRW_VAR_CLOB_COLUMN") ||
+				field[i].getName().equals("FRW_VAR_DEFAULT_COLUMN") || field[i].getName().equals("FRW_VAR_DEFAULT_VALUE") ||
+				!CommonUtil.isUpperCaseWithNumeric(CommonUtil.remove(field[i].getName(), "_"))) {
+				continue;
+			}
+
+			dataSet.addName(field[i].getName());
+		}
+
+		dataSet.addRow();
+		updateColumnsDataSet.addName(updateColumnsDataSetHeader);
+		setFrwVarPrimaryKey("");
+		setFrwVarDateColumn("");
+		setFrwVarNumberColumn("CONTACT_ID,LINK_ID,ORGANISATION_ID,PERSON_ID,ROW_COUNT");
+		setFrwVarClobColumn("");
+		setFrwVarDefaultColumn("");
+		setFrwVarDefaultValue("");
+		setDefaultValue();
+	}
+
+	/**
+	 * Accessors
+	 */
+	public double getContactId() {
+		return contactId;
+	}
+
+	public void setContactId(double contactId) throws Exception {
+		this.contactId = contactId;
+		setValueFromAccessor("CONTACT_ID", CommonUtil.toString(contactId));
+	}
+
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) throws Exception {
+		this.flag = flag;
+		setValueFromAccessor("FLAG", flag);
+	}
+
+	public String getIsPrimary() {
+		return isPrimary;
+	}
+
+	public void setIsPrimary(String isPrimary) throws Exception {
+		this.isPrimary = isPrimary;
+		setValueFromAccessor("IS_PRIMARY", isPrimary);
+	}
+
+	public double getLinkId() {
+		return linkId;
+	}
+
+	public void setLinkId(double linkId) throws Exception {
+		this.linkId = linkId;
+		setValueFromAccessor("LINK_ID", CommonUtil.toString(linkId));
+	}
+
+	public double getOrganisationId() {
+		return organisationId;
+	}
+
+	public void setOrganisationId(double organisationId) throws Exception {
+		this.organisationId = organisationId;
+		setValueFromAccessor("ORGANISATION_ID", CommonUtil.toString(organisationId));
+	}
+
+	public String getOrganisationName() {
+		return organisationName;
+	}
+
+	public void setOrganisationName(String organisationName) throws Exception {
+		this.organisationName = organisationName;
+		setValueFromAccessor("ORGANISATION_NAME", organisationName);
+	}
+
+	public double getPersonId() {
+		return personId;
+	}
+
+	public void setPersonId(double personId) throws Exception {
+		this.personId = personId;
+		setValueFromAccessor("PERSON_ID", CommonUtil.toString(personId));
+	}
+
+	public String getPersonName() {
+		return personName;
+	}
+
+	public void setPersonName(String personName) throws Exception {
+		this.personName = personName;
+		setValueFromAccessor("PERSON_NAME", personName);
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) throws Exception {
+		this.remark = remark;
+		setValueFromAccessor("REMARK", remark);
+	}
+
+	public double getRowCount() {
+		return rowCount;
+	}
+
+	public void setRowCount(double rowCount) throws Exception {
+		this.rowCount = rowCount;
+		setValueFromAccessor("ROW_COUNT", CommonUtil.toString(rowCount));
+	}
+
+	public String getInsertUserName() {
+		return insertUserName;
+	}
+
+	public void setInsertUserName(String insertUserName) throws Exception {
+		this.insertUserName = insertUserName;
+		setValueFromAccessor("INSERT_USER_NAME", insertUserName);
+	}
+
+	public String getUpdateUserName() {
+		return updateUserName;
+	}
+
+	public void setUpdateUserName(String updateUserName) throws Exception {
+		this.updateUserName = updateUserName;
+		setValueFromAccessor("UPDATE_USER_NAME", updateUserName);
+	}
+
+	/**
+	 * Hibernate Methods - If the primary key is composed of multiple columns
+	 */
+	
+	/**
+	 * Framework Methods
+	 */
+	public void setDefaultValue() throws Exception {
+		String columns[] = CommonUtil.split(getFrwVarDefaultColumn(), ",");
+		String values[] = CommonUtil.split(getFrwVarDefaultValue(), ",");
+
+		if (CommonUtil.isNotEmpty(columns)) {
+			for (int i=0; i<columns.length; i++) {
+				setValue(columns[i], values[i]);
+			}
+		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	public void setValue(String columnName, String value) throws Exception {
+		Class cls = getClass();
+		Field field[] = cls.getDeclaredFields();
+
+		dataSet.setValue(dataSet.getRowCnt()-1, columnName, value);
+		for (int i=0; i<field.length; i++) {
+			if (field[i].getName().equals(CommonUtil.toCamelCaseStartLowerCase(columnName))) {
+				if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+					field[i].set(this, CommonUtil.toDouble(value));
+				} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+					if (CommonUtil.equalsIgnoreCase(value, "SYSDATE") || CommonUtil.containsIgnoreCase(value, "SYSDATE")) {
+						field[i].set(this, CommonUtil.toDate(CommonUtil.getSysdate()));
+					} else {
+						field[i].set(this, CommonUtil.toDate(value));
+					}
+				} else {
+					field[i].set(this, value);
+				}
+			}
+		}
+	}
+
+	public void setValues(DataSet dataSet) throws Exception {
+		for (int i=0; i<dataSet.getColumnCnt(); i++) {
+			setValue(dataSet.getName(i), dataSet.getValue(i));
+		}
+	}
+
+	public void setValues(DataSet dataSet, int rowIndex) throws Exception {
+		for (int i=0; i<dataSet.getColumnCnt(); i++) {
+			setValue(dataSet.getName(i), dataSet.getValue(rowIndex, i));
+		}
+	}
+
+	private void setValueFromAccessor(String columnName, String value) throws Exception {
+		dataSet.setValue(dataSet.getRowCnt()-1, columnName, value);
+	}
+
+	public void setConvertedTypeValue(String columnName, String value) throws Exception {
+		String numberColumn = "", dateColumn = "";
+
+		numberColumn = getFrwVarNumberColumn();
+		dateColumn = getFrwVarDateColumn();
+
+		setValue(columnName, value);
+
+		numberColumn += (CommonUtil.isEmpty(numberColumn)) ? CommonUtil.upperCase(columnName) : "," + CommonUtil.upperCase(columnName);
+		dateColumn = CommonUtil.replace(dateColumn, columnName, "");
+
+		setFrwVarNumberColumn(numberColumn);
+		setFrwVarDateColumn(dateColumn);
+	}
+
+	public String getValue(String columnName) throws Exception {
+		return dataSet.getValue(dataSet.getRowCnt()-1, columnName);
+	}
+
+	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
+		String dataType = "";
+
+		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+			dataType = "Number";
+		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+			dataType = "Date";
+		} else {
+			dataType = "String";
+		}
+
+		addUpdateColumn(columnName, columnValue, dataType);
+	}
+
+	/**
+	 * dataType : String / Number / Date
+	 */
+	public void addUpdateColumn(String columnName, String columnValue, String dataType) throws Exception {
+		updateColumnsDataSet.addRow();
+		updateColumnsDataSet.setValue(updateColumnsDataSet.getRowCnt()-1, "COLUMN_NAME", columnName);
+		updateColumnsDataSet.setValue(updateColumnsDataSet.getRowCnt()-1, "COLUMN_VALUE", columnValue);
+		updateColumnsDataSet.setValue(updateColumnsDataSet.getRowCnt()-1, "DATA_TYPE", CommonUtil.nvl(dataType, "String"));
+	}
+
+	public void addUpdateColumnFromField() throws Exception {
+		for (int i=0; i<dataSet.getColumnCnt(); i++) {
+			if (CommonUtil.isNotBlank(dataSet.getValue(i))) {
+				if (CommonUtil.equalsIgnoreCase(dataSet.getName(i), "INSERT_DATE") && CommonUtil.equalsIgnoreCase(dataSet.getValue(i), "SYSDATE")) {
+					continue;
+				}
+				addUpdateColumn(dataSet.getName(i), dataSet.getValue(i));
+			}
+		}
+	}
+
+	/**
+	 * toString
+	 */
+	public String toString() {
+		String str = "";
+
+		str += "contactId : "+contactId+"\n";
+		str += "flag : "+flag+"\n";
+		str += "isPrimary : "+isPrimary+"\n";
+		str += "linkId : "+linkId+"\n";
+		str += "organisationId : "+organisationId+"\n";
+		str += "organisationName : "+organisationName+"\n";
+		str += "personId : "+personId+"\n";
+		str += "personName : "+personName+"\n";
+		str += "remark : "+remark+"\n";
+		str += "rowCount : "+rowCount+"\n";
+		str += "insertUserName : "+insertUserName+"\n";
+		str += "updateUserName : "+updateUserName+"\n";
+
+		return str;
+	}
+
+	/**
+	 * toXmlString
+	 */
+	public String toXmlString() {
+		String str = "";
+
+		str += "<column name=\"contactId\" value=\""+contactId+"\">";
+		str += "<column name=\"flag\" value=\""+flag+"\">";
+		str += "<column name=\"isPrimary\" value=\""+isPrimary+"\">";
+		str += "<column name=\"linkId\" value=\""+linkId+"\">";
+		str += "<column name=\"organisationId\" value=\""+organisationId+"\">";
+		str += "<column name=\"organisationName\" value=\""+organisationName+"\">";
+		str += "<column name=\"personId\" value=\""+personId+"\">";
+		str += "<column name=\"personName\" value=\""+personName+"\">";
+		str += "<column name=\"remark\" value=\""+remark+"\">";
+		str += "<column name=\"rowCount\" value=\""+rowCount+"\">";
+		str += "<column name=\"insertUserName\" value=\""+insertUserName+"\">";
+		str += "<column name=\"updateUserName\" value=\""+updateUserName+"\">";
+
+		return str;
+	}
+
+	/**
+	 * toJsonString
+	 */
+	public String toJsonString() {
+		String str = "";
+
+		str += "\"contactId\":\""+contactId+"\", ";
+		str += "\"flag\":\""+flag+"\", ";
+		str += "\"isPrimary\":\""+isPrimary+"\", ";
+		str += "\"linkId\":\""+linkId+"\", ";
+		str += "\"organisationId\":\""+organisationId+"\", ";
+		str += "\"organisationName\":\""+organisationName+"\", ";
+		str += "\"personId\":\""+personId+"\", ";
+		str += "\"personName\":\""+personName+"\", ";
+		str += "\"remark\":\""+remark+"\", ";
+		str += "\"rowCount\":\""+rowCount+"\", ";
+		str += "\"insertUserName\":\""+insertUserName+"\", ";
+		str += "\"updateUserName\":\""+updateUserName+"\"";
+
+		return str;
+	}
+}

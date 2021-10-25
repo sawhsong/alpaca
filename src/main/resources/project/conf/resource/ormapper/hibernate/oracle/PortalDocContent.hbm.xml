@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_DOC_CONTENT - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalDocContent" table="PORTAL_DOC_CONTENT" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="docContentId" column="DOC_CONTENT_ID" type="java.lang.Double"></id>
+
+		<property name="docContentName" column="DOC_CONTENT_NAME" not-null="true" type="java.lang.String" length="200"/>
+		<property name="docContent" column="DOC_CONTENT" type="java.lang.String" length="4000"/>
+		<property name="docContentBytesize" column="DOC_CONTENT_BYTESIZE" type="java.lang.Double"/>
+		<property name="docContentMime" column="DOC_CONTENT_MIME" type="java.lang.String" length="200"/>
+		<property name="isInternalDoc" column="IS_INTERNAL_DOC" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="portalDocContent.selectAll">
+	<![CDATA[
+		SELECT DOC_CONTENT_ID,
+		       DOC_CONTENT_NAME,
+		       DOC_CONTENT,
+		       DOC_CONTENT_BYTESIZE,
+		       DOC_CONTENT_MIME,
+		       IS_INTERNAL_DOC
+		  FROM PORTAL_DOC_CONTENT
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalDocContent.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_DOC_CONTENT (
+		       DOC_CONTENT_ID,
+		       DOC_CONTENT_NAME,
+		       DOC_CONTENT,
+		       DOC_CONTENT_BYTESIZE,
+		       DOC_CONTENT_MIME,
+		       IS_INTERNAL_DOC
+		       )
+		VALUES (
+		       ${DOC_CONTENT_ID},
+		       ${DOC_CONTENT_NAME},
+		       ${DOC_CONTENT},
+		       ${DOC_CONTENT_BYTESIZE},
+		       ${DOC_CONTENT_MIME},
+		       ${IS_INTERNAL_DOC}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalDocContent.update">
+	<![CDATA[
+		UPDATE PORTAL_DOC_CONTENT
+		   SET DOC_CONTENT_NAME = ${DOC_CONTENT_NAME},
+		       DOC_CONTENT = ${DOC_CONTENT},
+		       DOC_CONTENT_BYTESIZE = ${DOC_CONTENT_BYTESIZE},
+		       DOC_CONTENT_MIME = ${DOC_CONTENT_MIME},
+		       IS_INTERNAL_DOC = ${IS_INTERNAL_DOC}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalDocContent.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_DOC_CONTENT
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalDocContent.delete">
+	<![CDATA[
+		DELETE PORTAL_DOC_CONTENT
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

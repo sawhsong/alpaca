@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_ASSIGNMENT_ACCRUALS_TOTAL - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpAssignmentAccrualsTotal" table="HP_ASSIGNMENT_ACCRUALS_TOTAL" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="assignmentAccrualsTotalId" column="ASSIGNMENT_ACCRUALS_TOTAL_ID" type="java.lang.Double"></id>
+
+		<property name="assignmentAccrualType" column="ASSIGNMENT_ACCRUAL_TYPE" type="java.lang.String" length="1"/>
+		<property name="assignmentPlanId" column="ASSIGNMENT_PLAN_ID" type="java.lang.Double"/>
+		<property name="assignmentProcessId" column="ASSIGNMENT_PROCESS_ID" type="java.lang.Double"/>
+		<property name="carriedCommencedDate" column="CARRIED_COMMENCED_DATE" type="java.util.Date"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String" length="255"/>
+		<property name="elementId" column="ELEMENT_ID" type="java.lang.Double"/>
+		<property name="hours" column="HOURS" type="java.lang.Double"/>
+		<property name="paymentId" column="PAYMENT_ID" type="java.lang.Double"/>
+		<property name="payDate" column="PAY_DATE" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="hpAssignmentAccrualsTotal.selectAll">
+	<![CDATA[
+		SELECT ASSIGNMENT_ACCRUALS_TOTAL_ID,
+		       ASSIGNMENT_ACCRUAL_TYPE,
+		       ASSIGNMENT_PLAN_ID,
+		       ASSIGNMENT_PROCESS_ID,
+		       TO_CHAR(CARRIED_COMMENCED_DATE, 'yyyymmddhh24miss') AS CARRIED_COMMENCED_DATE,
+		       COMMENTS,
+		       ELEMENT_ID,
+		       HOURS,
+		       PAYMENT_ID,
+		       TO_CHAR(PAY_DATE, 'yyyymmddhh24miss') AS PAY_DATE
+		  FROM HP_ASSIGNMENT_ACCRUALS_TOTAL
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentAccrualsTotal.insert">
+	<![CDATA[
+		INSERT INTO HP_ASSIGNMENT_ACCRUALS_TOTAL (
+		       ASSIGNMENT_ACCRUALS_TOTAL_ID,
+		       ASSIGNMENT_ACCRUAL_TYPE,
+		       ASSIGNMENT_PLAN_ID,
+		       ASSIGNMENT_PROCESS_ID,
+		       CARRIED_COMMENCED_DATE,
+		       COMMENTS,
+		       ELEMENT_ID,
+		       HOURS,
+		       PAYMENT_ID,
+		       PAY_DATE
+		       )
+		VALUES (
+		       ${ASSIGNMENT_ACCRUALS_TOTAL_ID},
+		       ${ASSIGNMENT_ACCRUAL_TYPE},
+		       ${ASSIGNMENT_PLAN_ID},
+		       ${ASSIGNMENT_PROCESS_ID},
+		       ${CARRIED_COMMENCED_DATE},
+		       ${COMMENTS},
+		       ${ELEMENT_ID},
+		       ${HOURS},
+		       ${PAYMENT_ID},
+		       ${PAY_DATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentAccrualsTotal.update">
+	<![CDATA[
+		UPDATE HP_ASSIGNMENT_ACCRUALS_TOTAL
+		   SET ASSIGNMENT_ACCRUAL_TYPE = ${ASSIGNMENT_ACCRUAL_TYPE},
+		       ASSIGNMENT_PLAN_ID = ${ASSIGNMENT_PLAN_ID},
+		       ASSIGNMENT_PROCESS_ID = ${ASSIGNMENT_PROCESS_ID},
+		       CARRIED_COMMENCED_DATE = ${CARRIED_COMMENCED_DATE},
+		       COMMENTS = ${COMMENTS},
+		       ELEMENT_ID = ${ELEMENT_ID},
+		       HOURS = ${HOURS},
+		       PAYMENT_ID = ${PAYMENT_ID},
+		       PAY_DATE = ${PAY_DATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentAccrualsTotal.updateColumns">
+	<![CDATA[
+		UPDATE HP_ASSIGNMENT_ACCRUALS_TOTAL
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAssignmentAccrualsTotal.delete">
+	<![CDATA[
+		DELETE HP_ASSIGNMENT_ACCRUALS_TOTAL
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

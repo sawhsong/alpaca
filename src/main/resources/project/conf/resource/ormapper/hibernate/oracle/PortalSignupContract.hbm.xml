@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_SIGNUP_CONTRACT - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalSignupContract" table="PORTAL_SIGNUP_CONTRACT" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="contractDetailsId" column="CONTRACT_DETAILS_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="userTfId" column="USER_TF_ID" not-null="true" type="java.lang.Double"/>
+		<property name="acceptType" column="ACCEPT_TYPE" type="java.lang.String" length="10"/>
+		<property name="documentContentId" column="DOCUMENT_CONTENT_ID" type="java.lang.String" length="20"/>
+		<property name="downloadedContract" column="DOWNLOADED_CONTRACT" type="java.lang.String" length="1"/>
+		<property name="electronicExeDateTime" column="ELECTRONIC_EXE_DATE_TIME" type="java.util.Date"/>
+		<property name="electronicExeUserEmail" column="ELECTRONIC_EXE_USER_EMAIL" type="java.lang.String" length="100"/>
+		<property name="electronicExeUserFullName" column="ELECTRONIC_EXE_USER_FULL_NAME" type="java.lang.String" length="300"/>
+		<property name="electronicExeUserIpAddress" column="ELECTRONIC_EXE_USER_IP_ADDRESS" type="java.lang.String" length="100"/>
+		<property name="executionType" column="EXECUTION_TYPE" type="java.lang.String" length="10"/>
+		<property name="sendType" column="SEND_TYPE" type="java.lang.String" length="10"/>
+		<property name="transformed" column="TRANSFORMED" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="portalSignupContract.selectAll">
+	<![CDATA[
+		SELECT CONTRACT_DETAILS_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       USER_TF_ID,
+		       ACCEPT_TYPE,
+		       DOCUMENT_CONTENT_ID,
+		       DOWNLOADED_CONTRACT,
+		       TO_CHAR(ELECTRONIC_EXE_DATE_TIME, 'yyyymmddhh24miss') AS ELECTRONIC_EXE_DATE_TIME,
+		       ELECTRONIC_EXE_USER_EMAIL,
+		       ELECTRONIC_EXE_USER_FULL_NAME,
+		       ELECTRONIC_EXE_USER_IP_ADDRESS,
+		       EXECUTION_TYPE,
+		       SEND_TYPE,
+		       TRANSFORMED
+		  FROM PORTAL_SIGNUP_CONTRACT
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupContract.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_SIGNUP_CONTRACT (
+		       CONTRACT_DETAILS_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       USER_TF_ID,
+		       ACCEPT_TYPE,
+		       DOCUMENT_CONTENT_ID,
+		       DOWNLOADED_CONTRACT,
+		       ELECTRONIC_EXE_DATE_TIME,
+		       ELECTRONIC_EXE_USER_EMAIL,
+		       ELECTRONIC_EXE_USER_FULL_NAME,
+		       ELECTRONIC_EXE_USER_IP_ADDRESS,
+		       EXECUTION_TYPE,
+		       SEND_TYPE,
+		       TRANSFORMED
+		       )
+		VALUES (
+		       ${CONTRACT_DETAILS_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${USER_TF_ID},
+		       ${ACCEPT_TYPE},
+		       ${DOCUMENT_CONTENT_ID},
+		       ${DOWNLOADED_CONTRACT},
+		       ${ELECTRONIC_EXE_DATE_TIME},
+		       ${ELECTRONIC_EXE_USER_EMAIL},
+		       ${ELECTRONIC_EXE_USER_FULL_NAME},
+		       ${ELECTRONIC_EXE_USER_IP_ADDRESS},
+		       ${EXECUTION_TYPE},
+		       ${SEND_TYPE},
+		       ${TRANSFORMED}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupContract.update">
+	<![CDATA[
+		UPDATE PORTAL_SIGNUP_CONTRACT
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       USER_TF_ID = ${USER_TF_ID},
+		       ACCEPT_TYPE = ${ACCEPT_TYPE},
+		       DOCUMENT_CONTENT_ID = ${DOCUMENT_CONTENT_ID},
+		       DOWNLOADED_CONTRACT = ${DOWNLOADED_CONTRACT},
+		       ELECTRONIC_EXE_DATE_TIME = ${ELECTRONIC_EXE_DATE_TIME},
+		       ELECTRONIC_EXE_USER_EMAIL = ${ELECTRONIC_EXE_USER_EMAIL},
+		       ELECTRONIC_EXE_USER_FULL_NAME = ${ELECTRONIC_EXE_USER_FULL_NAME},
+		       ELECTRONIC_EXE_USER_IP_ADDRESS = ${ELECTRONIC_EXE_USER_IP_ADDRESS},
+		       EXECUTION_TYPE = ${EXECUTION_TYPE},
+		       SEND_TYPE = ${SEND_TYPE},
+		       TRANSFORMED = ${TRANSFORMED}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupContract.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_SIGNUP_CONTRACT
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupContract.delete">
+	<![CDATA[
+		DELETE PORTAL_SIGNUP_CONTRACT
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

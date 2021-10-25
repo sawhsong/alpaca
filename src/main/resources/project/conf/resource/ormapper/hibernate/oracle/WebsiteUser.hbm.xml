@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - WEBSITE_USER - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.WebsiteUser" table="WEBSITE_USER" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="websiteUserId" column="WEBSITE_USER_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="email" column="EMAIL" type="java.lang.String" length="100"/>
+		<property name="firstName" column="FIRST_NAME" type="java.lang.String" length="100"/>
+		<property name="ipAddress" column="IP_ADDRESS" type="java.lang.String" length="100"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="location" column="LOCATION" type="java.lang.String" length="200"/>
+		<property name="phone" column="PHONE" type="java.lang.String" length="50"/>
+		<property name="surname" column="SURNAME" type="java.lang.String" length="100"/>
+		<property name="userAction" column="USER_ACTION" type="java.lang.String" length="100"/>
+		<property name="userMessage" column="USER_MESSAGE" type="java.lang.String" length="1000"/>
+		<property name="userPortal" column="USER_PORTAL" type="java.lang.String" length="100"/>
+		<property name="userType" column="USER_TYPE" type="java.lang.String" length="50"/>
+	</class>
+
+	<sql-query name="websiteUser.selectAll">
+	<![CDATA[
+		SELECT WEBSITE_USER_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       EMAIL,
+		       FIRST_NAME,
+		       IP_ADDRESS,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       LOCATION,
+		       PHONE,
+		       SURNAME,
+		       USER_ACTION,
+		       USER_MESSAGE,
+		       USER_PORTAL,
+		       USER_TYPE
+		  FROM WEBSITE_USER
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="websiteUser.insert">
+	<![CDATA[
+		INSERT INTO WEBSITE_USER (
+		       WEBSITE_USER_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       EMAIL,
+		       FIRST_NAME,
+		       IP_ADDRESS,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       LOCATION,
+		       PHONE,
+		       SURNAME,
+		       USER_ACTION,
+		       USER_MESSAGE,
+		       USER_PORTAL,
+		       USER_TYPE
+		       )
+		VALUES (
+		       ${WEBSITE_USER_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${EMAIL},
+		       ${FIRST_NAME},
+		       ${IP_ADDRESS},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${LOCATION},
+		       ${PHONE},
+		       ${SURNAME},
+		       ${USER_ACTION},
+		       ${USER_MESSAGE},
+		       ${USER_PORTAL},
+		       ${USER_TYPE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="websiteUser.update">
+	<![CDATA[
+		UPDATE WEBSITE_USER
+		   SET WEBSITE_USER_ID = ${WEBSITE_USER_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       EMAIL = ${EMAIL},
+		       FIRST_NAME = ${FIRST_NAME},
+		       IP_ADDRESS = ${IP_ADDRESS},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       LOCATION = ${LOCATION},
+		       PHONE = ${PHONE},
+		       SURNAME = ${SURNAME},
+		       USER_ACTION = ${USER_ACTION},
+		       USER_MESSAGE = ${USER_MESSAGE},
+		       USER_PORTAL = ${USER_PORTAL},
+		       USER_TYPE = ${USER_TYPE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="websiteUser.updateColumns">
+	<![CDATA[
+		UPDATE WEBSITE_USER
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="websiteUser.delete">
+	<![CDATA[
+		DELETE WEBSITE_USER
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

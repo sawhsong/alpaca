@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_ASSIGNMENT_SUPER_STAGE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalAssignmentSuperStage" table="PORTAL_ASSIGNMENT_SUPER_STAGE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="submissionId" column="SUBMISSION_ID" type="java.lang.Double"></id>
+
+		<property name="asgElementId" column="ASG_ELEMENT_ID" not-null="true" type="java.lang.Double"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="alternateName" column="ALTERNATE_NAME" type="java.lang.String" length="50"/>
+		<property name="assignmentId" column="ASSIGNMENT_ID" type="java.lang.Double"/>
+		<property name="elementId" column="ELEMENT_ID" type="java.lang.Double"/>
+		<property name="fromDate" column="FROM_DATE" type="java.util.Date"/>
+		<property name="gstExempt" column="GST_EXEMPT" type="java.lang.String" length="1"/>
+		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="membershipNumber" column="MEMBERSHIP_NUMBER" type="java.lang.String" length="50"/>
+		<property name="percentageAppliedElementId" column="PERCENTAGE_APPLIED_ELEMENT_ID" type="java.lang.Double"/>
+		<property name="superFund" column="SUPER_FUND" type="java.lang.String" length="50"/>
+		<property name="superFundId" column="SUPER_FUND_ID" type="java.lang.Double"/>
+		<property name="toDate" column="TO_DATE" type="java.util.Date"/>
+		<property name="transformed" column="TRANSFORMED" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="portalAssignmentSuperStage.selectAll">
+	<![CDATA[
+		SELECT SUBMISSION_ID,
+		       ASG_ELEMENT_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       ALTERNATE_NAME,
+		       ASSIGNMENT_ID,
+		       ELEMENT_ID,
+		       TO_CHAR(FROM_DATE, 'yyyymmddhh24miss') AS FROM_DATE,
+		       GST_EXEMPT,
+		       IS_ACTIVE,
+		       MEMBERSHIP_NUMBER,
+		       PERCENTAGE_APPLIED_ELEMENT_ID,
+		       SUPER_FUND,
+		       SUPER_FUND_ID,
+		       TO_CHAR(TO_DATE, 'yyyymmddhh24miss') AS TO_DATE,
+		       TRANSFORMED
+		  FROM PORTAL_ASSIGNMENT_SUPER_STAGE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalAssignmentSuperStage.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_ASSIGNMENT_SUPER_STAGE (
+		       SUBMISSION_ID,
+		       ASG_ELEMENT_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       ALTERNATE_NAME,
+		       ASSIGNMENT_ID,
+		       ELEMENT_ID,
+		       FROM_DATE,
+		       GST_EXEMPT,
+		       IS_ACTIVE,
+		       MEMBERSHIP_NUMBER,
+		       PERCENTAGE_APPLIED_ELEMENT_ID,
+		       SUPER_FUND,
+		       SUPER_FUND_ID,
+		       TO_DATE,
+		       TRANSFORMED
+		       )
+		VALUES (
+		       ${SUBMISSION_ID},
+		       ${ASG_ELEMENT_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${ALTERNATE_NAME},
+		       ${ASSIGNMENT_ID},
+		       ${ELEMENT_ID},
+		       ${FROM_DATE},
+		       ${GST_EXEMPT},
+		       ${IS_ACTIVE},
+		       ${MEMBERSHIP_NUMBER},
+		       ${PERCENTAGE_APPLIED_ELEMENT_ID},
+		       ${SUPER_FUND},
+		       ${SUPER_FUND_ID},
+		       ${TO_DATE},
+		       ${TRANSFORMED}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalAssignmentSuperStage.update">
+	<![CDATA[
+		UPDATE PORTAL_ASSIGNMENT_SUPER_STAGE
+		   SET ASG_ELEMENT_ID = ${ASG_ELEMENT_ID},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       ALTERNATE_NAME = ${ALTERNATE_NAME},
+		       ASSIGNMENT_ID = ${ASSIGNMENT_ID},
+		       ELEMENT_ID = ${ELEMENT_ID},
+		       FROM_DATE = ${FROM_DATE},
+		       GST_EXEMPT = ${GST_EXEMPT},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       MEMBERSHIP_NUMBER = ${MEMBERSHIP_NUMBER},
+		       PERCENTAGE_APPLIED_ELEMENT_ID = ${PERCENTAGE_APPLIED_ELEMENT_ID},
+		       SUPER_FUND = ${SUPER_FUND},
+		       SUPER_FUND_ID = ${SUPER_FUND_ID},
+		       TO_DATE = ${TO_DATE},
+		       TRANSFORMED = ${TRANSFORMED}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalAssignmentSuperStage.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_ASSIGNMENT_SUPER_STAGE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalAssignmentSuperStage.delete">
+	<![CDATA[
+		DELETE PORTAL_ASSIGNMENT_SUPER_STAGE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

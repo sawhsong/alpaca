@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PRT_COH_SCENARIO - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PrtCohScenario" table="PRT_COH_SCENARIO" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="prtCohScenarioId" column="PRT_COH_SCENARIO_ID" type="java.lang.Double"></id>
+
+		<property name="evidenceDescription" column="EVIDENCE_DESCRIPTION" not-null="true" type="java.lang.String" length="1000"/>
+		<property name="evidenceDocSrcOrg" column="EVIDENCE_DOC_SRC_ORG" not-null="true" type="java.lang.String" length="5"/>
+		<property name="evidenceDocSubtype" column="EVIDENCE_DOC_SUBTYPE" not-null="true" type="java.lang.String" length="1000"/>
+		<property name="isActive" column="IS_ACTIVE" not-null="true" type="java.lang.String" length="1"/>
+		<property name="organisationLiable" column="ORGANISATION_LIABLE" not-null="true" type="java.lang.String" length="5"/>
+		<property name="scenario" column="SCENARIO" not-null="true" type="java.lang.String" length="4000"/>
+		<property name="stateCode" column="STATE_CODE" not-null="true" type="java.lang.String" length="10"/>
+		<property name="canEuBoBeSame" column="CAN_EU_BO_BE_SAME" type="java.lang.String" length="1"/>
+		<property name="description" column="DESCRIPTION" type="java.lang.String" length="4000"/>
+		<property name="isAgency2Mandatory" column="IS_AGENCY2_MANDATORY" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="prtCohScenario.selectAll">
+	<![CDATA[
+		SELECT PRT_COH_SCENARIO_ID,
+		       EVIDENCE_DESCRIPTION,
+		       EVIDENCE_DOC_SRC_ORG,
+		       EVIDENCE_DOC_SUBTYPE,
+		       IS_ACTIVE,
+		       ORGANISATION_LIABLE,
+		       SCENARIO,
+		       STATE_CODE,
+		       CAN_EU_BO_BE_SAME,
+		       DESCRIPTION,
+		       IS_AGENCY2_MANDATORY
+		  FROM PRT_COH_SCENARIO
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="prtCohScenario.insert">
+	<![CDATA[
+		INSERT INTO PRT_COH_SCENARIO (
+		       PRT_COH_SCENARIO_ID,
+		       EVIDENCE_DESCRIPTION,
+		       EVIDENCE_DOC_SRC_ORG,
+		       EVIDENCE_DOC_SUBTYPE,
+		       IS_ACTIVE,
+		       ORGANISATION_LIABLE,
+		       SCENARIO,
+		       STATE_CODE,
+		       CAN_EU_BO_BE_SAME,
+		       DESCRIPTION,
+		       IS_AGENCY2_MANDATORY
+		       )
+		VALUES (
+		       ${PRT_COH_SCENARIO_ID},
+		       ${EVIDENCE_DESCRIPTION},
+		       ${EVIDENCE_DOC_SRC_ORG},
+		       ${EVIDENCE_DOC_SUBTYPE},
+		       ${IS_ACTIVE},
+		       ${ORGANISATION_LIABLE},
+		       ${SCENARIO},
+		       ${STATE_CODE},
+		       ${CAN_EU_BO_BE_SAME},
+		       ${DESCRIPTION},
+		       ${IS_AGENCY2_MANDATORY}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="prtCohScenario.update">
+	<![CDATA[
+		UPDATE PRT_COH_SCENARIO
+		   SET EVIDENCE_DESCRIPTION = ${EVIDENCE_DESCRIPTION},
+		       EVIDENCE_DOC_SRC_ORG = ${EVIDENCE_DOC_SRC_ORG},
+		       EVIDENCE_DOC_SUBTYPE = ${EVIDENCE_DOC_SUBTYPE},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       ORGANISATION_LIABLE = ${ORGANISATION_LIABLE},
+		       SCENARIO = ${SCENARIO},
+		       STATE_CODE = ${STATE_CODE},
+		       CAN_EU_BO_BE_SAME = ${CAN_EU_BO_BE_SAME},
+		       DESCRIPTION = ${DESCRIPTION},
+		       IS_AGENCY2_MANDATORY = ${IS_AGENCY2_MANDATORY}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="prtCohScenario.updateColumns">
+	<![CDATA[
+		UPDATE PRT_COH_SCENARIO
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="prtCohScenario.delete">
+	<![CDATA[
+		DELETE PRT_COH_SCENARIO
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

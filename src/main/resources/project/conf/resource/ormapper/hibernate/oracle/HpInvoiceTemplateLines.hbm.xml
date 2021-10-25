@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_INVOICE_TEMPLATE_LINES - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpInvoiceTemplateLines" table="HP_INVOICE_TEMPLATE_LINES" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="invTemplateLineId" column="INV_TEMPLATE_LINE_ID" type="java.lang.Double"></id>
+
+		<property name="amount" column="AMOUNT" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="invoiceText" column="INVOICE_TEXT" type="java.lang.String" length="200"/>
+		<property name="invTemplateId" column="INV_TEMPLATE_ID" type="java.lang.Double"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="percentage" column="PERCENTAGE" type="java.lang.Double"/>
+		<property name="textToBeReplaced" column="TEXT_TO_BE_REPLACED" type="java.lang.String" length="200"/>
+	</class>
+
+	<sql-query name="hpInvoiceTemplateLines.selectAll">
+	<![CDATA[
+		SELECT INV_TEMPLATE_LINE_ID,
+		       AMOUNT,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       INVOICE_TEXT,
+		       INV_TEMPLATE_ID,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       PERCENTAGE,
+		       TEXT_TO_BE_REPLACED
+		  FROM HP_INVOICE_TEMPLATE_LINES
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpInvoiceTemplateLines.insert">
+	<![CDATA[
+		INSERT INTO HP_INVOICE_TEMPLATE_LINES (
+		       INV_TEMPLATE_LINE_ID,
+		       AMOUNT,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       INVOICE_TEXT,
+		       INV_TEMPLATE_ID,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       PERCENTAGE,
+		       TEXT_TO_BE_REPLACED
+		       )
+		VALUES (
+		       ${INV_TEMPLATE_LINE_ID},
+		       ${AMOUNT},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${INVOICE_TEXT},
+		       ${INV_TEMPLATE_ID},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${PERCENTAGE},
+		       ${TEXT_TO_BE_REPLACED}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpInvoiceTemplateLines.update">
+	<![CDATA[
+		UPDATE HP_INVOICE_TEMPLATE_LINES
+		   SET AMOUNT = ${AMOUNT},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       INVOICE_TEXT = ${INVOICE_TEXT},
+		       INV_TEMPLATE_ID = ${INV_TEMPLATE_ID},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       PERCENTAGE = ${PERCENTAGE},
+		       TEXT_TO_BE_REPLACED = ${TEXT_TO_BE_REPLACED}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpInvoiceTemplateLines.updateColumns">
+	<![CDATA[
+		UPDATE HP_INVOICE_TEMPLATE_LINES
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpInvoiceTemplateLines.delete">
+	<![CDATA[
+		DELETE HP_INVOICE_TEMPLATE_LINES
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

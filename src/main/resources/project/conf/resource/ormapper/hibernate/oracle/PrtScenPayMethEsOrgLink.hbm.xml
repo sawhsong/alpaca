@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PRT_SCEN_PAY_METH_ES_ORG_LINK - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PrtScenPayMethEsOrgLink" table="PRT_SCEN_PAY_METH_ES_ORG_LINK" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="esOrganisationId" column="ES_ORGANISATION_ID" not-null="true" type="java.lang.Double"/>
+		<property name="linkId" column="LINK_ID" not-null="true" type="java.lang.Double"/>
+		<property name="payMethodId" column="PAY_METHOD_ID" not-null="true" type="java.lang.Double"/>
+		<property name="prtCohScenarioId" column="PRT_COH_SCENARIO_ID" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="prtScenPayMethEsOrgLink.selectAll">
+	<![CDATA[
+		SELECT ES_ORGANISATION_ID,
+		       LINK_ID,
+		       PAY_METHOD_ID,
+		       PRT_COH_SCENARIO_ID
+		  FROM PRT_SCEN_PAY_METH_ES_ORG_LINK
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="prtScenPayMethEsOrgLink.insert">
+	<![CDATA[
+		INSERT INTO PRT_SCEN_PAY_METH_ES_ORG_LINK (
+		       ES_ORGANISATION_ID,
+		       LINK_ID,
+		       PAY_METHOD_ID,
+		       PRT_COH_SCENARIO_ID
+		       )
+		VALUES (
+		       ${ES_ORGANISATION_ID},
+		       ${LINK_ID},
+		       ${PAY_METHOD_ID},
+		       ${PRT_COH_SCENARIO_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="prtScenPayMethEsOrgLink.update">
+	<![CDATA[
+		UPDATE PRT_SCEN_PAY_METH_ES_ORG_LINK
+		   SET ES_ORGANISATION_ID = ${ES_ORGANISATION_ID},
+		       LINK_ID = ${LINK_ID},
+		       PAY_METHOD_ID = ${PAY_METHOD_ID},
+		       PRT_COH_SCENARIO_ID = ${PRT_COH_SCENARIO_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="prtScenPayMethEsOrgLink.updateColumns">
+	<![CDATA[
+		UPDATE PRT_SCEN_PAY_METH_ES_ORG_LINK
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="prtScenPayMethEsOrgLink.delete">
+	<![CDATA[
+		DELETE PRT_SCEN_PAY_METH_ES_ORG_LINK
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

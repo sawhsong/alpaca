@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - SYS_INVALID_PINS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.SysInvalidPins" table="SYS_INVALID_PINS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="pin" column="PIN" type="java.lang.Double"></id>
+
+		<property name="modifiedBy" column="MODIFIED_BY" not-null="true" type="java.lang.String" length="30"/>
+		<property name="modifiedDate" column="MODIFIED_DATE" not-null="true" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="sysInvalidPins.selectAll">
+	<![CDATA[
+		SELECT PIN,
+		       MODIFIED_BY,
+		       TO_CHAR(MODIFIED_DATE, 'yyyymmddhh24miss') AS MODIFIED_DATE
+		  FROM SYS_INVALID_PINS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="sysInvalidPins.insert">
+	<![CDATA[
+		INSERT INTO SYS_INVALID_PINS (
+		       PIN,
+		       MODIFIED_BY,
+		       MODIFIED_DATE
+		       )
+		VALUES (
+		       ${PIN},
+		       ${MODIFIED_BY},
+		       ${MODIFIED_DATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="sysInvalidPins.update">
+	<![CDATA[
+		UPDATE SYS_INVALID_PINS
+		   SET MODIFIED_BY = ${MODIFIED_BY},
+		       MODIFIED_DATE = ${MODIFIED_DATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="sysInvalidPins.updateColumns">
+	<![CDATA[
+		UPDATE SYS_INVALID_PINS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="sysInvalidPins.delete">
+	<![CDATA[
+		DELETE SYS_INVALID_PINS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

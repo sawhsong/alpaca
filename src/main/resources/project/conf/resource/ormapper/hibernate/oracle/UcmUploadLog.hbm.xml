@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - UCM_UPLOAD_LOG - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.UcmUploadLog" table="UCM_UPLOAD_LOG" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="logId" column="LOG_ID" type="java.lang.Double"></id>
+
+		<property name="uploadedDate" column="UPLOADED_DATE" not-null="true" type="java.util.Date"/>
+		<property name="uploadMode" column="UPLOAD_MODE" not-null="true" type="java.lang.String" length="1000"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String" length="2000"/>
+		<property name="identifier" column="IDENTIFIER" type="java.lang.String" length="100"/>
+		<property name="personNumber" column="PERSON_NUMBER" type="java.lang.String" length="100"/>
+		<property name="uploadedBy" column="UPLOADED_BY" type="java.lang.Double"/>
+		<property name="uploadedStatus" column="UPLOADED_STATUS" type="java.lang.String" length="100"/>
+	</class>
+
+	<sql-query name="ucmUploadLog.selectAll">
+	<![CDATA[
+		SELECT LOG_ID,
+		       TO_CHAR(UPLOADED_DATE, 'yyyymmddhh24miss') AS UPLOADED_DATE,
+		       UPLOAD_MODE,
+		       COMMENTS,
+		       IDENTIFIER,
+		       PERSON_NUMBER,
+		       UPLOADED_BY,
+		       UPLOADED_STATUS
+		  FROM UCM_UPLOAD_LOG
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="ucmUploadLog.insert">
+	<![CDATA[
+		INSERT INTO UCM_UPLOAD_LOG (
+		       LOG_ID,
+		       UPLOADED_DATE,
+		       UPLOAD_MODE,
+		       COMMENTS,
+		       IDENTIFIER,
+		       PERSON_NUMBER,
+		       UPLOADED_BY,
+		       UPLOADED_STATUS
+		       )
+		VALUES (
+		       ${LOG_ID},
+		       ${UPLOADED_DATE},
+		       ${UPLOAD_MODE},
+		       ${COMMENTS},
+		       ${IDENTIFIER},
+		       ${PERSON_NUMBER},
+		       ${UPLOADED_BY},
+		       ${UPLOADED_STATUS}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="ucmUploadLog.update">
+	<![CDATA[
+		UPDATE UCM_UPLOAD_LOG
+		   SET UPLOADED_DATE = ${UPLOADED_DATE},
+		       UPLOAD_MODE = ${UPLOAD_MODE},
+		       COMMENTS = ${COMMENTS},
+		       IDENTIFIER = ${IDENTIFIER},
+		       PERSON_NUMBER = ${PERSON_NUMBER},
+		       UPLOADED_BY = ${UPLOADED_BY},
+		       UPLOADED_STATUS = ${UPLOADED_STATUS}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="ucmUploadLog.updateColumns">
+	<![CDATA[
+		UPDATE UCM_UPLOAD_LOG
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="ucmUploadLog.delete">
+	<![CDATA[
+		DELETE UCM_UPLOAD_LOG
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - EO_EXPENSE_D - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.EoExpenseD" table="EO_EXPENSE_D" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="eoExpenseDId" column="EO_EXPENSE_D_ID" type="java.lang.Double"></id>
+
+		<property name="eoExpenseId" column="EO_EXPENSE_ID" not-null="true" type="java.lang.Double"/>
+		<property name="assignmentRateId" column="ASSIGNMENT_RATE_ID" type="java.lang.Double"/>
+		<property name="attachedFile" column="ATTACHED_FILE" type="java.lang.String" length="4000"/>
+		<property name="description" column="DESCRIPTION" type="java.lang.String" length="1000"/>
+		<property name="expenseAmount" column="EXPENSE_AMOUNT" type="java.lang.Double"/>
+		<property name="expenseDate" column="EXPENSE_DATE" type="java.util.Date"/>
+		<property name="fileName" column="FILE_NAME" type="java.lang.String" length="500"/>
+	</class>
+
+	<sql-query name="eoExpenseD.selectAll">
+	<![CDATA[
+		SELECT EO_EXPENSE_D_ID,
+		       EO_EXPENSE_ID,
+		       ASSIGNMENT_RATE_ID,
+		       ATTACHED_FILE,
+		       DESCRIPTION,
+		       EXPENSE_AMOUNT,
+		       TO_CHAR(EXPENSE_DATE, 'yyyymmddhh24miss') AS EXPENSE_DATE,
+		       FILE_NAME
+		  FROM EO_EXPENSE_D
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="eoExpenseD.insert">
+	<![CDATA[
+		INSERT INTO EO_EXPENSE_D (
+		       EO_EXPENSE_D_ID,
+		       EO_EXPENSE_ID,
+		       ASSIGNMENT_RATE_ID,
+		       ATTACHED_FILE,
+		       DESCRIPTION,
+		       EXPENSE_AMOUNT,
+		       EXPENSE_DATE,
+		       FILE_NAME
+		       )
+		VALUES (
+		       ${EO_EXPENSE_D_ID},
+		       ${EO_EXPENSE_ID},
+		       ${ASSIGNMENT_RATE_ID},
+		       ${ATTACHED_FILE},
+		       ${DESCRIPTION},
+		       ${EXPENSE_AMOUNT},
+		       ${EXPENSE_DATE},
+		       ${FILE_NAME}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="eoExpenseD.update">
+	<![CDATA[
+		UPDATE EO_EXPENSE_D
+		   SET EO_EXPENSE_ID = ${EO_EXPENSE_ID},
+		       ASSIGNMENT_RATE_ID = ${ASSIGNMENT_RATE_ID},
+		       ATTACHED_FILE = ${ATTACHED_FILE},
+		       DESCRIPTION = ${DESCRIPTION},
+		       EXPENSE_AMOUNT = ${EXPENSE_AMOUNT},
+		       EXPENSE_DATE = ${EXPENSE_DATE},
+		       FILE_NAME = ${FILE_NAME}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="eoExpenseD.updateColumns">
+	<![CDATA[
+		UPDATE EO_EXPENSE_D
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="eoExpenseD.delete">
+	<![CDATA[
+		DELETE EO_EXPENSE_D
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

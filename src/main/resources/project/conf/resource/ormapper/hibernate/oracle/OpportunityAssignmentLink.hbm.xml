@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - OPPORTUNITY_ASSIGNMENT_LINK - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.OpportunityAssignmentLink" table="OPPORTUNITY_ASSIGNMENT_LINK" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="assignmentId" column="ASSIGNMENT_ID" not-null="true" type="java.lang.Double"/>
+		<property name="linkId" column="LINK_ID" not-null="true" type="java.lang.Double"/>
+		<property name="opportunityId" column="OPPORTUNITY_ID" not-null="true" type="java.lang.Double"/>
+		<property name="creationType" column="CREATION_TYPE" type="java.lang.String" length="50"/>
+	</class>
+
+	<sql-query name="opportunityAssignmentLink.selectAll">
+	<![CDATA[
+		SELECT ASSIGNMENT_ID,
+		       LINK_ID,
+		       OPPORTUNITY_ID,
+		       CREATION_TYPE
+		  FROM OPPORTUNITY_ASSIGNMENT_LINK
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="opportunityAssignmentLink.insert">
+	<![CDATA[
+		INSERT INTO OPPORTUNITY_ASSIGNMENT_LINK (
+		       ASSIGNMENT_ID,
+		       LINK_ID,
+		       OPPORTUNITY_ID,
+		       CREATION_TYPE
+		       )
+		VALUES (
+		       ${ASSIGNMENT_ID},
+		       ${LINK_ID},
+		       ${OPPORTUNITY_ID},
+		       ${CREATION_TYPE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="opportunityAssignmentLink.update">
+	<![CDATA[
+		UPDATE OPPORTUNITY_ASSIGNMENT_LINK
+		   SET ASSIGNMENT_ID = ${ASSIGNMENT_ID},
+		       LINK_ID = ${LINK_ID},
+		       OPPORTUNITY_ID = ${OPPORTUNITY_ID},
+		       CREATION_TYPE = ${CREATION_TYPE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="opportunityAssignmentLink.updateColumns">
+	<![CDATA[
+		UPDATE OPPORTUNITY_ASSIGNMENT_LINK
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="opportunityAssignmentLink.delete">
+	<![CDATA[
+		DELETE OPPORTUNITY_ASSIGNMENT_LINK
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

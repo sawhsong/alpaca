@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_TE_TIMECARD_HOURS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpTeTimecardHours" table="HP_TE_TIMECARD_HOURS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="timecardHourId" column="TIMECARD_HOUR_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="hours" column="HOURS" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lineId" column="LINE_ID" not-null="true" type="java.lang.Double"/>
+		<property name="status" column="STATUS" not-null="true" type="java.lang.String" length="2"/>
+		<property name="timecardId" column="TIMECARD_ID" not-null="true" type="java.lang.Double"/>
+		<property name="workDate" column="WORK_DATE" not-null="true" type="java.util.Date"/>
+		<property name="assignmentElementId" column="ASSIGNMENT_ELEMENT_ID" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="errorMessage" column="ERROR_MESSAGE" type="java.lang.String" length="4000"/>
+		<property name="invoiceId" column="INVOICE_ID" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="payrollTransferFlag" column="PAYROLL_TRANSFER_FLAG" type="java.lang.String" length="1"/>
+		<property name="timeIn" column="TIME_IN" type="java.util.Date"/>
+		<property name="timeOut" column="TIME_OUT" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="hpTeTimecardHours.selectAll">
+	<![CDATA[
+		SELECT TIMECARD_HOUR_ID,
+		       CREATED_BY,
+		       HOURS,
+		       LAST_UPDATED_BY,
+		       LINE_ID,
+		       STATUS,
+		       TIMECARD_ID,
+		       TO_CHAR(WORK_DATE, 'yyyymmddhh24miss') AS WORK_DATE,
+		       ASSIGNMENT_ELEMENT_ID,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       ERROR_MESSAGE,
+		       INVOICE_ID,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       PAYROLL_TRANSFER_FLAG,
+		       TO_CHAR(TIME_IN, 'yyyymmddhh24miss') AS TIME_IN,
+		       TO_CHAR(TIME_OUT, 'yyyymmddhh24miss') AS TIME_OUT
+		  FROM HP_TE_TIMECARD_HOURS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpTeTimecardHours.insert">
+	<![CDATA[
+		INSERT INTO HP_TE_TIMECARD_HOURS (
+		       TIMECARD_HOUR_ID,
+		       CREATED_BY,
+		       HOURS,
+		       LAST_UPDATED_BY,
+		       LINE_ID,
+		       STATUS,
+		       TIMECARD_ID,
+		       WORK_DATE,
+		       ASSIGNMENT_ELEMENT_ID,
+		       CREATION_DATE,
+		       ERROR_MESSAGE,
+		       INVOICE_ID,
+		       LAST_UPDATE_DATE,
+		       PAYROLL_TRANSFER_FLAG,
+		       TIME_IN,
+		       TIME_OUT
+		       )
+		VALUES (
+		       ${TIMECARD_HOUR_ID},
+		       ${CREATED_BY},
+		       ${HOURS},
+		       ${LAST_UPDATED_BY},
+		       ${LINE_ID},
+		       ${STATUS},
+		       ${TIMECARD_ID},
+		       ${WORK_DATE},
+		       ${ASSIGNMENT_ELEMENT_ID},
+		       ${CREATION_DATE},
+		       ${ERROR_MESSAGE},
+		       ${INVOICE_ID},
+		       ${LAST_UPDATE_DATE},
+		       ${PAYROLL_TRANSFER_FLAG},
+		       ${TIME_IN},
+		       ${TIME_OUT}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpTeTimecardHours.update">
+	<![CDATA[
+		UPDATE HP_TE_TIMECARD_HOURS
+		   SET CREATED_BY = ${CREATED_BY},
+		       HOURS = ${HOURS},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LINE_ID = ${LINE_ID},
+		       STATUS = ${STATUS},
+		       TIMECARD_ID = ${TIMECARD_ID},
+		       WORK_DATE = ${WORK_DATE},
+		       ASSIGNMENT_ELEMENT_ID = ${ASSIGNMENT_ELEMENT_ID},
+		       CREATION_DATE = ${CREATION_DATE},
+		       ERROR_MESSAGE = ${ERROR_MESSAGE},
+		       INVOICE_ID = ${INVOICE_ID},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       PAYROLL_TRANSFER_FLAG = ${PAYROLL_TRANSFER_FLAG},
+		       TIME_IN = ${TIME_IN},
+		       TIME_OUT = ${TIME_OUT}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpTeTimecardHours.updateColumns">
+	<![CDATA[
+		UPDATE HP_TE_TIMECARD_HOURS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpTeTimecardHours.delete">
+	<![CDATA[
+		DELETE HP_TE_TIMECARD_HOURS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

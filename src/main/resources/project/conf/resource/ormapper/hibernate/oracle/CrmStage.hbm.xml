@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - CRM_STAGE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.CrmStage" table="CRM_STAGE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="stageId" column="STAGE_ID" type="java.lang.Double"></id>
+
+		<property name="organisationId" column="ORGANISATION_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="stage" column="STAGE" type="java.lang.String" length="150"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="endDate" column="END_DATE" type="java.util.Date"/>
+		<property name="notes" column="NOTES" type="java.lang.String" length="200"/>
+		<property name="outcome" column="OUTCOME" type="java.lang.String" length="150"/>
+		<property name="representative1" column="REPRESENTATIVE1" type="java.lang.Double"/>
+		<property name="representative2" column="REPRESENTATIVE2" type="java.lang.Double"/>
+		<property name="startDate" column="START_DATE" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="crmStage.selectAll">
+	<![CDATA[
+		SELECT STAGE_ID,
+		       ORGANISATION_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       STAGE,
+		       BUSINESS_GROUP_ID,
+		       TO_CHAR(END_DATE, 'yyyymmddhh24miss') AS END_DATE,
+		       NOTES,
+		       OUTCOME,
+		       REPRESENTATIVE1,
+		       REPRESENTATIVE2,
+		       TO_CHAR(START_DATE, 'yyyymmddhh24miss') AS START_DATE
+		  FROM CRM_STAGE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="crmStage.insert">
+	<![CDATA[
+		INSERT INTO CRM_STAGE (
+		       STAGE_ID,
+		       ORGANISATION_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       STAGE,
+		       BUSINESS_GROUP_ID,
+		       END_DATE,
+		       NOTES,
+		       OUTCOME,
+		       REPRESENTATIVE1,
+		       REPRESENTATIVE2,
+		       START_DATE
+		       )
+		VALUES (
+		       ${STAGE_ID},
+		       ${ORGANISATION_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${STAGE},
+		       ${BUSINESS_GROUP_ID},
+		       ${END_DATE},
+		       ${NOTES},
+		       ${OUTCOME},
+		       ${REPRESENTATIVE1},
+		       ${REPRESENTATIVE2},
+		       ${START_DATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="crmStage.update">
+	<![CDATA[
+		UPDATE CRM_STAGE
+		   SET ORGANISATION_ID = ${ORGANISATION_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       STAGE = ${STAGE},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       END_DATE = ${END_DATE},
+		       NOTES = ${NOTES},
+		       OUTCOME = ${OUTCOME},
+		       REPRESENTATIVE1 = ${REPRESENTATIVE1},
+		       REPRESENTATIVE2 = ${REPRESENTATIVE2},
+		       START_DATE = ${START_DATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="crmStage.updateColumns">
+	<![CDATA[
+		UPDATE CRM_STAGE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="crmStage.delete">
+	<![CDATA[
+		DELETE CRM_STAGE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_SPONSOR_STAGE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalSponsorStage" table="PORTAL_SPONSOR_STAGE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="submissionId" column="SUBMISSION_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="migPersonalDetailsId" column="MIG_PERSONAL_DETAILS_ID" not-null="true" type="java.lang.Double"/>
+		<property name="approvalDate1068" column="APPROVAL_DATE_1068" type="java.util.Date"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="currentVisaStatus" column="CURRENT_VISA_STATUS" type="java.lang.String" length="100"/>
+		<property name="fromDate" column="FROM_DATE" type="java.util.Date"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="passportNumber" column="PASSPORT_NUMBER" type="java.lang.String" length="20"/>
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+		<property name="salaryLevel" column="SALARY_LEVEL" type="java.lang.Double"/>
+		<property name="sponsorshipInProgress" column="SPONSORSHIP_IN_PROGRESS" type="java.lang.String" length="1"/>
+		<property name="toDate" column="TO_DATE" type="java.util.Date"/>
+		<property name="transformed" column="TRANSFORMED" type="java.lang.String" length="1"/>
+		<property name="visaType" column="VISA_TYPE" type="java.lang.String" length="100"/>
+	</class>
+
+	<sql-query name="portalSponsorStage.selectAll">
+	<![CDATA[
+		SELECT SUBMISSION_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       MIG_PERSONAL_DETAILS_ID,
+		       TO_CHAR(APPROVAL_DATE_1068, 'yyyymmddhh24miss') AS APPROVAL_DATE_1068,
+		       BUSINESS_GROUP_ID,
+		       CURRENT_VISA_STATUS,
+		       TO_CHAR(FROM_DATE, 'yyyymmddhh24miss') AS FROM_DATE,
+		       ORGANISATION_ID,
+		       PASSPORT_NUMBER,
+		       PERSON_ID,
+		       SALARY_LEVEL,
+		       SPONSORSHIP_IN_PROGRESS,
+		       TO_CHAR(TO_DATE, 'yyyymmddhh24miss') AS TO_DATE,
+		       TRANSFORMED,
+		       VISA_TYPE
+		  FROM PORTAL_SPONSOR_STAGE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSponsorStage.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_SPONSOR_STAGE (
+		       SUBMISSION_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       MIG_PERSONAL_DETAILS_ID,
+		       APPROVAL_DATE_1068,
+		       BUSINESS_GROUP_ID,
+		       CURRENT_VISA_STATUS,
+		       FROM_DATE,
+		       ORGANISATION_ID,
+		       PASSPORT_NUMBER,
+		       PERSON_ID,
+		       SALARY_LEVEL,
+		       SPONSORSHIP_IN_PROGRESS,
+		       TO_DATE,
+		       TRANSFORMED,
+		       VISA_TYPE
+		       )
+		VALUES (
+		       ${SUBMISSION_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${MIG_PERSONAL_DETAILS_ID},
+		       ${APPROVAL_DATE_1068},
+		       ${BUSINESS_GROUP_ID},
+		       ${CURRENT_VISA_STATUS},
+		       ${FROM_DATE},
+		       ${ORGANISATION_ID},
+		       ${PASSPORT_NUMBER},
+		       ${PERSON_ID},
+		       ${SALARY_LEVEL},
+		       ${SPONSORSHIP_IN_PROGRESS},
+		       ${TO_DATE},
+		       ${TRANSFORMED},
+		       ${VISA_TYPE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSponsorStage.update">
+	<![CDATA[
+		UPDATE PORTAL_SPONSOR_STAGE
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       MIG_PERSONAL_DETAILS_ID = ${MIG_PERSONAL_DETAILS_ID},
+		       APPROVAL_DATE_1068 = ${APPROVAL_DATE_1068},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CURRENT_VISA_STATUS = ${CURRENT_VISA_STATUS},
+		       FROM_DATE = ${FROM_DATE},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       PASSPORT_NUMBER = ${PASSPORT_NUMBER},
+		       PERSON_ID = ${PERSON_ID},
+		       SALARY_LEVEL = ${SALARY_LEVEL},
+		       SPONSORSHIP_IN_PROGRESS = ${SPONSORSHIP_IN_PROGRESS},
+		       TO_DATE = ${TO_DATE},
+		       TRANSFORMED = ${TRANSFORMED},
+		       VISA_TYPE = ${VISA_TYPE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSponsorStage.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_SPONSOR_STAGE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSponsorStage.delete">
+	<![CDATA[
+		DELETE PORTAL_SPONSOR_STAGE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

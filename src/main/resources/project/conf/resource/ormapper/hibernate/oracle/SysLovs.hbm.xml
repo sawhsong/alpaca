@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - SYS_LOVS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.SysLovs" table="SYS_LOVS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="lovId" column="LOV_ID" type="java.lang.Double"></id>
+
+		<property name="lovName" column="LOV_NAME" not-null="true" type="java.lang.String" length="100"/>
+		<property name="lovQuery" column="LOV_QUERY" not-null="true" type="java.lang.String" length="2000"/>
+		<property name="lovValues" column="LOV_VALUES" not-null="true" type="java.lang.String" length="2000"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="sysLovs.selectAll">
+	<![CDATA[
+		SELECT LOV_ID,
+		       LOV_NAME,
+		       LOV_QUERY,
+		       LOV_VALUES,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE
+		  FROM SYS_LOVS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="sysLovs.insert">
+	<![CDATA[
+		INSERT INTO SYS_LOVS (
+		       LOV_ID,
+		       LOV_NAME,
+		       LOV_QUERY,
+		       LOV_VALUES,
+		       CREATED_BY,
+		       CREATION_DATE
+		       )
+		VALUES (
+		       ${LOV_ID},
+		       ${LOV_NAME},
+		       ${LOV_QUERY},
+		       ${LOV_VALUES},
+		       ${CREATED_BY},
+		       ${CREATION_DATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="sysLovs.update">
+	<![CDATA[
+		UPDATE SYS_LOVS
+		   SET LOV_NAME = ${LOV_NAME},
+		       LOV_QUERY = ${LOV_QUERY},
+		       LOV_VALUES = ${LOV_VALUES},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="sysLovs.updateColumns">
+	<![CDATA[
+		UPDATE SYS_LOVS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="sysLovs.delete">
+	<![CDATA[
+		DELETE SYS_LOVS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

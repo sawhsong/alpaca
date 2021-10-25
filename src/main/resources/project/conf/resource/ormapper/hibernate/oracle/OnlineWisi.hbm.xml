@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - ONLINE_WISI - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.OnlineWisi" table="ONLINE_WISI" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="wisiId" column="WISI_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="userTfId" column="USER_TF_ID" not-null="true" type="java.lang.Double"/>
+		<property name="acceptance" column="ACCEPTANCE" type="java.lang.String" length="3"/>
+		<property name="acceptanceDate" column="ACCEPTANCE_DATE" type="java.util.Date"/>
+		<property name="applianceSafety" column="APPLIANCE_SAFETY" type="java.lang.String" length="3"/>
+		<property name="electricalEquipments" column="ELECTRICAL_EQUIPMENTS" type="java.lang.String" length="3"/>
+		<property name="emergencyContacts" column="EMERGENCY_CONTACTS" type="java.lang.String" length="3"/>
+		<property name="evacuationProc" column="EVACUATION_PROC" type="java.lang.String" length="3"/>
+		<property name="fireExtinguisher" column="FIRE_EXTINGUISHER" type="java.lang.String" length="3"/>
+		<property name="firstAid" column="FIRST_AID" type="java.lang.String" length="3"/>
+		<property name="floorCoverings" column="FLOOR_COVERINGS" type="java.lang.String" length="3"/>
+		<property name="floorWalkways" column="FLOOR_WALKWAYS" type="java.lang.String" length="3"/>
+		<property name="furnitureCond" column="FURNITURE_COND" type="java.lang.String" length="3"/>
+		<property name="heatingCooling" column="HEATING_COOLING" type="java.lang.String" length="3"/>
+		<property name="hygienePrivacy" column="HYGIENE_PRIVACY" type="java.lang.String" length="3"/>
+		<property name="introManager" column="INTRO_MANAGER" type="java.lang.String" length="3"/>
+		<property name="kitchenMeals" column="KITCHEN_MEALS" type="java.lang.String" length="3"/>
+		<property name="lighting" column="LIGHTING" type="java.lang.String" length="3"/>
+		<property name="mobileId" column="MOBILE_ID" type="java.lang.String" length="50"/>
+		<property name="ohsConcerns" column="OHS_CONCERNS" type="java.lang.String" length="3"/>
+		<property name="ohsIncidentReport" column="OHS_INCIDENT_REPORT" type="java.lang.String" length="3"/>
+		<property name="ohsOwnSafety" column="OHS_OWN_SAFETY" type="java.lang.String" length="3"/>
+		<property name="ohsPolicies" column="OHS_POLICIES" type="java.lang.String" length="3"/>
+		<property name="ohsResponsibilities" column="OHS_RESPONSIBILITIES" type="java.lang.String" length="3"/>
+		<property name="permanentHazards" column="PERMANENT_HAZARDS" type="java.lang.String" length="3"/>
+		<property name="smokeDetector" column="SMOKE_DETECTOR" type="java.lang.String" length="3"/>
+		<property name="userIp" column="USER_IP" type="java.lang.String" length="20"/>
+		<property name="ventilation" column="VENTILATION" type="java.lang.String" length="3"/>
+		<property name="wfh" column="WFH" type="java.lang.String" length="3"/>
+		<property name="wfhCommMeans" column="WFH_COMM_MEANS" type="java.lang.String" length="3"/>
+		<property name="wfhLength" column="WFH_LENGTH" type="java.lang.String" length="3"/>
+		<property name="wfhMajority" column="WFH_MAJORITY" type="java.lang.String" length="3"/>
+		<property name="wfhSafety" column="WFH_SAFETY" type="java.lang.String" length="3"/>
+		<property name="workplaceAddress" column="WORKPLACE_ADDRESS" type="java.lang.String" length="550"/>
+		<property name="workplaceReporting" column="WORKPLACE_REPORTING" type="java.lang.String" length="3"/>
+		<property name="workspaceInduction" column="WORKSPACE_INDUCTION" type="java.lang.String" length="3"/>
+		<property name="workDuties" column="WORK_DUTIES" type="java.lang.String" length="3"/>
+	</class>
+
+	<sql-query name="onlineWisi.selectAll">
+	<![CDATA[
+		SELECT WISI_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       USER_TF_ID,
+		       ACCEPTANCE,
+		       TO_CHAR(ACCEPTANCE_DATE, 'yyyymmddhh24miss') AS ACCEPTANCE_DATE,
+		       APPLIANCE_SAFETY,
+		       ELECTRICAL_EQUIPMENTS,
+		       EMERGENCY_CONTACTS,
+		       EVACUATION_PROC,
+		       FIRE_EXTINGUISHER,
+		       FIRST_AID,
+		       FLOOR_COVERINGS,
+		       FLOOR_WALKWAYS,
+		       FURNITURE_COND,
+		       HEATING_COOLING,
+		       HYGIENE_PRIVACY,
+		       INTRO_MANAGER,
+		       KITCHEN_MEALS,
+		       LIGHTING,
+		       MOBILE_ID,
+		       OHS_CONCERNS,
+		       OHS_INCIDENT_REPORT,
+		       OHS_OWN_SAFETY,
+		       OHS_POLICIES,
+		       OHS_RESPONSIBILITIES,
+		       PERMANENT_HAZARDS,
+		       SMOKE_DETECTOR,
+		       USER_IP,
+		       VENTILATION,
+		       WFH,
+		       WFH_COMM_MEANS,
+		       WFH_LENGTH,
+		       WFH_MAJORITY,
+		       WFH_SAFETY,
+		       WORKPLACE_ADDRESS,
+		       WORKPLACE_REPORTING,
+		       WORKSPACE_INDUCTION,
+		       WORK_DUTIES
+		  FROM ONLINE_WISI
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="onlineWisi.insert">
+	<![CDATA[
+		INSERT INTO ONLINE_WISI (
+		       WISI_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       USER_TF_ID,
+		       ACCEPTANCE,
+		       ACCEPTANCE_DATE,
+		       APPLIANCE_SAFETY,
+		       ELECTRICAL_EQUIPMENTS,
+		       EMERGENCY_CONTACTS,
+		       EVACUATION_PROC,
+		       FIRE_EXTINGUISHER,
+		       FIRST_AID,
+		       FLOOR_COVERINGS,
+		       FLOOR_WALKWAYS,
+		       FURNITURE_COND,
+		       HEATING_COOLING,
+		       HYGIENE_PRIVACY,
+		       INTRO_MANAGER,
+		       KITCHEN_MEALS,
+		       LIGHTING,
+		       MOBILE_ID,
+		       OHS_CONCERNS,
+		       OHS_INCIDENT_REPORT,
+		       OHS_OWN_SAFETY,
+		       OHS_POLICIES,
+		       OHS_RESPONSIBILITIES,
+		       PERMANENT_HAZARDS,
+		       SMOKE_DETECTOR,
+		       USER_IP,
+		       VENTILATION,
+		       WFH,
+		       WFH_COMM_MEANS,
+		       WFH_LENGTH,
+		       WFH_MAJORITY,
+		       WFH_SAFETY,
+		       WORKPLACE_ADDRESS,
+		       WORKPLACE_REPORTING,
+		       WORKSPACE_INDUCTION,
+		       WORK_DUTIES
+		       )
+		VALUES (
+		       ${WISI_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${USER_TF_ID},
+		       ${ACCEPTANCE},
+		       ${ACCEPTANCE_DATE},
+		       ${APPLIANCE_SAFETY},
+		       ${ELECTRICAL_EQUIPMENTS},
+		       ${EMERGENCY_CONTACTS},
+		       ${EVACUATION_PROC},
+		       ${FIRE_EXTINGUISHER},
+		       ${FIRST_AID},
+		       ${FLOOR_COVERINGS},
+		       ${FLOOR_WALKWAYS},
+		       ${FURNITURE_COND},
+		       ${HEATING_COOLING},
+		       ${HYGIENE_PRIVACY},
+		       ${INTRO_MANAGER},
+		       ${KITCHEN_MEALS},
+		       ${LIGHTING},
+		       ${MOBILE_ID},
+		       ${OHS_CONCERNS},
+		       ${OHS_INCIDENT_REPORT},
+		       ${OHS_OWN_SAFETY},
+		       ${OHS_POLICIES},
+		       ${OHS_RESPONSIBILITIES},
+		       ${PERMANENT_HAZARDS},
+		       ${SMOKE_DETECTOR},
+		       ${USER_IP},
+		       ${VENTILATION},
+		       ${WFH},
+		       ${WFH_COMM_MEANS},
+		       ${WFH_LENGTH},
+		       ${WFH_MAJORITY},
+		       ${WFH_SAFETY},
+		       ${WORKPLACE_ADDRESS},
+		       ${WORKPLACE_REPORTING},
+		       ${WORKSPACE_INDUCTION},
+		       ${WORK_DUTIES}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="onlineWisi.update">
+	<![CDATA[
+		UPDATE ONLINE_WISI
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       USER_TF_ID = ${USER_TF_ID},
+		       ACCEPTANCE = ${ACCEPTANCE},
+		       ACCEPTANCE_DATE = ${ACCEPTANCE_DATE},
+		       APPLIANCE_SAFETY = ${APPLIANCE_SAFETY},
+		       ELECTRICAL_EQUIPMENTS = ${ELECTRICAL_EQUIPMENTS},
+		       EMERGENCY_CONTACTS = ${EMERGENCY_CONTACTS},
+		       EVACUATION_PROC = ${EVACUATION_PROC},
+		       FIRE_EXTINGUISHER = ${FIRE_EXTINGUISHER},
+		       FIRST_AID = ${FIRST_AID},
+		       FLOOR_COVERINGS = ${FLOOR_COVERINGS},
+		       FLOOR_WALKWAYS = ${FLOOR_WALKWAYS},
+		       FURNITURE_COND = ${FURNITURE_COND},
+		       HEATING_COOLING = ${HEATING_COOLING},
+		       HYGIENE_PRIVACY = ${HYGIENE_PRIVACY},
+		       INTRO_MANAGER = ${INTRO_MANAGER},
+		       KITCHEN_MEALS = ${KITCHEN_MEALS},
+		       LIGHTING = ${LIGHTING},
+		       MOBILE_ID = ${MOBILE_ID},
+		       OHS_CONCERNS = ${OHS_CONCERNS},
+		       OHS_INCIDENT_REPORT = ${OHS_INCIDENT_REPORT},
+		       OHS_OWN_SAFETY = ${OHS_OWN_SAFETY},
+		       OHS_POLICIES = ${OHS_POLICIES},
+		       OHS_RESPONSIBILITIES = ${OHS_RESPONSIBILITIES},
+		       PERMANENT_HAZARDS = ${PERMANENT_HAZARDS},
+		       SMOKE_DETECTOR = ${SMOKE_DETECTOR},
+		       USER_IP = ${USER_IP},
+		       VENTILATION = ${VENTILATION},
+		       WFH = ${WFH},
+		       WFH_COMM_MEANS = ${WFH_COMM_MEANS},
+		       WFH_LENGTH = ${WFH_LENGTH},
+		       WFH_MAJORITY = ${WFH_MAJORITY},
+		       WFH_SAFETY = ${WFH_SAFETY},
+		       WORKPLACE_ADDRESS = ${WORKPLACE_ADDRESS},
+		       WORKPLACE_REPORTING = ${WORKPLACE_REPORTING},
+		       WORKSPACE_INDUCTION = ${WORKSPACE_INDUCTION},
+		       WORK_DUTIES = ${WORK_DUTIES}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="onlineWisi.updateColumns">
+	<![CDATA[
+		UPDATE ONLINE_WISI
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="onlineWisi.delete">
+	<![CDATA[
+		DELETE ONLINE_WISI
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

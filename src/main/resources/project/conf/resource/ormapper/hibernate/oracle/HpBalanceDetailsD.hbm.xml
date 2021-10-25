@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_BALANCE_DETAILS_D - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpBalanceDetailsD" table="HP_BALANCE_DETAILS_D" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="balanceDetId" column="BALANCE_DET_ID" not-null="true" type="java.lang.Double"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="asgElementId" column="ASG_ELEMENT_ID" type="java.lang.Double"/>
+		<property name="balanceId" column="BALANCE_ID" type="java.lang.Double"/>
+		<property name="fromDate" column="FROM_DATE" type="java.util.Date"/>
+		<property name="toDate" column="TO_DATE" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="hpBalanceDetailsD.selectAll">
+	<![CDATA[
+		SELECT BALANCE_DET_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       ASG_ELEMENT_ID,
+		       BALANCE_ID,
+		       TO_CHAR(FROM_DATE, 'yyyymmddhh24miss') AS FROM_DATE,
+		       TO_CHAR(TO_DATE, 'yyyymmddhh24miss') AS TO_DATE
+		  FROM HP_BALANCE_DETAILS_D
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBalanceDetailsD.insert">
+	<![CDATA[
+		INSERT INTO HP_BALANCE_DETAILS_D (
+		       BALANCE_DET_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       ASG_ELEMENT_ID,
+		       BALANCE_ID,
+		       FROM_DATE,
+		       TO_DATE
+		       )
+		VALUES (
+		       ${BALANCE_DET_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${ASG_ELEMENT_ID},
+		       ${BALANCE_ID},
+		       ${FROM_DATE},
+		       ${TO_DATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBalanceDetailsD.update">
+	<![CDATA[
+		UPDATE HP_BALANCE_DETAILS_D
+		   SET BALANCE_DET_ID = ${BALANCE_DET_ID},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       ASG_ELEMENT_ID = ${ASG_ELEMENT_ID},
+		       BALANCE_ID = ${BALANCE_ID},
+		       FROM_DATE = ${FROM_DATE},
+		       TO_DATE = ${TO_DATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBalanceDetailsD.updateColumns">
+	<![CDATA[
+		UPDATE HP_BALANCE_DETAILS_D
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBalanceDetailsD.delete">
+	<![CDATA[
+		DELETE HP_BALANCE_DETAILS_D
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

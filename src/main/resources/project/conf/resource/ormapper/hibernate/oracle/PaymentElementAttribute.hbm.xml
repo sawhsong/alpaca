@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PAYMENT_ELEMENT_ATTRIBUTE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PaymentElementAttribute" table="PAYMENT_ELEMENT_ATTRIBUTE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="paymentElementAttributeId" column="PAYMENT_ELEMENT_ATTRIBUTE_ID" type="java.lang.Double"></id>
+
+		<property name="paymentElementId" column="PAYMENT_ELEMENT_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="elementAttributeId" column="ELEMENT_ATTRIBUTE_ID" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="value" column="VALUE" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="paymentElementAttribute.selectAll">
+	<![CDATA[
+		SELECT PAYMENT_ELEMENT_ID,
+		       PAYMENT_ELEMENT_ATTRIBUTE_ID,
+		       CREATED_BY,
+		       ELEMENT_ATTRIBUTE_ID,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       VALUE
+		  FROM PAYMENT_ELEMENT_ATTRIBUTE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="paymentElementAttribute.insert">
+	<![CDATA[
+		INSERT INTO PAYMENT_ELEMENT_ATTRIBUTE (
+		       PAYMENT_ELEMENT_ID,
+		       PAYMENT_ELEMENT_ATTRIBUTE_ID,
+		       CREATED_BY,
+		       ELEMENT_ATTRIBUTE_ID,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       VALUE
+		       )
+		VALUES (
+		       ${PAYMENT_ELEMENT_ID},
+		       ${PAYMENT_ELEMENT_ATTRIBUTE_ID},
+		       ${CREATED_BY},
+		       ${ELEMENT_ATTRIBUTE_ID},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${VALUE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="paymentElementAttribute.update">
+	<![CDATA[
+		UPDATE PAYMENT_ELEMENT_ATTRIBUTE
+		   SET PAYMENT_ELEMENT_ID = ${PAYMENT_ELEMENT_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       ELEMENT_ATTRIBUTE_ID = ${ELEMENT_ATTRIBUTE_ID},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       VALUE = ${VALUE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="paymentElementAttribute.updateColumns">
+	<![CDATA[
+		UPDATE PAYMENT_ELEMENT_ATTRIBUTE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="paymentElementAttribute.delete">
+	<![CDATA[
+		DELETE PAYMENT_ELEMENT_ATTRIBUTE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

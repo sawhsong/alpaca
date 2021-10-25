@@ -1,0 +1,242 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_SIGNUP_SUPER_DETAILS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalSignupSuperDetails" table="PORTAL_SIGNUP_SUPER_DETAILS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="superDetailsId" column="SUPER_DETAILS_ID" type="java.lang.Double"></id>
+
+		<property name="userTfId" column="USER_TF_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="bpayBillerCode" column="BPAY_BILLER_CODE" type="java.lang.String" length="10"/>
+		<property name="bpayRefNo" column="BPAY_REF_NO" type="java.lang.String" length="20"/>
+		<property name="chqAddress" column="CHQ_ADDRESS" type="java.lang.String" length="50"/>
+		<property name="chqPayTo" column="CHQ_PAY_TO" type="java.lang.String" length="100"/>
+		<property name="chqPostcode" column="CHQ_POSTCODE" type="java.lang.String" length="4"/>
+		<property name="chqState" column="CHQ_STATE" type="java.lang.String" length="30"/>
+		<property name="chqSuburb" column="CHQ_SUBURB" type="java.lang.String" length="24"/>
+		<property name="complianceDocumentContentId" column="COMPLIANCE_DOCUMENT_CONTENT_ID" type="java.lang.Double"/>
+		<property name="confirmSuperCompliance" column="CONFIRM_SUPER_COMPLIANCE" type="java.lang.String" length="1"/>
+		<property name="eftAccountName" column="EFT_ACCOUNT_NAME" type="java.lang.String" length="100"/>
+		<property name="eftAccountNo" column="EFT_ACCOUNT_NO" type="java.lang.String" length="16"/>
+		<property name="eftBsb" column="EFT_BSB" type="java.lang.String" length="6"/>
+		<property name="eftEmail" column="EFT_EMAIL" type="java.lang.String" length="100"/>
+		<property name="noTfnReason" column="NO_TFN_REASON" type="java.lang.String" length="20"/>
+		<property name="paidHourly" column="PAID_HOURLY" type="java.lang.String" length="1"/>
+		<property name="paidWholly" column="PAID_WHOLLY" type="java.lang.String" length="1"/>
+		<property name="sacBpayBillerCode" column="SAC_BPAY_BILLER_CODE" type="java.lang.String" length="10"/>
+		<property name="sacBpayRefNo" column="SAC_BPAY_REF_NO" type="java.lang.String" length="20"/>
+		<property name="superChoice" column="SUPER_CHOICE" type="java.lang.String" length="20"/>
+		<property name="superFundAbn" column="SUPER_FUND_ABN" type="java.lang.String" length="11"/>
+		<property name="superFundEsa" column="SUPER_FUND_ESA" type="java.lang.String" length="20"/>
+		<property name="superFundName" column="SUPER_FUND_NAME" type="java.lang.String" length="150"/>
+		<property name="superFundNotFound" column="SUPER_FUND_NOT_FOUND" type="java.lang.String" length="1"/>
+		<property name="superFundType" column="SUPER_FUND_TYPE" type="java.lang.String" length="20"/>
+		<property name="superFundUsi" column="SUPER_FUND_USI" type="java.lang.String" length="16"/>
+		<property name="superMemberName" column="SUPER_MEMBER_NAME" type="java.lang.String" length="50"/>
+		<property name="superMemberNumber" column="SUPER_MEMBER_NUMBER" type="java.lang.String" length="50"/>
+		<property name="superPaymentType" column="SUPER_PAYMENT_TYPE" type="java.lang.String" length="20"/>
+		<property name="tfn" column="TFN" type="java.lang.String" length="30"/>
+		<property name="transformed" column="TRANSFORMED" type="java.lang.String" length="1"/>
+		<property name="workPersonally" column="WORK_PERSONALLY" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="portalSignupSuperDetails.selectAll">
+	<![CDATA[
+		SELECT USER_TF_ID,
+		       SUPER_DETAILS_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       BPAY_BILLER_CODE,
+		       BPAY_REF_NO,
+		       CHQ_ADDRESS,
+		       CHQ_PAY_TO,
+		       CHQ_POSTCODE,
+		       CHQ_STATE,
+		       CHQ_SUBURB,
+		       COMPLIANCE_DOCUMENT_CONTENT_ID,
+		       CONFIRM_SUPER_COMPLIANCE,
+		       EFT_ACCOUNT_NAME,
+		       EFT_ACCOUNT_NO,
+		       EFT_BSB,
+		       EFT_EMAIL,
+		       NO_TFN_REASON,
+		       PAID_HOURLY,
+		       PAID_WHOLLY,
+		       SAC_BPAY_BILLER_CODE,
+		       SAC_BPAY_REF_NO,
+		       SUPER_CHOICE,
+		       SUPER_FUND_ABN,
+		       SUPER_FUND_ESA,
+		       SUPER_FUND_NAME,
+		       SUPER_FUND_NOT_FOUND,
+		       SUPER_FUND_TYPE,
+		       SUPER_FUND_USI,
+		       SUPER_MEMBER_NAME,
+		       SUPER_MEMBER_NUMBER,
+		       SUPER_PAYMENT_TYPE,
+		       TFN,
+		       TRANSFORMED,
+		       WORK_PERSONALLY
+		  FROM PORTAL_SIGNUP_SUPER_DETAILS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupSuperDetails.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_SIGNUP_SUPER_DETAILS (
+		       USER_TF_ID,
+		       SUPER_DETAILS_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       BPAY_BILLER_CODE,
+		       BPAY_REF_NO,
+		       CHQ_ADDRESS,
+		       CHQ_PAY_TO,
+		       CHQ_POSTCODE,
+		       CHQ_STATE,
+		       CHQ_SUBURB,
+		       COMPLIANCE_DOCUMENT_CONTENT_ID,
+		       CONFIRM_SUPER_COMPLIANCE,
+		       EFT_ACCOUNT_NAME,
+		       EFT_ACCOUNT_NO,
+		       EFT_BSB,
+		       EFT_EMAIL,
+		       NO_TFN_REASON,
+		       PAID_HOURLY,
+		       PAID_WHOLLY,
+		       SAC_BPAY_BILLER_CODE,
+		       SAC_BPAY_REF_NO,
+		       SUPER_CHOICE,
+		       SUPER_FUND_ABN,
+		       SUPER_FUND_ESA,
+		       SUPER_FUND_NAME,
+		       SUPER_FUND_NOT_FOUND,
+		       SUPER_FUND_TYPE,
+		       SUPER_FUND_USI,
+		       SUPER_MEMBER_NAME,
+		       SUPER_MEMBER_NUMBER,
+		       SUPER_PAYMENT_TYPE,
+		       TFN,
+		       TRANSFORMED,
+		       WORK_PERSONALLY
+		       )
+		VALUES (
+		       ${USER_TF_ID},
+		       ${SUPER_DETAILS_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${BPAY_BILLER_CODE},
+		       ${BPAY_REF_NO},
+		       ${CHQ_ADDRESS},
+		       ${CHQ_PAY_TO},
+		       ${CHQ_POSTCODE},
+		       ${CHQ_STATE},
+		       ${CHQ_SUBURB},
+		       ${COMPLIANCE_DOCUMENT_CONTENT_ID},
+		       ${CONFIRM_SUPER_COMPLIANCE},
+		       ${EFT_ACCOUNT_NAME},
+		       ${EFT_ACCOUNT_NO},
+		       ${EFT_BSB},
+		       ${EFT_EMAIL},
+		       ${NO_TFN_REASON},
+		       ${PAID_HOURLY},
+		       ${PAID_WHOLLY},
+		       ${SAC_BPAY_BILLER_CODE},
+		       ${SAC_BPAY_REF_NO},
+		       ${SUPER_CHOICE},
+		       ${SUPER_FUND_ABN},
+		       ${SUPER_FUND_ESA},
+		       ${SUPER_FUND_NAME},
+		       ${SUPER_FUND_NOT_FOUND},
+		       ${SUPER_FUND_TYPE},
+		       ${SUPER_FUND_USI},
+		       ${SUPER_MEMBER_NAME},
+		       ${SUPER_MEMBER_NUMBER},
+		       ${SUPER_PAYMENT_TYPE},
+		       ${TFN},
+		       ${TRANSFORMED},
+		       ${WORK_PERSONALLY}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupSuperDetails.update">
+	<![CDATA[
+		UPDATE PORTAL_SIGNUP_SUPER_DETAILS
+		   SET USER_TF_ID = ${USER_TF_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       BPAY_BILLER_CODE = ${BPAY_BILLER_CODE},
+		       BPAY_REF_NO = ${BPAY_REF_NO},
+		       CHQ_ADDRESS = ${CHQ_ADDRESS},
+		       CHQ_PAY_TO = ${CHQ_PAY_TO},
+		       CHQ_POSTCODE = ${CHQ_POSTCODE},
+		       CHQ_STATE = ${CHQ_STATE},
+		       CHQ_SUBURB = ${CHQ_SUBURB},
+		       COMPLIANCE_DOCUMENT_CONTENT_ID = ${COMPLIANCE_DOCUMENT_CONTENT_ID},
+		       CONFIRM_SUPER_COMPLIANCE = ${CONFIRM_SUPER_COMPLIANCE},
+		       EFT_ACCOUNT_NAME = ${EFT_ACCOUNT_NAME},
+		       EFT_ACCOUNT_NO = ${EFT_ACCOUNT_NO},
+		       EFT_BSB = ${EFT_BSB},
+		       EFT_EMAIL = ${EFT_EMAIL},
+		       NO_TFN_REASON = ${NO_TFN_REASON},
+		       PAID_HOURLY = ${PAID_HOURLY},
+		       PAID_WHOLLY = ${PAID_WHOLLY},
+		       SAC_BPAY_BILLER_CODE = ${SAC_BPAY_BILLER_CODE},
+		       SAC_BPAY_REF_NO = ${SAC_BPAY_REF_NO},
+		       SUPER_CHOICE = ${SUPER_CHOICE},
+		       SUPER_FUND_ABN = ${SUPER_FUND_ABN},
+		       SUPER_FUND_ESA = ${SUPER_FUND_ESA},
+		       SUPER_FUND_NAME = ${SUPER_FUND_NAME},
+		       SUPER_FUND_NOT_FOUND = ${SUPER_FUND_NOT_FOUND},
+		       SUPER_FUND_TYPE = ${SUPER_FUND_TYPE},
+		       SUPER_FUND_USI = ${SUPER_FUND_USI},
+		       SUPER_MEMBER_NAME = ${SUPER_MEMBER_NAME},
+		       SUPER_MEMBER_NUMBER = ${SUPER_MEMBER_NUMBER},
+		       SUPER_PAYMENT_TYPE = ${SUPER_PAYMENT_TYPE},
+		       TFN = ${TFN},
+		       TRANSFORMED = ${TRANSFORMED},
+		       WORK_PERSONALLY = ${WORK_PERSONALLY}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupSuperDetails.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_SIGNUP_SUPER_DETAILS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupSuperDetails.delete">
+	<![CDATA[
+		DELETE PORTAL_SIGNUP_SUPER_DETAILS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_USER_REMINDER - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalUserReminder" table="PORTAL_USER_REMINDER" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="userReminderId" column="USER_REMINDER_ID" type="java.lang.Double"></id>
+
+		<property name="daysRemind" column="DAYS_REMIND" not-null="true" type="java.lang.Double"/>
+		<property name="userTfId" column="USER_TF_ID" type="java.lang.Double"/>
+		<property name="emailSent" column="EMAIL_SENT" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="portalUserReminder.selectAll">
+	<![CDATA[
+		SELECT USER_REMINDER_ID,
+		       DAYS_REMIND,
+		       USER_TF_ID,
+		       EMAIL_SENT
+		  FROM PORTAL_USER_REMINDER
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalUserReminder.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_USER_REMINDER (
+		       USER_REMINDER_ID,
+		       DAYS_REMIND,
+		       USER_TF_ID,
+		       EMAIL_SENT
+		       )
+		VALUES (
+		       ${USER_REMINDER_ID},
+		       ${DAYS_REMIND},
+		       ${USER_TF_ID},
+		       ${EMAIL_SENT}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalUserReminder.update">
+	<![CDATA[
+		UPDATE PORTAL_USER_REMINDER
+		   SET DAYS_REMIND = ${DAYS_REMIND},
+		       USER_TF_ID = ${USER_TF_ID},
+		       EMAIL_SENT = ${EMAIL_SENT}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalUserReminder.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_USER_REMINDER
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalUserReminder.delete">
+	<![CDATA[
+		DELETE PORTAL_USER_REMINDER
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_ORGANISATIONAL_ROLES - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalOrganisationalRoles" table="PORTAL_ORGANISATIONAL_ROLES" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="unitId" column="UNIT_ID" type="java.lang.Double"></id>
+
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="assignmentId" column="ASSIGNMENT_ID" type="java.lang.Double"/>
+		<property name="divisionId" column="DIVISION_ID" type="java.lang.Double"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="perciOrgId" column="PERCI_ORG_ID" type="java.lang.Double"/>
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+		<property name="status" column="STATUS" type="java.lang.String" length="1"/>
+		<property name="statusDate" column="STATUS_DATE" type="java.util.Date"/>
+		<property name="unitDescription" column="UNIT_DESCRIPTION" type="java.lang.String" length="250"/>
+		<property name="unitType" column="UNIT_TYPE" type="java.lang.String" length="10"/>
+	</class>
+
+	<sql-query name="portalOrganisationalRoles.selectAll">
+	<![CDATA[
+		SELECT UNIT_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       ASSIGNMENT_ID,
+		       DIVISION_ID,
+		       ORGANISATION_ID,
+		       PERCI_ORG_ID,
+		       PERSON_ID,
+		       STATUS,
+		       TO_CHAR(STATUS_DATE, 'yyyymmddhh24miss') AS STATUS_DATE,
+		       UNIT_DESCRIPTION,
+		       UNIT_TYPE
+		  FROM PORTAL_ORGANISATIONAL_ROLES
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalOrganisationalRoles.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_ORGANISATIONAL_ROLES (
+		       UNIT_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       ASSIGNMENT_ID,
+		       DIVISION_ID,
+		       ORGANISATION_ID,
+		       PERCI_ORG_ID,
+		       PERSON_ID,
+		       STATUS,
+		       STATUS_DATE,
+		       UNIT_DESCRIPTION,
+		       UNIT_TYPE
+		       )
+		VALUES (
+		       ${UNIT_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${ASSIGNMENT_ID},
+		       ${DIVISION_ID},
+		       ${ORGANISATION_ID},
+		       ${PERCI_ORG_ID},
+		       ${PERSON_ID},
+		       ${STATUS},
+		       ${STATUS_DATE},
+		       ${UNIT_DESCRIPTION},
+		       ${UNIT_TYPE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalOrganisationalRoles.update">
+	<![CDATA[
+		UPDATE PORTAL_ORGANISATIONAL_ROLES
+		   SET BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       ASSIGNMENT_ID = ${ASSIGNMENT_ID},
+		       DIVISION_ID = ${DIVISION_ID},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       PERCI_ORG_ID = ${PERCI_ORG_ID},
+		       PERSON_ID = ${PERSON_ID},
+		       STATUS = ${STATUS},
+		       STATUS_DATE = ${STATUS_DATE},
+		       UNIT_DESCRIPTION = ${UNIT_DESCRIPTION},
+		       UNIT_TYPE = ${UNIT_TYPE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalOrganisationalRoles.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_ORGANISATIONAL_ROLES
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalOrganisationalRoles.delete">
+	<![CDATA[
+		DELETE PORTAL_ORGANISATIONAL_ROLES
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

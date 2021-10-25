@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_INVOICE_PERIOD_DATES - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpInvoicePeriodDates" table="HP_INVOICE_PERIOD_DATES" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="periodId" column="PERIOD_ID" type="java.lang.Double"></id>
+
+		<property name="billingCodeId" column="BILLING_CODE_ID" not-null="true" type="java.lang.Double"/>
+		<property name="endDate" column="END_DATE" not-null="true" type="java.util.Date"/>
+		<property name="startDate" column="START_DATE" not-null="true" type="java.util.Date"/>
+		<property name="invoiceDate" column="INVOICE_DATE" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="hpInvoicePeriodDates.selectAll">
+	<![CDATA[
+		SELECT PERIOD_ID,
+		       BILLING_CODE_ID,
+		       TO_CHAR(END_DATE, 'yyyymmddhh24miss') AS END_DATE,
+		       TO_CHAR(START_DATE, 'yyyymmddhh24miss') AS START_DATE,
+		       TO_CHAR(INVOICE_DATE, 'yyyymmddhh24miss') AS INVOICE_DATE
+		  FROM HP_INVOICE_PERIOD_DATES
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpInvoicePeriodDates.insert">
+	<![CDATA[
+		INSERT INTO HP_INVOICE_PERIOD_DATES (
+		       PERIOD_ID,
+		       BILLING_CODE_ID,
+		       END_DATE,
+		       START_DATE,
+		       INVOICE_DATE
+		       )
+		VALUES (
+		       ${PERIOD_ID},
+		       ${BILLING_CODE_ID},
+		       ${END_DATE},
+		       ${START_DATE},
+		       ${INVOICE_DATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpInvoicePeriodDates.update">
+	<![CDATA[
+		UPDATE HP_INVOICE_PERIOD_DATES
+		   SET BILLING_CODE_ID = ${BILLING_CODE_ID},
+		       END_DATE = ${END_DATE},
+		       START_DATE = ${START_DATE},
+		       INVOICE_DATE = ${INVOICE_DATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpInvoicePeriodDates.updateColumns">
+	<![CDATA[
+		UPDATE HP_INVOICE_PERIOD_DATES
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpInvoicePeriodDates.delete">
+	<![CDATA[
+		DELETE HP_INVOICE_PERIOD_DATES
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

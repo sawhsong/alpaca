@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_COMMS_LINK_MIGRATION - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpCommsLinkMigration" table="HP_COMMS_LINK_MIGRATION" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="contactId" column="CONTACT_ID" type="java.lang.Double"/>
+		<property name="flag" column="FLAG" type="java.lang.String" length="10"/>
+		<property name="isPrimary" column="IS_PRIMARY" type="java.lang.String" length="1"/>
+		<property name="linkId" column="LINK_ID" type="java.lang.Double"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="organisationName" column="ORGANISATION_NAME" type="java.lang.String" length="300"/>
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+		<property name="personName" column="PERSON_NAME" type="java.lang.String" length="300"/>
+		<property name="remark" column="REMARK" type="java.lang.String" length="2000"/>
+		<property name="rowCount" column="ROW_COUNT" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="hpCommsLinkMigration.selectAll">
+	<![CDATA[
+		SELECT CONTACT_ID,
+		       FLAG,
+		       IS_PRIMARY,
+		       LINK_ID,
+		       ORGANISATION_ID,
+		       ORGANISATION_NAME,
+		       PERSON_ID,
+		       PERSON_NAME,
+		       REMARK,
+		       ROW_COUNT
+		  FROM HP_COMMS_LINK_MIGRATION
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpCommsLinkMigration.insert">
+	<![CDATA[
+		INSERT INTO HP_COMMS_LINK_MIGRATION (
+		       CONTACT_ID,
+		       FLAG,
+		       IS_PRIMARY,
+		       LINK_ID,
+		       ORGANISATION_ID,
+		       ORGANISATION_NAME,
+		       PERSON_ID,
+		       PERSON_NAME,
+		       REMARK,
+		       ROW_COUNT
+		       )
+		VALUES (
+		       ${CONTACT_ID},
+		       ${FLAG},
+		       ${IS_PRIMARY},
+		       ${LINK_ID},
+		       ${ORGANISATION_ID},
+		       ${ORGANISATION_NAME},
+		       ${PERSON_ID},
+		       ${PERSON_NAME},
+		       ${REMARK},
+		       ${ROW_COUNT}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpCommsLinkMigration.update">
+	<![CDATA[
+		UPDATE HP_COMMS_LINK_MIGRATION
+		   SET CONTACT_ID = ${CONTACT_ID},
+		       FLAG = ${FLAG},
+		       IS_PRIMARY = ${IS_PRIMARY},
+		       LINK_ID = ${LINK_ID},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       ORGANISATION_NAME = ${ORGANISATION_NAME},
+		       PERSON_ID = ${PERSON_ID},
+		       PERSON_NAME = ${PERSON_NAME},
+		       REMARK = ${REMARK},
+		       ROW_COUNT = ${ROW_COUNT}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpCommsLinkMigration.updateColumns">
+	<![CDATA[
+		UPDATE HP_COMMS_LINK_MIGRATION
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpCommsLinkMigration.delete">
+	<![CDATA[
+		DELETE HP_COMMS_LINK_MIGRATION
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

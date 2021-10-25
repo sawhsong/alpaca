@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_SIGNUP_TAX_DETAILS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalSignupTaxDetails" table="PORTAL_SIGNUP_TAX_DETAILS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="taxDetailsId" column="TAX_DETAILS_ID" type="java.lang.Double"></id>
+
+		<property name="userTfId" column="USER_TF_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="addressLine1" column="ADDRESS_LINE_1" type="java.lang.String" length="200"/>
+		<property name="addressLine2" column="ADDRESS_LINE_2" type="java.lang.String" length="200"/>
+		<property name="austResident" column="AUST_RESIDENT" type="java.lang.String" length="5"/>
+		<property name="country" column="COUNTRY" type="java.lang.String" length="50"/>
+		<property name="dateOfBirth" column="DATE_OF_BIRTH" type="java.util.Date"/>
+		<property name="declarationSigned" column="DECLARATION_SIGNED" type="java.lang.String" length="1"/>
+		<property name="declarationSignedDate" column="DECLARATION_SIGNED_DATE" type="java.util.Date"/>
+		<property name="documentContentId" column="DOCUMENT_CONTENT_ID" type="java.lang.Double"/>
+		<property name="firstName" column="FIRST_NAME" type="java.lang.String" length="80"/>
+		<property name="hecsDebt" column="HECS_DEBT" type="java.lang.String" length="1"/>
+		<property name="middleName" column="MIDDLE_NAME" type="java.lang.String" length="60"/>
+		<property name="noTfnReason" column="NO_TFN_REASON" type="java.lang.String" length="20"/>
+		<property name="payerId" column="PAYER_ID" type="java.lang.Double"/>
+		<property name="paymentBasis" column="PAYMENT_BASIS" type="java.lang.String" length="5"/>
+		<property name="postCode" column="POST_CODE" type="java.lang.String" length="30"/>
+		<property name="previousFirstName" column="PREVIOUS_FIRST_NAME" type="java.lang.String" length="80"/>
+		<property name="previousMiddleName" column="PREVIOUS_MIDDLE_NAME" type="java.lang.String" length="60"/>
+		<property name="previousSurname" column="PREVIOUS_SURNAME" type="java.lang.String" length="80"/>
+		<property name="seniorTaxOffsetClaimed" column="SENIOR_TAX_OFFSET_CLAIMED" type="java.lang.String" length="1"/>
+		<property name="specialRebatesClaimed" column="SPECIAL_REBATES_CLAIMED" type="java.lang.String" length="1"/>
+		<property name="state" column="STATE" type="java.lang.String" length="30"/>
+		<property name="suburb" column="SUBURB" type="java.lang.String" length="50"/>
+		<property name="supplementDebt" column="SUPPLEMENT_DEBT" type="java.lang.String" length="1"/>
+		<property name="surname" column="SURNAME" type="java.lang.String" length="80"/>
+		<property name="taxfreeThresholdClaimed" column="TAXFREE_THRESHOLD_CLAIMED" type="java.lang.String" length="1"/>
+		<property name="tfn" column="TFN" type="java.lang.String" length="30"/>
+		<property name="title" column="TITLE" type="java.lang.String" length="10"/>
+		<property name="tnfDocPostedOffline" column="TNF_DOC_POSTED_OFFLINE" type="java.lang.String" length="1"/>
+		<property name="transformed" column="TRANSFORMED" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="portalSignupTaxDetails.selectAll">
+	<![CDATA[
+		SELECT USER_TF_ID,
+		       TAX_DETAILS_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       ADDRESS_LINE_1,
+		       ADDRESS_LINE_2,
+		       AUST_RESIDENT,
+		       COUNTRY,
+		       TO_CHAR(DATE_OF_BIRTH, 'yyyymmddhh24miss') AS DATE_OF_BIRTH,
+		       DECLARATION_SIGNED,
+		       TO_CHAR(DECLARATION_SIGNED_DATE, 'yyyymmddhh24miss') AS DECLARATION_SIGNED_DATE,
+		       DOCUMENT_CONTENT_ID,
+		       FIRST_NAME,
+		       HECS_DEBT,
+		       MIDDLE_NAME,
+		       NO_TFN_REASON,
+		       PAYER_ID,
+		       PAYMENT_BASIS,
+		       POST_CODE,
+		       PREVIOUS_FIRST_NAME,
+		       PREVIOUS_MIDDLE_NAME,
+		       PREVIOUS_SURNAME,
+		       SENIOR_TAX_OFFSET_CLAIMED,
+		       SPECIAL_REBATES_CLAIMED,
+		       STATE,
+		       SUBURB,
+		       SUPPLEMENT_DEBT,
+		       SURNAME,
+		       TAXFREE_THRESHOLD_CLAIMED,
+		       TFN,
+		       TITLE,
+		       TNF_DOC_POSTED_OFFLINE,
+		       TRANSFORMED
+		  FROM PORTAL_SIGNUP_TAX_DETAILS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupTaxDetails.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_SIGNUP_TAX_DETAILS (
+		       USER_TF_ID,
+		       TAX_DETAILS_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       ADDRESS_LINE_1,
+		       ADDRESS_LINE_2,
+		       AUST_RESIDENT,
+		       COUNTRY,
+		       DATE_OF_BIRTH,
+		       DECLARATION_SIGNED,
+		       DECLARATION_SIGNED_DATE,
+		       DOCUMENT_CONTENT_ID,
+		       FIRST_NAME,
+		       HECS_DEBT,
+		       MIDDLE_NAME,
+		       NO_TFN_REASON,
+		       PAYER_ID,
+		       PAYMENT_BASIS,
+		       POST_CODE,
+		       PREVIOUS_FIRST_NAME,
+		       PREVIOUS_MIDDLE_NAME,
+		       PREVIOUS_SURNAME,
+		       SENIOR_TAX_OFFSET_CLAIMED,
+		       SPECIAL_REBATES_CLAIMED,
+		       STATE,
+		       SUBURB,
+		       SUPPLEMENT_DEBT,
+		       SURNAME,
+		       TAXFREE_THRESHOLD_CLAIMED,
+		       TFN,
+		       TITLE,
+		       TNF_DOC_POSTED_OFFLINE,
+		       TRANSFORMED
+		       )
+		VALUES (
+		       ${USER_TF_ID},
+		       ${TAX_DETAILS_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${ADDRESS_LINE_1},
+		       ${ADDRESS_LINE_2},
+		       ${AUST_RESIDENT},
+		       ${COUNTRY},
+		       ${DATE_OF_BIRTH},
+		       ${DECLARATION_SIGNED},
+		       ${DECLARATION_SIGNED_DATE},
+		       ${DOCUMENT_CONTENT_ID},
+		       ${FIRST_NAME},
+		       ${HECS_DEBT},
+		       ${MIDDLE_NAME},
+		       ${NO_TFN_REASON},
+		       ${PAYER_ID},
+		       ${PAYMENT_BASIS},
+		       ${POST_CODE},
+		       ${PREVIOUS_FIRST_NAME},
+		       ${PREVIOUS_MIDDLE_NAME},
+		       ${PREVIOUS_SURNAME},
+		       ${SENIOR_TAX_OFFSET_CLAIMED},
+		       ${SPECIAL_REBATES_CLAIMED},
+		       ${STATE},
+		       ${SUBURB},
+		       ${SUPPLEMENT_DEBT},
+		       ${SURNAME},
+		       ${TAXFREE_THRESHOLD_CLAIMED},
+		       ${TFN},
+		       ${TITLE},
+		       ${TNF_DOC_POSTED_OFFLINE},
+		       ${TRANSFORMED}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupTaxDetails.update">
+	<![CDATA[
+		UPDATE PORTAL_SIGNUP_TAX_DETAILS
+		   SET USER_TF_ID = ${USER_TF_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       ADDRESS_LINE_1 = ${ADDRESS_LINE_1},
+		       ADDRESS_LINE_2 = ${ADDRESS_LINE_2},
+		       AUST_RESIDENT = ${AUST_RESIDENT},
+		       COUNTRY = ${COUNTRY},
+		       DATE_OF_BIRTH = ${DATE_OF_BIRTH},
+		       DECLARATION_SIGNED = ${DECLARATION_SIGNED},
+		       DECLARATION_SIGNED_DATE = ${DECLARATION_SIGNED_DATE},
+		       DOCUMENT_CONTENT_ID = ${DOCUMENT_CONTENT_ID},
+		       FIRST_NAME = ${FIRST_NAME},
+		       HECS_DEBT = ${HECS_DEBT},
+		       MIDDLE_NAME = ${MIDDLE_NAME},
+		       NO_TFN_REASON = ${NO_TFN_REASON},
+		       PAYER_ID = ${PAYER_ID},
+		       PAYMENT_BASIS = ${PAYMENT_BASIS},
+		       POST_CODE = ${POST_CODE},
+		       PREVIOUS_FIRST_NAME = ${PREVIOUS_FIRST_NAME},
+		       PREVIOUS_MIDDLE_NAME = ${PREVIOUS_MIDDLE_NAME},
+		       PREVIOUS_SURNAME = ${PREVIOUS_SURNAME},
+		       SENIOR_TAX_OFFSET_CLAIMED = ${SENIOR_TAX_OFFSET_CLAIMED},
+		       SPECIAL_REBATES_CLAIMED = ${SPECIAL_REBATES_CLAIMED},
+		       STATE = ${STATE},
+		       SUBURB = ${SUBURB},
+		       SUPPLEMENT_DEBT = ${SUPPLEMENT_DEBT},
+		       SURNAME = ${SURNAME},
+		       TAXFREE_THRESHOLD_CLAIMED = ${TAXFREE_THRESHOLD_CLAIMED},
+		       TFN = ${TFN},
+		       TITLE = ${TITLE},
+		       TNF_DOC_POSTED_OFFLINE = ${TNF_DOC_POSTED_OFFLINE},
+		       TRANSFORMED = ${TRANSFORMED}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupTaxDetails.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_SIGNUP_TAX_DETAILS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupTaxDetails.delete">
+	<![CDATA[
+		DELETE PORTAL_SIGNUP_TAX_DETAILS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

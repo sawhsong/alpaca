@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - TIMESHEET_TRANSFER_BATCH_DET - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.TimesheetTransferBatchDet" table="TIMESHEET_TRANSFER_BATCH_DET" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="batchId" column="BATCH_ID" not-null="true" type="java.lang.Double"/>
+		<property name="detId" column="DET_ID" not-null="true" type="java.lang.Double"/>
+		<property name="timesheetId" column="TIMESHEET_ID" not-null="true" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="timesheetTransferBatchDet.selectAll">
+	<![CDATA[
+		SELECT BATCH_ID,
+		       DET_ID,
+		       TIMESHEET_ID
+		  FROM TIMESHEET_TRANSFER_BATCH_DET
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="timesheetTransferBatchDet.insert">
+	<![CDATA[
+		INSERT INTO TIMESHEET_TRANSFER_BATCH_DET (
+		       BATCH_ID,
+		       DET_ID,
+		       TIMESHEET_ID
+		       )
+		VALUES (
+		       ${BATCH_ID},
+		       ${DET_ID},
+		       ${TIMESHEET_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="timesheetTransferBatchDet.update">
+	<![CDATA[
+		UPDATE TIMESHEET_TRANSFER_BATCH_DET
+		   SET BATCH_ID = ${BATCH_ID},
+		       DET_ID = ${DET_ID},
+		       TIMESHEET_ID = ${TIMESHEET_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="timesheetTransferBatchDet.updateColumns">
+	<![CDATA[
+		UPDATE TIMESHEET_TRANSFER_BATCH_DET
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="timesheetTransferBatchDet.delete">
+	<![CDATA[
+		DELETE TIMESHEET_TRANSFER_BATCH_DET
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

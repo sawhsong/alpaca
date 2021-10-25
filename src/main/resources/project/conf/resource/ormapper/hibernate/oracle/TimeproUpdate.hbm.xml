@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - TIMEPRO_UPDATE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.TimeproUpdate" table="TIMEPRO_UPDATE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="assignmentId" column="ASSIGNMENT_ID" type="java.lang.Double"/>
+		<property name="updateFlag" column="UPDATE_FLAG" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="timeproUpdate.selectAll">
+	<![CDATA[
+		SELECT ASSIGNMENT_ID,
+		       UPDATE_FLAG
+		  FROM TIMEPRO_UPDATE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="timeproUpdate.insert">
+	<![CDATA[
+		INSERT INTO TIMEPRO_UPDATE (
+		       ASSIGNMENT_ID,
+		       UPDATE_FLAG
+		       )
+		VALUES (
+		       ${ASSIGNMENT_ID},
+		       ${UPDATE_FLAG}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="timeproUpdate.update">
+	<![CDATA[
+		UPDATE TIMEPRO_UPDATE
+		   SET ASSIGNMENT_ID = ${ASSIGNMENT_ID},
+		       UPDATE_FLAG = ${UPDATE_FLAG}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="timeproUpdate.updateColumns">
+	<![CDATA[
+		UPDATE TIMEPRO_UPDATE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="timeproUpdate.delete">
+	<![CDATA[
+		DELETE TIMEPRO_UPDATE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

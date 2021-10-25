@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_SIGNUP_RESIDENCY - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalSignupResidency" table="PORTAL_SIGNUP_RESIDENCY" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="residencyDetailsId" column="RESIDENCY_DETAILS_ID" type="java.lang.Double"></id>
+
+		<property name="userTfId" column="USER_TF_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="alreadySubmitted" column="ALREADY_SUBMITTED" type="java.lang.String" length="1"/>
+		<property name="confirmTrueCopy" column="CONFIRM_TRUE_COPY" type="java.lang.String" length="1"/>
+		<property name="docContentId1" column="DOC_CONTENT_ID_1" type="java.lang.Double"/>
+		<property name="docContentId2" column="DOC_CONTENT_ID_2" type="java.lang.Double"/>
+		<property name="docContentId3" column="DOC_CONTENT_ID_3" type="java.lang.Double"/>
+		<property name="migrationAssistance" column="MIGRATION_ASSISTANCE" type="java.lang.String" length="1"/>
+		<property name="prType" column="PR_TYPE" type="java.lang.String" length="50"/>
+		<property name="residencyType" column="RESIDENCY_TYPE" type="java.lang.String" length="40"/>
+		<property name="transformed" column="TRANSFORMED" type="java.lang.String" length="1"/>
+		<property name="visaType" column="VISA_TYPE" type="java.lang.String" length="50"/>
+	</class>
+
+	<sql-query name="portalSignupResidency.selectAll">
+	<![CDATA[
+		SELECT USER_TF_ID,
+		       RESIDENCY_DETAILS_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       ALREADY_SUBMITTED,
+		       CONFIRM_TRUE_COPY,
+		       DOC_CONTENT_ID_1,
+		       DOC_CONTENT_ID_2,
+		       DOC_CONTENT_ID_3,
+		       MIGRATION_ASSISTANCE,
+		       PR_TYPE,
+		       RESIDENCY_TYPE,
+		       TRANSFORMED,
+		       VISA_TYPE
+		  FROM PORTAL_SIGNUP_RESIDENCY
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupResidency.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_SIGNUP_RESIDENCY (
+		       USER_TF_ID,
+		       RESIDENCY_DETAILS_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       ALREADY_SUBMITTED,
+		       CONFIRM_TRUE_COPY,
+		       DOC_CONTENT_ID_1,
+		       DOC_CONTENT_ID_2,
+		       DOC_CONTENT_ID_3,
+		       MIGRATION_ASSISTANCE,
+		       PR_TYPE,
+		       RESIDENCY_TYPE,
+		       TRANSFORMED,
+		       VISA_TYPE
+		       )
+		VALUES (
+		       ${USER_TF_ID},
+		       ${RESIDENCY_DETAILS_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${ALREADY_SUBMITTED},
+		       ${CONFIRM_TRUE_COPY},
+		       ${DOC_CONTENT_ID_1},
+		       ${DOC_CONTENT_ID_2},
+		       ${DOC_CONTENT_ID_3},
+		       ${MIGRATION_ASSISTANCE},
+		       ${PR_TYPE},
+		       ${RESIDENCY_TYPE},
+		       ${TRANSFORMED},
+		       ${VISA_TYPE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupResidency.update">
+	<![CDATA[
+		UPDATE PORTAL_SIGNUP_RESIDENCY
+		   SET USER_TF_ID = ${USER_TF_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       ALREADY_SUBMITTED = ${ALREADY_SUBMITTED},
+		       CONFIRM_TRUE_COPY = ${CONFIRM_TRUE_COPY},
+		       DOC_CONTENT_ID_1 = ${DOC_CONTENT_ID_1},
+		       DOC_CONTENT_ID_2 = ${DOC_CONTENT_ID_2},
+		       DOC_CONTENT_ID_3 = ${DOC_CONTENT_ID_3},
+		       MIGRATION_ASSISTANCE = ${MIGRATION_ASSISTANCE},
+		       PR_TYPE = ${PR_TYPE},
+		       RESIDENCY_TYPE = ${RESIDENCY_TYPE},
+		       TRANSFORMED = ${TRANSFORMED},
+		       VISA_TYPE = ${VISA_TYPE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupResidency.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_SIGNUP_RESIDENCY
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupResidency.delete">
+	<![CDATA[
+		DELETE PORTAL_SIGNUP_RESIDENCY
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

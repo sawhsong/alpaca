@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_ORGANISATION_STAGE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalOrganisationStage" table="PORTAL_ORGANISATION_STAGE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="submissionId" column="SUBMISSION_ID" type="java.lang.Double"></id>
+
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="divisionBusinessUnit" column="DIVISION_BUSINESS_UNIT" type="java.lang.String" length="200"/>
+		<property name="divisionId" column="DIVISION_ID" type="java.lang.Double"/>
+		<property name="mainContact" column="MAIN_CONTACT" type="java.lang.Double"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="organisationName" column="ORGANISATION_NAME" type="java.lang.String" length="200"/>
+		<property name="transformed" column="TRANSFORMED" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="portalOrganisationStage.selectAll">
+	<![CDATA[
+		SELECT SUBMISSION_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       DIVISION_BUSINESS_UNIT,
+		       DIVISION_ID,
+		       MAIN_CONTACT,
+		       ORGANISATION_ID,
+		       ORGANISATION_NAME,
+		       TRANSFORMED
+		  FROM PORTAL_ORGANISATION_STAGE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalOrganisationStage.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_ORGANISATION_STAGE (
+		       SUBMISSION_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       DIVISION_BUSINESS_UNIT,
+		       DIVISION_ID,
+		       MAIN_CONTACT,
+		       ORGANISATION_ID,
+		       ORGANISATION_NAME,
+		       TRANSFORMED
+		       )
+		VALUES (
+		       ${SUBMISSION_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${DIVISION_BUSINESS_UNIT},
+		       ${DIVISION_ID},
+		       ${MAIN_CONTACT},
+		       ${ORGANISATION_ID},
+		       ${ORGANISATION_NAME},
+		       ${TRANSFORMED}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalOrganisationStage.update">
+	<![CDATA[
+		UPDATE PORTAL_ORGANISATION_STAGE
+		   SET BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       DIVISION_BUSINESS_UNIT = ${DIVISION_BUSINESS_UNIT},
+		       DIVISION_ID = ${DIVISION_ID},
+		       MAIN_CONTACT = ${MAIN_CONTACT},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       ORGANISATION_NAME = ${ORGANISATION_NAME},
+		       TRANSFORMED = ${TRANSFORMED}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalOrganisationStage.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_ORGANISATION_STAGE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalOrganisationStage.delete">
+	<![CDATA[
+		DELETE PORTAL_ORGANISATION_STAGE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

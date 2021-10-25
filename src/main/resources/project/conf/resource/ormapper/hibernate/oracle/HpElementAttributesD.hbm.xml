@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_ELEMENT_ATTRIBUTES_D - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpElementAttributesD" table="HP_ELEMENT_ATTRIBUTES_D" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<composite-id>
+			<key-property name="elementAttId" column="ELEMENT_ATT_ID" type="java.lang.Double"/>
+			<key-property name="fromDate" column="FROM_DATE" type="java.util.Date"/>
+			<key-property name="toDate" column="TO_DATE" type="java.util.Date"/>
+		</composite-id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="display" column="DISPLAY" type="java.lang.String" length="1"/>
+		<property name="displayOrder" column="DISPLAY_ORDER" type="java.lang.Double"/>
+		<property name="elementId" column="ELEMENT_ID" type="java.lang.Double"/>
+		<property name="name" column="NAME" type="java.lang.String" length="30"/>
+	</class>
+
+	<sql-query name="hpElementAttributesD.selectAll">
+	<![CDATA[
+		SELECT ELEMENT_ATT_ID,
+		       TO_CHAR(FROM_DATE, 'yyyymmddhh24miss') AS FROM_DATE,
+		       TO_CHAR(TO_DATE, 'yyyymmddhh24miss') AS TO_DATE,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       DISPLAY,
+		       DISPLAY_ORDER,
+		       ELEMENT_ID,
+		       NAME
+		  FROM HP_ELEMENT_ATTRIBUTES_D
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpElementAttributesD.insert">
+	<![CDATA[
+		INSERT INTO HP_ELEMENT_ATTRIBUTES_D (
+		       ELEMENT_ATT_ID,
+		       FROM_DATE,
+		       TO_DATE,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       DISPLAY,
+		       DISPLAY_ORDER,
+		       ELEMENT_ID,
+		       NAME
+		       )
+		VALUES (
+		       ${ELEMENT_ATT_ID},
+		       ${FROM_DATE},
+		       ${TO_DATE},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${DISPLAY},
+		       ${DISPLAY_ORDER},
+		       ${ELEMENT_ID},
+		       ${NAME}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpElementAttributesD.update">
+	<![CDATA[
+		UPDATE HP_ELEMENT_ATTRIBUTES_D
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       DISPLAY = ${DISPLAY},
+		       DISPLAY_ORDER = ${DISPLAY_ORDER},
+		       ELEMENT_ID = ${ELEMENT_ID},
+		       NAME = ${NAME}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpElementAttributesD.updateColumns">
+	<![CDATA[
+		UPDATE HP_ELEMENT_ATTRIBUTES_D
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpElementAttributesD.delete">
+	<![CDATA[
+		DELETE HP_ELEMENT_ATTRIBUTES_D
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

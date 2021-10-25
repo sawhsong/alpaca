@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_EXPENSE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalExpense" table="PORTAL_EXPENSE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="expenseId" column="EXPENSE_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="personId" column="PERSON_ID" not-null="true" type="java.lang.Double"/>
+		<property name="emailSent" column="EMAIL_SENT" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="portalExpense.selectAll">
+	<![CDATA[
+		SELECT EXPENSE_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       PERSON_ID,
+		       EMAIL_SENT
+		  FROM PORTAL_EXPENSE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalExpense.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_EXPENSE (
+		       EXPENSE_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       PERSON_ID,
+		       EMAIL_SENT
+		       )
+		VALUES (
+		       ${EXPENSE_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${PERSON_ID},
+		       ${EMAIL_SENT}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalExpense.update">
+	<![CDATA[
+		UPDATE PORTAL_EXPENSE
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       PERSON_ID = ${PERSON_ID},
+		       EMAIL_SENT = ${EMAIL_SENT}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalExpense.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_EXPENSE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalExpense.delete">
+	<![CDATA[
+		DELETE PORTAL_EXPENSE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

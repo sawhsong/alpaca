@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_HELP_CONTENT - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpHelpContent" table="HP_HELP_CONTENT" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="helpContentId" column="HELP_CONTENT_ID" type="java.lang.Double"></id>
+
+		<property name="helpContentDisplayName" column="HELP_CONTENT_DISPLAY_NAME" not-null="true" type="java.lang.String" length="50"/>
+		<property name="pageDesc" column="PAGE_DESC" not-null="true" type="java.lang.String" length="4000"/>
+		<property name="pageText" column="PAGE_TEXT" not-null="true" type="java.lang.String" length="0"/>
+		<property name="pageTitle" column="PAGE_TITLE" not-null="true" type="java.lang.String" length="255"/>
+		<property name="searchKeyWords" column="SEARCH_KEY_WORDS" not-null="true" type="java.lang.String" length="4000"/>
+	</class>
+
+	<sql-query name="hpHelpContent.selectAll">
+	<![CDATA[
+		SELECT HELP_CONTENT_ID,
+		       HELP_CONTENT_DISPLAY_NAME,
+		       PAGE_DESC,
+		       PAGE_TEXT,
+		       PAGE_TITLE,
+		       SEARCH_KEY_WORDS
+		  FROM HP_HELP_CONTENT
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpHelpContent.insert">
+	<![CDATA[
+		INSERT INTO HP_HELP_CONTENT (
+		       HELP_CONTENT_ID,
+		       HELP_CONTENT_DISPLAY_NAME,
+		       PAGE_DESC,
+		       PAGE_TEXT,
+		       PAGE_TITLE,
+		       SEARCH_KEY_WORDS
+		       )
+		VALUES (
+		       ${HELP_CONTENT_ID},
+		       ${HELP_CONTENT_DISPLAY_NAME},
+		       ${PAGE_DESC},
+		       ${PAGE_TEXT},
+		       ${PAGE_TITLE},
+		       ${SEARCH_KEY_WORDS}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpHelpContent.update">
+	<![CDATA[
+		UPDATE HP_HELP_CONTENT
+		   SET HELP_CONTENT_DISPLAY_NAME = ${HELP_CONTENT_DISPLAY_NAME},
+		       PAGE_DESC = ${PAGE_DESC},
+		       PAGE_TEXT = ${PAGE_TEXT},
+		       PAGE_TITLE = ${PAGE_TITLE},
+		       SEARCH_KEY_WORDS = ${SEARCH_KEY_WORDS}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpHelpContent.updateColumns">
+	<![CDATA[
+		UPDATE HP_HELP_CONTENT
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpHelpContent.delete">
+	<![CDATA[
+		DELETE HP_HELP_CONTENT
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>
