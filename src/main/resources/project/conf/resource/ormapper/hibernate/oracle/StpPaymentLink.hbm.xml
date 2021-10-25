@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - STP_PAYMENT_LINK - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.StpPaymentLink" table="STP_PAYMENT_LINK" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="fileId" column="FILE_ID" type="java.lang.Double"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="linkId" column="LINK_ID" type="java.lang.Double"/>
+		<property name="paymentId" column="PAYMENT_ID" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="stpPaymentLink.selectAll">
+	<![CDATA[
+		SELECT BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       FILE_ID,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       LINK_ID,
+		       PAYMENT_ID
+		  FROM STP_PAYMENT_LINK
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="stpPaymentLink.insert">
+	<![CDATA[
+		INSERT INTO STP_PAYMENT_LINK (
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       FILE_ID,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       LINK_ID,
+		       PAYMENT_ID
+		       )
+		VALUES (
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${FILE_ID},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${LINK_ID},
+		       ${PAYMENT_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="stpPaymentLink.update">
+	<![CDATA[
+		UPDATE STP_PAYMENT_LINK
+		   SET BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       FILE_ID = ${FILE_ID},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       LINK_ID = ${LINK_ID},
+		       PAYMENT_ID = ${PAYMENT_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="stpPaymentLink.updateColumns">
+	<![CDATA[
+		UPDATE STP_PAYMENT_LINK
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="stpPaymentLink.delete">
+	<![CDATA[
+		DELETE STP_PAYMENT_LINK
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

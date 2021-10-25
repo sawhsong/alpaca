@@ -1,0 +1,291 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_PERCI_NIR - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpPerciNir" table="HP_PERCI_NIR" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="perciNirId" column="PERCI_NIR_ID" type="java.lang.Double"></id>
+
+		<property name="asgId" column="ASG_ID" type="java.lang.Double"/>
+		<property name="asgComments" column="ASG_COMMENTS" type="java.lang.String" length="4000"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="ciGstAmt" column="CI_GST_AMT" type="java.lang.Double"/>
+		<property name="ciOthersAmt" column="CI_OTHERS_AMT" type="java.lang.Double"/>
+		<property name="ciPayrollTaxAmt" column="CI_PAYROLL_TAX_AMT" type="java.lang.Double"/>
+		<property name="ciRateAmt" column="CI_RATE_AMT" type="java.lang.Double"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String" length="0"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="existingProcYN" column="EXISTING_PROC_Y_N" type="java.lang.String" length="1"/>
+		<property name="extDateChnagedYN" column="EXT_DATE_CHNAGED_Y_N" type="java.lang.String" length="1"/>
+		<property name="extDateYN" column="EXT_DATE_Y_N" type="java.lang.String" length="1"/>
+		<property name="invoiceCycle" column="INVOICE_CYCLE" type="java.lang.String" length="100"/>
+		<property name="invGstAmt" column="INV_GST_AMT" type="java.lang.Double"/>
+		<property name="invGstUnit" column="INV_GST_UNIT" type="java.lang.String" length="100"/>
+		<property name="invMgtFeeAmt" column="INV_MGT_FEE_AMT" type="java.lang.Double"/>
+		<property name="invMgtFeeUnit" column="INV_MGT_FEE_UNIT" type="java.lang.String" length="100"/>
+		<property name="invOthAmt" column="INV_OTH_AMT" type="java.lang.Double"/>
+		<property name="invOthUnit" column="INV_OTH_UNIT" type="java.lang.String" length="100"/>
+		<property name="invPrtAmt" column="INV_PRT_AMT" type="java.lang.Double"/>
+		<property name="invPrtUnit" column="INV_PRT_UNIT" type="java.lang.String" length="100"/>
+		<property name="invRateAmt" column="INV_RATE_AMT" type="java.lang.Double"/>
+		<property name="invRateUnit" column="INV_RATE_UNIT" type="java.lang.String" length="100"/>
+		<property name="lafhaRevDate" column="LAFHA_REV_DATE" type="java.util.Date"/>
+		<property name="lafhaYN" column="LAFHA_Y_N" type="java.lang.String" length="1"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="maxLafha" column="MAX_LAFHA" type="java.lang.String" length="100"/>
+		<property name="newAsgYN" column="NEW_ASG_Y_N" type="java.lang.String" length="1"/>
+		<property name="newBillOrgYN" column="NEW_BILL_ORG_Y_N" type="java.lang.String" length="1"/>
+		<property name="newProcYN" column="NEW_PROC_Y_N" type="java.lang.String" length="1"/>
+		<property name="nextActionCreated" column="NEXT_ACTION_CREATED" type="java.lang.String" length="1"/>
+		<property name="orgId" column="ORG_ID" type="java.lang.Double"/>
+		<property name="payCycle" column="PAY_CYCLE" type="java.lang.String" length="100"/>
+		<property name="posMgtFeeAmt" column="POS_MGT_FEE_AMT" type="java.lang.String" length="100"/>
+		<property name="posMgtFeeUnit" column="POS_MGT_FEE_UNIT" type="java.lang.String" length="100"/>
+		<property name="posOthAmt" column="POS_OTH_AMT" type="java.lang.String" length="100"/>
+		<property name="posOthUnit" column="POS_OTH_UNIT" type="java.lang.String" length="100"/>
+		<property name="posPrtAmt" column="POS_PRT_AMT" type="java.lang.String" length="100"/>
+		<property name="posPrtUnit" column="POS_PRT_UNIT" type="java.lang.String" length="100"/>
+		<property name="posRateAmt" column="POS_RATE_AMT" type="java.lang.String" length="100"/>
+		<property name="posRateUnit" column="POS_RATE_UNIT" type="java.lang.String" length="100"/>
+		<property name="prtOrgId" column="PRT_ORG_ID" type="java.lang.Double"/>
+		<property name="sponLevel" column="SPON_LEVEL" type="java.lang.String" length="100"/>
+		<property name="timesheetCycle" column="TIMESHEET_CYCLE" type="java.lang.String" length="100"/>
+	</class>
+
+	<sql-query name="hpPerciNir.selectAll">
+	<![CDATA[
+		SELECT PERCI_NIR_ID,
+		       ASG_ID,
+		       ASG_COMMENTS,
+		       BUSINESS_GROUP_ID,
+		       CI_GST_AMT,
+		       CI_OTHERS_AMT,
+		       CI_PAYROLL_TAX_AMT,
+		       CI_RATE_AMT,
+		       COMMENTS,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       EXISTING_PROC_Y_N,
+		       EXT_DATE_CHNAGED_Y_N,
+		       EXT_DATE_Y_N,
+		       INVOICE_CYCLE,
+		       INV_GST_AMT,
+		       INV_GST_UNIT,
+		       INV_MGT_FEE_AMT,
+		       INV_MGT_FEE_UNIT,
+		       INV_OTH_AMT,
+		       INV_OTH_UNIT,
+		       INV_PRT_AMT,
+		       INV_PRT_UNIT,
+		       INV_RATE_AMT,
+		       INV_RATE_UNIT,
+		       TO_CHAR(LAFHA_REV_DATE, 'yyyymmddhh24miss') AS LAFHA_REV_DATE,
+		       LAFHA_Y_N,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       MAX_LAFHA,
+		       NEW_ASG_Y_N,
+		       NEW_BILL_ORG_Y_N,
+		       NEW_PROC_Y_N,
+		       NEXT_ACTION_CREATED,
+		       ORG_ID,
+		       PAY_CYCLE,
+		       POS_MGT_FEE_AMT,
+		       POS_MGT_FEE_UNIT,
+		       POS_OTH_AMT,
+		       POS_OTH_UNIT,
+		       POS_PRT_AMT,
+		       POS_PRT_UNIT,
+		       POS_RATE_AMT,
+		       POS_RATE_UNIT,
+		       PRT_ORG_ID,
+		       SPON_LEVEL,
+		       TIMESHEET_CYCLE
+		  FROM HP_PERCI_NIR
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpPerciNir.insert">
+	<![CDATA[
+		INSERT INTO HP_PERCI_NIR (
+		       PERCI_NIR_ID,
+		       ASG_ID,
+		       ASG_COMMENTS,
+		       BUSINESS_GROUP_ID,
+		       CI_GST_AMT,
+		       CI_OTHERS_AMT,
+		       CI_PAYROLL_TAX_AMT,
+		       CI_RATE_AMT,
+		       COMMENTS,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       EXISTING_PROC_Y_N,
+		       EXT_DATE_CHNAGED_Y_N,
+		       EXT_DATE_Y_N,
+		       INVOICE_CYCLE,
+		       INV_GST_AMT,
+		       INV_GST_UNIT,
+		       INV_MGT_FEE_AMT,
+		       INV_MGT_FEE_UNIT,
+		       INV_OTH_AMT,
+		       INV_OTH_UNIT,
+		       INV_PRT_AMT,
+		       INV_PRT_UNIT,
+		       INV_RATE_AMT,
+		       INV_RATE_UNIT,
+		       LAFHA_REV_DATE,
+		       LAFHA_Y_N,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       MAX_LAFHA,
+		       NEW_ASG_Y_N,
+		       NEW_BILL_ORG_Y_N,
+		       NEW_PROC_Y_N,
+		       NEXT_ACTION_CREATED,
+		       ORG_ID,
+		       PAY_CYCLE,
+		       POS_MGT_FEE_AMT,
+		       POS_MGT_FEE_UNIT,
+		       POS_OTH_AMT,
+		       POS_OTH_UNIT,
+		       POS_PRT_AMT,
+		       POS_PRT_UNIT,
+		       POS_RATE_AMT,
+		       POS_RATE_UNIT,
+		       PRT_ORG_ID,
+		       SPON_LEVEL,
+		       TIMESHEET_CYCLE
+		       )
+		VALUES (
+		       ${PERCI_NIR_ID},
+		       ${ASG_ID},
+		       ${ASG_COMMENTS},
+		       ${BUSINESS_GROUP_ID},
+		       ${CI_GST_AMT},
+		       ${CI_OTHERS_AMT},
+		       ${CI_PAYROLL_TAX_AMT},
+		       ${CI_RATE_AMT},
+		       ${COMMENTS},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${EXISTING_PROC_Y_N},
+		       ${EXT_DATE_CHNAGED_Y_N},
+		       ${EXT_DATE_Y_N},
+		       ${INVOICE_CYCLE},
+		       ${INV_GST_AMT},
+		       ${INV_GST_UNIT},
+		       ${INV_MGT_FEE_AMT},
+		       ${INV_MGT_FEE_UNIT},
+		       ${INV_OTH_AMT},
+		       ${INV_OTH_UNIT},
+		       ${INV_PRT_AMT},
+		       ${INV_PRT_UNIT},
+		       ${INV_RATE_AMT},
+		       ${INV_RATE_UNIT},
+		       ${LAFHA_REV_DATE},
+		       ${LAFHA_Y_N},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${MAX_LAFHA},
+		       ${NEW_ASG_Y_N},
+		       ${NEW_BILL_ORG_Y_N},
+		       ${NEW_PROC_Y_N},
+		       ${NEXT_ACTION_CREATED},
+		       ${ORG_ID},
+		       ${PAY_CYCLE},
+		       ${POS_MGT_FEE_AMT},
+		       ${POS_MGT_FEE_UNIT},
+		       ${POS_OTH_AMT},
+		       ${POS_OTH_UNIT},
+		       ${POS_PRT_AMT},
+		       ${POS_PRT_UNIT},
+		       ${POS_RATE_AMT},
+		       ${POS_RATE_UNIT},
+		       ${PRT_ORG_ID},
+		       ${SPON_LEVEL},
+		       ${TIMESHEET_CYCLE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpPerciNir.update">
+	<![CDATA[
+		UPDATE HP_PERCI_NIR
+		   SET ASG_ID = ${ASG_ID},
+		       ASG_COMMENTS = ${ASG_COMMENTS},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CI_GST_AMT = ${CI_GST_AMT},
+		       CI_OTHERS_AMT = ${CI_OTHERS_AMT},
+		       CI_PAYROLL_TAX_AMT = ${CI_PAYROLL_TAX_AMT},
+		       CI_RATE_AMT = ${CI_RATE_AMT},
+		       COMMENTS = ${COMMENTS},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       EXISTING_PROC_Y_N = ${EXISTING_PROC_Y_N},
+		       EXT_DATE_CHNAGED_Y_N = ${EXT_DATE_CHNAGED_Y_N},
+		       EXT_DATE_Y_N = ${EXT_DATE_Y_N},
+		       INVOICE_CYCLE = ${INVOICE_CYCLE},
+		       INV_GST_AMT = ${INV_GST_AMT},
+		       INV_GST_UNIT = ${INV_GST_UNIT},
+		       INV_MGT_FEE_AMT = ${INV_MGT_FEE_AMT},
+		       INV_MGT_FEE_UNIT = ${INV_MGT_FEE_UNIT},
+		       INV_OTH_AMT = ${INV_OTH_AMT},
+		       INV_OTH_UNIT = ${INV_OTH_UNIT},
+		       INV_PRT_AMT = ${INV_PRT_AMT},
+		       INV_PRT_UNIT = ${INV_PRT_UNIT},
+		       INV_RATE_AMT = ${INV_RATE_AMT},
+		       INV_RATE_UNIT = ${INV_RATE_UNIT},
+		       LAFHA_REV_DATE = ${LAFHA_REV_DATE},
+		       LAFHA_Y_N = ${LAFHA_Y_N},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       MAX_LAFHA = ${MAX_LAFHA},
+		       NEW_ASG_Y_N = ${NEW_ASG_Y_N},
+		       NEW_BILL_ORG_Y_N = ${NEW_BILL_ORG_Y_N},
+		       NEW_PROC_Y_N = ${NEW_PROC_Y_N},
+		       NEXT_ACTION_CREATED = ${NEXT_ACTION_CREATED},
+		       ORG_ID = ${ORG_ID},
+		       PAY_CYCLE = ${PAY_CYCLE},
+		       POS_MGT_FEE_AMT = ${POS_MGT_FEE_AMT},
+		       POS_MGT_FEE_UNIT = ${POS_MGT_FEE_UNIT},
+		       POS_OTH_AMT = ${POS_OTH_AMT},
+		       POS_OTH_UNIT = ${POS_OTH_UNIT},
+		       POS_PRT_AMT = ${POS_PRT_AMT},
+		       POS_PRT_UNIT = ${POS_PRT_UNIT},
+		       POS_RATE_AMT = ${POS_RATE_AMT},
+		       POS_RATE_UNIT = ${POS_RATE_UNIT},
+		       PRT_ORG_ID = ${PRT_ORG_ID},
+		       SPON_LEVEL = ${SPON_LEVEL},
+		       TIMESHEET_CYCLE = ${TIMESHEET_CYCLE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpPerciNir.updateColumns">
+	<![CDATA[
+		UPDATE HP_PERCI_NIR
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpPerciNir.delete">
+	<![CDATA[
+		DELETE HP_PERCI_NIR
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

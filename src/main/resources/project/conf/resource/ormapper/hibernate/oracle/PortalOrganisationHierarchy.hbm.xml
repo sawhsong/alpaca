@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_ORGANISATION_HIERARCHY - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalOrganisationHierarchy" table="PORTAL_ORGANISATION_HIERARCHY" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<composite-id>
+			<key-property name="divisionId" column="DIVISION_ID" type="java.lang.Double"/>
+			<key-property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+			<key-property name="unitId" column="UNIT_ID" type="java.lang.Double"/>
+		</composite-id>
+
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="divisionParentId" column="DIVISION_PARENT_ID" type="java.lang.Double"/>
+		<property name="organisationParentId" column="ORGANISATION_PARENT_ID" type="java.lang.Double"/>
+		<property name="status" column="STATUS" type="java.lang.String" length="1"/>
+		<property name="statusDate" column="STATUS_DATE" type="java.util.Date"/>
+		<property name="unitParentId" column="UNIT_PARENT_ID" type="java.lang.Double"/>
+		<property name="unitType" column="UNIT_TYPE" type="java.lang.String" length="3"/>
+	</class>
+
+	<sql-query name="portalOrganisationHierarchy.selectAll">
+	<![CDATA[
+		SELECT DIVISION_ID,
+		       ORGANISATION_ID,
+		       UNIT_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       DIVISION_PARENT_ID,
+		       ORGANISATION_PARENT_ID,
+		       STATUS,
+		       TO_CHAR(STATUS_DATE, 'yyyymmddhh24miss') AS STATUS_DATE,
+		       UNIT_PARENT_ID,
+		       UNIT_TYPE
+		  FROM PORTAL_ORGANISATION_HIERARCHY
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalOrganisationHierarchy.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_ORGANISATION_HIERARCHY (
+		       DIVISION_ID,
+		       ORGANISATION_ID,
+		       UNIT_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       DIVISION_PARENT_ID,
+		       ORGANISATION_PARENT_ID,
+		       STATUS,
+		       STATUS_DATE,
+		       UNIT_PARENT_ID,
+		       UNIT_TYPE
+		       )
+		VALUES (
+		       ${DIVISION_ID},
+		       ${ORGANISATION_ID},
+		       ${UNIT_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${DIVISION_PARENT_ID},
+		       ${ORGANISATION_PARENT_ID},
+		       ${STATUS},
+		       ${STATUS_DATE},
+		       ${UNIT_PARENT_ID},
+		       ${UNIT_TYPE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalOrganisationHierarchy.update">
+	<![CDATA[
+		UPDATE PORTAL_ORGANISATION_HIERARCHY
+		   SET BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       DIVISION_PARENT_ID = ${DIVISION_PARENT_ID},
+		       ORGANISATION_PARENT_ID = ${ORGANISATION_PARENT_ID},
+		       STATUS = ${STATUS},
+		       STATUS_DATE = ${STATUS_DATE},
+		       UNIT_PARENT_ID = ${UNIT_PARENT_ID},
+		       UNIT_TYPE = ${UNIT_TYPE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalOrganisationHierarchy.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_ORGANISATION_HIERARCHY
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalOrganisationHierarchy.delete">
+	<![CDATA[
+		DELETE PORTAL_ORGANISATION_HIERARCHY
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

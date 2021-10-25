@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - CUSTOMER_CMPLX_RTNG - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.CustomerCmplxRtng" table="CUSTOMER_CMPLX_RTNG" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="comms" column="COMMS" type="java.lang.String" length="250"/>
+		<property name="crm" column="CRM" type="java.lang.String" length="250"/>
+		<property name="crmCmplx" column="CRM_CMPLX" type="java.lang.String" length="1"/>
+		<property name="crmCmplxRson" column="CRM_CMPLX_RSON" type="java.lang.String" length="512"/>
+		<property name="csa" column="CSA" type="java.lang.String" length="250"/>
+		<property name="csaCmplx" column="CSA_CMPLX" type="java.lang.String" length="1"/>
+		<property name="csaCmplxRson" column="CSA_CMPLX_RSON" type="java.lang.String" length="512"/>
+		<property name="csc" column="CSC" type="java.lang.String" length="250"/>
+		<property name="cscCmplx" column="CSC_CMPLX" type="java.lang.String" length="1"/>
+		<property name="cscCmplxRson" column="CSC_CMPLX_RSON" type="java.lang.String" length="512"/>
+		<property name="csd" column="CSD" type="java.lang.String" length="250"/>
+		<property name="csm" column="CSM" type="java.lang.String" length="250"/>
+		<property name="csmCmplx" column="CSM_CMPLX" type="java.lang.String" length="1"/>
+		<property name="csmCmplxRson" column="CSM_CMPLX_RSON" type="java.lang.String" length="512"/>
+		<property name="customerStream" column="CUSTOMER_STREAM" type="java.lang.String" length="5"/>
+		<property name="invoices" column="INVOICES" type="java.lang.String" length="250"/>
+		<property name="ipros" column="IPROS" type="java.lang.String" length="250"/>
+		<property name="nextActions" column="NEXT_ACTIONS" type="java.lang.String" length="250"/>
+		<property name="opportunity" column="OPPORTUNITY" type="java.lang.String" length="250"/>
+		<property name="organisationName" column="ORGANISATION_NAME" type="java.lang.String" length="250"/>
+		<property name="revenue" column="REVENUE" type="java.lang.String" length="250"/>
+		<property name="skCmplx" column="SK_CMPLX" type="java.lang.String" length="3"/>
+		<property name="skCmplxRson" column="SK_CMPLX_RSON" type="java.lang.String" length="512"/>
+		<property name="totalBilling" column="TOTAL_BILLING" type="java.lang.String" length="250"/>
+	</class>
+
+	<sql-query name="customerCmplxRtng.selectAll">
+	<![CDATA[
+		SELECT COMMS,
+		       CRM,
+		       CRM_CMPLX,
+		       CRM_CMPLX_RSON,
+		       CSA,
+		       CSA_CMPLX,
+		       CSA_CMPLX_RSON,
+		       CSC,
+		       CSC_CMPLX,
+		       CSC_CMPLX_RSON,
+		       CSD,
+		       CSM,
+		       CSM_CMPLX,
+		       CSM_CMPLX_RSON,
+		       CUSTOMER_STREAM,
+		       INVOICES,
+		       IPROS,
+		       NEXT_ACTIONS,
+		       OPPORTUNITY,
+		       ORGANISATION_NAME,
+		       REVENUE,
+		       SK_CMPLX,
+		       SK_CMPLX_RSON,
+		       TOTAL_BILLING
+		  FROM CUSTOMER_CMPLX_RTNG
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="customerCmplxRtng.insert">
+	<![CDATA[
+		INSERT INTO CUSTOMER_CMPLX_RTNG (
+		       COMMS,
+		       CRM,
+		       CRM_CMPLX,
+		       CRM_CMPLX_RSON,
+		       CSA,
+		       CSA_CMPLX,
+		       CSA_CMPLX_RSON,
+		       CSC,
+		       CSC_CMPLX,
+		       CSC_CMPLX_RSON,
+		       CSD,
+		       CSM,
+		       CSM_CMPLX,
+		       CSM_CMPLX_RSON,
+		       CUSTOMER_STREAM,
+		       INVOICES,
+		       IPROS,
+		       NEXT_ACTIONS,
+		       OPPORTUNITY,
+		       ORGANISATION_NAME,
+		       REVENUE,
+		       SK_CMPLX,
+		       SK_CMPLX_RSON,
+		       TOTAL_BILLING
+		       )
+		VALUES (
+		       ${COMMS},
+		       ${CRM},
+		       ${CRM_CMPLX},
+		       ${CRM_CMPLX_RSON},
+		       ${CSA},
+		       ${CSA_CMPLX},
+		       ${CSA_CMPLX_RSON},
+		       ${CSC},
+		       ${CSC_CMPLX},
+		       ${CSC_CMPLX_RSON},
+		       ${CSD},
+		       ${CSM},
+		       ${CSM_CMPLX},
+		       ${CSM_CMPLX_RSON},
+		       ${CUSTOMER_STREAM},
+		       ${INVOICES},
+		       ${IPROS},
+		       ${NEXT_ACTIONS},
+		       ${OPPORTUNITY},
+		       ${ORGANISATION_NAME},
+		       ${REVENUE},
+		       ${SK_CMPLX},
+		       ${SK_CMPLX_RSON},
+		       ${TOTAL_BILLING}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="customerCmplxRtng.update">
+	<![CDATA[
+		UPDATE CUSTOMER_CMPLX_RTNG
+		   SET COMMS = ${COMMS},
+		       CRM = ${CRM},
+		       CRM_CMPLX = ${CRM_CMPLX},
+		       CRM_CMPLX_RSON = ${CRM_CMPLX_RSON},
+		       CSA = ${CSA},
+		       CSA_CMPLX = ${CSA_CMPLX},
+		       CSA_CMPLX_RSON = ${CSA_CMPLX_RSON},
+		       CSC = ${CSC},
+		       CSC_CMPLX = ${CSC_CMPLX},
+		       CSC_CMPLX_RSON = ${CSC_CMPLX_RSON},
+		       CSD = ${CSD},
+		       CSM = ${CSM},
+		       CSM_CMPLX = ${CSM_CMPLX},
+		       CSM_CMPLX_RSON = ${CSM_CMPLX_RSON},
+		       CUSTOMER_STREAM = ${CUSTOMER_STREAM},
+		       INVOICES = ${INVOICES},
+		       IPROS = ${IPROS},
+		       NEXT_ACTIONS = ${NEXT_ACTIONS},
+		       OPPORTUNITY = ${OPPORTUNITY},
+		       ORGANISATION_NAME = ${ORGANISATION_NAME},
+		       REVENUE = ${REVENUE},
+		       SK_CMPLX = ${SK_CMPLX},
+		       SK_CMPLX_RSON = ${SK_CMPLX_RSON},
+		       TOTAL_BILLING = ${TOTAL_BILLING}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="customerCmplxRtng.updateColumns">
+	<![CDATA[
+		UPDATE CUSTOMER_CMPLX_RTNG
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="customerCmplxRtng.delete">
+	<![CDATA[
+		DELETE CUSTOMER_CMPLX_RTNG
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

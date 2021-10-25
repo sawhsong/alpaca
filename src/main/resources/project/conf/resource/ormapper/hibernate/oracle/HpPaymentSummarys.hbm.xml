@@ -1,0 +1,311 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_PAYMENT_SUMMARYS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpPaymentSummarys" table="HP_PAYMENT_SUMMARYS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="paymentSummaryId" column="PAYMENT_SUMMARY_ID" type="java.lang.Double"></id>
+
+		<property name="abn" column="ABN" type="java.lang.String" length="20"/>
+		<property name="addressLine" column="ADDRESS_LINE" type="java.lang.String" length="4000"/>
+		<property name="allowance" column="ALLOWANCE" type="java.lang.Double"/>
+		<property name="allowance1" column="ALLOWANCE1" type="java.lang.Double"/>
+		<property name="allowance1Desc" column="ALLOWANCE1_DESC" type="java.lang.String" length="50"/>
+		<property name="allowance2" column="ALLOWANCE2" type="java.lang.Double"/>
+		<property name="allowance2Desc" column="ALLOWANCE2_DESC" type="java.lang.String" length="50"/>
+		<property name="allowance3" column="ALLOWANCE3" type="java.lang.Double"/>
+		<property name="allowance3Desc" column="ALLOWANCE3_DESC" type="java.lang.String" length="50"/>
+		<property name="allowance4" column="ALLOWANCE4" type="java.lang.Double"/>
+		<property name="allowance4Desc" column="ALLOWANCE4_DESC" type="java.lang.String" length="50"/>
+		<property name="branchNo" column="BRANCH_NO" type="java.lang.String" length="100"/>
+		<property name="cdep" column="CDEP" type="java.lang.String" length="100"/>
+		<property name="country" column="COUNTRY" type="java.lang.String" length="20"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="dateOfBirth" column="DATE_OF_BIRTH" type="java.util.Date"/>
+		<property name="emmployeeName" column="EMMPLOYEE_NAME" type="java.lang.String" length="500"/>
+		<property name="employeeDeduction" column="EMPLOYEE_DEDUCTION" type="java.lang.String" length="4000"/>
+		<property name="employeeDeductionAmount" column="EMPLOYEE_DEDUCTION_AMOUNT" type="java.lang.Double"/>
+		<property name="empDueFileId" column="EMP_DUE_FILE_ID" type="java.lang.Double"/>
+		<property name="endDate" column="END_DATE" type="java.util.Date"/>
+		<property name="firstGivenName" column="FIRST_GIVEN_NAME" type="java.lang.String" length="100"/>
+		<property name="grossPayments" column="GROSS_PAYMENTS" type="java.lang.Double"/>
+		<property name="grossPaymentType" column="GROSS_PAYMENT_TYPE" type="java.lang.String" length="1"/>
+		<property name="isExemptFromFbt" column="IS_EXEMPT_FROM_FBT" type="java.lang.String" length="1"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="lumpSumA" column="LUMP_SUM_A" type="java.lang.Double"/>
+		<property name="lumpSumB" column="LUMP_SUM_B" type="java.lang.Double"/>
+		<property name="lumpSumD" column="LUMP_SUM_D" type="java.lang.Double"/>
+		<property name="lumpSumE" column="LUMP_SUM_E" type="java.lang.Double"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="otherIncome" column="OTHER_INCOME" type="java.lang.Double"/>
+		<property name="payerName" column="PAYER_NAME" type="java.lang.String" length="100"/>
+		<property name="personEoyId" column="PERSON_EOY_ID" type="java.lang.Double"/>
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+		<property name="postcode" column="POSTCODE" type="java.lang.String" length="30"/>
+		<property name="reportableFbt" column="REPORTABLE_FBT" type="java.lang.Double"/>
+		<property name="repEmpSuperCont" column="REP_EMP_SUPER_CONT" type="java.lang.Double"/>
+		<property name="secondGivenName" column="SECOND_GIVEN_NAME" type="java.lang.String" length="100"/>
+		<property name="sentStatus" column="SENT_STATUS" type="java.lang.String" length="8"/>
+		<property name="servicePeriodEndDate" column="SERVICE_PERIOD_END_DATE" type="java.util.Date"/>
+		<property name="servicePeriodStartDate" column="SERVICE_PERIOD_START_DATE" type="java.util.Date"/>
+		<property name="startDate" column="START_DATE" type="java.util.Date"/>
+		<property name="state" column="STATE" type="java.lang.String" length="20"/>
+		<property name="suburb" column="SUBURB" type="java.lang.String" length="50"/>
+		<property name="surname" column="SURNAME" type="java.lang.String" length="100"/>
+		<property name="tfn" column="TFN" type="java.lang.String" length="100"/>
+		<property name="totalTaxWithheld" column="TOTAL_TAX_WITHHELD" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="hpPaymentSummarys.selectAll">
+	<![CDATA[
+		SELECT PAYMENT_SUMMARY_ID,
+		       ABN,
+		       ADDRESS_LINE,
+		       ALLOWANCE,
+		       ALLOWANCE1,
+		       ALLOWANCE1_DESC,
+		       ALLOWANCE2,
+		       ALLOWANCE2_DESC,
+		       ALLOWANCE3,
+		       ALLOWANCE3_DESC,
+		       ALLOWANCE4,
+		       ALLOWANCE4_DESC,
+		       BRANCH_NO,
+		       CDEP,
+		       COUNTRY,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       TO_CHAR(DATE_OF_BIRTH, 'yyyymmddhh24miss') AS DATE_OF_BIRTH,
+		       EMMPLOYEE_NAME,
+		       EMPLOYEE_DEDUCTION,
+		       EMPLOYEE_DEDUCTION_AMOUNT,
+		       EMP_DUE_FILE_ID,
+		       TO_CHAR(END_DATE, 'yyyymmddhh24miss') AS END_DATE,
+		       FIRST_GIVEN_NAME,
+		       GROSS_PAYMENTS,
+		       GROSS_PAYMENT_TYPE,
+		       IS_EXEMPT_FROM_FBT,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       LUMP_SUM_A,
+		       LUMP_SUM_B,
+		       LUMP_SUM_D,
+		       LUMP_SUM_E,
+		       ORGANISATION_ID,
+		       OTHER_INCOME,
+		       PAYER_NAME,
+		       PERSON_EOY_ID,
+		       PERSON_ID,
+		       POSTCODE,
+		       REPORTABLE_FBT,
+		       REP_EMP_SUPER_CONT,
+		       SECOND_GIVEN_NAME,
+		       SENT_STATUS,
+		       TO_CHAR(SERVICE_PERIOD_END_DATE, 'yyyymmddhh24miss') AS SERVICE_PERIOD_END_DATE,
+		       TO_CHAR(SERVICE_PERIOD_START_DATE, 'yyyymmddhh24miss') AS SERVICE_PERIOD_START_DATE,
+		       TO_CHAR(START_DATE, 'yyyymmddhh24miss') AS START_DATE,
+		       STATE,
+		       SUBURB,
+		       SURNAME,
+		       TFN,
+		       TOTAL_TAX_WITHHELD
+		  FROM HP_PAYMENT_SUMMARYS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpPaymentSummarys.insert">
+	<![CDATA[
+		INSERT INTO HP_PAYMENT_SUMMARYS (
+		       PAYMENT_SUMMARY_ID,
+		       ABN,
+		       ADDRESS_LINE,
+		       ALLOWANCE,
+		       ALLOWANCE1,
+		       ALLOWANCE1_DESC,
+		       ALLOWANCE2,
+		       ALLOWANCE2_DESC,
+		       ALLOWANCE3,
+		       ALLOWANCE3_DESC,
+		       ALLOWANCE4,
+		       ALLOWANCE4_DESC,
+		       BRANCH_NO,
+		       CDEP,
+		       COUNTRY,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       DATE_OF_BIRTH,
+		       EMMPLOYEE_NAME,
+		       EMPLOYEE_DEDUCTION,
+		       EMPLOYEE_DEDUCTION_AMOUNT,
+		       EMP_DUE_FILE_ID,
+		       END_DATE,
+		       FIRST_GIVEN_NAME,
+		       GROSS_PAYMENTS,
+		       GROSS_PAYMENT_TYPE,
+		       IS_EXEMPT_FROM_FBT,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       LUMP_SUM_A,
+		       LUMP_SUM_B,
+		       LUMP_SUM_D,
+		       LUMP_SUM_E,
+		       ORGANISATION_ID,
+		       OTHER_INCOME,
+		       PAYER_NAME,
+		       PERSON_EOY_ID,
+		       PERSON_ID,
+		       POSTCODE,
+		       REPORTABLE_FBT,
+		       REP_EMP_SUPER_CONT,
+		       SECOND_GIVEN_NAME,
+		       SENT_STATUS,
+		       SERVICE_PERIOD_END_DATE,
+		       SERVICE_PERIOD_START_DATE,
+		       START_DATE,
+		       STATE,
+		       SUBURB,
+		       SURNAME,
+		       TFN,
+		       TOTAL_TAX_WITHHELD
+		       )
+		VALUES (
+		       ${PAYMENT_SUMMARY_ID},
+		       ${ABN},
+		       ${ADDRESS_LINE},
+		       ${ALLOWANCE},
+		       ${ALLOWANCE1},
+		       ${ALLOWANCE1_DESC},
+		       ${ALLOWANCE2},
+		       ${ALLOWANCE2_DESC},
+		       ${ALLOWANCE3},
+		       ${ALLOWANCE3_DESC},
+		       ${ALLOWANCE4},
+		       ${ALLOWANCE4_DESC},
+		       ${BRANCH_NO},
+		       ${CDEP},
+		       ${COUNTRY},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${DATE_OF_BIRTH},
+		       ${EMMPLOYEE_NAME},
+		       ${EMPLOYEE_DEDUCTION},
+		       ${EMPLOYEE_DEDUCTION_AMOUNT},
+		       ${EMP_DUE_FILE_ID},
+		       ${END_DATE},
+		       ${FIRST_GIVEN_NAME},
+		       ${GROSS_PAYMENTS},
+		       ${GROSS_PAYMENT_TYPE},
+		       ${IS_EXEMPT_FROM_FBT},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${LUMP_SUM_A},
+		       ${LUMP_SUM_B},
+		       ${LUMP_SUM_D},
+		       ${LUMP_SUM_E},
+		       ${ORGANISATION_ID},
+		       ${OTHER_INCOME},
+		       ${PAYER_NAME},
+		       ${PERSON_EOY_ID},
+		       ${PERSON_ID},
+		       ${POSTCODE},
+		       ${REPORTABLE_FBT},
+		       ${REP_EMP_SUPER_CONT},
+		       ${SECOND_GIVEN_NAME},
+		       ${SENT_STATUS},
+		       ${SERVICE_PERIOD_END_DATE},
+		       ${SERVICE_PERIOD_START_DATE},
+		       ${START_DATE},
+		       ${STATE},
+		       ${SUBURB},
+		       ${SURNAME},
+		       ${TFN},
+		       ${TOTAL_TAX_WITHHELD}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpPaymentSummarys.update">
+	<![CDATA[
+		UPDATE HP_PAYMENT_SUMMARYS
+		   SET ABN = ${ABN},
+		       ADDRESS_LINE = ${ADDRESS_LINE},
+		       ALLOWANCE = ${ALLOWANCE},
+		       ALLOWANCE1 = ${ALLOWANCE1},
+		       ALLOWANCE1_DESC = ${ALLOWANCE1_DESC},
+		       ALLOWANCE2 = ${ALLOWANCE2},
+		       ALLOWANCE2_DESC = ${ALLOWANCE2_DESC},
+		       ALLOWANCE3 = ${ALLOWANCE3},
+		       ALLOWANCE3_DESC = ${ALLOWANCE3_DESC},
+		       ALLOWANCE4 = ${ALLOWANCE4},
+		       ALLOWANCE4_DESC = ${ALLOWANCE4_DESC},
+		       BRANCH_NO = ${BRANCH_NO},
+		       CDEP = ${CDEP},
+		       COUNTRY = ${COUNTRY},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       DATE_OF_BIRTH = ${DATE_OF_BIRTH},
+		       EMMPLOYEE_NAME = ${EMMPLOYEE_NAME},
+		       EMPLOYEE_DEDUCTION = ${EMPLOYEE_DEDUCTION},
+		       EMPLOYEE_DEDUCTION_AMOUNT = ${EMPLOYEE_DEDUCTION_AMOUNT},
+		       EMP_DUE_FILE_ID = ${EMP_DUE_FILE_ID},
+		       END_DATE = ${END_DATE},
+		       FIRST_GIVEN_NAME = ${FIRST_GIVEN_NAME},
+		       GROSS_PAYMENTS = ${GROSS_PAYMENTS},
+		       GROSS_PAYMENT_TYPE = ${GROSS_PAYMENT_TYPE},
+		       IS_EXEMPT_FROM_FBT = ${IS_EXEMPT_FROM_FBT},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       LUMP_SUM_A = ${LUMP_SUM_A},
+		       LUMP_SUM_B = ${LUMP_SUM_B},
+		       LUMP_SUM_D = ${LUMP_SUM_D},
+		       LUMP_SUM_E = ${LUMP_SUM_E},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       OTHER_INCOME = ${OTHER_INCOME},
+		       PAYER_NAME = ${PAYER_NAME},
+		       PERSON_EOY_ID = ${PERSON_EOY_ID},
+		       PERSON_ID = ${PERSON_ID},
+		       POSTCODE = ${POSTCODE},
+		       REPORTABLE_FBT = ${REPORTABLE_FBT},
+		       REP_EMP_SUPER_CONT = ${REP_EMP_SUPER_CONT},
+		       SECOND_GIVEN_NAME = ${SECOND_GIVEN_NAME},
+		       SENT_STATUS = ${SENT_STATUS},
+		       SERVICE_PERIOD_END_DATE = ${SERVICE_PERIOD_END_DATE},
+		       SERVICE_PERIOD_START_DATE = ${SERVICE_PERIOD_START_DATE},
+		       START_DATE = ${START_DATE},
+		       STATE = ${STATE},
+		       SUBURB = ${SUBURB},
+		       SURNAME = ${SURNAME},
+		       TFN = ${TFN},
+		       TOTAL_TAX_WITHHELD = ${TOTAL_TAX_WITHHELD}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpPaymentSummarys.updateColumns">
+	<![CDATA[
+		UPDATE HP_PAYMENT_SUMMARYS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpPaymentSummarys.delete">
+	<![CDATA[
+		DELETE HP_PAYMENT_SUMMARYS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

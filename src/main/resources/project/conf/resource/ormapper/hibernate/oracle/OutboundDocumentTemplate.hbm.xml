@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - OUTBOUND_DOCUMENT_TEMPLATE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.OutboundDocumentTemplate" table="OUTBOUND_DOCUMENT_TEMPLATE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="isActive" column="IS_ACTIVE" not-null="true" type="java.lang.String" length="1"/>
+		<property name="outboundDocumentTemplateId" column="OUTBOUND_DOCUMENT_TEMPLATE_ID" not-null="true" type="java.lang.Double"/>
+		<property name="templateLocation" column="TEMPLATE_LOCATION" not-null="true" type="java.lang.String" length="255"/>
+		<property name="createdDate" column="CREATED_DATE" type="java.util.Date"/>
+		<property name="updatedBy" column="UPDATED_BY" type="java.lang.Double"/>
+		<property name="updatedDate" column="UPDATED_DATE" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="outboundDocumentTemplate.selectAll">
+	<![CDATA[
+		SELECT CREATED_BY,
+		       IS_ACTIVE,
+		       OUTBOUND_DOCUMENT_TEMPLATE_ID,
+		       TEMPLATE_LOCATION,
+		       TO_CHAR(CREATED_DATE, 'yyyymmddhh24miss') AS CREATED_DATE,
+		       UPDATED_BY,
+		       TO_CHAR(UPDATED_DATE, 'yyyymmddhh24miss') AS UPDATED_DATE
+		  FROM OUTBOUND_DOCUMENT_TEMPLATE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="outboundDocumentTemplate.insert">
+	<![CDATA[
+		INSERT INTO OUTBOUND_DOCUMENT_TEMPLATE (
+		       CREATED_BY,
+		       IS_ACTIVE,
+		       OUTBOUND_DOCUMENT_TEMPLATE_ID,
+		       TEMPLATE_LOCATION,
+		       CREATED_DATE,
+		       UPDATED_BY,
+		       UPDATED_DATE
+		       )
+		VALUES (
+		       ${CREATED_BY},
+		       ${IS_ACTIVE},
+		       ${OUTBOUND_DOCUMENT_TEMPLATE_ID},
+		       ${TEMPLATE_LOCATION},
+		       ${CREATED_DATE},
+		       ${UPDATED_BY},
+		       ${UPDATED_DATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="outboundDocumentTemplate.update">
+	<![CDATA[
+		UPDATE OUTBOUND_DOCUMENT_TEMPLATE
+		   SET CREATED_BY = ${CREATED_BY},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       OUTBOUND_DOCUMENT_TEMPLATE_ID = ${OUTBOUND_DOCUMENT_TEMPLATE_ID},
+		       TEMPLATE_LOCATION = ${TEMPLATE_LOCATION},
+		       CREATED_DATE = ${CREATED_DATE},
+		       UPDATED_BY = ${UPDATED_BY},
+		       UPDATED_DATE = ${UPDATED_DATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="outboundDocumentTemplate.updateColumns">
+	<![CDATA[
+		UPDATE OUTBOUND_DOCUMENT_TEMPLATE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="outboundDocumentTemplate.delete">
+	<![CDATA[
+		DELETE OUTBOUND_DOCUMENT_TEMPLATE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

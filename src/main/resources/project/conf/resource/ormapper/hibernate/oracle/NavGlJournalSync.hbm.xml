@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - NAV_GL_JOURNAL_SYNC - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.NavGlJournalSync" table="NAV_GL_JOURNAL_SYNC" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="syncId" column="SYNC_ID" type="java.lang.Double"></id>
+
+		<property name="crTotal" column="CR_TOTAL" not-null="true" type="java.lang.Double"/>
+		<property name="drTotal" column="DR_TOTAL" not-null="true" type="java.lang.Double"/>
+		<property name="journalDate" column="JOURNAL_DATE" not-null="true" type="java.util.Date"/>
+		<property name="syncBy" column="SYNC_BY" not-null="true" type="java.lang.Double"/>
+		<property name="syncDate" column="SYNC_DATE" not-null="true" type="java.util.Date"/>
+		<property name="syncStatus" column="SYNC_STATUS" not-null="true" type="java.lang.String" length="20"/>
+		<property name="navObjectType" column="NAV_OBJECT_TYPE" type="java.lang.String" length="5"/>
+		<property name="paymentId" column="PAYMENT_ID" type="java.lang.Double"/>
+		<property name="paymentMethod" column="PAYMENT_METHOD" type="java.lang.String" length="50"/>
+	</class>
+
+	<sql-query name="navGlJournalSync.selectAll">
+	<![CDATA[
+		SELECT SYNC_ID,
+		       CR_TOTAL,
+		       DR_TOTAL,
+		       TO_CHAR(JOURNAL_DATE, 'yyyymmddhh24miss') AS JOURNAL_DATE,
+		       SYNC_BY,
+		       TO_CHAR(SYNC_DATE, 'yyyymmddhh24miss') AS SYNC_DATE,
+		       SYNC_STATUS,
+		       NAV_OBJECT_TYPE,
+		       PAYMENT_ID,
+		       PAYMENT_METHOD
+		  FROM NAV_GL_JOURNAL_SYNC
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="navGlJournalSync.insert">
+	<![CDATA[
+		INSERT INTO NAV_GL_JOURNAL_SYNC (
+		       SYNC_ID,
+		       CR_TOTAL,
+		       DR_TOTAL,
+		       JOURNAL_DATE,
+		       SYNC_BY,
+		       SYNC_DATE,
+		       SYNC_STATUS,
+		       NAV_OBJECT_TYPE,
+		       PAYMENT_ID,
+		       PAYMENT_METHOD
+		       )
+		VALUES (
+		       ${SYNC_ID},
+		       ${CR_TOTAL},
+		       ${DR_TOTAL},
+		       ${JOURNAL_DATE},
+		       ${SYNC_BY},
+		       ${SYNC_DATE},
+		       ${SYNC_STATUS},
+		       ${NAV_OBJECT_TYPE},
+		       ${PAYMENT_ID},
+		       ${PAYMENT_METHOD}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="navGlJournalSync.update">
+	<![CDATA[
+		UPDATE NAV_GL_JOURNAL_SYNC
+		   SET CR_TOTAL = ${CR_TOTAL},
+		       DR_TOTAL = ${DR_TOTAL},
+		       JOURNAL_DATE = ${JOURNAL_DATE},
+		       SYNC_BY = ${SYNC_BY},
+		       SYNC_DATE = ${SYNC_DATE},
+		       SYNC_STATUS = ${SYNC_STATUS},
+		       NAV_OBJECT_TYPE = ${NAV_OBJECT_TYPE},
+		       PAYMENT_ID = ${PAYMENT_ID},
+		       PAYMENT_METHOD = ${PAYMENT_METHOD}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="navGlJournalSync.updateColumns">
+	<![CDATA[
+		UPDATE NAV_GL_JOURNAL_SYNC
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="navGlJournalSync.delete">
+	<![CDATA[
+		DELETE NAV_GL_JOURNAL_SYNC
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

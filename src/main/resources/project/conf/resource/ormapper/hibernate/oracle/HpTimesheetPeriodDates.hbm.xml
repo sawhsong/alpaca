@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_TIMESHEET_PERIOD_DATES - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpTimesheetPeriodDates" table="HP_TIMESHEET_PERIOD_DATES" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="endDate" column="END_DATE" not-null="true" type="java.util.Date"/>
+		<property name="startDate" column="START_DATE" not-null="true" type="java.util.Date"/>
+		<property name="timesheetDate" column="TIMESHEET_DATE" not-null="true" type="java.util.Date"/>
+		<property name="billingCodeId" column="BILLING_CODE_ID" type="java.lang.Double"/>
+		<property name="periodId" column="PERIOD_ID" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="hpTimesheetPeriodDates.selectAll">
+	<![CDATA[
+		SELECT TO_CHAR(END_DATE, 'yyyymmddhh24miss') AS END_DATE,
+		       TO_CHAR(START_DATE, 'yyyymmddhh24miss') AS START_DATE,
+		       TO_CHAR(TIMESHEET_DATE, 'yyyymmddhh24miss') AS TIMESHEET_DATE,
+		       BILLING_CODE_ID,
+		       PERIOD_ID
+		  FROM HP_TIMESHEET_PERIOD_DATES
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpTimesheetPeriodDates.insert">
+	<![CDATA[
+		INSERT INTO HP_TIMESHEET_PERIOD_DATES (
+		       END_DATE,
+		       START_DATE,
+		       TIMESHEET_DATE,
+		       BILLING_CODE_ID,
+		       PERIOD_ID
+		       )
+		VALUES (
+		       ${END_DATE},
+		       ${START_DATE},
+		       ${TIMESHEET_DATE},
+		       ${BILLING_CODE_ID},
+		       ${PERIOD_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpTimesheetPeriodDates.update">
+	<![CDATA[
+		UPDATE HP_TIMESHEET_PERIOD_DATES
+		   SET END_DATE = ${END_DATE},
+		       START_DATE = ${START_DATE},
+		       TIMESHEET_DATE = ${TIMESHEET_DATE},
+		       BILLING_CODE_ID = ${BILLING_CODE_ID},
+		       PERIOD_ID = ${PERIOD_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpTimesheetPeriodDates.updateColumns">
+	<![CDATA[
+		UPDATE HP_TIMESHEET_PERIOD_DATES
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpTimesheetPeriodDates.delete">
+	<![CDATA[
+		DELETE HP_TIMESHEET_PERIOD_DATES
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - STP_DETAIL - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.StpDetail" table="STP_DETAIL" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="stpDetailId" column="STP_DETAIL_ID" type="java.lang.Double"></id>
+
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+		<property name="terminationPaymentDetailId" column="TERMINATION_PAYMENT_DETAIL_ID" type="java.lang.Double"/>
+		<property name="componentAlPost17Aug1993" column="COMPONENT_AL_POST_17_AUG_1993" type="java.lang.Double"/>
+		<property name="componentAlPre18Aug1993" column="COMPONENT_AL_PRE_18_AUG_1993" type="java.lang.Double"/>
+		<property name="componentLlPost17Aug1993" column="COMPONENT_LL_POST_17_AUG_1993" type="java.lang.Double"/>
+		<property name="componentLlPre18Aug1993" column="COMPONENT_LL_PRE_18_AUG_1993" type="java.lang.Double"/>
+		<property name="componentLslPost17Aug1993" column="COMPONENT_LSL_POST_17_AUG_1993" type="java.lang.Double"/>
+		<property name="componentLslPre16Aug1978" column="COMPONENT_LSL_PRE_16_AUG_1978" type="java.lang.Double"/>
+		<property name="componentLslRange7893" column="COMPONENT_LSL_RANGE_78_93" type="java.lang.Double"/>
+		<property name="lumpSumA" column="LUMP_SUM_A" type="java.lang.Double"/>
+		<property name="lumpSumB" column="LUMP_SUM_B" type="java.lang.Double"/>
+		<property name="lumpSumD" column="LUMP_SUM_D" type="java.lang.Double"/>
+		<property name="lumpSumE" column="LUMP_SUM_E" type="java.lang.Double"/>
+		<property name="paymentAdvanceLoan" column="PAYMENT_ADVANCE_LOAN" type="java.lang.Double"/>
+		<property name="paymentBonafideTaxFree" column="PAYMENT_BONAFIDE_TAX_FREE" type="java.lang.Double"/>
+		<property name="paymentCompensationInjury" column="PAYMENT_COMPENSATION_INJURY" type="java.lang.Double"/>
+		<property name="paymentLongServiceLeave" column="PAYMENT_LONG_SERVICE_LEAVE" type="java.lang.Double"/>
+		<property name="paymentRestraintTrade" column="PAYMENT_RESTRAINT_TRADE" type="java.lang.Double"/>
+		<property name="paymentSalaryWages" column="PAYMENT_SALARY_WAGES" type="java.lang.Double"/>
+		<property name="paymentUnusedAnnualLeave" column="PAYMENT_UNUSED_ANNUAL_LEAVE" type="java.lang.Double"/>
+		<property name="paymentUnusedLeaveLoading" column="PAYMENT_UNUSED_LEAVE_LOADING" type="java.lang.Double"/>
+		<property name="terminationType" column="TERMINATION_TYPE" type="java.lang.String" length="100"/>
+		<property name="weeklyNormalPay" column="WEEKLY_NORMAL_PAY" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="stpDetail.selectAll">
+	<![CDATA[
+		SELECT STP_DETAIL_ID,
+		       PERSON_ID,
+		       TERMINATION_PAYMENT_DETAIL_ID,
+		       COMPONENT_AL_POST_17_AUG_1993,
+		       COMPONENT_AL_PRE_18_AUG_1993,
+		       COMPONENT_LL_POST_17_AUG_1993,
+		       COMPONENT_LL_PRE_18_AUG_1993,
+		       COMPONENT_LSL_POST_17_AUG_1993,
+		       COMPONENT_LSL_PRE_16_AUG_1978,
+		       COMPONENT_LSL_RANGE_78_93,
+		       LUMP_SUM_A,
+		       LUMP_SUM_B,
+		       LUMP_SUM_D,
+		       LUMP_SUM_E,
+		       PAYMENT_ADVANCE_LOAN,
+		       PAYMENT_BONAFIDE_TAX_FREE,
+		       PAYMENT_COMPENSATION_INJURY,
+		       PAYMENT_LONG_SERVICE_LEAVE,
+		       PAYMENT_RESTRAINT_TRADE,
+		       PAYMENT_SALARY_WAGES,
+		       PAYMENT_UNUSED_ANNUAL_LEAVE,
+		       PAYMENT_UNUSED_LEAVE_LOADING,
+		       TERMINATION_TYPE,
+		       WEEKLY_NORMAL_PAY
+		  FROM STP_DETAIL
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="stpDetail.insert">
+	<![CDATA[
+		INSERT INTO STP_DETAIL (
+		       STP_DETAIL_ID,
+		       PERSON_ID,
+		       TERMINATION_PAYMENT_DETAIL_ID,
+		       COMPONENT_AL_POST_17_AUG_1993,
+		       COMPONENT_AL_PRE_18_AUG_1993,
+		       COMPONENT_LL_POST_17_AUG_1993,
+		       COMPONENT_LL_PRE_18_AUG_1993,
+		       COMPONENT_LSL_POST_17_AUG_1993,
+		       COMPONENT_LSL_PRE_16_AUG_1978,
+		       COMPONENT_LSL_RANGE_78_93,
+		       LUMP_SUM_A,
+		       LUMP_SUM_B,
+		       LUMP_SUM_D,
+		       LUMP_SUM_E,
+		       PAYMENT_ADVANCE_LOAN,
+		       PAYMENT_BONAFIDE_TAX_FREE,
+		       PAYMENT_COMPENSATION_INJURY,
+		       PAYMENT_LONG_SERVICE_LEAVE,
+		       PAYMENT_RESTRAINT_TRADE,
+		       PAYMENT_SALARY_WAGES,
+		       PAYMENT_UNUSED_ANNUAL_LEAVE,
+		       PAYMENT_UNUSED_LEAVE_LOADING,
+		       TERMINATION_TYPE,
+		       WEEKLY_NORMAL_PAY
+		       )
+		VALUES (
+		       ${STP_DETAIL_ID},
+		       ${PERSON_ID},
+		       ${TERMINATION_PAYMENT_DETAIL_ID},
+		       ${COMPONENT_AL_POST_17_AUG_1993},
+		       ${COMPONENT_AL_PRE_18_AUG_1993},
+		       ${COMPONENT_LL_POST_17_AUG_1993},
+		       ${COMPONENT_LL_PRE_18_AUG_1993},
+		       ${COMPONENT_LSL_POST_17_AUG_1993},
+		       ${COMPONENT_LSL_PRE_16_AUG_1978},
+		       ${COMPONENT_LSL_RANGE_78_93},
+		       ${LUMP_SUM_A},
+		       ${LUMP_SUM_B},
+		       ${LUMP_SUM_D},
+		       ${LUMP_SUM_E},
+		       ${PAYMENT_ADVANCE_LOAN},
+		       ${PAYMENT_BONAFIDE_TAX_FREE},
+		       ${PAYMENT_COMPENSATION_INJURY},
+		       ${PAYMENT_LONG_SERVICE_LEAVE},
+		       ${PAYMENT_RESTRAINT_TRADE},
+		       ${PAYMENT_SALARY_WAGES},
+		       ${PAYMENT_UNUSED_ANNUAL_LEAVE},
+		       ${PAYMENT_UNUSED_LEAVE_LOADING},
+		       ${TERMINATION_TYPE},
+		       ${WEEKLY_NORMAL_PAY}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="stpDetail.update">
+	<![CDATA[
+		UPDATE STP_DETAIL
+		   SET PERSON_ID = ${PERSON_ID},
+		       TERMINATION_PAYMENT_DETAIL_ID = ${TERMINATION_PAYMENT_DETAIL_ID},
+		       COMPONENT_AL_POST_17_AUG_1993 = ${COMPONENT_AL_POST_17_AUG_1993},
+		       COMPONENT_AL_PRE_18_AUG_1993 = ${COMPONENT_AL_PRE_18_AUG_1993},
+		       COMPONENT_LL_POST_17_AUG_1993 = ${COMPONENT_LL_POST_17_AUG_1993},
+		       COMPONENT_LL_PRE_18_AUG_1993 = ${COMPONENT_LL_PRE_18_AUG_1993},
+		       COMPONENT_LSL_POST_17_AUG_1993 = ${COMPONENT_LSL_POST_17_AUG_1993},
+		       COMPONENT_LSL_PRE_16_AUG_1978 = ${COMPONENT_LSL_PRE_16_AUG_1978},
+		       COMPONENT_LSL_RANGE_78_93 = ${COMPONENT_LSL_RANGE_78_93},
+		       LUMP_SUM_A = ${LUMP_SUM_A},
+		       LUMP_SUM_B = ${LUMP_SUM_B},
+		       LUMP_SUM_D = ${LUMP_SUM_D},
+		       LUMP_SUM_E = ${LUMP_SUM_E},
+		       PAYMENT_ADVANCE_LOAN = ${PAYMENT_ADVANCE_LOAN},
+		       PAYMENT_BONAFIDE_TAX_FREE = ${PAYMENT_BONAFIDE_TAX_FREE},
+		       PAYMENT_COMPENSATION_INJURY = ${PAYMENT_COMPENSATION_INJURY},
+		       PAYMENT_LONG_SERVICE_LEAVE = ${PAYMENT_LONG_SERVICE_LEAVE},
+		       PAYMENT_RESTRAINT_TRADE = ${PAYMENT_RESTRAINT_TRADE},
+		       PAYMENT_SALARY_WAGES = ${PAYMENT_SALARY_WAGES},
+		       PAYMENT_UNUSED_ANNUAL_LEAVE = ${PAYMENT_UNUSED_ANNUAL_LEAVE},
+		       PAYMENT_UNUSED_LEAVE_LOADING = ${PAYMENT_UNUSED_LEAVE_LOADING},
+		       TERMINATION_TYPE = ${TERMINATION_TYPE},
+		       WEEKLY_NORMAL_PAY = ${WEEKLY_NORMAL_PAY}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="stpDetail.updateColumns">
+	<![CDATA[
+		UPDATE STP_DETAIL
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="stpDetail.delete">
+	<![CDATA[
+		DELETE STP_DETAIL
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_FORMULA_TEMPLATE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpFormulaTemplate" table="HP_FORMULA_TEMPLATE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="assignmentId" column="ASSIGNMENT_ID" not-null="true" type="java.lang.Double"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" not-null="true" type="java.lang.Double"/>
+		<property name="formulaId" column="FORMULA_ID" not-null="true" type="java.lang.Double"/>
+		<property name="template" column="TEMPLATE" type="java.lang.String" length="4000"/>
+		<property name="templateType" column="TEMPLATE_TYPE" type="java.lang.String" length="100"/>
+	</class>
+
+	<sql-query name="hpFormulaTemplate.selectAll">
+	<![CDATA[
+		SELECT ASSIGNMENT_ID,
+		       BUSINESS_GROUP_ID,
+		       FORMULA_ID,
+		       TEMPLATE,
+		       TEMPLATE_TYPE
+		  FROM HP_FORMULA_TEMPLATE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpFormulaTemplate.insert">
+	<![CDATA[
+		INSERT INTO HP_FORMULA_TEMPLATE (
+		       ASSIGNMENT_ID,
+		       BUSINESS_GROUP_ID,
+		       FORMULA_ID,
+		       TEMPLATE,
+		       TEMPLATE_TYPE
+		       )
+		VALUES (
+		       ${ASSIGNMENT_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${FORMULA_ID},
+		       ${TEMPLATE},
+		       ${TEMPLATE_TYPE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpFormulaTemplate.update">
+	<![CDATA[
+		UPDATE HP_FORMULA_TEMPLATE
+		   SET ASSIGNMENT_ID = ${ASSIGNMENT_ID},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       FORMULA_ID = ${FORMULA_ID},
+		       TEMPLATE = ${TEMPLATE},
+		       TEMPLATE_TYPE = ${TEMPLATE_TYPE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpFormulaTemplate.updateColumns">
+	<![CDATA[
+		UPDATE HP_FORMULA_TEMPLATE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpFormulaTemplate.delete">
+	<![CDATA[
+		DELETE HP_FORMULA_TEMPLATE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

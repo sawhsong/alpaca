@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - EXPENSE_ATTACHMENT_LINK - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.ExpenseAttachmentLink" table="EXPENSE_ATTACHMENT_LINK" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="linkId" column="LINK_ID" type="java.lang.Double"></id>
+
+		<property name="documentId" column="DOCUMENT_ID" type="java.lang.Double"/>
+		<property name="expenseClaimId" column="EXPENSE_CLAIM_ID" type="java.lang.Double"/>
+		<property name="fileIcon" column="FILE_ICON" type="java.lang.String" length="300"/>
+		<property name="fileSize" column="FILE_SIZE" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="expenseAttachmentLink.selectAll">
+	<![CDATA[
+		SELECT LINK_ID,
+		       DOCUMENT_ID,
+		       EXPENSE_CLAIM_ID,
+		       FILE_ICON,
+		       FILE_SIZE
+		  FROM EXPENSE_ATTACHMENT_LINK
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="expenseAttachmentLink.insert">
+	<![CDATA[
+		INSERT INTO EXPENSE_ATTACHMENT_LINK (
+		       LINK_ID,
+		       DOCUMENT_ID,
+		       EXPENSE_CLAIM_ID,
+		       FILE_ICON,
+		       FILE_SIZE
+		       )
+		VALUES (
+		       ${LINK_ID},
+		       ${DOCUMENT_ID},
+		       ${EXPENSE_CLAIM_ID},
+		       ${FILE_ICON},
+		       ${FILE_SIZE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="expenseAttachmentLink.update">
+	<![CDATA[
+		UPDATE EXPENSE_ATTACHMENT_LINK
+		   SET DOCUMENT_ID = ${DOCUMENT_ID},
+		       EXPENSE_CLAIM_ID = ${EXPENSE_CLAIM_ID},
+		       FILE_ICON = ${FILE_ICON},
+		       FILE_SIZE = ${FILE_SIZE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="expenseAttachmentLink.updateColumns">
+	<![CDATA[
+		UPDATE EXPENSE_ATTACHMENT_LINK
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="expenseAttachmentLink.delete">
+	<![CDATA[
+		DELETE EXPENSE_ATTACHMENT_LINK
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

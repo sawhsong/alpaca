@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_PAY_PERIODS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalPayPeriods" table="PORTAL_PAY_PERIODS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="periodsBack" column="PERIODS_BACK" type="java.lang.Double"/>
+		<property name="periodsForward" column="PERIODS_FORWARD" type="java.lang.Double"/>
+		<property name="periodTypeId" column="PERIOD_TYPE_ID" type="java.lang.String" length="30"/>
+	</class>
+
+	<sql-query name="portalPayPeriods.selectAll">
+	<![CDATA[
+		SELECT PERIODS_BACK,
+		       PERIODS_FORWARD,
+		       PERIOD_TYPE_ID
+		  FROM PORTAL_PAY_PERIODS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalPayPeriods.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_PAY_PERIODS (
+		       PERIODS_BACK,
+		       PERIODS_FORWARD,
+		       PERIOD_TYPE_ID
+		       )
+		VALUES (
+		       ${PERIODS_BACK},
+		       ${PERIODS_FORWARD},
+		       ${PERIOD_TYPE_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalPayPeriods.update">
+	<![CDATA[
+		UPDATE PORTAL_PAY_PERIODS
+		   SET PERIODS_BACK = ${PERIODS_BACK},
+		       PERIODS_FORWARD = ${PERIODS_FORWARD},
+		       PERIOD_TYPE_ID = ${PERIOD_TYPE_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalPayPeriods.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_PAY_PERIODS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalPayPeriods.delete">
+	<![CDATA[
+		DELETE PORTAL_PAY_PERIODS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

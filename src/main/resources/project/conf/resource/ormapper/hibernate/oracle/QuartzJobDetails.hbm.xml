@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - QUARTZ_JOB_DETAILS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.QuartzJobDetails" table="QUARTZ_JOB_DETAILS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="jobName" column="JOB_NAME" type="java.lang.String" length="50"/>
+		<property name="cronExpression" column="CRON_EXPRESSION" type="java.lang.String" length="200"/>
+		<property name="jobClass" column="JOB_CLASS" type="java.lang.String" length="200"/>
+		<property name="jobDescription" column="JOB_DESCRIPTION" type="java.lang.String" length="500"/>
+		<property name="jobId" column="JOB_ID" type="java.lang.Double"/>
+		<property name="jobStatus" column="JOB_STATUS" type="java.lang.String" length="20"/>
+	</class>
+
+	<sql-query name="quartzJobDetails.selectAll">
+	<![CDATA[
+		SELECT JOB_NAME,
+		       CRON_EXPRESSION,
+		       JOB_CLASS,
+		       JOB_DESCRIPTION,
+		       JOB_ID,
+		       JOB_STATUS
+		  FROM QUARTZ_JOB_DETAILS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="quartzJobDetails.insert">
+	<![CDATA[
+		INSERT INTO QUARTZ_JOB_DETAILS (
+		       JOB_NAME,
+		       CRON_EXPRESSION,
+		       JOB_CLASS,
+		       JOB_DESCRIPTION,
+		       JOB_ID,
+		       JOB_STATUS
+		       )
+		VALUES (
+		       ${JOB_NAME},
+		       ${CRON_EXPRESSION},
+		       ${JOB_CLASS},
+		       ${JOB_DESCRIPTION},
+		       ${JOB_ID},
+		       ${JOB_STATUS}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="quartzJobDetails.update">
+	<![CDATA[
+		UPDATE QUARTZ_JOB_DETAILS
+		   SET JOB_NAME = ${JOB_NAME},
+		       CRON_EXPRESSION = ${CRON_EXPRESSION},
+		       JOB_CLASS = ${JOB_CLASS},
+		       JOB_DESCRIPTION = ${JOB_DESCRIPTION},
+		       JOB_ID = ${JOB_ID},
+		       JOB_STATUS = ${JOB_STATUS}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="quartzJobDetails.updateColumns">
+	<![CDATA[
+		UPDATE QUARTZ_JOB_DETAILS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="quartzJobDetails.delete">
+	<![CDATA[
+		DELETE QUARTZ_JOB_DETAILS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

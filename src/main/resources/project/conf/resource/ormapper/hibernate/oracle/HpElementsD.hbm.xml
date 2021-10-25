@@ -1,0 +1,276 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_ELEMENTS_D - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpElementsD" table="HP_ELEMENTS_D" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<composite-id>
+			<key-property name="elementId" column="ELEMENT_ID" type="java.lang.Double"/>
+			<key-property name="fromDate" column="FROM_DATE" type="java.util.Date"/>
+			<key-property name="toDate" column="TO_DATE" type="java.util.Date"/>
+		</composite-id>
+
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="abn" column="ABN" type="java.lang.String" length="100"/>
+		<property name="additionalEntryAllowed" column="ADDITIONAL_ENTRY_ALLOWED" type="java.lang.String" length="1"/>
+		<property name="allowance" column="ALLOWANCE" type="java.lang.String" length="1"/>
+		<property name="applicationTaxRate" column="APPLICATION_TAX_RATE" type="java.lang.Double"/>
+		<property name="calculationRule" column="CALCULATION_RULE" type="java.lang.String" length="30"/>
+		<property name="category" column="CATEGORY" type="java.lang.String" length="30"/>
+		<property name="classificationsId" column="CLASSIFICATIONS_ID" type="java.lang.Double"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String" length="4000"/>
+		<property name="creditDebitFlag" column="CREDIT_DEBIT_FLAG" type="java.lang.String" length="1"/>
+		<property name="earCheque" column="EAR_CHEQUE" type="java.lang.String" length="100"/>
+		<property name="earCredit" column="EAR_CREDIT" type="java.lang.String" length="100"/>
+		<property name="earDebit" column="EAR_DEBIT" type="java.lang.String" length="100"/>
+		<property name="earEft" column="EAR_EFT" type="java.lang.String" length="100"/>
+		<property name="earElement" column="EAR_ELEMENT" type="java.lang.String" length="1"/>
+		<property name="earFactored" column="EAR_FACTORED" type="java.lang.String" length="100"/>
+		<property name="elementName" column="ELEMENT_NAME" type="java.lang.String" length="200"/>
+		<property name="elementType" column="ELEMENT_TYPE" type="java.lang.String" length="50"/>
+		<property name="glCode" column="GL_CODE" type="java.lang.String" length="30"/>
+		<property name="glCodeDebit" column="GL_CODE_DEBIT" type="java.lang.String" length="100"/>
+		<property name="grossSalary" column="GROSS_SALARY" type="java.lang.String" length="1"/>
+		<property name="gstExempt" column="GST_EXEMPT" type="java.lang.String" length="1"/>
+		<property name="leaveAccural" column="LEAVE_ACCURAL" type="java.lang.String" length="1"/>
+		<property name="lumpSumType" column="LUMP_SUM_TYPE" type="java.lang.String" length="1"/>
+		<property name="multipleEntriesAllowed" column="MULTIPLE_ENTRIES_ALLOWED" type="java.lang.String" length="1"/>
+		<property name="ote" column="OTE" type="java.lang.String" length="1"/>
+		<property name="preTaxDeduction" column="PRE_TAX_DEDUCTION" type="java.lang.String" length="1"/>
+		<property name="priority" column="PRIORITY" type="java.lang.Double"/>
+		<property name="processingType" column="PROCESSING_TYPE" type="java.lang.String" length="1"/>
+		<property name="reduceRegular" column="REDUCE_REGULAR" type="java.lang.String" length="1"/>
+		<property name="reportingName" column="REPORTING_NAME" type="java.lang.String" length="200"/>
+		<property name="salaryWages" column="SALARY_WAGES" type="java.lang.String" length="1"/>
+		<property name="separateCheck" column="SEPARATE_CHECK" type="java.lang.String" length="1"/>
+		<property name="sfn" column="SFN" type="java.lang.String" length="100"/>
+		<property name="showAll" column="SHOW_ALL" type="java.lang.String" length="1"/>
+		<property name="spin" column="SPIN" type="java.lang.String" length="100"/>
+		<property name="stpAllowanceId" column="STP_ALLOWANCE_ID" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="hpElementsD.selectAll">
+	<![CDATA[
+		SELECT ELEMENT_ID,
+		       TO_CHAR(FROM_DATE, 'yyyymmddhh24miss') AS FROM_DATE,
+		       TO_CHAR(TO_DATE, 'yyyymmddhh24miss') AS TO_DATE,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       ABN,
+		       ADDITIONAL_ENTRY_ALLOWED,
+		       ALLOWANCE,
+		       APPLICATION_TAX_RATE,
+		       CALCULATION_RULE,
+		       CATEGORY,
+		       CLASSIFICATIONS_ID,
+		       COMMENTS,
+		       CREDIT_DEBIT_FLAG,
+		       EAR_CHEQUE,
+		       EAR_CREDIT,
+		       EAR_DEBIT,
+		       EAR_EFT,
+		       EAR_ELEMENT,
+		       EAR_FACTORED,
+		       ELEMENT_NAME,
+		       ELEMENT_TYPE,
+		       GL_CODE,
+		       GL_CODE_DEBIT,
+		       GROSS_SALARY,
+		       GST_EXEMPT,
+		       LEAVE_ACCURAL,
+		       LUMP_SUM_TYPE,
+		       MULTIPLE_ENTRIES_ALLOWED,
+		       OTE,
+		       PRE_TAX_DEDUCTION,
+		       PRIORITY,
+		       PROCESSING_TYPE,
+		       REDUCE_REGULAR,
+		       REPORTING_NAME,
+		       SALARY_WAGES,
+		       SEPARATE_CHECK,
+		       SFN,
+		       SHOW_ALL,
+		       SPIN,
+		       STP_ALLOWANCE_ID
+		  FROM HP_ELEMENTS_D
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpElementsD.insert">
+	<![CDATA[
+		INSERT INTO HP_ELEMENTS_D (
+		       ELEMENT_ID,
+		       FROM_DATE,
+		       TO_DATE,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       ABN,
+		       ADDITIONAL_ENTRY_ALLOWED,
+		       ALLOWANCE,
+		       APPLICATION_TAX_RATE,
+		       CALCULATION_RULE,
+		       CATEGORY,
+		       CLASSIFICATIONS_ID,
+		       COMMENTS,
+		       CREDIT_DEBIT_FLAG,
+		       EAR_CHEQUE,
+		       EAR_CREDIT,
+		       EAR_DEBIT,
+		       EAR_EFT,
+		       EAR_ELEMENT,
+		       EAR_FACTORED,
+		       ELEMENT_NAME,
+		       ELEMENT_TYPE,
+		       GL_CODE,
+		       GL_CODE_DEBIT,
+		       GROSS_SALARY,
+		       GST_EXEMPT,
+		       LEAVE_ACCURAL,
+		       LUMP_SUM_TYPE,
+		       MULTIPLE_ENTRIES_ALLOWED,
+		       OTE,
+		       PRE_TAX_DEDUCTION,
+		       PRIORITY,
+		       PROCESSING_TYPE,
+		       REDUCE_REGULAR,
+		       REPORTING_NAME,
+		       SALARY_WAGES,
+		       SEPARATE_CHECK,
+		       SFN,
+		       SHOW_ALL,
+		       SPIN,
+		       STP_ALLOWANCE_ID
+		       )
+		VALUES (
+		       ${ELEMENT_ID},
+		       ${FROM_DATE},
+		       ${TO_DATE},
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${ABN},
+		       ${ADDITIONAL_ENTRY_ALLOWED},
+		       ${ALLOWANCE},
+		       ${APPLICATION_TAX_RATE},
+		       ${CALCULATION_RULE},
+		       ${CATEGORY},
+		       ${CLASSIFICATIONS_ID},
+		       ${COMMENTS},
+		       ${CREDIT_DEBIT_FLAG},
+		       ${EAR_CHEQUE},
+		       ${EAR_CREDIT},
+		       ${EAR_DEBIT},
+		       ${EAR_EFT},
+		       ${EAR_ELEMENT},
+		       ${EAR_FACTORED},
+		       ${ELEMENT_NAME},
+		       ${ELEMENT_TYPE},
+		       ${GL_CODE},
+		       ${GL_CODE_DEBIT},
+		       ${GROSS_SALARY},
+		       ${GST_EXEMPT},
+		       ${LEAVE_ACCURAL},
+		       ${LUMP_SUM_TYPE},
+		       ${MULTIPLE_ENTRIES_ALLOWED},
+		       ${OTE},
+		       ${PRE_TAX_DEDUCTION},
+		       ${PRIORITY},
+		       ${PROCESSING_TYPE},
+		       ${REDUCE_REGULAR},
+		       ${REPORTING_NAME},
+		       ${SALARY_WAGES},
+		       ${SEPARATE_CHECK},
+		       ${SFN},
+		       ${SHOW_ALL},
+		       ${SPIN},
+		       ${STP_ALLOWANCE_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpElementsD.update">
+	<![CDATA[
+		UPDATE HP_ELEMENTS_D
+		   SET BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       ABN = ${ABN},
+		       ADDITIONAL_ENTRY_ALLOWED = ${ADDITIONAL_ENTRY_ALLOWED},
+		       ALLOWANCE = ${ALLOWANCE},
+		       APPLICATION_TAX_RATE = ${APPLICATION_TAX_RATE},
+		       CALCULATION_RULE = ${CALCULATION_RULE},
+		       CATEGORY = ${CATEGORY},
+		       CLASSIFICATIONS_ID = ${CLASSIFICATIONS_ID},
+		       COMMENTS = ${COMMENTS},
+		       CREDIT_DEBIT_FLAG = ${CREDIT_DEBIT_FLAG},
+		       EAR_CHEQUE = ${EAR_CHEQUE},
+		       EAR_CREDIT = ${EAR_CREDIT},
+		       EAR_DEBIT = ${EAR_DEBIT},
+		       EAR_EFT = ${EAR_EFT},
+		       EAR_ELEMENT = ${EAR_ELEMENT},
+		       EAR_FACTORED = ${EAR_FACTORED},
+		       ELEMENT_NAME = ${ELEMENT_NAME},
+		       ELEMENT_TYPE = ${ELEMENT_TYPE},
+		       GL_CODE = ${GL_CODE},
+		       GL_CODE_DEBIT = ${GL_CODE_DEBIT},
+		       GROSS_SALARY = ${GROSS_SALARY},
+		       GST_EXEMPT = ${GST_EXEMPT},
+		       LEAVE_ACCURAL = ${LEAVE_ACCURAL},
+		       LUMP_SUM_TYPE = ${LUMP_SUM_TYPE},
+		       MULTIPLE_ENTRIES_ALLOWED = ${MULTIPLE_ENTRIES_ALLOWED},
+		       OTE = ${OTE},
+		       PRE_TAX_DEDUCTION = ${PRE_TAX_DEDUCTION},
+		       PRIORITY = ${PRIORITY},
+		       PROCESSING_TYPE = ${PROCESSING_TYPE},
+		       REDUCE_REGULAR = ${REDUCE_REGULAR},
+		       REPORTING_NAME = ${REPORTING_NAME},
+		       SALARY_WAGES = ${SALARY_WAGES},
+		       SEPARATE_CHECK = ${SEPARATE_CHECK},
+		       SFN = ${SFN},
+		       SHOW_ALL = ${SHOW_ALL},
+		       SPIN = ${SPIN},
+		       STP_ALLOWANCE_ID = ${STP_ALLOWANCE_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpElementsD.updateColumns">
+	<![CDATA[
+		UPDATE HP_ELEMENTS_D
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpElementsD.delete">
+	<![CDATA[
+		DELETE HP_ELEMENTS_D
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

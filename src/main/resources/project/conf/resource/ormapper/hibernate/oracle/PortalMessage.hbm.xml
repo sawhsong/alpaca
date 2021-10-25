@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_MESSAGE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalMessage" table="PORTAL_MESSAGE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="messageId" column="MESSAGE_ID" type="java.lang.Double"></id>
+
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="expiryDate" column="EXPIRY_DATE" type="java.util.Date"/>
+		<property name="generationType" column="GENERATION_TYPE" type="java.lang.String" length="50"/>
+		<property name="messageBody" column="MESSAGE_BODY" type="java.lang.String" length="4000"/>
+		<property name="messageCategory" column="MESSAGE_CATEGORY" type="java.lang.String" length="50"/>
+		<property name="messageClassification" column="MESSAGE_CLASSIFICATION" type="java.lang.String" length="50"/>
+		<property name="messageDestination" column="MESSAGE_DESTINATION" type="java.lang.String" length="10"/>
+		<property name="messageReceiver" column="MESSAGE_RECEIVER" type="java.lang.Double"/>
+		<property name="messageSource" column="MESSAGE_SOURCE" type="java.lang.String" length="10"/>
+		<property name="messageStatus" column="MESSAGE_STATUS" type="java.lang.String" length="1"/>
+		<property name="messageSubject" column="MESSAGE_SUBJECT" type="java.lang.String" length="250"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+		<property name="receiverType" column="RECEIVER_TYPE" type="java.lang.String" length="20"/>
+		<property name="visibleDate" column="VISIBLE_DATE" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="portalMessage.selectAll">
+	<![CDATA[
+		SELECT MESSAGE_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       TO_CHAR(EXPIRY_DATE, 'yyyymmddhh24miss') AS EXPIRY_DATE,
+		       GENERATION_TYPE,
+		       MESSAGE_BODY,
+		       MESSAGE_CATEGORY,
+		       MESSAGE_CLASSIFICATION,
+		       MESSAGE_DESTINATION,
+		       MESSAGE_RECEIVER,
+		       MESSAGE_SOURCE,
+		       MESSAGE_STATUS,
+		       MESSAGE_SUBJECT,
+		       ORGANISATION_ID,
+		       PERSON_ID,
+		       RECEIVER_TYPE,
+		       TO_CHAR(VISIBLE_DATE, 'yyyymmddhh24miss') AS VISIBLE_DATE
+		  FROM PORTAL_MESSAGE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalMessage.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_MESSAGE (
+		       MESSAGE_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       EXPIRY_DATE,
+		       GENERATION_TYPE,
+		       MESSAGE_BODY,
+		       MESSAGE_CATEGORY,
+		       MESSAGE_CLASSIFICATION,
+		       MESSAGE_DESTINATION,
+		       MESSAGE_RECEIVER,
+		       MESSAGE_SOURCE,
+		       MESSAGE_STATUS,
+		       MESSAGE_SUBJECT,
+		       ORGANISATION_ID,
+		       PERSON_ID,
+		       RECEIVER_TYPE,
+		       VISIBLE_DATE
+		       )
+		VALUES (
+		       ${MESSAGE_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${EXPIRY_DATE},
+		       ${GENERATION_TYPE},
+		       ${MESSAGE_BODY},
+		       ${MESSAGE_CATEGORY},
+		       ${MESSAGE_CLASSIFICATION},
+		       ${MESSAGE_DESTINATION},
+		       ${MESSAGE_RECEIVER},
+		       ${MESSAGE_SOURCE},
+		       ${MESSAGE_STATUS},
+		       ${MESSAGE_SUBJECT},
+		       ${ORGANISATION_ID},
+		       ${PERSON_ID},
+		       ${RECEIVER_TYPE},
+		       ${VISIBLE_DATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalMessage.update">
+	<![CDATA[
+		UPDATE PORTAL_MESSAGE
+		   SET BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       EXPIRY_DATE = ${EXPIRY_DATE},
+		       GENERATION_TYPE = ${GENERATION_TYPE},
+		       MESSAGE_BODY = ${MESSAGE_BODY},
+		       MESSAGE_CATEGORY = ${MESSAGE_CATEGORY},
+		       MESSAGE_CLASSIFICATION = ${MESSAGE_CLASSIFICATION},
+		       MESSAGE_DESTINATION = ${MESSAGE_DESTINATION},
+		       MESSAGE_RECEIVER = ${MESSAGE_RECEIVER},
+		       MESSAGE_SOURCE = ${MESSAGE_SOURCE},
+		       MESSAGE_STATUS = ${MESSAGE_STATUS},
+		       MESSAGE_SUBJECT = ${MESSAGE_SUBJECT},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       PERSON_ID = ${PERSON_ID},
+		       RECEIVER_TYPE = ${RECEIVER_TYPE},
+		       VISIBLE_DATE = ${VISIBLE_DATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalMessage.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_MESSAGE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalMessage.delete">
+	<![CDATA[
+		DELETE PORTAL_MESSAGE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

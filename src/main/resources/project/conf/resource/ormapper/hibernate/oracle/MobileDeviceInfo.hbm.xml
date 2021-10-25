@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - MOBILE_DEVICE_INFO - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.MobileDeviceInfo" table="MOBILE_DEVICE_INFO" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="mobileDeviceInfoId" column="MOBILE_DEVICE_INFO_ID" type="java.lang.Double"></id>
+
+		<property name="active" column="ACTIVE" type="java.lang.String" length="1"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="deviceDescription" column="DEVICE_DESCRIPTION" type="java.lang.String" length="1000"/>
+		<property name="deviceId" column="DEVICE_ID" type="java.lang.String" length="200"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="mobileNumber" column="MOBILE_NUMBER" type="java.lang.String" length="15"/>
+		<property name="userId" column="USER_ID" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="mobileDeviceInfo.selectAll">
+	<![CDATA[
+		SELECT MOBILE_DEVICE_INFO_ID,
+		       ACTIVE,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       DEVICE_DESCRIPTION,
+		       DEVICE_ID,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       MOBILE_NUMBER,
+		       USER_ID
+		  FROM MOBILE_DEVICE_INFO
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="mobileDeviceInfo.insert">
+	<![CDATA[
+		INSERT INTO MOBILE_DEVICE_INFO (
+		       MOBILE_DEVICE_INFO_ID,
+		       ACTIVE,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       DEVICE_DESCRIPTION,
+		       DEVICE_ID,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       MOBILE_NUMBER,
+		       USER_ID
+		       )
+		VALUES (
+		       ${MOBILE_DEVICE_INFO_ID},
+		       ${ACTIVE},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${DEVICE_DESCRIPTION},
+		       ${DEVICE_ID},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${MOBILE_NUMBER},
+		       ${USER_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="mobileDeviceInfo.update">
+	<![CDATA[
+		UPDATE MOBILE_DEVICE_INFO
+		   SET ACTIVE = ${ACTIVE},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       DEVICE_DESCRIPTION = ${DEVICE_DESCRIPTION},
+		       DEVICE_ID = ${DEVICE_ID},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       MOBILE_NUMBER = ${MOBILE_NUMBER},
+		       USER_ID = ${USER_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="mobileDeviceInfo.updateColumns">
+	<![CDATA[
+		UPDATE MOBILE_DEVICE_INFO
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="mobileDeviceInfo.delete">
+	<![CDATA[
+		DELETE MOBILE_DEVICE_INFO
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

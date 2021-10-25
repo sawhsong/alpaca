@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - STP_PAYER - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.StpPayer" table="STP_PAYER" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="abnId" column="ABN_ID" type="java.lang.String" length="15"/>
+		<property name="amendmentI" column="AMENDMENT_I" type="java.lang.String" length="1"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="countryC" column="COUNTRY_C" type="java.lang.String" length="2"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="emailT" column="EMAIL_T" type="java.lang.String" length="200"/>
+		<property name="fileId" column="FILE_ID" type="java.lang.Double"/>
+		<property name="interactionRecordCt" column="INTERACTION_RECORD_CT" type="java.lang.Double"/>
+		<property name="interactionTransId" column="INTERACTION_TRANS_ID" type="java.lang.String" length="200"/>
+		<property name="intermediaryBusinessId" column="INTERMEDIARY_BUSINESS_ID" type="java.lang.String" length="11"/>
+		<property name="intEmail" column="INT_EMAIL" type="java.lang.String" length="200"/>
+		<property name="intFullName" column="INT_FULL_NAME" type="java.lang.String" length="200"/>
+		<property name="intPhone" column="INT_PHONE" type="java.lang.String" length="16"/>
+		<property name="intSignatoryId" column="INT_SIGNATORY_ID" type="java.lang.String" length="200"/>
+		<property name="intSignatureD" column="INT_SIGNATURE_D" type="java.util.Date"/>
+		<property name="intStatementAccept" column="INT_STATEMENT_ACCEPT" type="java.lang.String" length="1"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="line1T" column="LINE1_T" type="java.lang.String" length="38"/>
+		<property name="line2T" column="LINE2_T" type="java.lang.String" length="38"/>
+		<property name="localityNameT" column="LOCALITY_NAME_T" type="java.lang.String" length="45"/>
+		<property name="msgTimestampGen" column="MSG_TIMESTAMP_GEN" type="java.lang.String" length="100"/>
+		<property name="orgBranchC" column="ORG_BRANCH_C" type="java.lang.String" length="60"/>
+		<property name="orgNameT" column="ORG_NAME_T" type="java.lang.String" length="200"/>
+		<property name="payerId" column="PAYER_ID" type="java.lang.Double"/>
+		<property name="paygTaxWh" column="PAYG_TAX_WH" type="java.lang.Double"/>
+		<property name="payRecordTrans" column="PAY_RECORD_TRANS" type="java.lang.String" length="50"/>
+		<property name="personFullName" column="PERSON_FULL_NAME" type="java.lang.String" length="200"/>
+		<property name="phoneMinN" column="PHONE_MIN_N" type="java.lang.String" length="16"/>
+		<property name="postcodeT" column="POSTCODE_T" type="java.lang.String" length="4"/>
+		<property name="signatoryIdentifier" column="SIGNATORY_IDENTIFIER" type="java.lang.String" length="200"/>
+		<property name="signatureD" column="SIGNATURE_D" type="java.lang.String" length="50"/>
+		<property name="softwareBmsId" column="SOFTWARE_BMS_ID" type="java.lang.String" length="200"/>
+		<property name="state" column="STATE" type="java.lang.String" length="10"/>
+		<property name="statementAccepted" column="STATEMENT_ACCEPTED" type="java.lang.String" length="1"/>
+		<property name="taxAgentId" column="TAX_AGENT_ID" type="java.lang.String" length="8"/>
+		<property name="totalGrossPayment" column="TOTAL_GROSS_PAYMENT" type="java.lang.Double"/>
+		<property name="whPayerId" column="WH_PAYER_ID" type="java.lang.String" length="15"/>
+	</class>
+
+	<sql-query name="stpPayer.selectAll">
+	<![CDATA[
+		SELECT ABN_ID,
+		       AMENDMENT_I,
+		       BUSINESS_GROUP_ID,
+		       COUNTRY_C,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       EMAIL_T,
+		       FILE_ID,
+		       INTERACTION_RECORD_CT,
+		       INTERACTION_TRANS_ID,
+		       INTERMEDIARY_BUSINESS_ID,
+		       INT_EMAIL,
+		       INT_FULL_NAME,
+		       INT_PHONE,
+		       INT_SIGNATORY_ID,
+		       TO_CHAR(INT_SIGNATURE_D, 'yyyymmddhh24miss') AS INT_SIGNATURE_D,
+		       INT_STATEMENT_ACCEPT,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       LINE1_T,
+		       LINE2_T,
+		       LOCALITY_NAME_T,
+		       MSG_TIMESTAMP_GEN,
+		       ORG_BRANCH_C,
+		       ORG_NAME_T,
+		       PAYER_ID,
+		       PAYG_TAX_WH,
+		       PAY_RECORD_TRANS,
+		       PERSON_FULL_NAME,
+		       PHONE_MIN_N,
+		       POSTCODE_T,
+		       SIGNATORY_IDENTIFIER,
+		       SIGNATURE_D,
+		       SOFTWARE_BMS_ID,
+		       STATE,
+		       STATEMENT_ACCEPTED,
+		       TAX_AGENT_ID,
+		       TOTAL_GROSS_PAYMENT,
+		       WH_PAYER_ID
+		  FROM STP_PAYER
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="stpPayer.insert">
+	<![CDATA[
+		INSERT INTO STP_PAYER (
+		       ABN_ID,
+		       AMENDMENT_I,
+		       BUSINESS_GROUP_ID,
+		       COUNTRY_C,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       EMAIL_T,
+		       FILE_ID,
+		       INTERACTION_RECORD_CT,
+		       INTERACTION_TRANS_ID,
+		       INTERMEDIARY_BUSINESS_ID,
+		       INT_EMAIL,
+		       INT_FULL_NAME,
+		       INT_PHONE,
+		       INT_SIGNATORY_ID,
+		       INT_SIGNATURE_D,
+		       INT_STATEMENT_ACCEPT,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       LINE1_T,
+		       LINE2_T,
+		       LOCALITY_NAME_T,
+		       MSG_TIMESTAMP_GEN,
+		       ORG_BRANCH_C,
+		       ORG_NAME_T,
+		       PAYER_ID,
+		       PAYG_TAX_WH,
+		       PAY_RECORD_TRANS,
+		       PERSON_FULL_NAME,
+		       PHONE_MIN_N,
+		       POSTCODE_T,
+		       SIGNATORY_IDENTIFIER,
+		       SIGNATURE_D,
+		       SOFTWARE_BMS_ID,
+		       STATE,
+		       STATEMENT_ACCEPTED,
+		       TAX_AGENT_ID,
+		       TOTAL_GROSS_PAYMENT,
+		       WH_PAYER_ID
+		       )
+		VALUES (
+		       ${ABN_ID},
+		       ${AMENDMENT_I},
+		       ${BUSINESS_GROUP_ID},
+		       ${COUNTRY_C},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${EMAIL_T},
+		       ${FILE_ID},
+		       ${INTERACTION_RECORD_CT},
+		       ${INTERACTION_TRANS_ID},
+		       ${INTERMEDIARY_BUSINESS_ID},
+		       ${INT_EMAIL},
+		       ${INT_FULL_NAME},
+		       ${INT_PHONE},
+		       ${INT_SIGNATORY_ID},
+		       ${INT_SIGNATURE_D},
+		       ${INT_STATEMENT_ACCEPT},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${LINE1_T},
+		       ${LINE2_T},
+		       ${LOCALITY_NAME_T},
+		       ${MSG_TIMESTAMP_GEN},
+		       ${ORG_BRANCH_C},
+		       ${ORG_NAME_T},
+		       ${PAYER_ID},
+		       ${PAYG_TAX_WH},
+		       ${PAY_RECORD_TRANS},
+		       ${PERSON_FULL_NAME},
+		       ${PHONE_MIN_N},
+		       ${POSTCODE_T},
+		       ${SIGNATORY_IDENTIFIER},
+		       ${SIGNATURE_D},
+		       ${SOFTWARE_BMS_ID},
+		       ${STATE},
+		       ${STATEMENT_ACCEPTED},
+		       ${TAX_AGENT_ID},
+		       ${TOTAL_GROSS_PAYMENT},
+		       ${WH_PAYER_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="stpPayer.update">
+	<![CDATA[
+		UPDATE STP_PAYER
+		   SET ABN_ID = ${ABN_ID},
+		       AMENDMENT_I = ${AMENDMENT_I},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       COUNTRY_C = ${COUNTRY_C},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       EMAIL_T = ${EMAIL_T},
+		       FILE_ID = ${FILE_ID},
+		       INTERACTION_RECORD_CT = ${INTERACTION_RECORD_CT},
+		       INTERACTION_TRANS_ID = ${INTERACTION_TRANS_ID},
+		       INTERMEDIARY_BUSINESS_ID = ${INTERMEDIARY_BUSINESS_ID},
+		       INT_EMAIL = ${INT_EMAIL},
+		       INT_FULL_NAME = ${INT_FULL_NAME},
+		       INT_PHONE = ${INT_PHONE},
+		       INT_SIGNATORY_ID = ${INT_SIGNATORY_ID},
+		       INT_SIGNATURE_D = ${INT_SIGNATURE_D},
+		       INT_STATEMENT_ACCEPT = ${INT_STATEMENT_ACCEPT},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       LINE1_T = ${LINE1_T},
+		       LINE2_T = ${LINE2_T},
+		       LOCALITY_NAME_T = ${LOCALITY_NAME_T},
+		       MSG_TIMESTAMP_GEN = ${MSG_TIMESTAMP_GEN},
+		       ORG_BRANCH_C = ${ORG_BRANCH_C},
+		       ORG_NAME_T = ${ORG_NAME_T},
+		       PAYER_ID = ${PAYER_ID},
+		       PAYG_TAX_WH = ${PAYG_TAX_WH},
+		       PAY_RECORD_TRANS = ${PAY_RECORD_TRANS},
+		       PERSON_FULL_NAME = ${PERSON_FULL_NAME},
+		       PHONE_MIN_N = ${PHONE_MIN_N},
+		       POSTCODE_T = ${POSTCODE_T},
+		       SIGNATORY_IDENTIFIER = ${SIGNATORY_IDENTIFIER},
+		       SIGNATURE_D = ${SIGNATURE_D},
+		       SOFTWARE_BMS_ID = ${SOFTWARE_BMS_ID},
+		       STATE = ${STATE},
+		       STATEMENT_ACCEPTED = ${STATEMENT_ACCEPTED},
+		       TAX_AGENT_ID = ${TAX_AGENT_ID},
+		       TOTAL_GROSS_PAYMENT = ${TOTAL_GROSS_PAYMENT},
+		       WH_PAYER_ID = ${WH_PAYER_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="stpPayer.updateColumns">
+	<![CDATA[
+		UPDATE STP_PAYER
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="stpPayer.delete">
+	<![CDATA[
+		DELETE STP_PAYER
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

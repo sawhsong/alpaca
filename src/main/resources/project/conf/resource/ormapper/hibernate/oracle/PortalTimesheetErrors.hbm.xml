@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_TIMESHEET_ERRORS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalTimesheetErrors" table="PORTAL_TIMESHEET_ERRORS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="errorDetails" column="ERROR_DETAILS" type="java.lang.String" length="500"/>
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+		<property name="processId" column="PROCESS_ID" type="java.lang.Double"/>
+		<property name="processTime" column="PROCESS_TIME" type="java.util.Date"/>
+		<property name="submissionId" column="SUBMISSION_ID" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="portalTimesheetErrors.selectAll">
+	<![CDATA[
+		SELECT ERROR_DETAILS,
+		       PERSON_ID,
+		       PROCESS_ID,
+		       TO_CHAR(PROCESS_TIME, 'yyyymmddhh24miss') AS PROCESS_TIME,
+		       SUBMISSION_ID
+		  FROM PORTAL_TIMESHEET_ERRORS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalTimesheetErrors.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_TIMESHEET_ERRORS (
+		       ERROR_DETAILS,
+		       PERSON_ID,
+		       PROCESS_ID,
+		       PROCESS_TIME,
+		       SUBMISSION_ID
+		       )
+		VALUES (
+		       ${ERROR_DETAILS},
+		       ${PERSON_ID},
+		       ${PROCESS_ID},
+		       ${PROCESS_TIME},
+		       ${SUBMISSION_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalTimesheetErrors.update">
+	<![CDATA[
+		UPDATE PORTAL_TIMESHEET_ERRORS
+		   SET ERROR_DETAILS = ${ERROR_DETAILS},
+		       PERSON_ID = ${PERSON_ID},
+		       PROCESS_ID = ${PROCESS_ID},
+		       PROCESS_TIME = ${PROCESS_TIME},
+		       SUBMISSION_ID = ${SUBMISSION_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalTimesheetErrors.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_TIMESHEET_ERRORS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalTimesheetErrors.delete">
+	<![CDATA[
+		DELETE PORTAL_TIMESHEET_ERRORS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

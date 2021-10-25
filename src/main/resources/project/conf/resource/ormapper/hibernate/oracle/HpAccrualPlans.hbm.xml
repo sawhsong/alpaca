@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_ACCRUAL_PLANS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpAccrualPlans" table="HP_ACCRUAL_PLANS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="planId" column="PLAN_ID" type="java.lang.Double"></id>
+
+		<property name="accrualName" column="ACCRUAL_NAME" type="java.lang.String" length="50"/>
+		<property name="accrualType" column="ACCRUAL_TYPE" type="java.lang.String" length="50"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="description" column="DESCRIPTION" type="java.lang.String" length="4000"/>
+		<property name="displayName" column="DISPLAY_NAME" type="java.lang.String" length="50"/>
+		<property name="elementId" column="ELEMENT_ID" type="java.lang.Double"/>
+		<property name="noOfHours" column="NO_OF_HOURS" type="java.lang.Double"/>
+		<property name="totalAnnualHours" column="TOTAL_ANNUAL_HOURS" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="hpAccrualPlans.selectAll">
+	<![CDATA[
+		SELECT PLAN_ID,
+		       ACCRUAL_NAME,
+		       ACCRUAL_TYPE,
+		       BUSINESS_GROUP_ID,
+		       DESCRIPTION,
+		       DISPLAY_NAME,
+		       ELEMENT_ID,
+		       NO_OF_HOURS,
+		       TOTAL_ANNUAL_HOURS
+		  FROM HP_ACCRUAL_PLANS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAccrualPlans.insert">
+	<![CDATA[
+		INSERT INTO HP_ACCRUAL_PLANS (
+		       PLAN_ID,
+		       ACCRUAL_NAME,
+		       ACCRUAL_TYPE,
+		       BUSINESS_GROUP_ID,
+		       DESCRIPTION,
+		       DISPLAY_NAME,
+		       ELEMENT_ID,
+		       NO_OF_HOURS,
+		       TOTAL_ANNUAL_HOURS
+		       )
+		VALUES (
+		       ${PLAN_ID},
+		       ${ACCRUAL_NAME},
+		       ${ACCRUAL_TYPE},
+		       ${BUSINESS_GROUP_ID},
+		       ${DESCRIPTION},
+		       ${DISPLAY_NAME},
+		       ${ELEMENT_ID},
+		       ${NO_OF_HOURS},
+		       ${TOTAL_ANNUAL_HOURS}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAccrualPlans.update">
+	<![CDATA[
+		UPDATE HP_ACCRUAL_PLANS
+		   SET ACCRUAL_NAME = ${ACCRUAL_NAME},
+		       ACCRUAL_TYPE = ${ACCRUAL_TYPE},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       DESCRIPTION = ${DESCRIPTION},
+		       DISPLAY_NAME = ${DISPLAY_NAME},
+		       ELEMENT_ID = ${ELEMENT_ID},
+		       NO_OF_HOURS = ${NO_OF_HOURS},
+		       TOTAL_ANNUAL_HOURS = ${TOTAL_ANNUAL_HOURS}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAccrualPlans.updateColumns">
+	<![CDATA[
+		UPDATE HP_ACCRUAL_PLANS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpAccrualPlans.delete">
+	<![CDATA[
+		DELETE HP_ACCRUAL_PLANS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

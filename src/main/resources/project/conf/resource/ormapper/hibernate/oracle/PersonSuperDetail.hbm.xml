@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PERSON_SUPER_DETAIL - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PersonSuperDetail" table="PERSON_SUPER_DETAIL" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="superId" column="SUPER_ID" type="java.lang.Double"></id>
+
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String" length="500"/>
+		<property name="contributionMethod" column="CONTRIBUTION_METHOD" type="java.lang.String" length="150"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="dateJoinedFund" column="DATE_JOINED_FUND" type="java.util.Date"/>
+		<property name="frequency" column="FREQUENCY" type="java.lang.String" length="150"/>
+		<property name="fundType" column="FUND_TYPE" type="java.lang.String" length="150"/>
+		<property name="hoursWorked" column="HOURS_WORKED" type="java.lang.String" length="150"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="membershipNo" column="MEMBERSHIP_NO" type="java.lang.String" length="50"/>
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+		<property name="superFundId" column="SUPER_FUND_ID" type="java.lang.Double"/>
+		<property name="typeOfEmployment" column="TYPE_OF_EMPLOYMENT" type="java.lang.String" length="150"/>
+	</class>
+
+	<sql-query name="personSuperDetail.selectAll">
+	<![CDATA[
+		SELECT SUPER_ID,
+		       BUSINESS_GROUP_ID,
+		       COMMENTS,
+		       CONTRIBUTION_METHOD,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       TO_CHAR(DATE_JOINED_FUND, 'yyyymmddhh24miss') AS DATE_JOINED_FUND,
+		       FREQUENCY,
+		       FUND_TYPE,
+		       HOURS_WORKED,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       MEMBERSHIP_NO,
+		       PERSON_ID,
+		       SUPER_FUND_ID,
+		       TYPE_OF_EMPLOYMENT
+		  FROM PERSON_SUPER_DETAIL
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="personSuperDetail.insert">
+	<![CDATA[
+		INSERT INTO PERSON_SUPER_DETAIL (
+		       SUPER_ID,
+		       BUSINESS_GROUP_ID,
+		       COMMENTS,
+		       CONTRIBUTION_METHOD,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       DATE_JOINED_FUND,
+		       FREQUENCY,
+		       FUND_TYPE,
+		       HOURS_WORKED,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       MEMBERSHIP_NO,
+		       PERSON_ID,
+		       SUPER_FUND_ID,
+		       TYPE_OF_EMPLOYMENT
+		       )
+		VALUES (
+		       ${SUPER_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${COMMENTS},
+		       ${CONTRIBUTION_METHOD},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${DATE_JOINED_FUND},
+		       ${FREQUENCY},
+		       ${FUND_TYPE},
+		       ${HOURS_WORKED},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${MEMBERSHIP_NO},
+		       ${PERSON_ID},
+		       ${SUPER_FUND_ID},
+		       ${TYPE_OF_EMPLOYMENT}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="personSuperDetail.update">
+	<![CDATA[
+		UPDATE PERSON_SUPER_DETAIL
+		   SET BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       COMMENTS = ${COMMENTS},
+		       CONTRIBUTION_METHOD = ${CONTRIBUTION_METHOD},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       DATE_JOINED_FUND = ${DATE_JOINED_FUND},
+		       FREQUENCY = ${FREQUENCY},
+		       FUND_TYPE = ${FUND_TYPE},
+		       HOURS_WORKED = ${HOURS_WORKED},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       MEMBERSHIP_NO = ${MEMBERSHIP_NO},
+		       PERSON_ID = ${PERSON_ID},
+		       SUPER_FUND_ID = ${SUPER_FUND_ID},
+		       TYPE_OF_EMPLOYMENT = ${TYPE_OF_EMPLOYMENT}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="personSuperDetail.updateColumns">
+	<![CDATA[
+		UPDATE PERSON_SUPER_DETAIL
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="personSuperDetail.delete">
+	<![CDATA[
+		DELETE PERSON_SUPER_DETAIL
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

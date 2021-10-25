@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_PERSON_STAGE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalPersonStage" table="PORTAL_PERSON_STAGE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="submissionId" column="SUBMISSION_ID" type="java.lang.Double"></id>
+
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="firstName" column="FIRST_NAME" not-null="true" type="java.lang.String" length="100"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="organisationId" column="ORGANISATION_ID" not-null="true" type="java.lang.Double"/>
+		<property name="personId" column="PERSON_ID" not-null="true" type="java.lang.Double"/>
+		<property name="personNumber" column="PERSON_NUMBER" not-null="true" type="java.lang.String" length="50"/>
+		<property name="surname" column="SURNAME" not-null="true" type="java.lang.String" length="60"/>
+		<property name="dateOfBirth" column="DATE_OF_BIRTH" type="java.util.Date"/>
+		<property name="directReportId" column="DIRECT_REPORT_ID" type="java.lang.Double"/>
+		<property name="divisionId" column="DIVISION_ID" type="java.lang.Double"/>
+		<property name="gender" column="GENDER" type="java.lang.String" length="1"/>
+		<property name="middleName" column="MIDDLE_NAME" type="java.lang.String" length="60"/>
+		<property name="personType" column="PERSON_TYPE" type="java.lang.String" length="100"/>
+		<property name="preferredName" column="PREFERRED_NAME" type="java.lang.String" length="150"/>
+		<property name="prefix" column="PREFIX" type="java.lang.String" length="5"/>
+		<property name="title" column="TITLE" type="java.lang.String" length="100"/>
+		<property name="transformed" column="TRANSFORMED" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="portalPersonStage.selectAll">
+	<![CDATA[
+		SELECT SUBMISSION_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       FIRST_NAME,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       ORGANISATION_ID,
+		       PERSON_ID,
+		       PERSON_NUMBER,
+		       SURNAME,
+		       TO_CHAR(DATE_OF_BIRTH, 'yyyymmddhh24miss') AS DATE_OF_BIRTH,
+		       DIRECT_REPORT_ID,
+		       DIVISION_ID,
+		       GENDER,
+		       MIDDLE_NAME,
+		       PERSON_TYPE,
+		       PREFERRED_NAME,
+		       PREFIX,
+		       TITLE,
+		       TRANSFORMED
+		  FROM PORTAL_PERSON_STAGE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalPersonStage.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_PERSON_STAGE (
+		       SUBMISSION_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       FIRST_NAME,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       ORGANISATION_ID,
+		       PERSON_ID,
+		       PERSON_NUMBER,
+		       SURNAME,
+		       DATE_OF_BIRTH,
+		       DIRECT_REPORT_ID,
+		       DIVISION_ID,
+		       GENDER,
+		       MIDDLE_NAME,
+		       PERSON_TYPE,
+		       PREFERRED_NAME,
+		       PREFIX,
+		       TITLE,
+		       TRANSFORMED
+		       )
+		VALUES (
+		       ${SUBMISSION_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${FIRST_NAME},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${ORGANISATION_ID},
+		       ${PERSON_ID},
+		       ${PERSON_NUMBER},
+		       ${SURNAME},
+		       ${DATE_OF_BIRTH},
+		       ${DIRECT_REPORT_ID},
+		       ${DIVISION_ID},
+		       ${GENDER},
+		       ${MIDDLE_NAME},
+		       ${PERSON_TYPE},
+		       ${PREFERRED_NAME},
+		       ${PREFIX},
+		       ${TITLE},
+		       ${TRANSFORMED}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalPersonStage.update">
+	<![CDATA[
+		UPDATE PORTAL_PERSON_STAGE
+		   SET BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       FIRST_NAME = ${FIRST_NAME},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       PERSON_ID = ${PERSON_ID},
+		       PERSON_NUMBER = ${PERSON_NUMBER},
+		       SURNAME = ${SURNAME},
+		       DATE_OF_BIRTH = ${DATE_OF_BIRTH},
+		       DIRECT_REPORT_ID = ${DIRECT_REPORT_ID},
+		       DIVISION_ID = ${DIVISION_ID},
+		       GENDER = ${GENDER},
+		       MIDDLE_NAME = ${MIDDLE_NAME},
+		       PERSON_TYPE = ${PERSON_TYPE},
+		       PREFERRED_NAME = ${PREFERRED_NAME},
+		       PREFIX = ${PREFIX},
+		       TITLE = ${TITLE},
+		       TRANSFORMED = ${TRANSFORMED}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalPersonStage.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_PERSON_STAGE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalPersonStage.delete">
+	<![CDATA[
+		DELETE PORTAL_PERSON_STAGE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - NAV_INVOICE_SYNC - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.NavInvoiceSync" table="NAV_INVOICE_SYNC" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="invoiceId" column="INVOICE_ID" type="java.lang.Double"/>
+		<property name="navDbName" column="NAV_DB_NAME" type="java.lang.String" length="20"/>
+		<property name="syncBy" column="SYNC_BY" type="java.lang.Double"/>
+		<property name="syncDate" column="SYNC_DATE" type="java.util.Date"/>
+		<property name="syncId" column="SYNC_ID" type="java.lang.Double"/>
+		<property name="syncType" column="SYNC_TYPE" type="java.lang.String" length="30"/>
+	</class>
+
+	<sql-query name="navInvoiceSync.selectAll">
+	<![CDATA[
+		SELECT INVOICE_ID,
+		       NAV_DB_NAME,
+		       SYNC_BY,
+		       TO_CHAR(SYNC_DATE, 'yyyymmddhh24miss') AS SYNC_DATE,
+		       SYNC_ID,
+		       SYNC_TYPE
+		  FROM NAV_INVOICE_SYNC
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="navInvoiceSync.insert">
+	<![CDATA[
+		INSERT INTO NAV_INVOICE_SYNC (
+		       INVOICE_ID,
+		       NAV_DB_NAME,
+		       SYNC_BY,
+		       SYNC_DATE,
+		       SYNC_ID,
+		       SYNC_TYPE
+		       )
+		VALUES (
+		       ${INVOICE_ID},
+		       ${NAV_DB_NAME},
+		       ${SYNC_BY},
+		       ${SYNC_DATE},
+		       ${SYNC_ID},
+		       ${SYNC_TYPE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="navInvoiceSync.update">
+	<![CDATA[
+		UPDATE NAV_INVOICE_SYNC
+		   SET INVOICE_ID = ${INVOICE_ID},
+		       NAV_DB_NAME = ${NAV_DB_NAME},
+		       SYNC_BY = ${SYNC_BY},
+		       SYNC_DATE = ${SYNC_DATE},
+		       SYNC_ID = ${SYNC_ID},
+		       SYNC_TYPE = ${SYNC_TYPE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="navInvoiceSync.updateColumns">
+	<![CDATA[
+		UPDATE NAV_INVOICE_SYNC
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="navInvoiceSync.delete">
+	<![CDATA[
+		DELETE NAV_INVOICE_SYNC
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

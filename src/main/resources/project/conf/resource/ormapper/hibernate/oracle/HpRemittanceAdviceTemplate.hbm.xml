@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_REMITTANCE_ADVICE_TEMPLATE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpRemittanceAdviceTemplate" table="HP_REMITTANCE_ADVICE_TEMPLATE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="abn" column="ABN" type="java.lang.String" length="100"/>
+		<property name="addressDetails" column="ADDRESS_DETAILS" type="java.lang.String" length="4000"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String" length="4000"/>
+		<property name="consultingRevenueYN" column="CONSULTING_REVENUE_Y_N" type="java.lang.String" length="1"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="deductionsYN" column="DEDUCTIONS_Y_N" type="java.lang.String" length="1"/>
+		<property name="emailBodyTemplate" column="EMAIL_BODY_TEMPLATE" type="java.lang.String" length="4000"/>
+		<property name="employmentOrgId" column="EMPLOYMENT_ORG_ID" type="java.lang.Double"/>
+		<property name="generalInfoYN" column="GENERAL_INFO_Y_N" type="java.lang.String" length="1"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdatedDate" column="LAST_UPDATED_DATE" type="java.util.Date"/>
+		<property name="leaveAccrualsYN" column="LEAVE_ACCRUALS_Y_N" type="java.lang.String" length="1"/>
+		<property name="logoName" column="LOGO_NAME" type="java.lang.String" length="100"/>
+		<property name="paymentAdviceYN" column="PAYMENT_ADVICE_Y_N" type="java.lang.String" length="1"/>
+		<property name="payAdviceYN" column="PAY_ADVICE_Y_N" type="java.lang.String" length="1"/>
+		<property name="recipientCompanyId" column="RECIPIENT_COMPANY_ID" type="java.lang.Double"/>
+		<property name="remittanceAdviceTemplateId" column="REMITTANCE_ADVICE_TEMPLATE_ID" type="java.lang.Double"/>
+		<property name="senderEmailAddress" column="SENDER_EMAIL_ADDRESS" type="java.lang.String" length="200"/>
+		<property name="showZeroYN" column="SHOW_ZERO_Y_N" type="java.lang.String" length="1"/>
+		<property name="templateName" column="TEMPLATE_NAME" type="java.lang.String" length="100"/>
+		<property name="templateType" column="TEMPLATE_TYPE" type="java.lang.String" length="30"/>
+		<property name="xlTemplateName" column="XL_TEMPLATE_NAME" type="java.lang.String" length="100"/>
+	</class>
+
+	<sql-query name="hpRemittanceAdviceTemplate.selectAll">
+	<![CDATA[
+		SELECT ABN,
+		       ADDRESS_DETAILS,
+		       COMMENTS,
+		       CONSULTING_REVENUE_Y_N,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       DEDUCTIONS_Y_N,
+		       EMAIL_BODY_TEMPLATE,
+		       EMPLOYMENT_ORG_ID,
+		       GENERAL_INFO_Y_N,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATED_DATE, 'yyyymmddhh24miss') AS LAST_UPDATED_DATE,
+		       LEAVE_ACCRUALS_Y_N,
+		       LOGO_NAME,
+		       PAYMENT_ADVICE_Y_N,
+		       PAY_ADVICE_Y_N,
+		       RECIPIENT_COMPANY_ID,
+		       REMITTANCE_ADVICE_TEMPLATE_ID,
+		       SENDER_EMAIL_ADDRESS,
+		       SHOW_ZERO_Y_N,
+		       TEMPLATE_NAME,
+		       TEMPLATE_TYPE,
+		       XL_TEMPLATE_NAME
+		  FROM HP_REMITTANCE_ADVICE_TEMPLATE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpRemittanceAdviceTemplate.insert">
+	<![CDATA[
+		INSERT INTO HP_REMITTANCE_ADVICE_TEMPLATE (
+		       ABN,
+		       ADDRESS_DETAILS,
+		       COMMENTS,
+		       CONSULTING_REVENUE_Y_N,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       DEDUCTIONS_Y_N,
+		       EMAIL_BODY_TEMPLATE,
+		       EMPLOYMENT_ORG_ID,
+		       GENERAL_INFO_Y_N,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATED_DATE,
+		       LEAVE_ACCRUALS_Y_N,
+		       LOGO_NAME,
+		       PAYMENT_ADVICE_Y_N,
+		       PAY_ADVICE_Y_N,
+		       RECIPIENT_COMPANY_ID,
+		       REMITTANCE_ADVICE_TEMPLATE_ID,
+		       SENDER_EMAIL_ADDRESS,
+		       SHOW_ZERO_Y_N,
+		       TEMPLATE_NAME,
+		       TEMPLATE_TYPE,
+		       XL_TEMPLATE_NAME
+		       )
+		VALUES (
+		       ${ABN},
+		       ${ADDRESS_DETAILS},
+		       ${COMMENTS},
+		       ${CONSULTING_REVENUE_Y_N},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${DEDUCTIONS_Y_N},
+		       ${EMAIL_BODY_TEMPLATE},
+		       ${EMPLOYMENT_ORG_ID},
+		       ${GENERAL_INFO_Y_N},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATED_DATE},
+		       ${LEAVE_ACCRUALS_Y_N},
+		       ${LOGO_NAME},
+		       ${PAYMENT_ADVICE_Y_N},
+		       ${PAY_ADVICE_Y_N},
+		       ${RECIPIENT_COMPANY_ID},
+		       ${REMITTANCE_ADVICE_TEMPLATE_ID},
+		       ${SENDER_EMAIL_ADDRESS},
+		       ${SHOW_ZERO_Y_N},
+		       ${TEMPLATE_NAME},
+		       ${TEMPLATE_TYPE},
+		       ${XL_TEMPLATE_NAME}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpRemittanceAdviceTemplate.update">
+	<![CDATA[
+		UPDATE HP_REMITTANCE_ADVICE_TEMPLATE
+		   SET ABN = ${ABN},
+		       ADDRESS_DETAILS = ${ADDRESS_DETAILS},
+		       COMMENTS = ${COMMENTS},
+		       CONSULTING_REVENUE_Y_N = ${CONSULTING_REVENUE_Y_N},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       DEDUCTIONS_Y_N = ${DEDUCTIONS_Y_N},
+		       EMAIL_BODY_TEMPLATE = ${EMAIL_BODY_TEMPLATE},
+		       EMPLOYMENT_ORG_ID = ${EMPLOYMENT_ORG_ID},
+		       GENERAL_INFO_Y_N = ${GENERAL_INFO_Y_N},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATED_DATE = ${LAST_UPDATED_DATE},
+		       LEAVE_ACCRUALS_Y_N = ${LEAVE_ACCRUALS_Y_N},
+		       LOGO_NAME = ${LOGO_NAME},
+		       PAYMENT_ADVICE_Y_N = ${PAYMENT_ADVICE_Y_N},
+		       PAY_ADVICE_Y_N = ${PAY_ADVICE_Y_N},
+		       RECIPIENT_COMPANY_ID = ${RECIPIENT_COMPANY_ID},
+		       REMITTANCE_ADVICE_TEMPLATE_ID = ${REMITTANCE_ADVICE_TEMPLATE_ID},
+		       SENDER_EMAIL_ADDRESS = ${SENDER_EMAIL_ADDRESS},
+		       SHOW_ZERO_Y_N = ${SHOW_ZERO_Y_N},
+		       TEMPLATE_NAME = ${TEMPLATE_NAME},
+		       TEMPLATE_TYPE = ${TEMPLATE_TYPE},
+		       XL_TEMPLATE_NAME = ${XL_TEMPLATE_NAME}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpRemittanceAdviceTemplate.updateColumns">
+	<![CDATA[
+		UPDATE HP_REMITTANCE_ADVICE_TEMPLATE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpRemittanceAdviceTemplate.delete">
+	<![CDATA[
+		DELETE HP_REMITTANCE_ADVICE_TEMPLATE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

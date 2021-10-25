@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_CONTRACTS_D - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpContractsD" table="HP_CONTRACTS_D" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="clientCompany" column="CLIENT_COMPANY" type="java.lang.String" length="200"/>
+		<property name="contractActive" column="CONTRACT_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="contractId" column="CONTRACT_ID" type="java.lang.Double"/>
+		<property name="contractSigned" column="CONTRACT_SIGNED" type="java.lang.String" length="1"/>
+		<property name="contractType" column="CONTRACT_TYPE" type="java.lang.String" length="200"/>
+		<property name="contractVerified" column="CONTRACT_VERIFIED" type="java.lang.String" length="3"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="curAgreementEndDate" column="CUR_AGREEMENT_END_DATE" type="java.util.Date"/>
+		<property name="curAgreementStartDate" column="CUR_AGREEMENT_START_DATE" type="java.util.Date"/>
+		<property name="directorGurantee" column="DIRECTOR_GURANTEE" type="java.lang.String" length="200"/>
+		<property name="eboInvoicing" column="EBO_INVOICING" type="java.lang.String" length="100"/>
+		<property name="empEngagementType" column="EMP_ENGAGEMENT_TYPE" type="java.lang.String" length="500"/>
+		<property name="engagingEntity" column="ENGAGING_ENTITY" type="java.lang.String" length="1000"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="lateFee" column="LATE_FEE" type="java.lang.String" length="200"/>
+		<property name="margin" column="MARGIN" type="java.lang.String" length="100"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="orgAgreementDate" column="ORG_AGREEMENT_DATE" type="java.util.Date"/>
+		<property name="paymentTerms" column="PAYMENT_TERMS" type="java.lang.String" length="100"/>
+		<property name="payrollFinance" column="PAYROLL_FINANCE" type="java.lang.String" length="200"/>
+		<property name="remarks" column="REMARKS" type="java.lang.String" length="4000"/>
+		<property name="serviceType" column="SERVICE_TYPE" type="java.lang.String" length="200"/>
+		<property name="stateOfJurisdiction" column="STATE_OF_JURISDICTION" type="java.lang.String" length="100"/>
+		<property name="terminationNotice" column="TERMINATION_NOTICE" type="java.lang.String" length="100"/>
+	</class>
+
+	<sql-query name="hpContractsD.selectAll">
+	<![CDATA[
+		SELECT CLIENT_COMPANY,
+		       CONTRACT_ACTIVE,
+		       CONTRACT_ID,
+		       CONTRACT_SIGNED,
+		       CONTRACT_TYPE,
+		       CONTRACT_VERIFIED,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       TO_CHAR(CUR_AGREEMENT_END_DATE, 'yyyymmddhh24miss') AS CUR_AGREEMENT_END_DATE,
+		       TO_CHAR(CUR_AGREEMENT_START_DATE, 'yyyymmddhh24miss') AS CUR_AGREEMENT_START_DATE,
+		       DIRECTOR_GURANTEE,
+		       EBO_INVOICING,
+		       EMP_ENGAGEMENT_TYPE,
+		       ENGAGING_ENTITY,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       LATE_FEE,
+		       MARGIN,
+		       ORGANISATION_ID,
+		       TO_CHAR(ORG_AGREEMENT_DATE, 'yyyymmddhh24miss') AS ORG_AGREEMENT_DATE,
+		       PAYMENT_TERMS,
+		       PAYROLL_FINANCE,
+		       REMARKS,
+		       SERVICE_TYPE,
+		       STATE_OF_JURISDICTION,
+		       TERMINATION_NOTICE
+		  FROM HP_CONTRACTS_D
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="hpContractsD.insert">
+	<![CDATA[
+		INSERT INTO HP_CONTRACTS_D (
+		       CLIENT_COMPANY,
+		       CONTRACT_ACTIVE,
+		       CONTRACT_ID,
+		       CONTRACT_SIGNED,
+		       CONTRACT_TYPE,
+		       CONTRACT_VERIFIED,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       CUR_AGREEMENT_END_DATE,
+		       CUR_AGREEMENT_START_DATE,
+		       DIRECTOR_GURANTEE,
+		       EBO_INVOICING,
+		       EMP_ENGAGEMENT_TYPE,
+		       ENGAGING_ENTITY,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       LATE_FEE,
+		       MARGIN,
+		       ORGANISATION_ID,
+		       ORG_AGREEMENT_DATE,
+		       PAYMENT_TERMS,
+		       PAYROLL_FINANCE,
+		       REMARKS,
+		       SERVICE_TYPE,
+		       STATE_OF_JURISDICTION,
+		       TERMINATION_NOTICE
+		       )
+		VALUES (
+		       ${CLIENT_COMPANY},
+		       ${CONTRACT_ACTIVE},
+		       ${CONTRACT_ID},
+		       ${CONTRACT_SIGNED},
+		       ${CONTRACT_TYPE},
+		       ${CONTRACT_VERIFIED},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${CUR_AGREEMENT_END_DATE},
+		       ${CUR_AGREEMENT_START_DATE},
+		       ${DIRECTOR_GURANTEE},
+		       ${EBO_INVOICING},
+		       ${EMP_ENGAGEMENT_TYPE},
+		       ${ENGAGING_ENTITY},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${LATE_FEE},
+		       ${MARGIN},
+		       ${ORGANISATION_ID},
+		       ${ORG_AGREEMENT_DATE},
+		       ${PAYMENT_TERMS},
+		       ${PAYROLL_FINANCE},
+		       ${REMARKS},
+		       ${SERVICE_TYPE},
+		       ${STATE_OF_JURISDICTION},
+		       ${TERMINATION_NOTICE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpContractsD.update">
+	<![CDATA[
+		UPDATE HP_CONTRACTS_D
+		   SET CLIENT_COMPANY = ${CLIENT_COMPANY},
+		       CONTRACT_ACTIVE = ${CONTRACT_ACTIVE},
+		       CONTRACT_ID = ${CONTRACT_ID},
+		       CONTRACT_SIGNED = ${CONTRACT_SIGNED},
+		       CONTRACT_TYPE = ${CONTRACT_TYPE},
+		       CONTRACT_VERIFIED = ${CONTRACT_VERIFIED},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       CUR_AGREEMENT_END_DATE = ${CUR_AGREEMENT_END_DATE},
+		       CUR_AGREEMENT_START_DATE = ${CUR_AGREEMENT_START_DATE},
+		       DIRECTOR_GURANTEE = ${DIRECTOR_GURANTEE},
+		       EBO_INVOICING = ${EBO_INVOICING},
+		       EMP_ENGAGEMENT_TYPE = ${EMP_ENGAGEMENT_TYPE},
+		       ENGAGING_ENTITY = ${ENGAGING_ENTITY},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       LATE_FEE = ${LATE_FEE},
+		       MARGIN = ${MARGIN},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       ORG_AGREEMENT_DATE = ${ORG_AGREEMENT_DATE},
+		       PAYMENT_TERMS = ${PAYMENT_TERMS},
+		       PAYROLL_FINANCE = ${PAYROLL_FINANCE},
+		       REMARKS = ${REMARKS},
+		       SERVICE_TYPE = ${SERVICE_TYPE},
+		       STATE_OF_JURISDICTION = ${STATE_OF_JURISDICTION},
+		       TERMINATION_NOTICE = ${TERMINATION_NOTICE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpContractsD.updateColumns">
+	<![CDATA[
+		UPDATE HP_CONTRACTS_D
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpContractsD.delete">
+	<![CDATA[
+		DELETE HP_CONTRACTS_D
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

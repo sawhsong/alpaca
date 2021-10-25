@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - DOC_TEMPLATE_FIELD_CON - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.DocTemplateFieldCon" table="DOC_TEMPLATE_FIELD_CON" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="docTemplateFieldConId" column="DOC_TEMPLATE_FIELD_CON_ID" type="java.lang.Double"></id>
+
+		<property name="condition" column="CONDITION" type="java.lang.String" length="255"/>
+		<property name="docTempFieldId" column="DOC_TEMP_FIELD_ID" type="java.lang.Double"/>
+		<property name="results" column="RESULTS" type="java.lang.String" length="255"/>
+	</class>
+
+	<sql-query name="docTemplateFieldCon.selectAll">
+	<![CDATA[
+		SELECT DOC_TEMPLATE_FIELD_CON_ID,
+		       CONDITION,
+		       DOC_TEMP_FIELD_ID,
+		       RESULTS
+		  FROM DOC_TEMPLATE_FIELD_CON
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="docTemplateFieldCon.insert">
+	<![CDATA[
+		INSERT INTO DOC_TEMPLATE_FIELD_CON (
+		       DOC_TEMPLATE_FIELD_CON_ID,
+		       CONDITION,
+		       DOC_TEMP_FIELD_ID,
+		       RESULTS
+		       )
+		VALUES (
+		       ${DOC_TEMPLATE_FIELD_CON_ID},
+		       ${CONDITION},
+		       ${DOC_TEMP_FIELD_ID},
+		       ${RESULTS}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="docTemplateFieldCon.update">
+	<![CDATA[
+		UPDATE DOC_TEMPLATE_FIELD_CON
+		   SET CONDITION = ${CONDITION},
+		       DOC_TEMP_FIELD_ID = ${DOC_TEMP_FIELD_ID},
+		       RESULTS = ${RESULTS}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="docTemplateFieldCon.updateColumns">
+	<![CDATA[
+		UPDATE DOC_TEMPLATE_FIELD_CON
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="docTemplateFieldCon.delete">
+	<![CDATA[
+		DELETE DOC_TEMPLATE_FIELD_CON
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

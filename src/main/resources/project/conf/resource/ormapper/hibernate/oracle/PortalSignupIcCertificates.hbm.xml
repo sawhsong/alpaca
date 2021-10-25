@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_SIGNUP_IC_CERTIFICATES - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalSignupIcCertificates" table="PORTAL_SIGNUP_IC_CERTIFICATES" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="certificatesId" column="CERTIFICATES_ID" type="java.lang.Double"></id>
+
+		<property name="userTfId" column="USER_TF_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="dirDeclSigned" column="DIR_DECL_SIGNED" type="java.lang.String" length="1"/>
+		<property name="incorpCertDocCntntId" column="INCORP_CERT_DOC_CNTNT_ID" type="java.lang.Double"/>
+		<property name="ipaddress" column="IPADDRESS" type="java.lang.String" length="25"/>
+		<property name="lhldDocCntntId" column="LHLD_DOC_CNTNT_ID" type="java.lang.Double"/>
+		<property name="lhldDocExpiry" column="LHLD_DOC_EXPIRY" type="java.util.Date"/>
+		<property name="lhldRequired" column="LHLD_REQUIRED" type="java.lang.String" length="1"/>
+		<property name="profIndmDocCntntId" column="PROF_INDM_DOC_CNTNT_ID" type="java.lang.Double"/>
+		<property name="profIndmExpiry" column="PROF_INDM_EXPIRY" type="java.util.Date"/>
+		<property name="publLiabDocCntntId" column="PUBL_LIAB_DOC_CNTNT_ID" type="java.lang.Double"/>
+		<property name="publLiabExpiry" column="PUBL_LIAB_EXPIRY" type="java.util.Date"/>
+		<property name="sendOffline" column="SEND_OFFLINE" type="java.lang.String" length="1"/>
+		<property name="workingState" column="WORKING_STATE" type="java.lang.String" length="10"/>
+		<property name="wrkrsCompDocCntntId" column="WRKRS_COMP_DOC_CNTNT_ID" type="java.lang.Double"/>
+		<property name="wrkrsCompExpiry" column="WRKRS_COMP_EXPIRY" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="portalSignupIcCertificates.selectAll">
+	<![CDATA[
+		SELECT USER_TF_ID,
+		       CERTIFICATES_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       DIR_DECL_SIGNED,
+		       INCORP_CERT_DOC_CNTNT_ID,
+		       IPADDRESS,
+		       LHLD_DOC_CNTNT_ID,
+		       TO_CHAR(LHLD_DOC_EXPIRY, 'yyyymmddhh24miss') AS LHLD_DOC_EXPIRY,
+		       LHLD_REQUIRED,
+		       PROF_INDM_DOC_CNTNT_ID,
+		       TO_CHAR(PROF_INDM_EXPIRY, 'yyyymmddhh24miss') AS PROF_INDM_EXPIRY,
+		       PUBL_LIAB_DOC_CNTNT_ID,
+		       TO_CHAR(PUBL_LIAB_EXPIRY, 'yyyymmddhh24miss') AS PUBL_LIAB_EXPIRY,
+		       SEND_OFFLINE,
+		       WORKING_STATE,
+		       WRKRS_COMP_DOC_CNTNT_ID,
+		       TO_CHAR(WRKRS_COMP_EXPIRY, 'yyyymmddhh24miss') AS WRKRS_COMP_EXPIRY
+		  FROM PORTAL_SIGNUP_IC_CERTIFICATES
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupIcCertificates.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_SIGNUP_IC_CERTIFICATES (
+		       USER_TF_ID,
+		       CERTIFICATES_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       DIR_DECL_SIGNED,
+		       INCORP_CERT_DOC_CNTNT_ID,
+		       IPADDRESS,
+		       LHLD_DOC_CNTNT_ID,
+		       LHLD_DOC_EXPIRY,
+		       LHLD_REQUIRED,
+		       PROF_INDM_DOC_CNTNT_ID,
+		       PROF_INDM_EXPIRY,
+		       PUBL_LIAB_DOC_CNTNT_ID,
+		       PUBL_LIAB_EXPIRY,
+		       SEND_OFFLINE,
+		       WORKING_STATE,
+		       WRKRS_COMP_DOC_CNTNT_ID,
+		       WRKRS_COMP_EXPIRY
+		       )
+		VALUES (
+		       ${USER_TF_ID},
+		       ${CERTIFICATES_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${DIR_DECL_SIGNED},
+		       ${INCORP_CERT_DOC_CNTNT_ID},
+		       ${IPADDRESS},
+		       ${LHLD_DOC_CNTNT_ID},
+		       ${LHLD_DOC_EXPIRY},
+		       ${LHLD_REQUIRED},
+		       ${PROF_INDM_DOC_CNTNT_ID},
+		       ${PROF_INDM_EXPIRY},
+		       ${PUBL_LIAB_DOC_CNTNT_ID},
+		       ${PUBL_LIAB_EXPIRY},
+		       ${SEND_OFFLINE},
+		       ${WORKING_STATE},
+		       ${WRKRS_COMP_DOC_CNTNT_ID},
+		       ${WRKRS_COMP_EXPIRY}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupIcCertificates.update">
+	<![CDATA[
+		UPDATE PORTAL_SIGNUP_IC_CERTIFICATES
+		   SET USER_TF_ID = ${USER_TF_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       DIR_DECL_SIGNED = ${DIR_DECL_SIGNED},
+		       INCORP_CERT_DOC_CNTNT_ID = ${INCORP_CERT_DOC_CNTNT_ID},
+		       IPADDRESS = ${IPADDRESS},
+		       LHLD_DOC_CNTNT_ID = ${LHLD_DOC_CNTNT_ID},
+		       LHLD_DOC_EXPIRY = ${LHLD_DOC_EXPIRY},
+		       LHLD_REQUIRED = ${LHLD_REQUIRED},
+		       PROF_INDM_DOC_CNTNT_ID = ${PROF_INDM_DOC_CNTNT_ID},
+		       PROF_INDM_EXPIRY = ${PROF_INDM_EXPIRY},
+		       PUBL_LIAB_DOC_CNTNT_ID = ${PUBL_LIAB_DOC_CNTNT_ID},
+		       PUBL_LIAB_EXPIRY = ${PUBL_LIAB_EXPIRY},
+		       SEND_OFFLINE = ${SEND_OFFLINE},
+		       WORKING_STATE = ${WORKING_STATE},
+		       WRKRS_COMP_DOC_CNTNT_ID = ${WRKRS_COMP_DOC_CNTNT_ID},
+		       WRKRS_COMP_EXPIRY = ${WRKRS_COMP_EXPIRY}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupIcCertificates.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_SIGNUP_IC_CERTIFICATES
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupIcCertificates.delete">
+	<![CDATA[
+		DELETE PORTAL_SIGNUP_IC_CERTIFICATES
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

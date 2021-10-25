@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_ASSIGNMENT_BANK_STAGE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalAssignmentBankStage" table="PORTAL_ASSIGNMENT_BANK_STAGE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<composite-id>
+			<key-property name="asgPayMethodId" column="ASG_PAY_METHOD_ID" type="java.lang.Double"/>
+			<key-property name="assignmentId" column="ASSIGNMENT_ID" type="java.lang.Double"/>
+			<key-property name="submissionId" column="SUBMISSION_ID" type="java.lang.Double"/>
+		</composite-id>
+
+		<property name="accountName" column="ACCOUNT_NAME" not-null="true" type="java.lang.String" length="100"/>
+		<property name="accountNumber" column="ACCOUNT_NUMBER" not-null="true" type="java.lang.String" length="30"/>
+		<property name="bankName" column="BANK_NAME" not-null="true" type="java.lang.String" length="100"/>
+		<property name="bsb" column="BSB" not-null="true" type="java.lang.String" length="30"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="fromDate" column="FROM_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="toDate" column="TO_DATE" not-null="true" type="java.util.Date"/>
+		<property name="amount" column="AMOUNT" type="java.lang.Double"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="percentage" column="PERCENTAGE" type="java.lang.Double"/>
+		<property name="priority" column="PRIORITY" type="java.lang.Double"/>
+		<property name="status" column="STATUS" type="java.lang.String" length="1"/>
+		<property name="statusDate" column="STATUS_DATE" type="java.util.Date"/>
+		<property name="transformed" column="TRANSFORMED" type="java.lang.String" length="1"/>
+		<property name="transformedAsgId" column="TRANSFORMED_ASG_ID" type="java.lang.Double"/>
+		<property name="transformedAsgPayMethodId" column="TRANSFORMED_ASG_PAY_METHOD_ID" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="portalAssignmentBankStage.selectAll">
+	<![CDATA[
+		SELECT ASG_PAY_METHOD_ID,
+		       ASSIGNMENT_ID,
+		       SUBMISSION_ID,
+		       ACCOUNT_NAME,
+		       ACCOUNT_NUMBER,
+		       BANK_NAME,
+		       BSB,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       TO_CHAR(FROM_DATE, 'yyyymmddhh24miss') AS FROM_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       TO_CHAR(TO_DATE, 'yyyymmddhh24miss') AS TO_DATE,
+		       AMOUNT,
+		       BUSINESS_GROUP_ID,
+		       PERCENTAGE,
+		       PRIORITY,
+		       STATUS,
+		       TO_CHAR(STATUS_DATE, 'yyyymmddhh24miss') AS STATUS_DATE,
+		       TRANSFORMED,
+		       TRANSFORMED_ASG_ID,
+		       TRANSFORMED_ASG_PAY_METHOD_ID
+		  FROM PORTAL_ASSIGNMENT_BANK_STAGE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalAssignmentBankStage.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_ASSIGNMENT_BANK_STAGE (
+		       ASG_PAY_METHOD_ID,
+		       ASSIGNMENT_ID,
+		       SUBMISSION_ID,
+		       ACCOUNT_NAME,
+		       ACCOUNT_NUMBER,
+		       BANK_NAME,
+		       BSB,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       FROM_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       TO_DATE,
+		       AMOUNT,
+		       BUSINESS_GROUP_ID,
+		       PERCENTAGE,
+		       PRIORITY,
+		       STATUS,
+		       STATUS_DATE,
+		       TRANSFORMED,
+		       TRANSFORMED_ASG_ID,
+		       TRANSFORMED_ASG_PAY_METHOD_ID
+		       )
+		VALUES (
+		       ${ASG_PAY_METHOD_ID},
+		       ${ASSIGNMENT_ID},
+		       ${SUBMISSION_ID},
+		       ${ACCOUNT_NAME},
+		       ${ACCOUNT_NUMBER},
+		       ${BANK_NAME},
+		       ${BSB},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${FROM_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${TO_DATE},
+		       ${AMOUNT},
+		       ${BUSINESS_GROUP_ID},
+		       ${PERCENTAGE},
+		       ${PRIORITY},
+		       ${STATUS},
+		       ${STATUS_DATE},
+		       ${TRANSFORMED},
+		       ${TRANSFORMED_ASG_ID},
+		       ${TRANSFORMED_ASG_PAY_METHOD_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalAssignmentBankStage.update">
+	<![CDATA[
+		UPDATE PORTAL_ASSIGNMENT_BANK_STAGE
+		   SET ACCOUNT_NAME = ${ACCOUNT_NAME},
+		       ACCOUNT_NUMBER = ${ACCOUNT_NUMBER},
+		       BANK_NAME = ${BANK_NAME},
+		       BSB = ${BSB},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       FROM_DATE = ${FROM_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       TO_DATE = ${TO_DATE},
+		       AMOUNT = ${AMOUNT},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       PERCENTAGE = ${PERCENTAGE},
+		       PRIORITY = ${PRIORITY},
+		       STATUS = ${STATUS},
+		       STATUS_DATE = ${STATUS_DATE},
+		       TRANSFORMED = ${TRANSFORMED},
+		       TRANSFORMED_ASG_ID = ${TRANSFORMED_ASG_ID},
+		       TRANSFORMED_ASG_PAY_METHOD_ID = ${TRANSFORMED_ASG_PAY_METHOD_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalAssignmentBankStage.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_ASSIGNMENT_BANK_STAGE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalAssignmentBankStage.delete">
+	<![CDATA[
+		DELETE PORTAL_ASSIGNMENT_BANK_STAGE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

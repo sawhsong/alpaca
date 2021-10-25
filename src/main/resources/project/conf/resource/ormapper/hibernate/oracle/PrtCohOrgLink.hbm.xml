@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PRT_COH_ORG_LINK - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PrtCohOrgLink" table="PRT_COH_ORG_LINK" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="prtCohOrgLinkId" column="PRT_COH_ORG_LINK_ID" type="java.lang.Double"></id>
+
+		<property name="organisationId" column="ORGANISATION_ID" not-null="true" type="java.lang.Double"/>
+		<property name="prtCohScenarioId" column="PRT_COH_SCENARIO_ID" not-null="true" type="java.lang.Double"/>
+		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="prtCohOrgLink.selectAll">
+	<![CDATA[
+		SELECT ORGANISATION_ID,
+		       PRT_COH_ORG_LINK_ID,
+		       PRT_COH_SCENARIO_ID,
+		       IS_ACTIVE
+		  FROM PRT_COH_ORG_LINK
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="prtCohOrgLink.insert">
+	<![CDATA[
+		INSERT INTO PRT_COH_ORG_LINK (
+		       ORGANISATION_ID,
+		       PRT_COH_ORG_LINK_ID,
+		       PRT_COH_SCENARIO_ID,
+		       IS_ACTIVE
+		       )
+		VALUES (
+		       ${ORGANISATION_ID},
+		       ${PRT_COH_ORG_LINK_ID},
+		       ${PRT_COH_SCENARIO_ID},
+		       ${IS_ACTIVE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="prtCohOrgLink.update">
+	<![CDATA[
+		UPDATE PRT_COH_ORG_LINK
+		   SET ORGANISATION_ID = ${ORGANISATION_ID},
+		       PRT_COH_SCENARIO_ID = ${PRT_COH_SCENARIO_ID},
+		       IS_ACTIVE = ${IS_ACTIVE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="prtCohOrgLink.updateColumns">
+	<![CDATA[
+		UPDATE PRT_COH_ORG_LINK
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="prtCohOrgLink.delete">
+	<![CDATA[
+		DELETE PRT_COH_ORG_LINK
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

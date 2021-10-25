@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - CRJ_INVOICE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.CrjInvoice" table="CRJ_INVOICE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="crjId" column="CRJ_ID" type="java.lang.Double"></id>
+
+		<property name="appliedAmount" column="APPLIED_AMOUNT" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="invoiceId" column="INVOICE_ID" type="java.lang.Double"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="navReceiptNo" column="NAV_RECEIPT_NO" type="java.lang.String" length="50"/>
+		<property name="receiptId" column="RECEIPT_ID" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="crjInvoice.selectAll">
+	<![CDATA[
+		SELECT CRJ_ID,
+		       APPLIED_AMOUNT,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       INVOICE_ID,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       NAV_RECEIPT_NO,
+		       RECEIPT_ID
+		  FROM CRJ_INVOICE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="crjInvoice.insert">
+	<![CDATA[
+		INSERT INTO CRJ_INVOICE (
+		       CRJ_ID,
+		       APPLIED_AMOUNT,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       INVOICE_ID,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       NAV_RECEIPT_NO,
+		       RECEIPT_ID
+		       )
+		VALUES (
+		       ${CRJ_ID},
+		       ${APPLIED_AMOUNT},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${INVOICE_ID},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${NAV_RECEIPT_NO},
+		       ${RECEIPT_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="crjInvoice.update">
+	<![CDATA[
+		UPDATE CRJ_INVOICE
+		   SET APPLIED_AMOUNT = ${APPLIED_AMOUNT},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       INVOICE_ID = ${INVOICE_ID},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       NAV_RECEIPT_NO = ${NAV_RECEIPT_NO},
+		       RECEIPT_ID = ${RECEIPT_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="crjInvoice.updateColumns">
+	<![CDATA[
+		UPDATE CRJ_INVOICE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="crjInvoice.delete">
+	<![CDATA[
+		DELETE CRJ_INVOICE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_BANK_FILE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpBankFile" table="HP_BANK_FILE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="bankFileId" column="BANK_FILE_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="bankFile" column="BANK_FILE" type="java.lang.String"/>
+		<property name="bankFileName" column="BANK_FILE_NAME" type="java.lang.String" length="100"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="description" column="DESCRIPTION" type="java.lang.String" length="2000"/>
+		<property name="logFile" column="LOG_FILE" type="java.lang.String"/>
+		<property name="status" column="STATUS" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="hpBankFile.selectAll">
+	<![CDATA[
+		SELECT BANK_FILE_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       BANK_FILE,
+		       BANK_FILE_NAME,
+		       BUSINESS_GROUP_ID,
+		       DESCRIPTION,
+		       LOG_FILE,
+		       STATUS
+		  FROM HP_BANK_FILE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBankFile.insert">
+	<![CDATA[
+		INSERT INTO HP_BANK_FILE (
+		       BANK_FILE_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       BANK_FILE,
+		       BANK_FILE_NAME,
+		       BUSINESS_GROUP_ID,
+		       DESCRIPTION,
+		       LOG_FILE,
+		       STATUS
+		       )
+		VALUES (
+		       ${BANK_FILE_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${BANK_FILE},
+		       ${BANK_FILE_NAME},
+		       ${BUSINESS_GROUP_ID},
+		       ${DESCRIPTION},
+		       ${LOG_FILE},
+		       ${STATUS}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBankFile.update">
+	<![CDATA[
+		UPDATE HP_BANK_FILE
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       BANK_FILE = ${BANK_FILE},
+		       BANK_FILE_NAME = ${BANK_FILE_NAME},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       DESCRIPTION = ${DESCRIPTION},
+		       LOG_FILE = ${LOG_FILE},
+		       STATUS = ${STATUS}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBankFile.updateColumns">
+	<![CDATA[
+		UPDATE HP_BANK_FILE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpBankFile.delete">
+	<![CDATA[
+		DELETE HP_BANK_FILE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

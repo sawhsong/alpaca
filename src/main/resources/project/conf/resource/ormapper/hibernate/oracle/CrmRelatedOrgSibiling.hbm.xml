@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - CRM_RELATED_ORG_SIBILING - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.CrmRelatedOrgSibiling" table="CRM_RELATED_ORG_SIBILING" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="relatedOrgSibilingId" column="RELATED_ORG_SIBILING_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="organisationId" column="ORGANISATION_ID" not-null="true" type="java.lang.Double"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="sibilingOrgId" column="SIBILING_ORG_ID" type="java.lang.Double"/>
+		<property name="sibilingOrgName" column="SIBILING_ORG_NAME" type="java.lang.String" length="200"/>
+	</class>
+
+	<sql-query name="crmRelatedOrgSibiling.selectAll">
+	<![CDATA[
+		SELECT RELATED_ORG_SIBILING_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       ORGANISATION_ID,
+		       BUSINESS_GROUP_ID,
+		       SIBILING_ORG_ID,
+		       SIBILING_ORG_NAME
+		  FROM CRM_RELATED_ORG_SIBILING
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="crmRelatedOrgSibiling.insert">
+	<![CDATA[
+		INSERT INTO CRM_RELATED_ORG_SIBILING (
+		       RELATED_ORG_SIBILING_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       ORGANISATION_ID,
+		       BUSINESS_GROUP_ID,
+		       SIBILING_ORG_ID,
+		       SIBILING_ORG_NAME
+		       )
+		VALUES (
+		       ${RELATED_ORG_SIBILING_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${ORGANISATION_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${SIBILING_ORG_ID},
+		       ${SIBILING_ORG_NAME}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="crmRelatedOrgSibiling.update">
+	<![CDATA[
+		UPDATE CRM_RELATED_ORG_SIBILING
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       SIBILING_ORG_ID = ${SIBILING_ORG_ID},
+		       SIBILING_ORG_NAME = ${SIBILING_ORG_NAME}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="crmRelatedOrgSibiling.updateColumns">
+	<![CDATA[
+		UPDATE CRM_RELATED_ORG_SIBILING
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="crmRelatedOrgSibiling.delete">
+	<![CDATA[
+		DELETE CRM_RELATED_ORG_SIBILING
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

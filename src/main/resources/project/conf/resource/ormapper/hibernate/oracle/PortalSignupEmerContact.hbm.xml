@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_SIGNUP_EMER_CONTACT - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalSignupEmerContact" table="PORTAL_SIGNUP_EMER_CONTACT" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="emerContactId" column="EMER_CONTACT_ID" type="java.lang.Double"></id>
+
+		<property name="userTfId" column="USER_TF_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="emergrncyContactCheck" column="EMERGRNCY_CONTACT_CHECK" type="java.lang.String" length="1"/>
+		<property name="emerContactName" column="EMER_CONTACT_NAME" type="java.lang.String" length="150"/>
+		<property name="emerContactPhone" column="EMER_CONTACT_PHONE" type="java.lang.String" length="50"/>
+		<property name="emerContactRelationship" column="EMER_CONTACT_RELATIONSHIP" type="java.lang.String" length="30"/>
+		<property name="ipAddress" column="IP_ADDRESS" type="java.lang.String" length="50"/>
+		<property name="isAnyMedicalCondition" column="IS_ANY_MEDICAL_CONDITION" type="java.lang.String" length="1"/>
+		<property name="isPreExisitingInjury" column="IS_PRE_EXISITING_INJURY" type="java.lang.String" length="1"/>
+		<property name="medicalConditionDesc" column="MEDICAL_CONDITION_DESC" type="java.lang.String" length="2000"/>
+		<property name="preExisitingInjuryDesc" column="PRE_EXISITING_INJURY_DESC" type="java.lang.String" length="2000"/>
+		<property name="transformed" column="TRANSFORMED" type="java.lang.String" length="1"/>
+	</class>
+
+	<sql-query name="portalSignupEmerContact.selectAll">
+	<![CDATA[
+		SELECT USER_TF_ID,
+		       EMER_CONTACT_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       EMERGRNCY_CONTACT_CHECK,
+		       EMER_CONTACT_NAME,
+		       EMER_CONTACT_PHONE,
+		       EMER_CONTACT_RELATIONSHIP,
+		       IP_ADDRESS,
+		       IS_ANY_MEDICAL_CONDITION,
+		       IS_PRE_EXISITING_INJURY,
+		       MEDICAL_CONDITION_DESC,
+		       PRE_EXISITING_INJURY_DESC,
+		       TRANSFORMED
+		  FROM PORTAL_SIGNUP_EMER_CONTACT
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupEmerContact.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_SIGNUP_EMER_CONTACT (
+		       USER_TF_ID,
+		       EMER_CONTACT_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       EMERGRNCY_CONTACT_CHECK,
+		       EMER_CONTACT_NAME,
+		       EMER_CONTACT_PHONE,
+		       EMER_CONTACT_RELATIONSHIP,
+		       IP_ADDRESS,
+		       IS_ANY_MEDICAL_CONDITION,
+		       IS_PRE_EXISITING_INJURY,
+		       MEDICAL_CONDITION_DESC,
+		       PRE_EXISITING_INJURY_DESC,
+		       TRANSFORMED
+		       )
+		VALUES (
+		       ${USER_TF_ID},
+		       ${EMER_CONTACT_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${EMERGRNCY_CONTACT_CHECK},
+		       ${EMER_CONTACT_NAME},
+		       ${EMER_CONTACT_PHONE},
+		       ${EMER_CONTACT_RELATIONSHIP},
+		       ${IP_ADDRESS},
+		       ${IS_ANY_MEDICAL_CONDITION},
+		       ${IS_PRE_EXISITING_INJURY},
+		       ${MEDICAL_CONDITION_DESC},
+		       ${PRE_EXISITING_INJURY_DESC},
+		       ${TRANSFORMED}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupEmerContact.update">
+	<![CDATA[
+		UPDATE PORTAL_SIGNUP_EMER_CONTACT
+		   SET USER_TF_ID = ${USER_TF_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       EMERGRNCY_CONTACT_CHECK = ${EMERGRNCY_CONTACT_CHECK},
+		       EMER_CONTACT_NAME = ${EMER_CONTACT_NAME},
+		       EMER_CONTACT_PHONE = ${EMER_CONTACT_PHONE},
+		       EMER_CONTACT_RELATIONSHIP = ${EMER_CONTACT_RELATIONSHIP},
+		       IP_ADDRESS = ${IP_ADDRESS},
+		       IS_ANY_MEDICAL_CONDITION = ${IS_ANY_MEDICAL_CONDITION},
+		       IS_PRE_EXISITING_INJURY = ${IS_PRE_EXISITING_INJURY},
+		       MEDICAL_CONDITION_DESC = ${MEDICAL_CONDITION_DESC},
+		       PRE_EXISITING_INJURY_DESC = ${PRE_EXISITING_INJURY_DESC},
+		       TRANSFORMED = ${TRANSFORMED}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupEmerContact.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_SIGNUP_EMER_CONTACT
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalSignupEmerContact.delete">
+	<![CDATA[
+		DELETE PORTAL_SIGNUP_EMER_CONTACT
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

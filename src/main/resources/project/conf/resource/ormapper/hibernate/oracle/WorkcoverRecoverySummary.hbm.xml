@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - WORKCOVER_RECOVERY_SUMMARY - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.WorkcoverRecoverySummary" table="WORKCOVER_RECOVERY_SUMMARY" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="summaryId" column="SUMMARY_ID" type="java.lang.Double"></id>
+
+		<property name="amount" column="AMOUNT" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="effectiveDate" column="EFFECTIVE_DATE" type="java.util.Date"/>
+		<property name="invoices" column="INVOICES" type="java.lang.Double"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="state" column="STATE" type="java.lang.String" length="20"/>
+	</class>
+
+	<sql-query name="workcoverRecoverySummary.selectAll">
+	<![CDATA[
+		SELECT SUMMARY_ID,
+		       AMOUNT,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       TO_CHAR(EFFECTIVE_DATE, 'yyyymmddhh24miss') AS EFFECTIVE_DATE,
+		       INVOICES,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       STATE
+		  FROM WORKCOVER_RECOVERY_SUMMARY
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="workcoverRecoverySummary.insert">
+	<![CDATA[
+		INSERT INTO WORKCOVER_RECOVERY_SUMMARY (
+		       SUMMARY_ID,
+		       AMOUNT,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       EFFECTIVE_DATE,
+		       INVOICES,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       STATE
+		       )
+		VALUES (
+		       ${SUMMARY_ID},
+		       ${AMOUNT},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${EFFECTIVE_DATE},
+		       ${INVOICES},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${STATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="workcoverRecoverySummary.update">
+	<![CDATA[
+		UPDATE WORKCOVER_RECOVERY_SUMMARY
+		   SET AMOUNT = ${AMOUNT},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       EFFECTIVE_DATE = ${EFFECTIVE_DATE},
+		       INVOICES = ${INVOICES},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       STATE = ${STATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="workcoverRecoverySummary.updateColumns">
+	<![CDATA[
+		UPDATE WORKCOVER_RECOVERY_SUMMARY
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="workcoverRecoverySummary.delete">
+	<![CDATA[
+		DELETE WORKCOVER_RECOVERY_SUMMARY
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

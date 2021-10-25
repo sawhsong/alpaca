@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - ONLINE_DOC_SUBMIT_LINK - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.OnlineDocSubmitLink" table="ONLINE_DOC_SUBMIT_LINK" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="linkId" column="LINK_ID" type="java.lang.Double"></id>
+
+		<property name="link" column="LINK" not-null="true" type="java.lang.String" length="500"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="email" column="EMAIL" type="java.lang.String" length="300"/>
+		<property name="expiryDate" column="EXPIRY_DATE" type="java.util.Date"/>
+		<property name="ipAddress" column="IP_ADDRESS" type="java.lang.String" length="100"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="source" column="SOURCE" type="java.lang.String" length="100"/>
+		<property name="sourceId" column="SOURCE_ID" type="java.lang.Double"/>
+		<property name="submissionDate" column="SUBMISSION_DATE" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="onlineDocSubmitLink.selectAll">
+	<![CDATA[
+		SELECT LINK_ID,
+		       LINK,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       EMAIL,
+		       TO_CHAR(EXPIRY_DATE, 'yyyymmddhh24miss') AS EXPIRY_DATE,
+		       IP_ADDRESS,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       SOURCE,
+		       SOURCE_ID,
+		       TO_CHAR(SUBMISSION_DATE, 'yyyymmddhh24miss') AS SUBMISSION_DATE
+		  FROM ONLINE_DOC_SUBMIT_LINK
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="onlineDocSubmitLink.insert">
+	<![CDATA[
+		INSERT INTO ONLINE_DOC_SUBMIT_LINK (
+		       LINK_ID,
+		       LINK,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       EMAIL,
+		       EXPIRY_DATE,
+		       IP_ADDRESS,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       SOURCE,
+		       SOURCE_ID,
+		       SUBMISSION_DATE
+		       )
+		VALUES (
+		       ${LINK_ID},
+		       ${LINK},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${EMAIL},
+		       ${EXPIRY_DATE},
+		       ${IP_ADDRESS},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${SOURCE},
+		       ${SOURCE_ID},
+		       ${SUBMISSION_DATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="onlineDocSubmitLink.update">
+	<![CDATA[
+		UPDATE ONLINE_DOC_SUBMIT_LINK
+		   SET LINK = ${LINK},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       EMAIL = ${EMAIL},
+		       EXPIRY_DATE = ${EXPIRY_DATE},
+		       IP_ADDRESS = ${IP_ADDRESS},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       SOURCE = ${SOURCE},
+		       SOURCE_ID = ${SOURCE_ID},
+		       SUBMISSION_DATE = ${SUBMISSION_DATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="onlineDocSubmitLink.updateColumns">
+	<![CDATA[
+		UPDATE ONLINE_DOC_SUBMIT_LINK
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="onlineDocSubmitLink.delete">
+	<![CDATA[
+		DELETE ONLINE_DOC_SUBMIT_LINK
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

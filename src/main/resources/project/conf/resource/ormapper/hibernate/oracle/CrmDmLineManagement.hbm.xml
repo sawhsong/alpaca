@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - CRM_DM_LINE_MANAGEMENT - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.CrmDmLineManagement" table="CRM_DM_LINE_MANAGEMENT" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="dmLineManagementId" column="DM_LINE_MANAGEMENT_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="organisationId" column="ORGANISATION_ID" not-null="true" type="java.lang.Double"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
+		<property name="decisionMakingProcess" column="DECISION_MAKING_PROCESS" type="java.lang.String" length="150"/>
+		<property name="nextDecisionDate" column="NEXT_DECISION_DATE" type="java.util.Date"/>
+		<property name="notes" column="NOTES" type="java.lang.String" length="200"/>
+	</class>
+
+	<sql-query name="crmDmLineManagement.selectAll">
+	<![CDATA[
+		SELECT DM_LINE_MANAGEMENT_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       ORGANISATION_ID,
+		       BUSINESS_GROUP_ID,
+		       DECISION_MAKING_PROCESS,
+		       TO_CHAR(NEXT_DECISION_DATE, 'yyyymmddhh24miss') AS NEXT_DECISION_DATE,
+		       NOTES
+		  FROM CRM_DM_LINE_MANAGEMENT
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="crmDmLineManagement.insert">
+	<![CDATA[
+		INSERT INTO CRM_DM_LINE_MANAGEMENT (
+		       DM_LINE_MANAGEMENT_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       ORGANISATION_ID,
+		       BUSINESS_GROUP_ID,
+		       DECISION_MAKING_PROCESS,
+		       NEXT_DECISION_DATE,
+		       NOTES
+		       )
+		VALUES (
+		       ${DM_LINE_MANAGEMENT_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${ORGANISATION_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${DECISION_MAKING_PROCESS},
+		       ${NEXT_DECISION_DATE},
+		       ${NOTES}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="crmDmLineManagement.update">
+	<![CDATA[
+		UPDATE CRM_DM_LINE_MANAGEMENT
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       DECISION_MAKING_PROCESS = ${DECISION_MAKING_PROCESS},
+		       NEXT_DECISION_DATE = ${NEXT_DECISION_DATE},
+		       NOTES = ${NOTES}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="crmDmLineManagement.updateColumns">
+	<![CDATA[
+		UPDATE CRM_DM_LINE_MANAGEMENT
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="crmDmLineManagement.delete">
+	<![CDATA[
+		DELETE CRM_DM_LINE_MANAGEMENT
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

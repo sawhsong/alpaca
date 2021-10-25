@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - HP_EMPLOYEE_TERIMINATION - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.HpEmployeeTerimination" table="HP_EMPLOYEE_TERIMINATION" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="employeeTeriminationId" column="EMPLOYEE_TERIMINATION_ID" not-null="true" type="java.lang.Double"/>
+		<property name="applicableTaxRate" column="APPLICABLE_TAX_RATE" type="java.lang.String" length="100"/>
+		<property name="asgProcessId" column="ASG_PROCESS_ID" type="java.lang.Double"/>
+		<property name="endDate" column="END_DATE" type="java.util.Date"/>
+		<property name="fromDate" column="FROM_DATE" type="java.util.Date"/>
+		<property name="gross" column="GROSS" type="java.lang.String" length="15"/>
+		<property name="grossAmtTax" column="GROSS_AMT_TAX" type="java.lang.Double"/>
+		<property name="lumpsumA" column="LUMPSUM_A" type="java.lang.Double"/>
+		<property name="lumpsumATax" column="LUMPSUM_A_TAX" type="java.lang.Double"/>
+		<property name="lumpsumB" column="LUMPSUM_B" type="java.lang.Double"/>
+		<property name="lumpsumBTax" column="LUMPSUM_B_TAX" type="java.lang.Double"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.String" length="12"/>
+		<property name="otherAmount" column="OTHER_AMOUNT" type="java.lang.Double"/>
+		<property name="personEoyId" column="PERSON_EOY_ID" type="java.lang.Double"/>
+		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
+		<property name="postJun1983UntaxComponent" column="POST_JUN_1983_UNTAX_COMPONENT" type="java.lang.String" length="100"/>
+		<property name="postJun1994InvalComponent" column="POST_JUN_1994_INVAL_COMPONENT" type="java.lang.String" length="100"/>
+		<property name="preJuly1983Component" column="PRE_JULY_1983_COMPONENT" type="java.lang.String" length="100"/>
+		<property name="terminateReason" column="TERMINATE_REASON" type="java.lang.String" length="4000"/>
+		<property name="terminationDate" column="TERMINATION_DATE" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="hpEmployeeTerimination.selectAll">
+	<![CDATA[
+		SELECT EMPLOYEE_TERIMINATION_ID,
+		       APPLICABLE_TAX_RATE,
+		       ASG_PROCESS_ID,
+		       TO_CHAR(END_DATE, 'yyyymmddhh24miss') AS END_DATE,
+		       TO_CHAR(FROM_DATE, 'yyyymmddhh24miss') AS FROM_DATE,
+		       GROSS,
+		       GROSS_AMT_TAX,
+		       LUMPSUM_A,
+		       LUMPSUM_A_TAX,
+		       LUMPSUM_B,
+		       LUMPSUM_B_TAX,
+		       ORGANISATION_ID,
+		       OTHER_AMOUNT,
+		       PERSON_EOY_ID,
+		       PERSON_ID,
+		       POST_JUN_1983_UNTAX_COMPONENT,
+		       POST_JUN_1994_INVAL_COMPONENT,
+		       PRE_JULY_1983_COMPONENT,
+		       TERMINATE_REASON,
+		       TO_CHAR(TERMINATION_DATE, 'yyyymmddhh24miss') AS TERMINATION_DATE
+		  FROM HP_EMPLOYEE_TERIMINATION
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpEmployeeTerimination.insert">
+	<![CDATA[
+		INSERT INTO HP_EMPLOYEE_TERIMINATION (
+		       EMPLOYEE_TERIMINATION_ID,
+		       APPLICABLE_TAX_RATE,
+		       ASG_PROCESS_ID,
+		       END_DATE,
+		       FROM_DATE,
+		       GROSS,
+		       GROSS_AMT_TAX,
+		       LUMPSUM_A,
+		       LUMPSUM_A_TAX,
+		       LUMPSUM_B,
+		       LUMPSUM_B_TAX,
+		       ORGANISATION_ID,
+		       OTHER_AMOUNT,
+		       PERSON_EOY_ID,
+		       PERSON_ID,
+		       POST_JUN_1983_UNTAX_COMPONENT,
+		       POST_JUN_1994_INVAL_COMPONENT,
+		       PRE_JULY_1983_COMPONENT,
+		       TERMINATE_REASON,
+		       TERMINATION_DATE
+		       )
+		VALUES (
+		       ${EMPLOYEE_TERIMINATION_ID},
+		       ${APPLICABLE_TAX_RATE},
+		       ${ASG_PROCESS_ID},
+		       ${END_DATE},
+		       ${FROM_DATE},
+		       ${GROSS},
+		       ${GROSS_AMT_TAX},
+		       ${LUMPSUM_A},
+		       ${LUMPSUM_A_TAX},
+		       ${LUMPSUM_B},
+		       ${LUMPSUM_B_TAX},
+		       ${ORGANISATION_ID},
+		       ${OTHER_AMOUNT},
+		       ${PERSON_EOY_ID},
+		       ${PERSON_ID},
+		       ${POST_JUN_1983_UNTAX_COMPONENT},
+		       ${POST_JUN_1994_INVAL_COMPONENT},
+		       ${PRE_JULY_1983_COMPONENT},
+		       ${TERMINATE_REASON},
+		       ${TERMINATION_DATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="hpEmployeeTerimination.update">
+	<![CDATA[
+		UPDATE HP_EMPLOYEE_TERIMINATION
+		   SET EMPLOYEE_TERIMINATION_ID = ${EMPLOYEE_TERIMINATION_ID},
+		       APPLICABLE_TAX_RATE = ${APPLICABLE_TAX_RATE},
+		       ASG_PROCESS_ID = ${ASG_PROCESS_ID},
+		       END_DATE = ${END_DATE},
+		       FROM_DATE = ${FROM_DATE},
+		       GROSS = ${GROSS},
+		       GROSS_AMT_TAX = ${GROSS_AMT_TAX},
+		       LUMPSUM_A = ${LUMPSUM_A},
+		       LUMPSUM_A_TAX = ${LUMPSUM_A_TAX},
+		       LUMPSUM_B = ${LUMPSUM_B},
+		       LUMPSUM_B_TAX = ${LUMPSUM_B_TAX},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       OTHER_AMOUNT = ${OTHER_AMOUNT},
+		       PERSON_EOY_ID = ${PERSON_EOY_ID},
+		       PERSON_ID = ${PERSON_ID},
+		       POST_JUN_1983_UNTAX_COMPONENT = ${POST_JUN_1983_UNTAX_COMPONENT},
+		       POST_JUN_1994_INVAL_COMPONENT = ${POST_JUN_1994_INVAL_COMPONENT},
+		       PRE_JULY_1983_COMPONENT = ${PRE_JULY_1983_COMPONENT},
+		       TERMINATE_REASON = ${TERMINATE_REASON},
+		       TERMINATION_DATE = ${TERMINATION_DATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpEmployeeTerimination.updateColumns">
+	<![CDATA[
+		UPDATE HP_EMPLOYEE_TERIMINATION
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="hpEmployeeTerimination.delete">
+	<![CDATA[
+		DELETE HP_EMPLOYEE_TERIMINATION
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

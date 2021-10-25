@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_TIME_SHEET_HDR_STAGE - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalTimeSheetHdrStage" table="PORTAL_TIME_SHEET_HDR_STAGE" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="submissionId" column="SUBMISSION_ID" type="java.lang.Double"></id>
+
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="personId" column="PERSON_ID" not-null="true" type="java.lang.Double"/>
+		<property name="billingCodeId" column="BILLING_CODE_ID" type="java.lang.Double"/>
+		<property name="divisionId" column="DIVISION_ID" type="java.lang.Double"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="periodEndDate" column="PERIOD_END_DATE" type="java.util.Date"/>
+		<property name="periodId" column="PERIOD_ID" type="java.lang.Double"/>
+		<property name="periodStartDate" column="PERIOD_START_DATE" type="java.util.Date"/>
+		<property name="status" column="STATUS" type="java.lang.String" length="20"/>
+		<property name="submissionDate" column="SUBMISSION_DATE" type="java.util.Date"/>
+	</class>
+
+	<sql-query name="portalTimeSheetHdrStage.selectAll">
+	<![CDATA[
+		SELECT SUBMISSION_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       PERSON_ID,
+		       BILLING_CODE_ID,
+		       DIVISION_ID,
+		       ORGANISATION_ID,
+		       TO_CHAR(PERIOD_END_DATE, 'yyyymmddhh24miss') AS PERIOD_END_DATE,
+		       PERIOD_ID,
+		       TO_CHAR(PERIOD_START_DATE, 'yyyymmddhh24miss') AS PERIOD_START_DATE,
+		       STATUS,
+		       TO_CHAR(SUBMISSION_DATE, 'yyyymmddhh24miss') AS SUBMISSION_DATE
+		  FROM PORTAL_TIME_SHEET_HDR_STAGE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalTimeSheetHdrStage.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_TIME_SHEET_HDR_STAGE (
+		       SUBMISSION_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       PERSON_ID,
+		       BILLING_CODE_ID,
+		       DIVISION_ID,
+		       ORGANISATION_ID,
+		       PERIOD_END_DATE,
+		       PERIOD_ID,
+		       PERIOD_START_DATE,
+		       STATUS,
+		       SUBMISSION_DATE
+		       )
+		VALUES (
+		       ${SUBMISSION_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${PERSON_ID},
+		       ${BILLING_CODE_ID},
+		       ${DIVISION_ID},
+		       ${ORGANISATION_ID},
+		       ${PERIOD_END_DATE},
+		       ${PERIOD_ID},
+		       ${PERIOD_START_DATE},
+		       ${STATUS},
+		       ${SUBMISSION_DATE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalTimeSheetHdrStage.update">
+	<![CDATA[
+		UPDATE PORTAL_TIME_SHEET_HDR_STAGE
+		   SET BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       PERSON_ID = ${PERSON_ID},
+		       BILLING_CODE_ID = ${BILLING_CODE_ID},
+		       DIVISION_ID = ${DIVISION_ID},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       PERIOD_END_DATE = ${PERIOD_END_DATE},
+		       PERIOD_ID = ${PERIOD_ID},
+		       PERIOD_START_DATE = ${PERIOD_START_DATE},
+		       STATUS = ${STATUS},
+		       SUBMISSION_DATE = ${SUBMISSION_DATE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalTimeSheetHdrStage.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_TIME_SHEET_HDR_STAGE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalTimeSheetHdrStage.delete">
+	<![CDATA[
+		DELETE PORTAL_TIME_SHEET_HDR_STAGE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - CUSTOMER_ASSIGNMENTS - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.CustomerAssignments" table="CUSTOMER_ASSIGNMENTS" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="assignments" column="ASSIGNMENTS" type="java.lang.Double"/>
+		<property name="organisationName" column="ORGANISATION_NAME" type="java.lang.String" length="200"/>
+	</class>
+
+	<sql-query name="customerAssignments.selectAll">
+	<![CDATA[
+		SELECT ASSIGNMENTS,
+		       ORGANISATION_NAME
+		  FROM CUSTOMER_ASSIGNMENTS
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="customerAssignments.insert">
+	<![CDATA[
+		INSERT INTO CUSTOMER_ASSIGNMENTS (
+		       ASSIGNMENTS,
+		       ORGANISATION_NAME
+		       )
+		VALUES (
+		       ${ASSIGNMENTS},
+		       ${ORGANISATION_NAME}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="customerAssignments.update">
+	<![CDATA[
+		UPDATE CUSTOMER_ASSIGNMENTS
+		   SET ASSIGNMENTS = ${ASSIGNMENTS},
+		       ORGANISATION_NAME = ${ORGANISATION_NAME}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="customerAssignments.updateColumns">
+	<![CDATA[
+		UPDATE CUSTOMER_ASSIGNMENTS
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="customerAssignments.delete">
+	<![CDATA[
+		DELETE CUSTOMER_ASSIGNMENTS
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

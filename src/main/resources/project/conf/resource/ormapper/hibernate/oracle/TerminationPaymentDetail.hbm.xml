@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - TERMINATION_PAYMENT_DETAIL - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.TerminationPaymentDetail" table="TERMINATION_PAYMENT_DETAIL" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="terminationPaymentDetailId" column="TERMINATION_PAYMENT_DETAIL_ID" type="java.lang.Double"></id>
+
+		<property name="personId" column="PERSON_ID" not-null="true" type="java.lang.Double"/>
+		<property name="businessGroupId" column="BUSINESS_GROUP_ID" not-null="true" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="employeeName" column="EMPLOYEE_NAME" not-null="true" type="java.lang.String" length="100"/>
+		<property name="employmentCompanyId" column="EMPLOYMENT_COMPANY_ID" not-null="true" type="java.lang.Double"/>
+		<property name="employmentEndDate" column="EMPLOYMENT_END_DATE" not-null="true" type="java.util.Date"/>
+		<property name="employmentStartDate" column="EMPLOYMENT_START_DATE" not-null="true" type="java.util.Date"/>
+		<property name="financialYearEndDate" column="FINANCIAL_YEAR_END_DATE" not-null="true" type="java.util.Date"/>
+		<property name="financialYearStartDate" column="FINANCIAL_YEAR_START_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="payeeAddressLine" column="PAYEE_ADDRESS_LINE" not-null="true" type="java.lang.String" length="100"/>
+		<property name="payeeName" column="PAYEE_NAME" not-null="true" type="java.lang.String" length="100"/>
+		<property name="payeeSurname" column="PAYEE_SURNAME" not-null="true" type="java.lang.String" length="100"/>
+		<property name="paymentDate" column="PAYMENT_DATE" not-null="true" type="java.util.Date"/>
+		<property name="terminationDate" column="TERMINATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="terminationPayerDetailId" column="TERMINATION_PAYER_DETAIL_ID" not-null="true" type="java.lang.Double"/>
+		<property name="terminationPaymentType" column="TERMINATION_PAYMENT_TYPE" not-null="true" type="java.lang.String" length="1"/>
+		<property name="empdupeFileId" column="EMPDUPE_FILE_ID" type="java.lang.Double"/>
+		<property name="personEoyId" column="PERSON_EOY_ID" type="java.lang.Double"/>
+		<property name="assessableAmount" column="ASSESSABLE_AMOUNT" type="java.lang.Double"/>
+		<property name="authorisedPerson" column="AUTHORISED_PERSON" type="java.lang.String" length="100"/>
+		<property name="payeeCountry" column="PAYEE_COUNTRY" type="java.lang.String" length="20"/>
+		<property name="payeeDateOfBirth" column="PAYEE_DATE_OF_BIRTH" type="java.util.Date"/>
+		<property name="payeeMiddleName" column="PAYEE_MIDDLE_NAME" type="java.lang.String" length="100"/>
+		<property name="payeePostcode" column="PAYEE_POSTCODE" type="java.lang.String" length="10"/>
+		<property name="payeeState" column="PAYEE_STATE" type="java.lang.String" length="20"/>
+		<property name="payeeSuburb" column="PAYEE_SUBURB" type="java.lang.String" length="20"/>
+		<property name="payeeTfn" column="PAYEE_TFN" type="java.lang.String" length="20"/>
+		<property name="paymentGrossAmount" column="PAYMENT_GROSS_AMOUNT" type="java.lang.Double"/>
+		<property name="totalTaxWithheld" column="TOTAL_TAX_WITHHELD" type="java.lang.Double"/>
+	</class>
+
+	<sql-query name="terminationPaymentDetail.selectAll">
+	<![CDATA[
+		SELECT PERSON_ID,
+		       TERMINATION_PAYMENT_DETAIL_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       EMPLOYEE_NAME,
+		       EMPLOYMENT_COMPANY_ID,
+		       TO_CHAR(EMPLOYMENT_END_DATE, 'yyyymmddhh24miss') AS EMPLOYMENT_END_DATE,
+		       TO_CHAR(EMPLOYMENT_START_DATE, 'yyyymmddhh24miss') AS EMPLOYMENT_START_DATE,
+		       TO_CHAR(FINANCIAL_YEAR_END_DATE, 'yyyymmddhh24miss') AS FINANCIAL_YEAR_END_DATE,
+		       TO_CHAR(FINANCIAL_YEAR_START_DATE, 'yyyymmddhh24miss') AS FINANCIAL_YEAR_START_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       PAYEE_ADDRESS_LINE,
+		       PAYEE_NAME,
+		       PAYEE_SURNAME,
+		       TO_CHAR(PAYMENT_DATE, 'yyyymmddhh24miss') AS PAYMENT_DATE,
+		       TO_CHAR(TERMINATION_DATE, 'yyyymmddhh24miss') AS TERMINATION_DATE,
+		       TERMINATION_PAYER_DETAIL_ID,
+		       TERMINATION_PAYMENT_TYPE,
+		       EMPDUPE_FILE_ID,
+		       PERSON_EOY_ID,
+		       ASSESSABLE_AMOUNT,
+		       AUTHORISED_PERSON,
+		       PAYEE_COUNTRY,
+		       TO_CHAR(PAYEE_DATE_OF_BIRTH, 'yyyymmddhh24miss') AS PAYEE_DATE_OF_BIRTH,
+		       PAYEE_MIDDLE_NAME,
+		       PAYEE_POSTCODE,
+		       PAYEE_STATE,
+		       PAYEE_SUBURB,
+		       PAYEE_TFN,
+		       PAYMENT_GROSS_AMOUNT,
+		       TOTAL_TAX_WITHHELD
+		  FROM TERMINATION_PAYMENT_DETAIL
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="terminationPaymentDetail.insert">
+	<![CDATA[
+		INSERT INTO TERMINATION_PAYMENT_DETAIL (
+		       PERSON_ID,
+		       TERMINATION_PAYMENT_DETAIL_ID,
+		       BUSINESS_GROUP_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       EMPLOYEE_NAME,
+		       EMPLOYMENT_COMPANY_ID,
+		       EMPLOYMENT_END_DATE,
+		       EMPLOYMENT_START_DATE,
+		       FINANCIAL_YEAR_END_DATE,
+		       FINANCIAL_YEAR_START_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       PAYEE_ADDRESS_LINE,
+		       PAYEE_NAME,
+		       PAYEE_SURNAME,
+		       PAYMENT_DATE,
+		       TERMINATION_DATE,
+		       TERMINATION_PAYER_DETAIL_ID,
+		       TERMINATION_PAYMENT_TYPE,
+		       EMPDUPE_FILE_ID,
+		       PERSON_EOY_ID,
+		       ASSESSABLE_AMOUNT,
+		       AUTHORISED_PERSON,
+		       PAYEE_COUNTRY,
+		       PAYEE_DATE_OF_BIRTH,
+		       PAYEE_MIDDLE_NAME,
+		       PAYEE_POSTCODE,
+		       PAYEE_STATE,
+		       PAYEE_SUBURB,
+		       PAYEE_TFN,
+		       PAYMENT_GROSS_AMOUNT,
+		       TOTAL_TAX_WITHHELD
+		       )
+		VALUES (
+		       ${PERSON_ID},
+		       ${TERMINATION_PAYMENT_DETAIL_ID},
+		       ${BUSINESS_GROUP_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${EMPLOYEE_NAME},
+		       ${EMPLOYMENT_COMPANY_ID},
+		       ${EMPLOYMENT_END_DATE},
+		       ${EMPLOYMENT_START_DATE},
+		       ${FINANCIAL_YEAR_END_DATE},
+		       ${FINANCIAL_YEAR_START_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${PAYEE_ADDRESS_LINE},
+		       ${PAYEE_NAME},
+		       ${PAYEE_SURNAME},
+		       ${PAYMENT_DATE},
+		       ${TERMINATION_DATE},
+		       ${TERMINATION_PAYER_DETAIL_ID},
+		       ${TERMINATION_PAYMENT_TYPE},
+		       ${EMPDUPE_FILE_ID},
+		       ${PERSON_EOY_ID},
+		       ${ASSESSABLE_AMOUNT},
+		       ${AUTHORISED_PERSON},
+		       ${PAYEE_COUNTRY},
+		       ${PAYEE_DATE_OF_BIRTH},
+		       ${PAYEE_MIDDLE_NAME},
+		       ${PAYEE_POSTCODE},
+		       ${PAYEE_STATE},
+		       ${PAYEE_SUBURB},
+		       ${PAYEE_TFN},
+		       ${PAYMENT_GROSS_AMOUNT},
+		       ${TOTAL_TAX_WITHHELD}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="terminationPaymentDetail.update">
+	<![CDATA[
+		UPDATE TERMINATION_PAYMENT_DETAIL
+		   SET PERSON_ID = ${PERSON_ID},
+		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       EMPLOYEE_NAME = ${EMPLOYEE_NAME},
+		       EMPLOYMENT_COMPANY_ID = ${EMPLOYMENT_COMPANY_ID},
+		       EMPLOYMENT_END_DATE = ${EMPLOYMENT_END_DATE},
+		       EMPLOYMENT_START_DATE = ${EMPLOYMENT_START_DATE},
+		       FINANCIAL_YEAR_END_DATE = ${FINANCIAL_YEAR_END_DATE},
+		       FINANCIAL_YEAR_START_DATE = ${FINANCIAL_YEAR_START_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       PAYEE_ADDRESS_LINE = ${PAYEE_ADDRESS_LINE},
+		       PAYEE_NAME = ${PAYEE_NAME},
+		       PAYEE_SURNAME = ${PAYEE_SURNAME},
+		       PAYMENT_DATE = ${PAYMENT_DATE},
+		       TERMINATION_DATE = ${TERMINATION_DATE},
+		       TERMINATION_PAYER_DETAIL_ID = ${TERMINATION_PAYER_DETAIL_ID},
+		       TERMINATION_PAYMENT_TYPE = ${TERMINATION_PAYMENT_TYPE},
+		       EMPDUPE_FILE_ID = ${EMPDUPE_FILE_ID},
+		       PERSON_EOY_ID = ${PERSON_EOY_ID},
+		       ASSESSABLE_AMOUNT = ${ASSESSABLE_AMOUNT},
+		       AUTHORISED_PERSON = ${AUTHORISED_PERSON},
+		       PAYEE_COUNTRY = ${PAYEE_COUNTRY},
+		       PAYEE_DATE_OF_BIRTH = ${PAYEE_DATE_OF_BIRTH},
+		       PAYEE_MIDDLE_NAME = ${PAYEE_MIDDLE_NAME},
+		       PAYEE_POSTCODE = ${PAYEE_POSTCODE},
+		       PAYEE_STATE = ${PAYEE_STATE},
+		       PAYEE_SUBURB = ${PAYEE_SUBURB},
+		       PAYEE_TFN = ${PAYEE_TFN},
+		       PAYMENT_GROSS_AMOUNT = ${PAYMENT_GROSS_AMOUNT},
+		       TOTAL_TAX_WITHHELD = ${TOTAL_TAX_WITHHELD}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="terminationPaymentDetail.updateColumns">
+	<![CDATA[
+		UPDATE TERMINATION_PAYMENT_DETAIL
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="terminationPaymentDetail.delete">
+	<![CDATA[
+		DELETE TERMINATION_PAYMENT_DETAIL
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

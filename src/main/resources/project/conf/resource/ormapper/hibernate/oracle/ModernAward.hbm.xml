@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - MODERN_AWARD - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.ModernAward" table="MODERN_AWARD" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="modernAwardId" column="MODERN_AWARD_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="modernAwardCode" column="MODERN_AWARD_CODE" type="java.lang.String" length="50"/>
+		<property name="modernAwardName" column="MODERN_AWARD_NAME" type="java.lang.String" length="1000"/>
+	</class>
+
+	<sql-query name="modernAward.selectAll">
+	<![CDATA[
+		SELECT MODERN_AWARD_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       IS_ACTIVE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       MODERN_AWARD_CODE,
+		       MODERN_AWARD_NAME
+		  FROM MODERN_AWARD
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="modernAward.insert">
+	<![CDATA[
+		INSERT INTO MODERN_AWARD (
+		       MODERN_AWARD_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       IS_ACTIVE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       MODERN_AWARD_CODE,
+		       MODERN_AWARD_NAME
+		       )
+		VALUES (
+		       ${MODERN_AWARD_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${IS_ACTIVE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${MODERN_AWARD_CODE},
+		       ${MODERN_AWARD_NAME}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="modernAward.update">
+	<![CDATA[
+		UPDATE MODERN_AWARD
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       MODERN_AWARD_CODE = ${MODERN_AWARD_CODE},
+		       MODERN_AWARD_NAME = ${MODERN_AWARD_NAME}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="modernAward.updateColumns">
+	<![CDATA[
+		UPDATE MODERN_AWARD
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="modernAward.delete">
+	<![CDATA[
+		DELETE MODERN_AWARD
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

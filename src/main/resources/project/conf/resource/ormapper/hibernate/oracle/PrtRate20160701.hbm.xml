@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PRT_RATE_20160701 - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PrtRate20160701" table="PRT_RATE_20160701" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="finYearEndDate" column="FIN_YEAR_END_DATE" not-null="true" type="java.util.Date"/>
+		<property name="finYearStartDate" column="FIN_YEAR_START_DATE" not-null="true" type="java.util.Date"/>
+		<property name="prtRateId" column="PRT_RATE_ID" not-null="true" type="java.lang.Double"/>
+		<property name="ratePercentage" column="RATE_PERCENTAGE" not-null="true" type="java.lang.Double"/>
+		<property name="stateCode" column="STATE_CODE" not-null="true" type="java.lang.String" length="10"/>
+	</class>
+
+	<sql-query name="prtRate20160701.selectAll">
+	<![CDATA[
+		SELECT TO_CHAR(FIN_YEAR_END_DATE, 'yyyymmddhh24miss') AS FIN_YEAR_END_DATE,
+		       TO_CHAR(FIN_YEAR_START_DATE, 'yyyymmddhh24miss') AS FIN_YEAR_START_DATE,
+		       PRT_RATE_ID,
+		       RATE_PERCENTAGE,
+		       STATE_CODE
+		  FROM PRT_RATE_20160701
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="prtRate20160701.insert">
+	<![CDATA[
+		INSERT INTO PRT_RATE_20160701 (
+		       FIN_YEAR_END_DATE,
+		       FIN_YEAR_START_DATE,
+		       PRT_RATE_ID,
+		       RATE_PERCENTAGE,
+		       STATE_CODE
+		       )
+		VALUES (
+		       ${FIN_YEAR_END_DATE},
+		       ${FIN_YEAR_START_DATE},
+		       ${PRT_RATE_ID},
+		       ${RATE_PERCENTAGE},
+		       ${STATE_CODE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="prtRate20160701.update">
+	<![CDATA[
+		UPDATE PRT_RATE_20160701
+		   SET FIN_YEAR_END_DATE = ${FIN_YEAR_END_DATE},
+		       FIN_YEAR_START_DATE = ${FIN_YEAR_START_DATE},
+		       PRT_RATE_ID = ${PRT_RATE_ID},
+		       RATE_PERCENTAGE = ${RATE_PERCENTAGE},
+		       STATE_CODE = ${STATE_CODE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="prtRate20160701.updateColumns">
+	<![CDATA[
+		UPDATE PRT_RATE_20160701
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="prtRate20160701.delete">
+	<![CDATA[
+		DELETE PRT_RATE_20160701
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

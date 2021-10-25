@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - EO_EXPENSE_AUTH_EMAIL_LINK - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.EoExpenseAuthEmailLink" table="EO_EXPENSE_AUTH_EMAIL_LINK" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="linkId" column="LINK_ID" type="java.lang.Double"></id>
+
+		<property name="approverId" column="APPROVER_ID" not-null="true" type="java.lang.Double"/>
+		<property name="cipheredUrl" column="CIPHERED_URL" type="java.lang.String" length="500"/>
+		<property name="eoExpenseId" column="EO_EXPENSE_ID" type="java.lang.Double"/>
+		<property name="url" column="URL" type="java.lang.String" length="500"/>
+	</class>
+
+	<sql-query name="eoExpenseAuthEmailLink.selectAll">
+	<![CDATA[
+		SELECT LINK_ID,
+		       APPROVER_ID,
+		       CIPHERED_URL,
+		       EO_EXPENSE_ID,
+		       URL
+		  FROM EO_EXPENSE_AUTH_EMAIL_LINK
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="eoExpenseAuthEmailLink.insert">
+	<![CDATA[
+		INSERT INTO EO_EXPENSE_AUTH_EMAIL_LINK (
+		       LINK_ID,
+		       APPROVER_ID,
+		       CIPHERED_URL,
+		       EO_EXPENSE_ID,
+		       URL
+		       )
+		VALUES (
+		       ${LINK_ID},
+		       ${APPROVER_ID},
+		       ${CIPHERED_URL},
+		       ${EO_EXPENSE_ID},
+		       ${URL}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="eoExpenseAuthEmailLink.update">
+	<![CDATA[
+		UPDATE EO_EXPENSE_AUTH_EMAIL_LINK
+		   SET APPROVER_ID = ${APPROVER_ID},
+		       CIPHERED_URL = ${CIPHERED_URL},
+		       EO_EXPENSE_ID = ${EO_EXPENSE_ID},
+		       URL = ${URL}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="eoExpenseAuthEmailLink.updateColumns">
+	<![CDATA[
+		UPDATE EO_EXPENSE_AUTH_EMAIL_LINK
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="eoExpenseAuthEmailLink.delete">
+	<![CDATA[
+		DELETE EO_EXPENSE_AUTH_EMAIL_LINK
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

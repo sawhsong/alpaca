@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - PORTAL_TF - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.PortalTf" table="PORTAL_TF" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="tfId" column="TF_ID" type="java.lang.Double"></id>
+
+		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
+		<property name="tfCode" column="TF_CODE" not-null="true" type="java.lang.String" length="100"/>
+		<property name="tfName" column="TF_NAME" not-null="true" type="java.lang.String" length="100"/>
+		<property name="daysComplete" column="DAYS_COMPLETE" type="java.lang.Double"/>
+		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="reminderEmail" column="REMINDER_EMAIL" type="java.lang.String"/>
+		<property name="reminderEmailSubject" column="REMINDER_EMAIL_SUBJECT" type="java.lang.String" length="200"/>
+		<property name="tfDescription" column="TF_DESCRIPTION" type="java.lang.String" length="200"/>
+		<property name="totalStep" column="TOTAL_STEP" type="java.lang.Double"/>
+		<property name="welcomeEmail" column="WELCOME_EMAIL" type="java.lang.String"/>
+		<property name="welcomeEmail2" column="WELCOME_EMAIL2" type="java.lang.String"/>
+		<property name="welcomeEmailSubject" column="WELCOME_EMAIL_SUBJECT" type="java.lang.String" length="200"/>
+		<property name="welcomeEmailSubject2" column="WELCOME_EMAIL_SUBJECT2" type="java.lang.String" length="200"/>
+	</class>
+
+	<sql-query name="portalTf.selectAll">
+	<![CDATA[
+		SELECT TF_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       TF_CODE,
+		       TF_NAME,
+		       DAYS_COMPLETE,
+		       IS_ACTIVE,
+		       REMINDER_EMAIL,
+		       REMINDER_EMAIL_SUBJECT,
+		       TF_DESCRIPTION,
+		       TOTAL_STEP,
+		       WELCOME_EMAIL,
+		       WELCOME_EMAIL2,
+		       WELCOME_EMAIL_SUBJECT,
+		       WELCOME_EMAIL_SUBJECT2
+		  FROM PORTAL_TF
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalTf.insert">
+	<![CDATA[
+		INSERT INTO PORTAL_TF (
+		       TF_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       TF_CODE,
+		       TF_NAME,
+		       DAYS_COMPLETE,
+		       IS_ACTIVE,
+		       REMINDER_EMAIL,
+		       REMINDER_EMAIL_SUBJECT,
+		       TF_DESCRIPTION,
+		       TOTAL_STEP,
+		       WELCOME_EMAIL,
+		       WELCOME_EMAIL2,
+		       WELCOME_EMAIL_SUBJECT,
+		       WELCOME_EMAIL_SUBJECT2
+		       )
+		VALUES (
+		       ${TF_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${TF_CODE},
+		       ${TF_NAME},
+		       ${DAYS_COMPLETE},
+		       ${IS_ACTIVE},
+		       ${REMINDER_EMAIL},
+		       ${REMINDER_EMAIL_SUBJECT},
+		       ${TF_DESCRIPTION},
+		       ${TOTAL_STEP},
+		       ${WELCOME_EMAIL},
+		       ${WELCOME_EMAIL2},
+		       ${WELCOME_EMAIL_SUBJECT},
+		       ${WELCOME_EMAIL_SUBJECT2}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="portalTf.update">
+	<![CDATA[
+		UPDATE PORTAL_TF
+		   SET CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       TF_CODE = ${TF_CODE},
+		       TF_NAME = ${TF_NAME},
+		       DAYS_COMPLETE = ${DAYS_COMPLETE},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       REMINDER_EMAIL = ${REMINDER_EMAIL},
+		       REMINDER_EMAIL_SUBJECT = ${REMINDER_EMAIL_SUBJECT},
+		       TF_DESCRIPTION = ${TF_DESCRIPTION},
+		       TOTAL_STEP = ${TOTAL_STEP},
+		       WELCOME_EMAIL = ${WELCOME_EMAIL},
+		       WELCOME_EMAIL2 = ${WELCOME_EMAIL2},
+		       WELCOME_EMAIL_SUBJECT = ${WELCOME_EMAIL_SUBJECT},
+		       WELCOME_EMAIL_SUBJECT2 = ${WELCOME_EMAIL_SUBJECT2}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalTf.updateColumns">
+	<![CDATA[
+		UPDATE PORTAL_TF
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="portalTf.delete">
+	<![CDATA[
+		DELETE PORTAL_TF
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

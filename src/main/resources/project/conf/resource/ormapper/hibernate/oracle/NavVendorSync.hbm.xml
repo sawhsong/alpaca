@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - NAV_VENDOR_SYNC - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.NavVendorSync" table="NAV_VENDOR_SYNC" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id column="ROWID" type="java.lang.String"/>
+
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="navDbName" column="NAV_DB_NAME" type="java.lang.String" length="20"/>
+		<property name="organisationId" column="ORGANISATION_ID" type="java.lang.Double"/>
+		<property name="syncId" column="SYNC_ID" type="java.lang.Double"/>
+		<property name="syncType" column="SYNC_TYPE" type="java.lang.String" length="30"/>
+	</class>
+
+	<sql-query name="navVendorSync.selectAll">
+	<![CDATA[
+		SELECT TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       NAV_DB_NAME,
+		       ORGANISATION_ID,
+		       SYNC_ID,
+		       SYNC_TYPE
+		  FROM NAV_VENDOR_SYNC
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="navVendorSync.insert">
+	<![CDATA[
+		INSERT INTO NAV_VENDOR_SYNC (
+		       CREATION_DATE,
+		       LAST_UPDATE_DATE,
+		       NAV_DB_NAME,
+		       ORGANISATION_ID,
+		       SYNC_ID,
+		       SYNC_TYPE
+		       )
+		VALUES (
+		       ${CREATION_DATE},
+		       ${LAST_UPDATE_DATE},
+		       ${NAV_DB_NAME},
+		       ${ORGANISATION_ID},
+		       ${SYNC_ID},
+		       ${SYNC_TYPE}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="navVendorSync.update">
+	<![CDATA[
+		UPDATE NAV_VENDOR_SYNC
+		   SET CREATION_DATE = ${CREATION_DATE},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       NAV_DB_NAME = ${NAV_DB_NAME},
+		       ORGANISATION_ID = ${ORGANISATION_ID},
+		       SYNC_ID = ${SYNC_ID},
+		       SYNC_TYPE = ${SYNC_TYPE}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="navVendorSync.updateColumns">
+	<![CDATA[
+		UPDATE NAV_VENDOR_SYNC
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="navVendorSync.delete">
+	<![CDATA[
+		DELETE NAV_VENDOR_SYNC
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

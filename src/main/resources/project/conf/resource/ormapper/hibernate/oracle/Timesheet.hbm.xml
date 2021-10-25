@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - TIMESHEET - 
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.Timesheet" table="TIMESHEET" lazy="false">
+		<meta attribute="class-description" inherit="false"></meta>
+
+		<id name="timesheetId" column="TIMESHEET_ID" type="java.lang.Double"></id>
+
+		<property name="assignmentId" column="ASSIGNMENT_ID" type="java.lang.Double"/>
+		<property name="periodEndDate" column="PERIOD_END_DATE" type="java.util.Date"/>
+		<property name="periodStartDate" column="PERIOD_START_DATE" type="java.util.Date"/>
+		<property name="approvRejectComments" column="APPROV_REJECT_COMMENTS" type="java.lang.String" length="1000"/>
+		<property name="approvRejectDateTime" column="APPROV_REJECT_DATE_TIME" type="java.util.Date"/>
+		<property name="approvRejectIpAddress" column="APPROV_REJECT_IP_ADDRESS" type="java.lang.String" length="30"/>
+		<property name="approvRejectPersonId" column="APPROV_REJECT_PERSON_ID" type="java.lang.Double"/>
+		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
+		<property name="creationDate" column="CREATION_DATE" type="java.util.Date"/>
+		<property name="dueDate" column="DUE_DATE" type="java.util.Date"/>
+		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
+		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
+		<property name="status" column="STATUS" type="java.lang.String" length="2"/>
+		<property name="submitDateTime" column="SUBMIT_DATE_TIME" type="java.util.Date"/>
+		<property name="unit" column="UNIT" type="java.lang.String" length="10"/>
+	</class>
+
+	<sql-query name="timesheet.selectAll">
+	<![CDATA[
+		SELECT TIMESHEET_ID,
+		       ASSIGNMENT_ID,
+		       TO_CHAR(PERIOD_END_DATE, 'yyyymmddhh24miss') AS PERIOD_END_DATE,
+		       TO_CHAR(PERIOD_START_DATE, 'yyyymmddhh24miss') AS PERIOD_START_DATE,
+		       APPROV_REJECT_COMMENTS,
+		       TO_CHAR(APPROV_REJECT_DATE_TIME, 'yyyymmddhh24miss') AS APPROV_REJECT_DATE_TIME,
+		       APPROV_REJECT_IP_ADDRESS,
+		       APPROV_REJECT_PERSON_ID,
+		       CREATED_BY,
+		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
+		       TO_CHAR(DUE_DATE, 'yyyymmddhh24miss') AS DUE_DATE,
+		       LAST_UPDATED_BY,
+		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
+		       STATUS,
+		       TO_CHAR(SUBMIT_DATE_TIME, 'yyyymmddhh24miss') AS SUBMIT_DATE_TIME,
+		       UNIT
+		  FROM TIMESHEET
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+	]]>
+	</sql-query>
+
+	<sql-query name="timesheet.insert">
+	<![CDATA[
+		INSERT INTO TIMESHEET (
+		       TIMESHEET_ID,
+		       ASSIGNMENT_ID,
+		       PERIOD_END_DATE,
+		       PERIOD_START_DATE,
+		       APPROV_REJECT_COMMENTS,
+		       APPROV_REJECT_DATE_TIME,
+		       APPROV_REJECT_IP_ADDRESS,
+		       APPROV_REJECT_PERSON_ID,
+		       CREATED_BY,
+		       CREATION_DATE,
+		       DUE_DATE,
+		       LAST_UPDATED_BY,
+		       LAST_UPDATE_DATE,
+		       STATUS,
+		       SUBMIT_DATE_TIME,
+		       UNIT
+		       )
+		VALUES (
+		       ${TIMESHEET_ID},
+		       ${ASSIGNMENT_ID},
+		       ${PERIOD_END_DATE},
+		       ${PERIOD_START_DATE},
+		       ${APPROV_REJECT_COMMENTS},
+		       ${APPROV_REJECT_DATE_TIME},
+		       ${APPROV_REJECT_IP_ADDRESS},
+		       ${APPROV_REJECT_PERSON_ID},
+		       ${CREATED_BY},
+		       ${CREATION_DATE},
+		       ${DUE_DATE},
+		       ${LAST_UPDATED_BY},
+		       ${LAST_UPDATE_DATE},
+		       ${STATUS},
+		       ${SUBMIT_DATE_TIME},
+		       ${UNIT}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="timesheet.update">
+	<![CDATA[
+		UPDATE TIMESHEET
+		   SET ASSIGNMENT_ID = ${ASSIGNMENT_ID},
+		       PERIOD_END_DATE = ${PERIOD_END_DATE},
+		       PERIOD_START_DATE = ${PERIOD_START_DATE},
+		       APPROV_REJECT_COMMENTS = ${APPROV_REJECT_COMMENTS},
+		       APPROV_REJECT_DATE_TIME = ${APPROV_REJECT_DATE_TIME},
+		       APPROV_REJECT_IP_ADDRESS = ${APPROV_REJECT_IP_ADDRESS},
+		       APPROV_REJECT_PERSON_ID = ${APPROV_REJECT_PERSON_ID},
+		       CREATED_BY = ${CREATED_BY},
+		       CREATION_DATE = ${CREATION_DATE},
+		       DUE_DATE = ${DUE_DATE},
+		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
+		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
+		       STATUS = ${STATUS},
+		       SUBMIT_DATE_TIME = ${SUBMIT_DATE_TIME},
+		       UNIT = ${UNIT}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="timesheet.updateColumns">
+	<![CDATA[
+		UPDATE TIMESHEET
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="timesheet.delete">
+	<![CDATA[
+		DELETE TIMESHEET
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>
