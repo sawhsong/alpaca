@@ -17,7 +17,10 @@ public interface ZebraFrameworkBizService {
 	public boolean generateDaoSpringConfig(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception;
 	public boolean generateHibernateQuery(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception;
 	public boolean generateMybatisQuery(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception;
+<<<<<<< HEAD
 	public int deleteDto(DataSet dtoNameDataSet) throws Exception;
+=======
+>>>>>>> refs/remotes/origin/master
 
 	/*!
 	 * Source Generator

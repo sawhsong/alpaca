@@ -30,6 +30,7 @@ public class CheckDtoAction extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
+<<<<<<< HEAD
 
 	public String doDelete() throws Exception {
 		try {
@@ -39,4 +40,6 @@ public class CheckDtoAction extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
+=======
+>>>>>>> refs/remotes/origin/master
 }

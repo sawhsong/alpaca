@@ -50,6 +50,7 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
+<<<<<<< HEAD
 			<ui:button id="btnGenerate" caption="button.com.generate"/>
 			<ui:button id="btnDelete" caption="button.com.delete"/>
 			<ui:button id="btnSearch" caption="button.com.search"/>
@@ -97,6 +98,54 @@
 					<tr>
 						<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 						<th class="thGrid"><i id="icnActionCheck" class="fa fa-check-square-o fa-lg icnEn"></i></th>
+=======
+			<ui:button id="btnGenerate" caption="button.com.generate" iconClass="fa-gears"/>
+			<ui:button id="btnSearch" caption="button.com.search" iconClass="fa-search"/>
+			<ui:button id="btnClear" caption="button.com.clear" iconClass="fa-refresh"/>
+		</ui:buttonGroup>
+	</div>
+</div>
+<div id="divSearchCriteriaArea" class="areaContainer">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<table class="tblDefault">
+				<tr>
+					<td class="tdDefault">
+						<label for="dataSourceToCheck" class="lblEn hor">Data Source To Check</label>
+						<%=datasourceDataSet.getAsHtmlStringForSelectbox("VALUE", "NAME", dataSourceToCheck, "==Select==", "id:dataSourceToCheck;name:dataSourceToCheck;class:bootstrapSelect")%>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<div id="divInformArea"></div>
+<%/************************************************************************************************
+* End of fixed panel
+************************************************************************************************/%>
+<div class="breaker"></div>
+</div>
+<div id="divScrollablePanel">
+<%/************************************************************************************************
+* Real Contents - scrollable panel(data, paging)
+************************************************************************************************/%>
+<div id="divDataArea" class="areaContainer">
+	<div id="divSource" style="float:left;width:70%;">
+		<div id="divSourceDataTable">
+			<table id="tblSourceData" class="tblGrid sort autosort">
+				<colgroup>
+					<col width="2%"/>
+					<col width="3%"/>
+					<col width="23%"/>
+					<col width="21%"/>
+					<col width="*"/>
+					<col width="9%"/>
+				</colgroup>
+				<thead>
+					<tr>
+						<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
+						<th class="thGrid"><i id="icnCheckSourceData" class="fa fa-check-square-o fa-lg icnEn"></i></th>
+>>>>>>> refs/remotes/origin/master
 						<th class="thGrid sortable:alphanumeric">Table Name</th>
 						<th class="thGrid sortable:alphanumeric">DTO Name</th>
 						<th class="thGrid">Table Description</th>

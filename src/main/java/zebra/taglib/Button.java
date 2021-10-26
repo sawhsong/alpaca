@@ -44,6 +44,7 @@ public class Button extends TaglibSupport {
 			if (CommonUtil.isNotBlank(buttonStyle)) {buttonStyle = " style=\""+buttonStyle+"\"";}
 			else {buttonStyle = "";}
 			// icon
+<<<<<<< HEAD
 			if (CommonUtil.isBlank(iconClass) && CommonUtil.isNotBlank(caption)) {
 				iconClass = getAutoIconClass(caption);
 			}
@@ -142,6 +143,56 @@ public class Button extends TaglibSupport {
 	/*!
 	 * getter / setter
 	 */
+=======
+			if (CommonUtil.isNotBlank(iconClass)) {
+				if (CommonUtil.isNotBlank(iconStyle)) {iconStyle = " style=\""+iconStyle+"\"";}
+				else {iconStyle = "";}
+
+				if (CommonUtil.startsWithIgnoreCase(iconClass, "fa-")) {
+					iconTag = "<i class=\"fa fa-lg "+iconClass+"\""+iconStyle+"></i>&nbsp;";
+				} else if (CommonUtil.startsWithIgnoreCase(iconClass, "glyphicon-")) {
+					iconTag = "<span class=\"glyphicon "+iconClass+"\""+iconStyle+" style=\"font-size:1.1em\"></span>&nbsp;";
+				} else {
+					iconTag = "<i class=\"fa-lg "+iconClass+"\""+iconStyle+"></i>&nbsp;";
+				}
+			}
+
+			html.append("<a type=\"button\" id=\""+id+"\" class=\""+btnClassName+"\""+CommonUtil.nvl(buttonStyle)+"");
+
+			if (CommonUtil.isNotBlank(title)) {html.append(" title=\""+title+"\"");}
+			if (CommonUtil.isNotBlank(status)) {html.append(" "+status+"");}
+			if (CommonUtil.isNotBlank(script)) {
+				if (!CommonUtil.containsIgnoreCase(status, "disabled")) {html.append(" onclick=\""+script+"\"");}
+			}
+
+			html.append(">");
+
+			if (CommonUtil.isNotBlank(iconTag)) {html.append(iconTag);}
+
+			html.append(" "+caption+"");
+			html.append("</a>");
+
+			jspWriter.print(html.toString());
+			initialise();
+		} catch (Exception ex) {
+			logger.error(ex);
+		}
+
+		return SKIP_BODY;
+	}
+	/*!
+	 * getter / setter
+	 */
+	@SuppressWarnings("rawtypes")
+	private void initialise() throws Exception {
+		Class cls = getClass();
+		Field fields[] = cls.getDeclaredFields();
+		for (int i=0; i<fields.length; i++) {
+			fields[i].set(this, "");
+		}
+	}
+
+>>>>>>> refs/remotes/origin/master
 	public String getId() {
 		return id;
 	}

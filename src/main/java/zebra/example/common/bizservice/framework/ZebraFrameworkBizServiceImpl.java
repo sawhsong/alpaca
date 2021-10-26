@@ -234,6 +234,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
+<<<<<<< HEAD
 	public int deleteDto(DataSet dtoNameDataSet) throws Exception {
 		String compilePath = "/target/alpaca";
 		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
@@ -280,6 +281,8 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		return result;
 	}
 
+=======
+>>>>>>> refs/remotes/origin/master
 	public boolean generateHibernateDtoConfig(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
 		String compilePath = "/target/alpaca";
 		String tableName = requestDataSet.getValue("tableName");
