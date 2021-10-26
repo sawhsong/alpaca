@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <!--/* Dummy DAO */-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.ProjectDummy.ProjectDummyHDaoImpl" id="projectDummyDao" init-method="init" name="projectDummyDao" parent="baseHDao" scope="prototype"/>
+    <!--/* SysMenu DAO */-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysMenu.SysMenuHDaoImpl" id="sysMenuDao" init-method="init" name="sysMenuDao" parent="baseHDao" scope="prototype"/>
+    <!--/* SysCommonCode DAO */-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysCommonCode.SysCommonCodeHDaoImpl" id="sysCommonCodeDao" init-method="init" name="sysCommonCodeDao" parent="baseHDao" scope="prototype"/>
+    <!--/* SysBoard DAO */-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysBoard.SysBoardHDaoImpl" id="sysBoardDao" init-method="init" name="sysBoardDao" parent="baseHDao" scope="prototype"/>
+    <!--/* SysBoardFile DAO */-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysBoardFile.SysBoardFileHDaoImpl" id="sysBoardFileDao" init-method="init" name="sysBoardFileDao" parent="baseHDao" scope="prototype"/>
+    <!--/* SysMenuAuthLink DAO */-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysMenuAuthLink.SysMenuAuthLinkHDaoImpl" id="sysMenuAuthLinkDao" init-method="init" name="sysMenuAuthLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--/* SysUser DAO */-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysUser.SysUserHDaoImpl" id="sysUserDao" init-method="init" name="sysUserDao" parent="baseHDao" scope="prototype"/>
+    <!--/* SysAuthGroup DAO */-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysAuthGroup.SysAuthGroupHDaoImpl" id="sysAuthGroupDao" init-method="init" name="sysAuthGroupDao" parent="baseHDao" scope="prototype"/>
+    <!--/* SysCountryCurrency DAO */-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysCountryCurrency.SysCountryCurrencyHDaoImpl" id="sysCountryCurrencyDao" init-method="init" name="sysCountryCurrencyDao" parent="baseHDao" scope="prototype"/>
+    <!--Country DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.Country.CountryHDaoImpl" id="countryDao" init-method="init" name="countryDao" parent="baseHDao" scope="prototype"/>
+    <!--CrjInvoice DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrjInvoice.CrjInvoiceHDaoImpl" id="crjInvoiceDao" init-method="init" name="crjInvoiceDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmBant DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmBant.CrmBantHDaoImpl" id="crmBantDao" init-method="init" name="crmBantDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmCloneabilityPotential DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmCloneabilityPotential.CrmCloneabilityPotentialHDaoImpl" id="crmCloneabilityPotentialDao" init-method="init" name="crmCloneabilityPotentialDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmCommission DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmCommission.CrmCommissionHDaoImpl" id="crmCommissionDao" init-method="init" name="crmCommissionDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmCompetitorRelationship DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmCompetitorRelationship.CrmCompetitorRelationshipHDaoImpl" id="crmCompetitorRelationshipDao" init-method="init" name="crmCompetitorRelationshipDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmDecisionDriver DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmDecisionDriver.CrmDecisionDriverHDaoImpl" id="crmDecisionDriverDao" init-method="init" name="crmDecisionDriverDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmDmLineManagement DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmDmLineManagement.CrmDmLineManagementHDaoImpl" id="crmDmLineManagementDao" init-method="init" name="crmDmLineManagementDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmDmProcurement DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmDmProcurement.CrmDmProcurementHDaoImpl" id="crmDmProcurementDao" init-method="init" name="crmDmProcurementDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmIndustry DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmIndustry.CrmIndustryHDaoImpl" id="crmIndustryDao" init-method="init" name="crmIndustryDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmLeadPhaseRoadmap DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmLeadPhaseRoadmap.CrmLeadPhaseRoadmapHDaoImpl" id="crmLeadPhaseRoadmapDao" init-method="init" name="crmLeadPhaseRoadmapDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmOrganisation DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmOrganisation.CrmOrganisationHDaoImpl" id="crmOrganisationDao" init-method="init" name="crmOrganisationDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmOrgContact DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmOrgContact.CrmOrgContactHDaoImpl" id="crmOrgContactDao" init-method="init" name="crmOrgContactDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmPotentialEntityBusiness DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmPotentialEntityBusiness.CrmPotentialEntityBusinessHDaoImpl" id="crmPotentialEntityBusinessDao" init-method="init" name="crmPotentialEntityBusinessDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmProposition DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmProposition.CrmPropositionHDaoImpl" id="crmPropositionDao" init-method="init" name="crmPropositionDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmRelatedOrgParent DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmRelatedOrgParent.CrmRelatedOrgParentHDaoImpl" id="crmRelatedOrgParentDao" init-method="init" name="crmRelatedOrgParentDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmRelatedOrgSibiling DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmRelatedOrgSibiling.CrmRelatedOrgSibilingHDaoImpl" id="crmRelatedOrgSibilingDao" init-method="init" name="crmRelatedOrgSibilingDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmRelatedOrgSubsidary DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmRelatedOrgSubsidary.CrmRelatedOrgSubsidaryHDaoImpl" id="crmRelatedOrgSubsidaryDao" init-method="init" name="crmRelatedOrgSubsidaryDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmStage DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmStage.CrmStageHDaoImpl" id="crmStageDao" init-method="init" name="crmStageDao" parent="baseHDao" scope="prototype"/>
+    <!--CrmStrategicRelationship DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmStrategicRelationship.CrmStrategicRelationshipHDaoImpl" id="crmStrategicRelationshipDao" init-method="init" name="crmStrategicRelationshipDao" parent="baseHDao" scope="prototype"/>
+    <!--CustomerAssignments DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CustomerAssignments.CustomerAssignmentsHDaoImpl" id="customerAssignmentsDao" init-method="init" name="customerAssignmentsDao" parent="baseHDao" scope="prototype"/>
+    <!--CustomerCashReceipt DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CustomerCashReceipt.CustomerCashReceiptHDaoImpl" id="customerCashReceiptDao" init-method="init" name="customerCashReceiptDao" parent="baseHDao" scope="prototype"/>
+    <!--CustomerCmplxRtng DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CustomerCmplxRtng.CustomerCmplxRtngHDaoImpl" id="customerCmplxRtngDao" init-method="init" name="customerCmplxRtngDao" parent="baseHDao" scope="prototype"/>
+    <!--CustomerComms DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CustomerComms.CustomerCommsHDaoImpl" id="customerCommsDao" init-method="init" name="customerCommsDao" parent="baseHDao" scope="prototype"/>
+    <!--CustomerInvoices DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.CustomerInvoices.CustomerInvoicesHDaoImpl" id="customerInvoicesDao" init-method="init" name="customerInvoicesDao" parent="baseHDao" scope="prototype"/>
+    <!--DocumentProfile DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.DocumentProfile.DocumentProfileHDaoImpl" id="documentProfileDao" init-method="init" name="documentProfileDao" parent="baseHDao" scope="prototype"/>
+    <!--DocumentProfileD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.DocumentProfileD.DocumentProfileDHDaoImpl" id="documentProfileDDao" init-method="init" name="documentProfileDDao" parent="baseHDao" scope="prototype"/>
+    <!--DocObjects DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.DocObjects.DocObjectsHDaoImpl" id="docObjectsDao" init-method="init" name="docObjectsDao" parent="baseHDao" scope="prototype"/>
+    <!--DocObjField DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.DocObjField.DocObjFieldHDaoImpl" id="docObjFieldDao" init-method="init" name="docObjFieldDao" parent="baseHDao" scope="prototype"/>
+    <!--DocTemplate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.DocTemplate.DocTemplateHDaoImpl" id="docTemplateDao" init-method="init" name="docTemplateDao" parent="baseHDao" scope="prototype"/>
+    <!--DocTemplateField DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.DocTemplateField.DocTemplateFieldHDaoImpl" id="docTemplateFieldDao" init-method="init" name="docTemplateFieldDao" parent="baseHDao" scope="prototype"/>
+    <!--DocTemplateFieldCon DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.DocTemplateFieldCon.DocTemplateFieldConHDaoImpl" id="docTemplateFieldConDao" init-method="init" name="docTemplateFieldConDao" parent="baseHDao" scope="prototype"/>
+    <!--DocTemplateObject DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.DocTemplateObject.DocTemplateObjectHDaoImpl" id="docTemplateObjectDao" init-method="init" name="docTemplateObjectDao" parent="baseHDao" scope="prototype"/>
+    <!--ExpenseAttachmentLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.ExpenseAttachmentLink.ExpenseAttachmentLinkHDaoImpl" id="expenseAttachmentLinkDao" init-method="init" name="expenseAttachmentLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--ExpenseClaim DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.ExpenseClaim.ExpenseClaimHDaoImpl" id="expenseClaimDao" init-method="init" name="expenseClaimDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAccrualPlans DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAccrualPlans.HpAccrualPlansHDaoImpl" id="hpAccrualPlansDao" init-method="init" name="hpAccrualPlansDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAdditionalServices DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAdditionalServices.HpAdditionalServicesHDaoImpl" id="hpAdditionalServicesDao" init-method="init" name="hpAdditionalServicesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAddressContactD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAddressContactD.HpAddressContactDHDaoImpl" id="hpAddressContactDDao" init-method="init" name="hpAddressContactDDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAsgProcesses DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAsgProcesses.HpAsgProcessesHDaoImpl" id="hpAsgProcessesDao" init-method="init" name="hpAsgProcessesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAsgResults DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAsgResults.HpAsgResultsHDaoImpl" id="hpAsgResultsDao" init-method="init" name="hpAsgResultsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAsgResultDetails DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAsgResultDetails.HpAsgResultDetailsHDaoImpl" id="hpAsgResultDetailsDao" init-method="init" name="hpAsgResultDetailsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAsgSet DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAsgSet.HpAsgSetHDaoImpl" id="hpAsgSetDao" init-method="init" name="hpAsgSetDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAsgSetDetails DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAsgSetDetails.HpAsgSetDetailsHDaoImpl" id="hpAsgSetDetailsDao" init-method="init" name="hpAsgSetDetailsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAssignmentsD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAssignmentsD.HpAssignmentsDHDaoImpl" id="hpAssignmentsDDao" init-method="init" name="hpAssignmentsDDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAssignmentAccruals DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAssignmentAccruals.HpAssignmentAccrualsHDaoImpl" id="hpAssignmentAccrualsDao" init-method="init" name="hpAssignmentAccrualsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAssignmentAccrualsTotal DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAssignmentAccrualsTotal.HpAssignmentAccrualsTotalHDaoImpl" id="hpAssignmentAccrualsTotalDao" init-method="init" name="hpAssignmentAccrualsTotalDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAssignmentElementsD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAssignmentElementsD.HpAssignmentElementsDHDaoImpl" id="hpAssignmentElementsDDao" init-method="init" name="hpAssignmentElementsDDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAssignmentPayments DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAssignmentPayments.HpAssignmentPaymentsHDaoImpl" id="hpAssignmentPaymentsDao" init-method="init" name="hpAssignmentPaymentsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAssignmentPaymentMethods DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAssignmentPaymentMethods.HpAssignmentPaymentMethodsHDaoImpl" id="hpAssignmentPaymentMethodsDao" init-method="init" name="hpAssignmentPaymentMethodsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAssignmentRates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAssignmentRates.HpAssignmentRatesHDaoImpl" id="hpAssignmentRatesDao" init-method="init" name="hpAssignmentRatesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAssignmentRateCalculator DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAssignmentRateCalculator.HpAssignmentRateCalculatorHDaoImpl" id="hpAssignmentRateCalculatorDao" init-method="init" name="hpAssignmentRateCalculatorDao" parent="baseHDao" scope="prototype"/>
+    <!--HpAssignmentTaxes DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpAssignmentTaxes.HpAssignmentTaxesHDaoImpl" id="hpAssignmentTaxesDao" init-method="init" name="hpAssignmentTaxesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpBalance DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpBalance.HpBalanceHDaoImpl" id="hpBalanceDao" init-method="init" name="hpBalanceDao" parent="baseHDao" scope="prototype"/>
+    <!--HpBalanceDetailsD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpBalanceDetailsD.HpBalanceDetailsDHDaoImpl" id="hpBalanceDetailsDDao" init-method="init" name="hpBalanceDetailsDDao" parent="baseHDao" scope="prototype"/>
+    <!--HpBalanceFeedChanges DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpBalanceFeedChanges.HpBalanceFeedChangesHDaoImpl" id="hpBalanceFeedChangesDao" init-method="init" name="hpBalanceFeedChangesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpBalanceInputs DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpBalanceInputs.HpBalanceInputsHDaoImpl" id="hpBalanceInputsDao" init-method="init" name="hpBalanceInputsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpBalanceLines DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpBalanceLines.HpBalanceLinesHDaoImpl" id="hpBalanceLinesDao" init-method="init" name="hpBalanceLinesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpBalanceTypes DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpBalanceTypes.HpBalanceTypesHDaoImpl" id="hpBalanceTypesDao" init-method="init" name="hpBalanceTypesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpBankFile DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpBankFile.HpBankFileHDaoImpl" id="hpBankFileDao" init-method="init" name="hpBankFileDao" parent="baseHDao" scope="prototype"/>
+    <!--HpBillingCode DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpBillingCode.HpBillingCodeHDaoImpl" id="hpBillingCodeDao" init-method="init" name="hpBillingCodeDao" parent="baseHDao" scope="prototype"/>
+    <!--HpBillingCodePeriods DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpBillingCodePeriods.HpBillingCodePeriodsHDaoImpl" id="hpBillingCodePeriodsDao" init-method="init" name="hpBillingCodePeriodsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpClassifications DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpClassifications.HpClassificationsHDaoImpl" id="hpClassificationsDao" init-method="init" name="hpClassificationsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpComments DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpComments.HpCommentsHDaoImpl" id="hpCommentsDao" init-method="init" name="hpCommentsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpCommsLinkMigration DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpCommsLinkMigration.HpCommsLinkMigrationHDaoImpl" id="hpCommsLinkMigrationDao" init-method="init" name="hpCommsLinkMigrationDao" parent="baseHDao" scope="prototype"/>
+    <!--HpCommsOrgLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpCommsOrgLink.HpCommsOrgLinkHDaoImpl" id="hpCommsOrgLinkDao" init-method="init" name="hpCommsOrgLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--HpCommsPersonLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpCommsPersonLink.HpCommsPersonLinkHDaoImpl" id="hpCommsPersonLinkDao" init-method="init" name="hpCommsPersonLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--HpContactHistory DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpContactHistory.HpContactHistoryHDaoImpl" id="hpContactHistoryDao" init-method="init" name="hpContactHistoryDao" parent="baseHDao" scope="prototype"/>
+    <!--HpContractsD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpContractsD.HpContractsDHDaoImpl" id="hpContractsDDao" init-method="init" name="hpContractsDDao" parent="baseHDao" scope="prototype"/>
+    <!--HpCostings DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpCostings.HpCostingsHDaoImpl" id="hpCostingsDao" init-method="init" name="hpCostingsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpDocuments DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpDocuments.HpDocumentsHDaoImpl" id="hpDocumentsDao" init-method="init" name="hpDocumentsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpElementsD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpElementsD.HpElementsDHDaoImpl" id="hpElementsDDao" init-method="init" name="hpElementsDDao" parent="baseHDao" scope="prototype"/>
+    <!--HpElementAttributesD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpElementAttributesD.HpElementAttributesDHDaoImpl" id="hpElementAttributesDDao" init-method="init" name="hpElementAttributesDDao" parent="baseHDao" scope="prototype"/>
+    <!--HpElementValuesD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpElementValuesD.HpElementValuesDHDaoImpl" id="hpElementValuesDDao" init-method="init" name="hpElementValuesDDao" parent="baseHDao" scope="prototype"/>
+    <!--HpElementValuesRollBack DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpElementValuesRollBack.HpElementValuesRollBackHDaoImpl" id="hpElementValuesRollBackDao" init-method="init" name="hpElementValuesRollBackDao" parent="baseHDao" scope="prototype"/>
+    <!--HpEmployeeTerimination DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpEmployeeTerimination.HpEmployeeTeriminationHDaoImpl" id="hpEmployeeTeriminationDao" init-method="init" name="hpEmployeeTeriminationDao" parent="baseHDao" scope="prototype"/>
+    <!--HpEmpDueFile DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpEmpDueFile.HpEmpDueFileHDaoImpl" id="hpEmpDueFileDao" init-method="init" name="hpEmpDueFileDao" parent="baseHDao" scope="prototype"/>
+    <!--HpEtpSummarys DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpEtpSummarys.HpEtpSummarysHDaoImpl" id="hpEtpSummarysDao" init-method="init" name="hpEtpSummarysDao" parent="baseHDao" scope="prototype"/>
+    <!--HpFormulaTemplate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpFormulaTemplate.HpFormulaTemplateHDaoImpl" id="hpFormulaTemplateDao" init-method="init" name="hpFormulaTemplateDao" parent="baseHDao" scope="prototype"/>
+    <!--HpHelpContent DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpHelpContent.HpHelpContentHDaoImpl" id="hpHelpContentDao" init-method="init" name="hpHelpContentDao" parent="baseHDao" scope="prototype"/>
+    <!--HpInvoice DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpInvoice.HpInvoiceHDaoImpl" id="hpInvoiceDao" init-method="init" name="hpInvoiceDao" parent="baseHDao" scope="prototype"/>
+    <!--HpInvoiceDetails DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpInvoiceDetails.HpInvoiceDetailsHDaoImpl" id="hpInvoiceDetailsDao" init-method="init" name="hpInvoiceDetailsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpInvoicePeriodDates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpInvoicePeriodDates.HpInvoicePeriodDatesHDaoImpl" id="hpInvoicePeriodDatesDao" init-method="init" name="hpInvoicePeriodDatesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpInvoicePerElements DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpInvoicePerElements.HpInvoicePerElementsHDaoImpl" id="hpInvoicePerElementsDao" init-method="init" name="hpInvoicePerElementsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpInvoiceTemplate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpInvoiceTemplate.HpInvoiceTemplateHDaoImpl" id="hpInvoiceTemplateDao" init-method="init" name="hpInvoiceTemplateDao" parent="baseHDao" scope="prototype"/>
+    <!--HpInvoiceTemplateLines DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpInvoiceTemplateLines.HpInvoiceTemplateLinesHDaoImpl" id="hpInvoiceTemplateLinesDao" init-method="init" name="hpInvoiceTemplateLinesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpJobs DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpJobs.HpJobsHDaoImpl" id="hpJobsDao" init-method="init" name="hpJobsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpMyobFile DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpMyobFile.HpMyobFileHDaoImpl" id="hpMyobFileDao" init-method="init" name="hpMyobFileDao" parent="baseHDao" scope="prototype"/>
+    <!--HpNextActions DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpNextActions.HpNextActionsHDaoImpl" id="hpNextActionsDao" init-method="init" name="hpNextActionsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpOrganisationD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDHDaoImpl" id="hpOrganisationDDao" init-method="init" name="hpOrganisationDDao" parent="baseHDao" scope="prototype"/>
+    <!--HpPaymentMethods DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpPaymentMethods.HpPaymentMethodsHDaoImpl" id="hpPaymentMethodsDao" init-method="init" name="hpPaymentMethodsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpPaymentSummarys DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpPaymentSummarys.HpPaymentSummarysHDaoImpl" id="hpPaymentSummarysDao" init-method="init" name="hpPaymentSummarysDao" parent="baseHDao" scope="prototype"/>
+    <!--HpPayrollProcesses DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpPayrollProcesses.HpPayrollProcessesHDaoImpl" id="hpPayrollProcessesDao" init-method="init" name="hpPayrollProcessesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpPayAdvPrefrence DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpPayAdvPrefrence.HpPayAdvPrefrenceHDaoImpl" id="hpPayAdvPrefrenceDao" init-method="init" name="hpPayAdvPrefrenceDao" parent="baseHDao" scope="prototype"/>
+    <!--HpPerciNir DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpPerciNir.HpPerciNirHDaoImpl" id="hpPerciNirDao" init-method="init" name="hpPerciNirDao" parent="baseHDao" scope="prototype"/>
+    <!--HpPersonD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpPersonD.HpPersonDHDaoImpl" id="hpPersonDDao" init-method="init" name="hpPersonDDao" parent="baseHDao" scope="prototype"/>
+    <!--HpPersonEoy DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpPersonEoy.HpPersonEoyHDaoImpl" id="hpPersonEoyDao" init-method="init" name="hpPersonEoyDao" parent="baseHDao" scope="prototype"/>
+    <!--HpPersonService DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpPersonService.HpPersonServiceHDaoImpl" id="hpPersonServiceDao" init-method="init" name="hpPersonServiceDao" parent="baseHDao" scope="prototype"/>
+    <!--HpPersonServiceLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpPersonServiceLink.HpPersonServiceLinkHDaoImpl" id="hpPersonServiceLinkDao" init-method="init" name="hpPersonServiceLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--HpPreferences DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpPreferences.HpPreferencesHDaoImpl" id="hpPreferencesDao" init-method="init" name="hpPreferencesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpPreferenceValues DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpPreferenceValues.HpPreferenceValuesHDaoImpl" id="hpPreferenceValuesDao" init-method="init" name="hpPreferenceValuesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpRemittanceAdviceTemplate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpRemittanceAdviceTemplate.HpRemittanceAdviceTemplateHDaoImpl" id="hpRemittanceAdviceTemplateDao" init-method="init" name="hpRemittanceAdviceTemplateDao" parent="baseHDao" scope="prototype"/>
+    <!--HpRemittLeaveAccTemplate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpRemittLeaveAccTemplate.HpRemittLeaveAccTemplateHDaoImpl" id="hpRemittLeaveAccTemplateDao" init-method="init" name="hpRemittLeaveAccTemplateDao" parent="baseHDao" scope="prototype"/>
+    <!--HpTaxScales DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpTaxScales.HpTaxScalesHDaoImpl" id="hpTaxScalesDao" init-method="init" name="hpTaxScalesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpTaxScaleData DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpTaxScaleData.HpTaxScaleDataHDaoImpl" id="hpTaxScaleDataDao" init-method="init" name="hpTaxScaleDataDao" parent="baseHDao" scope="prototype"/>
+    <!--HpTeHoursType DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpTeHoursType.HpTeHoursTypeHDaoImpl" id="hpTeHoursTypeDao" init-method="init" name="hpTeHoursTypeDao" parent="baseHDao" scope="prototype"/>
+    <!--HpTePayrollTranseferLog DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpTePayrollTranseferLog.HpTePayrollTranseferLogHDaoImpl" id="hpTePayrollTranseferLogDao" init-method="init" name="hpTePayrollTranseferLogDao" parent="baseHDao" scope="prototype"/>
+    <!--HpTePcGroups DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpTePcGroups.HpTePcGroupsHDaoImpl" id="hpTePcGroupsDao" init-method="init" name="hpTePcGroupsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpTePcGroupDetails DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpTePcGroupDetails.HpTePcGroupDetailsHDaoImpl" id="hpTePcGroupDetailsDao" init-method="init" name="hpTePcGroupDetailsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpTeTemplates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpTeTemplates.HpTeTemplatesHDaoImpl" id="hpTeTemplatesDao" init-method="init" name="hpTeTemplatesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpTeTimecards DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpTeTimecards.HpTeTimecardsHDaoImpl" id="hpTeTimecardsDao" init-method="init" name="hpTeTimecardsDao" parent="baseHDao" scope="prototype"/>
+    <!--HpTeTimecardHours DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpTeTimecardHours.HpTeTimecardHoursHDaoImpl" id="hpTeTimecardHoursDao" init-method="init" name="hpTeTimecardHoursDao" parent="baseHDao" scope="prototype"/>
+    <!--HpTeTimecardLines DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpTeTimecardLines.HpTeTimecardLinesHDaoImpl" id="hpTeTimecardLinesDao" init-method="init" name="hpTeTimecardLinesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpTimesheetPeriodDates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpTimesheetPeriodDates.HpTimesheetPeriodDatesHDaoImpl" id="hpTimesheetPeriodDatesDao" init-method="init" name="hpTimesheetPeriodDatesDao" parent="baseHDao" scope="prototype"/>
+    <!--HpTimesheetPeriodDatesBk DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HpTimesheetPeriodDatesBk.HpTimesheetPeriodDatesBkHDaoImpl" id="hpTimesheetPeriodDatesBkDao" init-method="init" name="hpTimesheetPeriodDatesBkDao" parent="baseHDao" scope="prototype"/>
+    <!--HrDocument DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HrDocument.HrDocumentHDaoImpl" id="hrDocumentDao" init-method="init" name="hrDocumentDao" parent="baseHDao" scope="prototype"/>
+    <!--HrDocumentFile DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.HrDocumentFile.HrDocumentFileHDaoImpl" id="hrDocumentFileDao" init-method="init" name="hrDocumentFileDao" parent="baseHDao" scope="prototype"/>
+    <!--InvoiceComment DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.InvoiceComment.InvoiceCommentHDaoImpl" id="invoiceCommentDao" init-method="init" name="invoiceCommentDao" parent="baseHDao" scope="prototype"/>
+    <!--InvoiceElement DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.InvoiceElement.InvoiceElementHDaoImpl" id="invoiceElementDao" init-method="init" name="invoiceElementDao" parent="baseHDao" scope="prototype"/>
+    <!--InvoiceElementTemplate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.InvoiceElementTemplate.InvoiceElementTemplateHDaoImpl" id="invoiceElementTemplateDao" init-method="init" name="invoiceElementTemplateDao" parent="baseHDao" scope="prototype"/>
+    <!--InvoiceElementTemplateValue DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.InvoiceElementTemplateValue.InvoiceElementTemplateValueHDaoImpl" id="invoiceElementTemplateValueDao" init-method="init" name="invoiceElementTemplateValueDao" parent="baseHDao" scope="prototype"/>
+    <!--InvoiceGroup DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.InvoiceGroup.InvoiceGroupHDaoImpl" id="invoiceGroupDao" init-method="init" name="invoiceGroupDao" parent="baseHDao" scope="prototype"/>
+    <!--IproBatchUploadDetails DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.IproBatchUploadDetails.IproBatchUploadDetailsHDaoImpl" id="iproBatchUploadDetailsDao" init-method="init" name="iproBatchUploadDetailsDao" parent="baseHDao" scope="prototype"/>
+    <!--IproBatchUploadHeader DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.IproBatchUploadHeader.IproBatchUploadHeaderHDaoImpl" id="iproBatchUploadHeaderDao" init-method="init" name="iproBatchUploadHeaderDao" parent="baseHDao" scope="prototype"/>
+    <!--LeaveRequest DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.LeaveRequest.LeaveRequestHDaoImpl" id="leaveRequestDao" init-method="init" name="leaveRequestDao" parent="baseHDao" scope="prototype"/>
+    <!--LeaveRequestDetail DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.LeaveRequestDetail.LeaveRequestDetailHDaoImpl" id="leaveRequestDetailDao" init-method="init" name="leaveRequestDetailDao" parent="baseHDao" scope="prototype"/>
+    <!--MasterDocumentList DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.MasterDocumentList.MasterDocumentListHDaoImpl" id="masterDocumentListDao" init-method="init" name="masterDocumentListDao" parent="baseHDao" scope="prototype"/>
+    <!--MobileDeviceInfo DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.MobileDeviceInfo.MobileDeviceInfoHDaoImpl" id="mobileDeviceInfoDao" init-method="init" name="mobileDeviceInfoDao" parent="baseHDao" scope="prototype"/>
+    <!--NavCustomerSync DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.NavCustomerSync.NavCustomerSyncHDaoImpl" id="navCustomerSyncDao" init-method="init" name="navCustomerSyncDao" parent="baseHDao" scope="prototype"/>
+    <!--NavGlJournalSync DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.NavGlJournalSync.NavGlJournalSyncHDaoImpl" id="navGlJournalSyncDao" init-method="init" name="navGlJournalSyncDao" parent="baseHDao" scope="prototype"/>
+    <!--NavInvoiceSync DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.NavInvoiceSync.NavInvoiceSyncHDaoImpl" id="navInvoiceSyncDao" init-method="init" name="navInvoiceSyncDao" parent="baseHDao" scope="prototype"/>
+    <!--NavResourceSync DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.NavResourceSync.NavResourceSyncHDaoImpl" id="navResourceSyncDao" init-method="init" name="navResourceSyncDao" parent="baseHDao" scope="prototype"/>
+    <!--NavSyncLog DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.NavSyncLog.NavSyncLogHDaoImpl" id="navSyncLogDao" init-method="init" name="navSyncLogDao" parent="baseHDao" scope="prototype"/>
+    <!--NavSyncNotification DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.NavSyncNotification.NavSyncNotificationHDaoImpl" id="navSyncNotificationDao" init-method="init" name="navSyncNotificationDao" parent="baseHDao" scope="prototype"/>
+    <!--NavVendorSync DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.NavVendorSync.NavVendorSyncHDaoImpl" id="navVendorSyncDao" init-method="init" name="navVendorSyncDao" parent="baseHDao" scope="prototype"/>
+    <!--OnlineDocSubmitLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.OnlineDocSubmitLink.OnlineDocSubmitLinkHDaoImpl" id="onlineDocSubmitLinkDao" init-method="init" name="onlineDocSubmitLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--OnlineDocSubmitLinkDet DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.OnlineDocSubmitLinkDet.OnlineDocSubmitLinkDetHDaoImpl" id="onlineDocSubmitLinkDetDao" init-method="init" name="onlineDocSubmitLinkDetDao" parent="baseHDao" scope="prototype"/>
+    <!--OnlineWisi DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.OnlineWisi.OnlineWisiHDaoImpl" id="onlineWisiDao" init-method="init" name="onlineWisiDao" parent="baseHDao" scope="prototype"/>
+    <!--Opportunity DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.Opportunity.OpportunityHDaoImpl" id="opportunityDao" init-method="init" name="opportunityDao" parent="baseHDao" scope="prototype"/>
+    <!--OpportunityAssignmentDetails DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.OpportunityAssignmentDetails.OpportunityAssignmentDetailsHDaoImpl" id="opportunityAssignmentDetailsDao" init-method="init" name="opportunityAssignmentDetailsDao" parent="baseHDao" scope="prototype"/>
+    <!--OpportunityAssignmentLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.OpportunityAssignmentLink.OpportunityAssignmentLinkHDaoImpl" id="opportunityAssignmentLinkDao" init-method="init" name="opportunityAssignmentLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--OpportunityCommsLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.OpportunityCommsLink.OpportunityCommsLinkHDaoImpl" id="opportunityCommsLinkDao" init-method="init" name="opportunityCommsLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--OpportunityDocsLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.OpportunityDocsLink.OpportunityDocsLinkHDaoImpl" id="opportunityDocsLinkDao" init-method="init" name="opportunityDocsLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--OpportunityNaLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.OpportunityNaLink.OpportunityNaLinkHDaoImpl" id="opportunityNaLinkDao" init-method="init" name="opportunityNaLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--OrganisationRole DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.OrganisationRole.OrganisationRoleHDaoImpl" id="organisationRoleDao" init-method="init" name="organisationRoleDao" parent="baseHDao" scope="prototype"/>
+    <!--OutboundDocument DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.OutboundDocument.OutboundDocumentHDaoImpl" id="outboundDocumentDao" init-method="init" name="outboundDocumentDao" parent="baseHDao" scope="prototype"/>
+    <!--OutboundDocumentAudit DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.OutboundDocumentAudit.OutboundDocumentAuditHDaoImpl" id="outboundDocumentAuditDao" init-method="init" name="outboundDocumentAuditDao" parent="baseHDao" scope="prototype"/>
+    <!--OutboundDocumentTemplate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.OutboundDocumentTemplate.OutboundDocumentTemplateHDaoImpl" id="outboundDocumentTemplateDao" init-method="init" name="outboundDocumentTemplateDao" parent="baseHDao" scope="prototype"/>
+    <!--OutboundDocumentType DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.OutboundDocumentType.OutboundDocumentTypeHDaoImpl" id="outboundDocumentTypeDao" init-method="init" name="outboundDocumentTypeDao" parent="baseHDao" scope="prototype"/>
+    <!--Payment DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.Payment.PaymentHDaoImpl" id="paymentDao" init-method="init" name="paymentDao" parent="baseHDao" scope="prototype"/>
+    <!--PaymentConfirmation DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PaymentConfirmation.PaymentConfirmationHDaoImpl" id="paymentConfirmationDao" init-method="init" name="paymentConfirmationDao" parent="baseHDao" scope="prototype"/>
+    <!--PaymentElement DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PaymentElement.PaymentElementHDaoImpl" id="paymentElementDao" init-method="init" name="paymentElementDao" parent="baseHDao" scope="prototype"/>
+    <!--PaymentElementAttribute DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PaymentElementAttribute.PaymentElementAttributeHDaoImpl" id="paymentElementAttributeDao" init-method="init" name="paymentElementAttributeDao" parent="baseHDao" scope="prototype"/>
+    <!--PaymentSummGenerationLog DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PaymentSummGenerationLog.PaymentSummGenerationLogHDaoImpl" id="paymentSummGenerationLogDao" init-method="init" name="paymentSummGenerationLogDao" parent="baseHDao" scope="prototype"/>
+    <!--PersonBusinessRule DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PersonBusinessRule.PersonBusinessRuleHDaoImpl" id="personBusinessRuleDao" init-method="init" name="personBusinessRuleDao" parent="baseHDao" scope="prototype"/>
+    <!--PersonLifeCycleStageHist DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PersonLifeCycleStageHist.PersonLifeCycleStageHistHDaoImpl" id="personLifeCycleStageHistDao" init-method="init" name="personLifeCycleStageHistDao" parent="baseHDao" scope="prototype"/>
+    <!--PersonSuperDetail DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PersonSuperDetail.PersonSuperDetailHDaoImpl" id="personSuperDetailDao" init-method="init" name="personSuperDetailDao" parent="baseHDao" scope="prototype"/>
+    <!--PersonSuperImport DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PersonSuperImport.PersonSuperImportHDaoImpl" id="personSuperImportDao" init-method="init" name="personSuperImportDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalAddressContactStage DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalAddressContactStage.PortalAddressContactStageHDaoImpl" id="portalAddressContactStageDao" init-method="init" name="portalAddressContactStageDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalAssignmentBankStage DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalAssignmentBankStage.PortalAssignmentBankStageHDaoImpl" id="portalAssignmentBankStageDao" init-method="init" name="portalAssignmentBankStageDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalAssignmentDetailStage DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalAssignmentDetailStage.PortalAssignmentDetailStageHDaoImpl" id="portalAssignmentDetailStageDao" init-method="init" name="portalAssignmentDetailStageDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalAssignmentRatesStage DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalAssignmentRatesStage.PortalAssignmentRatesStageHDaoImpl" id="portalAssignmentRatesStageDao" init-method="init" name="portalAssignmentRatesStageDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalAssignmentSuperStage DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalAssignmentSuperStage.PortalAssignmentSuperStageHDaoImpl" id="portalAssignmentSuperStageDao" init-method="init" name="portalAssignmentSuperStageDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalAssignmentTaxStage DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalAssignmentTaxStage.PortalAssignmentTaxStageHDaoImpl" id="portalAssignmentTaxStageDao" init-method="init" name="portalAssignmentTaxStageDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalDoc DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalDoc.PortalDocHDaoImpl" id="portalDocDao" init-method="init" name="portalDocDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalDocContent DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalDocContent.PortalDocContentHDaoImpl" id="portalDocContentDao" init-method="init" name="portalDocContentDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalEmailTemplates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalEmailTemplates.PortalEmailTemplatesHDaoImpl" id="portalEmailTemplatesDao" init-method="init" name="portalEmailTemplatesDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalEmergencyContStage DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalEmergencyContStage.PortalEmergencyContStageHDaoImpl" id="portalEmergencyContStageDao" init-method="init" name="portalEmergencyContStageDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalExpense DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalExpense.PortalExpenseHDaoImpl" id="portalExpenseDao" init-method="init" name="portalExpenseDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalExpenseItem DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalExpenseItem.PortalExpenseItemHDaoImpl" id="portalExpenseItemDao" init-method="init" name="portalExpenseItemDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalHelpFeedback DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalHelpFeedback.PortalHelpFeedbackHDaoImpl" id="portalHelpFeedbackDao" init-method="init" name="portalHelpFeedbackDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalLog DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalLog.PortalLogHDaoImpl" id="portalLogDao" init-method="init" name="portalLogDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalMessage DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalMessage.PortalMessageHDaoImpl" id="portalMessageDao" init-method="init" name="portalMessageDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalNotification DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalNotification.PortalNotificationHDaoImpl" id="portalNotificationDao" init-method="init" name="portalNotificationDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalOrganisationalRoles DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalOrganisationalRoles.PortalOrganisationalRolesHDaoImpl" id="portalOrganisationalRolesDao" init-method="init" name="portalOrganisationalRolesDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalOrganisationHierarchy DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalOrganisationHierarchy.PortalOrganisationHierarchyHDaoImpl" id="portalOrganisationHierarchyDao" init-method="init" name="portalOrganisationHierarchyDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalOrganisationStage DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalOrganisationStage.PortalOrganisationStageHDaoImpl" id="portalOrganisationStageDao" init-method="init" name="portalOrganisationStageDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalOrgProfile DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalOrgProfile.PortalOrgProfileHDaoImpl" id="portalOrgProfileDao" init-method="init" name="portalOrgProfileDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalPayslips DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalPayslips.PortalPayslipsHDaoImpl" id="portalPayslipsDao" init-method="init" name="portalPayslipsDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalPayPeriods DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalPayPeriods.PortalPayPeriodsHDaoImpl" id="portalPayPeriodsDao" init-method="init" name="portalPayPeriodsDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalPersonStage DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalPersonStage.PortalPersonStageHDaoImpl" id="portalPersonStageDao" init-method="init" name="portalPersonStageDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalPersonStageAudit DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalPersonStageAudit.PortalPersonStageAuditHDaoImpl" id="portalPersonStageAuditDao" init-method="init" name="portalPersonStageAuditDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalReminder DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalReminder.PortalReminderHDaoImpl" id="portalReminderDao" init-method="init" name="portalReminderDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalSecondaryDelegations DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalSecondaryDelegations.PortalSecondaryDelegationsHDaoImpl" id="portalSecondaryDelegationsDao" init-method="init" name="portalSecondaryDelegationsDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalSignupBankDetails DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalSignupBankDetails.PortalSignupBankDetailsHDaoImpl" id="portalSignupBankDetailsDao" init-method="init" name="portalSignupBankDetailsDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalSignupBusinessInfo DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalSignupBusinessInfo.PortalSignupBusinessInfoHDaoImpl" id="portalSignupBusinessInfoDao" init-method="init" name="portalSignupBusinessInfoDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalSignupContactDetails DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalSignupContactDetails.PortalSignupContactDetailsHDaoImpl" id="portalSignupContactDetailsDao" init-method="init" name="portalSignupContactDetailsDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalSignupContract DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalSignupContract.PortalSignupContractHDaoImpl" id="portalSignupContractDao" init-method="init" name="portalSignupContractDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalSignupEmerContact DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalSignupEmerContact.PortalSignupEmerContactHDaoImpl" id="portalSignupEmerContactDao" init-method="init" name="portalSignupEmerContactDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalSignupIcCertificates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalSignupIcCertificates.PortalSignupIcCertificatesHDaoImpl" id="portalSignupIcCertificatesDao" init-method="init" name="portalSignupIcCertificatesDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalSignupNzicTaxDetails DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalSignupNzicTaxDetails.PortalSignupNzicTaxDetailsHDaoImpl" id="portalSignupNzicTaxDetailsDao" init-method="init" name="portalSignupNzicTaxDetailsDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalSignupPersonalDetails DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalSignupPersonalDetails.PortalSignupPersonalDetailsHDaoImpl" id="portalSignupPersonalDetailsDao" init-method="init" name="portalSignupPersonalDetailsDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalSignupPolicies DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalSignupPolicies.PortalSignupPoliciesHDaoImpl" id="portalSignupPoliciesDao" init-method="init" name="portalSignupPoliciesDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalSignupResidency DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalSignupResidency.PortalSignupResidencyHDaoImpl" id="portalSignupResidencyDao" init-method="init" name="portalSignupResidencyDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalSignupSuperDetails DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalSignupSuperDetails.PortalSignupSuperDetailsHDaoImpl" id="portalSignupSuperDetailsDao" init-method="init" name="portalSignupSuperDetailsDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalSignupTaxDetails DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalSignupTaxDetails.PortalSignupTaxDetailsHDaoImpl" id="portalSignupTaxDetailsDao" init-method="init" name="portalSignupTaxDetailsDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalSponsorStage DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalSponsorStage.PortalSponsorStageHDaoImpl" id="portalSponsorStageDao" init-method="init" name="portalSponsorStageDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalStep DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalStep.PortalStepHDaoImpl" id="portalStepDao" init-method="init" name="portalStepDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalTf DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalTf.PortalTfHDaoImpl" id="portalTfDao" init-method="init" name="portalTfDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalTfPersonType DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalTfPersonType.PortalTfPersonTypeHDaoImpl" id="portalTfPersonTypeDao" init-method="init" name="portalTfPersonTypeDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalTimesheetErrors DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalTimesheetErrors.PortalTimesheetErrorsHDaoImpl" id="portalTimesheetErrorsDao" init-method="init" name="portalTimesheetErrorsDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalTimeSheetHdrStage DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalTimeSheetHdrStage.PortalTimeSheetHdrStageHDaoImpl" id="portalTimeSheetHdrStageDao" init-method="init" name="portalTimeSheetHdrStageDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalTimeSheetStage DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalTimeSheetStage.PortalTimeSheetStageHDaoImpl" id="portalTimeSheetStageDao" init-method="init" name="portalTimeSheetStageDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalUserAction DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalUserAction.PortalUserActionHDaoImpl" id="portalUserActionDao" init-method="init" name="portalUserActionDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalUserReminder DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalUserReminder.PortalUserReminderHDaoImpl" id="portalUserReminderDao" init-method="init" name="portalUserReminderDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalUserTf DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalUserTf.PortalUserTfHDaoImpl" id="portalUserTfDao" init-method="init" name="portalUserTfDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalUserTfStep DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalUserTfStep.PortalUserTfStepHDaoImpl" id="portalUserTfStepDao" init-method="init" name="portalUserTfStepDao" parent="baseHDao" scope="prototype"/>
+    <!--PortalUserTfStepDoc DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PortalUserTfStepDoc.PortalUserTfStepDocHDaoImpl" id="portalUserTfStepDocDao" init-method="init" name="portalUserTfStepDocDao" parent="baseHDao" scope="prototype"/>
+    <!--PrtAssignmentSetup DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PrtAssignmentSetup.PrtAssignmentSetupHDaoImpl" id="prtAssignmentSetupDao" init-method="init" name="prtAssignmentSetupDao" parent="baseHDao" scope="prototype"/>
+    <!--PrtCohOrgLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PrtCohOrgLink.PrtCohOrgLinkHDaoImpl" id="prtCohOrgLinkDao" init-method="init" name="prtCohOrgLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--PrtCohScenario DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PrtCohScenario.PrtCohScenarioHDaoImpl" id="prtCohScenarioDao" init-method="init" name="prtCohScenarioDao" parent="baseHDao" scope="prototype"/>
+    <!--PrtRate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PrtRate.PrtRateHDaoImpl" id="prtRateDao" init-method="init" name="prtRateDao" parent="baseHDao" scope="prototype"/>
+    <!--PrtRate20160701 DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PrtRate20160701.PrtRate20160701HDaoImpl" id="prtRate20160701Dao" init-method="init" name="prtRate20160701Dao" parent="baseHDao" scope="prototype"/>
+    <!--PrtScenPayMethEsOrgLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PrtScenPayMethEsOrgLink.PrtScenPayMethEsOrgLinkHDaoImpl" id="prtScenPayMethEsOrgLinkDao" init-method="init" name="prtScenPayMethEsOrgLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--QuartzJobDetails DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.QuartzJobDetails.QuartzJobDetailsHDaoImpl" id="quartzJobDetailsDao" init-method="init" name="quartzJobDetailsDao" parent="baseHDao" scope="prototype"/>
+    <!--QuartzJobEmailConfig DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.QuartzJobEmailConfig.QuartzJobEmailConfigHDaoImpl" id="quartzJobEmailConfigDao" init-method="init" name="quartzJobEmailConfigDao" parent="baseHDao" scope="prototype"/>
+    <!--QuartzJobLog DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.QuartzJobLog.QuartzJobLogHDaoImpl" id="quartzJobLogDao" init-method="init" name="quartzJobLogDao" parent="baseHDao" scope="prototype"/>
+    <!--ScheduledPayrollNotes DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.ScheduledPayrollNotes.ScheduledPayrollNotesHDaoImpl" id="scheduledPayrollNotesDao" init-method="init" name="scheduledPayrollNotesDao" parent="baseHDao" scope="prototype"/>
+    <!--SecGroup DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SecGroup.SecGroupHDaoImpl" id="secGroupDao" init-method="init" name="secGroupDao" parent="baseHDao" scope="prototype"/>
+    <!--SecGrpObjPriv DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SecGrpObjPriv.SecGrpObjPrivHDaoImpl" id="secGrpObjPrivDao" init-method="init" name="secGrpObjPrivDao" parent="baseHDao" scope="prototype"/>
+    <!--SecObject DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SecObject.SecObjectHDaoImpl" id="secObjectDao" init-method="init" name="secObjectDao" parent="baseHDao" scope="prototype"/>
+    <!--SecObjectPrivilege DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SecObjectPrivilege.SecObjectPrivilegeHDaoImpl" id="secObjectPrivilegeDao" init-method="init" name="secObjectPrivilegeDao" parent="baseHDao" scope="prototype"/>
+    <!--SecPrivilege DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SecPrivilege.SecPrivilegeHDaoImpl" id="secPrivilegeDao" init-method="init" name="secPrivilegeDao" parent="baseHDao" scope="prototype"/>
+    <!--SecUserGroup DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SecUserGroup.SecUserGroupHDaoImpl" id="secUserGroupDao" init-method="init" name="secUserGroupDao" parent="baseHDao" scope="prototype"/>
+    <!--StpAllowance DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.StpAllowance.StpAllowanceHDaoImpl" id="stpAllowanceDao" init-method="init" name="stpAllowanceDao" parent="baseHDao" scope="prototype"/>
+    <!--StpAllowanceElements DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.StpAllowanceElements.StpAllowanceElementsHDaoImpl" id="stpAllowanceElementsDao" init-method="init" name="stpAllowanceElementsDao" parent="baseHDao" scope="prototype"/>
+    <!--StpDetail DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.StpDetail.StpDetailHDaoImpl" id="stpDetailDao" init-method="init" name="stpDetailDao" parent="baseHDao" scope="prototype"/>
+    <!--StpFile DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.StpFile.StpFileHDaoImpl" id="stpFileDao" init-method="init" name="stpFileDao" parent="baseHDao" scope="prototype"/>
+    <!--StpLogFile DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.StpLogFile.StpLogFileHDaoImpl" id="stpLogFileDao" init-method="init" name="stpLogFileDao" parent="baseHDao" scope="prototype"/>
+    <!--StpPayee DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.StpPayee.StpPayeeHDaoImpl" id="stpPayeeDao" init-method="init" name="stpPayeeDao" parent="baseHDao" scope="prototype"/>
+    <!--StpPayer DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.StpPayer.StpPayerHDaoImpl" id="stpPayerDao" init-method="init" name="stpPayerDao" parent="baseHDao" scope="prototype"/>
+    <!--StpPaymentLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.StpPaymentLink.StpPaymentLinkHDaoImpl" id="stpPaymentLinkDao" init-method="init" name="stpPaymentLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--StpTerminationPayment DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.StpTerminationPayment.StpTerminationPaymentHDaoImpl" id="stpTerminationPaymentDao" init-method="init" name="stpTerminationPaymentDao" parent="baseHDao" scope="prototype"/>
+    <!--SuperFundDetail DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SuperFundDetail.SuperFundDetailHDaoImpl" id="superFundDetailDao" init-method="init" name="superFundDetailDao" parent="baseHDao" scope="prototype"/>
+    <!--SuperFundDetailBkup DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SuperFundDetailBkup.SuperFundDetailBkupHDaoImpl" id="superFundDetailBkupDao" init-method="init" name="superFundDetailBkupDao" parent="baseHDao" scope="prototype"/>
+    <!--SysApplication DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysApplication.SysApplicationHDaoImpl" id="sysApplicationDao" init-method="init" name="sysApplicationDao" parent="baseHDao" scope="prototype"/>
+    <!--SysCommonLookups DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysCommonLookups.SysCommonLookupsHDaoImpl" id="sysCommonLookupsDao" init-method="init" name="sysCommonLookupsDao" parent="baseHDao" scope="prototype"/>
+    <!--SysCurrency DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysCurrency.SysCurrencyHDaoImpl" id="sysCurrencyDao" init-method="init" name="sysCurrencyDao" parent="baseHDao" scope="prototype"/>
+    <!--SysInvalidPasswords DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysInvalidPasswords.SysInvalidPasswordsHDaoImpl" id="sysInvalidPasswordsDao" init-method="init" name="sysInvalidPasswordsDao" parent="baseHDao" scope="prototype"/>
+    <!--SysInvalidPins DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysInvalidPins.SysInvalidPinsHDaoImpl" id="sysInvalidPinsDao" init-method="init" name="sysInvalidPinsDao" parent="baseHDao" scope="prototype"/>
+    <!--SysLookupTypes DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysLookupTypes.SysLookupTypesHDaoImpl" id="sysLookupTypesDao" init-method="init" name="sysLookupTypesDao" parent="baseHDao" scope="prototype"/>
+    <!--SysLovs DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysLovs.SysLovsHDaoImpl" id="sysLovsDao" init-method="init" name="sysLovsDao" parent="baseHDao" scope="prototype"/>
+    <!--SysMenus DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysMenus.SysMenusHDaoImpl" id="sysMenusDao" init-method="init" name="sysMenusDao" parent="baseHDao" scope="prototype"/>
+    <!--SysMenuDetails DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysMenuDetails.SysMenuDetailsHDaoImpl" id="sysMenuDetailsDao" init-method="init" name="sysMenuDetailsDao" parent="baseHDao" scope="prototype"/>
+    <!--SysPasswordMessages DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysPasswordMessages.SysPasswordMessagesHDaoImpl" id="sysPasswordMessagesDao" init-method="init" name="sysPasswordMessagesDao" parent="baseHDao" scope="prototype"/>
+    <!--SysResponsibilityD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysResponsibilityD.SysResponsibilityDHDaoImpl" id="sysResponsibilityDDao" init-method="init" name="sysResponsibilityDDao" parent="baseHDao" scope="prototype"/>
+    <!--SysUsers DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysUsers.SysUsersHDaoImpl" id="sysUsersDao" init-method="init" name="sysUsersDao" parent="baseHDao" scope="prototype"/>
+    <!--SysUserFunction DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysUserFunction.SysUserFunctionHDaoImpl" id="sysUserFunctionDao" init-method="init" name="sysUserFunctionDao" parent="baseHDao" scope="prototype"/>
+    <!--SysUserResp DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysUserResp.SysUserRespHDaoImpl" id="sysUserRespDao" init-method="init" name="sysUserRespDao" parent="baseHDao" scope="prototype"/>
+    <!--SysUserSecurityGroup DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysUserSecurityGroup.SysUserSecurityGroupHDaoImpl" id="sysUserSecurityGroupDao" init-method="init" name="sysUserSecurityGroupDao" parent="baseHDao" scope="prototype"/>
+    <!--TemplatedDoc DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.TemplatedDoc.TemplatedDocHDaoImpl" id="templatedDocDao" init-method="init" name="templatedDocDao" parent="baseHDao" scope="prototype"/>
+    <!--TerminationPayerDetail DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.TerminationPayerDetail.TerminationPayerDetailHDaoImpl" id="terminationPayerDetailDao" init-method="init" name="terminationPayerDetailDao" parent="baseHDao" scope="prototype"/>
+    <!--TerminationPaymentDetail DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.TerminationPaymentDetail.TerminationPaymentDetailHDaoImpl" id="terminationPaymentDetailDao" init-method="init" name="terminationPaymentDetailDao" parent="baseHDao" scope="prototype"/>
+    <!--TfndPayeeRecordDocLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.TfndPayeeRecordDocLink.TfndPayeeRecordDocLinkHDaoImpl" id="tfndPayeeRecordDocLinkDao" init-method="init" name="tfndPayeeRecordDocLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--TfndReportFile DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.TfndReportFile.TfndReportFileHDaoImpl" id="tfndReportFileDao" init-method="init" name="tfndReportFileDao" parent="baseHDao" scope="prototype"/>
+    <!--TfndReportPayeeRecord DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.TfndReportPayeeRecord.TfndReportPayeeRecordHDaoImpl" id="tfndReportPayeeRecordDao" init-method="init" name="tfndReportPayeeRecordDao" parent="baseHDao" scope="prototype"/>
+    <!--TimeproImport DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.TimeproImport.TimeproImportHDaoImpl" id="timeproImportDao" init-method="init" name="timeproImportDao" parent="baseHDao" scope="prototype"/>
+    <!--TimeproUpdate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.TimeproUpdate.TimeproUpdateHDaoImpl" id="timeproUpdateDao" init-method="init" name="timeproUpdateDao" parent="baseHDao" scope="prototype"/>
+    <!--Timesheet DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.Timesheet.TimesheetHDaoImpl" id="timesheetDao" init-method="init" name="timesheetDao" parent="baseHDao" scope="prototype"/>
+    <!--TimesheetAuthEmailLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.TimesheetAuthEmailLink.TimesheetAuthEmailLinkHDaoImpl" id="timesheetAuthEmailLinkDao" init-method="init" name="timesheetAuthEmailLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--TimesheetLine DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.TimesheetLine.TimesheetLineHDaoImpl" id="timesheetLineDao" init-method="init" name="timesheetLineDao" parent="baseHDao" scope="prototype"/>
+    <!--TimesheetTransferBatch DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.TimesheetTransferBatch.TimesheetTransferBatchHDaoImpl" id="timesheetTransferBatchDao" init-method="init" name="timesheetTransferBatchDao" parent="baseHDao" scope="prototype"/>
+    <!--TimesheetTransferBatchDet DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.TimesheetTransferBatchDet.TimesheetTransferBatchDetHDaoImpl" id="timesheetTransferBatchDetDao" init-method="init" name="timesheetTransferBatchDetDao" parent="baseHDao" scope="prototype"/>
+    <!--UcmUploadLog DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.UcmUploadLog.UcmUploadLogHDaoImpl" id="ucmUploadLogDao" init-method="init" name="ucmUploadLogDao" parent="baseHDao" scope="prototype"/>
+    <!--WcActCodeGroup DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcActCodeGroup.WcActCodeGroupHDaoImpl" id="wcActCodeGroupDao" init-method="init" name="wcActCodeGroupDao" parent="baseHDao" scope="prototype"/>
+    <!--WcActCodeRate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcActCodeRate.WcActCodeRateHDaoImpl" id="wcActCodeRateDao" init-method="init" name="wcActCodeRateDao" parent="baseHDao" scope="prototype"/>
+    <!--WcActCodeRateD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcActCodeRateD.WcActCodeRateDHDaoImpl" id="wcActCodeRateDDao" init-method="init" name="wcActCodeRateDDao" parent="baseHDao" scope="prototype"/>
+    <!--WcActOrgCodeRateLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcActOrgCodeRateLink.WcActOrgCodeRateLinkHDaoImpl" id="wcActOrgCodeRateLinkDao" init-method="init" name="wcActOrgCodeRateLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--WcActUpdateRates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcActUpdateRates.WcActUpdateRatesHDaoImpl" id="wcActUpdateRatesDao" init-method="init" name="wcActUpdateRatesDao" parent="baseHDao" scope="prototype"/>
+    <!--WcNswCodeGroup DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcNswCodeGroup.WcNswCodeGroupHDaoImpl" id="wcNswCodeGroupDao" init-method="init" name="wcNswCodeGroupDao" parent="baseHDao" scope="prototype"/>
+    <!--WcNswCodeRate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcNswCodeRate.WcNswCodeRateHDaoImpl" id="wcNswCodeRateDao" init-method="init" name="wcNswCodeRateDao" parent="baseHDao" scope="prototype"/>
+    <!--WcNswCodeRateD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcNswCodeRateD.WcNswCodeRateDHDaoImpl" id="wcNswCodeRateDDao" init-method="init" name="wcNswCodeRateDDao" parent="baseHDao" scope="prototype"/>
+    <!--WcNswCodeRateD1030 DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcNswCodeRateD1030.WcNswCodeRateD1030HDaoImpl" id="wcNswCodeRateD1030Dao" init-method="init" name="wcNswCodeRateD1030Dao" parent="baseHDao" scope="prototype"/>
+    <!--WcNswOrgCodeRateLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcNswOrgCodeRateLink.WcNswOrgCodeRateLinkHDaoImpl" id="wcNswOrgCodeRateLinkDao" init-method="init" name="wcNswOrgCodeRateLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--WcNswUpdateRates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcNswUpdateRates.WcNswUpdateRatesHDaoImpl" id="wcNswUpdateRatesDao" init-method="init" name="wcNswUpdateRatesDao" parent="baseHDao" scope="prototype"/>
+    <!--WcNtCodeGroup DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcNtCodeGroup.WcNtCodeGroupHDaoImpl" id="wcNtCodeGroupDao" init-method="init" name="wcNtCodeGroupDao" parent="baseHDao" scope="prototype"/>
+    <!--WcNtCodeRate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcNtCodeRate.WcNtCodeRateHDaoImpl" id="wcNtCodeRateDao" init-method="init" name="wcNtCodeRateDao" parent="baseHDao" scope="prototype"/>
+    <!--WcNtCodeRateD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcNtCodeRateD.WcNtCodeRateDHDaoImpl" id="wcNtCodeRateDDao" init-method="init" name="wcNtCodeRateDDao" parent="baseHDao" scope="prototype"/>
+    <!--WcNtOrgCodeRateLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcNtOrgCodeRateLink.WcNtOrgCodeRateLinkHDaoImpl" id="wcNtOrgCodeRateLinkDao" init-method="init" name="wcNtOrgCodeRateLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--WcNtUpdateRates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcNtUpdateRates.WcNtUpdateRatesHDaoImpl" id="wcNtUpdateRatesDao" init-method="init" name="wcNtUpdateRatesDao" parent="baseHDao" scope="prototype"/>
+    <!--WcQldCodeGroup DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcQldCodeGroup.WcQldCodeGroupHDaoImpl" id="wcQldCodeGroupDao" init-method="init" name="wcQldCodeGroupDao" parent="baseHDao" scope="prototype"/>
+    <!--WcQldCodeRate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcQldCodeRate.WcQldCodeRateHDaoImpl" id="wcQldCodeRateDao" init-method="init" name="wcQldCodeRateDao" parent="baseHDao" scope="prototype"/>
+    <!--WcQldCodeRateD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcQldCodeRateD.WcQldCodeRateDHDaoImpl" id="wcQldCodeRateDDao" init-method="init" name="wcQldCodeRateDDao" parent="baseHDao" scope="prototype"/>
+    <!--WcQldCodeRateD1030 DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcQldCodeRateD1030.WcQldCodeRateD1030HDaoImpl" id="wcQldCodeRateD1030Dao" init-method="init" name="wcQldCodeRateD1030Dao" parent="baseHDao" scope="prototype"/>
+    <!--WcQldOrgCodeRateLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcQldOrgCodeRateLink.WcQldOrgCodeRateLinkHDaoImpl" id="wcQldOrgCodeRateLinkDao" init-method="init" name="wcQldOrgCodeRateLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--WcQldUpdateRates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcQldUpdateRates.WcQldUpdateRatesHDaoImpl" id="wcQldUpdateRatesDao" init-method="init" name="wcQldUpdateRatesDao" parent="baseHDao" scope="prototype"/>
+    <!--WcSaIndustryRate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcSaIndustryRate.WcSaIndustryRateHDaoImpl" id="wcSaIndustryRateDao" init-method="init" name="wcSaIndustryRateDao" parent="baseHDao" scope="prototype"/>
+    <!--WcSaIndustryRateD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcSaIndustryRateD.WcSaIndustryRateDHDaoImpl" id="wcSaIndustryRateDDao" init-method="init" name="wcSaIndustryRateDDao" parent="baseHDao" scope="prototype"/>
+    <!--WcSaOrgCodeRateLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcSaOrgCodeRateLink.WcSaOrgCodeRateLinkHDaoImpl" id="wcSaOrgCodeRateLinkDao" init-method="init" name="wcSaOrgCodeRateLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--WcSaUpdateRates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcSaUpdateRates.WcSaUpdateRatesHDaoImpl" id="wcSaUpdateRatesDao" init-method="init" name="wcSaUpdateRatesDao" parent="baseHDao" scope="prototype"/>
+    <!--WcSaUpdateRates20170307 DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcSaUpdateRates20170307.WcSaUpdateRates20170307HDaoImpl" id="wcSaUpdateRates20170307Dao" init-method="init" name="wcSaUpdateRates20170307Dao" parent="baseHDao" scope="prototype"/>
+    <!--WcSaWicCodeTemp DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcSaWicCodeTemp.WcSaWicCodeTempHDaoImpl" id="wcSaWicCodeTempDao" init-method="init" name="wcSaWicCodeTempDao" parent="baseHDao" scope="prototype"/>
+    <!--WcTasCodeGroup DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcTasCodeGroup.WcTasCodeGroupHDaoImpl" id="wcTasCodeGroupDao" init-method="init" name="wcTasCodeGroupDao" parent="baseHDao" scope="prototype"/>
+    <!--WcTasCodeRate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcTasCodeRate.WcTasCodeRateHDaoImpl" id="wcTasCodeRateDao" init-method="init" name="wcTasCodeRateDao" parent="baseHDao" scope="prototype"/>
+    <!--WcTasCodeRateD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcTasCodeRateD.WcTasCodeRateDHDaoImpl" id="wcTasCodeRateDDao" init-method="init" name="wcTasCodeRateDDao" parent="baseHDao" scope="prototype"/>
+    <!--WcTasOrgCodeRateLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcTasOrgCodeRateLink.WcTasOrgCodeRateLinkHDaoImpl" id="wcTasOrgCodeRateLinkDao" init-method="init" name="wcTasOrgCodeRateLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--WcTasUpdateRates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcTasUpdateRates.WcTasUpdateRatesHDaoImpl" id="wcTasUpdateRatesDao" init-method="init" name="wcTasUpdateRatesDao" parent="baseHDao" scope="prototype"/>
+    <!--WcVicIndustryRate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcVicIndustryRate.WcVicIndustryRateHDaoImpl" id="wcVicIndustryRateDao" init-method="init" name="wcVicIndustryRateDao" parent="baseHDao" scope="prototype"/>
+    <!--WcVicIndustryRateD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcVicIndustryRateD.WcVicIndustryRateDHDaoImpl" id="wcVicIndustryRateDDao" init-method="init" name="wcVicIndustryRateDDao" parent="baseHDao" scope="prototype"/>
+    <!--WcVicIndustryRateD1030 DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcVicIndustryRateD1030.WcVicIndustryRateD1030HDaoImpl" id="wcVicIndustryRateD1030Dao" init-method="init" name="wcVicIndustryRateD1030Dao" parent="baseHDao" scope="prototype"/>
+    <!--WcVicOrgCodeRateLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcVicOrgCodeRateLink.WcVicOrgCodeRateLinkHDaoImpl" id="wcVicOrgCodeRateLinkDao" init-method="init" name="wcVicOrgCodeRateLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--WcVicUpdateRates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcVicUpdateRates.WcVicUpdateRatesHDaoImpl" id="wcVicUpdateRatesDao" init-method="init" name="wcVicUpdateRatesDao" parent="baseHDao" scope="prototype"/>
+    <!--WcWaCodeGroup DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcWaCodeGroup.WcWaCodeGroupHDaoImpl" id="wcWaCodeGroupDao" init-method="init" name="wcWaCodeGroupDao" parent="baseHDao" scope="prototype"/>
+    <!--WcWaCodeRate DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcWaCodeRate.WcWaCodeRateHDaoImpl" id="wcWaCodeRateDao" init-method="init" name="wcWaCodeRateDao" parent="baseHDao" scope="prototype"/>
+    <!--WcWaCodeRateD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcWaCodeRateD.WcWaCodeRateDHDaoImpl" id="wcWaCodeRateDDao" init-method="init" name="wcWaCodeRateDDao" parent="baseHDao" scope="prototype"/>
+    <!--WcWaOrgCodeRateLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcWaOrgCodeRateLink.WcWaOrgCodeRateLinkHDaoImpl" id="wcWaOrgCodeRateLinkDao" init-method="init" name="wcWaOrgCodeRateLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--WcWaUpdateRates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcWaUpdateRates.WcWaUpdateRatesHDaoImpl" id="wcWaUpdateRatesDao" init-method="init" name="wcWaUpdateRatesDao" parent="baseHDao" scope="prototype"/>
+    <!--WebsiteUser DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WebsiteUser.WebsiteUserHDaoImpl" id="websiteUserDao" init-method="init" name="websiteUserDao" parent="baseHDao" scope="prototype"/>
+    <!--WorkcoverLiabilityDetail DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WorkcoverLiabilityDetail.WorkcoverLiabilityDetailHDaoImpl" id="workcoverLiabilityDetailDao" init-method="init" name="workcoverLiabilityDetailDao" parent="baseHDao" scope="prototype"/>
+    <!--WorkcoverLiabilitySummary DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WorkcoverLiabilitySummary.WorkcoverLiabilitySummaryHDaoImpl" id="workcoverLiabilitySummaryDao" init-method="init" name="workcoverLiabilitySummaryDao" parent="baseHDao" scope="prototype"/>
+    <!--WorkcoverRecoveryDetail DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WorkcoverRecoveryDetail.WorkcoverRecoveryDetailHDaoImpl" id="workcoverRecoveryDetailDao" init-method="init" name="workcoverRecoveryDetailDao" parent="baseHDao" scope="prototype"/>
+    <!--WorkcoverRecoverySummary DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WorkcoverRecoverySummary.WorkcoverRecoverySummaryHDaoImpl" id="workcoverRecoverySummaryDao" init-method="init" name="workcoverRecoverySummaryDao" parent="baseHDao" scope="prototype"/>
+    <!--WorkdayCalendar DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WorkdayCalendar.WorkdayCalendarHDaoImpl" id="workdayCalendarDao" init-method="init" name="workdayCalendarDao" parent="baseHDao" scope="prototype"/>
+    <!--Wso2ApiConfig DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.Wso2ApiConfig.Wso2ApiConfigHDaoImpl" id="wso2ApiConfigDao" init-method="init" name="wso2ApiConfigDao" parent="baseHDao" scope="prototype"/>
+    <!--Wso2ApiOrganisationLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.Wso2ApiOrganisationLink.Wso2ApiOrganisationLinkHDaoImpl" id="wso2ApiOrganisationLinkDao" init-method="init" name="wso2ApiOrganisationLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--WorkingRightsStatus DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WorkingRightsStatus.WorkingRightsStatusHDaoImpl" id="workingRightsStatusDao" init-method="init" name="workingRightsStatusDao" parent="baseHDao" scope="prototype"/>
+    <!--AsgDeliverablesAuthEmail DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.AsgDeliverablesAuthEmail.AsgDeliverablesAuthEmailHDaoImpl" id="asgDeliverablesAuthEmailDao" init-method="init" name="asgDeliverablesAuthEmailDao" parent="baseHDao" scope="prototype"/>
+    <!--AsgDeliverablesRates DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.AsgDeliverablesRates.AsgDeliverablesRatesHDaoImpl" id="asgDeliverablesRatesDao" init-method="init" name="asgDeliverablesRatesDao" parent="baseHDao" scope="prototype"/>
+    <!--AsgDeliverablesRatesLog DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.AsgDeliverablesRatesLog.AsgDeliverablesRatesLogHDaoImpl" id="asgDeliverablesRatesLogDao" init-method="init" name="asgDeliverablesRatesLogDao" parent="baseHDao" scope="prototype"/>
+    <!--EoExpense DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.EoExpense.EoExpenseHDaoImpl" id="eoExpenseDao" init-method="init" name="eoExpenseDao" parent="baseHDao" scope="prototype"/>
+    <!--EoExpenseAuthEmailLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.EoExpenseAuthEmailLink.EoExpenseAuthEmailLinkHDaoImpl" id="eoExpenseAuthEmailLinkDao" init-method="init" name="eoExpenseAuthEmailLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--EoExpenseD DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.EoExpenseD.EoExpenseDHDaoImpl" id="eoExpenseDDao" init-method="init" name="eoExpenseDDao" parent="baseHDao" scope="prototype"/>
+    <!--PrtAssignmentDocLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.PrtAssignmentDocLink.PrtAssignmentDocLinkHDaoImpl" id="prtAssignmentDocLinkDao" init-method="init" name="prtAssignmentDocLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--SysFavoriteMenu DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysFavoriteMenu.SysFavoriteMenuHDaoImpl" id="sysFavoriteMenuDao" init-method="init" name="sysFavoriteMenuDao" parent="baseHDao" scope="prototype"/>
+</beans>
