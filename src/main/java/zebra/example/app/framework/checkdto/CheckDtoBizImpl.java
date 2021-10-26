@@ -145,14 +145,8 @@ public class CheckDtoBizImpl extends BaseBiz implements CheckDtoBiz {
 					}
 				}
 			}
-			zebraFrameworkBizService.deleteDto(dataToDelete);
 
-//			if (CommonUtil.isBlank(domainId)) {
-//				result = zebraDomainDictionaryDao.delete(domainIds);
-//			} else {
-//				result = zebraDomainDictionaryDao.delete(domainId);
-//			}
-
+			result = zebraFrameworkBizService.deleteDto(dataToDelete);
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
 			}
