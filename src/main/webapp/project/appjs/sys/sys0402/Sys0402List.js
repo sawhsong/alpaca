@@ -208,9 +208,13 @@ $(function() {
 
 		$("input:checkbox[name=chkForDel]").each(function(index) {
 			if (!$(this).is(":disabled") && $(this).val() == menuId) {
-				$(this).prop("checked", true);
+				if (!$(this).is(":checked")) {
+					$(this).click();
+				}
 			} else {
-				$(this).prop("checked", false);
+				if ($(this).is(":checked")) {
+					$(this).click();
+				}
 			}
 		});
 

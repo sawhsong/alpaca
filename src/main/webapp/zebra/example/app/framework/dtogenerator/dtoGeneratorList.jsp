@@ -50,6 +50,7 @@
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
 			<ui:button id="btnGenerate" caption="button.com.generate" iconClass="fa-gears"/>
+			<ui:button id="btnDelete" caption="button.com.delete"/>
 			<ui:button id="btnSearch" caption="button.com.search" iconClass="fa-search"/>
 			<ui:button id="btnClear" caption="button.com.clear" iconClass="fa-refresh"/>
 		</ui:buttonGroup>
@@ -101,7 +102,7 @@
 		<colgroup>
 			<col width="2%"/>
 			<col width="4%"/>
-			<col width="32%"/>
+			<col width="33%"/>
 			<col width="*"/>
 		</colgroup>
 		<thead>

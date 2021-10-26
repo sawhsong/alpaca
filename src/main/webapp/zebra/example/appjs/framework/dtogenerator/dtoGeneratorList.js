@@ -4,6 +4,19 @@
 var popupDetail = null;
 var popupInfo = null;
 var searchResultDataCount = 0;
+var gridAction = [{
+	name:"Table Detail",
+	img:"fa-list-alt",
+	fun:function() {}
+}, {
+	name:"Generate",
+	img:"fa-gears",
+	fun:function() {}
+}, {
+	name:"Delete",
+	img:"fa-trash",
+	fun:function() {}
+}];
 
 $(function() {
 	/*!
@@ -24,6 +37,10 @@ $(function() {
 			width:1000,
 			height:540
 		});
+	});
+
+	$("#btnDelete").click(function(event) {
+		doDelete();
 	});
 
 	$("#btnSearch").click(function(event) {
@@ -81,8 +98,7 @@ $(function() {
 				var uiGridTr = new UiGridTr();
 
 				var uiTd3 = new UiGridTd(), uiIcon = new UiIcon();
-				uiIcon.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("tableName:"+dataSet.getValue(i, "TABLE_NAME"))
-					.addAttribute("title:"+com.caption.action).setScript("doAction(this)");
+				uiIcon.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("tableName:"+dataSet.getValue(i, "TABLE_NAME")).setScript("doAction(this)");
 				uiTd3.addClassName("Ct").addChild(uiIcon);
 				uiGridTr.addChild(uiTd3);
 
@@ -124,7 +140,7 @@ $(function() {
 		});
 
 		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.dtoGeneratorAction);
+			$(this).contextMenu(gridAction);
 		});
 
 		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForGenerate]"));
@@ -145,22 +161,42 @@ $(function() {
 		});
 	};
 
+	doDelete = function() {
+		if (commonJs.getCountChecked("chkForGenerate") == 0) {
+			commonJs.warn(com.message.I902);
+			return;
+		}
+
+		commonJs.doDelete({
+			url:"/zebra/framework/checkdto/doDelete.do",
+			data:{dataSource:$("#dataSourceToCheck").val()},
+			callback:doSourceDataSearch
+		});
+	};
+
 	doAction = function(img) {
 		var tableName = $(img).attr("tableName");
 		var dataSource = $("#dataSource").val();
 
 		$("input:checkbox[name=chkForGenerate]").each(function(index) {
 			if (!$(this).is(":disabled") && $(this).val() == tableName) {
-				$(this).prop("checked", true);
+				if (!$(this).is(":checked")) {
+					if (!$(this).is(":checked")) {
+						$(this).click();
+					}
+				}
 			} else {
-				$(this).prop("checked", false);
+				if ($(this).is(":checked")) {
+					$(this).click();
+				}
 			}
 		});
 
-		ctxMenu.dtoGeneratorAction[0].fun = function() {getDetail(tableName);};
-		ctxMenu.dtoGeneratorAction[1].fun = function() {$("#btnGenerate").trigger("click");};
+		gridAction[0].fun = function() {getDetail(tableName);};
+		gridAction[1].fun = function() {$("#btnGenerate").trigger("click");};
+		gridAction[2].fun = function() {$("#btnDelete").trigger("click");};
 
-		$(img).contextMenu(ctxMenu.dtoGeneratorAction, {
+		$(img).contextMenu(gridAction, {
 			classPrefix:com.constants.ctxClassPrefixGrid,
 			displayAround:"trigger",
 			position:"bottom",

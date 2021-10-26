@@ -182,9 +182,13 @@ $(function() {
 
 		$("input:radio[name=rdoForSave]").each(function(index) {
 			if (!$(this).is(":disabled") && $(this).val() == keyValues) {
-				$(this).prop("checked", true);
+				if (!$(this).is(":checked")) {
+					$(this).click();
+				}
 			} else {
-				$(this).prop("checked", false);
+				if ($(this).is(":checked")) {
+					$(this).click();
+				}
 			}
 		});
 

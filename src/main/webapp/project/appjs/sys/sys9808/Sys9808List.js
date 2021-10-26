@@ -132,9 +132,13 @@ $(function() {
 
 		$("input:checkbox[name=chkForGenerate]").each(function(index) {
 			if (!$(this).is(":disabled") && $(this).val() == tableName) {
-				$(this).prop("checked", true);
+				if (!$(this).is(":checked")) {
+					$(this).click();
+				}
 			} else {
-				$(this).prop("checked", false);
+				if ($(this).is(":checked")) {
+					$(this).click();
+				}
 			}
 		});
 

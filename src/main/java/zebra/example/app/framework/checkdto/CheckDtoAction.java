@@ -30,13 +30,4 @@ public class CheckDtoAction extends BaseAction {
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
 	}
-
-	public String doDelete() throws Exception {
-		try {
-			biz.doDelete(paramEntity);
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
-	}
 }

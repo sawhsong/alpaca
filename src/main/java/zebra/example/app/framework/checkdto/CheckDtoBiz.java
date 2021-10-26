@@ -6,5 +6,4 @@ public interface CheckDtoBiz {
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getColumns(ParamEntity paramEntity) throws Exception;
-	public ParamEntity doDelete(ParamEntity paramEntity) throws Exception;
 }

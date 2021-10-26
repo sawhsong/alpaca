@@ -51,7 +51,6 @@
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
 			<ui:button id="btnGenerate" caption="button.com.generate"/>
-			<ui:button id="btnDelete" caption="button.com.delete"/>
 			<ui:button id="btnSearch" caption="button.com.search"/>
 			<ui:button id="btnClear" caption="button.com.clear"/>
 		</ui:buttonGroup>

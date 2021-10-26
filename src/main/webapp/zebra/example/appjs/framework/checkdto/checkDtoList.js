@@ -15,10 +15,6 @@ var gridAction = [{
 	name:"Re-Generate",
 	img:"fa-gears",
 	fun:function() {}
-}, {
-	name:"Delete",
-	img:"fa-trash",
-	fun:function() {}
 }];
 
 $(function() {
@@ -42,12 +38,8 @@ $(function() {
 			data:{dataSource:$("#dataSourceToCheck").val()},
 			blind:true,
 			width:1000,
-			height:520
+			height:540
 		});
-	});
-
-	$("#btnDelete").click(function(event) {
-		doDelete();
 	});
 
 	$("#btnSearch").click(function(event) {
@@ -97,7 +89,7 @@ $(function() {
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiIcon));
 
 				var uiChk = new UiCheckbox();
-				uiChk.setId("chkForGenerate").setName("chkForGenerate").setValue(tableName);
+				uiChk.setName("chkForGenerate").setValue(tableName);
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
 
 				uiGridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(tableName).setScript("getTableDetail('"+tableName+"')")));
@@ -198,19 +190,6 @@ $(function() {
 		});
 	};
 
-	doDelete = function() {
-		if (commonJs.getCountChecked("chkForGenerate") == 0) {
-			commonJs.warn(com.message.I902);
-			return;
-		}
-
-		commonJs.doDelete({
-			url:"/zebra/framework/checkdto/doDelete.do",
-			data:{dataSource:$("#dataSourceToCheck").val()},
-			callback:doSourceDataSearch
-		});
-	};
-
 	doAction = function(img) {
 		var tableName = $(img).attr("tableName");
 		var className = $(img).attr("className");
@@ -218,9 +197,13 @@ $(function() {
 
 		$("input:checkbox[name=chkForGenerate]").each(function(index) {
 			if (!$(this).is(":disabled") && $(this).val() == tableName) {
-				$(this).prop("checked", true);
+				if (!$(this).is(":checked")) {
+					$(this).click();
+				}
 			} else {
-				$(this).prop("checked", false);
+				if ($(this).is(":checked")) {
+					$(this).click();
+				}
 			}
 		});
 
@@ -233,7 +216,6 @@ $(function() {
 		gridAction[0].fun = function() {getTableDetail(tableName);};
 		gridAction[1].fun = function() {getColumns(tableName, className);};
 		gridAction[2].fun = function() {$("#btnGenerate").trigger("click");};
-		gridAction[3].fun = function() {$("#btnDelete").trigger("click");};
 
 		$(img).contextMenu(gridAction, {
 			classPrefix:com.constants.ctxClassPrefixGrid,

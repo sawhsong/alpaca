@@ -8,4 +8,5 @@ public interface DtoGeneratorBiz {
 	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getGeneratorInfo(ParamEntity paramEntity) throws Exception;
 	public ParamEntity exeGenerate(ParamEntity paramEntity) throws Exception;
+	public ParamEntity doDelete(ParamEntity paramEntity) throws Exception;
 }
