@@ -9,6 +9,7 @@ import zebra.config.MemoryBean;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
 import zebra.data.QueryAdvisor;
+import zebra.example.common.bizservice.framework.ZebraFrameworkBizService;
 import zebra.example.common.extend.BaseBiz;
 import zebra.example.conf.resource.ormapper.dao.Dummy.DummyDao;
 import zebra.exception.FrameworkException;
