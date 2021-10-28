@@ -9,6 +9,7 @@ import zebra.config.MemoryBean;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
 import zebra.data.QueryAdvisor;
+import zebra.example.common.bizservice.framework.ZebraFrameworkBizService;
 import zebra.example.common.extend.BaseBiz;
 import zebra.example.conf.resource.ormapper.dao.Dummy.DummyDao;
 import zebra.exception.FrameworkException;
@@ -118,6 +119,39 @@ public class CheckDtoBizImpl extends BaseBiz implements CheckDtoBiz {
 			paramEntity.setAjaxResponseDataSet(columnList);
 			paramEntity.setTotalResultRows(columnList.getRowCnt());
 			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+
+	public ParamEntity doDelete(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		DataSet displayedDataSet, dataToDelete = new DataSet(new String[] {"DTO_NAME"});
+		String chkForGenerate = requestDataSet.getValue("chkForGenerate");
+		String[] tableNames = CommonUtil.splitWithTrim(chkForGenerate, ConfigUtil.getProperty("delimiter.record"));
+		int result = -1;
+
+		try {
+			displayedDataSet = getList(paramEntity).getAjaxResponseDataSet();
+
+			for (int i=0; i<displayedDataSet.getRowCnt(); i++) {
+				for (String tableName : tableNames) {
+					if (CommonUtil.equals(tableName, displayedDataSet.getValue(i, "TABLE_NAME"))) {
+						dataToDelete.addRow();
+						dataToDelete.setValue(dataToDelete.getRowCnt()-1, "DTO_NAME", displayedDataSet.getValue(i, "DTO_NAME"));
+					}
+				}
+			}
+
+			result = zebraFrameworkBizService.deleteDto(dataToDelete);
+			if (result <= 0) {
+				throw new FrameworkException("E801", getMessage("E801", paramEntity));
+			}
+
+			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}
