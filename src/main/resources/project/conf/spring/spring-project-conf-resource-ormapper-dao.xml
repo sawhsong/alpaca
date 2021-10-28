@@ -17,56 +17,6 @@
     <bean class="${name.package.project}.conf.resource.ormapper.dao.SysAuthGroup.SysAuthGroupHDaoImpl" id="sysAuthGroupDao" init-method="init" name="sysAuthGroupDao" parent="baseHDao" scope="prototype"/>
     <!--/* SysCountryCurrency DAO */-->
     <bean class="${name.package.project}.conf.resource.ormapper.dao.SysCountryCurrency.SysCountryCurrencyHDaoImpl" id="sysCountryCurrencyDao" init-method="init" name="sysCountryCurrencyDao" parent="baseHDao" scope="prototype"/>
-    <!--Country DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.Country.CountryHDaoImpl" id="countryDao" init-method="init" name="countryDao" parent="baseHDao" scope="prototype"/>
-    <!--CrjInvoice DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrjInvoice.CrjInvoiceHDaoImpl" id="crjInvoiceDao" init-method="init" name="crjInvoiceDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmBant DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmBant.CrmBantHDaoImpl" id="crmBantDao" init-method="init" name="crmBantDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmCloneabilityPotential DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmCloneabilityPotential.CrmCloneabilityPotentialHDaoImpl" id="crmCloneabilityPotentialDao" init-method="init" name="crmCloneabilityPotentialDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmCommission DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmCommission.CrmCommissionHDaoImpl" id="crmCommissionDao" init-method="init" name="crmCommissionDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmCompetitorRelationship DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmCompetitorRelationship.CrmCompetitorRelationshipHDaoImpl" id="crmCompetitorRelationshipDao" init-method="init" name="crmCompetitorRelationshipDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmDecisionDriver DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmDecisionDriver.CrmDecisionDriverHDaoImpl" id="crmDecisionDriverDao" init-method="init" name="crmDecisionDriverDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmDmLineManagement DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmDmLineManagement.CrmDmLineManagementHDaoImpl" id="crmDmLineManagementDao" init-method="init" name="crmDmLineManagementDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmDmProcurement DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmDmProcurement.CrmDmProcurementHDaoImpl" id="crmDmProcurementDao" init-method="init" name="crmDmProcurementDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmIndustry DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmIndustry.CrmIndustryHDaoImpl" id="crmIndustryDao" init-method="init" name="crmIndustryDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmLeadPhaseRoadmap DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmLeadPhaseRoadmap.CrmLeadPhaseRoadmapHDaoImpl" id="crmLeadPhaseRoadmapDao" init-method="init" name="crmLeadPhaseRoadmapDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmOrganisation DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmOrganisation.CrmOrganisationHDaoImpl" id="crmOrganisationDao" init-method="init" name="crmOrganisationDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmOrgContact DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmOrgContact.CrmOrgContactHDaoImpl" id="crmOrgContactDao" init-method="init" name="crmOrgContactDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmPotentialEntityBusiness DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmPotentialEntityBusiness.CrmPotentialEntityBusinessHDaoImpl" id="crmPotentialEntityBusinessDao" init-method="init" name="crmPotentialEntityBusinessDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmProposition DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmProposition.CrmPropositionHDaoImpl" id="crmPropositionDao" init-method="init" name="crmPropositionDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmRelatedOrgParent DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmRelatedOrgParent.CrmRelatedOrgParentHDaoImpl" id="crmRelatedOrgParentDao" init-method="init" name="crmRelatedOrgParentDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmRelatedOrgSibiling DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmRelatedOrgSibiling.CrmRelatedOrgSibilingHDaoImpl" id="crmRelatedOrgSibilingDao" init-method="init" name="crmRelatedOrgSibilingDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmRelatedOrgSubsidary DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmRelatedOrgSubsidary.CrmRelatedOrgSubsidaryHDaoImpl" id="crmRelatedOrgSubsidaryDao" init-method="init" name="crmRelatedOrgSubsidaryDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmStage DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmStage.CrmStageHDaoImpl" id="crmStageDao" init-method="init" name="crmStageDao" parent="baseHDao" scope="prototype"/>
-    <!--CrmStrategicRelationship DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CrmStrategicRelationship.CrmStrategicRelationshipHDaoImpl" id="crmStrategicRelationshipDao" init-method="init" name="crmStrategicRelationshipDao" parent="baseHDao" scope="prototype"/>
-    <!--CustomerAssignments DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CustomerAssignments.CustomerAssignmentsHDaoImpl" id="customerAssignmentsDao" init-method="init" name="customerAssignmentsDao" parent="baseHDao" scope="prototype"/>
-    <!--CustomerCashReceipt DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CustomerCashReceipt.CustomerCashReceiptHDaoImpl" id="customerCashReceiptDao" init-method="init" name="customerCashReceiptDao" parent="baseHDao" scope="prototype"/>
-    <!--CustomerCmplxRtng DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CustomerCmplxRtng.CustomerCmplxRtngHDaoImpl" id="customerCmplxRtngDao" init-method="init" name="customerCmplxRtngDao" parent="baseHDao" scope="prototype"/>
-    <!--CustomerComms DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CustomerComms.CustomerCommsHDaoImpl" id="customerCommsDao" init-method="init" name="customerCommsDao" parent="baseHDao" scope="prototype"/>
-    <!--CustomerInvoices DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.CustomerInvoices.CustomerInvoicesHDaoImpl" id="customerInvoicesDao" init-method="init" name="customerInvoicesDao" parent="baseHDao" scope="prototype"/>
     <!--DocumentProfile DAO-->
     <bean class="${name.package.project}.conf.resource.ormapper.dao.DocumentProfile.DocumentProfileHDaoImpl" id="documentProfileDao" init-method="init" name="documentProfileDao" parent="baseHDao" scope="prototype"/>
     <!--DocumentProfileD DAO-->

@@ -1,5 +1,7 @@
 package zebra.example.app.framework.dtogenerator;
 
+import java.io.File;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import zebra.config.MemoryBean;
@@ -42,6 +44,7 @@ public class DtoGeneratorBizImpl extends BaseBiz implements DtoGeneratorBiz {
 		String defaultDataSourceUser = ConfigUtil.getProperty("jdbc.user.name");
 		String dataSource = CommonUtil.nvl(requestDataSet.getValue("dataSource"), defaultDataSourceUser);
 		String dataSourceNames[] = CommonUtil.split(ConfigUtil.getProperty("jdbc.multipleDatasource"), ConfigUtil.getProperty("delimiter.data"));
+		DataSet tableList, dtoList;
 
 		try {
 			queryAdvisor.setRequestDataSet(requestDataSet);
@@ -49,12 +52,16 @@ public class DtoGeneratorBizImpl extends BaseBiz implements DtoGeneratorBiz {
 
 			if (!CommonUtil.equalsIgnoreCase(dataSource, defaultDataSourceUser)) {
 				dummyDao.setDataSourceName(dataSource);
-				paramEntity.setAjaxResponseDataSet(dummyDao.getTableListDataSetByCriteriaForAdditionalDataSource(queryAdvisor));
+				tableList = dummyDao.getTableListDataSetByCriteriaForAdditionalDataSource(queryAdvisor);
 			} else {
 				dummyDao.resetDataSourceName();
-				paramEntity.setAjaxResponseDataSet(dummyDao.getTableListDataSetByCriteria(queryAdvisor));
+				tableList = dummyDao.getTableListDataSetByCriteria(queryAdvisor);
 			}
 
+			dtoList = getDtoList(requestDataSet);
+			setDataSetValues(tableList, dtoList, requestDataSet);
+
+			paramEntity.setAjaxResponseDataSet(tableList);
 			paramEntity.setObject("datasourceDataSet", getDatasourceDataSet(dataSourceNames));
 			paramEntity.setTotalResultRows(queryAdvisor.getTotalResultRows());
 			paramEntity.setSuccess(true);
@@ -208,13 +215,9 @@ public class DtoGeneratorBizImpl extends BaseBiz implements DtoGeneratorBiz {
 
 	public ParamEntity doDelete(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		DataSet tableInfoDataSet;
 
 		String tableName = requestDataSet.getValue("tableName");
 		String dtoName = CommonUtil.toCamelCaseStartUpperCase(tableName);
-		String defaultDataSourceUser = ConfigUtil.getProperty("jdbc.user.name");
-		String dataSource = CommonUtil.nvl(requestDataSet.getValue("dataSource"), defaultDataSourceUser);
-		String system = requestDataSet.getValue("system");
 
 		boolean dtoProject = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("dtoProject"), "N"));
 		boolean hibernateDtoConfigProject = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("hibernateDtoConfigProject"), "N"));
@@ -263,24 +266,18 @@ public class DtoGeneratorBizImpl extends BaseBiz implements DtoGeneratorBiz {
 				zebraFrameworkBizService.deleteDaoMapper(dtoName);
 			}
 
-			if ((daoProject && hibernateDaoImplProject) || (daoFramework && hibernateDaoImplFramework)) {
-				zebraFrameworkBizService.deleteHDao(dtoName);
-			}
-
-			if ((daoProject && mybatisDaoImplProject) || (daoFramework && mybatisDaoImplFramework)) {
-				zebraFrameworkBizService.deleteMybatisDao(dtoName);
-			}
+			zebraFrameworkBizService.deleteDaoPackage(dtoName);
 
 			if (daoSpringConfigProject || daoSpringConfigFramework) {
 				zebraFrameworkBizService.deleteDaoSpringConfig(dtoName);
 			}
 
 			if (hibernateQueryProject || hibernateQueryFramework) {
-				zebraFrameworkBizService.generateHibernateQuery(system, requestDataSet, tableInfoDataSet);
+				zebraFrameworkBizService.deleteHibernateQuery(dtoName);
 			}
 
 			if (mybatisQueryProject || mybatisQueryFramework) {
-				zebraFrameworkBizService.generateMybatisQuery(system, requestDataSet, tableInfoDataSet);
+				zebraFrameworkBizService.deleteMybatisQuery(dtoName);
 			}
 
 			paramEntity.setSuccess(true);
@@ -302,5 +299,73 @@ public class DtoGeneratorBizImpl extends BaseBiz implements DtoGeneratorBiz {
 		}
 
 		return dataSourceDataSet;
+	}
+
+	private DataSet getDtoList(DataSet requestDataSet) throws Exception {
+		DataSet ds = new DataSet(new String[] {"dtoName", "className"});
+		String defaultDbUser = ConfigUtil.getProperty("jdbc.user.name");
+		String dataSource = CommonUtil.nvl(requestDataSet.getValue("dataSource"), defaultDbUser);
+		String pathSeparator = System.getProperty("file.separator");
+		String compilePath = "/target/alpaca";
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String pathToRemove = CommonUtil.replace(rootPath+"src/main/java/", "/", pathSeparator);
+		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
+		String dtoProject = CommonUtil.replace(ConfigUtil.getProperty("path.common.dtoProject"), "#DB_VENDOR#", dbVendor);
+		String dtoFramework = CommonUtil.replace(ConfigUtil.getProperty("path.common.dtoFwk"), "#DB_VENDOR#", dbVendor);
+		String path = "";
+		File files[];
+
+		if (!CommonUtil.equalsIgnoreCase(dataSource, defaultDbUser)) {
+			path = rootPath + dtoProject;
+		} else {
+			path = rootPath + dtoFramework;
+
+			files = new File(path).listFiles();
+			for (File file : files) {
+				String dtoName = CommonUtil.removeString(file.getName(), ".java");
+				String className = CommonUtil.replace(CommonUtil.removeString(file.getPath(), pathToRemove, ".java"), pathSeparator, ".");
+
+				if (!CommonUtil.contains(dtoName, "Dummy")) {
+					ds.addRow();
+					ds.setValue(ds.getRowCnt()-1, "dtoName", dtoName);
+					ds.setValue(ds.getRowCnt()-1, "className", className);
+				}
+			}
+
+			path = rootPath + dtoProject;
+		}
+
+		files = new File(path).listFiles();
+		for (File file : files) {
+			String dtoName = CommonUtil.removeString(file.getName(), ".java");
+			String className = CommonUtil.replace(CommonUtil.removeString(file.getPath(), pathToRemove, ".java"), pathSeparator, ".");
+
+			if (!CommonUtil.contains(dtoName, "Dummy")) {
+				ds.addRow();
+				ds.setValue(ds.getRowCnt()-1, "dtoName", dtoName);
+				ds.setValue(ds.getRowCnt()-1, "className", className);
+			}
+		}
+
+		return ds;
+	}
+
+	private void setDataSetValues(DataSet tableList, DataSet dtoList, DataSet requestDataSet) throws Exception {
+		tableList.addColumn("DTO_NAME");
+		tableList.addColumn("CLASS_NAME");
+
+		for (int i=0; i<tableList.getRowCnt(); i++) {
+			String tableName = tableList.getValue(i, "TABLE_NAME");
+			String tableNameCamelCase = CommonUtil.toCamelCase(tableName);
+
+			for (int j=0; j<dtoList.getRowCnt(); j++) {
+				String dtoName = dtoList.getValue(j, "dtoName");
+				if (CommonUtil.equals(tableNameCamelCase, dtoName)) {
+					tableList.setValue(i, "DTO_NAME", dtoName);
+					tableList.setValue(i, "CLASS_NAME", dtoList.getValue(j, "className"));
+					break;
+				}
+			}
+		}
 	}
 }

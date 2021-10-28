@@ -97,34 +97,25 @@ $(function() {
 			for (var i=0; i<dataSet.getRowCnt(); i++) {
 				var uiGridTr = new UiGridTr();
 
-				var uiTd3 = new UiGridTd(), uiIcon = new UiIcon();
-				uiIcon.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("tableName:"+dataSet.getValue(i, "TABLE_NAME")).setScript("doAction(this)");
-				uiTd3.addClassName("Ct").addChild(uiIcon);
-				uiGridTr.addChild(uiTd3);
+				var uiIcon = new UiIcon();
+				uiIcon.setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("tableName:"+dataSet.getValue(i, "TABLE_NAME")).setScript("doAction(this)");
+				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiIcon));
 
-				var uiTd0 = new UiGridTd(), uiChk = new UiCheckbox();
-				uiChk.setId("chkForGenerate").setName("chkForGenerate").setValue(dataSet.getValue(i, "TABLE_NAME"));
-				uiTd0.addClassName("Ct").addChild(uiChk);
-				uiGridTr.addChild(uiTd0);
+				var uiChk = new UiCheckbox();
+				uiChk.setName("chkForGenerate").setValue(dataSet.getValue(i, "TABLE_NAME"));
+				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
 
-				var uiTd1 = new UiGridTd(), uiAnc = new UiAnchor();
+				var uiAnc = new UiAnchor();
 				uiAnc.setText(dataSet.getValue(i, "TABLE_NAME")).setScript("getDetail('"+dataSet.getValue(i, "TABLE_NAME")+"')");
-				uiTd1.addClassName("Lt").addChild(uiAnc);
-				uiGridTr.addChild(uiTd1);
+				uiGridTr.addChild(new UiGridTd().addClassName("Lt").addChild(uiAnc));
 
-				var uiTd2 = new UiGridTd();
-				uiTd2.addClassName("Lt").setText(dataSet.getValue(i, "COMMENTS"));
-				uiGridTr.addChild(uiTd2);
+				uiGridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "DTO_NAME")));
+				uiGridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "COMMENTS")));
 
 				html += uiGridTr.toHtmlString();
 			}
 		} else {
-			var uiGridTr = new UiGridTr();
-
-			var uiTd0 = new UiGridTd();
-			uiTd0.addClassName("Ct").setAttribute("colspan:4").setText(com.message.I001);
-			uiGridTr.addChild(uiTd0);
-
+			new UiGridTr().addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:5").setText(com.message.I001));
 			html += uiGridTr.toHtmlString();
 		}
 

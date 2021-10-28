@@ -102,20 +102,22 @@
 		<colgroup>
 			<col width="2%"/>
 			<col width="4%"/>
-			<col width="33%"/>
+			<col width="28%"/>
+			<col width="25%"/>
 			<col width="*"/>
 		</colgroup>
 		<thead>
 			<tr>
 				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+				<th class="thGrid">DTO Name</th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.dtogenerator.gridHeader.tableName"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.dtogenerator.gridHeader.tableDesc"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
 			<tr>
-				<td class="tdGrid Ct" colspan="4"><mc:msg key="I002"/></td>
+				<td class="tdGrid Ct" colspan="5"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
 	</table>

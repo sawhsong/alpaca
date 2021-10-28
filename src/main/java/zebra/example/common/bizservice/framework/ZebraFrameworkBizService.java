@@ -25,8 +25,9 @@ public interface ZebraFrameworkBizService {
 	public void deleteHDaoImpl(String dtoName) throws Exception;
 	public void deleteDaoImpl(String dtoName) throws Exception;
 	public void deleteDaoMapper(String dtoName) throws Exception;
-	public void deleteHDao(String dtoName) throws Exception;
-	public void deleteMybatisDao(String dtoName) throws Exception;
+	public void deleteDaoPackage(String dtoName) throws Exception;
+	public void deleteHibernateQuery(String dtoName) throws Exception;
+	public void deleteMybatisQuery(String dtoName) throws Exception;
 	public void deleteDaoSpringConfig(String dtoName) throws Exception;
 
 	/*!
