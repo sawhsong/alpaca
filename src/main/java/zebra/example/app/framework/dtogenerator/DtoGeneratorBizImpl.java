@@ -208,31 +208,86 @@ public class DtoGeneratorBizImpl extends BaseBiz implements DtoGeneratorBiz {
 
 	public ParamEntity doDelete(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		DataSet displayedDataSet, dataToDelete = new DataSet(new String[] {"DTO_NAME"});
-		String chkForGenerate = requestDataSet.getValue("chkForGenerate");
-		String[] tableNames = CommonUtil.splitWithTrim(chkForGenerate, ConfigUtil.getProperty("delimiter.record"));
-		int result = -1;
+		DataSet tableInfoDataSet;
+
+		String tableName = requestDataSet.getValue("tableName");
+		String dtoName = CommonUtil.toCamelCaseStartUpperCase(tableName);
+		String defaultDataSourceUser = ConfigUtil.getProperty("jdbc.user.name");
+		String dataSource = CommonUtil.nvl(requestDataSet.getValue("dataSource"), defaultDataSourceUser);
+		String system = requestDataSet.getValue("system");
+
+		boolean dtoProject = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("dtoProject"), "N"));
+		boolean hibernateDtoConfigProject = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("hibernateDtoConfigProject"), "N"));
+		boolean mybatisDtoMapperConfigProject = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("mybatisDtoMapperConfigProject"), "N"));
+		boolean daoProject = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("daoProject"), "N"));
+		boolean hibernateDaoImplProject = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("hibernateDaoImplProject"), "N"));
+		boolean mybatisDaoImplProject = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("mybatisDaoImplProject"), "N"));
+		boolean daoSpringConfigProject = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("daoSpringConfigProject"), "N"));
+		boolean hibernateQueryProject = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("hibernateQueryProject"), "N"));
+		boolean mybatisQueryProject = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("mybatisQueryProject"), "N"));
+
+		boolean dtoFramework = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("dtoFramework"), "N"));
+		boolean hibernateDtoConfigFramework = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("hibernateDtoConfigFramework"), "N"));
+		boolean mybatisDtoMapperConfigFramework = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("mybatisDtoMapperConfigFramework"), "N"));
+		boolean daoFramework = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("daoFramework"), "N"));
+		boolean hibernateDaoImplFramework = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("hibernateDaoImplFramework"), "N"));
+		boolean mybatisDaoImplFramework = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("mybatisDaoImplFramework"), "N"));
+		boolean daoSpringConfigFramework = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("daoSpringConfigFramework"), "N"));
+		boolean hibernateQueryFramework = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("hibernateQueryFramework"), "N"));
+		boolean mybatisQueryFramework = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("mybatisQueryFramework"), "N"));
 
 		try {
-//			for (int i=0; i<displayedDataSet.getRowCnt(); i++) {
-//				for (String tableName : tableNames) {
-//					if (CommonUtil.equals(tableName, displayedDataSet.getValue(i, "TABLE_NAME"))) {
-//						dataToDelete.addRow();
-//						dataToDelete.setValue(dataToDelete.getRowCnt()-1, "DTO_NAME", displayedDataSet.getValue(i, "DTO_NAME"));
-//					}
-//				}
-//			}
+			if (dtoProject || dtoFramework) {
+				zebraFrameworkBizService.deleteDto(dtoName);
+			}
 
-			result = zebraFrameworkBizService.deleteDto(dataToDelete);
-			if (result <= 0) {
-				throw new FrameworkException("E801", getMessage("E801", paramEntity));
+			if (hibernateDtoConfigProject || hibernateDtoConfigFramework) {
+				zebraFrameworkBizService.deleteHibernateDtoConfig(dtoName);
+			}
+
+			if (mybatisDtoMapperConfigProject || mybatisDtoMapperConfigFramework) {
+				zebraFrameworkBizService.deleteMybatisDtoMapper(dtoName);
+				zebraFrameworkBizService.deleteMybatisDtoMapperXml(dtoName);
+			}
+
+			if (daoProject || daoFramework) {
+				zebraFrameworkBizService.deleteDao(dtoName);
+			}
+
+			if (hibernateDaoImplProject || hibernateDaoImplFramework) {
+				zebraFrameworkBizService.deleteHDaoImpl(dtoName);
+			}
+
+			if (mybatisDaoImplProject || mybatisDaoImplFramework) {
+				zebraFrameworkBizService.deleteDaoImpl(dtoName);
+				zebraFrameworkBizService.deleteDaoMapper(dtoName);
+			}
+
+			if ((daoProject && hibernateDaoImplProject) || (daoFramework && hibernateDaoImplFramework)) {
+				zebraFrameworkBizService.deleteHDao(dtoName);
+			}
+
+			if ((daoProject && mybatisDaoImplProject) || (daoFramework && mybatisDaoImplFramework)) {
+				zebraFrameworkBizService.deleteMybatisDao(dtoName);
+			}
+
+			if (daoSpringConfigProject || daoSpringConfigFramework) {
+				zebraFrameworkBizService.deleteDaoSpringConfig(dtoName);
+			}
+
+			if (hibernateQueryProject || hibernateQueryFramework) {
+				zebraFrameworkBizService.generateHibernateQuery(system, requestDataSet, tableInfoDataSet);
+			}
+
+			if (mybatisQueryProject || mybatisQueryFramework) {
+				zebraFrameworkBizService.generateMybatisQuery(system, requestDataSet, tableInfoDataSet);
 			}
 
 			paramEntity.setSuccess(true);
-			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}
+
 		return paramEntity;
 	}
 

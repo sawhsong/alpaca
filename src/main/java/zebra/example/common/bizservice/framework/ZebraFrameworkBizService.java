@@ -17,7 +17,17 @@ public interface ZebraFrameworkBizService {
 	public boolean generateDaoSpringConfig(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception;
 	public boolean generateHibernateQuery(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception;
 	public boolean generateMybatisQuery(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception;
-	public int deleteDto(DataSet dtoNameDataSet) throws Exception;
+	public void deleteDto(String dtoName) throws Exception;
+	public void deleteHibernateDtoConfig(String dtoName) throws Exception;
+	public void deleteMybatisDtoMapper(String dtoName) throws Exception;
+	public void deleteMybatisDtoMapperXml(String dtoName) throws Exception;
+	public void deleteDao(String dtoName) throws Exception;
+	public void deleteHDaoImpl(String dtoName) throws Exception;
+	public void deleteDaoImpl(String dtoName) throws Exception;
+	public void deleteDaoMapper(String dtoName) throws Exception;
+	public void deleteHDao(String dtoName) throws Exception;
+	public void deleteMybatisDao(String dtoName) throws Exception;
+	public void deleteDaoSpringConfig(String dtoName) throws Exception;
 
 	/*!
 	 * Source Generator

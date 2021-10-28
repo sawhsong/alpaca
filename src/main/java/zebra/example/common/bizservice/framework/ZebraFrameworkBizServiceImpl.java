@@ -234,50 +234,19 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
-	public int deleteDto(DataSet dtoNameDataSet) throws Exception {
+	public void deleteDto(String dtoName) throws Exception {
 		String compilePath = "/target/alpaca";
 		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
 		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
 		String dtoProjectPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.common.dtoProject"), "#DB_VENDOR#", dbVendor);
 		String dtoFrameworkPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.common.dtoFwk"), "#DB_VENDOR#", dbVendor);
-		String hibernateConfProjectPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.hibernateDtoConfProject"), "#DB_VENDOR#", dbVendor);
-		String hibernateConfFrameworkPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.hibernateDtoConfFwk"), "#DB_VENDOR#", dbVendor);
-		String mybatisMapperProjectPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.mybatisDtoMapperClassProject"), "#DB_VENDOR#", dbVendor);
-		String mybatisMapperFrameworkPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.mybatisDtoMapperClassFwk"), "#DB_VENDOR#", dbVendor);
-		String mybatisMapperXmlProjectPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.mybatisDtoMapperXmlProject"), "#DB_VENDOR#", dbVendor);
-		String mybatisMapperXmlFrameworkPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.mybatisDtoMapperXmlFwk"), "#DB_VENDOR#", dbVendor);
 		File file;
-		int result = 0;
 
-		for (int i=0; i<dtoNameDataSet.getRowCnt(); i++) {
-			file = new File(dtoProjectPath+"/"+dtoNameDataSet.getValue(i, "DTO_NAME")+".java");
-			if (file.exists()) {file.delete();}
+		file = new File(dtoProjectPath+"/"+dtoName+".java");
+		if (file.exists()) {file.delete();}
 
-			file = new File(dtoFrameworkPath+"/"+dtoNameDataSet.getValue(i, "DTO_NAME")+".java");
-			if (file.exists()) {file.delete();}
-
-			file = new File(hibernateConfProjectPath+"/"+dtoNameDataSet.getValue(i, "DTO_NAME")+".hbm.xml");
-			if (file.exists()) {file.delete();}
-
-			file = new File(hibernateConfFrameworkPath+"/"+dtoNameDataSet.getValue(i, "DTO_NAME")+".hbm.xml");
-			if (file.exists()) {file.delete();}
-
-			file = new File(mybatisMapperProjectPath+"/"+dtoNameDataSet.getValue(i, "DTO_NAME"));
-			if (file.exists()) {file.delete();}
-
-			file = new File(mybatisMapperFrameworkPath+"/"+dtoNameDataSet.getValue(i, "DTO_NAME"));
-			if (file.exists()) {file.delete();}
-
-			file = new File(mybatisMapperXmlProjectPath+"/"+dtoNameDataSet.getValue(i, "DTO_NAME"));
-			if (file.exists()) {file.delete();}
-
-			file = new File(mybatisMapperXmlFrameworkPath+"/"+dtoNameDataSet.getValue(i, "DTO_NAME"));
-			if (file.exists()) {file.delete();}
-
-			result++;
-		}
-
-		return result;
+		file = new File(dtoFrameworkPath+"/"+dtoName+".java");
+		if (file.exists()) {file.delete();}
 	}
 
 	public boolean generateHibernateDtoConfig(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
@@ -440,6 +409,21 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
+	public void deleteHibernateDtoConfig(String dtoName) throws Exception {
+		String compilePath = "/target/alpaca";
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
+		String hibernateConfProjectPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.hibernateDtoConfProject"), "#DB_VENDOR#", dbVendor);
+		String hibernateConfFrameworkPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.hibernateDtoConfFwk"), "#DB_VENDOR#", dbVendor);
+		File file;
+
+		file = new File(hibernateConfProjectPath+"/"+dtoName+".hbm.xml");
+		if (file.exists()) {file.delete();}
+
+		file = new File(hibernateConfFrameworkPath+"/"+dtoName+".hbm.xml");
+		if (file.exists()) {file.delete();}
+	}
+
 	public boolean generateMybatisDtoMapper(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
 		String compilePath = "/target/alpaca";
 		String tableName = requestDataSet.getValue("tableName");
@@ -492,6 +476,21 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		} catch (Exception ex) {
 			throw new FrameworkException(ex);
 		}
+	}
+
+	public void deleteMybatisDtoMapper(String dtoName) throws Exception {
+		String compilePath = "/target/alpaca";
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
+		String mybatisMapperProjectPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.mybatisDtoMapperClassProject"), "#DB_VENDOR#", dbVendor);
+		String mybatisMapperFrameworkPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.mybatisDtoMapperClassFwk"), "#DB_VENDOR#", dbVendor);
+		File file;
+
+		file = new File(mybatisMapperProjectPath+"/"+dtoName);
+		if (file.exists()) {file.delete();}
+
+		file = new File(mybatisMapperFrameworkPath+"/"+dtoName);
+		if (file.exists()) {file.delete();}
 	}
 
 	public boolean generateMybatisDtoMapperXml(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
@@ -638,6 +637,21 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
+	public void deleteMybatisDtoMapperXml(String dtoName) throws Exception {
+		String compilePath = "/target/alpaca";
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
+		String mybatisMapperXmlProjectPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.mybatisDtoMapperXmlProject"), "#DB_VENDOR#", dbVendor);
+		String mybatisMapperXmlFrameworkPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.mybatisDtoMapperXmlFwk"), "#DB_VENDOR#", dbVendor);
+		File file;
+
+		file = new File(mybatisMapperXmlProjectPath+"/"+dtoName);
+		if (file.exists()) {file.delete();}
+
+		file = new File(mybatisMapperXmlFrameworkPath+"/"+dtoName);
+		if (file.exists()) {file.delete();}
+	}
+
 	public boolean generateDao(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
 		String compilePath = "/target/alpaca";
 		String tableName = requestDataSet.getValue("tableName");
@@ -689,6 +703,20 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		} catch (Exception ex) {
 			throw new FrameworkException(ex);
 		}
+	}
+
+	public void deleteDao(String dtoName) throws Exception {
+		String compilePath = "/target/alpaca";
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String daoProjectPath = rootPath + ConfigUtil.getProperty("path.common.daoProject");
+		String daoFrameworkPath = rootPath + ConfigUtil.getProperty("path.common.daoFwk");
+		File file;
+
+		file = new File(daoProjectPath+"/"+dtoName+"/"+dtoName+"Dao.java");
+		if (file.exists()) {file.delete();}
+
+		file = new File(daoFrameworkPath+"/"+dtoName+"/"+dtoName+"Dao.java");
+		if (file.exists()) {file.delete();}
 	}
 
 	public boolean generateHDaoImpl(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
@@ -747,6 +775,34 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		} catch (Exception ex) {
 			throw new FrameworkException(ex);
 		}
+	}
+
+	public void deleteHDaoImpl(String dtoName) throws Exception {
+		String compilePath = "/target/alpaca";
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String daoProjectPath = rootPath + ConfigUtil.getProperty("path.common.daoProject");
+		String daoFrameworkPath = rootPath + ConfigUtil.getProperty("path.common.daoFwk");
+		File file;
+
+		file = new File(daoProjectPath+"/"+dtoName+"/"+dtoName+"HDaoImpl.java");
+		if (file.exists()) {file.delete();}
+
+		file = new File(daoFrameworkPath+"/"+dtoName+"/"+dtoName+"HDaoImpl.java");
+		if (file.exists()) {file.delete();}
+	}
+
+	public void deleteHDao(String dtoName) throws Exception {
+		String compilePath = "/target/alpaca";
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String daoProjectPath = rootPath + ConfigUtil.getProperty("path.common.daoProject");
+		String daoFrameworkPath = rootPath + ConfigUtil.getProperty("path.common.daoFwk");
+		File file;
+
+		file = new File(daoProjectPath+"/"+dtoName);
+		if (file.exists()) {file.delete();}
+
+		file = new File(daoFrameworkPath+"/"+dtoName);
+		if (file.exists()) {file.delete();}
 	}
 
 	public boolean generateDaoImpl(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
@@ -808,6 +864,20 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
+	public void deleteDaoImpl(String dtoName) throws Exception {
+		String compilePath = "/target/alpaca";
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String daoProjectPath = rootPath + ConfigUtil.getProperty("path.common.daoProject");
+		String daoFrameworkPath = rootPath + ConfigUtil.getProperty("path.common.daoFwk");
+		File file;
+
+		file = new File(daoProjectPath+"/"+dtoName+"/"+dtoName+"DaoImpl.java");
+		if (file.exists()) {file.delete();}
+
+		file = new File(daoFrameworkPath+"/"+dtoName+"/"+dtoName+"DaoImpl.java");
+		if (file.exists()) {file.delete();}
+	}
+
 	public boolean generateDaoMapper(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
 		String projectPackage = CommonUtil.lowerCase(ConfigUtil.getProperty("name.package.project"));
 		String frameworkPackage = CommonUtil.lowerCase(ConfigUtil.getProperty("name.package.framework"));
@@ -864,6 +934,34 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		} catch (Exception ex) {
 			throw new FrameworkException(ex);
 		}
+	}
+
+	public void deleteDaoMapper(String dtoName) throws Exception {
+		String compilePath = "/target/alpaca";
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String daoProjectPath = rootPath + ConfigUtil.getProperty("path.common.daoProject");
+		String daoFrameworkPath = rootPath + ConfigUtil.getProperty("path.common.daoFwk");
+		File file;
+
+		file = new File(daoProjectPath+"/"+dtoName+"/"+dtoName+"DaoMapper.java");
+		if (file.exists()) {file.delete();}
+
+		file = new File(daoFrameworkPath+"/"+dtoName+"/"+dtoName+"DaoMapper.java");
+		if (file.exists()) {file.delete();}
+	}
+
+	public void deleteMybatisDao(String dtoName) throws Exception {
+		String compilePath = "/target/alpaca";
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String daoProjectPath = rootPath + ConfigUtil.getProperty("path.common.daoProject");
+		String daoFrameworkPath = rootPath + ConfigUtil.getProperty("path.common.daoFwk");
+		File file;
+
+		file = new File(daoProjectPath+"/"+dtoName);
+		if (file.exists()) {file.delete();}
+
+		file = new File(daoFrameworkPath+"/"+dtoName);
+		if (file.exists()) {file.delete();}
 	}
 
 	public boolean generateHibernateQuery(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
@@ -1142,6 +1240,20 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		} catch (Exception ex) {
 			throw new FrameworkException(ex);
 		}
+	}
+
+	public void deleteDaoSpringConfig(String dtoName) throws Exception {
+		String compilePath = "/target/alpaca";
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String daoProjectPath = rootPath + ConfigUtil.getProperty("path.common.daoProject");
+		String daoFrameworkPath = rootPath + ConfigUtil.getProperty("path.common.daoFwk");
+		File file;
+
+		file = new File(daoProjectPath+"/"+dtoName);
+		if (file.exists()) {file.delete();}
+
+		file = new File(daoFrameworkPath+"/"+dtoName);
+		if (file.exists()) {file.delete();}
 	}
 
 	/*!
