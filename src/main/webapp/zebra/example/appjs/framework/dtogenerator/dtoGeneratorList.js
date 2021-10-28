@@ -167,10 +167,14 @@ $(function() {
 			return;
 		}
 
-		commonJs.doDelete({
-			url:"/zebra/framework/checkdto/doDelete.do",
-			data:{dataSource:$("#dataSourceToCheck").val()},
-			callback:doSourceDataSearch
+		popupInfo = commonJs.openPopup({
+			popupId:"DTOGeneratorInfo",
+			url:"/zebra/framework/dtogenerator/getGeneratorInfo.do",
+			header:framework.header.popHeaderGenerator,
+			data:{dataSource:$("#dataSource").val()},
+			blind:true,
+			width:1000,
+			height:540
 		});
 	};
 

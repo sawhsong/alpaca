@@ -47,8 +47,9 @@ var dataSource = "<%=dataSource%>";
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnGenerate" caption="button.com.generate" iconClass="fa-gears"/>
-			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
+			<ui:button id="btnGenerate" caption="button.com.generate"/>
+			<ui:button id="btnDelete" caption="button.com.delete"/>
+			<ui:button id="btnClose" caption="button.com.close"/>
 		</ui:buttonGroup>
 	</div>
 </div>

@@ -214,16 +214,14 @@ public class DtoGeneratorBizImpl extends BaseBiz implements DtoGeneratorBiz {
 		int result = -1;
 
 		try {
-			displayedDataSet = getList(paramEntity).getAjaxResponseDataSet();
-
-			for (int i=0; i<displayedDataSet.getRowCnt(); i++) {
-				for (String tableName : tableNames) {
-					if (CommonUtil.equals(tableName, displayedDataSet.getValue(i, "TABLE_NAME"))) {
-						dataToDelete.addRow();
-						dataToDelete.setValue(dataToDelete.getRowCnt()-1, "DTO_NAME", displayedDataSet.getValue(i, "DTO_NAME"));
-					}
-				}
-			}
+//			for (int i=0; i<displayedDataSet.getRowCnt(); i++) {
+//				for (String tableName : tableNames) {
+//					if (CommonUtil.equals(tableName, displayedDataSet.getValue(i, "TABLE_NAME"))) {
+//						dataToDelete.addRow();
+//						dataToDelete.setValue(dataToDelete.getRowCnt()-1, "DTO_NAME", displayedDataSet.getValue(i, "DTO_NAME"));
+//					}
+//				}
+//			}
 
 			result = zebraFrameworkBizService.deleteDto(dataToDelete);
 			if (result <= 0) {

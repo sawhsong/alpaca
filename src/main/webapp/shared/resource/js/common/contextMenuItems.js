@@ -104,16 +104,5 @@ var ctxMenu = {
 		name:com.caption.ctxDelete,
 		img:"fa-times",
 		fun:function() {}
-	}],
-
-	// DTOGenerator Action context menu
-	dtoGeneratorAction : [{
-		name:com.caption.ctxDetail,
-		img:"fa-list-alt",
-		fun:function() {}
-	}, {
-		name:com.caption.ctxGenerate,
-		img:"fa-gears",
-		fun:function() {}
 	}]
 };

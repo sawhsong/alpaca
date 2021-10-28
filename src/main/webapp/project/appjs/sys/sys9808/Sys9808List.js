@@ -5,6 +5,15 @@
 var popupDetail = null;
 var popupInfo = null;
 var searchResultDataCount = 0;
+var gridAction = [{
+	name:"Table Detail",
+	img:"fa-list-alt",
+	fun:function() {}
+}, {
+	name:"Generate",
+	img:"fa-gears",
+	fun:function() {}
+}];
 
 $(function() {
 	/*!
@@ -105,7 +114,7 @@ $(function() {
 		});
 
 		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.dtoGeneratorAction);
+			$(this).contextMenu(gridAction);
 		});
 
 		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForGenerate]"));
@@ -142,10 +151,10 @@ $(function() {
 			}
 		});
 
-		ctxMenu.dtoGeneratorAction[0].fun = function() {getDetail(tableName);};
-		ctxMenu.dtoGeneratorAction[1].fun = function() {$("#btnGenerate").trigger("click");};
+		gridAction[0].fun = function() {getDetail(tableName);};
+		gridAction[1].fun = function() {$("#btnGenerate").trigger("click");};
 
-		$(img).contextMenu(ctxMenu.dtoGeneratorAction, {
+		$(img).contextMenu(gridAction, {
 			classPrefix:com.constants.ctxClassPrefixGrid,
 			displayAround:"trigger",
 			position:"bottom",
