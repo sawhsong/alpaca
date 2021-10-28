@@ -40,6 +40,8 @@ import zebra.util.ConfigUtil;
 import zebra.util.FileUtil;
 
 public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFrameworkBizService {
+	private final String COMPILE_PATH = "/target/alpaca";
+
 	@Autowired
 	private DummyDao dummyDao;
 
@@ -49,10 +51,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	public boolean generateDto(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
 		String projectPackage = CommonUtil.lowerCase(ConfigUtil.getProperty("name.package.project"));
 		String frameworkPackage = CommonUtil.lowerCase(ConfigUtil.getProperty("name.package.framework"));
-		String compilePath = "/target/alpaca";
 		String tableName = requestDataSet.getValue("tableName");
 
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String sourcePath = srcPath + "/" + ConfigUtil.getProperty("name.source.javaDto");
 		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
@@ -235,10 +236,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean generateHibernateDtoConfig(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
-		String compilePath = "/target/alpaca";
 		String tableName = requestDataSet.getValue("tableName");
 
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String sourcePath = srcPath + "/" + ConfigUtil.getProperty("name.source.hibernateDtoConfig");
 		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
@@ -395,10 +395,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean generateMybatisDtoMapper(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
-		String compilePath = "/target/alpaca";
 		String tableName = requestDataSet.getValue("tableName");
 
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String sourcePath = srcPath + "/" + ConfigUtil.getProperty("name.source.mybatisDtoMapper");
 		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
@@ -449,10 +448,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean generateMybatisDtoMapperXml(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
-		String compilePath = "/target/alpaca";
 		String tableName = requestDataSet.getValue("tableName");
 
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String sourcePath = srcPath + "/" + ConfigUtil.getProperty("name.source.mybatisDtoMapperXml");
 		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
@@ -593,10 +591,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean generateDao(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
-		String compilePath = "/target/alpaca";
 		String tableName = requestDataSet.getValue("tableName");
 
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String sourcePath = srcPath + "/" + ConfigUtil.getProperty("name.source.javaDao");
 
@@ -648,10 +645,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	public boolean generateHDaoImpl(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
 		String projectPackage = CommonUtil.lowerCase(ConfigUtil.getProperty("name.package.project"));
 		String frameworkPackage = CommonUtil.lowerCase(ConfigUtil.getProperty("name.package.framework"));
-		String compilePath = "/target/alpaca";
 		String tableName = requestDataSet.getValue("tableName");
 
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String sourcePath = srcPath + "/" + ConfigUtil.getProperty("name.source.javaHDaoImpl");
 
@@ -706,10 +702,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	public boolean generateDaoImpl(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
 		String projectPackage = CommonUtil.lowerCase(ConfigUtil.getProperty("name.package.project"));
 		String frameworkPackage = CommonUtil.lowerCase(ConfigUtil.getProperty("name.package.framework"));
-		String compilePath = "/target/alpaca";
 		String tableName = requestDataSet.getValue("tableName");
 
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String sourcePath = srcPath + "/" + ConfigUtil.getProperty("name.source.javaDaoImpl");
 
@@ -765,10 +760,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	public boolean generateDaoMapper(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
 		String projectPackage = CommonUtil.lowerCase(ConfigUtil.getProperty("name.package.project"));
 		String frameworkPackage = CommonUtil.lowerCase(ConfigUtil.getProperty("name.package.framework"));
-		String compilePath = "/target/alpaca";
 		String tableName = requestDataSet.getValue("tableName");
 
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String sourcePath = srcPath + "/" + ConfigUtil.getProperty("name.source.javaDaoMapper");
 
@@ -822,10 +816,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 
 	public boolean generateHibernateQuery(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
 		String frameworkName = ConfigUtil.getProperty("name.framework");
-		String compilePath = "/target/alpaca";
 		String tableName = requestDataSet.getValue("tableName");
 
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String sourcePath = srcPath + "/" + ConfigUtil.getProperty("name.source.hibernateQuery");
 		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
@@ -872,10 +865,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 
 	public boolean generateMybatisQuery(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
 		String frameworkName = ConfigUtil.getProperty("name.framework");
-		String compilePath = "/target/alpaca";
 		String tableName = requestDataSet.getValue("tableName");
 
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String sourcePath = srcPath + "/" + ConfigUtil.getProperty("name.source.mybatisQuery");
 		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
@@ -933,10 +925,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String frameworkName = ConfigUtil.getProperty("name.framework");
 		String projectPath = ConfigUtil.getProperty("name.path.project");
 		String frameworkPath = ConfigUtil.getProperty("name.path.framework");
-		String compilePath = "/target/alpaca";
 		String tableName = requestDataSet.getValue("tableName");
 
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String sourcePath = srcPath + "/" + ConfigUtil.getProperty("name.source.daoSpringConf");
 
@@ -1099,8 +1090,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public void deleteDto(String dtoName) throws Exception {
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
 		String dtoProjectPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.common.dtoProject"), "#DB_VENDOR#", dbVendor);
 		String dtoFrameworkPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.common.dtoFwk"), "#DB_VENDOR#", dbVendor);
@@ -1114,8 +1104,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public void deleteHibernateDtoConfig(String dtoName) throws Exception {
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
 		String hibernateConfProjectPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.hibernateDtoConfProject"), "#DB_VENDOR#", dbVendor);
 		String hibernateConfFrameworkPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.hibernateDtoConfFwk"), "#DB_VENDOR#", dbVendor);
@@ -1129,8 +1118,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public void deleteMybatisDtoMapper(String dtoName) throws Exception {
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
 		String mybatisMapperProjectPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.mybatisDtoMapperClassProject"), "#DB_VENDOR#", dbVendor);
 		String mybatisMapperFrameworkPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.mybatisDtoMapperClassFwk"), "#DB_VENDOR#", dbVendor);
@@ -1144,8 +1132,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public void deleteMybatisDtoMapperXml(String dtoName) throws Exception {
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
 		String mybatisMapperXmlProjectPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.mybatisDtoMapperXmlProject"), "#DB_VENDOR#", dbVendor);
 		String mybatisMapperXmlFrameworkPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.mybatisDtoMapperXmlFwk"), "#DB_VENDOR#", dbVendor);
@@ -1159,8 +1146,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public void deleteDao(String dtoName) throws Exception {
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String daoProjectPath = rootPath + ConfigUtil.getProperty("path.common.daoProject");
 		String daoFrameworkPath = rootPath + ConfigUtil.getProperty("path.common.daoFwk");
 		File file;
@@ -1173,8 +1159,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public void deleteHDaoImpl(String dtoName) throws Exception {
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String daoProjectPath = rootPath + ConfigUtil.getProperty("path.common.daoProject");
 		String daoFrameworkPath = rootPath + ConfigUtil.getProperty("path.common.daoFwk");
 		File file;
@@ -1187,8 +1172,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public void deleteDaoImpl(String dtoName) throws Exception {
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String daoProjectPath = rootPath + ConfigUtil.getProperty("path.common.daoProject");
 		String daoFrameworkPath = rootPath + ConfigUtil.getProperty("path.common.daoFwk");
 		File file;
@@ -1201,8 +1185,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public void deleteDaoMapper(String dtoName) throws Exception {
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String daoProjectPath = rootPath + ConfigUtil.getProperty("path.common.daoProject");
 		String daoFrameworkPath = rootPath + ConfigUtil.getProperty("path.common.daoFwk");
 		File file;
@@ -1215,8 +1198,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public void deleteDaoPackage(String dtoName) throws Exception {
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String daoProjectPath = rootPath + ConfigUtil.getProperty("path.common.daoProject");
 		String daoFrameworkPath = rootPath + ConfigUtil.getProperty("path.common.daoFwk");
 		File file;
@@ -1238,8 +1220,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 
 	public void deleteHibernateQuery(String dtoName) throws Exception {
 		String frameworkName = ConfigUtil.getProperty("name.framework");
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
 		String hibernateQueryProjectPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.hibernateQueryProject"), "#DB_VENDOR#", dbVendor);
 		String hibernateQueryFrameworkPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.hibernateQueryFwk"), "#DB_VENDOR#", dbVendor);
@@ -1254,8 +1235,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 
 	public void deleteMybatisQuery(String dtoName) throws Exception {
 		String frameworkName = ConfigUtil.getProperty("name.framework");
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String dbVendor = CommonUtil.lowerCase(ConfigUtil.getProperty("db.vendor"));
 		String mybatisQueryProjectPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.mybatisQueryProject"), "#DB_VENDOR#", dbVendor);
 		String mybatisQueryFrameworkPath = rootPath + CommonUtil.replace(ConfigUtil.getProperty("path.source.mybatisQueryFwk"), "#DB_VENDOR#", dbVendor);
@@ -1271,8 +1251,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	public void deleteDaoSpringConfig(String dtoName) throws Exception {
 		String projectName = ConfigUtil.getProperty("name.project");
 		String frameworkName = ConfigUtil.getProperty("name.framework");
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String daoSpringConfProjectPath = rootPath + ConfigUtil.getProperty("path.source.daoSpringConfProject");
 		String daoSpringConfFrameworkPath = rootPath + ConfigUtil.getProperty("path.source.daoSpringConfFwk");
 		String projectSpringConfFileName = daoSpringConfProjectPath+"/"+"spring-"+projectName+"-conf-resource-ormapper-dao.xml";
@@ -1331,7 +1310,6 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	 * Source Generator
 	 */
 	public boolean createJavaAction(DataSet requestDataSet) throws Exception {
-		String compilePath = "/target/alpaca";
 		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
 		String javaPath = requestDataSet.getValue("javaSourcePath");
 		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
@@ -1339,7 +1317,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
 		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
 		String menuName = requestDataSet.getValue("menuName");
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String actionHandlerType = requestDataSet.getValue("actionHandlerType");
 		String actionNameAjaxResponse = ConfigUtil.getProperty("name.source.javaAction.ajaxResponse");
@@ -1390,7 +1368,6 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean createJavaBiz(DataSet requestDataSet) throws Exception {
-		String compilePath = "/target/alpaca";
 		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
 		String javaPath = requestDataSet.getValue("javaSourcePath");
 		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
@@ -1398,7 +1375,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
 		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
 		String menuName = requestDataSet.getValue("menuName");
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String srcBizFileName = ConfigUtil.getProperty("name.source.javaBiz");
 		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
@@ -1439,7 +1416,6 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean createJavaBizImpl(DataSet requestDataSet) throws Exception {
-		String compilePath = "/target/alpaca";
 		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
 		String javaPath = requestDataSet.getValue("javaSourcePath");
 		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
@@ -1447,7 +1423,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
 		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
 		String menuName = requestDataSet.getValue("menuName");
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String srcBizImplFileName = ConfigUtil.getProperty("name.source.javaBizImpl");
 		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
@@ -1490,7 +1466,6 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean createJspList(DataSet requestDataSet) throws Exception {
-		String compilePath = "/target/alpaca";
 		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateList"));
 		String pageType = requestDataSet.getValue("jspSubPageType");
 		String jspPath = requestDataSet.getValue("jspSourcePath");
@@ -1499,7 +1474,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
 		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
 		String menuName = requestDataSet.getValue("menuName");
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
 		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
@@ -1562,7 +1537,6 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean createJspDetail(DataSet requestDataSet) throws Exception {
-		String compilePath = "/target/alpaca";
 		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateDetail"));
 		String pageType = requestDataSet.getValue("jspSubPageType");
 		String jspPath = requestDataSet.getValue("jspSourcePath");
@@ -1571,7 +1545,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
 		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
 		String menuName = requestDataSet.getValue("menuName");
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
 		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
@@ -1637,7 +1611,6 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean createJspEdit(DataSet requestDataSet) throws Exception {
-		String compilePath = "/target/alpaca";
 		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateEdit"));
 		String pageType = requestDataSet.getValue("jspSubPageType");
 		String jspPath = requestDataSet.getValue("jspSourcePath");
@@ -1646,7 +1619,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
 		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
 		String menuName = requestDataSet.getValue("menuName");
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
 		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
@@ -1712,7 +1685,6 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean createJspInsert(DataSet requestDataSet) throws Exception {
-		String compilePath = "/target/alpaca";
 		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateInsert"));
 		String pageType = requestDataSet.getValue("jspSubPageType");
 		String jspPath = requestDataSet.getValue("jspSourcePath");
@@ -1721,7 +1693,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
 		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
 		String menuName = requestDataSet.getValue("menuName");
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
 		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
@@ -1787,7 +1759,6 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean createJspUpdate(DataSet requestDataSet) throws Exception {
-		String compilePath = "/target/alpaca";
 		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateUpdate"));
 		String pageType = requestDataSet.getValue("jspSubPageType");
 		String jspPath = requestDataSet.getValue("jspSourcePath");
@@ -1796,7 +1767,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
 		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
 		String menuName = requestDataSet.getValue("menuName");
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
 		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
@@ -1861,7 +1832,6 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean createConfSpring(DataSet dsRequest) throws Exception {
-		String compilePath = "/target/alpaca";
 		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
 		String packageName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.package.project"));
 		String isCreate = CommonUtil.nvl(dsRequest.getValue("createSpring"));
@@ -1872,7 +1842,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
 		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
 		String menuName = dsRequest.getValue("menuName");
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String srcFileName = ConfigUtil.getProperty("name.source.xmlMenuSpringConf");
 		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
@@ -1950,7 +1920,6 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean createConfStruts(DataSet dsRequest) throws Exception {
-		String compilePath = "/target/alpaca";
 		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
 		String isCreate = CommonUtil.nvl(dsRequest.getValue("createStruts"));
 		String pageType = dsRequest.getValue("jspSubPageType");
@@ -1963,7 +1932,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
 		String menuName = dsRequest.getValue("menuName");
 		String menuNumber = CommonUtil.remove(thisMenuId, rootMenuId);
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String srcFileName = ConfigUtil.getProperty("name.source.xmlMenuStrutsConf");
 		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
@@ -2122,7 +2091,6 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean createMessageFile(DataSet dsRequest) throws Exception {
-		String compilePath = "/target/alpaca";
 		String isCreate = CommonUtil.nvl(dsRequest.getValue("createMessage"));
 		String targetPath = dsRequest.getValue("messageConfigPath");
 		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(dsRequest.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
@@ -2131,7 +2099,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
 		String menuName = dsRequest.getValue("menuName");
 		String tableName = dsRequest.getValue("tableName");
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String srcFileName = ConfigUtil.getProperty("name.source.propMessage");
 		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
@@ -2234,10 +2202,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	 */
 	public DataSet getScriptFileDataSet(DataSet requestDataSet) throws Exception {
 		DataSet dataSet = new DataSet();
-		String compilePath = "/target/alpaca";
 		String systemSearched = requestDataSet.getValue("system");
 		String tableNameSearched = requestDataSet.getValue("tableName");
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		File fwkPath = new File(rootPath+"/"+ConfigUtil.getProperty("path.tablescript.framework"));
 		File pjtPath = new File(rootPath+"/"+ConfigUtil.getProperty("path.tablescript.project"));
 		File[] fwkFiles = fwkPath.listFiles();
@@ -2299,8 +2266,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public DataSet getScriptFileDetailDataSet(String fileName) throws Exception {
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String path = (CommonUtil.containsIgnoreCase(fileName, "zebra")) ? ConfigUtil.getProperty("path.tablescript.framework") : ConfigUtil.getProperty("path.tablescript.project");
 		File file = new File(rootPath+"/"+path+"/"+fileName);
 		String tableName = getTableNameFromTableCreationScript(file);
@@ -2317,8 +2283,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public int generateScriptFile(DataSet requestDataSet, DataSet tableDetailDataSet) throws Exception {
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String system = requestDataSet.getValue("system");
 		String path = (CommonUtil.equalsIgnoreCase(system, "framework")) ? ConfigUtil.getProperty("path.tablescript.framework") : ConfigUtil.getProperty("path.tablescript.project");
 		String tableName = requestDataSet.getValue("tableName");
@@ -2333,8 +2298,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public int updateScriptFile(DataSet requestDataSet, DataSet tableDetailDataSet) throws Exception {
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String system = requestDataSet.getValue("system");
 		String path = (CommonUtil.equalsIgnoreCase(system, "framework")) ? ConfigUtil.getProperty("path.tablescript.framework") : ConfigUtil.getProperty("path.tablescript.project");
 		String fileName = requestDataSet.getValue("fileName");
@@ -2346,8 +2310,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public int deleteTableCreationScriptFile(String fileName) throws Exception {
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String path = (CommonUtil.containsIgnoreCase(fileName, "zebra")) ? ConfigUtil.getProperty("path.tablescript.framework") : ConfigUtil.getProperty("path.tablescript.project");
 		File file = new File(rootPath+"/"+path+"/"+fileName);
 		int result = 0;
@@ -2361,8 +2324,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public int deleteTableCreationScriptFiles(String fileNames[]) throws Exception {
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String path = "";
 		int result = 0;
 
@@ -2385,8 +2347,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	public int generateDDLScriptFileForDataMigration(String sourceDb, String targetDb, String tableName) throws Exception {
 		int result = 0;
 		DataSet tableInfoDataSet;
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String path = ConfigUtil.getProperty("path.migration.script")+"/perci/";
 		String tableNameUpperCase = CommonUtil.upperCase(tableName);
 		String sqlString = "";
@@ -2543,8 +2504,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String userName = ConfigUtil.getProperty("jdbc.user.name_"+sourceDb);
 		String pw = ConfigUtil.getProperty("jdbc.user.pass_"+sourceDb);
 		String url = CommonUtil.substringAfter(ConfigUtil.getProperty("jdbc.driver.url_"+sourceDb), "@");
-		String compilePath = "/target/alpaca";
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String path = ConfigUtil.getProperty("path.migration.script")+"/perci/";
 		String tableNameUpperCase = CommonUtil.upperCase(tableName);
 		String sqlString = "", colNames = "";
@@ -3153,14 +3113,13 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	public boolean createJsSource(DataSet requestDataSet, String fileName, String jsString) throws Exception {
-		String compilePath = "/target/alpaca";
 		String jspPath = requestDataSet.getValue("jspSourcePath");
 		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
 		String menuId[] = CommonUtil.split(menuPathStr, "/");
 		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
 		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
 		String menuName = requestDataSet.getValue("menuName");
-		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), compilePath);
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String srcFileName = ConfigUtil.getProperty("name.source.js");
 		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
