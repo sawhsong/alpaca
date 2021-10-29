@@ -47,6 +47,24 @@ public class FileUtil extends FileUtils {
 		}
 	}
 
+	public static void deleteFile(DataSet dsFile) throws Exception {
+		for (int i=0; i<dsFile.getRowCnt(); i++) {
+			String repositoryPath = dsFile.getValue(i, "REPOSITORY_PATH")+"/"+dsFile.getValue(i, "NEW_NAME");
+			deleteQuietly(new File(repositoryPath));
+		}
+	}
+
+	public static void deleteTempFile(DataSet dsFile) throws Exception {
+		for (int i=0; i<dsFile.getRowCnt(); i++) {
+			String repositoryPath = dsFile.getValue(i, "TEMP_PATH")+"/"+dsFile.getValue(i, "NEW_NAME");
+			deleteQuietly(new File(repositoryPath));
+		}
+	}
+
+	public static void deleteRepositoryFile(DataSet dsFile) throws Exception {
+		deleteFile(dsFile);
+	}
+
 	public static void createFolder(String folderPath) throws Exception {
 		File dir = new File(folderPath);
 		if (!dir.isDirectory()) {
