@@ -110,8 +110,8 @@
 			<tr>
 				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
-				<th class="thGrid">DTO Name</th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.dtogenerator.gridHeader.tableName"/></th>
+				<th class="thGrid">DTO Name</th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.dtogenerator.gridHeader.tableDesc"/></th>
 			</tr>
 		</thead>
