@@ -183,6 +183,7 @@ $(function() {
 											buttons:[{
 												caption:com.caption.ok, callback:function() {
 													try {
+														parent.exeSearch();
 														parent.popupInfo.close();
 														popupProcess.close();
 													} catch(ex) {
