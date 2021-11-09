@@ -35,7 +35,7 @@ $(function() {
 			data:{dataSource:$("#dataSource").val()},
 			blind:true,
 			width:1000,
-			height:540
+			height:542
 		});
 	});
 
@@ -165,7 +165,7 @@ $(function() {
 			data:{dataSource:$("#dataSource").val()},
 			blind:true,
 			width:1000,
-			height:540
+			height:542
 		});
 	};
 

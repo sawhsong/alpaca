@@ -597,8 +597,6 @@
     <bean class="${name.package.project}.conf.resource.ormapper.dao.Wso2ApiOrganisationLink.Wso2ApiOrganisationLinkHDaoImpl" id="wso2ApiOrganisationLinkDao" init-method="init" name="wso2ApiOrganisationLinkDao" parent="baseHDao" scope="prototype"/>
     <!--WorkingRightsStatus DAO-->
     <bean class="${name.package.project}.conf.resource.ormapper.dao.WorkingRightsStatus.WorkingRightsStatusHDaoImpl" id="workingRightsStatusDao" init-method="init" name="workingRightsStatusDao" parent="baseHDao" scope="prototype"/>
-    <!--AsgDeliverablesAuthEmail DAO-->
-    <bean class="${name.package.project}.conf.resource.ormapper.dao.AsgDeliverablesAuthEmail.AsgDeliverablesAuthEmailHDaoImpl" id="asgDeliverablesAuthEmailDao" init-method="init" name="asgDeliverablesAuthEmailDao" parent="baseHDao" scope="prototype"/>
     <!--AsgDeliverablesRates DAO-->
     <bean class="${name.package.project}.conf.resource.ormapper.dao.AsgDeliverablesRates.AsgDeliverablesRatesHDaoImpl" id="asgDeliverablesRatesDao" init-method="init" name="asgDeliverablesRatesDao" parent="baseHDao" scope="prototype"/>
     <!--AsgDeliverablesRatesLog DAO-->
