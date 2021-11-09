@@ -39,6 +39,8 @@ public class AsgDeliverablesRates extends BaseDto implements Serializable {
 	private String ELEMENT_ID;
 	private String fileRequired;
 	private String FILE_REQUIRED;
+	private String isInvoiced;
+	private String IS_INVOICED;
 	private double lastUpdatedBy;
 	private String LAST_UPDATED_BY;
 	private Date lastUpdateDate;
@@ -183,6 +185,15 @@ public class AsgDeliverablesRates extends BaseDto implements Serializable {
 		setValueFromAccessor("FILE_REQUIRED", fileRequired);
 	}
 
+	public String getIsInvoiced() {
+		return isInvoiced;
+	}
+
+	public void setIsInvoiced(String isInvoiced) throws Exception {
+		this.isInvoiced = isInvoiced;
+		setValueFromAccessor("IS_INVOICED", isInvoiced);
+	}
+
 	public double getLastUpdatedBy() {
 		return lastUpdatedBy;
 	}
@@ -307,9 +318,9 @@ public class AsgDeliverablesRates extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -356,6 +367,7 @@ public class AsgDeliverablesRates extends BaseDto implements Serializable {
 		str += "dueDate : "+dueDate+"\n";
 		str += "elementId : "+elementId+"\n";
 		str += "fileRequired : "+fileRequired+"\n";
+		str += "isInvoiced : "+isInvoiced+"\n";
 		str += "lastUpdatedBy : "+lastUpdatedBy+"\n";
 		str += "lastUpdateDate : "+lastUpdateDate+"\n";
 		str += "status : "+status+"\n";
@@ -382,6 +394,7 @@ public class AsgDeliverablesRates extends BaseDto implements Serializable {
 		str += "<column name=\"dueDate\" value=\""+dueDate+"\">";
 		str += "<column name=\"elementId\" value=\""+elementId+"\">";
 		str += "<column name=\"fileRequired\" value=\""+fileRequired+"\">";
+		str += "<column name=\"isInvoiced\" value=\""+isInvoiced+"\">";
 		str += "<column name=\"lastUpdatedBy\" value=\""+lastUpdatedBy+"\">";
 		str += "<column name=\"lastUpdateDate\" value=\""+lastUpdateDate+"\">";
 		str += "<column name=\"status\" value=\""+status+"\">";
@@ -408,6 +421,7 @@ public class AsgDeliverablesRates extends BaseDto implements Serializable {
 		str += "\"dueDate\":\""+dueDate+"\", ";
 		str += "\"elementId\":\""+elementId+"\", ";
 		str += "\"fileRequired\":\""+fileRequired+"\", ";
+		str += "\"isInvoiced\":\""+isInvoiced+"\", ";
 		str += "\"lastUpdatedBy\":\""+lastUpdatedBy+"\", ";
 		str += "\"lastUpdateDate\":\""+lastUpdateDate+"\", ";
 		str += "\"status\":\""+status+"\", ";

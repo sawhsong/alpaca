@@ -20,6 +20,7 @@
 		<property name="dueDate" column="DUE_DATE" type="java.util.Date"/>
 		<property name="elementId" column="ELEMENT_ID" type="java.lang.Double"/>
 		<property name="fileRequired" column="FILE_REQUIRED" type="java.lang.String" length="1"/>
+		<property name="isInvoiced" column="IS_INVOICED" type="java.lang.String" length="1"/>
 		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
 		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
 		<property name="status" column="STATUS" type="java.lang.String" length="50"/>
@@ -38,6 +39,7 @@
 		       TO_CHAR(DUE_DATE, 'yyyymmddhh24miss') AS DUE_DATE,
 		       ELEMENT_ID,
 		       FILE_REQUIRED,
+		       IS_INVOICED,
 		       LAST_UPDATED_BY,
 		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
 		       STATUS
@@ -64,6 +66,7 @@
 		       DUE_DATE,
 		       ELEMENT_ID,
 		       FILE_REQUIRED,
+		       IS_INVOICED,
 		       LAST_UPDATED_BY,
 		       LAST_UPDATE_DATE,
 		       STATUS
@@ -80,6 +83,7 @@
 		       ${DUE_DATE},
 		       ${ELEMENT_ID},
 		       ${FILE_REQUIRED},
+		       ${IS_INVOICED},
 		       ${LAST_UPDATED_BY},
 		       ${LAST_UPDATE_DATE},
 		       ${STATUS}
@@ -100,6 +104,7 @@
 		       DUE_DATE = ${DUE_DATE},
 		       ELEMENT_ID = ${ELEMENT_ID},
 		       FILE_REQUIRED = ${FILE_REQUIRED},
+		       IS_INVOICED = ${IS_INVOICED},
 		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
 		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
 		       STATUS = ${STATUS}
