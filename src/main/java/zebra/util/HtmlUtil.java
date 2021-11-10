@@ -12,6 +12,7 @@ public class HtmlUtil {
 //			text = CommonUtil.replace(text, "%", "&#37;");
 			text = CommonUtil.replace(text, "\"", "&quot;");
 			text = CommonUtil.replace(text, "'", "&#39;");
+			text = CommonUtil.replace(text, "\t", "&#9;");
 //			text = CommonUtil.replace(text, " ", "&nbsp;");
 			text = CommonUtil.replace(text, "\r\n", "<br/>");
 //			text = CommonUtil.replace(text, "\r", "<br/>");
@@ -31,6 +32,7 @@ public class HtmlUtil {
 //			text = CommonUtil.replace(text, "&#37;", "%");
 			text = CommonUtil.replace(text, "&quot;", "\"");
 			text = CommonUtil.replace(text, "&#39;", "'");
+			text = CommonUtil.replace(text, "&#9;", "\t");
 //			text = CommonUtil.replace(text, "&nbsp;", " ");
 			text = CommonUtil.replace(text, "<br/>", "\n");
 		}

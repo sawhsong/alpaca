@@ -80,6 +80,7 @@ $(function() {
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
 				url:"/per/0202/getList.do",
+				dataType:"xml",
 				onSuccess:renderGridData
 			});
 		}
