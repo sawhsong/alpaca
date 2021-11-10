@@ -79,6 +79,8 @@ public class HpPersonD extends BaseDto implements Serializable {
 	private String GTM_PROFILE;
 	private String gtmStage;
 	private String GTM_STAGE;
+	private String isAOrTsi;
+	private String IS_A_OR_TSI;
 	private double lafhaAmount;
 	private String LAFHA_AMOUNT;
 	private String lafhaEligible;
@@ -455,6 +457,15 @@ public class HpPersonD extends BaseDto implements Serializable {
 		setValueFromAccessor("GTM_STAGE", gtmStage);
 	}
 
+	public String getIsAOrTsi() {
+		return isAOrTsi;
+	}
+
+	public void setIsAOrTsi(String isAOrTsi) throws Exception {
+		this.isAOrTsi = isAOrTsi;
+		setValueFromAccessor("IS_A_OR_TSI", isAOrTsi);
+	}
+
 	public double getLafhaAmount() {
 		return lafhaAmount;
 	}
@@ -813,9 +824,9 @@ public class HpPersonD extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -882,6 +893,7 @@ public class HpPersonD extends BaseDto implements Serializable {
 		str += "gender : "+gender+"\n";
 		str += "gtmProfile : "+gtmProfile+"\n";
 		str += "gtmStage : "+gtmStage+"\n";
+		str += "isAOrTsi : "+isAOrTsi+"\n";
 		str += "lafhaAmount : "+lafhaAmount+"\n";
 		str += "lafhaEligible : "+lafhaEligible+"\n";
 		str += "lafhaLeaseExpiry : "+lafhaLeaseExpiry+"\n";
@@ -954,6 +966,7 @@ public class HpPersonD extends BaseDto implements Serializable {
 		str += "<column name=\"gender\" value=\""+gender+"\">";
 		str += "<column name=\"gtmProfile\" value=\""+gtmProfile+"\">";
 		str += "<column name=\"gtmStage\" value=\""+gtmStage+"\">";
+		str += "<column name=\"isAOrTsi\" value=\""+isAOrTsi+"\">";
 		str += "<column name=\"lafhaAmount\" value=\""+lafhaAmount+"\">";
 		str += "<column name=\"lafhaEligible\" value=\""+lafhaEligible+"\">";
 		str += "<column name=\"lafhaLeaseExpiry\" value=\""+lafhaLeaseExpiry+"\">";
@@ -1026,6 +1039,7 @@ public class HpPersonD extends BaseDto implements Serializable {
 		str += "\"gender\":\""+gender+"\", ";
 		str += "\"gtmProfile\":\""+gtmProfile+"\", ";
 		str += "\"gtmStage\":\""+gtmStage+"\", ";
+		str += "\"isAOrTsi\":\""+isAOrTsi+"\", ";
 		str += "\"lafhaAmount\":\""+lafhaAmount+"\", ";
 		str += "\"lafhaEligible\":\""+lafhaEligible+"\", ";
 		str += "\"lafhaLeaseExpiry\":\""+lafhaLeaseExpiry+"\", ";

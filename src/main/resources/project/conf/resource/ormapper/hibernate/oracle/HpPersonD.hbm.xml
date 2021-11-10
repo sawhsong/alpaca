@@ -40,6 +40,7 @@
 		<property name="gender" column="GENDER" type="java.lang.String" length="1"/>
 		<property name="gtmProfile" column="GTM_PROFILE" type="java.lang.String" length="150"/>
 		<property name="gtmStage" column="GTM_STAGE" type="java.lang.String" length="150"/>
+		<property name="isAOrTsi" column="IS_A_OR_TSI" type="java.lang.String" length="1"/>
 		<property name="lafhaAmount" column="LAFHA_AMOUNT" type="java.lang.Double"/>
 		<property name="lafhaEligible" column="LAFHA_ELIGIBLE" type="java.lang.String" length="1"/>
 		<property name="lafhaLeaseExpiry" column="LAFHA_LEASE_EXPIRY" type="java.util.Date"/>
@@ -104,6 +105,7 @@
 		       GENDER,
 		       GTM_PROFILE,
 		       GTM_STAGE,
+		       IS_A_OR_TSI,
 		       LAFHA_AMOUNT,
 		       LAFHA_ELIGIBLE,
 		       TO_CHAR(LAFHA_LEASE_EXPIRY, 'yyyymmddhh24miss') AS LAFHA_LEASE_EXPIRY,
@@ -138,6 +140,7 @@
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -175,6 +178,7 @@
 		       GENDER,
 		       GTM_PROFILE,
 		       GTM_STAGE,
+		       IS_A_OR_TSI,
 		       LAFHA_AMOUNT,
 		       LAFHA_ELIGIBLE,
 		       LAFHA_LEASE_EXPIRY,
@@ -237,6 +241,7 @@
 		       ${GENDER},
 		       ${GTM_PROFILE},
 		       ${GTM_STAGE},
+		       ${IS_A_OR_TSI},
 		       ${LAFHA_AMOUNT},
 		       ${LAFHA_ELIGIBLE},
 		       ${LAFHA_LEASE_EXPIRY},
@@ -303,6 +308,7 @@
 		       GENDER = ${GENDER},
 		       GTM_PROFILE = ${GTM_PROFILE},
 		       GTM_STAGE = ${GTM_STAGE},
+		       IS_A_OR_TSI = ${IS_A_OR_TSI},
 		       LAFHA_AMOUNT = ${LAFHA_AMOUNT},
 		       LAFHA_ELIGIBLE = ${LAFHA_ELIGIBLE},
 		       LAFHA_LEASE_EXPIRY = ${LAFHA_LEASE_EXPIRY},
