@@ -73,6 +73,8 @@ public class HpBillingCode extends BaseDto implements Serializable {
 	private String INV_DATE_OFFSET;
 	private double invTemplateId;
 	private String INV_TEMPLATE_ID;
+	private Date newSaleDate;
+	private String NEW_SALE_DATE;
 	private String paymentCycle;
 	private String PAYMENT_CYCLE;
 	private double payslipTemplateId;
@@ -127,7 +129,7 @@ public class HpBillingCode extends BaseDto implements Serializable {
 		dataSet.addRow();
 		updateColumnsDataSet.addName(updateColumnsDataSetHeader);
 		setFrwVarPrimaryKey("BILLING_CODE_ID");
-		setFrwVarDateColumn("CREATION_DATE,LAST_UPDATE_DATE,FIRST_INVOICE_DUE_DATE,FIRST_INV_PERIOD_END_DATE,FIRST_PERIOD_END_DATE,FIRST_TIMESHEET_TIME_DUE_DATE");
+		setFrwVarDateColumn("CREATION_DATE,LAST_UPDATE_DATE,FIRST_INVOICE_DUE_DATE,FIRST_INV_PERIOD_END_DATE,FIRST_PERIOD_END_DATE,FIRST_TIMESHEET_TIME_DUE_DATE,NEW_SALE_DATE");
 		setFrwVarNumberColumn("BILLING_CODE_ID,BUSINESS_GROUP_ID,CREATED_BY,LAST_UPDATED_BY,BILLING_ORGANIZATION_ID,EMP_ORGANIZATION_ID,INV_DATE_OFFSET,INV_TEMPLATE_ID,PAYSLIP_TEMPLATE_ID,PAY_DATE_OFFSET,RCTI_TEMPLATE_ID,RELATIONSHIP_CONSULTANT_ID,REMITTANCE_ADVICE_TEMPLATE_ID,TIME_SHEET_CYCLE_OFFSET");
 		setFrwVarClobColumn("");
 		setFrwVarDefaultColumn("");
@@ -390,6 +392,15 @@ public class HpBillingCode extends BaseDto implements Serializable {
 		setValueFromAccessor("INV_TEMPLATE_ID", CommonUtil.toString(invTemplateId));
 	}
 
+	public Date getNewSaleDate() {
+		return newSaleDate;
+	}
+
+	public void setNewSaleDate(Date newSaleDate) throws Exception {
+		this.newSaleDate = newSaleDate;
+		setValueFromAccessor("NEW_SALE_DATE", CommonUtil.toString(newSaleDate));
+	}
+
 	public String getPaymentCycle() {
 		return paymentCycle;
 	}
@@ -604,9 +615,9 @@ public class HpBillingCode extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -670,6 +681,7 @@ public class HpBillingCode extends BaseDto implements Serializable {
 		str += "invoiceWithTimesheet : "+invoiceWithTimesheet+"\n";
 		str += "invDateOffset : "+invDateOffset+"\n";
 		str += "invTemplateId : "+invTemplateId+"\n";
+		str += "newSaleDate : "+newSaleDate+"\n";
 		str += "paymentCycle : "+paymentCycle+"\n";
 		str += "payslipTemplateId : "+payslipTemplateId+"\n";
 		str += "payDateOffset : "+payDateOffset+"\n";
@@ -723,6 +735,7 @@ public class HpBillingCode extends BaseDto implements Serializable {
 		str += "<column name=\"invoiceWithTimesheet\" value=\""+invoiceWithTimesheet+"\">";
 		str += "<column name=\"invDateOffset\" value=\""+invDateOffset+"\">";
 		str += "<column name=\"invTemplateId\" value=\""+invTemplateId+"\">";
+		str += "<column name=\"newSaleDate\" value=\""+newSaleDate+"\">";
 		str += "<column name=\"paymentCycle\" value=\""+paymentCycle+"\">";
 		str += "<column name=\"payslipTemplateId\" value=\""+payslipTemplateId+"\">";
 		str += "<column name=\"payDateOffset\" value=\""+payDateOffset+"\">";
@@ -776,6 +789,7 @@ public class HpBillingCode extends BaseDto implements Serializable {
 		str += "\"invoiceWithTimesheet\":\""+invoiceWithTimesheet+"\", ";
 		str += "\"invDateOffset\":\""+invDateOffset+"\", ";
 		str += "\"invTemplateId\":\""+invTemplateId+"\", ";
+		str += "\"newSaleDate\":\""+newSaleDate+"\", ";
 		str += "\"paymentCycle\":\""+paymentCycle+"\", ";
 		str += "\"payslipTemplateId\":\""+payslipTemplateId+"\", ";
 		str += "\"payDateOffset\":\""+payDateOffset+"\", ";

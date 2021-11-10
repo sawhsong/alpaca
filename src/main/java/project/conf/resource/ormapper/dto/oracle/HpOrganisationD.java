@@ -23,14 +23,10 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	private String CREATED_BY;
 	private Date creationDate;
 	private String CREATION_DATE;
-	private Date fromDate;
-	private String FROM_DATE;
 	private double lastUpdatedBy;
 	private String LAST_UPDATED_BY;
 	private Date lastUpdateDate;
 	private String LAST_UPDATE_DATE;
-	private Date toDate;
-	private String TO_DATE;
 	private String abn;
 	private String ABN;
 	private String acceptRcti;
@@ -89,6 +85,8 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	private String FAX2;
 	private Date firstContactDate;
 	private String FIRST_CONTACT_DATE;
+	private Date fromDate;
+	private String FROM_DATE;
 	private String gstNumber;
 	private String GST_NUMBER;
 	private String gstReg;
@@ -107,6 +105,8 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	private String MSA_EXECUTION_DATE;
 	private Date msaStartDate;
 	private String MSA_START_DATE;
+	private Date newFlagDate;
+	private String NEW_FLAG_DATE;
 	private String organisationName;
 	private String ORGANISATION_NAME;
 	private String organisationOverview;
@@ -115,6 +115,8 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	private String ORGANISATION_TYPE;
 	private String orgDormant;
 	private String ORG_DORMANT;
+	private String orgHierarchy;
+	private String ORG_HIERARCHY;
 	private String phone1;
 	private String PHONE1;
 	private String phone2;
@@ -141,6 +143,8 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	private String REFERENCE_NO_3;
 	private String relationship;
 	private String RELATIONSHIP;
+	private String reportingLine;
+	private String REPORTING_LINE;
 	private String role;
 	private String ROLE;
 	private String specialRequirements;
@@ -159,6 +163,8 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	private String TAX_INVOICE_ACCEPTANCE_TYPE;
 	private String terminationNotice;
 	private String TERMINATION_NOTICE;
+	private Date toDate;
+	private String TO_DATE;
 	private String webAddress;
 	private String WEB_ADDRESS;
 	private String insertUserName;
@@ -189,7 +195,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		dataSet.addRow();
 		updateColumnsDataSet.addName(updateColumnsDataSetHeader);
 		setFrwVarPrimaryKey("ORGANISATION_ID");
-		setFrwVarDateColumn("CREATION_DATE,FROM_DATE,LAST_UPDATE_DATE,TO_DATE,CSI_EXECUTION_DATE,CSI_REVIEW_DATE,FIRST_CONTACT_DATE,MSA_END_DATE,MSA_EXECUTION_DATE,MSA_START_DATE");
+		setFrwVarDateColumn("CREATION_DATE,LAST_UPDATE_DATE,CSI_EXECUTION_DATE,CSI_REVIEW_DATE,FIRST_CONTACT_DATE,FROM_DATE,MSA_END_DATE,MSA_EXECUTION_DATE,MSA_START_DATE,NEW_FLAG_DATE,TO_DATE");
 		setFrwVarNumberColumn("ORGANISATION_ID,CREATED_BY,LAST_UPDATED_BY,AUTHORIZED_PERSON,BUSINESS_GROUP_ID,ENTITY_STAFF_CONTACT,ES_ACCOUNT_MANAGER,ES_BD_MANAGER,ES_CS_CONSULTANT,ES_CUSTOMER_ADMINISTRATOR,ES_EXEC_RELATIONSHIP,ES_MIGRATION_ADMINISTRATOR,ES_MIGRATION_CONSULTANT,ES_PAYROLL_CONSULTANT,MAIN_CONTACT");
 		setFrwVarClobColumn("");
 		setFrwVarDefaultColumn("");
@@ -227,15 +233,6 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		setValueFromAccessor("CREATION_DATE", CommonUtil.toString(creationDate));
 	}
 
-	public Date getFromDate() {
-		return fromDate;
-	}
-
-	public void setFromDate(Date fromDate) throws Exception {
-		this.fromDate = fromDate;
-		setValueFromAccessor("FROM_DATE", CommonUtil.toString(fromDate));
-	}
-
 	public double getLastUpdatedBy() {
 		return lastUpdatedBy;
 	}
@@ -252,15 +249,6 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	public void setLastUpdateDate(Date lastUpdateDate) throws Exception {
 		this.lastUpdateDate = lastUpdateDate;
 		setValueFromAccessor("LAST_UPDATE_DATE", CommonUtil.toString(lastUpdateDate));
-	}
-
-	public Date getToDate() {
-		return toDate;
-	}
-
-	public void setToDate(Date toDate) throws Exception {
-		this.toDate = toDate;
-		setValueFromAccessor("TO_DATE", CommonUtil.toString(toDate));
 	}
 
 	public String getAbn() {
@@ -524,6 +512,15 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		setValueFromAccessor("FIRST_CONTACT_DATE", CommonUtil.toString(firstContactDate));
 	}
 
+	public Date getFromDate() {
+		return fromDate;
+	}
+
+	public void setFromDate(Date fromDate) throws Exception {
+		this.fromDate = fromDate;
+		setValueFromAccessor("FROM_DATE", CommonUtil.toString(fromDate));
+	}
+
 	public String getGstNumber() {
 		return gstNumber;
 	}
@@ -605,6 +602,15 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		setValueFromAccessor("MSA_START_DATE", CommonUtil.toString(msaStartDate));
 	}
 
+	public Date getNewFlagDate() {
+		return newFlagDate;
+	}
+
+	public void setNewFlagDate(Date newFlagDate) throws Exception {
+		this.newFlagDate = newFlagDate;
+		setValueFromAccessor("NEW_FLAG_DATE", CommonUtil.toString(newFlagDate));
+	}
+
 	public String getOrganisationName() {
 		return organisationName;
 	}
@@ -639,6 +645,15 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	public void setOrgDormant(String orgDormant) throws Exception {
 		this.orgDormant = orgDormant;
 		setValueFromAccessor("ORG_DORMANT", orgDormant);
+	}
+
+	public String getOrgHierarchy() {
+		return orgHierarchy;
+	}
+
+	public void setOrgHierarchy(String orgHierarchy) throws Exception {
+		this.orgHierarchy = orgHierarchy;
+		setValueFromAccessor("ORG_HIERARCHY", orgHierarchy);
 	}
 
 	public String getPhone1() {
@@ -758,6 +773,15 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		setValueFromAccessor("RELATIONSHIP", relationship);
 	}
 
+	public String getReportingLine() {
+		return reportingLine;
+	}
+
+	public void setReportingLine(String reportingLine) throws Exception {
+		this.reportingLine = reportingLine;
+		setValueFromAccessor("REPORTING_LINE", reportingLine);
+	}
+
 	public String getRole() {
 		return role;
 	}
@@ -837,6 +861,15 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	public void setTerminationNotice(String terminationNotice) throws Exception {
 		this.terminationNotice = terminationNotice;
 		setValueFromAccessor("TERMINATION_NOTICE", terminationNotice);
+	}
+
+	public Date getToDate() {
+		return toDate;
+	}
+
+	public void setToDate(Date toDate) throws Exception {
+		this.toDate = toDate;
+		setValueFromAccessor("TO_DATE", CommonUtil.toString(toDate));
 	}
 
 	public String getWebAddress() {
@@ -945,9 +978,9 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -986,10 +1019,8 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "organisationId : "+organisationId+"\n";
 		str += "createdBy : "+createdBy+"\n";
 		str += "creationDate : "+creationDate+"\n";
-		str += "fromDate : "+fromDate+"\n";
 		str += "lastUpdatedBy : "+lastUpdatedBy+"\n";
 		str += "lastUpdateDate : "+lastUpdateDate+"\n";
-		str += "toDate : "+toDate+"\n";
 		str += "abn : "+abn+"\n";
 		str += "acceptRcti : "+acceptRcti+"\n";
 		str += "acn : "+acn+"\n";
@@ -1019,6 +1050,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "fax1 : "+fax1+"\n";
 		str += "fax2 : "+fax2+"\n";
 		str += "firstContactDate : "+firstContactDate+"\n";
+		str += "fromDate : "+fromDate+"\n";
 		str += "gstNumber : "+gstNumber+"\n";
 		str += "gstReg : "+gstReg+"\n";
 		str += "history : "+history+"\n";
@@ -1028,10 +1060,12 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "msaEndDate : "+msaEndDate+"\n";
 		str += "msaExecutionDate : "+msaExecutionDate+"\n";
 		str += "msaStartDate : "+msaStartDate+"\n";
+		str += "newFlagDate : "+newFlagDate+"\n";
 		str += "organisationName : "+organisationName+"\n";
 		str += "organisationOverview : "+organisationOverview+"\n";
 		str += "organisationType : "+organisationType+"\n";
 		str += "orgDormant : "+orgDormant+"\n";
+		str += "orgHierarchy : "+orgHierarchy+"\n";
 		str += "phone1 : "+phone1+"\n";
 		str += "phone2 : "+phone2+"\n";
 		str += "postalAddressLine : "+postalAddressLine+"\n";
@@ -1045,6 +1079,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "referenceNo2 : "+referenceNo2+"\n";
 		str += "referenceNo3 : "+referenceNo3+"\n";
 		str += "relationship : "+relationship+"\n";
+		str += "reportingLine : "+reportingLine+"\n";
 		str += "role : "+role+"\n";
 		str += "specialRequirements : "+specialRequirements+"\n";
 		str += "sroNumber : "+sroNumber+"\n";
@@ -1054,6 +1089,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "swimLane : "+swimLane+"\n";
 		str += "taxInvoiceAcceptanceType : "+taxInvoiceAcceptanceType+"\n";
 		str += "terminationNotice : "+terminationNotice+"\n";
+		str += "toDate : "+toDate+"\n";
 		str += "webAddress : "+webAddress+"\n";
 		str += "insertUserName : "+insertUserName+"\n";
 		str += "updateUserName : "+updateUserName+"\n";
@@ -1070,10 +1106,8 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "<column name=\"organisationId\" value=\""+organisationId+"\">";
 		str += "<column name=\"createdBy\" value=\""+createdBy+"\">";
 		str += "<column name=\"creationDate\" value=\""+creationDate+"\">";
-		str += "<column name=\"fromDate\" value=\""+fromDate+"\">";
 		str += "<column name=\"lastUpdatedBy\" value=\""+lastUpdatedBy+"\">";
 		str += "<column name=\"lastUpdateDate\" value=\""+lastUpdateDate+"\">";
-		str += "<column name=\"toDate\" value=\""+toDate+"\">";
 		str += "<column name=\"abn\" value=\""+abn+"\">";
 		str += "<column name=\"acceptRcti\" value=\""+acceptRcti+"\">";
 		str += "<column name=\"acn\" value=\""+acn+"\">";
@@ -1103,6 +1137,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "<column name=\"fax1\" value=\""+fax1+"\">";
 		str += "<column name=\"fax2\" value=\""+fax2+"\">";
 		str += "<column name=\"firstContactDate\" value=\""+firstContactDate+"\">";
+		str += "<column name=\"fromDate\" value=\""+fromDate+"\">";
 		str += "<column name=\"gstNumber\" value=\""+gstNumber+"\">";
 		str += "<column name=\"gstReg\" value=\""+gstReg+"\">";
 		str += "<column name=\"history\" value=\""+history+"\">";
@@ -1112,10 +1147,12 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "<column name=\"msaEndDate\" value=\""+msaEndDate+"\">";
 		str += "<column name=\"msaExecutionDate\" value=\""+msaExecutionDate+"\">";
 		str += "<column name=\"msaStartDate\" value=\""+msaStartDate+"\">";
+		str += "<column name=\"newFlagDate\" value=\""+newFlagDate+"\">";
 		str += "<column name=\"organisationName\" value=\""+organisationName+"\">";
 		str += "<column name=\"organisationOverview\" value=\""+organisationOverview+"\">";
 		str += "<column name=\"organisationType\" value=\""+organisationType+"\">";
 		str += "<column name=\"orgDormant\" value=\""+orgDormant+"\">";
+		str += "<column name=\"orgHierarchy\" value=\""+orgHierarchy+"\">";
 		str += "<column name=\"phone1\" value=\""+phone1+"\">";
 		str += "<column name=\"phone2\" value=\""+phone2+"\">";
 		str += "<column name=\"postalAddressLine\" value=\""+postalAddressLine+"\">";
@@ -1129,6 +1166,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "<column name=\"referenceNo2\" value=\""+referenceNo2+"\">";
 		str += "<column name=\"referenceNo3\" value=\""+referenceNo3+"\">";
 		str += "<column name=\"relationship\" value=\""+relationship+"\">";
+		str += "<column name=\"reportingLine\" value=\""+reportingLine+"\">";
 		str += "<column name=\"role\" value=\""+role+"\">";
 		str += "<column name=\"specialRequirements\" value=\""+specialRequirements+"\">";
 		str += "<column name=\"sroNumber\" value=\""+sroNumber+"\">";
@@ -1138,6 +1176,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "<column name=\"swimLane\" value=\""+swimLane+"\">";
 		str += "<column name=\"taxInvoiceAcceptanceType\" value=\""+taxInvoiceAcceptanceType+"\">";
 		str += "<column name=\"terminationNotice\" value=\""+terminationNotice+"\">";
+		str += "<column name=\"toDate\" value=\""+toDate+"\">";
 		str += "<column name=\"webAddress\" value=\""+webAddress+"\">";
 		str += "<column name=\"insertUserName\" value=\""+insertUserName+"\">";
 		str += "<column name=\"updateUserName\" value=\""+updateUserName+"\">";
@@ -1154,10 +1193,8 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "\"organisationId\":\""+organisationId+"\", ";
 		str += "\"createdBy\":\""+createdBy+"\", ";
 		str += "\"creationDate\":\""+creationDate+"\", ";
-		str += "\"fromDate\":\""+fromDate+"\", ";
 		str += "\"lastUpdatedBy\":\""+lastUpdatedBy+"\", ";
 		str += "\"lastUpdateDate\":\""+lastUpdateDate+"\", ";
-		str += "\"toDate\":\""+toDate+"\", ";
 		str += "\"abn\":\""+abn+"\", ";
 		str += "\"acceptRcti\":\""+acceptRcti+"\", ";
 		str += "\"acn\":\""+acn+"\", ";
@@ -1187,6 +1224,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "\"fax1\":\""+fax1+"\", ";
 		str += "\"fax2\":\""+fax2+"\", ";
 		str += "\"firstContactDate\":\""+firstContactDate+"\", ";
+		str += "\"fromDate\":\""+fromDate+"\", ";
 		str += "\"gstNumber\":\""+gstNumber+"\", ";
 		str += "\"gstReg\":\""+gstReg+"\", ";
 		str += "\"history\":\""+history+"\", ";
@@ -1196,10 +1234,12 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "\"msaEndDate\":\""+msaEndDate+"\", ";
 		str += "\"msaExecutionDate\":\""+msaExecutionDate+"\", ";
 		str += "\"msaStartDate\":\""+msaStartDate+"\", ";
+		str += "\"newFlagDate\":\""+newFlagDate+"\", ";
 		str += "\"organisationName\":\""+organisationName+"\", ";
 		str += "\"organisationOverview\":\""+organisationOverview+"\", ";
 		str += "\"organisationType\":\""+organisationType+"\", ";
 		str += "\"orgDormant\":\""+orgDormant+"\", ";
+		str += "\"orgHierarchy\":\""+orgHierarchy+"\", ";
 		str += "\"phone1\":\""+phone1+"\", ";
 		str += "\"phone2\":\""+phone2+"\", ";
 		str += "\"postalAddressLine\":\""+postalAddressLine+"\", ";
@@ -1213,6 +1253,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "\"referenceNo2\":\""+referenceNo2+"\", ";
 		str += "\"referenceNo3\":\""+referenceNo3+"\", ";
 		str += "\"relationship\":\""+relationship+"\", ";
+		str += "\"reportingLine\":\""+reportingLine+"\", ";
 		str += "\"role\":\""+role+"\", ";
 		str += "\"specialRequirements\":\""+specialRequirements+"\", ";
 		str += "\"sroNumber\":\""+sroNumber+"\", ";
@@ -1222,6 +1263,7 @@ public class HpOrganisationD extends BaseDto implements Serializable {
 		str += "\"swimLane\":\""+swimLane+"\", ";
 		str += "\"taxInvoiceAcceptanceType\":\""+taxInvoiceAcceptanceType+"\", ";
 		str += "\"terminationNotice\":\""+terminationNotice+"\", ";
+		str += "\"toDate\":\""+toDate+"\", ";
 		str += "\"webAddress\":\""+webAddress+"\", ";
 		str += "\"insertUserName\":\""+insertUserName+"\", ";
 		str += "\"updateUserName\":\""+updateUserName+"\"";

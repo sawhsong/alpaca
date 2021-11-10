@@ -37,6 +37,8 @@ public class OpportunityAssignmentDetails extends BaseDto implements Serializabl
 	private String CONTRACT_VALUE;
 	private String endUserType;
 	private String END_USER_TYPE;
+	private String engagementContractType;
+	private String ENGAGEMENT_CONTRACT_TYPE;
 	private String equipmentDetails;
 	private String EQUIPMENT_DETAILS;
 	private String equipmentRequiredYn;
@@ -51,6 +53,10 @@ public class OpportunityAssignmentDetails extends BaseDto implements Serializabl
 	private String MANAGEMENT_FEE_COMMENTS;
 	private String managementFeeType;
 	private String MANAGEMENT_FEE_TYPE;
+	private String modernAwardDescription;
+	private String MODERN_AWARD_DESCRIPTION;
+	private double modernAwardId;
+	private String MODERN_AWARD_ID;
 	private String paymentArrangment;
 	private String PAYMENT_ARRANGMENT;
 	private double payrollTaxResponsibilty;
@@ -110,7 +116,7 @@ public class OpportunityAssignmentDetails extends BaseDto implements Serializabl
 		updateColumnsDataSet.addName(updateColumnsDataSetHeader);
 		setFrwVarPrimaryKey("");
 		setFrwVarDateColumn("ASSIGNMENT_END_DATE,ASSIGNMENT_START_DATE");
-		setFrwVarNumberColumn("OPPORTUNITY_ASG_DETAILS_ID,OPPORTUNITY_ID,BILLING_ORG,END_USER_ORG,CONTACT_PERSON,CONTRACT_VALUE,MANAGEMENT_FEE,PAYROLL_TAX_RESPONSIBILTY,RATE,WC_ORG_CODE_RATE_LINK_ID");
+		setFrwVarNumberColumn("OPPORTUNITY_ASG_DETAILS_ID,OPPORTUNITY_ID,BILLING_ORG,END_USER_ORG,CONTACT_PERSON,CONTRACT_VALUE,MANAGEMENT_FEE,MODERN_AWARD_ID,PAYROLL_TAX_RESPONSIBILTY,RATE,WC_ORG_CODE_RATE_LINK_ID");
 		setFrwVarClobColumn("");
 		setFrwVarDefaultColumn("");
 		setFrwVarDefaultValue("");
@@ -210,6 +216,15 @@ public class OpportunityAssignmentDetails extends BaseDto implements Serializabl
 		setValueFromAccessor("END_USER_TYPE", endUserType);
 	}
 
+	public String getEngagementContractType() {
+		return engagementContractType;
+	}
+
+	public void setEngagementContractType(String engagementContractType) throws Exception {
+		this.engagementContractType = engagementContractType;
+		setValueFromAccessor("ENGAGEMENT_CONTRACT_TYPE", engagementContractType);
+	}
+
 	public String getEquipmentDetails() {
 		return equipmentDetails;
 	}
@@ -271,6 +286,24 @@ public class OpportunityAssignmentDetails extends BaseDto implements Serializabl
 	public void setManagementFeeType(String managementFeeType) throws Exception {
 		this.managementFeeType = managementFeeType;
 		setValueFromAccessor("MANAGEMENT_FEE_TYPE", managementFeeType);
+	}
+
+	public String getModernAwardDescription() {
+		return modernAwardDescription;
+	}
+
+	public void setModernAwardDescription(String modernAwardDescription) throws Exception {
+		this.modernAwardDescription = modernAwardDescription;
+		setValueFromAccessor("MODERN_AWARD_DESCRIPTION", modernAwardDescription);
+	}
+
+	public double getModernAwardId() {
+		return modernAwardId;
+	}
+
+	public void setModernAwardId(double modernAwardId) throws Exception {
+		this.modernAwardId = modernAwardId;
+		setValueFromAccessor("MODERN_AWARD_ID", CommonUtil.toString(modernAwardId));
 	}
 
 	public String getPaymentArrangment() {
@@ -505,9 +538,9 @@ public class OpportunityAssignmentDetails extends BaseDto implements Serializabl
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -553,6 +586,7 @@ public class OpportunityAssignmentDetails extends BaseDto implements Serializabl
 		str += "contactPerson : "+contactPerson+"\n";
 		str += "contractValue : "+contractValue+"\n";
 		str += "endUserType : "+endUserType+"\n";
+		str += "engagementContractType : "+engagementContractType+"\n";
 		str += "equipmentDetails : "+equipmentDetails+"\n";
 		str += "equipmentRequiredYn : "+equipmentRequiredYn+"\n";
 		str += "iproFeeUpon : "+iproFeeUpon+"\n";
@@ -560,6 +594,8 @@ public class OpportunityAssignmentDetails extends BaseDto implements Serializabl
 		str += "managementFee : "+managementFee+"\n";
 		str += "managementFeeComments : "+managementFeeComments+"\n";
 		str += "managementFeeType : "+managementFeeType+"\n";
+		str += "modernAwardDescription : "+modernAwardDescription+"\n";
+		str += "modernAwardId : "+modernAwardId+"\n";
 		str += "paymentArrangment : "+paymentArrangment+"\n";
 		str += "payrollTaxResponsibilty : "+payrollTaxResponsibilty+"\n";
 		str += "rate : "+rate+"\n";
@@ -597,6 +633,7 @@ public class OpportunityAssignmentDetails extends BaseDto implements Serializabl
 		str += "<column name=\"contactPerson\" value=\""+contactPerson+"\">";
 		str += "<column name=\"contractValue\" value=\""+contractValue+"\">";
 		str += "<column name=\"endUserType\" value=\""+endUserType+"\">";
+		str += "<column name=\"engagementContractType\" value=\""+engagementContractType+"\">";
 		str += "<column name=\"equipmentDetails\" value=\""+equipmentDetails+"\">";
 		str += "<column name=\"equipmentRequiredYn\" value=\""+equipmentRequiredYn+"\">";
 		str += "<column name=\"iproFeeUpon\" value=\""+iproFeeUpon+"\">";
@@ -604,6 +641,8 @@ public class OpportunityAssignmentDetails extends BaseDto implements Serializabl
 		str += "<column name=\"managementFee\" value=\""+managementFee+"\">";
 		str += "<column name=\"managementFeeComments\" value=\""+managementFeeComments+"\">";
 		str += "<column name=\"managementFeeType\" value=\""+managementFeeType+"\">";
+		str += "<column name=\"modernAwardDescription\" value=\""+modernAwardDescription+"\">";
+		str += "<column name=\"modernAwardId\" value=\""+modernAwardId+"\">";
 		str += "<column name=\"paymentArrangment\" value=\""+paymentArrangment+"\">";
 		str += "<column name=\"payrollTaxResponsibilty\" value=\""+payrollTaxResponsibilty+"\">";
 		str += "<column name=\"rate\" value=\""+rate+"\">";
@@ -641,6 +680,7 @@ public class OpportunityAssignmentDetails extends BaseDto implements Serializabl
 		str += "\"contactPerson\":\""+contactPerson+"\", ";
 		str += "\"contractValue\":\""+contractValue+"\", ";
 		str += "\"endUserType\":\""+endUserType+"\", ";
+		str += "\"engagementContractType\":\""+engagementContractType+"\", ";
 		str += "\"equipmentDetails\":\""+equipmentDetails+"\", ";
 		str += "\"equipmentRequiredYn\":\""+equipmentRequiredYn+"\", ";
 		str += "\"iproFeeUpon\":\""+iproFeeUpon+"\", ";
@@ -648,6 +688,8 @@ public class OpportunityAssignmentDetails extends BaseDto implements Serializabl
 		str += "\"managementFee\":\""+managementFee+"\", ";
 		str += "\"managementFeeComments\":\""+managementFeeComments+"\", ";
 		str += "\"managementFeeType\":\""+managementFeeType+"\", ";
+		str += "\"modernAwardDescription\":\""+modernAwardDescription+"\", ";
+		str += "\"modernAwardId\":\""+modernAwardId+"\", ";
 		str += "\"paymentArrangment\":\""+paymentArrangment+"\", ";
 		str += "\"payrollTaxResponsibilty\":\""+payrollTaxResponsibilty+"\", ";
 		str += "\"rate\":\""+rate+"\", ";

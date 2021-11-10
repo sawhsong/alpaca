@@ -20,6 +20,7 @@
 		<property name="contactPerson" column="CONTACT_PERSON" type="java.lang.Double"/>
 		<property name="contractValue" column="CONTRACT_VALUE" type="java.lang.Double"/>
 		<property name="endUserType" column="END_USER_TYPE" type="java.lang.String" length="100"/>
+		<property name="engagementContractType" column="ENGAGEMENT_CONTRACT_TYPE" type="java.lang.String" length="200"/>
 		<property name="equipmentDetails" column="EQUIPMENT_DETAILS" type="java.lang.String" length="4000"/>
 		<property name="equipmentRequiredYn" column="EQUIPMENT_REQUIRED_YN" type="java.lang.String" length="1"/>
 		<property name="iproFeeUpon" column="IPRO_FEE_UPON" type="java.lang.String" length="50"/>
@@ -27,6 +28,8 @@
 		<property name="managementFee" column="MANAGEMENT_FEE" type="java.lang.Double"/>
 		<property name="managementFeeComments" column="MANAGEMENT_FEE_COMMENTS" type="java.lang.String" length="4000"/>
 		<property name="managementFeeType" column="MANAGEMENT_FEE_TYPE" type="java.lang.String" length="20"/>
+		<property name="modernAwardDescription" column="MODERN_AWARD_DESCRIPTION" type="java.lang.String" length="2000"/>
+		<property name="modernAwardId" column="MODERN_AWARD_ID" type="java.lang.Double"/>
 		<property name="paymentArrangment" column="PAYMENT_ARRANGMENT" type="java.lang.String" length="50"/>
 		<property name="payrollTaxResponsibilty" column="PAYROLL_TAX_RESPONSIBILTY" type="java.lang.Double"/>
 		<property name="rate" column="RATE" type="java.lang.Double"/>
@@ -56,6 +59,7 @@
 		       CONTACT_PERSON,
 		       CONTRACT_VALUE,
 		       END_USER_TYPE,
+		       ENGAGEMENT_CONTRACT_TYPE,
 		       EQUIPMENT_DETAILS,
 		       EQUIPMENT_REQUIRED_YN,
 		       IPRO_FEE_UPON,
@@ -63,6 +67,8 @@
 		       MANAGEMENT_FEE,
 		       MANAGEMENT_FEE_COMMENTS,
 		       MANAGEMENT_FEE_TYPE,
+		       MODERN_AWARD_DESCRIPTION,
+		       MODERN_AWARD_ID,
 		       PAYMENT_ARRANGMENT,
 		       PAYROLL_TAX_RESPONSIBILTY,
 		       RATE,
@@ -83,6 +89,7 @@
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -99,6 +106,7 @@
 		       CONTACT_PERSON,
 		       CONTRACT_VALUE,
 		       END_USER_TYPE,
+		       ENGAGEMENT_CONTRACT_TYPE,
 		       EQUIPMENT_DETAILS,
 		       EQUIPMENT_REQUIRED_YN,
 		       IPRO_FEE_UPON,
@@ -106,6 +114,8 @@
 		       MANAGEMENT_FEE,
 		       MANAGEMENT_FEE_COMMENTS,
 		       MANAGEMENT_FEE_TYPE,
+		       MODERN_AWARD_DESCRIPTION,
+		       MODERN_AWARD_ID,
 		       PAYMENT_ARRANGMENT,
 		       PAYROLL_TAX_RESPONSIBILTY,
 		       RATE,
@@ -133,6 +143,7 @@
 		       ${CONTACT_PERSON},
 		       ${CONTRACT_VALUE},
 		       ${END_USER_TYPE},
+		       ${ENGAGEMENT_CONTRACT_TYPE},
 		       ${EQUIPMENT_DETAILS},
 		       ${EQUIPMENT_REQUIRED_YN},
 		       ${IPRO_FEE_UPON},
@@ -140,6 +151,8 @@
 		       ${MANAGEMENT_FEE},
 		       ${MANAGEMENT_FEE_COMMENTS},
 		       ${MANAGEMENT_FEE_TYPE},
+		       ${MODERN_AWARD_DESCRIPTION},
+		       ${MODERN_AWARD_ID},
 		       ${PAYMENT_ARRANGMENT},
 		       ${PAYROLL_TAX_RESPONSIBILTY},
 		       ${RATE},
@@ -172,6 +185,7 @@
 		       CONTACT_PERSON = ${CONTACT_PERSON},
 		       CONTRACT_VALUE = ${CONTRACT_VALUE},
 		       END_USER_TYPE = ${END_USER_TYPE},
+		       ENGAGEMENT_CONTRACT_TYPE = ${ENGAGEMENT_CONTRACT_TYPE},
 		       EQUIPMENT_DETAILS = ${EQUIPMENT_DETAILS},
 		       EQUIPMENT_REQUIRED_YN = ${EQUIPMENT_REQUIRED_YN},
 		       IPRO_FEE_UPON = ${IPRO_FEE_UPON},
@@ -179,6 +193,8 @@
 		       MANAGEMENT_FEE = ${MANAGEMENT_FEE},
 		       MANAGEMENT_FEE_COMMENTS = ${MANAGEMENT_FEE_COMMENTS},
 		       MANAGEMENT_FEE_TYPE = ${MANAGEMENT_FEE_TYPE},
+		       MODERN_AWARD_DESCRIPTION = ${MODERN_AWARD_DESCRIPTION},
+		       MODERN_AWARD_ID = ${MODERN_AWARD_ID},
 		       PAYMENT_ARRANGMENT = ${PAYMENT_ARRANGMENT},
 		       PAYROLL_TAX_RESPONSIBILTY = ${PAYROLL_TAX_RESPONSIBILTY},
 		       RATE = ${RATE},

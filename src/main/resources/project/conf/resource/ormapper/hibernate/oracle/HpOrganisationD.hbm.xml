@@ -12,10 +12,8 @@
 
 		<property name="createdBy" column="CREATED_BY" not-null="true" type="java.lang.Double"/>
 		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
-		<property name="fromDate" column="FROM_DATE" not-null="true" type="java.util.Date"/>
 		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
 		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
-		<property name="toDate" column="TO_DATE" not-null="true" type="java.util.Date"/>
 		<property name="abn" column="ABN" type="java.lang.String" length="30"/>
 		<property name="acceptRcti" column="ACCEPT_RCTI" type="java.lang.String" length="1"/>
 		<property name="acn" column="ACN" type="java.lang.String" length="20"/>
@@ -31,7 +29,7 @@
 		<property name="csiReviewDate" column="CSI_REVIEW_DATE" type="java.util.Date"/>
 		<property name="customerCategory" column="CUSTOMER_CATEGORY" type="java.lang.String" length="30"/>
 		<property name="customerStream" column="CUSTOMER_STREAM" type="java.lang.String" length="200"/>
-		<property name="customerType" column="CUSTOMER_TYPE" type="java.lang.String" length="100"/>
+		<property name="customerType" column="CUSTOMER_TYPE" type="java.lang.String" length="1000"/>
 		<property name="email" column="EMAIL" type="java.lang.String" length="100"/>
 		<property name="entityStaffContact" column="ENTITY_STAFF_CONTACT" type="java.lang.Double"/>
 		<property name="esAccountManager" column="ES_ACCOUNT_MANAGER" type="java.lang.Double"/>
@@ -45,6 +43,7 @@
 		<property name="fax1" column="FAX1" type="java.lang.String" length="20"/>
 		<property name="fax2" column="FAX2" type="java.lang.String" length="20"/>
 		<property name="firstContactDate" column="FIRST_CONTACT_DATE" type="java.util.Date"/>
+		<property name="fromDate" column="FROM_DATE" type="java.util.Date"/>
 		<property name="gstNumber" column="GST_NUMBER" type="java.lang.String" length="25"/>
 		<property name="gstReg" column="GST_REG" type="java.lang.String" length="1"/>
 		<property name="history" column="HISTORY" type="java.lang.String" length="4000"/>
@@ -54,10 +53,12 @@
 		<property name="msaEndDate" column="MSA_END_DATE" type="java.util.Date"/>
 		<property name="msaExecutionDate" column="MSA_EXECUTION_DATE" type="java.util.Date"/>
 		<property name="msaStartDate" column="MSA_START_DATE" type="java.util.Date"/>
+		<property name="newFlagDate" column="NEW_FLAG_DATE" type="java.util.Date"/>
 		<property name="organisationName" column="ORGANISATION_NAME" type="java.lang.String" length="200"/>
 		<property name="organisationOverview" column="ORGANISATION_OVERVIEW" type="java.lang.String" length="4000"/>
 		<property name="organisationType" column="ORGANISATION_TYPE" type="java.lang.String" length="50"/>
 		<property name="orgDormant" column="ORG_DORMANT" type="java.lang.String" length="1"/>
+		<property name="orgHierarchy" column="ORG_HIERARCHY" type="java.lang.String" length="30"/>
 		<property name="phone1" column="PHONE1" type="java.lang.String" length="20"/>
 		<property name="phone2" column="PHONE2" type="java.lang.String" length="20"/>
 		<property name="postalAddressLine" column="POSTAL_ADDRESS_LINE" type="java.lang.String" length="200"/>
@@ -66,12 +67,13 @@
 		<property name="postalState" column="POSTAL_STATE" type="java.lang.String" length="30"/>
 		<property name="postalSuburb" column="POSTAL_SUBURB" type="java.lang.String" length="50"/>
 		<property name="postCode" column="POST_CODE" type="java.lang.String" length="30"/>
-		<property name="product" column="PRODUCT" type="java.lang.String" length="100"/>
+		<property name="product" column="PRODUCT" type="java.lang.String" length="1000"/>
 		<property name="referenceNo1" column="REFERENCE_NO_1" type="java.lang.String" length="200"/>
 		<property name="referenceNo2" column="REFERENCE_NO_2" type="java.lang.String" length="200"/>
 		<property name="referenceNo3" column="REFERENCE_NO_3" type="java.lang.String" length="200"/>
 		<property name="relationship" column="RELATIONSHIP" type="java.lang.String" length="500"/>
-		<property name="role" column="ROLE" type="java.lang.String" length="100"/>
+		<property name="reportingLine" column="REPORTING_LINE" type="java.lang.String" length="30"/>
+		<property name="role" column="ROLE" type="java.lang.String" length="1000"/>
 		<property name="specialRequirements" column="SPECIAL_REQUIREMENTS" type="java.lang.String" length="4000"/>
 		<property name="sroNumber" column="SRO_NUMBER" type="java.lang.String" length="15"/>
 		<property name="state" column="STATE" type="java.lang.String" length="30"/>
@@ -80,6 +82,7 @@
 		<property name="swimLane" column="SWIM_LANE" type="java.lang.String" length="30"/>
 		<property name="taxInvoiceAcceptanceType" column="TAX_INVOICE_ACCEPTANCE_TYPE" type="java.lang.String" length="10"/>
 		<property name="terminationNotice" column="TERMINATION_NOTICE" type="java.lang.String" length="12"/>
+		<property name="toDate" column="TO_DATE" type="java.util.Date"/>
 		<property name="webAddress" column="WEB_ADDRESS" type="java.lang.String" length="150"/>
 	</class>
 
@@ -88,10 +91,8 @@
 		SELECT ORGANISATION_ID,
 		       CREATED_BY,
 		       TO_CHAR(CREATION_DATE, 'yyyymmddhh24miss') AS CREATION_DATE,
-		       TO_CHAR(FROM_DATE, 'yyyymmddhh24miss') AS FROM_DATE,
 		       LAST_UPDATED_BY,
 		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
-		       TO_CHAR(TO_DATE, 'yyyymmddhh24miss') AS TO_DATE,
 		       ABN,
 		       ACCEPT_RCTI,
 		       ACN,
@@ -121,6 +122,7 @@
 		       FAX1,
 		       FAX2,
 		       TO_CHAR(FIRST_CONTACT_DATE, 'yyyymmddhh24miss') AS FIRST_CONTACT_DATE,
+		       TO_CHAR(FROM_DATE, 'yyyymmddhh24miss') AS FROM_DATE,
 		       GST_NUMBER,
 		       GST_REG,
 		       HISTORY,
@@ -130,10 +132,12 @@
 		       TO_CHAR(MSA_END_DATE, 'yyyymmddhh24miss') AS MSA_END_DATE,
 		       TO_CHAR(MSA_EXECUTION_DATE, 'yyyymmddhh24miss') AS MSA_EXECUTION_DATE,
 		       TO_CHAR(MSA_START_DATE, 'yyyymmddhh24miss') AS MSA_START_DATE,
+		       TO_CHAR(NEW_FLAG_DATE, 'yyyymmddhh24miss') AS NEW_FLAG_DATE,
 		       ORGANISATION_NAME,
 		       ORGANISATION_OVERVIEW,
 		       ORGANISATION_TYPE,
 		       ORG_DORMANT,
+		       ORG_HIERARCHY,
 		       PHONE1,
 		       PHONE2,
 		       POSTAL_ADDRESS_LINE,
@@ -147,6 +151,7 @@
 		       REFERENCE_NO_2,
 		       REFERENCE_NO_3,
 		       RELATIONSHIP,
+		       REPORTING_LINE,
 		       ROLE,
 		       SPECIAL_REQUIREMENTS,
 		       SRO_NUMBER,
@@ -156,6 +161,7 @@
 		       SWIM_LANE,
 		       TAX_INVOICE_ACCEPTANCE_TYPE,
 		       TERMINATION_NOTICE,
+		       TO_CHAR(TO_DATE, 'yyyymmddhh24miss') AS TO_DATE,
 		       WEB_ADDRESS
 		  FROM HP_ORGANISATION_D
 		 WHERE 1 = 1
@@ -172,10 +178,8 @@
 		       ORGANISATION_ID,
 		       CREATED_BY,
 		       CREATION_DATE,
-		       FROM_DATE,
 		       LAST_UPDATED_BY,
 		       LAST_UPDATE_DATE,
-		       TO_DATE,
 		       ABN,
 		       ACCEPT_RCTI,
 		       ACN,
@@ -205,6 +209,7 @@
 		       FAX1,
 		       FAX2,
 		       FIRST_CONTACT_DATE,
+		       FROM_DATE,
 		       GST_NUMBER,
 		       GST_REG,
 		       HISTORY,
@@ -214,10 +219,12 @@
 		       MSA_END_DATE,
 		       MSA_EXECUTION_DATE,
 		       MSA_START_DATE,
+		       NEW_FLAG_DATE,
 		       ORGANISATION_NAME,
 		       ORGANISATION_OVERVIEW,
 		       ORGANISATION_TYPE,
 		       ORG_DORMANT,
+		       ORG_HIERARCHY,
 		       PHONE1,
 		       PHONE2,
 		       POSTAL_ADDRESS_LINE,
@@ -231,6 +238,7 @@
 		       REFERENCE_NO_2,
 		       REFERENCE_NO_3,
 		       RELATIONSHIP,
+		       REPORTING_LINE,
 		       ROLE,
 		       SPECIAL_REQUIREMENTS,
 		       SRO_NUMBER,
@@ -240,16 +248,15 @@
 		       SWIM_LANE,
 		       TAX_INVOICE_ACCEPTANCE_TYPE,
 		       TERMINATION_NOTICE,
+		       TO_DATE,
 		       WEB_ADDRESS
 		       )
 		VALUES (
 		       ${ORGANISATION_ID},
 		       ${CREATED_BY},
 		       ${CREATION_DATE},
-		       ${FROM_DATE},
 		       ${LAST_UPDATED_BY},
 		       ${LAST_UPDATE_DATE},
-		       ${TO_DATE},
 		       ${ABN},
 		       ${ACCEPT_RCTI},
 		       ${ACN},
@@ -279,6 +286,7 @@
 		       ${FAX1},
 		       ${FAX2},
 		       ${FIRST_CONTACT_DATE},
+		       ${FROM_DATE},
 		       ${GST_NUMBER},
 		       ${GST_REG},
 		       ${HISTORY},
@@ -288,10 +296,12 @@
 		       ${MSA_END_DATE},
 		       ${MSA_EXECUTION_DATE},
 		       ${MSA_START_DATE},
+		       ${NEW_FLAG_DATE},
 		       ${ORGANISATION_NAME},
 		       ${ORGANISATION_OVERVIEW},
 		       ${ORGANISATION_TYPE},
 		       ${ORG_DORMANT},
+		       ${ORG_HIERARCHY},
 		       ${PHONE1},
 		       ${PHONE2},
 		       ${POSTAL_ADDRESS_LINE},
@@ -305,6 +315,7 @@
 		       ${REFERENCE_NO_2},
 		       ${REFERENCE_NO_3},
 		       ${RELATIONSHIP},
+		       ${REPORTING_LINE},
 		       ${ROLE},
 		       ${SPECIAL_REQUIREMENTS},
 		       ${SRO_NUMBER},
@@ -314,6 +325,7 @@
 		       ${SWIM_LANE},
 		       ${TAX_INVOICE_ACCEPTANCE_TYPE},
 		       ${TERMINATION_NOTICE},
+		       ${TO_DATE},
 		       ${WEB_ADDRESS}
 		       )
 	]]>
@@ -324,10 +336,8 @@
 		UPDATE HP_ORGANISATION_D
 		   SET CREATED_BY = ${CREATED_BY},
 		       CREATION_DATE = ${CREATION_DATE},
-		       FROM_DATE = ${FROM_DATE},
 		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
 		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
-		       TO_DATE = ${TO_DATE},
 		       ABN = ${ABN},
 		       ACCEPT_RCTI = ${ACCEPT_RCTI},
 		       ACN = ${ACN},
@@ -357,6 +367,7 @@
 		       FAX1 = ${FAX1},
 		       FAX2 = ${FAX2},
 		       FIRST_CONTACT_DATE = ${FIRST_CONTACT_DATE},
+		       FROM_DATE = ${FROM_DATE},
 		       GST_NUMBER = ${GST_NUMBER},
 		       GST_REG = ${GST_REG},
 		       HISTORY = ${HISTORY},
@@ -366,10 +377,12 @@
 		       MSA_END_DATE = ${MSA_END_DATE},
 		       MSA_EXECUTION_DATE = ${MSA_EXECUTION_DATE},
 		       MSA_START_DATE = ${MSA_START_DATE},
+		       NEW_FLAG_DATE = ${NEW_FLAG_DATE},
 		       ORGANISATION_NAME = ${ORGANISATION_NAME},
 		       ORGANISATION_OVERVIEW = ${ORGANISATION_OVERVIEW},
 		       ORGANISATION_TYPE = ${ORGANISATION_TYPE},
 		       ORG_DORMANT = ${ORG_DORMANT},
+		       ORG_HIERARCHY = ${ORG_HIERARCHY},
 		       PHONE1 = ${PHONE1},
 		       PHONE2 = ${PHONE2},
 		       POSTAL_ADDRESS_LINE = ${POSTAL_ADDRESS_LINE},
@@ -383,6 +396,7 @@
 		       REFERENCE_NO_2 = ${REFERENCE_NO_2},
 		       REFERENCE_NO_3 = ${REFERENCE_NO_3},
 		       RELATIONSHIP = ${RELATIONSHIP},
+		       REPORTING_LINE = ${REPORTING_LINE},
 		       ROLE = ${ROLE},
 		       SPECIAL_REQUIREMENTS = ${SPECIAL_REQUIREMENTS},
 		       SRO_NUMBER = ${SRO_NUMBER},
@@ -392,6 +406,7 @@
 		       SWIM_LANE = ${SWIM_LANE},
 		       TAX_INVOICE_ACCEPTANCE_TYPE = ${TAX_INVOICE_ACCEPTANCE_TYPE},
 		       TERMINATION_NOTICE = ${TERMINATION_NOTICE},
+		       TO_DATE = ${TO_DATE},
 		       WEB_ADDRESS = ${WEB_ADDRESS}
 		 WHERE 1 = 1
 		   ${frameworkGeneratedWhere}

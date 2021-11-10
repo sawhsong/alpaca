@@ -37,6 +37,7 @@
 		<property name="invoiceWithTimesheet" column="INVOICE_WITH_TIMESHEET" type="java.lang.String" length="1"/>
 		<property name="invDateOffset" column="INV_DATE_OFFSET" type="java.lang.Double"/>
 		<property name="invTemplateId" column="INV_TEMPLATE_ID" type="java.lang.Double"/>
+		<property name="newSaleDate" column="NEW_SALE_DATE" type="java.util.Date"/>
 		<property name="paymentCycle" column="PAYMENT_CYCLE" type="java.lang.String" length="30"/>
 		<property name="payslipTemplateId" column="PAYSLIP_TEMPLATE_ID" type="java.lang.Double"/>
 		<property name="payDateOffset" column="PAY_DATE_OFFSET" type="java.lang.Double"/>
@@ -82,6 +83,7 @@
 		       INVOICE_WITH_TIMESHEET,
 		       INV_DATE_OFFSET,
 		       INV_TEMPLATE_ID,
+		       TO_CHAR(NEW_SALE_DATE, 'yyyymmddhh24miss') AS NEW_SALE_DATE,
 		       PAYMENT_CYCLE,
 		       PAYSLIP_TEMPLATE_ID,
 		       PAY_DATE_OFFSET,
@@ -100,6 +102,7 @@
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -134,6 +137,7 @@
 		       INVOICE_WITH_TIMESHEET,
 		       INV_DATE_OFFSET,
 		       INV_TEMPLATE_ID,
+		       NEW_SALE_DATE,
 		       PAYMENT_CYCLE,
 		       PAYSLIP_TEMPLATE_ID,
 		       PAY_DATE_OFFSET,
@@ -177,6 +181,7 @@
 		       ${INVOICE_WITH_TIMESHEET},
 		       ${INV_DATE_OFFSET},
 		       ${INV_TEMPLATE_ID},
+		       ${NEW_SALE_DATE},
 		       ${PAYMENT_CYCLE},
 		       ${PAYSLIP_TEMPLATE_ID},
 		       ${PAY_DATE_OFFSET},
@@ -224,6 +229,7 @@
 		       INVOICE_WITH_TIMESHEET = ${INVOICE_WITH_TIMESHEET},
 		       INV_DATE_OFFSET = ${INV_DATE_OFFSET},
 		       INV_TEMPLATE_ID = ${INV_TEMPLATE_ID},
+		       NEW_SALE_DATE = ${NEW_SALE_DATE},
 		       PAYMENT_CYCLE = ${PAYMENT_CYCLE},
 		       PAYSLIP_TEMPLATE_ID = ${PAYSLIP_TEMPLATE_ID},
 		       PAY_DATE_OFFSET = ${PAY_DATE_OFFSET},
