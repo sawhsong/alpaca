@@ -6,6 +6,16 @@
 		openDialog : function(params) {
 			if ($("#"+params.popupId).length > 0) {return;}
 
+			if ($.nony.contains(params.width+"", "%")) {
+				var temp = $.nony.toNumber($.nony.removeString(params.width, "%"));
+				params.width = ($(window).innerWidth() * (temp/100));
+			}
+
+			if ($.nony.contains(params.height+"", "%")) {
+				var temp = $.nony.toNumber($.nony.removeString(params.height, "%"));
+				params.height = ($(window).innerHeight() * (temp/100));
+			}
+
 			params.popupId = params.popupId || "popupDialog_"+$.nony.getTimeStamp();
 			params.popupMethod = "popupDialog";
 			params.type = params.type || com.message.I000;
@@ -131,6 +141,16 @@
 		openPopup : function(params) {
 			if ($.nony.isEmpty(params) || $.nony.isEmpty(params.popupId)) {throw new Error("Popup Id" + com.message.required);}
 			if ($("#"+params.popupId).length > 0) {return;}
+
+			if ($.nony.contains(params.width+"", "%")) {
+				var temp = $.nony.toNumber($.nony.removeString(params.width, "%"));
+				params.width = ($(window).innerWidth() * (temp/100));
+			}
+
+			if ($.nony.contains(params.height+"", "%")) {
+				var temp = $.nony.toNumber($.nony.removeString(params.height, "%"));
+				params.height = ($(window).innerHeight() * (temp/100));
+			}
 
 			params.popupMethod = "popupWithIframe";
 			params.header = params.header || "Popup";

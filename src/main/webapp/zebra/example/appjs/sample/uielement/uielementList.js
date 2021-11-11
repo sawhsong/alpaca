@@ -19,9 +19,9 @@ $(function() {
 			effect:"fade",
 			oncloseCallback:function() {
 //				alert("oncloseCallback");
-			}
-// 			width:600,
-// 			height:400
+			},
+			width:"60%",
+			height:900
 		});
 	});
 
