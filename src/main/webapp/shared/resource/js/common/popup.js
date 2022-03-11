@@ -562,7 +562,7 @@
 			 * Adjust height here (for popup)
 			 */
 			if ($.nony.browser.Chrome) {heightAdjust = 2;}
-			else if ($.nony.browser.FireFox) {heightAdjust = 10;}
+			else if ($.nony.browser.FireFox) {heightAdjust = 2;}
 			else {heightAdjust = 10;}
 
 			$(this.popupIframe).css("height", (this.height - (heightSum + heightAdjust))+"px");
