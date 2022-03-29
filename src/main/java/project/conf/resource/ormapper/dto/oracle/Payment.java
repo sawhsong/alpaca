@@ -45,6 +45,10 @@ public class Payment extends BaseDto implements Serializable {
 	private String SOURCE_ID;
 	private String status;
 	private String STATUS;
+	private Date cessationDate;
+	private String CESSATION_DATE;
+	private String cessationType;
+	private String CESSATION_TYPE;
 	private String payrollType;
 	private String PAYROLL_TYPE;
 	private String insertUserName;
@@ -75,7 +79,7 @@ public class Payment extends BaseDto implements Serializable {
 		dataSet.addRow();
 		updateColumnsDataSet.addName(updateColumnsDataSetHeader);
 		setFrwVarPrimaryKey("PAYMENT_ID");
-		setFrwVarDateColumn("CREATION_DATE,LAST_UPDATE_DATE,PAYMENT_DATE,PERIOD_END,PERIOD_START");
+		setFrwVarDateColumn("CREATION_DATE,LAST_UPDATE_DATE,PAYMENT_DATE,PERIOD_END,PERIOD_START,CESSATION_DATE");
 		setFrwVarNumberColumn("PAYMENT_ID,BUSINESS_GROUP_ID,CREATED_BY,GROSS_AMOUNT,LAST_UPDATED_BY,NET_AMOUNT,SOURCE_ID");
 		setFrwVarClobColumn("");
 		setFrwVarDefaultColumn("");
@@ -212,6 +216,24 @@ public class Payment extends BaseDto implements Serializable {
 		setValueFromAccessor("STATUS", status);
 	}
 
+	public Date getCessationDate() {
+		return cessationDate;
+	}
+
+	public void setCessationDate(Date cessationDate) throws Exception {
+		this.cessationDate = cessationDate;
+		setValueFromAccessor("CESSATION_DATE", CommonUtil.toString(cessationDate));
+	}
+
+	public String getCessationType() {
+		return cessationType;
+	}
+
+	public void setCessationType(String cessationType) throws Exception {
+		this.cessationType = cessationType;
+		setValueFromAccessor("CESSATION_TYPE", cessationType);
+	}
+
 	public String getPayrollType() {
 		return payrollType;
 	}
@@ -318,9 +340,9 @@ public class Payment extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -370,6 +392,8 @@ public class Payment extends BaseDto implements Serializable {
 		str += "source : "+source+"\n";
 		str += "sourceId : "+sourceId+"\n";
 		str += "status : "+status+"\n";
+		str += "cessationDate : "+cessationDate+"\n";
+		str += "cessationType : "+cessationType+"\n";
 		str += "payrollType : "+payrollType+"\n";
 		str += "insertUserName : "+insertUserName+"\n";
 		str += "updateUserName : "+updateUserName+"\n";
@@ -397,6 +421,8 @@ public class Payment extends BaseDto implements Serializable {
 		str += "<column name=\"source\" value=\""+source+"\">";
 		str += "<column name=\"sourceId\" value=\""+sourceId+"\">";
 		str += "<column name=\"status\" value=\""+status+"\">";
+		str += "<column name=\"cessationDate\" value=\""+cessationDate+"\">";
+		str += "<column name=\"cessationType\" value=\""+cessationType+"\">";
 		str += "<column name=\"payrollType\" value=\""+payrollType+"\">";
 		str += "<column name=\"insertUserName\" value=\""+insertUserName+"\">";
 		str += "<column name=\"updateUserName\" value=\""+updateUserName+"\">";
@@ -424,6 +450,8 @@ public class Payment extends BaseDto implements Serializable {
 		str += "\"source\":\""+source+"\", ";
 		str += "\"sourceId\":\""+sourceId+"\", ";
 		str += "\"status\":\""+status+"\", ";
+		str += "\"cessationDate\":\""+cessationDate+"\", ";
+		str += "\"cessationType\":\""+cessationType+"\", ";
 		str += "\"payrollType\":\""+payrollType+"\", ";
 		str += "\"insertUserName\":\""+insertUserName+"\", ";
 		str += "\"updateUserName\":\""+updateUserName+"\"";

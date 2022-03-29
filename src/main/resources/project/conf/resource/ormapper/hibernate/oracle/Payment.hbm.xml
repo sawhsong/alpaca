@@ -23,6 +23,8 @@
 		<property name="source" column="SOURCE" not-null="true" type="java.lang.String" length="25"/>
 		<property name="sourceId" column="SOURCE_ID" not-null="true" type="java.lang.Double"/>
 		<property name="status" column="STATUS" not-null="true" type="java.lang.String" length="1"/>
+		<property name="cessationDate" column="CESSATION_DATE" type="java.util.Date"/>
+		<property name="cessationType" column="CESSATION_TYPE" type="java.lang.String" length="50"/>
 		<property name="payrollType" column="PAYROLL_TYPE" type="java.lang.String" length="10"/>
 	</class>
 
@@ -42,12 +44,15 @@
 		       SOURCE,
 		       SOURCE_ID,
 		       STATUS,
+		       TO_CHAR(CESSATION_DATE, 'yyyymmddhh24miss') AS CESSATION_DATE,
+		       CESSATION_TYPE,
 		       PAYROLL_TYPE
 		  FROM PAYMENT
 		 WHERE 1 = 1
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -68,6 +73,8 @@
 		       SOURCE,
 		       SOURCE_ID,
 		       STATUS,
+		       CESSATION_DATE,
+		       CESSATION_TYPE,
 		       PAYROLL_TYPE
 		       )
 		VALUES (
@@ -85,6 +92,8 @@
 		       ${SOURCE},
 		       ${SOURCE_ID},
 		       ${STATUS},
+		       ${CESSATION_DATE},
+		       ${CESSATION_TYPE},
 		       ${PAYROLL_TYPE}
 		       )
 	]]>
@@ -106,6 +115,8 @@
 		       SOURCE = ${SOURCE},
 		       SOURCE_ID = ${SOURCE_ID},
 		       STATUS = ${STATUS},
+		       CESSATION_DATE = ${CESSATION_DATE},
+		       CESSATION_TYPE = ${CESSATION_TYPE},
 		       PAYROLL_TYPE = ${PAYROLL_TYPE}
 		 WHERE 1 = 1
 		   ${frameworkGeneratedWhere}
