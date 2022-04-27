@@ -53,9 +53,9 @@
 	font-size:0.9em;
 	background:url('/shared/resource/image/icon/logo-gear_Black.png') no-repeat 0% 50%;
 }
-#aLogo {padding:8px 0px 10px 60px;
+#aLogo {padding:8px 0px 9px 30px;
 	background:url('/shared/resource/image/theme/theme005/common/logoPerci.png') no-repeat 0% 0%;
-	background-size:60px 30px;
+	background-size:25px 30px;
 }
 
 /**

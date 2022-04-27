@@ -85,21 +85,26 @@ $(function() {
 								var ds = result.dataSet;
 								isAuthenticated = commonJs.toBoolean(ds.getValue(0, "isAuthenticated"));
 
-								commonJs.openDialog({
-									type:com.message.I000,
-									contents:message,
-									blind:true,
-									draggable:false,
-									buttons:[{
-										caption:com.caption.ok,
-										callback:function() {
-											commonJs.doSubmit({
-												formId:"fmDefault",
-												action:actionString
-											});
-										}
-									}]
+								commonJs.doSubmit({
+									formId:"fmDefault",
+									action:actionString
 								});
+
+//								commonJs.openDialog({
+//									type:com.message.I000,
+//									contents:message,
+//									blind:true,
+//									draggable:false,
+//									buttons:[{
+//										caption:com.caption.ok,
+//										callback:function() {
+//											commonJs.doSubmit({
+//												formId:"fmDefault",
+//												action:actionString
+//											});
+//										}
+//									}]
+//								});
 							}
 						});
 					}
