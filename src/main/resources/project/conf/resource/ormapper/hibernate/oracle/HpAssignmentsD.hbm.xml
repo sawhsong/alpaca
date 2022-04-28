@@ -53,6 +53,7 @@
 		<property name="equipmentDetails" column="EQUIPMENT_DETAILS" type="java.lang.String" length="4000"/>
 		<property name="equipmentRequiredYn" column="EQUIPMENT_REQUIRED_YN" type="java.lang.String" length="1"/>
 		<property name="etsApprovalNotificationTo" column="ETS_APPROVAL_NOTIFICATION_TO" type="java.lang.Double"/>
+		<property name="etsApprovalNotiTo2" column="ETS_APPROVAL_NOTI_TO_2" type="java.lang.Double"/>
 		<property name="euContactPersonId" column="EU_CONTACT_PERSON_ID" type="java.lang.Double"/>
 		<property name="expenseApprovalNotiToId" column="EXPENSE_APPROVAL_NOTI_TO_ID" type="java.lang.Double"/>
 		<property name="expenseApprovalNotiToOrg" column="EXPENSE_APPROVAL_NOTI_TO_ORG" type="java.lang.Double"/>
@@ -157,6 +158,7 @@
 		       EQUIPMENT_DETAILS,
 		       EQUIPMENT_REQUIRED_YN,
 		       ETS_APPROVAL_NOTIFICATION_TO,
+		       ETS_APPROVAL_NOTI_TO_2,
 		       EU_CONTACT_PERSON_ID,
 		       EXPENSE_APPROVAL_NOTI_TO_ID,
 		       EXPENSE_APPROVAL_NOTI_TO_ORG,
@@ -269,6 +271,7 @@
 		       EQUIPMENT_DETAILS,
 		       EQUIPMENT_REQUIRED_YN,
 		       ETS_APPROVAL_NOTIFICATION_TO,
+		       ETS_APPROVAL_NOTI_TO_2,
 		       EU_CONTACT_PERSON_ID,
 		       EXPENSE_APPROVAL_NOTI_TO_ID,
 		       EXPENSE_APPROVAL_NOTI_TO_ORG,
@@ -371,6 +374,7 @@
 		       ${EQUIPMENT_DETAILS},
 		       ${EQUIPMENT_REQUIRED_YN},
 		       ${ETS_APPROVAL_NOTIFICATION_TO},
+		       ${ETS_APPROVAL_NOTI_TO_2},
 		       ${EU_CONTACT_PERSON_ID},
 		       ${EXPENSE_APPROVAL_NOTI_TO_ID},
 		       ${EXPENSE_APPROVAL_NOTI_TO_ORG},
@@ -475,6 +479,7 @@
 		       EQUIPMENT_DETAILS = ${EQUIPMENT_DETAILS},
 		       EQUIPMENT_REQUIRED_YN = ${EQUIPMENT_REQUIRED_YN},
 		       ETS_APPROVAL_NOTIFICATION_TO = ${ETS_APPROVAL_NOTIFICATION_TO},
+		       ETS_APPROVAL_NOTI_TO_2 = ${ETS_APPROVAL_NOTI_TO_2},
 		       EU_CONTACT_PERSON_ID = ${EU_CONTACT_PERSON_ID},
 		       EXPENSE_APPROVAL_NOTI_TO_ID = ${EXPENSE_APPROVAL_NOTI_TO_ID},
 		       EXPENSE_APPROVAL_NOTI_TO_ORG = ${EXPENSE_APPROVAL_NOTI_TO_ORG},

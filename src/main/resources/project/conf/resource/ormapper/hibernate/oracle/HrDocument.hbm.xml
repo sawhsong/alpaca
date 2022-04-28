@@ -10,6 +10,7 @@
 
 		<id name="documentId" column="DOCUMENT_ID" type="java.lang.Double"></id>
 
+		<property name="approveRejectComments" column="APPROVE_REJECT_COMMENTS" type="java.lang.String" length="4000"/>
 		<property name="assignedTo" column="ASSIGNED_TO" type="java.lang.Double"/>
 		<property name="businessGroupId" column="BUSINESS_GROUP_ID" type="java.lang.Double"/>
 		<property name="createdBy" column="CREATED_BY" type="java.lang.Double"/>
@@ -25,6 +26,7 @@
 		<property name="financialYear" column="FINANCIAL_YEAR" type="java.lang.String" length="30"/>
 		<property name="followUpDate" column="FOLLOW_UP_DATE" type="java.util.Date"/>
 		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="isAvailableInPortal" column="IS_AVAILABLE_IN_PORTAL" type="java.lang.String" length="1"/>
 		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" type="java.lang.Double"/>
 		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" type="java.util.Date"/>
 		<property name="masterDocumentId" column="MASTER_DOCUMENT_ID" type="java.lang.Double"/>
@@ -43,6 +45,7 @@
 	<sql-query name="hrDocument.selectAll">
 	<![CDATA[
 		SELECT DOCUMENT_ID,
+		       APPROVE_REJECT_COMMENTS,
 		       ASSIGNED_TO,
 		       BUSINESS_GROUP_ID,
 		       CREATED_BY,
@@ -58,6 +61,7 @@
 		       FINANCIAL_YEAR,
 		       TO_CHAR(FOLLOW_UP_DATE, 'yyyymmddhh24miss') AS FOLLOW_UP_DATE,
 		       IS_ACTIVE,
+		       IS_AVAILABLE_IN_PORTAL,
 		       LAST_UPDATED_BY,
 		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
 		       MASTER_DOCUMENT_ID,
@@ -84,6 +88,7 @@
 	<![CDATA[
 		INSERT INTO HR_DOCUMENT (
 		       DOCUMENT_ID,
+		       APPROVE_REJECT_COMMENTS,
 		       ASSIGNED_TO,
 		       BUSINESS_GROUP_ID,
 		       CREATED_BY,
@@ -99,6 +104,7 @@
 		       FINANCIAL_YEAR,
 		       FOLLOW_UP_DATE,
 		       IS_ACTIVE,
+		       IS_AVAILABLE_IN_PORTAL,
 		       LAST_UPDATED_BY,
 		       LAST_UPDATE_DATE,
 		       MASTER_DOCUMENT_ID,
@@ -115,6 +121,7 @@
 		       )
 		VALUES (
 		       ${DOCUMENT_ID},
+		       ${APPROVE_REJECT_COMMENTS},
 		       ${ASSIGNED_TO},
 		       ${BUSINESS_GROUP_ID},
 		       ${CREATED_BY},
@@ -130,6 +137,7 @@
 		       ${FINANCIAL_YEAR},
 		       ${FOLLOW_UP_DATE},
 		       ${IS_ACTIVE},
+		       ${IS_AVAILABLE_IN_PORTAL},
 		       ${LAST_UPDATED_BY},
 		       ${LAST_UPDATE_DATE},
 		       ${MASTER_DOCUMENT_ID},
@@ -150,7 +158,8 @@
 	<sql-query name="hrDocument.update">
 	<![CDATA[
 		UPDATE HR_DOCUMENT
-		   SET ASSIGNED_TO = ${ASSIGNED_TO},
+		   SET APPROVE_REJECT_COMMENTS = ${APPROVE_REJECT_COMMENTS},
+		       ASSIGNED_TO = ${ASSIGNED_TO},
 		       BUSINESS_GROUP_ID = ${BUSINESS_GROUP_ID},
 		       CREATED_BY = ${CREATED_BY},
 		       CREATION_DATE = ${CREATION_DATE},
@@ -165,6 +174,7 @@
 		       FINANCIAL_YEAR = ${FINANCIAL_YEAR},
 		       FOLLOW_UP_DATE = ${FOLLOW_UP_DATE},
 		       IS_ACTIVE = ${IS_ACTIVE},
+		       IS_AVAILABLE_IN_PORTAL = ${IS_AVAILABLE_IN_PORTAL},
 		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
 		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
 		       MASTER_DOCUMENT_ID = ${MASTER_DOCUMENT_ID},

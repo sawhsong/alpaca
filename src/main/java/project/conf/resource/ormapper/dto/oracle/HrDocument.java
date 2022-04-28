@@ -19,6 +19,8 @@ public class HrDocument extends BaseDto implements Serializable {
 	 */
 	private double documentId;
 	private String DOCUMENT_ID;
+	private String approveRejectComments;
+	private String APPROVE_REJECT_COMMENTS;
 	private double assignedTo;
 	private String ASSIGNED_TO;
 	private double businessGroupId;
@@ -49,6 +51,8 @@ public class HrDocument extends BaseDto implements Serializable {
 	private String FOLLOW_UP_DATE;
 	private String isActive;
 	private String IS_ACTIVE;
+	private String isAvailableInPortal;
+	private String IS_AVAILABLE_IN_PORTAL;
 	private double lastUpdatedBy;
 	private String LAST_UPDATED_BY;
 	private Date lastUpdateDate;
@@ -121,6 +125,15 @@ public class HrDocument extends BaseDto implements Serializable {
 	public void setDocumentId(double documentId) throws Exception {
 		this.documentId = documentId;
 		setValueFromAccessor("DOCUMENT_ID", CommonUtil.toString(documentId));
+	}
+
+	public String getApproveRejectComments() {
+		return approveRejectComments;
+	}
+
+	public void setApproveRejectComments(String approveRejectComments) throws Exception {
+		this.approveRejectComments = approveRejectComments;
+		setValueFromAccessor("APPROVE_REJECT_COMMENTS", approveRejectComments);
 	}
 
 	public double getAssignedTo() {
@@ -256,6 +269,15 @@ public class HrDocument extends BaseDto implements Serializable {
 	public void setIsActive(String isActive) throws Exception {
 		this.isActive = isActive;
 		setValueFromAccessor("IS_ACTIVE", isActive);
+	}
+
+	public String getIsAvailableInPortal() {
+		return isAvailableInPortal;
+	}
+
+	public void setIsAvailableInPortal(String isAvailableInPortal) throws Exception {
+		this.isAvailableInPortal = isAvailableInPortal;
+		setValueFromAccessor("IS_AVAILABLE_IN_PORTAL", isAvailableInPortal);
 	}
 
 	public double getLastUpdatedBy() {
@@ -511,6 +533,7 @@ public class HrDocument extends BaseDto implements Serializable {
 		String str = "";
 
 		str += "documentId : "+documentId+"\n";
+		str += "approveRejectComments : "+approveRejectComments+"\n";
 		str += "assignedTo : "+assignedTo+"\n";
 		str += "businessGroupId : "+businessGroupId+"\n";
 		str += "createdBy : "+createdBy+"\n";
@@ -526,6 +549,7 @@ public class HrDocument extends BaseDto implements Serializable {
 		str += "financialYear : "+financialYear+"\n";
 		str += "followUpDate : "+followUpDate+"\n";
 		str += "isActive : "+isActive+"\n";
+		str += "isAvailableInPortal : "+isAvailableInPortal+"\n";
 		str += "lastUpdatedBy : "+lastUpdatedBy+"\n";
 		str += "lastUpdateDate : "+lastUpdateDate+"\n";
 		str += "masterDocumentId : "+masterDocumentId+"\n";
@@ -552,6 +576,7 @@ public class HrDocument extends BaseDto implements Serializable {
 		String str = "";
 
 		str += "<column name=\"documentId\" value=\""+documentId+"\">";
+		str += "<column name=\"approveRejectComments\" value=\""+approveRejectComments+"\">";
 		str += "<column name=\"assignedTo\" value=\""+assignedTo+"\">";
 		str += "<column name=\"businessGroupId\" value=\""+businessGroupId+"\">";
 		str += "<column name=\"createdBy\" value=\""+createdBy+"\">";
@@ -567,6 +592,7 @@ public class HrDocument extends BaseDto implements Serializable {
 		str += "<column name=\"financialYear\" value=\""+financialYear+"\">";
 		str += "<column name=\"followUpDate\" value=\""+followUpDate+"\">";
 		str += "<column name=\"isActive\" value=\""+isActive+"\">";
+		str += "<column name=\"isAvailableInPortal\" value=\""+isAvailableInPortal+"\">";
 		str += "<column name=\"lastUpdatedBy\" value=\""+lastUpdatedBy+"\">";
 		str += "<column name=\"lastUpdateDate\" value=\""+lastUpdateDate+"\">";
 		str += "<column name=\"masterDocumentId\" value=\""+masterDocumentId+"\">";
@@ -593,6 +619,7 @@ public class HrDocument extends BaseDto implements Serializable {
 		String str = "";
 
 		str += "\"documentId\":\""+documentId+"\", ";
+		str += "\"approveRejectComments\":\""+approveRejectComments+"\", ";
 		str += "\"assignedTo\":\""+assignedTo+"\", ";
 		str += "\"businessGroupId\":\""+businessGroupId+"\", ";
 		str += "\"createdBy\":\""+createdBy+"\", ";
@@ -608,6 +635,7 @@ public class HrDocument extends BaseDto implements Serializable {
 		str += "\"financialYear\":\""+financialYear+"\", ";
 		str += "\"followUpDate\":\""+followUpDate+"\", ";
 		str += "\"isActive\":\""+isActive+"\", ";
+		str += "\"isAvailableInPortal\":\""+isAvailableInPortal+"\", ";
 		str += "\"lastUpdatedBy\":\""+lastUpdatedBy+"\", ";
 		str += "\"lastUpdateDate\":\""+lastUpdateDate+"\", ";
 		str += "\"masterDocumentId\":\""+masterDocumentId+"\", ";

@@ -59,8 +59,8 @@
 	<table class="tblSearch">
 		<caption><mc:msg key="page.com.searchCriteria"/></caption>
 		<colgroup>
-			<col width="5%"/>
-			<col width="24%"/>
+			<col width="6%"/>
+			<col width="25%"/>
 			<col width="7%"/>
 			<col width="*"/>
 		</colgroup>

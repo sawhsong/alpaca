@@ -101,6 +101,8 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	private String EQUIPMENT_REQUIRED_YN;
 	private double etsApprovalNotificationTo;
 	private String ETS_APPROVAL_NOTIFICATION_TO;
+	private double etsApprovalNotiTo2;
+	private String ETS_APPROVAL_NOTI_TO_2;
 	private double euContactPersonId;
 	private String EU_CONTACT_PERSON_ID;
 	private double expenseApprovalNotiToId;
@@ -246,7 +248,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		updateColumnsDataSet.addName(updateColumnsDataSetHeader);
 		setFrwVarPrimaryKey("ASSIGNMENT_ID,FROM_DATE,TO_DATE");
 		setFrwVarDateColumn("FROM_DATE,TO_DATE,CREATION_DATE,LAST_UPDATE_DATE,ASSIGNMENT_END_DATE,ASSIGNMENT_START_DATE");
-		setFrwVarNumberColumn("ASSIGNMENT_ID,CREATED_BY,LAST_UPDATED_BY,PERSON_ID,BILLING_ORGANISATION_ID,EU_ORGANISATION_ID,BILLING_CODE_ID,BILLING_ORGANISATION_PERSON_ID,BUSINESS_GROUP_ID,DELIVERABLES_APPROVER_1,DELIVERABLES_APPROVER_2,DELIVERABLES_APPROVER_3,DELIVERABLES_APPR_NOTI_TO_ID,DELIVERABLES_APPR_NOTI_TO_ORG,ELEMENT_1,ELEMENT_2,ELEMENT_3,ELEMENT_4,ELEMENT_5,ETS_APPROVAL_NOTIFICATION_TO,EU_CONTACT_PERSON_ID,EXPENSE_APPROVAL_NOTI_TO_ID,EXPENSE_APPROVAL_NOTI_TO_ORG,EXPENSE_APPROVER_1,EXPENSE_APPROVER_2,EXPENSE_APPROVER_3,MODERN_AWARD_ID,PAY_METHOD_ID,RATE,RATE1,RATE2,RATE3,RATE4,RATE5,TIMECARD_APPROVAL_ID,TIMECARD_SECONDARY_APPROVAL_ID,TIMECARD_TERTIARY_APPROVAL_ID,WC_ORG_CODE_RATE_LINK_ID");
+		setFrwVarNumberColumn("ASSIGNMENT_ID,CREATED_BY,LAST_UPDATED_BY,PERSON_ID,BILLING_ORGANISATION_ID,EU_ORGANISATION_ID,BILLING_CODE_ID,BILLING_ORGANISATION_PERSON_ID,BUSINESS_GROUP_ID,DELIVERABLES_APPROVER_1,DELIVERABLES_APPROVER_2,DELIVERABLES_APPROVER_3,DELIVERABLES_APPR_NOTI_TO_ID,DELIVERABLES_APPR_NOTI_TO_ORG,ELEMENT_1,ELEMENT_2,ELEMENT_3,ELEMENT_4,ELEMENT_5,ETS_APPROVAL_NOTIFICATION_TO,ETS_APPROVAL_NOTI_TO_2,EU_CONTACT_PERSON_ID,EXPENSE_APPROVAL_NOTI_TO_ID,EXPENSE_APPROVAL_NOTI_TO_ORG,EXPENSE_APPROVER_1,EXPENSE_APPROVER_2,EXPENSE_APPROVER_3,MODERN_AWARD_ID,PAY_METHOD_ID,RATE,RATE1,RATE2,RATE3,RATE4,RATE5,TIMECARD_APPROVAL_ID,TIMECARD_SECONDARY_APPROVAL_ID,TIMECARD_TERTIARY_APPROVAL_ID,WC_ORG_CODE_RATE_LINK_ID");
 		setFrwVarClobColumn("");
 		setFrwVarDefaultColumn("ASG_ACTIVE");
 		setFrwVarDefaultValue("Y");
@@ -632,6 +634,15 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 	public void setEtsApprovalNotificationTo(double etsApprovalNotificationTo) throws Exception {
 		this.etsApprovalNotificationTo = etsApprovalNotificationTo;
 		setValueFromAccessor("ETS_APPROVAL_NOTIFICATION_TO", CommonUtil.toString(etsApprovalNotificationTo));
+	}
+
+	public double getEtsApprovalNotiTo2() {
+		return etsApprovalNotiTo2;
+	}
+
+	public void setEtsApprovalNotiTo2(double etsApprovalNotiTo2) throws Exception {
+		this.etsApprovalNotiTo2 = etsApprovalNotiTo2;
+		setValueFromAccessor("ETS_APPROVAL_NOTI_TO_2", CommonUtil.toString(etsApprovalNotiTo2));
 	}
 
 	public double getEuContactPersonId() {
@@ -1343,6 +1354,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "equipmentDetails : "+equipmentDetails+"\n";
 		str += "equipmentRequiredYn : "+equipmentRequiredYn+"\n";
 		str += "etsApprovalNotificationTo : "+etsApprovalNotificationTo+"\n";
+		str += "etsApprovalNotiTo2 : "+etsApprovalNotiTo2+"\n";
 		str += "euContactPersonId : "+euContactPersonId+"\n";
 		str += "expenseApprovalNotiToId : "+expenseApprovalNotiToId+"\n";
 		str += "expenseApprovalNotiToOrg : "+expenseApprovalNotiToOrg+"\n";
@@ -1455,6 +1467,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "<column name=\"equipmentDetails\" value=\""+equipmentDetails+"\">";
 		str += "<column name=\"equipmentRequiredYn\" value=\""+equipmentRequiredYn+"\">";
 		str += "<column name=\"etsApprovalNotificationTo\" value=\""+etsApprovalNotificationTo+"\">";
+		str += "<column name=\"etsApprovalNotiTo2\" value=\""+etsApprovalNotiTo2+"\">";
 		str += "<column name=\"euContactPersonId\" value=\""+euContactPersonId+"\">";
 		str += "<column name=\"expenseApprovalNotiToId\" value=\""+expenseApprovalNotiToId+"\">";
 		str += "<column name=\"expenseApprovalNotiToOrg\" value=\""+expenseApprovalNotiToOrg+"\">";
@@ -1567,6 +1580,7 @@ public class HpAssignmentsD extends BaseDto implements Serializable {
 		str += "\"equipmentDetails\":\""+equipmentDetails+"\", ";
 		str += "\"equipmentRequiredYn\":\""+equipmentRequiredYn+"\", ";
 		str += "\"etsApprovalNotificationTo\":\""+etsApprovalNotificationTo+"\", ";
+		str += "\"etsApprovalNotiTo2\":\""+etsApprovalNotiTo2+"\", ";
 		str += "\"euContactPersonId\":\""+euContactPersonId+"\", ";
 		str += "\"expenseApprovalNotiToId\":\""+expenseApprovalNotiToId+"\", ";
 		str += "\"expenseApprovalNotiToOrg\":\""+expenseApprovalNotiToOrg+"\", ";
