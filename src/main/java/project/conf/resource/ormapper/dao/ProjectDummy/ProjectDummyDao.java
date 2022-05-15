@@ -7,6 +7,11 @@ import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 
 public interface ProjectDummyDao extends IDao {
+	/*!
+	 * Key
+	 */
+	public DataSet getIdBySequenceName(String sequeceName) throws Exception;
+
 	public DataSet getFinacialYear() throws Exception;
 	public DataSet getFinacialYear(Date date) throws Exception;
 	public DataSet getDatabaseSessionList(QueryAdvisor queryAdvisor) throws Exception;

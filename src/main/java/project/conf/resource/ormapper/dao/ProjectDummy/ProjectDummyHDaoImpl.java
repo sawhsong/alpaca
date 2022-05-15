@@ -9,6 +9,10 @@ import zebra.util.CommonUtil;
 import zebra.util.ConfigUtil;
 
 public class ProjectDummyHDaoImpl extends BaseHDao implements ProjectDummyDao {
+	public DataSet getIdBySequenceName(String sequeceName) throws Exception {
+		return selectAsDataSetBySQLQuery("select "+sequeceName+".nextval from dual");
+	}
+
 	public DataSet getFinacialYear() throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		return selectAsDataSet(queryAdvisor, "query.ProjectDummy.getFinacialYear");

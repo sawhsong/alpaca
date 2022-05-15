@@ -5,6 +5,11 @@ import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 
 public interface DummyDao extends IDao {
+	/*!
+	 * Key
+	 */
+	public DataSet getIdBySequenceName(String sequeceName) throws Exception;
+
 	public DataSet getTableListDataSetByCriteria(QueryAdvisor queryAdvisor) throws Exception;
 	public DataSet getTableListDataSetByCriteriaForAdditionalDataSource(QueryAdvisor queryAdvisor) throws Exception;
 	public DataSet getTableDetailDataSet() throws Exception;
