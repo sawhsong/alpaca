@@ -69,7 +69,7 @@ $(function() {
 		}
 
 		$("#tbodyOpportunityDocument").append($(html));
-		$("#tblOpportunityDocument").fixedHeaderTable({
+		$("#tblOpportunityDocument").freezeHeader({
 			attachTo:$("#divGridHolderOpportunityDocument"),
 			attachToHeight:390,
 			isPageable:false

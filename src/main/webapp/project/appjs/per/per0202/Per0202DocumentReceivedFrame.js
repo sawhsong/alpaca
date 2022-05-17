@@ -47,7 +47,7 @@ $(function() {
 	 * process
 	 */
 	setGridTable = function(totalResultRows) {
-		$("#tblGrid").fixedHeaderTable({
+		$("#tblGrid").freezeHeader({
 			attachTo:$("#divDataArea"),
 //			attachToHeight:618,
 			pagingArea:$("#divPagingArea"),

@@ -70,7 +70,7 @@ $(function() {
 		});
 
 		setTimeout(function() {
-			$("#tblGrid").fixedHeaderTable({
+			$("#tblGrid").freezeHeader({
 				attachTo:$("#divDataArea")
 			});
 

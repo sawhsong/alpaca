@@ -2,7 +2,7 @@
  * tbody scrollable table with fixed header
  * Usage : in $(window).load() event
  * 		 : selector must have an ID
- * 			$("#tblFixedHeaderTable").fixedHeaderTable({
+ * 			$("#tblFixedHeaderTable").freezeHeader({
  * 				attachTo:$("divDataArea"),				// [mandatory : parent jquery object which holds this table - usually this would be 'divDataArea']
  * 				pagingArea:$("#divPagingArea")			// [optional : pagination area jquery object]
  * 				isPageable:true/false					// [optional : true : displays paging area component, false : displays nothing]
@@ -19,7 +19,7 @@
  * 			});
  */
 (function($) {
-	$.fn.fixedHeaderTable = function(options) {
+	$.fn.freezeHeader = function(options) {
 		return this.each(function() {
 			if ($(options.attachTo).length <= 0) {
 				throw new Error("AttachTo" + com.message.mandatory);

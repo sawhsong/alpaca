@@ -109,7 +109,7 @@ $(function() {
 
 		$("#tblSourceDataBody").append($(html));
 
-		$("#tblSourceData").fixedHeaderTable({
+		$("#tblSourceData").freezeHeader({
 			attachTo:$("#divSourceDataTable"),
 			pagingArea:$("#divSourceDataPagingArea"),
 			displayRowCount:true,
@@ -164,7 +164,7 @@ $(function() {
 
 		$("#tblColumnsBody").append($(html));
 
-		$("#tblColumns").fixedHeaderTable({
+		$("#tblColumns").freezeHeader({
 			attachTo:$("#divTargetDataTable"),
 			pagingArea:$("#divTargetDataPagingArea"),
 			displayRowCount:true,

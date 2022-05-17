@@ -69,7 +69,7 @@ $(function() {
 	 * process
 	 */
 	setGridTable = function(totalResultRows) {
-		$("#tblGrid").fixedHeaderTable({
+		$("#tblGrid").freezeHeader({
 			attachTo:$("#divGridWrapper"),
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,

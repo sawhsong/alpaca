@@ -86,7 +86,7 @@ $(function() {
 
 		$("#tblGridBody").append($(html));
 
-		$("#tblGrid").fixedHeaderTable({
+		$("#tblGrid").freezeHeader({
 			attachTo:$("#divGridWrapper"),
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,

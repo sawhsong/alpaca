@@ -608,7 +608,7 @@ $(function() {
 
 		$("#tbodyAsgRates").append($(html));
 
-		$("#tblAsgRates").fixedHeaderTable({
+		$("#tblAsgRates").freezeHeader({
 			attachTo:$("#divGridHolderAsgRates"),
 			attachToHeight:200,
 			scrollWrapper:$("#divFrameDataAreaWrapper"),
@@ -694,7 +694,7 @@ $(function() {
 
 		$("#tbodyDeliverableRate").append($(html));
 
-		$("#tblDeliverableRate").fixedHeaderTable({
+		$("#tblDeliverableRate").freezeHeader({
 			attachTo:$("#divGridHolderDeliverableRate"),
 			attachToHeight:200,
 			scrollWrapper:$("#divFrameDataAreaWrapper"),

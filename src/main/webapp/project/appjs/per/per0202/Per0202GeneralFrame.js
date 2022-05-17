@@ -217,7 +217,7 @@ $(function() {
 		}
 
 		$("#tbodyWorkingRightsStatus").append($(html));
-//		$("#tblWorkingRightsStatus").fixedHeaderTable({
+//		$("#tblWorkingRightsStatus").freezeHeader({
 //			attachTo:$("#divGridHolderWorkingRightsStatus"),
 //			attachToHeight:198,
 //			scrollWrapper:$("#divFrameDataAreaWrapper"),
@@ -275,7 +275,7 @@ $(function() {
 		}
 
 		$("#tbodyScheduledPayrollNoti").append($(html));
-//		$("#tblScheduledPayrollNoti").fixedHeaderTable({
+//		$("#tblScheduledPayrollNoti").freezeHeader({
 //			attachTo:$("#divGridHolderScheduledPayrollNoti"),
 //			attachToHeight:198,
 //			scrollWrapper:$("#divFrameDataAreaWrapper"),

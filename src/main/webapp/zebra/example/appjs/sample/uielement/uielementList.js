@@ -164,7 +164,7 @@ $(function() {
 
 		commonJs.changeTabSelection($("#tabCategory li:eq(0) a"));
 
-		$("#tblFixedHeaderTable2").fixedHeaderTable({
+		$("#tblFixedHeaderTable2").freezeHeader({
 			attachTo:$("#divDataGrid"),
 			attachToHeight:300,
 			pagingArea:$("#divPagingArea"),

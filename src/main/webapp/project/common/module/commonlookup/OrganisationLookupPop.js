@@ -58,7 +58,7 @@ $(function() {
 			gridWidthAdjust = -38;
 		}
 
-		$("#tblGrid").fixedHeaderTable({
+		$("#tblGrid").freezeHeader({
 			baseDivElement:"divScrollablePanelPopup",
 			attachedPagingArea:true,
 			blockElementId:"tblGrid",
