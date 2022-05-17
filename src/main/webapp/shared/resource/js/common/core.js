@@ -1721,13 +1721,13 @@ var nony = {
 			}
 		}
 
-		var fixedScrollablePanelHeight = $.nony.nvl(jsconfig.get("fixedScrollablePanelHeight"), 0);
+		var fixedScrollablePanelHeight = $.nony.nvl(jsconfig.get("fixedScrollablePanelHeight"), 0); // set from individual page js because of bootstrap selectbox
 		var hFix = ($.nony.isInIgnoreCase(jsconfig.get("themeId"), ["theme000", "theme008"])) ? 0 : 6;
 		if (isPopup) {
 			if (fixedScrollablePanelHeight > 0) {
 				$("#divScrollablePanelPopup").height(fixedScrollablePanelHeight);
 			} else {
-				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 2;
+				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 12;
 				$("#divScrollablePanelPopup").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection))+"px");
 			}
 		} else if (isTabFrame) {
@@ -1735,7 +1735,7 @@ var nony = {
 				$("#divScrollablePanelFrame").height(fixedScrollablePanelHeight);
 			} else {
 				heightWindow = $(parent.document).find(".frameContainer").height();
-				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 2;
+				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 12;
 				$("#divScrollablePanelFrame").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection))+"px");
 //commonJs.printLog({message:"heightWindow(core.js) : "+heightWindow});
 			}
@@ -1743,7 +1743,7 @@ var nony = {
 			if (fixedScrollablePanelHeight > 0) {
 				$("#divScrollablePanel").height(fixedScrollablePanelHeight);
 			} else {
-				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 2;
+				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 16;
 				$("#divScrollablePanel").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection) + hFix)+"px");
 			}
 		}

@@ -126,13 +126,13 @@ $(function() {
 
 		$("#tblGridBody").append($(html));
 
-		$("#tblGrid").fixedHeaderTable({
-			attachTo:$("#divDataArea"),
-			pagingArea:$("#divPagingArea"),
-			isPageable:true,
-			totalResultRows:result.totalResultRows,
-			script:"doSearch"
-		});
+//		$("#tblGrid").fixedHeaderTable({
+//			attachTo:$("#divDataArea"),
+//			pagingArea:$("#divPagingArea"),
+//			isPageable:true,
+//			totalResultRows:result.totalResultRows,
+//			script:"doSearch"
+//		});
 
 		$("[name=icnAttachedFile]").each(function(index) {
 			$(this).contextMenu(attchedFileContextMenu);
@@ -152,7 +152,7 @@ $(function() {
 
 	openPopup = function(param) {
 		var url = "", header = "";
-		var height = 512;
+		var height = 516;
 
 		if (param.mode == "Detail") {
 			url = "/zebra/board/notice/getDetail.do";

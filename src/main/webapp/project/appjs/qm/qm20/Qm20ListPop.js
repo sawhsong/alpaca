@@ -3,8 +3,7 @@
  * - Qm20ListPop.js
  *************************************************************************************************/
 var dateFormat = jsconfig.get("dateFormatJs");
-jsconfig.put("fixedScrollablePanelHeight", 706);
-jsconfig.put("scrollablePanelHeightAdjust", 0);
+jsconfig.put("scrollablePanelHeightAdjust", -15);
 
 $(function() {
 	/*!
@@ -167,7 +166,7 @@ $(function() {
 		}
 
 		$("#tblGridBody").append($(html));
-		setGridTable(result.totalResultRows);
+//		setGridTable(result.totalResultRows);
 
 		$("[name=icnAction]").each(function(index) {
 			$(this).contextMenu(ctxMenu.commonQmAction);

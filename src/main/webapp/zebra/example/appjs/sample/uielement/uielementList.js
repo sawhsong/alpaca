@@ -52,7 +52,7 @@ $(function() {
 			type:"Confirm",
 			contents:"Are you sure to save the data?\nAre you sure to save the data?\nAre you sure to save the data?\nAre you sure to save the data?\nAre you sure to save the data?\nAre you sure to save the data?\n",
 			effect:"fade",
-			heightAdjust:1,
+//			heightAdjust:1,
 			buttons:[{
 				caption:com.caption.yes,
 				callback:function() {

@@ -121,14 +121,14 @@ $(function() {
 
 		$("#tblGridBody").append($(html));
 
-		$("#tblGrid").fixedHeaderTable({
-			attachTo:$("#divDataArea"),
-			pagingArea:$("#divPagingArea"),
-			isPageable:false,
-			displayRowCount:true,
-			totalResultRows:result.totalResultRows,
-			script:"exeSearch"
-		});
+//		$("#tblGrid").fixedHeaderTable({
+//			attachTo:$("#divDataArea"),
+//			pagingArea:$("#divPagingArea"),
+//			isPageable:false,
+//			displayRowCount:true,
+//			totalResultRows:result.totalResultRows,
+//			script:"exeSearch"
+//		});
 
 		$("[name=icnAction]").each(function(index) {
 			$(this).contextMenu(gridAction);

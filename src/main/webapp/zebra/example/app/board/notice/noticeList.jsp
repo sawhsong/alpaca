@@ -99,8 +99,8 @@
 			<col width="3%"/>
 			<col width="3%"/>
 			<col width="*"/>
-			<col width="4%"/>
-			<col width="15%"/>
+			<col width="5%"/>
+			<col width="17%"/>
 			<col width="7%"/>
 			<col width="7%"/>
 			<col width="6%"/>

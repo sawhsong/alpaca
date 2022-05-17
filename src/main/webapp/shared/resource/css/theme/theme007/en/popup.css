@@ -12,10 +12,10 @@
  * Layout of popup window iframe
  */
 #divPopupWindowHolder {}
-#divFixedPanelPopup{}
-#divScrollablePanelPopup{overflow:auto;}
+#divFixedPanelPopup{overflow:hidden;margin:4px 6px 4px 6px;}
+#divScrollablePanelPopup{overflow:auto;margin:0px 6px 4px 6px;}
 
-.iframeInPopup {padding:0px 0px;width:100%;height:100%;}
+.iframeInPopup {margin:0px 0px;padding:0px 0px;width:100%;height:100%;}
 
 /**
  * popup window
