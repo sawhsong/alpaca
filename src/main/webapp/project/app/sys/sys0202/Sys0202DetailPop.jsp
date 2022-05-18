@@ -103,9 +103,9 @@ var codeType = "<%=resultDataSet.getValue(masterRow, "CODE_TYPE")%>";
 		<colgroup>
 			<col width="17%"/>
 			<col width="6%"/>
-			<col width="24%"/>
-			<col width="24%"/>
-			<col width="24%"/>
+			<col width="23%"/>
+			<col width="23%"/>
+			<col width="23%"/>
 			<col width="*"/>
 		</colgroup>
 		<thead>

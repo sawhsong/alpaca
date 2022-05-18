@@ -78,19 +78,19 @@ var mode = "<%=mode%>";
 <div id="divDataArea" class="areaContainerPopup">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-				<col width="2%"/>
-				<col width="6%"/>
-				<col width="9%"/>
-				<col width="8%"/>
-				<col width="6%"/>
-				<col width="7%"/>
-				<col width="7%"/>
-				<col width="6%"/>
-				<col width="8%"/>
-				<col width="*"/>
-				<col width="6%"/>
-				<col width="6%"/>
-			</colgroup>
+			<col width="2%"/>
+			<col width="6%"/>
+			<col width="10%"/>
+			<col width="9%"/>
+			<col width="7%"/>
+			<col width="7%"/>
+			<col width="7%"/>
+			<col width="6%"/>
+			<col width="9%"/>
+			<col width="*"/>
+			<col width="7%"/>
+			<col width="7%"/>
+		</colgroup>
 		<thead id="tblGridHead">
 			<tr>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>

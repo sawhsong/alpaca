@@ -96,6 +96,10 @@ $(function() {
 
 				paramValue = dataSet.getValue(i, "MENU_LEVEL")+delimiter+menuPath+delimiter+deletable;
 
+				var iconAction = new UiIcon();
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("menuId:"+menuId).addAttribute("paramValue:"+paramValue).setScript("doAction(this)");
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
 				var uiChk = new UiCheckbox();
 				uiChk.setId("chkForDel").setName("chkForDel").setValue(menuId).addAttribute("paramValue:"+paramValue).addOptions(disabledStr);
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
@@ -109,10 +113,6 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "SORT_ORDER")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "DESCRIPTION")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "IS_ACTIVE")));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("menuId:"+menuId).addAttribute("paramValue:"+paramValue).setScript("doAction(this)");
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
 			}
@@ -156,15 +156,15 @@ $(function() {
 		if (param.mode == "Detail") {
 			url = "/sys/0402/getDetail.do";
 			header = com.header.popHeaderDetail;
-			height = 306;
+			height = 312;
 		} else if (param.mode == "New") {
 			url = "/sys/0402/getInsert.do";
 			header = com.header.popHeaderEdit;
-			height = 400;
+			height = 406;
 		} else if (param.mode == "Edit") {
 			url = "/sys/0402/getUpdate.do";
 			header = com.header.popHeaderEdit;
-			height = 374;
+			height = 386;
 		} else if (param.mode == "SetSort") {
 			url = "/sys/0402/getUpdateSortOrder.do";
 			header = sys.sys0402.header.popHeaderSort;

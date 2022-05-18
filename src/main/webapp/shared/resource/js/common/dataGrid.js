@@ -55,13 +55,13 @@
 
 				if ($.nony.browser.Chrome) {heightAdjustment = 0;}
 				else if ($.nony.browser.FireFox) {heightAdjustment = 0;}
-				else {heightAdjustment = 2;}
+				else {heightAdjustment = 0;}
 			} else if (isTabFrame) {
 				$scrollablePanel = $("#divScrollablePanelFrame");
 
 				if ($.nony.browser.Chrome) {heightAdjustment = 0;}
 				else if ($.nony.browser.FireFox) {heightAdjustment = 0;}
-				else {heightAdjustment = 2;}
+				else {heightAdjustment = 0;}
 			} else {
 				$scrollablePanel = $("#divScrollablePanel");
 

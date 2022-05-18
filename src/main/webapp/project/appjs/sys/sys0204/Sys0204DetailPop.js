@@ -32,7 +32,7 @@ $(function() {
 
 		if (param.mode == "Update") {
 			action = "/sys/0204/getUpdate.do";
-			parent.popup.resizeTo(0, -40);
+			parent.popup.resizeTo(0, -24);
 		} else if (param.mode == "Delete") {
 			action = "/sys/0204/exeDelete.do";
 		}

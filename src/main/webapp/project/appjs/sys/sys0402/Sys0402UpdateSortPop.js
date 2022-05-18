@@ -65,14 +65,21 @@ $(function() {
 	setLevel2Selectbox = function() {
 		var level1MenuId = $("#level1").val();
 
-		$("#level2").find("option").remove();
+		$("#level2 option").each(function(index) {
+			$(this).remove();
+		});
+
 		for (var i=0; i<dsMenu2.getRowCnt(); i++) {
 			var parentMenu = dsMenu2.getValue(i, "PARENT_MENU_ID");
 			if (parentMenu == level1MenuId) {
-				$("#level2").append("<option value=\""+dsMenu2.getValue(i, "MENU_ID")+"\">"+dsMenu2.getValue(i, "MENU_ID")+"</option>");
+				$("#level2").append(commonJs.getUiSelectOption({
+					value:dsMenu2.getValue(i, "MENU_ID"),
+					text:dsMenu2.getValue(i, "MENU_ID")
+				}));
 			}
 		}
-		$("#level2").selectpicker("refresh");
+
+		$("#level2").selectpicker({container:"body"}).selectpicker("refresh");
 	};
 
 	refreshDataArea = function() {

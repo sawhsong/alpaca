@@ -33,7 +33,7 @@ $(function() {
 	 */
 	setEditor = function() {
 		$("#articleContents").ckeditor({
-			height:500,
+			height:480,
 			toolbar:com.constants.toolbarDefault,
 			readOnly:true
 		});

@@ -99,17 +99,17 @@
 <div id="divDataArea" class="areaContainer">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
+			<col width="5%"/>
 			<col width="4%"/>
 			<col width="32%"/>
-			<col width="59%"/>
-			<col width="5%"/>
+			<col width="*"/>
 		</colgroup>
 		<thead>
 			<tr>
+				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="Select to generate"/></th>
 				<th class="thGrid sortable:alphanumeric">Table Name</th>
 				<th class="thGrid sortable:alphanumeric">Table Description</th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

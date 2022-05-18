@@ -91,7 +91,8 @@
 <div id="divDataArea" class="areaContainer">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="2%"/>
+			<col width="3%"/>
+			<col width="3%"/>
 			<col width="24%"/>
 			<col width="9%"/>
 			<col width="10%"/>
@@ -99,10 +100,10 @@
 			<col width="8%"/>
 			<col width="8%"/>
 			<col width="8%"/>
-			<col width="4%"/>
 		</colgroup>
 		<thead>
 			<tr>
+				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0204.grid.currencyName"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0204.grid.currencyCode"/></th>
@@ -111,7 +112,6 @@
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0204.grid.countryCode"/></th>
 				<th class="thGrid sortable:date"><mc:msg key="sys0204.grid.insertDate"/></th>
 				<th class="thGrid sortable:date"><mc:msg key="sys0204.grid.updateDate"/></th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

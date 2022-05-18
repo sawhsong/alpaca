@@ -135,7 +135,7 @@ $(function() {
 			header:com.header.popHeaderDetail,
 			blind:true,
 			width:800,
-			height:510
+			height:524
 		};
 
 		popup = commonJs.openPopup(popParam);

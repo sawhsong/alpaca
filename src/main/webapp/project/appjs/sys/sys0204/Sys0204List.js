@@ -67,6 +67,11 @@ $(function() {
 			for (var i=0; i<dataSet.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
+				var iconAction = new UiIcon();
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("countryCurrencyId:"+dataSet.getValue(i, "COUNTRY_CURRENCY_ID"))
+					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
 				var uiChk = new UiCheckbox();
 				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "COUNTRY_CURRENCY_ID"));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
@@ -81,11 +86,6 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "COUNTRY_CODE_3")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(dataSet.getValue(i, "INSERT_DATE"), dateFormat)));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(dataSet.getValue(i, "UPDATE_DATE"), dateFormat)));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("countryCurrencyId:"+dataSet.getValue(i, "COUNTRY_CURRENCY_ID"))
-					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
 			}
@@ -120,7 +120,7 @@ $(function() {
 
 	openPopup = function(param) {
 		var url = "", header = "";
-		var height = 368;
+		var height = 378;
 
 		if (param.mode == "Detail") {
 			url = "/sys/0204/getDetail.do";

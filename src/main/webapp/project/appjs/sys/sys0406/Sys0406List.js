@@ -7,7 +7,7 @@ var popup = null;
 var searchResultDataCount = 0;
 var toDateFormat = jsconfig.get("dateFormatJs");
 
-jsconfig.put("scrollablePanelHeightAdjust", 6);
+jsconfig.put("scrollablePanelHeightAdjust", 18);
 
 $(function() {
 	/*!
@@ -114,6 +114,10 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
+				var iconAction = new UiIcon();
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("userId:"+ds.getValue(i, "USER_ID")).setScript("doAction(this)");
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
 				var uiChk = new UiCheckbox();
 				uiChk.setId("chkForDel").setName("chkForDel").setValue(ds.getValue(i, "USER_ID"));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
@@ -129,10 +133,6 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "EMAIL")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "IS_ACTIVE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "INSERT_DATE")));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("userId:"+ds.getValue(i, "USER_ID")).setScript("doAction(this)");
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
 			}
@@ -166,20 +166,20 @@ $(function() {
 	};
 
 	openPopup = function(param) {
-		var url = "", header = "", width = 960, height = 516;
+		var url = "", header = "", width = 960, height = 530;
 
 		if (param.mode == "Detail") {
 			url = "/sys/0406/getDetail.do";
 			header = com.header.popHeaderDetail;
-			height = 476;
+			height = 486;
 		} else if (param.mode == "New") {
 			url = "/sys/0406/getInsert.do";
 			header = com.header.popHeaderEdit;
-			height = 654;
+			height = 670;
 		} else if (param.mode == "Edit") {
 			url = "/sys/0406/getUpdate.do";
 			header = com.header.popHeaderEdit;
-			height = 654;
+			height = 670;
 		} else if (param.mode == "UpdateAuthGroup") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.auth;
@@ -187,15 +187,15 @@ $(function() {
 		} else if (param.mode == "UpdateUserType") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.type;
-			width = 330; height = 186;
+			width = 330; height = 194;
 		} else if (param.mode == "UpdateUserStatus") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.status;
-			width = 330; height = 220;
+			width = 330; height = 234;
 		} else if (param.mode == "UpdateActiveStatus") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.active;
-			width = 330; height = 186;
+			width = 330; height = 200;
 		}
 
 		if (url.indexOf("getActionContextMenu") != -1) {

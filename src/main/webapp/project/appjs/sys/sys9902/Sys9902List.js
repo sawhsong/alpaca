@@ -79,6 +79,11 @@ $(function() {
 
 				gridTr.setClassName("noBorderHor");
 
+				var iconAction = new UiIcon();
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
+					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
 				var uiChk = new UiCheckbox();
 				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "ARTICLE_ID"));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
@@ -110,11 +115,6 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "INSERT_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "UPDATE_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(dataSet.getValue(i, "HIT_CNT"), "#,###")));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
-					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
 			}
@@ -153,7 +153,7 @@ $(function() {
 
 	openPopup = function(param) {
 		var url = "", header = "";
-		var height = 510;
+		var height = 520;
 
 		if (param.mode == "Detail") {
 			url = "/sys/9902/getDetail.do";
@@ -164,7 +164,7 @@ $(function() {
 		} else if (param.mode == "Edit") {
 			url = "/sys/9902/getUpdate.do";
 			header = com.header.popHeaderEdit;
-			height = 634;
+			height = 646;
 		}
 
 		var popParam = {

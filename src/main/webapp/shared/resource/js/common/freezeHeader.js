@@ -141,11 +141,11 @@
 			var $scrollablePanel = $.nony.isPopup() ? $("#divScrollablePanelPopup") : ($.nony.isTabFrame() ? $("#divScrollablePanelFrame") : $("#divScrollablePanel"));
 			var $header = $table.find("thead").clone(true, true);
 			var $fixedTable = $("<table id=\""+systemGeneratedTableForFixedHeaderId+"\"/>").prop("class", $table.prop("class"))
-								.css({position:"fixed", "table-layout":"fixed", display:"none", "margin-top":"0px", "z-index":1000});
+								.css({position:"fixed", overflow:"hidden", visibility:"hidden", "margin-left":"0px", "margin-top":"0px", "z-index":1000});
 
-			if ($.nony.browser.Chrome) {$fixedTable.width($table.width());}
-			else if ($.nony.browser.FireFox) {$fixedTable.width($table.width()+1);}
-			else {$fixedTable.width($table.width()+1);}
+			if ($.nony.browser.Chrome) {$fixedTable.width(($table.width()));}
+			else if ($.nony.browser.FireFox) {$fixedTable.width($table.width());}
+			else {$fixedTable.width($table.width());}
 
 			/*!
 			 * If (table width != '100%' or table width > attachTo width)
@@ -155,7 +155,7 @@
 //			}
 
 			$table.before($fixedTable);
-			$fixedTable.append($header).show();
+			$fixedTable.append($header).css({visibility:"visible"});
 
 			$table.find("th").each(function(index) {
 				$($fixedTable.find("th")[index]).bind("click", function() {

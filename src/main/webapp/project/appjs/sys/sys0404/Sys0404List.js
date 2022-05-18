@@ -57,6 +57,10 @@ $(function() {
 			for (var i=0; i<dataSet.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
+				var iconAction = new UiIcon();
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("groupId:"+dataSet.getValue(i, "GROUP_ID")).setScript("doAction(this)");
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
 				var uiChk = new UiCheckbox();
 				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "GROUP_ID"));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
@@ -71,10 +75,6 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "INSERT_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "UPDATE_USER_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "UPDATE_DATE")));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("groupId:"+dataSet.getValue(i, "GROUP_ID")).setScript("doAction(this)");
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
 			}
@@ -108,7 +108,7 @@ $(function() {
 	};
 
 	openPopup = function(param) {
-		var url = "", header = "", height = 224;
+		var url = "", header = "", height = 234;
 
 		if (param.mode == "Detail") {
 			url = "/sys/0404/getDetail.do";
@@ -120,7 +120,7 @@ $(function() {
 		} else if (param.mode == "Edit") {
 			url = "/sys/0404/getUpdate.do";
 			header = com.header.popHeaderEdit;
-			height = 296;
+			height = 310;
 		}
 
 		var popParam = {

@@ -69,18 +69,19 @@
 <div id="divDataArea" class="areaContainer">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
+			<col width="3%"/>
 			<col width="2%"/>
 			<col width="15%"/>
 			<col width="*"/>
 			<col width="6%"/>
-			<col width="10%"/>
+			<col width="12%"/>
 			<col width="8%"/>
 			<col width="10%"/>
 			<col width="8%"/>
-			<col width="4%"/>
 		</colgroup>
 		<thead>
 			<tr>
+				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0404.grid.groupName"/></th>
 				<th class="thGrid"><mc:msg key="sys0404.grid.description"/></th>
@@ -89,7 +90,6 @@
 				<th class="thGrid sortable:date"><mc:msg key="page.com.insertDate"/></th>
 				<th class="thGrid"><mc:msg key="page.com.updateUser"/></th>
 				<th class="thGrid sortable:date"><mc:msg key="page.com.updateDate"/></th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

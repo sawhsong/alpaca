@@ -270,7 +270,7 @@
 			this.width = params.width;									// Popup width (Popup:[350], Dialog:[250])
 			this.height = params.height;								// Popup height (Popup:[200], Dialog:[150])
 			this.limitHeightForMax = params.limitHeightForMax = 100;	// Size for height limited (for only Dialog. Not editable)
-			this.minWidth = params.minWidth = 150;						// Minimum width of dialog (for only Dialog. Not editable)
+			this.minWidth = params.minWidth = 230;						// Minimum width of dialog (for only Dialog. Not editable)
 			this.maxWidth = params.maxWidth = 800;						// Maximum width of dialog (for only Dialog. Not editable)
 			this.minHeight = params.minHeight = 38;						// Minimum height of dialog (for only Dialog. Not editable)
 			this.left = params.left;									// Left position ([center])

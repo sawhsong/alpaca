@@ -37,7 +37,7 @@ $(function() {
 	 */
 	setEditor = function() {
 		$("#articleContents").ckeditor({
-			height:360,
+			height:320,
 			toolbar:com.constants.toolbarDefault
 		});
 	};

@@ -110,7 +110,7 @@ $(function() {
 			},
 			header:"View SQL",
 			width:920,
-			height:600
+			height:616
 		});
 	};
 
