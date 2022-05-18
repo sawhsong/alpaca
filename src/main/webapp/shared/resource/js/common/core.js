@@ -1727,7 +1727,7 @@ var nony = {
 			if (fixedScrollablePanelHeight > 0) {
 				$("#divScrollablePanelPopup").height(fixedScrollablePanelHeight);
 			} else {
-				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 12;
+				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 10;
 				$("#divScrollablePanelPopup").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection))+"px");
 			}
 		} else if (isTabFrame) {
@@ -1735,7 +1735,7 @@ var nony = {
 				$("#divScrollablePanelFrame").height(fixedScrollablePanelHeight);
 			} else {
 				heightWindow = $(parent.document).find(".frameContainer").height();
-				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 12;
+				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 10;
 				$("#divScrollablePanelFrame").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection))+"px");
 //commonJs.printLog({message:"heightWindow(core.js) : "+heightWindow});
 			}
@@ -1743,7 +1743,7 @@ var nony = {
 			if (fixedScrollablePanelHeight > 0) {
 				$("#divScrollablePanel").height(fixedScrollablePanelHeight);
 			} else {
-				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 16;
+				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 10;
 				$("#divScrollablePanel").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection) + hFix)+"px");
 			}
 		}

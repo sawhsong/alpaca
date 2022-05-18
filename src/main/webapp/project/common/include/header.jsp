@@ -313,7 +313,7 @@ $(function() {
 		var width = 0, height = 0;
 
 		if (menuId == "QM10") {
-			width = 400, height = 230;
+			width = 400, height = 238;
 		} else if (menuId == "QM20") {
 			width = 1700, height = 894;
 		} else if (menuId == "QM30") {

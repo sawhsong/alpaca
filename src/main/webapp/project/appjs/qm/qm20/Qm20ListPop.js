@@ -166,7 +166,7 @@ $(function() {
 		}
 
 		$("#tblGridBody").append($(html));
-//		setGridTable(result.totalResultRows);
+		setGridTable(result.totalResultRows);
 
 		$("[name=icnAction]").each(function(index) {
 			$(this).contextMenu(ctxMenu.commonQmAction);

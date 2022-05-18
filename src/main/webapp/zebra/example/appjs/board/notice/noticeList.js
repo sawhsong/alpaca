@@ -126,7 +126,15 @@ $(function() {
 
 		$("#tblGridBody").append($(html));
 
-//		$("#tblGrid").freezeHeader({
+		$("#tblGrid").freezeHeader({
+			attachTo:$("#divDataArea"),
+			pagingArea:$("#divPagingArea"),
+			isPageable:true,
+			totalResultRows:result.totalResultRows,
+			script:"doSearch"
+		});
+
+//		$("#tblGrid").setGridTable({
 //			attachTo:$("#divDataArea"),
 //			pagingArea:$("#divPagingArea"),
 //			isPageable:true,

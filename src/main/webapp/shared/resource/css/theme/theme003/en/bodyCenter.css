@@ -41,7 +41,9 @@
 #divDataArea.areaContainerPopup {margin:0px 0px 0px 0px;}
 #divDataArea.areaContainerFrame {margin:0px 0px 0px 0px;}
 #divPagingArea {}
-#divPagingArea.areaContainerFrame {padding-bottom:0px;}
+#divPagingArea.areaContainer {margin:0px 0px 0px 0px;}
+#divPagingArea.areaContainerPopup {margin:0px 0px 0px 0px;}
+#divPagingArea.areaContainerFrame {margin:0px 0px 0px 0px;padding-bottom:0px;}
 /* Set class attribute instead of id, if an area is needed to be used for exeption */
 .divTabArea {}
 .divButtonArea {display:table;width:100%;}

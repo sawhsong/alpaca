@@ -49,244 +49,8 @@
 			/*!
 			 * Rendering Paging Area
 			 */
-			if (options.isPageable) {
-				var className = "", readOnly = "", event = "", jsParamString = "", html = "";
-				var arrMaxRowsPerPageSelect = jsconfig.get("maxRowsPerPageArray").split(jsconfig.get("dataDelimiter"));
-				var maxRowsPerPage = $.nony.toNumber($("#selMaxRowsPerPageSelectForPagenation").val());
-				var pageNumsPerPage = ($.nony.isPopup()) ? 5 : parseInt(jsconfig.get("pageNumsPerPage"));
-
-				if (maxRowsPerPage <= 0) {
-					maxRowsPerPage = parseInt(jsconfig.get("maxRowsPerPage"));
-				}
-
-				var viewPageCount = 1;
-				var totalPages = 0;
-				var totalPos = 0, currentPos = 0, prevPage = 0, nextPage = 0, temp = 0;
-
-				totalPages = parseInt((($.nony.toNumber(options.totalResultRows) - 1) / maxRowsPerPage) + 1);
-				totalPages = parseInt((totalPages == 0) ? 1 : totalPages);
-
-				currentPage = ($.nony.isEmpty($("#txtCurrentPageForPagination").val()) || $("#txtCurrentPageForPagination").val() == 0) ? 1 : $("#txtCurrentPageForPagination").val();
-				if (currentPage <= 0) {
-					currentPage = 1;
-				}
-				currentPage = parseInt((currentPage > totalPages) ? totalPages : currentPage);
-				totalPos = parseInt(((totalPages - 1) / pageNumsPerPage) + 1);
-				currentPos = parseInt(((currentPage - 1) / pageNumsPerPage) + 1);
-
-				if (currentPos == totalPos) {
-					viewPageCount = ((totalPages % pageNumsPerPage) == 0) ? pageNumsPerPage : (totalPages % pageNumsPerPage);
-				} else {
-					viewPageCount = pageNumsPerPage;
-				}
-				viewPageCount = parseInt(viewPageCount);
-
-				jsParamString = "'"+options.formId+"', '"+options.formAction+"', '"+options.script+"'";
-
-				if ($(this).find("tfoot tr").length > 0) {
-					html += "<div id=\"\" class=\"verGap2\"></div>";
-				}
-
-				html += "<div id=\"divPagination\">";
-				html += "<table id=\"tblPagination\">";
-				html += "<tr>";
-
-				if (!$.nony.isEmpty(options.pagingAlign)) {
-					if ("left" == $.nony.lowerCase(options.pagingAlign)) {
-						html += "<td class=\"tdPaginationLeft\">";
-					} else if ("center" == $.nony.lowerCase(options.pagingAlign)) {
-						html += "<td class=\"tdPaginationLeft\"></td>";
-						html += "<td class=\"tdPaginationCenter\">";
-					} else {
-						if ($.nony.isPopup()) {
-							html += "<td class=\"tdPaginationLeft\">";
-						} else if ($.nony.isTabFrame()) {
-							html += "<td class=\"tdPaginationLeft\"></td>";
-							html += "<td class=\"tdPaginationCenter\">";
-						} else {
-							html += "<td class=\"tdPaginationLeft\"></td>";
-							html += "<td class=\"tdPaginationCenter\">";
-						}
-					}
-				} else {
-					if ($.nony.isPopup()) {
-						html += "<td class=\"tdPaginationLeft\">";
-					} else if ($.nony.isTabFrame()) {
-						html += "<td class=\"tdPaginationLeft\"></td>";
-						html += "<td class=\"tdPaginationCenter\">";
-					} else {
-						html += "<td class=\"tdPaginationLeft\"></td>";
-						html += "<td class=\"tdPaginationCenter\">";
-					}
-				}
-
-				html += "<ul id=\"ulPagination\">";
-				if (currentPage > 1) {
-					html += "<li class=\"liPaginationButton\">";
-					html += "<a class=\"aPaginationButtonEn\" onclick=\"$.nony.goPageForPagination("+jsParamString+", '1')\" title=\"First Page\">";
-					html += "<i class=\"fa fa-angle-double-left\"></i>";
-					html += "</a>";
-					html += "</li>";
-				} else {
-					html += "<li class=\"liPaginationButton disabled\">";
-					html += "<a class=\"aPaginationButtonDis\" title=\"First Page\">";
-					html += "<i class=\"fa fa-angle-double-left\"></i>";
-					html += "</a>";
-					html += "</li>";
-				}
-
-				prevPage = currentPage - 1;
-
-				if (prevPage >= 1) {
-					html += "<li class=\"liPaginationButton\">";
-					html += "<a class=\"aPaginationButtonEn\" onclick=\"$.nony.goPageForPagination("+jsParamString+", '"+prevPage+"')\" title=\"Previous Page\">";
-					html += "<i class=\"fa fa-angle-left\"></i>";
-					html += "</a>";
-					html += "</li>";
-				} else {
-					html += "<li class=\"liPaginationButton disabled\">";
-					html += "<a class=\"aPaginationButtonDis\" title=\"Previous Page\">";
-					html += "<i class=\"fa fa-angle-left\"></i>";
-					html += "</a>";
-					html += "</li>";
-				}
-
-				for (var i=1; i<=viewPageCount && (currentPos - 1) * pageNumsPerPage + i <= totalPages; i++) {
-					temp = parseInt((currentPos - 1) * pageNumsPerPage + i);
-
-					if (((currentPos - 1) * pageNumsPerPage + i) == currentPage) {
-						html += "<li class=\"liPaginationButton active\">";
-						html += "<a class=\"aPaginationButtonCurr\">";
-						html += temp;
-						html += "</a>";
-						html += "</li>";
-					} else {
-						html += "<li class=\"liPaginationButton\">";
-						html += "<a class=\"aPaginationButtonEn\" onclick=\"$.nony.goPageForPagination("+jsParamString+", '"+temp+"')\">";
-						html += temp;
-						html += "</a>";
-						html += "</li>";
-					}
-				}
-
-				nextPage = parseInt(currentPage + 1);
-
-				if (nextPage <= totalPages) {
-					html += "<li class=\"liPaginationButton\">";
-					html += "<a class=\"aPaginationButtonEn\" onclick=\"$.nony.goPageForPagination("+jsParamString+", '"+nextPage+"')\" title=\"Next Page\">";
-					html += "<i class=\"fa fa-angle-right\"></i>";
-					html += "</a>";
-					html += "</li>";
-				} else {
-					html += "<li class=\"liPaginationButton disabled\">";
-					html += "<a class=\"aPaginationButtonDis\" title=\"Next Page\">";
-					html += "<i class=\"fa fa-angle-right\"></i>";
-					html += "</a>";
-					html += "</li>";
-				}
-
-				if (currentPage < totalPages) {
-					html += "<li class=\"liPaginationButton\">";
-					html += "<a class=\"aPaginationButtonEn\" onclick=\"$.nony.goPageForPagination("+jsParamString+", '"+totalPages+"')\" title=\"Last Page\">";
-					html += "<i class=\"fa fa-angle-double-right\"></i>";
-					html += "</a>";
-					html += "</li>";
-				} else {
-					html += "<li class=\"liPaginationButton disabled\">";
-					html += "<a class=\"aPaginationButtonDis\" title=\"Last Page\">";
-					html += "<i class=\"fa fa-angle-double-right\"></i>";
-					html += "</a>";
-					html += "</li>";
-				}
-
-				var rowCountForDisplay = parseInt(currentPage * maxRowsPerPage);
-
-				html += "</ul>";
-				html += "</td>";
-				html += "<td class=\"tdPaginationRight\">";
-
-				if (options.totalResultRows <= 0) {
-					readOnly = "readonly=\"readonly\"";
-					event = "";
-				} else {
-					readOnly = "";
-					event = "onkeypress=\"$.nony.onKeyPressFortxtCurrentPageForPagination(event, "+jsParamString+", this)";
-				}
-				html += "<div id=\"divPaginationDescriptor\">";
-				html += "<div class=\"\">";
-				html += "<input type=\"text\" id=\"txtCurrentPageForPagination\" name=\"txtCurrentPageForPagination\" class=\"txtPagination\" value=\""+currentPage+"\" "+readOnly+" "+event+"\"/>";
-				html += "</div>";
-				html += "<div class=\"paginationDescriptor\">";
-//					html += "&nbsp; / "+$.nony.getNumberMask(totalPages, "#,###")+" Pages";
-				html += "&nbsp; / "+$.nony.getNumberMask(totalPages, "#,###");
-				html += "<span class=\"spanPaginationBreaker\"></span>";
-
-				if (options.totalResultRows <= 0) {
-					className = "disabled";
-					readOnly = "disabled";
-					event = "";
-				} else {
-					className = "";
-					readOnly = "";
-					event = "onchange=\"$.nony.goPageForPagination("+jsParamString+", '"+currentPage+"')\"";
-				}
-				html += "</div>";
-				html += "<div style=\"\">";
-				html += "<select id=\"selMaxRowsPerPageSelectForPagenation\" name=\"selMaxRowsPerPageSelectForPagenation\" class=\"selectpicker bootstrapSelect "+className+"\" "+readOnly+" "+event+">";
-
-				for (var i=0; i<arrMaxRowsPerPageSelect.length; i++) {
-					var selected = (maxRowsPerPage == parseInt(arrMaxRowsPerPageSelect[i])) ? "selected" : "";
-					html += "<option value=\""+arrMaxRowsPerPageSelect[i]+"\" "+selected+">"+arrMaxRowsPerPageSelect[i]+"</option>";
-				}
-				html += "</select>";
-				html += "</div>";
-//					html += "<div class=\"paginationDescriptor\">&nbsp;Rows";
-				html += "<div class=\"paginationDescriptor\">";
-				html += "<span class=\"spanPaginationBreaker\"></span>";
-
-				if (options.totalResultRows <= 0) {
-					html += $.nony.getNumberMask(0, "#,##0")+" - ";
-				} else {
-					html += $.nony.getNumberMask((((currentPage - 1) * maxRowsPerPage) + 1), "#,##0")+" - ";
-				}
-//					html += $.nony.getNumberMask(((rowCountForDisplay > options.totalResultRows) ? options.totalResultRows : rowCountForDisplay), "#,##0")+" / "+$.nony.getNumberMask(options.totalResultRows, "#,##0")+" Items";
-				html += $.nony.getNumberMask(((rowCountForDisplay > options.totalResultRows) ? options.totalResultRows : rowCountForDisplay), "#,##0")+" / "+$.nony.getNumberMask(options.totalResultRows, "#,##0");
-				html += "</div>";
-				html += "</div>";
-				html += "</td>";
-				html += "</tr>";
-				html += "</table>";
-				html += "</div>";
-
-				$(options.pagingArea).html(html);
-
-				$("#selMaxRowsPerPageSelectForPagenation").selectpicker({width:"52px"});
-			} else {
-				var html = "";
-
-				if (options.displayRowCount) {
-					html += "<div id=\"divPagination\">";
-					html += "<table id=\"tblPagination\">";
-					html += "<tr>";
-					if ($.nony.isPopup()) {
-						html += "<td class=\"tdPaginationLeft\">";
-					} else {
-						html += "<td class=\"tdPaginationLeft\"></td>";
-						html += "<td class=\"tdPaginationCenter\">";
-					}
-					html += "<ul id=\"ulPagination\">";
-					html += "</ul>";
-					html += "</td>";
-					html += "<td class=\"tdPaginationRight\" style=\"color:#337AB7;padding:6px 0px 2px 0px;text-align:right;font-weight:bold;\">";
-					html += $.nony.getNumberMask(options.totalResultRows, "#,##0")+" Rows Displayed";
-					html += "</td>";
-					html += "</tr>";
-					html += "</table>";
-					html += "</div>";
-
-					$(options.pagingArea).html(html);
-				}
-			} // Paging Area End
+			$(options.pagingArea).html(paging.getPagingHtml(options));
+			$("#selMaxRowsPerPageSelectForPagenation").selectpicker({width:"52px"});
 
 			/*!
 			 * Filter Row
@@ -336,9 +100,9 @@
 				$scrollablePanel = $("#divScrollablePanel");
 			}
 
-			if ($.nony.browser.Chrome) {heightAdjustment = 6;}
-			else if ($.nony.browser.FireFox) {heightAdjustment = 6;}
-			else {heightAdjustment = 6;}
+			if ($.nony.browser.Chrome) {heightAdjustment = 5;}
+			else if ($.nony.browser.FireFox) {heightAdjustment = 5;}
+			else {heightAdjustment = 5;}
 
 			/*!
 			 * Return if the data table is smaller than attachTo height
@@ -360,7 +124,7 @@
 //			$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment));
 
 			if ($(this).height() <= $(options.attachTo).height()) {
-				$(options.attachTo).height($(this).height() + (heightAdjustment - 4));
+				$(options.attachTo).height($(this).height() + (heightAdjustment - 5));
 			}
 
 			/*!
@@ -370,7 +134,7 @@
 			var $scrollablePanel = $.nony.isPopup() ? $("#divScrollablePanelPopup") : ($.nony.isTabFrame() ? $("#divScrollablePanelFrame") : $("#divScrollablePanel"));
 			var $header = $table.find("thead").clone(true, true);
 			var $fixedTable = $("<table id=\""+systemGeneratedTableForFixedHeaderId+"\"/>").prop("class", $table.prop("class"))
-								.css({position:"fixed", "table-layout":"fixed", display:"none", "margin-top":"0px", "z-index":1000});
+								.css({position:"fixed", "table-layout":"fixed", display:"none", "margin-top":"10px", "z-index":1000});
 
 			if ($.nony.browser.Chrome) {$fixedTable.width($table.width());}
 			else if ($.nony.browser.FireFox) {$fixedTable.width($table.width()+1);}
@@ -387,8 +151,6 @@
 			$fixedTable.append($header).show();
 
 			$table.find("th").each(function(index) {
-				$($fixedTable.find("th")[index]).width($(this).width());
-
 				$($fixedTable.find("th")[index]).bind("click", function() {
 					$($table.find("th")[index]).trigger("click");
 
@@ -398,6 +160,8 @@
 						});
 					});
 				});
+
+				$($fixedTable.find("th")[index]).width($(this).width());
 			});
 
 			if ($(this).find("thead").find("#systemGeneratedFilterRow").length > 0) {
