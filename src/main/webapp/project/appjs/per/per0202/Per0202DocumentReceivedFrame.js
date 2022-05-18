@@ -4,7 +4,7 @@
  *************************************************************************************************/
 var searchResultDataCount = 0;
 jsconfig.put("useJqTooltip", true);
-jsconfig.put("scrollablePanelHeightAdjust", 50);
+jsconfig.put("scrollablePanelHeightAdjust", 54);
 var gridAction = [{
 	name:"Add File",
 	img:"fa-plus",
@@ -79,6 +79,10 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
+				var iconAction = new UiIcon();
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("documentId:"+ds.getValue(i, "DOCUMENT_ID")).setScript("doAction(this)");
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "DOCUMENT_NAME"), 40)).setAttribute("title:"+ds.getValue(i, "DOCUMENT_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "COPY_TO_ORG_NAME"), 38)).setAttribute("title:"+ds.getValue(i, "COPY_TO_ORG_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "RECEIVE_COMMENTS"), 46)).setAttribute("title:"+ds.getValue(i, "RECEIVE_COMMENTS")));
@@ -87,10 +91,6 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "EXPIRY_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "IS_ACTIVE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "IS_AVAILABLE_ON_EO")));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("documentId:"+ds.getValue(i, "DOCUMENT_ID")).setScript("doAction(this)");
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
 			}

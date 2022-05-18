@@ -1676,17 +1676,15 @@ var nony = {
 
 		if (isPopup) {
 			if ($("#divScrollablePanelPopup").length <= 0) {return;}
-		} else if (isTabFrame) {
-			if ($("#divScrollablePanelFrame").length <= 0) {return;}
-		} else {
-			if ($("#divScrollablePanel").length <= 0) {return;}
-		}
 
-		if (isPopup) {
 			mainDivId = "divPopupWindowHolder";
 		} else if (isTabFrame) {
+			if ($("#divScrollablePanelFrame").length <= 0) {return;}
+
 			mainDivId = "divFrameWindowHolder";
 		} else {
+			if ($("#divScrollablePanel").length <= 0) {return;}
+
 			mainDivId = "divBodyCenter";
 			heightHeader = $("#divHeaderHolder").outerHeight() || 0;
 			heightFooter = $("#divFooterHolder").outerHeight() || 0;
@@ -1732,7 +1730,8 @@ var nony = {
 				$("#divScrollablePanelFrame").height(fixedScrollablePanelHeight);
 			} else {
 				heightWindow = $(parent.document).find(".frameContainer").height();
-				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 10;
+				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 14;
+//				hFixByTheme = ($.nony.isInIgnoreCase(jsconfig.get("themeId"), ["theme000", "theme008"])) ? 0 : 6;
 				$("#divScrollablePanelFrame").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection + hFixByTheme))+"px");
 			}
 		} else {
@@ -1740,6 +1739,7 @@ var nony = {
 				$("#divScrollablePanel").height(fixedScrollablePanelHeight);
 			} else {
 				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 10;
+
 				$("#divScrollablePanel").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection + hFixByTheme))+"px");
 			}
 		}

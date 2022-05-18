@@ -358,7 +358,7 @@ $(function() {
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="#THIS_MENU_ID#.grid.writerName"/></th>
 				<th class="thGrid sortable:date"><mc:msg key="#THIS_MENU_ID#.grid.date"/></th>
 				<th class="thGrid sortable:numeric"><mc:msg key="#THIS_MENU_ID#.grid.hitCount"/></th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
+				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

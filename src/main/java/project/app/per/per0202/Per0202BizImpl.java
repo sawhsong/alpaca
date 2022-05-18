@@ -252,7 +252,7 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 		try {
 			documentProfileDao.setDataSourceName(dataSource);
 
-			profileHtmlString = documentProfileDao.getProfileHtmlStringForSelectbox("id:documentProfile;name:documentProfile;class:bootstrapSelect hor;data-width:400px;data-size:25");
+			profileHtmlString = documentProfileDao.getProfileHtmlStringForSelectbox("id:documentProfile;name:documentProfile;class:bootstrapSelect hor;data-width:400px;data-size:20");
 
 			paramEntity.setObject("profileHtmlString", profileHtmlString);
 			paramEntity.setSuccess(true);

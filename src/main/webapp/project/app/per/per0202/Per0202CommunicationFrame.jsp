@@ -70,21 +70,21 @@ var personId = "<%=personId%>";
 <div id="divDataArea" class="areaContainerFrame">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
+			<col width="4%"/>
 			<col width="16%"/>
 			<col width="16%"/>
 			<col width="8%"/>
 			<col width="*"/>
 			<col width="18%"/>
-			<col width="4%"/>
 		</colgroup>
 		<thead>
 			<tr>
+				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 				<th class="thGrid sortable:alphanumeric">Contact Type</th>
 				<th class="thGrid sortable:alphanumeric">Activity Type</th>
 				<th class="thGrid">Contact Date</th>
 				<th class="thGrid">Comments</th>
 				<th class="thGrid">Entity Employee</th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

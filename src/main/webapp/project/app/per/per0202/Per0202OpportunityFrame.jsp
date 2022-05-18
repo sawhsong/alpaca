@@ -67,6 +67,7 @@ var personId = "<%=personId%>";
 <div id="divDataArea" class="areaContainerFrame">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
+			<col width="3%"/>
 			<col width="7%"/>
 			<col width="6%"/>
 			<col width="10%"/>
@@ -74,10 +75,10 @@ var personId = "<%=personId%>";
 			<col width="22%"/>
 			<col width="14%"/>
 			<col width="14%"/>
-			<col width="3%"/>
 		</colgroup>
 		<thead>
 			<tr>
+				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 				<th class="thGrid">Opportunity Id</th>
 				<th class="thGrid">Creation Date</th>
 				<th class="thGrid">Status</th>
@@ -85,7 +86,6 @@ var personId = "<%=personId%>";
 				<th class="thGrid">End User Organisation</th>
 				<th class="thGrid">Customer Relationship Manager</th>
 				<th class="thGrid">Customer Support Manager</th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

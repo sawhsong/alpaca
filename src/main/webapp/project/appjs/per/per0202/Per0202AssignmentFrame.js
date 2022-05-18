@@ -2,6 +2,8 @@
  * Framework Generated Javascript Source
  * - Per0202AssignmentFrame.js
  *************************************************************************************************/
+jsconfig.put("scrollablePanelHeightAdjust", -10);
+
 var gridAction = [{
 	name:"Edit",
 	img:"fa-edit",
@@ -696,7 +698,7 @@ $(function() {
 
 		$("#tblDeliverableRate").freezeHeader({
 			attachTo:$("#divGridHolderDeliverableRate"),
-			attachToHeight:200,
+			attachToHeight:220,
 			scrollWrapper:$("#divFrameDataAreaWrapper"),
 			isPageable:false
 		});

@@ -391,7 +391,7 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 							</colgroup>
 							<thead>
 								<tr>
-									<th class="thGrid">Action</th>
+									<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 									<th class="thGrid">Pay Rate</th>
 									<th class="thGrid">Period</th>
 									<th class="thGrid">Units</th>
@@ -584,7 +584,7 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 									</colgroup>
 									<thead>
 										<tr>
-											<th class="thGrid">Action</th>
+											<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 											<th class="thGrid">Element</th>
 											<th class="thGrid">Alternate Name</th>
 											<th class="thGrid">Description</th>

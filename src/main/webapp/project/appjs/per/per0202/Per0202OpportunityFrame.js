@@ -48,20 +48,19 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
+				var iconAction = new UiIcon();
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg")
+				.addAttribute("opportunityId:"+ds.getValue(i, "OPPORTUNITY_ID")).addAttribute("status:"+ds.getValue(i, "STATUS"))
+				.setScript("doAction(this)");
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "OPPORTUNITY_ID")).setScript("getDetail('"+ds.getValue(i, "OPPORTUNITY_ID")+"', '"+ds.getValue(i, "STATUS")+"')")));
-//				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "OPPORTUNITY_ID")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "CREATION_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "STATUS")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "BILLING_ORG_NAME"), 56)));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "END_USER_ORG_NAME"), 56)));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "CRM_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "CSM_NAME")));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg")
-				.addAttribute("opportunityId:"+ds.getValue(i, "OPPORTUNITY_ID")).addAttribute("status:"+ds.getValue(i, "STATUS"))
-				.setScript("doAction(this)");
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
 			}

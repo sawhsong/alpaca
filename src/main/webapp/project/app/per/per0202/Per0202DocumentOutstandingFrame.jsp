@@ -74,18 +74,19 @@ var personId = "<%=personId%>";
 <div id="divDataArea" class="areaContainerFrame">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="16%"></col>
-			<col width="16%"></col>
-			<col width="5%"></col>
-			<col width="11%"></col>
-			<col width="11%"></col>
-			<col width="16%"></col>
-			<col width="5%"></col>
-			<col width="*"></col>
 			<col width="4%"></col>
+			<col width="*"></col>
+			<col width="16%"></col>
+			<col width="5%"></col>
+			<col width="11%"></col>
+			<col width="11%"></col>
+			<col width="16%"></col>
+			<col width="5%"></col>
+			<col width="11%"></col>
 		</colgroup>
 		<thead>
 			<tr>
+				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 				<th class="thGrid">Document Name</th>
 				<th class="thGrid">Detail</th>
 				<th class="thGrid">Due Date</th>
@@ -94,7 +95,6 @@ var personId = "<%=personId%>";
 				<th class="thGrid">Task Flow</th>
 				<th class="thGrid">Followup</th>
 				<th class="thGrid">Document Status</th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

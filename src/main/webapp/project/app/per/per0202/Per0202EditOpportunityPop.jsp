@@ -366,7 +366,7 @@ var opportunityId = "<%=dsRequest.getValue("opportunityId")%>";
 						</div>
 					</div>
 					<div class="verGap2"></div>
-					<div id="divGridHolderDocuments" style="height:304px;overflow:auto;">
+					<div id="divGridHolderDocuments" style="overflow:auto;">
 						<table id="tblDocuments" class="tblGrid sort autosort">
 							<colgroup>
 								<col width="6%"></col>

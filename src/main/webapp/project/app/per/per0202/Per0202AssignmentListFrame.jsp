@@ -68,13 +68,14 @@ var personId = "<%=personId%>";
 	<div id="divGridWrapper">
 		<table id="tblGrid" class="tblGrid sort autosort" style="width:3000px">
 			<colgroup>
+				<col width="2%"/>
 				<col width="3%"/>
 				<col width="10%"/>
 				<col width="12%"/>
 				<col width="3%"/>
 				<col width="4%"/>
-				<col width="5%"/>
-				<col width="5%"/>
+				<col width="4%"/>
+				<col width="4%"/>
 				<col width="*"/>
 				<col width="14%"/>
 				<col width="3%"/>
@@ -83,10 +84,10 @@ var personId = "<%=personId%>";
 				<col width="4%"/>
 				<col width="7%"/>
 				<col width="8%"/>
-				<col width="3%"/>
 			</colgroup>
 			<thead>
 				<tr>
+					<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 					<th class="thGrid sortable:alphanumeric">Asg Id</th>
 					<th class="thGrid sortable:alphanumeric">Asg Number</th>
 					<th class="thGrid sortable:alphanumeric">Person Name</th>
@@ -102,7 +103,6 @@ var personId = "<%=personId%>";
 					<th class="thGrid">Last Paid</th>
 					<th class="thGrid">Working State</th>
 					<th class="thGrid">Payment Method</th>
-					<th class="thGrid"><mc:msg key="page.com.action"/></th>
 				</tr>
 			</thead>
 			<tbody id="tblGridBody">

@@ -2,6 +2,7 @@
  * Framework Generated Javascript Source
  * - Per0202GeneralFrame.js
  *************************************************************************************************/
+jsconfig.put("scrollablePanelHeightAdjust", -10);
 $(function() {
 	/*!
 	 * event
@@ -196,16 +197,16 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
+				var iconAction = new UiIcon();
+				iconAction.setId("icnActionWorkingRightsStatus").setName("icnActionWorkingRightsStatus").addClassName("fa-ellipsis-h fa-lg").addAttribute("workingRightsStatusId:"+ds.getValue(i, "WORKING_RIGHTS_STATUS_ID")).setScript("doActionWorkingRightsStatus(this)");
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "IS_ACTIVE")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "VISA_STATUS_MEANING")), 20));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(commonJs.nvl(ds.getValue(i, "VISA_TYPE_MEANING"), ds.getValue(i, "PR_TYPE_MEANING")), 20)));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "DATE_ISSUED")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "EXPIRY_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "ADDITIONAL_NOTES"), 40)));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnActionWorkingRightsStatus").setName("icnActionWorkingRightsStatus").addClassName("fa-ellipsis-h fa-lg").addAttribute("workingRightsStatusId:"+ds.getValue(i, "WORKING_RIGHTS_STATUS_ID")).setScript("doActionWorkingRightsStatus(this)");
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
 			}
@@ -217,12 +218,12 @@ $(function() {
 		}
 
 		$("#tbodyWorkingRightsStatus").append($(html));
-//		$("#tblWorkingRightsStatus").freezeHeader({
-//			attachTo:$("#divGridHolderWorkingRightsStatus"),
-//			attachToHeight:198,
-//			scrollWrapper:$("#divFrameDataAreaWrapper"),
-//			isPageable:false
-//		});
+		$("#tblWorkingRightsStatus").freezeHeader({
+			attachTo:$("#divGridHolderWorkingRightsStatus"),
+			attachToHeight:198,
+			scrollWrapper:$("#divFrameDataAreaWrapper"),
+			isPageable:false
+		});
 
 		$("[name=icnActionWorkingRightsStatus]").each(function(index) {
 			$(this).contextMenu(ctxMenu.commonSimpleAction);
@@ -254,16 +255,16 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
+				var iconAction = new UiIcon();
+				iconAction.setId("icnActionScheduledPayrollNoti").setName("icnActionScheduledPayrollNoti").addClassName("fa-ellipsis-h fa-lg").addAttribute("notificationId:"+ds.getValue(i, "NOTIFICATION_ID")).setScript("doActionScheduledPayrollNoti(this)");
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "IS_ACTIVE")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "NOTIFICATION_TYPE_MEANING")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "NOTIFICATION_PERIOD_MEANING")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "START_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "END_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "NOTIFICATION_TEXT"), 70)));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnActionScheduledPayrollNoti").setName("icnActionScheduledPayrollNoti").addClassName("fa-ellipsis-h fa-lg").addAttribute("notificationId:"+ds.getValue(i, "NOTIFICATION_ID")).setScript("doActionScheduledPayrollNoti(this)");
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
 			}
@@ -275,12 +276,12 @@ $(function() {
 		}
 
 		$("#tbodyScheduledPayrollNoti").append($(html));
-//		$("#tblScheduledPayrollNoti").freezeHeader({
-//			attachTo:$("#divGridHolderScheduledPayrollNoti"),
-//			attachToHeight:198,
-//			scrollWrapper:$("#divFrameDataAreaWrapper"),
-//			isPageable:false
-//		});
+		$("#tblScheduledPayrollNoti").freezeHeader({
+			attachTo:$("#divGridHolderScheduledPayrollNoti"),
+			attachToHeight:198,
+			scrollWrapper:$("#divFrameDataAreaWrapper"),
+			isPageable:false
+		});
 
 		$("[name=icnActionScheduledPayrollNoti]").each(function(index) {
 			$(this).contextMenu(ctxMenu.commonSimpleAction);

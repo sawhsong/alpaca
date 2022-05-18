@@ -69,23 +69,23 @@ var personId = "<%=personId%>";
 <div id="divDataArea" class="areaContainerFrame">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
+			<col width="4%"></col>
 			<col width="3%"></col>
 			<col width="22%"></col>
 			<col width="7%"></col>
 			<col width="22%"></col>
 			<col width="*"></col>
 			<col width="7%"></col>
-			<col width="4%"></col>
 		</colgroup>
 		<thead>
 			<tr>
+				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
 				<th class="thGrid">Service Provider</th>
 				<th class="thGrid">Referral Date</th>
 				<th class="thGrid">Entity Employee</th>
 				<th class="thGrid">Comments</th>
 				<th class="thGrid">Created Date</th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

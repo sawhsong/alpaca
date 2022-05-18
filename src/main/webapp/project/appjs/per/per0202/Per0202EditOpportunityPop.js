@@ -90,6 +90,12 @@ $(function() {
 		}
 
 		$("#tbodyDocuments").append($(html));
+		$("#tblDocuments").freezeHeader({
+			attachTo:$("#divGridHolderDocuments"),
+			attachToHeight:280,
+			scrollWrapper:$("#divFrameDataAreaWrapper"),
+			isPageable:false
+		});
 
 		commonJs.hideProcMessageOnElement("divDocuments");
 	};

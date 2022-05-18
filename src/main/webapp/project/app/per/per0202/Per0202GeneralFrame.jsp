@@ -194,23 +194,23 @@ var personId = "<%=personId%>";
 					<div id="divGridHolderWorkingRightsStatus" style="overflow:auto">
 						<table id="tblWorkingRightsStatus" class="tblGrid sort autosort">
 							<colgroup>
+								<col width="5%"></col>
 								<col width="6%"></col>
 								<col width="22%"></col>
 								<col width="16%"></col>
 								<col width="10%"></col>
 								<col width="10%"></col>
 								<col width="*"></col>
-								<col width="6%"></col>
 							</colgroup>
 							<thead>
 								<tr>
+									<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 									<th class="thGrid">Active</th>
 									<th class="thGrid">Working Rights</th>
 									<th class="thGrid">Visa Status</th>
 									<th class="thGrid">Date Issued</th>
 									<th class="thGrid">Expiry Date</th>
 									<th class="thGrid">Additional Note</th>
-									<th class="thGrid"><mc:msg key="page.com.action"/></th>
 								</tr>
 							</thead>
 							<tbody id="tbodyWorkingRightsStatus">
@@ -237,23 +237,23 @@ var personId = "<%=personId%>";
 					<div id="divGridHolderScheduledPayrollNoti" style="overflow:auto">
 						<table id="tblScheduledPayrollNoti" class="tblGrid sort autosort">
 							<colgroup>
+								<col width="5%"></col>
 								<col width="6%"></col>
 								<col width="12%"></col>
 								<col width="12%"></col>
 								<col width="10%"></col>
 								<col width="10%"></col>
 								<col width="*"></col>
-								<col width="6%"></col>
 							</colgroup>
 							<thead>
 								<tr>
+									<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 									<th class="thGrid">Active</th>
 									<th class="thGrid">Type</th>
 									<th class="thGrid">Period</th>
 									<th class="thGrid">Start</th>
 									<th class="thGrid">End</th>
 									<th class="thGrid">Text</th>
-									<th class="thGrid"><mc:msg key="page.com.action"/></th>
 								</tr>
 							</thead>
 							<tbody id="tbodyScheduledPayrollNoti">

@@ -101,9 +101,9 @@
 			} else if (isTabFrame) {
 				$scrollablePanel = $("#divScrollablePanelFrame");
 
-				if ($.nony.browser.Chrome) {heightAdjustment = 0;}
-				else if ($.nony.browser.FireFox) {heightAdjustment = 0;}
-				else {heightAdjustment = 0;}
+				if ($.nony.browser.Chrome) {heightAdjustment = 4;}
+				else if ($.nony.browser.FireFox) {heightAdjustment = 4;}
+				else {heightAdjustment = 4;}
 			} else {
 				$scrollablePanel = $("#divScrollablePanel");
 

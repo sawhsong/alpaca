@@ -4,7 +4,7 @@
  *************************************************************************************************/
 var searchResultDataCount = 0;
 jsconfig.put("useJqTooltip", true);
-jsconfig.put("scrollablePanelHeightAdjust", 40);
+jsconfig.put("scrollablePanelHeightAdjust", 44);
 var gridAction = [{
 	name:"Manage Document",
 	img:"fa-cogs",
@@ -66,18 +66,18 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "DOCUMENT_NAME"), 38)).setAttribute("title:"+ds.getValue(i, "DOCUMENT_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "DOCUMENT_DESCRIPTION"), 36)).setAttribute("title:"+ds.getValue(i, "DOCUMENT_DESCRIPTION")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "DUE_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ASSIGNED_TO_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "OPP_ASG_ID")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "TASK_FLOW"), 38)).setAttribute("title:"+ds.getValue(i, "TASK_FLOW")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "FOLLOW_UP_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "DOCUMENT_STATUS_MEANING"), 41)).setAttribute("title:"+ds.getValue(i, "DOCUMENT_STATUS_MEANING")));
-
 				var iconAction = new UiIcon();
 				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("documentId:"+ds.getValue(i, "DOCUMENT_ID")).setScript("doAction(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DOCUMENT_NAME")).setAttribute("title:"+ds.getValue(i, "DOCUMENT_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DOCUMENT_DESCRIPTION")).setAttribute("title:"+ds.getValue(i, "DOCUMENT_DESCRIPTION")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "DUE_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ASSIGNED_TO_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "OPP_ASG_ID")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "TASK_FLOW")).setAttribute("title:"+ds.getValue(i, "TASK_FLOW")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "FOLLOW_UP_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "DOCUMENT_STATUS_MEANING")).setAttribute("title:"+ds.getValue(i, "DOCUMENT_STATUS_MEANING")));
 
 				html += gridTr.toHtmlString();
 			}

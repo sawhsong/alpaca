@@ -3,7 +3,7 @@
  * - Per0202NextActionsFrame.js
  *************************************************************************************************/
 var searchResultDataCount = 0;
-jsconfig.put("scrollablePanelHeightAdjust", 10);
+jsconfig.put("scrollablePanelHeightAdjust", 20);
 
 $(function() {
 	/*!
@@ -57,18 +57,18 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
+				var iconAction = new UiIcon();
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("nextActionId:"+ds.getValue(i, "NEXT_ACTION_ID")).setScript("doAction(this)");
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ASSIGNED_PERSON_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ACTION_TYPE_MEANING")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "FOR_PERSON_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "FOR_ORGANISATION_NAME"), 30)));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(commonJs.abbreviate(ds.getValue(i, "DESCRIPTION"), 60)).setScript("getDetail('"+ds.getValue(i, "NEXT_ACTION_ID")+"')")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(commonJs.abbreviate(ds.getValue(i, "DESCRIPTION"), 70)).setScript("getDetail('"+ds.getValue(i, "NEXT_ACTION_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ACTION_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ACTION_TIME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ACTION_STATUS_MEANING")));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("nextActionId:"+ds.getValue(i, "NEXT_ACTION_ID")).setScript("doAction(this)");
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
 			}

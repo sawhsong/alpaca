@@ -2,7 +2,7 @@
  * Framework Generated Javascript Source
  * - Per0202CommunicationFrame.js
  *************************************************************************************************/
-jsconfig.put("scrollablePanelHeightAdjust", -1);
+jsconfig.put("scrollablePanelHeightAdjust", 10);
 var searchResultDataCount = 0;
 
 $(function() {
@@ -53,15 +53,15 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
+				var iconAction = new UiIcon();
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("contactId:"+ds.getValue(i, "CONTACT_ID")).setScript("doAction(this)");
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "CONTACT_TYPE_MEANING")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ACTIVITY_TYPE_MEANING")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "CONTACT_DATE_TIME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(commonJs.abbreviate(ds.getValue(i, "COMMENTS"), 90)).setScript("getDetail('"+ds.getValue(i, "CONTACT_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ENTITY_EMPLOYEE_NAME")));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("contactId:"+ds.getValue(i, "CONTACT_ID")).setScript("doAction(this)");
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
 			}

@@ -115,7 +115,7 @@
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.notice.gridHeader.writer"/></th>
 				<th class="thGrid sortable:date"><mc:msg key="fwk.notice.gridHeader.createdDate"/></th>
 				<th class="thGrid sortable:numeric"><mc:msg key="fwk.notice.gridHeader.visitCount"/></th>
-				<th class="thGrid"><mc:msg key="page.com.action"/></th>
+				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

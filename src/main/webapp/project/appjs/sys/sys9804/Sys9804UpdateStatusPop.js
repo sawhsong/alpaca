@@ -2,7 +2,7 @@
  * Framework Generated Javascript Source
  * - Sys9804UpdateStatusPop.js
  *************************************************************************************************/
-jsconfig.put("scrollablePanelHeightAdjust", 20);
+jsconfig.put("scrollablePanelHeightAdjust", 23);
 
 $(function() {
 	/*!
