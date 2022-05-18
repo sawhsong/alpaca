@@ -33,8 +33,8 @@
 				}
 			}
 
-			var $scrollablePanel, attachToHeight = 0, isScrollbar = false, heightAdjustment = 0,
-				isPopup = $.nony.isPopup(), isTabFrame = $.nony.isTabFrame(), tableId = $(this).attr("id");
+			var $scrollablePanel, attachToHeight = 0, isScrollbar = false, heightAdjustment = 0, hFixByTheme = 0;
+			var isPopup = $.nony.isPopup(), isTabFrame = $.nony.isTabFrame(), tableId = $(this).attr("id");
 			var systemGeneratedTableForFixedHeaderId = jsconfig.get("systemGeneratedTableForFixedHeaderId"+tableId) || "systemGeneratedTableForFixedHeader"+tableId;
 			var divSystemGeneratedFixedTableHeaderWrapperId = jsconfig.get("divSystemGeneratedFixedTableHeaderWrapperId")+tableId;
 
@@ -94,15 +94,23 @@
 
 			if (isPopup) {
 				$scrollablePanel = $("#divScrollablePanelPopup");
+
+				if ($.nony.browser.Chrome) {heightAdjustment = 4;}
+				else if ($.nony.browser.FireFox) {heightAdjustment = 4;}
+				else {heightAdjustment = 4;}
 			} else if (isTabFrame) {
 				$scrollablePanel = $("#divScrollablePanelFrame");
+
+				if ($.nony.browser.Chrome) {heightAdjustment = 0;}
+				else if ($.nony.browser.FireFox) {heightAdjustment = 0;}
+				else {heightAdjustment = 0;}
 			} else {
 				$scrollablePanel = $("#divScrollablePanel");
-			}
 
-			if ($.nony.browser.Chrome) {heightAdjustment = 6;}
-			else if ($.nony.browser.FireFox) {heightAdjustment = 6;}
-			else {heightAdjustment = 6;}
+				if ($.nony.browser.Chrome) {heightAdjustment = 6;}
+				else if ($.nony.browser.FireFox) {heightAdjustment = 6;}
+				else {heightAdjustment = 6;}
+			}
 
 			/*!
 			 * Return if the data table is smaller than attachTo height
@@ -115,11 +123,10 @@
 //				$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment));
 			}
 
-			var hFix = ($.nony.isInIgnoreCase(jsconfig.get("themeId"), ["theme000", "theme008"])) ? 0 : 1;
 			if (!$.nony.isEmpty(options.attachToHeight) || options.attachToHeight > 0) {
 				$(options.attachTo).height(options.attachToHeight);
 			} else {
-				$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment) - hFix);
+				$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment) - hFixByTheme);
 			}
 //			$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment));
 

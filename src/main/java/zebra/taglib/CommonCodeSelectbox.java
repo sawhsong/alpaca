@@ -88,8 +88,8 @@ public class CommonCodeSelectbox extends TaglibSupport {
 				if (CommonUtil.equals(ds.getValue(i, "COMMON_CODE"), selectedValue)) {selected = " selected";}
 				if (CommonUtil.containsIgnoreCase(disabledValue, ds.getValue(i, "COMMON_CODE"))) {disabledOption = " disabled";}
 
-				html.append("<option value=\""+ds.getValue(i, "COMMON_CODE")+"\""+selected+disabledOption+">"+ds.getValue(i, "DESCRIPTION_"+defaultLangCode.toUpperCase())+"</option>\n");
-//				html.append("<option value=\""+ds.getValue(i, "COMMON_CODE")+"\""+selected+disabledOption+">"+ds.getValue(i, "CODE_MEANING")+"</option>\n");
+//				html.append("<option value=\""+ds.getValue(i, "COMMON_CODE")+"\""+selected+disabledOption+">"+ds.getValue(i, "DESCRIPTION_"+defaultLangCode.toUpperCase())+"</option>\n");
+				html.append("<option value=\""+ds.getValue(i, "COMMON_CODE")+"\""+selected+disabledOption+">"+ds.getValue(i, "CODE_MEANING")+"</option>\n");
 			}
 
 			html.append("</select>\n");

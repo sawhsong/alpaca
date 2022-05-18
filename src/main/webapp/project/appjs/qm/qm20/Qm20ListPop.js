@@ -3,7 +3,7 @@
  * - Qm20ListPop.js
  *************************************************************************************************/
 var dateFormat = jsconfig.get("dateFormatJs");
-jsconfig.put("scrollablePanelHeightAdjust", -15);
+jsconfig.put("scrollablePanelHeightAdjust", -14);
 
 $(function() {
 	/*!
@@ -134,13 +134,17 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
+				var iconAction = new UiIcon();
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("keyValues:"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")).setScript("doAction(this)");
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiRadio().setName("rdoForSave").setValue(ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID"))));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_ID")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "PERSON_NUMBER")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "SURNAME")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "FIRST_NAME")).setScript("doSave('"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "MOBILE")));
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "USER_NAME")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "USER_NAME")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "USER_EMAIL")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYSLIP_EMAIL")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(ds.getValue(i, "MEMBER_SINCE"), dateFormat)));
@@ -151,10 +155,6 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(ds.getValue(i, "CURR_BILLING_ORG_NAME"), 50)));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ASG_COUNT")));
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(ds.getValue(i, "PAYMENT_COUNT")));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("keyValues:"+ds.getValue(i, "PERSON_ID")+"_"+ds.getValue(i, "USER_ID")).setScript("doAction(this)");
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
 			}

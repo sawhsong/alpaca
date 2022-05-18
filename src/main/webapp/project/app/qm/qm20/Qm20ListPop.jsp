@@ -104,12 +104,13 @@
 	<div id="divGridWrapper">
 		<table id="tblGrid" class="tblGrid sort autosort" style="width:3400px">
 			<colgroup>
-				<col width="1%"/>
+				<col width="2%"/>
+				<col width="2%"/>
 				<col width="3%"/>
 				<col width="3%"/>
 				<col width="7%"/>
 				<col width="7%"/>
-				<col width="4%"/>
+				<col width="5%"/>
 				<col width="4%"/>
 				<col width="9%"/>
 				<col width="9%"/>
@@ -119,12 +120,12 @@
 				<col width="*"/>
 				<col width="6%"/>
 				<col width="11%"/>
+				<col width="3%"/>
 				<col width="4%"/>
-				<col width="4%"/>
-				<col width="2%"/>
 			</colgroup>
 			<thead>
 				<tr>
+					<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 					<th class="thGrid"><ui:icon id="icnRdo" className="fa-dot-circle-o fa-lg" status="display"/></th>
 					<th class="thGrid sortable:numeric"><mc:msg key="qm.grid.id"/></th>
 					<th class="thGrid sortable:numeric"><mc:msg key="qm.grid.number"/></th>
@@ -142,7 +143,6 @@
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.currBillingOrg"/></th>
 					<th class="thGrid"><mc:msg key="qm.grid.asgCount"/></th>
 					<th class="thGrid"><mc:msg key="qm.grid.paymentCount"/></th>
-					<th class="thGrid"><mc:msg key="page.com.action"/></th>
 				</tr>
 			</thead>
 			<tbody id="tblGridBody">

@@ -105,9 +105,10 @@
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
 	<div id="divGridWrapper">
-		<table id="tblGrid" class="tblGrid sort autosort" style="width:3700px">
+		<table id="tblGrid" class="tblGrid sort autosort" style="width:4000px">
 			<colgroup>
-				<col width="1%"/>
+				<col width="2%"/>
+				<col width="2%"/>
 				<col width="2%"/>
 				<col width="*"/>
 				<col width="6%"/>
@@ -117,19 +118,19 @@
 				<col width="5%"/>
 				<col width="4%"/>
 				<col width="10%"/>
-				<col width="4%"/>
+				<col width="5%"/>
 				<col width="6%"/>
-				<col width="6%"/>
+				<col width="7%"/>
 				<col width="6%"/>
 				<col width="6%"/>
 				<col width="6%"/>
 				<col width="5%"/>
 				<col width="5%"/>
 				<col width="6%"/>
-				<col width="2%"/>
 			</colgroup>
 			<thead>
 				<tr>
+					<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 					<th class="thGrid"><ui:icon id="icnRdo" className="fa-dot-circle-o fa-lg" status="display"/></th>
 					<th class="thGrid sortable:numeric"><mc:msg key="qm.grid.id"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="qm.grid.orgName"/></th>
@@ -149,7 +150,6 @@
 					<th class="thGrid"><mc:msg key="qm.grid.orgCategory"/></th>
 					<th class="thGrid"><mc:msg key="qm.grid.orgStream"/></th>
 					<th class="thGrid"><mc:msg key="qm.grid.orgInvoiceType"/></th>
-					<th class="thGrid"><mc:msg key="page.com.action"/></th>
 				</tr>
 			</thead>
 			<tbody id="tblGridBody">

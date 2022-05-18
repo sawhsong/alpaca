@@ -31,7 +31,8 @@
 				}
 			}
 
-			var $scrollablePanel, attachToHeight = 0, heightAdjustment = 0, isPopup = $.nony.isPopup(), isTabFrame = $.nony.isTabFrame();
+			var $scrollablePanel, attachToHeight = 0, heightAdjustment = 0, hFixByTheme = 0;
+			var isPopup = $.nony.isPopup(), isTabFrame = $.nony.isTabFrame();
 
 			$(options.attachTo).css("overflow", "auto");
 
@@ -51,21 +52,28 @@
 
 			if (isPopup) {
 				$scrollablePanel = $("#divScrollablePanelPopup");
+
+				if ($.nony.browser.Chrome) {heightAdjustment = 0;}
+				else if ($.nony.browser.FireFox) {heightAdjustment = 0;}
+				else {heightAdjustment = 2;}
 			} else if (isTabFrame) {
 				$scrollablePanel = $("#divScrollablePanelFrame");
+
+				if ($.nony.browser.Chrome) {heightAdjustment = 0;}
+				else if ($.nony.browser.FireFox) {heightAdjustment = 0;}
+				else {heightAdjustment = 2;}
 			} else {
 				$scrollablePanel = $("#divScrollablePanel");
+
+				if ($.nony.browser.Chrome) {heightAdjustment = 4;}
+				else if ($.nony.browser.FireFox) {heightAdjustment = 4;}
+				else {heightAdjustment = 4;}
 			}
 
-			if ($.nony.browser.Chrome) {heightAdjustment = 4;}
-			else if ($.nony.browser.FireFox) {heightAdjustment = 4;}
-			else {heightAdjustment = 4;}
-
-			var hFix = ($.nony.isInIgnoreCase(jsconfig.get("themeId"), ["theme000", "theme008"])) ? 0 : 1;
 			if (!$.nony.isEmpty(options.attachToHeight) || options.attachToHeight > 0) {
 				$(options.attachTo).height(options.attachToHeight);
 			} else {
-				$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment) - hFix);
+				$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment) - hFixByTheme);
 			}
 
 			if ($(this).height() <= $(options.attachTo).height()) {

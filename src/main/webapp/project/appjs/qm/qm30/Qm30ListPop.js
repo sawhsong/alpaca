@@ -3,7 +3,6 @@
  * - Qm30ListPop.js
  *************************************************************************************************/
 var dateFormat = jsconfig.get("dateFormatJs");
-jsconfig.put("scrollablePanelHeightAdjust", 13);
 
 $(function() {
 	/*!
@@ -159,6 +158,10 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
+				var iconAction = new UiIcon();
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("organisationId:"+ds.getValue(i, "ORGANISATION_ID")).setScript("doAction(this)");
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiRadio().setName("rdoForSave").setValue(ds.getValue(i, "ORGANISATION_ID"))));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "ORGANISATION_ID")).setScript("doSave('"+ds.getValue(i, "ORGANISATION_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "ORGANISATION_NAME")).setScript("doSave('"+ds.getValue(i, "ORGANISATION_ID")+"')")));
@@ -178,10 +181,6 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "CUSTOMER_CATEGORY_MEANING")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "CUSTOMER_STREAM_MEANING")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "TAX_INVOICE_ACCEPTANCE_MEANING")));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("organisationId:"+ds.getValue(i, "ORGANISATION_ID")).setScript("doAction(this)");
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
 			}

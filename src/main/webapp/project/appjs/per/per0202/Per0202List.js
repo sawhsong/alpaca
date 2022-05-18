@@ -5,7 +5,7 @@
 jsconfig.put("useJqTooltip", false);
 var popupLookup = null;
 var searchResultDataCount = 0;
-jsconfig.put("scrollablePanelHeightAdjust", -30);
+jsconfig.put("scrollablePanelHeightAdjust", -20);
 
 $(function() {
 	/*!

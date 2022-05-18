@@ -3,7 +3,6 @@
  * - Qm40ListPop.js
  *************************************************************************************************/
 var dateFormat = jsconfig.get("dateFormatJs");
-jsconfig.put("scrollablePanelHeightAdjust", 0);
 
 $(function() {
 	/*!
@@ -115,6 +114,10 @@ $(function() {
 			for (var i=0; i<ds.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
 
+				var iconAction = new UiIcon();
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("assignmentId:"+ds.getValue(i, "ASSIGNMENT_ID")).setScript("doAction(this)");
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiRadio().setName("rdoForSave").setValue(ds.getValue(i, "ASSIGNMENT_ID"))));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(new UiAnchor().setText(ds.getValue(i, "ASSIGNMENT_NUMBER")).setScript("doSave('"+ds.getValue(i, "ASSIGNMENT_ID")+"')")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PERSON_NAME")));
@@ -130,10 +133,6 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "ASG_ACTIVE")));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "PREFERRED")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "PAYMENT_METHOD_NAME")));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("assignmentId:"+ds.getValue(i, "ASSIGNMENT_ID")).setScript("doAction(this)");
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				html += gridTr.toHtmlString();
 			}

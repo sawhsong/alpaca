@@ -87,9 +87,10 @@
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
 	<div id="divGridWrapper">
-		<table id="tblGrid" class="tblGrid sort autosort" style="width:2600px;">
+		<table id="tblGrid" class="tblGrid sort autosort" style="width:2900px;">
 			<colgroup>
-				<col width="1%"/>
+				<col width="2%"/>
+				<col width="2%"/>
 				<col width="9%"/>
 				<col width="12%"/>
 				<col width="3%"/>
@@ -104,10 +105,10 @@
 				<col width="3%"/>
 				<col width="4%"/>
 				<col width="8%"/>
-				<col width="2%"/>
 			</colgroup>
 			<thead>
 				<tr>
+					<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 					<th class="thGrid"><ui:icon id="icnRdo" className="fa-dot-circle-o fa-lg" status="display"/></th>
 					<th class="thGrid sortable:alphanumeric">Assignment Number</th>
 					<th class="thGrid sortable:alphanumeric">Person Name</th>
@@ -123,7 +124,6 @@
 					<th class="thGrid">Is Active</th>
 					<th class="thGrid">Is Preferred</th>
 					<th class="thGrid">Payment Method</th>
-					<th class="thGrid"><mc:msg key="page.com.action"/></th>
 				</tr>
 			</thead>
 			<tbody id="tblGridBody">

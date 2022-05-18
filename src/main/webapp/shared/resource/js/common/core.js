@@ -1672,9 +1672,8 @@ var nony = {
 		var bodyLayout = jsconfig.get("defaultOuterLayoutOption");
 		var heightWindow = $(window).innerHeight();
 		var mainDivId;
-		var heightSum = 0, heightHeader = 0, heightFooter = 0, heightCorrection = 0;
-//commonJs.printLog({message:"heightWindow in core.js : "+heightWindow});
-//commonJs.printLog({message:"divFrameWindowHolder in core.js : "+$("#divFrameWindowHolder").outerHeight(true)});
+		var heightSum = 0, heightHeader = 0, heightFooter = 0, heightCorrection = 0, fixedScrollablePanelHeight = 0, hFixByTheme = 0;
+
 		if (isPopup) {
 			if ($("#divScrollablePanelPopup").length <= 0) {return;}
 		} else if (isTabFrame) {
@@ -1709,8 +1708,6 @@ var nony = {
 			}
 		});
 
-//		heightSum += ($("#divScrollablePanel").outerHeight() - $("#divScrollablePanel").height());
-
 		if (bodyLayout != null) {
 			if (bodyLayout.state.north.isClosed) {
 				heightHeader = 0;
@@ -1721,14 +1718,14 @@ var nony = {
 			}
 		}
 
-		var fixedScrollablePanelHeight = $.nony.nvl(jsconfig.get("fixedScrollablePanelHeight"), 0); // set from individual page js because of bootstrap selectbox
-		var hFix = ($.nony.isInIgnoreCase(jsconfig.get("themeId"), ["theme000", "theme008"])) ? 0 : 6;
+		fixedScrollablePanelHeight = $.nony.nvl(jsconfig.get("fixedScrollablePanelHeight"), 0); // set from individual page js because of bootstrap selectbox
+
 		if (isPopup) {
 			if (fixedScrollablePanelHeight > 0) {
 				$("#divScrollablePanelPopup").height(fixedScrollablePanelHeight);
 			} else {
 				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 14;
-				$("#divScrollablePanelPopup").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection))+"px");
+				$("#divScrollablePanelPopup").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection + hFixByTheme))+"px");
 			}
 		} else if (isTabFrame) {
 			if (fixedScrollablePanelHeight > 0) {
@@ -1736,19 +1733,17 @@ var nony = {
 			} else {
 				heightWindow = $(parent.document).find(".frameContainer").height();
 				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 10;
-				$("#divScrollablePanelFrame").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection))+"px");
-//commonJs.printLog({message:"heightWindow(core.js) : "+heightWindow});
+				$("#divScrollablePanelFrame").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection + hFixByTheme))+"px");
 			}
 		} else {
 			if (fixedScrollablePanelHeight > 0) {
 				$("#divScrollablePanel").height(fixedScrollablePanelHeight);
 			} else {
 				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 10;
-				$("#divScrollablePanel").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection) + hFix)+"px");
+				$("#divScrollablePanel").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection + hFixByTheme))+"px");
 			}
 		}
-//commonJs.printLog({message:"isTabFrame(core.js) : "+isTabFrame});
-//commonJs.printLog({message:"$(#divScrollablePanelFrame).height(core.js) : "+$("#divScrollablePanelFrame").height()});
+
 		if (!jsconfig.get("isResizeScrollablePanelFuntionRegisteredInResizeEvent")) {
 			$(window).resize(function() {
 				setTimeout(function() {
