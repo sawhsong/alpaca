@@ -136,7 +136,7 @@ $(function() {
 			header:"User Profile Detail",
 			blind:true,
 			width:720,
-			height:340
+			height:378
 		});
 	};
 

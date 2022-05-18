@@ -1727,7 +1727,7 @@ var nony = {
 			if (fixedScrollablePanelHeight > 0) {
 				$("#divScrollablePanelPopup").height(fixedScrollablePanelHeight);
 			} else {
-				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 10;
+				heightCorrection = jsconfig.get("scrollablePanelHeightAdjust") || 14;
 				$("#divScrollablePanelPopup").height((heightWindow - (heightHeader + heightFooter + heightSum + heightCorrection))+"px");
 			}
 		} else if (isTabFrame) {

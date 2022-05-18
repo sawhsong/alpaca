@@ -100,9 +100,9 @@
 				$scrollablePanel = $("#divScrollablePanel");
 			}
 
-			if ($.nony.browser.Chrome) {heightAdjustment = 5;}
-			else if ($.nony.browser.FireFox) {heightAdjustment = 5;}
-			else {heightAdjustment = 5;}
+			if ($.nony.browser.Chrome) {heightAdjustment = 6;}
+			else if ($.nony.browser.FireFox) {heightAdjustment = 6;}
+			else {heightAdjustment = 6;}
 
 			/*!
 			 * Return if the data table is smaller than attachTo height
@@ -124,7 +124,7 @@
 //			$(options.attachTo).height($scrollablePanel.height() - (pagingAreaHeight + heightAdjustment));
 
 			if ($(this).height() <= $(options.attachTo).height()) {
-				$(options.attachTo).height($(this).height() + (heightAdjustment - 5));
+				$(options.attachTo).height($(this).height() + (heightAdjustment - 2));
 			}
 
 			/*!
@@ -134,7 +134,7 @@
 			var $scrollablePanel = $.nony.isPopup() ? $("#divScrollablePanelPopup") : ($.nony.isTabFrame() ? $("#divScrollablePanelFrame") : $("#divScrollablePanel"));
 			var $header = $table.find("thead").clone(true, true);
 			var $fixedTable = $("<table id=\""+systemGeneratedTableForFixedHeaderId+"\"/>").prop("class", $table.prop("class"))
-								.css({position:"fixed", "table-layout":"fixed", display:"none", "margin-top":"10px", "z-index":1000});
+								.css({position:"fixed", "table-layout":"fixed", display:"none", "margin-top":"0px", "z-index":1000});
 
 			if ($.nony.browser.Chrome) {$fixedTable.width($table.width());}
 			else if ($.nony.browser.FireFox) {$fixedTable.width($table.width()+1);}

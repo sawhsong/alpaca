@@ -305,7 +305,7 @@ $(function() {
 			header:"User Profile Detail",
 			blind:true,
 			width:720,
-			height:372
+			height:378
 		});
 	};
 

@@ -160,7 +160,7 @@ $(function() {
 
 	openPopup = function(param) {
 		var url = "", header = "";
-		var height = 516;
+		var height = 518;
 
 		if (param.mode == "Detail") {
 			url = "/zebra/board/notice/getDetail.do";

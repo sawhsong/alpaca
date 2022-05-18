@@ -132,7 +132,7 @@ var articleId = "<%=freeBoard.getArticleId()%>";
 	<table class="tblDefault" style="width:100%;">
 		<tr>
 			<td class="tdDefault">
-				<ui:txa name="articleContents" style="height:280px;" value="<%=freeBoard.getArticleContents()%>"/>
+				<ui:txa name="articleContents" style="height:270px;" value="<%=freeBoard.getArticleContents()%>"/>
 			</td>
 		</tr>
 	</table>

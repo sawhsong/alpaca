@@ -46,7 +46,7 @@ $(function() {
 		};
 
 		if (param.mode == "Update") {
-			parent.popup.resizeTo(0, 80);
+			parent.popup.resizeTo(0, 84);
 		}
 
 		if (param.mode == "Delete") {
