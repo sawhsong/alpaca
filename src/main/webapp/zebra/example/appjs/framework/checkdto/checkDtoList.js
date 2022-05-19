@@ -38,7 +38,7 @@ $(function() {
 			data:{dataSource:$("#dataSourceToCheck").val()},
 			blind:true,
 			width:1000,
-			height:540
+			height:556
 		});
 	});
 

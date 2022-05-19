@@ -2,7 +2,7 @@
  * Framework Generated Javascript Source
  * - Sys0402List.js
  *************************************************************************************************/
-jsconfig.put("scrollablePanelHeightAdjust", 4);
+jsconfig.put("scrollablePanelHeightAdjust", 12);
 
 var popup = null;
 var searchResultDataCount = 0;

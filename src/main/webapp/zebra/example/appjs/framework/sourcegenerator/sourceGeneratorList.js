@@ -27,7 +27,7 @@ $(function() {
 			data:{},
 			blind:false,
 			width:800,
-			height:620
+			height:646
 		});
 	});
 

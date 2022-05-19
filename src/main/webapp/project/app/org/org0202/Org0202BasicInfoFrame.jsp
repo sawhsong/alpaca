@@ -253,7 +253,7 @@ var organisationId = "<%=organisationId%>";
 						</div>
 					</div>
 					<div class="verGap4"></div>
-					<div id="communicationHistory" style="padding:6px;height:260px;border:1px solid #cccccc;border-radius:3px;overflow:auto;"></div>
+					<div id="communicationHistory" style="padding:6px;height:290px;border:1px solid #cccccc;border-radius:3px;overflow:auto;"></div>
 				</div>
 			</div>
 		</div>

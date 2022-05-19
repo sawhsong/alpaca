@@ -47,7 +47,7 @@ $(function() {
 				url:menuUrl,
 				header:framework.header.garbageCollection,
 				width:640,
-				height:460,
+				height:470,
 				draggable:true,
 				modal:true,
 				blind:true
@@ -136,7 +136,7 @@ $(function() {
 			header:"User Profile Detail",
 			blind:true,
 			width:720,
-			height:378
+			height:380
 		});
 	};
 

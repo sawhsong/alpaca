@@ -119,7 +119,7 @@ $(function() {
 
 	openPopup = function(param) {
 		var url = "", header = "";
-		var height = 434;
+		var height = 436;
 
 		if (param.mode == "Detail") {
 			url = "/zebra/framework/domaindictionary/getDetail.do";
@@ -130,7 +130,7 @@ $(function() {
 		} else if (param.mode == "Edit") {
 			url = "/zebra/framework/domaindictionary/getUpdate.do";
 			header = framework.header.popHeaderEdit;
-			height = 516;
+			height = 518;
 		}
 
 		var popParam = {

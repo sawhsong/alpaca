@@ -191,7 +191,7 @@ $(function() {
 		} else if (param.mode == "UpdateUserStatus") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.status;
-			width = 330; height = 234;
+			width = 330; height = 238;
 		} else if (param.mode == "UpdateActiveStatus") {
 			url = "/sys/0406/getActionContextMenu.do";
 			header = sys.sys0406.caption.active;
