@@ -4,14 +4,18 @@ import java.io.File;
 
 import zebra.config.MemoryBean;
 import zebra.data.DataSet;
+import zebra.data.ParamEntity;
+import zebra.data.QueryAdvisor;
 import zebra.util.CommonUtil;
 import zebra.util.ConfigUtil;
 
 public abstract class ExportHelper {
+	protected final String WEB_ROOT = (String)MemoryBean.get("applicationRealPath");
 	protected final String TARGET_FILE_PATH = ConfigUtil.getProperty("path.dir.temp");
 //	protected final String TARGET_FILE_PATH = (String)MemoryBean.get("applicationRealPath")+ConfigUtil.getProperty("path.dir.temp");
 	protected final String FILE_NAME_PREFIX = CommonUtil.getSysdate("yyyyMMddHHmmss")+"_"+CommonUtil.uid()+"_"+"Export";
-	private final String SOURCE_FILE_PATH = (String)MemoryBean.get("applicationRealPath")+"/"+ConfigUtil.getProperty("path.export.sourceFile");
+	protected final String SOURCE_FILE_PATH = (String)MemoryBean.get("applicationRealPath")+"/"+ConfigUtil.getProperty("path.export.sourceFile");
+	protected final String PDF_FONT_PATH = WEB_ROOT+"/shared/resource/pdffonts";
 	protected DataSet sourceDataSet;
 	protected String fileExtention;
 	protected String fileType;
@@ -21,6 +25,9 @@ public abstract class ExportHelper {
 	protected String columnHeader[];
 	protected String fileHeader[];
 	protected int pdfWidth;
+	protected String reportType;
+	protected ParamEntity paramEntity;
+	protected QueryAdvisor queryAdvisor;
 
 	/**
 	 * Accessors
@@ -95,6 +102,30 @@ public abstract class ExportHelper {
 
 	public void setPdfWidth(int pdfWidth) {
 		this.pdfWidth = pdfWidth;
+	}
+
+	public String getReportType() {
+		return reportType;
+	}
+
+	public void setReportType(String reportType) {
+		this.reportType = reportType;
+	}
+
+	public ParamEntity getParamEntity() {
+		return paramEntity;
+	}
+
+	public void setParamEntity(ParamEntity paramEntity) {
+		this.paramEntity = paramEntity;
+	}
+
+	public QueryAdvisor getQueryAdvisor() {
+		return queryAdvisor;
+	}
+
+	public void setQueryAdvisor(QueryAdvisor queryAdvisor) {
+		this.queryAdvisor = queryAdvisor;
 	}
 
 	/**
