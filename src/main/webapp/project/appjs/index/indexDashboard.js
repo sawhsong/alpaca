@@ -2,6 +2,7 @@
  * indexDashboard.js
  */
 jsconfig.put("noWest", true);
+jsconfig.put("scrollablePanelHeightAdjust", 14);
 
 window.chartColors = {
 	red:"rgb(255, 99, 132)",
