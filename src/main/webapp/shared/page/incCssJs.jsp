@@ -120,6 +120,7 @@ jsconfig.put("pagehandlerActionType", "<mc:cp key="pagehandlerActionType"/>");
 jsconfig.put("webServiceProviderUrl", "<mc:cp key="webService.provider.url"/>");
 jsconfig.put("maxRowsPerPageArray", "<mc:cp key="view.data.maxRowsPerPage"/>");
 jsconfig.put("viewPageName", "<mc:cp key="viewPageName"/>");
+jsconfig.put("menuCreationType", "<mc:cp key="type.menuCreationType"/>");
 /*!
  * auto-setup search criteria
  */
