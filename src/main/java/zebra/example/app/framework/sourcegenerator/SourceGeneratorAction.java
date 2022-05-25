@@ -35,7 +35,11 @@ public class SourceGeneratorAction extends BaseAction {
 
 	public String exeGenerate() throws Exception {
 		try {
-			biz.exeGenerate(paramEntity);
+			if (CommonUtil.equalsIgnoreCase(ConfigUtil.getProperty("type.menuCreationType"), "Name")) {
+				biz.exeGenerateN(paramEntity);
+			} else {
+				biz.exeGenerateC(paramEntity);
+			}
 		} catch (Exception ex) {
 		}
 		setRequestAttribute("paramEntity", paramEntity);

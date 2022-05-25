@@ -33,6 +33,21 @@ $(function() {
 		setFieldValue();
 	});
 
+	$("#menuId").blur(function(event) {
+		var menuLevel = $("#menuLevel").val();
+		var level1MenuId = $("#level1").val();
+		var level2MenuId = $("#level2").val();
+
+		if (menuLevel == 1) {
+		} else if (menuLevel == 2) {
+			$("#menuUrl").val("/"+level1MenuId+"/"+$(this).val());
+		} else if (menuLevel == 3) {
+			if (!commonJs.isEmpty(level2MenuId)) {
+				$("#menuUrl").val("/"+level1MenuId+"/"+level2MenuId+"/"+$(this).val()+"/"+"getDefault.do");
+			}
+		}
+	});
+
 	$("#btnSave").click(function(event) {
 		if (!commonJs.doValidate("fmDefault")) {return;}
 

@@ -33,17 +33,29 @@ public interface ZebraFrameworkBizService {
 	/*!
 	 * Source Generator
 	 */
-	public boolean createJavaAction(DataSet requestDataSet) throws Exception;
-	public boolean createJavaBiz(DataSet requestDataSet) throws Exception;
-	public boolean createJavaBizImpl(DataSet requestDataSet) throws Exception;
-	public boolean createJspList(DataSet requestDataSet) throws Exception;
-	public boolean createJspDetail(DataSet requestDataSet) throws Exception;
-	public boolean createJspEdit(DataSet requestDataSet) throws Exception;
-	public boolean createJspInsert(DataSet requestDataSet) throws Exception;
-	public boolean createJspUpdate(DataSet requestDataSet) throws Exception;
-	public boolean createConfSpring(DataSet requestDataSet) throws Exception;
-	public boolean createConfStruts(DataSet requestDataSet) throws Exception;
-	public boolean createMessageFile(DataSet requestDataSet) throws Exception;
+	public boolean createJavaActionN(DataSet requestDataSet) throws Exception;
+	public boolean createJavaBizN(DataSet requestDataSet) throws Exception;
+	public boolean createJavaBizImplN(DataSet requestDataSet) throws Exception;
+	public boolean createJspListN(DataSet requestDataSet) throws Exception;
+	public boolean createJspDetailN(DataSet requestDataSet) throws Exception;
+	public boolean createJspEditN(DataSet requestDataSet) throws Exception;
+	public boolean createJspInsertN(DataSet requestDataSet) throws Exception;
+	public boolean createJspUpdateN(DataSet requestDataSet) throws Exception;
+	public boolean createConfSpringN(DataSet requestDataSet) throws Exception;
+	public boolean createConfStrutsN(DataSet requestDataSet) throws Exception;
+	public boolean createMessageFileN(DataSet requestDataSet) throws Exception;
+
+	public boolean createJavaActionC(DataSet requestDataSet) throws Exception;
+	public boolean createJavaBizC(DataSet requestDataSet) throws Exception;
+	public boolean createJavaBizImplC(DataSet requestDataSet) throws Exception;
+	public boolean createJspListC(DataSet requestDataSet) throws Exception;
+	public boolean createJspDetailC(DataSet requestDataSet) throws Exception;
+	public boolean createJspEditC(DataSet requestDataSet) throws Exception;
+	public boolean createJspInsertC(DataSet requestDataSet) throws Exception;
+	public boolean createJspUpdateC(DataSet requestDataSet) throws Exception;
+	public boolean createConfSpringC(DataSet requestDataSet) throws Exception;
+	public boolean createConfStrutsC(DataSet requestDataSet) throws Exception;
+	public boolean createMessageFileC(DataSet requestDataSet) throws Exception;
 
 	/*!
 	 * Table Creation Script

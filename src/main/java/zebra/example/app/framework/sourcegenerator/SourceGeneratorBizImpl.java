@@ -92,7 +92,59 @@ public class SourceGeneratorBizImpl extends BaseBiz implements SourceGeneratorBi
 		return paramEntity;
 	}
 
-	public ParamEntity exeGenerate(ParamEntity paramEntity) throws Exception {
+	public ParamEntity exeGenerateN(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		String[] menuPaths = CommonUtil.split(CommonUtil.replace(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"), "/");
+		String menuPathStr = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1]+"/"+menuPaths[2];
+		String javaPath = requestDataSet.getValue("javaSourcePath");
+		String jspPath = requestDataSet.getValue("jspSourcePath");
+		String springPath = requestDataSet.getValue("springConfigPath");
+		String strutsPath = requestDataSet.getValue("strutsConfigPath");
+		String messagePath = requestDataSet.getValue("messageConfigPath");
+		boolean isCreateSpring = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("createSpring"), "N"));
+		boolean isCreateStruts = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("createStruts"), "N"));
+		boolean isCreateMessage = CommonUtil.toBoolean(CommonUtil.nvl(requestDataSet.getValue("createMessage"), "N"));
+
+		try {
+			FileUtil.createFolder(javaPath+"/"+menuPathStr);
+//			FileUtil.createFolder(jspPath+"/"+menuPathStr);
+//			FileUtil.createFolder(jspPath+"js/"+menuPathStr);
+
+//			if (isCreateSpring) {
+//				FileUtil.createFolder(springPath);
+//			}
+//
+//			if (isCreateStruts) {
+//				FileUtil.createFolder(strutsPath);
+//			}
+//
+//			if (isCreateMessage) {
+//				FileUtil.createFolder(messagePath+"/"+menuPathStr);
+//			}
+
+			zebraFramworkBizService.createJavaActionN(requestDataSet);
+			zebraFramworkBizService.createJavaBizN(requestDataSet);
+			zebraFramworkBizService.createJavaBizImplN(requestDataSet);
+
+//			zebraFramworkBizService.createJspListN(requestDataSet);
+//			zebraFramworkBizService.createJspDetailN(requestDataSet);
+//			zebraFramworkBizService.createJspEditN(requestDataSet);
+//			zebraFramworkBizService.createJspInsertN(requestDataSet);
+//			zebraFramworkBizService.createJspUpdateN(requestDataSet);
+//
+//			zebraFramworkBizService.createConfSpringN(requestDataSet);
+//			zebraFramworkBizService.createConfStrutsN(requestDataSet);
+//			zebraFramworkBizService.createMessageFileN(requestDataSet);
+
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+
+		return paramEntity;
+	}
+
+	public ParamEntity exeGenerateC(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
 		String javaPath = requestDataSet.getValue("javaSourcePath");
@@ -121,19 +173,19 @@ public class SourceGeneratorBizImpl extends BaseBiz implements SourceGeneratorBi
 				FileUtil.createFolder(messagePath+"/"+menuPathStr);
 			}
 
-			zebraFramworkBizService.createJavaAction(requestDataSet);
-			zebraFramworkBizService.createJavaBiz(requestDataSet);
-			zebraFramworkBizService.createJavaBizImpl(requestDataSet);
+			zebraFramworkBizService.createJavaActionC(requestDataSet);
+			zebraFramworkBizService.createJavaBizC(requestDataSet);
+			zebraFramworkBizService.createJavaBizImplC(requestDataSet);
 
-			zebraFramworkBizService.createJspList(requestDataSet);
-			zebraFramworkBizService.createJspDetail(requestDataSet);
-			zebraFramworkBizService.createJspEdit(requestDataSet);
-			zebraFramworkBizService.createJspInsert(requestDataSet);
-			zebraFramworkBizService.createJspUpdate(requestDataSet);
+			zebraFramworkBizService.createJspListC(requestDataSet);
+			zebraFramworkBizService.createJspDetailC(requestDataSet);
+			zebraFramworkBizService.createJspEditC(requestDataSet);
+			zebraFramworkBizService.createJspInsertC(requestDataSet);
+			zebraFramworkBizService.createJspUpdateC(requestDataSet);
 
-			zebraFramworkBizService.createConfSpring(requestDataSet);
-			zebraFramworkBizService.createConfStruts(requestDataSet);
-			zebraFramworkBizService.createMessageFile(requestDataSet);
+			zebraFramworkBizService.createConfSpringC(requestDataSet);
+			zebraFramworkBizService.createConfStrutsC(requestDataSet);
+			zebraFramworkBizService.createMessageFileC(requestDataSet);
 
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {

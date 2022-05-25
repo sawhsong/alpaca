@@ -90,7 +90,7 @@ $(function() {
 					space += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 				}
 
-				menuId = dataSet.getValue(i, "ROOT")+delimiter+dataSet.getValue(i, "MENU_ID");
+				menuId = dataSet.getValue(i, "PATH");
 				style += (isLeaf != 1) ? "font-weight:bold;" : "";
 
 				var tdAction = new UiGridTd();

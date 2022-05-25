@@ -46,7 +46,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	@Autowired
 	private DummyDao dummyDao;
 
-	/*!
+	/**
 	 * DTO Generator
 	 */
 	public boolean generateDto(String systemType, DataSet requestDataSet, DataSet tableInfoDataSet) throws Exception {
@@ -1261,10 +1261,13 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
-	/*!
+	/**
 	 * Source Generator
 	 */
-	public boolean createJavaAction(DataSet requestDataSet) throws Exception {
+	/*!
+	 * By Code
+	 */
+	public boolean createJavaActionC(DataSet requestDataSet) throws Exception {
 		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
 		String javaPath = requestDataSet.getValue("javaSourcePath");
@@ -1322,7 +1325,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
-	public boolean createJavaBiz(DataSet requestDataSet) throws Exception {
+	public boolean createJavaBizC(DataSet requestDataSet) throws Exception {
 		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
 		String javaPath = requestDataSet.getValue("javaSourcePath");
@@ -1370,7 +1373,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
-	public boolean createJavaBizImpl(DataSet requestDataSet) throws Exception {
+	public boolean createJavaBizImplC(DataSet requestDataSet) throws Exception {
 		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
 		String javaPath = requestDataSet.getValue("javaSourcePath");
@@ -1420,7 +1423,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
-	public boolean createJspList(DataSet requestDataSet) throws Exception {
+	public boolean createJspListC(DataSet requestDataSet) throws Exception {
 		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateList"));
 		String pageType = requestDataSet.getValue("jspSubPageType");
@@ -1491,7 +1494,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
-	public boolean createJspDetail(DataSet requestDataSet) throws Exception {
+	public boolean createJspDetailC(DataSet requestDataSet) throws Exception {
 		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateDetail"));
 		String pageType = requestDataSet.getValue("jspSubPageType");
@@ -1565,7 +1568,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
-	public boolean createJspEdit(DataSet requestDataSet) throws Exception {
+	public boolean createJspEditC(DataSet requestDataSet) throws Exception {
 		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateEdit"));
 		String pageType = requestDataSet.getValue("jspSubPageType");
@@ -1639,7 +1642,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
-	public boolean createJspInsert(DataSet requestDataSet) throws Exception {
+	public boolean createJspInsertC(DataSet requestDataSet) throws Exception {
 		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateInsert"));
 		String pageType = requestDataSet.getValue("jspSubPageType");
@@ -1713,7 +1716,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
-	public boolean createJspUpdate(DataSet requestDataSet) throws Exception {
+	public boolean createJspUpdateC(DataSet requestDataSet) throws Exception {
 		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateUpdate"));
 		String pageType = requestDataSet.getValue("jspSubPageType");
@@ -1786,7 +1789,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
-	public boolean createConfSpring(DataSet dsRequest) throws Exception {
+	public boolean createConfSpringC(DataSet dsRequest) throws Exception {
 		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
 		String packageName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.package.project"));
@@ -1874,7 +1877,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
-	public boolean createConfStruts(DataSet dsRequest) throws Exception {
+	public boolean createConfStrutsC(DataSet dsRequest) throws Exception {
 		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
 		String isCreate = CommonUtil.nvl(dsRequest.getValue("createStruts"));
@@ -2045,7 +2048,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		}
 	}
 
-	public boolean createMessageFile(DataSet dsRequest) throws Exception {
+	public boolean createMessageFileC(DataSet dsRequest) throws Exception {
 		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String isCreate = CommonUtil.nvl(dsRequest.getValue("createMessage"));
 		String targetPath = dsRequest.getValue("messageConfigPath");
@@ -2153,6 +2156,900 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 	}
 
 	/*!
+	 * By Name
+	 */
+	public boolean createJavaActionN(DataSet requestDataSet) throws Exception {
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
+		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
+		String javaPath = requestDataSet.getValue("javaSourcePath");
+		String[] menuPaths = CommonUtil.split(CommonUtil.replace(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"), "/");
+		String menuPathStr = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1]+"/"+menuPaths[2];
+		String menuId[] = CommonUtil.split(menuPathStr, "/");
+		String rootMenuId = menuId[0]+"/"+menuId[1];
+		String thisMenuId = menuId[2];
+		String menuName = requestDataSet.getValue("menuName");
+		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
+		String actionHandlerType = requestDataSet.getValue("actionHandlerType");
+		String actionNameAjaxResponse = ConfigUtil.getProperty("name.source.javaAction.ajaxResponse");
+		String actionNamePageHandler = ConfigUtil.getProperty("name.source.javaAction.pageHandler");
+		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
+		String javaTargetpath = javaPath + "/" + rootMenuId + "/" + thisMenuId;
+		String sourcePath, sourceString, packageString, tempString;
+		File targetFile;
+
+		try {
+			if (CommonUtil.equalsIgnoreCase(actionHandlerType, "P")) {
+				sourcePath = srcPath+"/"+actionNamePageHandler;
+			} else {
+				sourcePath = srcPath+"/"+actionNameAjaxResponse;
+			}
+
+			targetFile = new File(javaTargetpath+"/"+thisMenuIdUpperCamelCase+"Action.java");
+			createEmptyFile(targetFile);
+
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(sourcePath));
+			StringBuffer stringBuffer = new StringBuffer();
+			while ((tempString = bufferedReader.readLine()) != null) {
+				stringBuffer.append(tempString + "\n");
+			}
+			OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
+			sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
+
+			packageString = CommonUtil.replace(CommonUtil.remove(javaTargetpath, rootPath + "src/main/java/"), "/", ".");
+
+			String menuUrl = rootMenuId + "/" + CommonUtil.remove(thisMenuId, rootMenuId);
+
+			sourceString = CommonUtil.replace(sourceString, "#PROJECT_NAME#", projectName);
+			sourceString = CommonUtil.replace(sourceString, "#PACKAGE_NAME#", packageString);
+			sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+			sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
+			sourceString = CommonUtil.replace(sourceString, "#MENU_PATH#", menuPathStr);
+			sourceString = CommonUtil.replace(sourceString, "#MENU_URL#", menuUrl);
+
+			osWriter.write(sourceString);
+			osWriter.flush();
+			osWriter.close();
+			bufferedReader.close();
+
+			return true;
+		} catch (Exception ex) {
+			throw new FrameworkException(ex);
+		}
+	}
+
+	public boolean createJavaBizN(DataSet requestDataSet) throws Exception {
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
+		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
+		String javaPath = requestDataSet.getValue("javaSourcePath");
+		String[] menuPaths = CommonUtil.split(CommonUtil.replace(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"), "/");
+		String menuPathStr = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1]+"/"+menuPaths[2];
+		String menuId[] = CommonUtil.split(menuPathStr, "/");
+		String rootMenuId = menuId[0]+"/"+menuId[1];
+		String thisMenuId = menuId[2];
+		String menuName = requestDataSet.getValue("menuName");
+		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
+		String srcBizFileName = ConfigUtil.getProperty("name.source.javaBiz");
+		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
+		String javaTargetpath = javaPath + "/" + rootMenuId + "/" + thisMenuId;
+		String sourcePath, tempString, sourceString, packageString;
+		File targetFile;
+
+		try {
+			sourcePath = srcPath+"/"+srcBizFileName;
+
+			targetFile = new File(javaTargetpath+"/"+thisMenuIdUpperCamelCase+"Biz.java");
+			createEmptyFile(targetFile);
+
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(sourcePath));
+			StringBuffer stringBuffer = new StringBuffer();
+			while ((tempString = bufferedReader.readLine()) != null) {
+				stringBuffer.append(tempString + "\n");
+			}
+			OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
+			sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
+
+			packageString = CommonUtil.replace(CommonUtil.remove(javaTargetpath, rootPath + "src/main/java/"), "/", ".");
+
+			sourceString = CommonUtil.replace(sourceString, "#PROJECT_NAME#", projectName);
+			sourceString = CommonUtil.replace(sourceString, "#PACKAGE_NAME#", packageString);
+			sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+			sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
+
+			osWriter.write(sourceString);
+			osWriter.flush();
+			osWriter.close();
+			bufferedReader.close();
+
+			return true;
+		} catch (Exception ex) {
+			throw new FrameworkException(ex);
+		}
+	}
+
+	public boolean createJavaBizImplN(DataSet requestDataSet) throws Exception {
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
+		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
+		String javaPath = requestDataSet.getValue("javaSourcePath");
+		String[] menuPaths = CommonUtil.split(CommonUtil.replace(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"), "/");
+		String menuPathStr = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1]+"/"+menuPaths[2];
+		String menuId[] = CommonUtil.split(menuPathStr, "/");
+		String rootMenuId = menuId[0]+"/"+menuId[1];
+		String thisMenuId = menuId[2];
+		String menuName = requestDataSet.getValue("menuName");
+		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
+		String srcBizImplFileName = ConfigUtil.getProperty("name.source.javaBizImpl");
+		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
+		String thisMenuIdLowerCamelCase = CommonUtil.toCamelCaseStartLowerCase(thisMenuId);
+		String javaTargetpath = javaPath + "/" + rootMenuId + "/" + thisMenuId;
+		String sourcePath, tempString, sourceString, packageString;
+		File targetFile;
+
+		try {
+			sourcePath = srcPath+"/"+srcBizImplFileName;
+
+			targetFile = new File(javaTargetpath+"/"+thisMenuIdUpperCamelCase+"BizImpl.java");
+			createEmptyFile(targetFile);
+
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(sourcePath));
+			StringBuffer stringBuffer = new StringBuffer();
+			while ((tempString = bufferedReader.readLine()) != null) {
+				stringBuffer.append(tempString + "\n");
+			}
+			OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
+			sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
+
+			packageString = CommonUtil.replace(CommonUtil.remove(javaTargetpath, rootPath + "src/main/java/"), "/", ".");
+
+			sourceString = CommonUtil.replace(sourceString, "#PROJECT_NAME#", projectName);
+			sourceString = CommonUtil.replace(sourceString, "#PACKAGE_NAME#", packageString);
+			sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+			sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_LOWER#", thisMenuIdLowerCamelCase);
+			sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
+
+			osWriter.write(sourceString);
+			osWriter.flush();
+			osWriter.close();
+			bufferedReader.close();
+
+			return true;
+		} catch (Exception ex) {
+			throw new FrameworkException(ex);
+		}
+	}
+
+	public boolean createJspListN(DataSet requestDataSet) throws Exception {
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
+		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateList"));
+		String pageType = requestDataSet.getValue("jspSubPageType");
+		String jspPath = requestDataSet.getValue("jspSourcePath");
+		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
+		String menuId[] = CommonUtil.split(menuPathStr, "/");
+		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
+		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
+		String menuName = requestDataSet.getValue("menuName");
+		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
+		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
+		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
+		String jsSectionStringStart = "<script type=\"text/javascript\">", jsSectionStringEnd = "</script>", jsString = "";
+		boolean isJsSection = false;
+		String srcJspFileName, sourceString, tempString;
+		File targetFile;
+
+		try {
+			if (CommonUtil.equalsIgnoreCase(isCreate, "Y")) {
+				if (CommonUtil.equalsIgnoreCase(pageType, "Page")) {
+					srcJspFileName = ConfigUtil.getProperty("name.source.jspListForPage");
+				} else {
+					srcJspFileName = ConfigUtil.getProperty("name.source.jspListForPop");
+				}
+
+				targetFile = new File(jspTargetpath+"/"+thisMenuIdUpperCamelCase+"List.jsp");
+				createEmptyFile(targetFile);
+
+				BufferedReader bufferedReader = new BufferedReader(new FileReader(srcPath + "/" + srcJspFileName));
+				StringBuffer stringBuffer = new StringBuffer();
+				while ((tempString = bufferedReader.readLine()) != null) {
+					if (CommonUtil.equalsIgnoreCase(tempString, jsSectionStringStart)) {
+						isJsSection = true;
+					}
+
+					if (CommonUtil.equalsIgnoreCase(tempString, jsSectionStringEnd)) {
+						isJsSection = false;
+					}
+
+					if (isJsSection && !CommonUtil.equalsIgnoreCase(tempString, jsSectionStringStart)) {
+						jsString += "\n"+tempString;
+						continue;
+					}
+
+					stringBuffer.append(tempString + "\n");
+				}
+				OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
+				sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
+
+				String menuUrl = rootMenuId + "/" + CommonUtil.remove(thisMenuId, rootMenuId);
+
+				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_URL#", menuUrl);
+				sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);
+
+				osWriter.write(sourceString);
+				osWriter.flush();
+				osWriter.close();
+				bufferedReader.close();
+
+				createJsSource(requestDataSet, thisMenuIdUpperCamelCase+"List.js", jsString);
+			}
+
+			return true;
+		} catch (Exception ex) {
+			throw new FrameworkException(ex);
+		}
+	}
+
+	public boolean createJspDetailN(DataSet requestDataSet) throws Exception {
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
+		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateDetail"));
+		String pageType = requestDataSet.getValue("jspSubPageType");
+		String jspPath = requestDataSet.getValue("jspSourcePath");
+		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
+		String menuId[] = CommonUtil.split(menuPathStr, "/");
+		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
+		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
+		String menuName = requestDataSet.getValue("menuName");
+		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
+		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
+		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
+		String jsSectionStringStart = "<script type=\"text/javascript\">", jsSectionStringEnd = "</script>", jsString = "";
+		boolean isJsSection = false;
+		String srcJspFileName, targetFileSuffix, sourceString, menuUrl;
+		File targetFile;
+
+		try {
+			if (CommonUtil.equalsIgnoreCase(isCreate, "Y")) {
+				if (CommonUtil.equalsIgnoreCase(pageType, "Page")) {
+					targetFileSuffix = "";
+					srcJspFileName = ConfigUtil.getProperty("name.source.jspDetailPage");
+				} else {
+					targetFileSuffix = "Pop";
+					srcJspFileName = ConfigUtil.getProperty("name.source.jspDetailPop");
+				}
+
+				targetFile = new File(jspTargetpath + "/" + thisMenuIdUpperCamelCase + "Detail" + targetFileSuffix + ".jsp");
+				createEmptyFile(targetFile);
+
+				BufferedReader bufferedReader = new BufferedReader(new FileReader(srcPath + "/" + srcJspFileName));
+				StringBuffer stringBuffer = new StringBuffer();
+				String tempString;
+				while ((tempString = bufferedReader.readLine()) != null) {
+					if (CommonUtil.equalsIgnoreCase(tempString, jsSectionStringStart)) {
+						isJsSection = true;
+					}
+
+					if (CommonUtil.equalsIgnoreCase(tempString, jsSectionStringEnd)) {
+						isJsSection = false;
+					}
+
+					if (isJsSection && !CommonUtil.equalsIgnoreCase(tempString, jsSectionStringStart)) {
+						jsString += "\n"+tempString;
+						continue;
+					}
+
+					stringBuffer.append(tempString + "\n");
+				}
+				OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
+				sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
+
+				menuUrl = rootMenuId + "/" + CommonUtil.remove(thisMenuId, rootMenuId);
+
+				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_URL#", menuUrl);
+				sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);
+
+				osWriter.write(sourceString);
+				osWriter.flush();
+				osWriter.close();
+				bufferedReader.close();
+
+				createJsSource(requestDataSet, thisMenuIdUpperCamelCase + "Detail" + targetFileSuffix + ".js", jsString);
+			}
+
+			return true;
+		} catch (Exception ex) {
+			throw new FrameworkException(ex);
+		}
+	}
+
+	public boolean createJspEditN(DataSet requestDataSet) throws Exception {
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
+		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateEdit"));
+		String pageType = requestDataSet.getValue("jspSubPageType");
+		String jspPath = requestDataSet.getValue("jspSourcePath");
+		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
+		String menuId[] = CommonUtil.split(menuPathStr, "/");
+		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
+		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
+		String menuName = requestDataSet.getValue("menuName");
+		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
+		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
+		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
+		String jsSectionStringStart = "<script type=\"text/javascript\">", jsSectionStringEnd = "</script>", jsString = "";
+		boolean isJsSection = false;
+		String srcJspFileName, targetFileSuffix, sourceString, menuUrl;
+		File targetFile;
+
+		try {
+			if (CommonUtil.equalsIgnoreCase(isCreate, "Y")) {
+				if (CommonUtil.equalsIgnoreCase(pageType, "Page")) {
+					targetFileSuffix = "";
+					srcJspFileName = ConfigUtil.getProperty("name.source.jspEditPage");
+				} else {
+					targetFileSuffix = "Pop";
+					srcJspFileName = ConfigUtil.getProperty("name.source.jspEditPop");
+				}
+
+				targetFile = new File(jspTargetpath + "/" + thisMenuIdUpperCamelCase + "Edit" + targetFileSuffix + ".jsp");
+				createEmptyFile(targetFile);
+
+				BufferedReader bufferedReader = new BufferedReader(new FileReader(srcPath + "/" + srcJspFileName));
+				StringBuffer stringBuffer = new StringBuffer();
+				String tempString;
+				while ((tempString = bufferedReader.readLine()) != null) {
+					if (CommonUtil.equalsIgnoreCase(tempString, jsSectionStringStart)) {
+						isJsSection = true;
+					}
+
+					if (CommonUtil.equalsIgnoreCase(tempString, jsSectionStringEnd)) {
+						isJsSection = false;
+					}
+
+					if (isJsSection && !CommonUtil.equalsIgnoreCase(tempString, jsSectionStringStart)) {
+						jsString += "\n"+tempString;
+						continue;
+					}
+
+					stringBuffer.append(tempString + "\n");
+				}
+				OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
+				sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
+
+				menuUrl = rootMenuId + "/" + CommonUtil.remove(thisMenuId, rootMenuId);
+
+				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_URL#", menuUrl);
+				sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);
+
+				osWriter.write(sourceString);
+				osWriter.flush();
+				osWriter.close();
+				bufferedReader.close();
+
+				createJsSource(requestDataSet, thisMenuIdUpperCamelCase + "Edit" + targetFileSuffix + ".js", jsString);
+			}
+
+			return true;
+		} catch (Exception ex) {
+			throw new FrameworkException(ex);
+		}
+	}
+
+	public boolean createJspInsertN(DataSet requestDataSet) throws Exception {
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
+		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateInsert"));
+		String pageType = requestDataSet.getValue("jspSubPageType");
+		String jspPath = requestDataSet.getValue("jspSourcePath");
+		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
+		String menuId[] = CommonUtil.split(menuPathStr, "/");
+		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
+		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
+		String menuName = requestDataSet.getValue("menuName");
+		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
+		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
+		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
+		String jsSectionStringStart = "<script type=\"text/javascript\">", jsSectionStringEnd = "</script>", jsString = "";
+		boolean isJsSection = false;
+		String srcJspFileName, targetFileSuffix, sourceString, menuUrl;
+		File targetFile;
+
+		try {
+			if (CommonUtil.equalsIgnoreCase(isCreate, "Y")) {
+				if (CommonUtil.equalsIgnoreCase(pageType, "Page")) {
+					targetFileSuffix = "";
+					srcJspFileName = ConfigUtil.getProperty("name.source.jspInsertPage");
+				} else {
+					targetFileSuffix = "Pop";
+					srcJspFileName = ConfigUtil.getProperty("name.source.jspInsertPop");
+				}
+
+				targetFile = new File(jspTargetpath + "/" + thisMenuIdUpperCamelCase + "Insert" + targetFileSuffix + ".jsp");
+				createEmptyFile(targetFile);
+
+				BufferedReader bufferedReader = new BufferedReader(new FileReader(srcPath + "/" + srcJspFileName));
+				StringBuffer stringBuffer = new StringBuffer();
+				String tempString;
+				while ((tempString = bufferedReader.readLine()) != null) {
+					if (CommonUtil.equalsIgnoreCase(tempString, jsSectionStringStart)) {
+						isJsSection = true;
+					}
+
+					if (CommonUtil.equalsIgnoreCase(tempString, jsSectionStringEnd)) {
+						isJsSection = false;
+					}
+
+					if (isJsSection && !CommonUtil.equalsIgnoreCase(tempString, jsSectionStringStart)) {
+						jsString += "\n"+tempString;
+						continue;
+					}
+
+					stringBuffer.append(tempString + "\n");
+				}
+				OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
+				sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
+
+				menuUrl = rootMenuId + "/" + CommonUtil.remove(thisMenuId, rootMenuId);
+
+				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_URL#", menuUrl);
+				sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);
+
+				osWriter.write(sourceString);
+				osWriter.flush();
+				osWriter.close();
+				bufferedReader.close();
+
+				createJsSource(requestDataSet, thisMenuIdUpperCamelCase + "Insert" + targetFileSuffix + ".js", jsString);
+			}
+
+			return true;
+		} catch (Exception ex) {
+			throw new FrameworkException(ex);
+		}
+	}
+
+	public boolean createJspUpdateN(DataSet requestDataSet) throws Exception {
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
+		String isCreate = CommonUtil.nvl(requestDataSet.getValue("jspCreateUpdate"));
+		String pageType = requestDataSet.getValue("jspSubPageType");
+		String jspPath = requestDataSet.getValue("jspSourcePath");
+		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
+		String menuId[] = CommonUtil.split(menuPathStr, "/");
+		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
+		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
+		String menuName = requestDataSet.getValue("menuName");
+		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
+		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
+		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
+		String jsSectionStringStart = "<script type=\"text/javascript\">", jsSectionStringEnd = "</script>", jsString = "";
+		boolean isJsSection = false;
+		String srcJspFileName, targetFileSuffix, sourceString, menuUrl;
+		File targetFile;
+
+		try {
+			if (CommonUtil.equalsIgnoreCase(isCreate, "Y")) {
+				if (CommonUtil.equalsIgnoreCase(pageType, "Page")) {
+					targetFileSuffix = "";
+					srcJspFileName = ConfigUtil.getProperty("name.source.jspUpdatePage");
+				} else {
+					targetFileSuffix = "Pop";
+					srcJspFileName = ConfigUtil.getProperty("name.source.jspUpdatePop");
+				}
+				targetFile = new File(jspTargetpath + "/" + thisMenuIdUpperCamelCase + "Update" + targetFileSuffix + ".jsp");
+				createEmptyFile(targetFile);
+
+				BufferedReader bufferedReader = new BufferedReader(new FileReader(srcPath + "/" + srcJspFileName));
+				StringBuffer stringBuffer = new StringBuffer();
+				String tempString;
+				while ((tempString = bufferedReader.readLine()) != null) {
+					if (CommonUtil.equalsIgnoreCase(tempString, jsSectionStringStart)) {
+						isJsSection = true;
+					}
+
+					if (CommonUtil.equalsIgnoreCase(tempString, jsSectionStringEnd)) {
+						isJsSection = false;
+					}
+
+					if (isJsSection && !CommonUtil.equalsIgnoreCase(tempString, jsSectionStringStart)) {
+						jsString += "\n"+tempString;
+						continue;
+					}
+
+					stringBuffer.append(tempString + "\n");
+				}
+				OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
+				sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
+
+				menuUrl = rootMenuId + "/" + CommonUtil.remove(thisMenuId, rootMenuId);
+
+				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_URL#", menuUrl);
+				sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);
+
+				osWriter.write(sourceString);
+				osWriter.flush();
+				osWriter.close();
+				bufferedReader.close();
+
+				createJsSource(requestDataSet, thisMenuIdUpperCamelCase + "Update" + targetFileSuffix + ".js", jsString);
+			}
+
+			return true;
+		} catch (Exception ex) {
+			throw new FrameworkException(ex);
+		}
+	}
+
+	public boolean createConfSpringN(DataSet dsRequest) throws Exception {
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
+		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
+		String packageName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.package.project"));
+		String isCreate = CommonUtil.nvl(dsRequest.getValue("createSpring"));
+		String javaPath = dsRequest.getValue("javaSourcePath");
+		String targetPath = dsRequest.getValue("springConfigPath");
+		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(dsRequest.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
+		String menuId[] = CommonUtil.split(menuPathStr, "/");
+		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
+		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
+		String menuName = dsRequest.getValue("menuName");
+		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
+		String srcFileName = ConfigUtil.getProperty("name.source.xmlMenuSpringConf");
+		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
+		String thisMenuIdLowerCamelCase = CommonUtil.toCamelCaseStartLowerCase(thisMenuId);
+		String javaTargetpath = javaPath + "/" + rootMenuId + "/" + thisMenuId;
+		String sourceString, packageString;
+		File targetFile;
+
+		DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+		XPath xpath = XPathFactory.newInstance().newXPath();
+
+		try {
+			if (CommonUtil.equalsIgnoreCase(isCreate, "Y")) {
+				targetFile = new File(targetPath + "/" + "spring-"+projectName+"-app-"+rootMenuId+".xml");
+
+				if (!targetFile.exists()) {
+					targetFile.createNewFile();
+
+					BufferedReader bufferedReader = new BufferedReader(new FileReader(srcPath + "/" + srcFileName));
+					StringBuffer stringBuffer = new StringBuffer();
+					String tempString;
+					while ((tempString = bufferedReader.readLine()) != null) {
+						stringBuffer.append(tempString + "\n");
+					}
+					OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
+					sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
+
+					osWriter.write(sourceString);
+					osWriter.flush();
+					osWriter.close();
+					bufferedReader.close();
+				}
+
+				Document document = docBuilder.parse(targetFile);
+				Element rootElement = document.getDocumentElement();
+				DOMSource domSource = new DOMSource(document);
+				packageString = CommonUtil.replace(CommonUtil.replace(CommonUtil.remove(javaTargetpath, rootPath + "src/main/java/"), "/", "."), packageName, "${name.package.project}");
+
+				Element beanElement = document.createElement("bean");
+				beanElement.setAttribute("id", thisMenuIdLowerCamelCase + "Action");
+				beanElement.setAttribute("name", thisMenuIdLowerCamelCase + "Action");
+				beanElement.setAttribute("class", packageString + "." + thisMenuIdUpperCamelCase + "Action");
+				rootElement.appendChild(beanElement);
+
+				Comment commentElement = document.createComment(thisMenuIdUpperCamelCase + " - " + menuName);
+				beanElement.getParentNode().insertBefore(commentElement, beanElement);
+
+				beanElement = document.createElement("bean");
+				beanElement.setAttribute("id", thisMenuIdLowerCamelCase + "Biz");
+				beanElement.setAttribute("name", thisMenuIdLowerCamelCase + "Biz");
+				beanElement.setAttribute("class", packageString + "." + thisMenuIdUpperCamelCase + "BizImpl");
+				beanElement.setAttribute("parent", "baseBiz");
+				rootElement.appendChild(beanElement);
+
+				NodeList nodeList = (NodeList)xpath.evaluate("//text()[normalize-space()='']", document, XPathConstants.NODESET);
+				for (int i = 0; i < nodeList.getLength(); i++) {
+					Node node = nodeList.item(i);
+					node.getParentNode().removeChild(node);
+				}
+				transformer.setOutputProperty("encoding", "UTF-8");
+				transformer.setOutputProperty("omit-xml-declaration", "false");
+				transformer.setOutputProperty("indent", "yes");
+				transformer.setOutputProperty("{http://xml.apache.org/xalan}indent-amount", "4");
+
+				StreamResult streamResult = new StreamResult(targetFile.getPath());
+				transformer.transform(domSource, streamResult);
+			}
+
+			return true;
+		} catch (Exception ex) {
+			throw new FrameworkException(ex);
+		}
+	}
+
+	public boolean createConfStrutsN(DataSet dsRequest) throws Exception {
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
+		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
+		String isCreate = CommonUtil.nvl(dsRequest.getValue("createStruts"));
+		String pageType = dsRequest.getValue("jspSubPageType");
+		String javaPath = dsRequest.getValue("javaSourcePath");
+		String jspPath = dsRequest.getValue("jspSourcePath");
+		String targetPath = dsRequest.getValue("strutsConfigPath");
+		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(dsRequest.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
+		String menuId[] = CommonUtil.split(menuPathStr, "/");
+		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
+		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
+		String menuName = dsRequest.getValue("menuName");
+		String menuNumber = CommonUtil.remove(thisMenuId, rootMenuId);
+		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
+		String srcFileName = ConfigUtil.getProperty("name.source.xmlMenuStrutsConf");
+		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
+		String jspRelPath = CommonUtil.substringAfter(jspPath, "webapp");
+		String javaTargetpath = javaPath + "/" + rootMenuId + "/" + thisMenuId;
+		String sourceString, pageNameSuffix = "";
+		String isCreateDetail = CommonUtil.nvl(dsRequest.getValue("jspCreateDetail"));
+		String isCreateEdit = CommonUtil.nvl(dsRequest.getValue("jspCreateEdit"));
+		String isCreateInsert = CommonUtil.nvl(dsRequest.getValue("jspCreateInsert"));
+		String isCreateUpdate = CommonUtil.nvl(dsRequest.getValue("jspCreateUpdate"));
+
+		DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+		XPath xpath = XPathFactory.newInstance().newXPath();
+
+		try {
+			if (CommonUtil.equalsIgnoreCase(isCreate, "Y")) {
+				File regFile = new File(targetPath + "/" + "struts.xml");
+				File targetFile = new File(targetPath + "/" + "struts-"+projectName+"-app-"+rootMenuId+".xml");
+
+				if (!targetFile.exists()) {
+					targetFile.createNewFile();
+
+					BufferedReader bufferedReader = new BufferedReader(new FileReader(srcPath + "/" + srcFileName));
+					StringBuffer stringBuffer = new StringBuffer();
+					String tempString;
+					while ((tempString = bufferedReader.readLine()) != null) {
+						stringBuffer.append(tempString + "\n");
+					}
+					OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
+					sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
+
+					sourceString = CommonUtil.replace(sourceString, "#ROOT_MENU_ID#", rootMenuId);
+
+					osWriter.write(sourceString);
+					osWriter.flush();
+					osWriter.close();
+					bufferedReader.close();
+
+					Document document = docBuilder.parse(regFile);
+					Element rootElement = document.getDocumentElement();
+					DOMSource domSource = new DOMSource(document);
+
+					Element includeElement = document.createElement("include");
+					includeElement.setAttribute("file", projectName+"/conf/struts/struts-"+projectName+"-app-"+rootMenuId+".xml");
+					rootElement.appendChild(includeElement);
+
+					DOMImplementation domImpl = document.getImplementation();
+					DocumentType docType = domImpl.createDocumentType("doctype", "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN", "http://struts.apache.org/dtds/struts-2.5.dtd");
+
+					NodeList nodeListFormat = (NodeList)xpath.evaluate("//text()[normalize-space()='']", document, XPathConstants.NODESET);
+					for (int i = 0; i < nodeListFormat.getLength(); i++) {
+						Node node = nodeListFormat.item(i);
+						node.getParentNode().removeChild(node);
+					}
+					transformer.setOutputProperty("encoding", "UTF-8");
+					transformer.setOutputProperty("omit-xml-declaration", "false");
+					transformer.setOutputProperty("indent", "yes");
+					transformer.setOutputProperty("{http://xml.apache.org/xalan}indent-amount", "4");
+					transformer.setOutputProperty("doctype-public", docType.getPublicId());
+					transformer.setOutputProperty("doctype-system", docType.getSystemId());
+
+					StreamResult streamResult = new StreamResult(regFile.getPath());
+					transformer.transform(domSource, streamResult);
+				}
+
+				Document document = docBuilder.parse(targetFile);
+				Element rootElement = document.getDocumentElement();
+				DOMSource domSource = new DOMSource(document);
+
+				NodeList nodeList = rootElement.getChildNodes();
+				for (int i=0; i<nodeList.getLength(); i++) {
+					Node node = nodeList.item(i);
+					if (node.getNodeType() == 1) {
+						Element packageElement = (Element)node;
+						String packageString = CommonUtil.replace(CommonUtil.remove(javaTargetpath, rootPath + "src/main/java/"), "/", ".");
+
+						Element actionElement = document.createElement("action");
+						actionElement.setAttribute("name", menuNumber + "/*");
+						actionElement.setAttribute("method", "{1}");
+						actionElement.setAttribute("class", packageString + "." + thisMenuIdUpperCamelCase + "Action");
+
+						Element resultElement = document.createElement("result");
+						resultElement.setAttribute("name", "list");
+						resultElement.setAttribute("type", "debugDispatcherResult");
+						resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdUpperCamelCase + "List.jsp");
+						actionElement.appendChild(resultElement);
+
+						if (CommonUtil.toBoolean(isCreateDetail)) {
+							pageNameSuffix = (CommonUtil.equalsIgnoreCase(pageType, "Page")) ? ".jsp" : "Pop.jsp";
+							resultElement = document.createElement("result");
+							resultElement.setAttribute("name", "detail");
+							resultElement.setAttribute("type", "debugDispatcherResult");
+							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdUpperCamelCase + "Detail"+pageNameSuffix);
+							actionElement.appendChild(resultElement);
+							packageElement.appendChild(actionElement);
+						}
+
+						if (CommonUtil.toBoolean(isCreateEdit)) {
+							pageNameSuffix = (CommonUtil.equalsIgnoreCase(pageType, "Page")) ? ".jsp" : "Pop.jsp";
+							resultElement = document.createElement("result");
+							resultElement.setAttribute("name", "edit");
+							resultElement.setAttribute("type", "debugDispatcherResult");
+							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdUpperCamelCase + "Edit"+pageNameSuffix);
+							actionElement.appendChild(resultElement);
+							packageElement.appendChild(actionElement);
+						}
+
+						if (CommonUtil.toBoolean(isCreateInsert)) {
+							resultElement = document.createElement("result");
+							resultElement.setAttribute("name", "insert");
+							resultElement.setAttribute("type", "debugDispatcherResult");
+							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdUpperCamelCase + "Insert"+pageNameSuffix);
+							actionElement.appendChild(resultElement);
+							packageElement.appendChild(actionElement);
+						}
+
+						if (CommonUtil.toBoolean(isCreateUpdate)) {
+							resultElement = document.createElement("result");
+							resultElement.setAttribute("name", "update");
+							resultElement.setAttribute("type", "debugDispatcherResult");
+							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdUpperCamelCase + "Update"+pageNameSuffix);
+							actionElement.appendChild(resultElement);
+							packageElement.appendChild(actionElement);
+						}
+
+						Comment commentElement = document.createComment(thisMenuIdUpperCamelCase + " - " + menuName);
+						actionElement.getParentNode().insertBefore(commentElement, actionElement);
+
+						DOMImplementation domImpl = document.getImplementation();
+						DocumentType docType = domImpl.createDocumentType("doctype", "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN", "http://struts.apache.org/dtds/struts-2.5.dtd");
+
+						NodeList nodeListFormat = (NodeList)xpath.evaluate("//text()[normalize-space()='']", document, XPathConstants.NODESET);
+						for (int j = 0; j < nodeListFormat.getLength(); j++) {
+							Node nodeFormat = nodeListFormat.item(j);
+							nodeFormat.getParentNode().removeChild(nodeFormat);
+						}
+						transformer.setOutputProperty("encoding", "UTF-8");
+						transformer.setOutputProperty("omit-xml-declaration", "false");
+						transformer.setOutputProperty("indent", "yes");
+						transformer.setOutputProperty("{http://xml.apache.org/xalan}indent-amount", "4");
+						transformer.setOutputProperty("doctype-public", docType.getPublicId());
+						transformer.setOutputProperty("doctype-system", docType.getSystemId());
+
+						StreamResult streamResult = new StreamResult(targetFile.getPath());
+						transformer.transform(domSource, streamResult);
+					}
+				}
+			}
+
+			return true;
+		} catch (Exception ex) {
+			throw new FrameworkException(ex);
+		}
+	}
+
+	public boolean createMessageFileN(DataSet dsRequest) throws Exception {
+		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
+		String isCreate = CommonUtil.nvl(dsRequest.getValue("createMessage"));
+		String targetPath = dsRequest.getValue("messageConfigPath");
+		String menuPathStr = CommonUtil.lowerCase(CommonUtil.replace(dsRequest.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"), "/"));
+		String[] menuId = CommonUtil.split(menuPathStr, "/");
+		String rootMenuId = CommonUtil.lowerCase(menuId[0]);
+		String thisMenuId = CommonUtil.lowerCase(menuId[1]);
+		String menuName = dsRequest.getValue("menuName");
+		String tableName = dsRequest.getValue("tableName");
+		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
+		String srcFileName = ConfigUtil.getProperty("name.source.propMessage");
+		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
+		DataSet dsLang = ZebraCommonCodeManager.getCodeDataSetByCodeType("LANGUAGE_TYPE");
+		BufferedReader bufferedReader = null;
+		StringBuffer stringBuffer;
+		String sourceString = "", sourceStringWithTable = "", tempString;
+		DataSet dsTableInfo;
+
+		try {
+			if (CommonUtil.equalsIgnoreCase(isCreate, "Y")) {
+				targetPath = targetPath + "/" + rootMenuId + "/" + thisMenuId;
+				String targetFileName = "app-" + rootMenuId + "-" + thisMenuId;
+				File targetFile = new File(targetPath + "/" + targetFileName + ".properties");
+				createEmptyFile(targetFile);
+
+				OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
+
+				if (CommonUtil.isBlank(tableName)) {
+					bufferedReader = new BufferedReader(new FileReader(srcPath + "/" + srcFileName));
+					stringBuffer = new StringBuffer();
+					while ((tempString = bufferedReader.readLine()) != null) {
+						stringBuffer.append(tempString + "\n");
+					}
+					sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
+					sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+					sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
+					sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);
+				} else {
+					String search = "\n# List - Search\n", grid = "\n# List - Data Grid\n", header = "\n# Detail, Insert, Update - Table Header\n", listEtc = "\n# List - Etc\n";
+					dsTableInfo = dummyDao.getTableDetailDataSetByTableName(tableName);
+					sourceStringWithTable += "#############################################################################################\n";
+					sourceStringWithTable += "# Messages - "+thisMenuIdUpperCamelCase+" - "+menuName+"\n";
+					sourceStringWithTable += "#   - \n";
+					sourceStringWithTable += "#############################################################################################\n";
+					sourceStringWithTable += "# Button\n";
+					for (int i=0; i<dsTableInfo.getRowCnt(); i++) {
+						String colName = dsTableInfo.getValue(i, "COLUMN_NAME");
+						String colNameUpperWord = CommonUtil.toWordStartUpperCase(dsTableInfo.getValue(i, "COLUMN_NAME"));
+						String colNameLowerCamelCase = CommonUtil.toCamelCaseStartLowerCase(dsTableInfo.getValue(i, "COLUMN_NAME"));
+
+						if (CommonUtil.isIn(colName, "INSERT_DATE", "UPDATE_DATE", "INSERT_USER_ID", "UPDATE_USER_ID")) {
+							continue;
+						}
+
+						search += thisMenuId+".search."+colNameLowerCamelCase+"="+colNameUpperWord+"\n";
+						grid += thisMenuId+".grid."+colNameLowerCamelCase+"="+colNameUpperWord+"\n";
+						header += thisMenuId+".header."+colNameLowerCamelCase+"="+colNameUpperWord+"\n";
+					}
+					sourceStringWithTable += search+grid+listEtc+header;
+					sourceStringWithTable += "\n# Message, Comments";
+					sourceString = sourceStringWithTable;
+				}
+
+				osWriter.write(sourceString);
+				osWriter.flush();
+
+				for (int i=0; i<dsLang.getRowCnt(); i++) {
+					String lang = CommonUtil.lowerCase(dsLang.getValue(i, "COMMON_CODE"));
+					String srcNameTemp = CommonUtil.substringBefore(srcFileName, ".");
+					String srcNameExt = CommonUtil.substringAfter(srcFileName, ".");
+					String srcFileNameByLang = srcNameTemp + "_" + lang + "." + srcNameExt;
+
+					targetFileName = "app-" + rootMenuId + "-" + thisMenuId + "_" + lang;
+					targetFile = new File(targetPath + "/" + targetFileName + ".properties");
+					createEmptyFile(targetFile);
+
+					osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
+
+					if (CommonUtil.isBlank(tableName)) {
+						bufferedReader = new BufferedReader(new FileReader(srcPath + "/" + srcFileNameByLang));
+						stringBuffer = new StringBuffer();
+						while ((tempString = bufferedReader.readLine()) != null) {
+							stringBuffer.append(tempString + "\n");
+						}
+						sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
+						sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+						sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
+						sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);
+					} else {
+						sourceString = sourceStringWithTable;
+					}
+
+					osWriter.write(sourceString);
+					osWriter.flush();
+				}
+
+				osWriter.close();
+				if (bufferedReader != null) {bufferedReader.close();}
+			}
+
+			return true;
+		} catch (Exception ex) {
+			throw new FrameworkException(ex);
+		}
+	}
+
+	/**
 	 * Table Creation Script
 	 */
 	public DataSet getScriptFileDataSet(DataSet requestDataSet) throws Exception {
@@ -2296,7 +3193,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		return result;
 	}
 
-	/*!
+	/**
 	 * Data Migration
 	 */
 	public int generateDDLScriptFileForDataMigration(String sourceDb, String targetDb, String tableName) throws Exception {
@@ -2508,7 +3405,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		return 1;
 	}
 
-	/*!
+	/**
 	 * Common for this service
 	 */
 	private String getSqlScriptStringForDataMigration(DataSet tableInfoDataSet, String tableName) throws Exception {

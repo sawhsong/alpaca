@@ -106,15 +106,11 @@ var dsMenu2 = commonJs.getDataSetFromJavaDataSet("<%=dsMenu2.toStringForJs()%>")
 		</colgroup>
 		<tr>
 			<th class="thEdit rt mandatory"><mc:msg key="sys0402.header.menuId"/></th>
-			<td class="tdEdit"><ui:text name="menuId" checkName="sys0402.header.menuId" options="mandatory"/></td>
-			<th class="thEdit rt mandatory"><mc:msg key="sys0402.header.menuUrl"/></th>
-			<td class="tdEdit"><ui:text name="menuUrl" checkName="sys0402.header.menuUrl" options="mandatory"/></td>
+			<td class="tdEdit" colspan="3"><ui:text name="menuId" checkName="sys0402.header.menuId" options="mandatory"/></td>
 		</tr>
 		<tr>
-			<th class="thEdit rt mandatory"><mc:msg key="sys0402.header.sortOrder"/></th>
-			<td class="tdEdit"><ui:text name="sortOrder" checkName="sys0402.header.sortOrder" options="mandatory" option="numeric"/></td>
-			<th class="thEdit rt"><mc:msg key="sys0402.header.isActive"/></th>
-			<td class="tdEdit"><ui:ccradio name="isActive" codeType="SIMPLE_YN" selectedValue="Y"/></td>
+			<th class="thEdit rt mandatory"><mc:msg key="sys0402.header.menuUrl"/></th>
+			<td class="tdEdit" colspan="3"><ui:text name="menuUrl" checkName="sys0402.header.menuUrl" options="mandatory"/></td>
 		</tr>
 		<tr>
 			<th class="thEdit rt mandatory"><mc:msg key="sys0402.header.menuNameEn"/></th>
@@ -129,10 +125,10 @@ var dsMenu2 = commonJs.getDataSetFromJavaDataSet("<%=dsMenu2.toStringForJs()%>")
 			<td class="tdEdit" colspan="3"><ui:text name="description" checkName="sys0402.header.description"/></td>
 		</tr>
 		<tr>
-			<th class="thEdit rt"><mc:msg key="page.com.insertUser"/></th>
-			<td class="tdEdit"><ui:text name="insertUser" value="<%=sysUser.getUserName()%>" status="display"/></td>
-			<th class="thEdit rt"><mc:msg key="page.com.insertDate"/></th>
-			<td class="tdEdit"><ui:text name="insertDate" value="<%=CommonUtil.getSysdate(dateFormat)%>" status="display"/></td>
+			<th class="thEdit rt mandatory"><mc:msg key="sys0402.header.sortOrder"/></th>
+			<td class="tdEdit"><ui:text name="sortOrder" checkName="sys0402.header.sortOrder" options="mandatory" option="numeric"/></td>
+			<th class="thEdit rt"><mc:msg key="sys0402.header.isActive"/></th>
+			<td class="tdEdit"><ui:ccradio name="isActive" codeType="SIMPLE_YN" selectedValue="Y"/></td>
 		</tr>
 	</table>
 </div>
