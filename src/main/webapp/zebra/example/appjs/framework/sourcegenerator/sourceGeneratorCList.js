@@ -1,6 +1,8 @@
 /**
  * sourceGeneratorList.js
  */
+jsconfig.put("scrollablePanelHeightAdjust", 14);
+
 var popup;
 var searchResultDataCount = 0;
 var langCode = commonJs.upperCase(jsconfig.get("langCode"));

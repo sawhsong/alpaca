@@ -118,7 +118,7 @@
 		<tr>
 			<th class="thEdit Rt"><mc:msg key="fwk.sourcegenerator.header.detail"/></th>
 			<td class="tdEdit">
-				<ui:check name="jspCreateDetail" value="Y" text="fwk.sourcegenerator.header.generate" isChecked="true"/>
+				<ui:check name="jspCreateDetail" value="Y" text="fwk.sourcegenerator.header.generate" isChecked="false"/>
 			</td>
 			<th class="thEdit Rt" rowspan="4"><mc:msg key="fwk.sourcegenerator.header.pageType"/></th>
 			<td class="tdEdit" rowspan="4">
@@ -135,13 +135,13 @@
 		<tr>
 			<th class="thEdit Rt"><mc:msg key="fwk.sourcegenerator.header.insert"/></th>
 			<td class="tdEdit">
-				<ui:check name="jspCreateInsert" value="Y" text="fwk.sourcegenerator.header.generate" isChecked="true"/>
+				<ui:check name="jspCreateInsert" value="Y" text="fwk.sourcegenerator.header.generate" isChecked="false"/>
 			</td>
 		</tr>
 		<tr>
 			<th class="thEdit Rt"><mc:msg key="fwk.sourcegenerator.header.update"/></th>
 			<td class="tdEdit">
-				<ui:check name="jspCreateUpdate" value="Y" text="fwk.sourcegenerator.header.generate" isChecked="true"/>
+				<ui:check name="jspCreateUpdate" value="Y" text="fwk.sourcegenerator.header.generate" isChecked="false"/>
 			</td>
 		</tr>
 	</table>
@@ -178,7 +178,7 @@
 				<ui:text name="tableName" placeHolder="Table Name"/>
 			</td>
 			<td class="tdEdit">
-				<ui:check name="createMessage" value="Y" text="fwk.sourcegenerator.header.generate" isChecked="true"/>
+				<ui:check name="createMessage" value="Y" text="fwk.sourcegenerator.header.generate" isChecked="false"/>
 			</td>
 		</tr>
 	</table>

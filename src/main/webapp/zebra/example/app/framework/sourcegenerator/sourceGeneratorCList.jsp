@@ -96,12 +96,12 @@
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
 			<col width="2%"/>
-			<col width="3%"/>
-			<col width="10%"/>
-			<col width="25%"/>
+			<col width="2%"/>
 			<col width="15%"/>
+			<col width="16%"/>
+			<col width="26%"/>
 			<col width="*"/>
-			<col width="8%"/>
+			<col width="6%"/>
 		</colgroup>
 		<thead>
 			<tr>

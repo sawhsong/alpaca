@@ -3,6 +3,8 @@ package zebra.example.app.framework.sourcegenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import zebra.example.common.extend.BaseAction;
+import zebra.util.CommonUtil;
+import zebra.util.ConfigUtil;
 
 public class SourceGeneratorAction extends BaseAction {
 	@Autowired
@@ -10,7 +12,11 @@ public class SourceGeneratorAction extends BaseAction {
 
 	public String getDefault() throws Exception {
 		biz.getDefault(paramEntity);
-		return "list";
+		if (CommonUtil.equalsIgnoreCase(ConfigUtil.getProperty("type.menuCreationType"), "Name")) {
+			return "listN";
+		} else {
+			return "listC";
+		}
 	}
 
 	public String getList() throws Exception {
