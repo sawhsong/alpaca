@@ -40,8 +40,8 @@
 
 		<!--/* SourceGenerator */-->
 		<action name="sourcegenerator/*" class="zebra.example.app.framework.sourcegenerator.SourceGeneratorAction" method="{1}">
-			<result name="listC" type="debugDispatcherResult">/zebra/example/app/framework/sourcegenerator/sourceGeneratorListC.jsp</result>
-			<result name="listN" type="debugDispatcherResult">/zebra/example/app/framework/sourcegenerator/sourceGeneratorListN.jsp</result>
+			<result name="listC" type="debugDispatcherResult">/zebra/example/app/framework/sourcegenerator/sourceGeneratorCList.jsp</result>
+			<result name="listN" type="debugDispatcherResult">/zebra/example/app/framework/sourcegenerator/sourceGeneratorNList.jsp</result>
 			<result name="info" type="debugDispatcherResult">/zebra/example/app/framework/sourcegenerator/sourceGeneratorInfoPop.jsp</result>
 		</action>
 
