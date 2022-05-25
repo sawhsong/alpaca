@@ -92,19 +92,18 @@ $(function() {
 		$("#sortOrder").val("");
 
 		if (menuLevel == 1) {
+			$("#menuId").css({"text-transform":"uppercase"});
 			$("#menuUrl").val("#");
 			$("#sortOrder").val(sortOrder);
 		} else if (menuLevel == 2) {
-			if (!commonJs.isEmpty(level1MenuId)) {
-				$("#menuId").val(commonJs.getFormatString(level1MenuId, "???"));
-			}
-			$("#menuUrl").val("#");
+			$("#menuId").removeAttr("style");
+			$("#menuUrl").val("/"+level1MenuId+"/");
 			$("#sortOrder").val(sortOrder);
 		} else if (menuLevel == 3) {
 			if (!commonJs.isEmpty(level2MenuId)) {
-				$("#menuId").val(commonJs.getFormatString(level2MenuId, "???????"));
-				$("#menuUrl").val("/"+commonJs.getFormatString(level2MenuId.toLowerCase(), "???/????/")+"getDefault.do");
+				$("#menuUrl").val("/"+level1MenuId+"/"+level2MenuId+"/");
 			}
+			$("#menuId").removeAttr("style");
 			$("#sortOrder").val(sortOrder);
 		}
 	};
@@ -151,24 +150,16 @@ $(function() {
 
 	doValidate = function() {
 		var menuLevel = $("#menuLevel").val();
-		var level1MenuId = $("#level1").val();
-		var level2MenuId = $("#level2").val();
-		var menuId = $("#menuId").val();
 		var menuUrl = $("#menuUrl").val();
 		var sortOrder = $("#sortOrder").val();
 
-		if (menuLevel == 1) {
-			if (commonJs.isNumber(menuId) || menuId.length != 3) {return commonJs.doValidatorMessage($("#menuId"), "notValid");}
-			if (menuUrl != "#") {return commonJs.doValidatorMessage($("#menuUrl"), "notValid");}
-		} else if (menuLevel == 2) {
-			if (!commonJs.startsWith(menuId, level1MenuId) || menuId.length != 7) {return commonJs.doValidatorMessage($("#menuId"), "notValid");}
-		} else if (menuLevel == 3) {
-			level2MenuId = commonJs.getFormatString(level2MenuId, "?????");
-			if (commonJs.getFormatString(menuId, "?????") != level2MenuId || menuId.length != 7) {return commonJs.doValidatorMessage($("#menuId"), "notValid");}
-			if (menuUrl == "#" || menuUrl.indexOf("/") == -1) {return commonJs.doValidatorMessage($("#menuUrl"), "notValid");}
+		if (menuLevel == 1 && menuUrl != "#") {
+			return commonJs.doValidatorMessage($("#menuUrl"), "notValid");
 		}
 
-		if (sortOrder.length != 6) {return commonJs.doValidatorMessage($("#sortOrder"), "notValid");}
+		if (sortOrder.length != 6) {
+			return commonJs.doValidatorMessage($("#sortOrder"), "notValid");
+		}
 
 		return true;
 	};
@@ -179,6 +170,6 @@ $(function() {
 	$(window).load(function() {
 		setLevel2Selectbox();
 		setFieldValue();
-		parent.popup.setHeader("New / Edit by Code");
+		parent.popup.setHeader("New / Edit by Name");
 	});
 });

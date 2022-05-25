@@ -46,11 +46,7 @@ public class Sys0402Action extends BaseAction {
 
 	public String getUpdate() throws Exception {
 		biz.getUpdate(paramEntity);
-		if (CommonUtil.equalsIgnoreCase(ConfigUtil.getProperty("type.menuCreationType"), "Name")) {
-			return "updateN";
-		} else {
-			return "updateC";
-		}
+		return "update";
 	}
 
 	public String getUpdateSortOrder() throws Exception {

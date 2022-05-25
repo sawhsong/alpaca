@@ -142,15 +142,18 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 			}
 
 			sysMenu = new SysMenu();
-			sysMenu.setMenuId(CommonUtil.upperCase(requestDataSet.getValue("menuId")));
+
 			if (CommonUtil.equalsIgnoreCase(menuLevel, "1")) {
+				sysMenu.setMenuId(CommonUtil.upperCase(requestDataSet.getValue("menuId")));
 				sysMenu.setParentMenuId(null);
 				sysMenu.setMenuIcon(CommonUtil.upperCase(requestDataSet.getValue("menuId")));
 			} else if (CommonUtil.equalsIgnoreCase(menuLevel, "2")) {
+				sysMenu.setMenuId(requestDataSet.getValue("menuId"));
 				sysMenu.setParentMenuId(CommonUtil.upperCase(level1MenuId));
-				sysMenu.setMenuIcon(CommonUtil.upperCase(requestDataSet.getValue("menuId")));
+				sysMenu.setMenuIcon(requestDataSet.getValue("menuId"));
 			} else if (CommonUtil.equalsIgnoreCase(menuLevel, "3")) {
-				sysMenu.setParentMenuId(CommonUtil.upperCase(level2MenuId));
+				sysMenu.setMenuId(requestDataSet.getValue("menuId"));
+				sysMenu.setParentMenuId(level2MenuId);
 				sysMenu.setMenuIcon(null);
 			}
 			sysMenu.setMenuNameEn(requestDataSet.getValue("menuNameEn"));

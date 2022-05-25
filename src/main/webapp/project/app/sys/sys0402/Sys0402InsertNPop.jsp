@@ -8,8 +8,12 @@
 ************************************************************************************************/%>
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
-	DataSet quickMenuDataSet = MenuManager.getQuickMenu();
-	DataSet menuDataSet = MenuManager.getMenuDataSetByLevel(1);
+	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
+	DataSet dsMenu = MenuManager.getMenuDataSet();
+	DataSet dsMenu1 = MenuManager.getMenuDataSetByLevel(1);
+	DataSet dsMenu2 = MenuManager.getMenuDataSetByLevel(2);
+	SysUser sysUser = (SysUser)session.getAttribute("SysUser");
+	String dateFormat = ConfigUtil.getProperty("format.date.java");
 	String langCode = CommonUtil.upperCase((String)session.getAttribute("langCode"));
 %>
 <%/************************************************************************************************
@@ -29,99 +33,107 @@
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
+var dsMenu = commonJs.getDataSetFromJavaDataSet("<%=dsMenu.toStringForJs()%>");
+var dsMenu2 = commonJs.getDataSetFromJavaDataSet("<%=dsMenu2.toStringForJs()%>");
 </script>
 </head>
 <%/************************************************************************************************
 * Page & Header
 ************************************************************************************************/%>
-<body>
+<body style="overflow:hidden;">
 <form id="fmDefault" name="fmDefault" method="post" action="">
-<div id="divHeaderHolder" class="ui-layout-north"><%@ include file="/project/common/include/header.jsp"%></div>
-<div id="divBodyHolder" class="ui-layout-center">
-<div id="divBodyLeft" class="ui-layout-west"><%@ include file="/project/common/include/bodyLeft.jsp"%></div>
-<div id="divBodyCenter" class="ui-layout-center">
-<div id="divFixedPanel">
+<div id="divPopupWindowHolder">
+<div id="divFixedPanelPopup">
 <div id="divLocationPathArea"><%@ include file="/project/common/include/bodyLocationPathArea.jsp"%></div>
 <%/************************************************************************************************
 * Real Contents - fixed panel(tab, button, search, information)
 ************************************************************************************************/%>
 <div id="divTabArea"></div>
-<div id="divButtonArea" class="areaContainer">
+<div id="divButtonArea" class="areaContainerPopup">
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnSetSort" caption="sys0402.btn.sort" iconClass="fa-sort-numeric-asc"/>
-			<ui:button id="btnNew" caption="button.com.new" iconClass="fa-plus-square"/>
-			<ui:button id="btnDelete" caption="button.com.delete" iconClass="fa-trash"/>
-			<ui:button id="btnSearch" caption="button.com.search" iconClass="fa-search"/>
-			<ui:button id="btnClear" caption="button.com.clear" iconClass="fa-refresh"/>
-			<ui:button id="btnExport" caption="button.com.export" iconClass="fa-download"/>
+			<ui:button id="btnSave" caption="button.com.save" iconClass="fa-save"/>
+			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
 		</ui:buttonGroup>
 	</div>
 </div>
-<div id="divAdminToolArea"><%@ include file="/project/common/include/bodyAdminToolArea.jsp"%></div>
-<div id="divSearchCriteriaArea" class="areaContainer">
+<div id="divSearchCriteriaArea"></div>
+<div id="divInformArea" class="areaContainerPopup">
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<table class="tblDefault">
-				<tr>
-					<td class="tdDefault">
-						<label for="searchMenu" class="lblEn hor"><mc:msg key="sys0402.search.searchType"/></label>
-						<ui:select name="searchMenu">
-							<ui:seloption value="" text="==Select=="/>
+			<div id="divMenuLevel" style="float:left;width:30%;">
+				<label for="menuLevel" class="lblEn hor"><mc:msg key="sys0402.header.menuLevel"/></label>
+				<ui:ccselect name="menuLevel" codeType="MENU_LEVEL" style="border:1px solid red"/>
+			</div>
+			<div id="divLevel1" style="float:left;width:30%;display:none;">
+				<label for="level1" class="lblEn hor"><mc:msg key="sys0402.header.level1"/></label>
+				<ui:select name="level1">
 <%
-						for (int i=0; i<menuDataSet.getRowCnt(); i++) {
+				for (int i=0; i<dsMenu1.getRowCnt(); i++) {
+					if (!CommonUtil.equals(dsMenu1.getValue(i, "MENU_ID"), "QM")) {
 %>
-							<option value="<%=menuDataSet.getValue(i, "MENU_ID")%>"><%=menuDataSet.getValue(i, "MENU_NAME_"+langCode)%>(<%=menuDataSet.getValue(i, "MENU_ID")%>)</option>
+					<ui:seloption value="<%=dsMenu1.getValue(i, \"MENU_ID\")%>" text="<%=dsMenu1.getValue(i, \"MENU_ID\")%>"/>
 <%
-						}
+					}
+				}
 %>
-						</ui:select>
-					</td>
-				</tr>
-			</table>
+				</ui:select>
+			</div>
+			<div id="divLevel2" style="float:left;width:*;display:none;">
+				<label for="level2" class="lblEn hor"><mc:msg key="sys0402.header.level2"/></label>
+				<select id="level2" name="level2" class="bootstrapSelect"></select>
+			</div>
 		</div>
 	</div>
 </div>
-<div id="divInformArea"></div>
 <%/************************************************************************************************
 * End of fixed panel
 ************************************************************************************************/%>
 <div class="breaker"></div>
 </div>
-<div id="divScrollablePanel">
+<div id="divScrollablePanelPopup">
 <%/************************************************************************************************
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
-<div id="divDataArea" class="areaContainer">
-	<table id="tblGrid" class="tblGrid sort autosort">
+<div id="divDataArea" class="areaContainerPopup">
+	<table class="tblEdit">
 		<colgroup>
-			<col width="2%"/>
-			<col width="2%"/>
-			<col width="15%"/>
-			<col width="15%"/>
-			<col width="25%"/>
-			<col width="5%"/>
-			<col width="*"/>
-			<col width="4%"/>
+			<col width="20%"/>
+			<col width="30%"/>
+			<col width="20%"/>
+			<col width="30%"/>
 		</colgroup>
-		<thead>
-			<tr>
-				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
-				<th class="thGrid"><mc:msg key="sys0402.grid.menuId"/></th>
-				<th class="thGrid"><mc:msg key="sys0402.grid.menuName"/></th>
-				<th class="thGrid"><mc:msg key="sys0402.grid.menuUrl"/></th>
-				<th class="thGrid"><mc:msg key="sys0402.grid.sortOrder"/></th>
-				<th class="thGrid"><mc:msg key="sys0402.grid.menuDesc"/></th>
-				<th class="thGrid"><mc:msg key="sys0402.grid.isActive"/></th>
-			</tr>
-		</thead>
-		<tbody id="tblGridBody">
-			<tr>
-				<td class="tdGrid Ct" colspan="8"><mc:msg key="I002"/></td>
-			</tr>
-		</tbody>
+		<tr>
+			<th class="thEdit rt mandatory"><mc:msg key="sys0402.header.menuId"/></th>
+			<td class="tdEdit"><ui:text name="menuId" checkName="sys0402.header.menuId" options="mandatory"/></td>
+			<th class="thEdit rt mandatory"><mc:msg key="sys0402.header.menuUrl"/></th>
+			<td class="tdEdit"><ui:text name="menuUrl" checkName="sys0402.header.menuUrl" options="mandatory"/></td>
+		</tr>
+		<tr>
+			<th class="thEdit rt mandatory"><mc:msg key="sys0402.header.sortOrder"/></th>
+			<td class="tdEdit"><ui:text name="sortOrder" checkName="sys0402.header.sortOrder" options="mandatory" option="numeric"/></td>
+			<th class="thEdit rt"><mc:msg key="sys0402.header.isActive"/></th>
+			<td class="tdEdit"><ui:ccradio name="isActive" codeType="SIMPLE_YN" selectedValue="Y"/></td>
+		</tr>
+		<tr>
+			<th class="thEdit rt mandatory"><mc:msg key="sys0402.header.menuNameEn"/></th>
+			<td class="tdEdit" colspan="3"><ui:text name="menuNameEn" checkName="sys0402.header.menuNameEn" options="mandatory"/></td>
+		</tr>
+		<tr>
+			<th class="thEdit rt mandatory"><mc:msg key="sys0402.header.menuNameKo"/></th>
+			<td class="tdEdit" colspan="3"><ui:text name="menuNameKo" checkName="sys0402.header.menuNameKo" options="mandatory"/></td>
+		</tr>
+		<tr>
+			<th class="thEdit rt"><mc:msg key="sys0402.header.description"/></th>
+			<td class="tdEdit" colspan="3"><ui:text name="description" checkName="sys0402.header.description"/></td>
+		</tr>
+		<tr>
+			<th class="thEdit rt"><mc:msg key="page.com.insertUser"/></th>
+			<td class="tdEdit"><ui:text name="insertUser" value="<%=sysUser.getUserName()%>" status="display"/></td>
+			<th class="thEdit rt"><mc:msg key="page.com.insertDate"/></th>
+			<td class="tdEdit"><ui:text name="insertDate" value="<%=CommonUtil.getSysdate(dateFormat)%>" status="display"/></td>
+		</tr>
 	</table>
 </div>
 <div id="divPagingArea"></div>
@@ -130,9 +142,6 @@
 ************************************************************************************************/%>
 </div>
 </div>
-<div id="divBodyRight" class="ui-layout-east"><%@ include file="/project/common/include/bodyRight.jsp"%></div>
-</div>
-<div id="divFooterHolder" class="ui-layout-south"><%@ include file="/project/common/include/footer.jsp"%></div>
 <%/************************************************************************************************
 * Additional Elements
 ************************************************************************************************/%>
