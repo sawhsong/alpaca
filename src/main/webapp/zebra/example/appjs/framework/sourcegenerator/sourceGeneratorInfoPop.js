@@ -59,6 +59,10 @@ $(function() {
 						paramData.menuId = $this.val();
 						paramData.menuName = $this.attr("menuName");
 
+						var dataDelimiter = jsconfig.get("dataDelimiter");
+						var menuIdArray = paramData.menuId.split(dataDelimiter);
+						var menuId = menuIdArray[1];
+
 						commonJs.ajaxSubmit({
 							url:"/zebra/framework/sourcegenerator/exeGenerate.do",
 							dataType:"json",
@@ -68,9 +72,6 @@ $(function() {
 								var result = commonJs.parseAjaxResult(data, textStatus, "json");
 
 								if (result.isSuccess == true || result.isSuccess == "true") {
-									var dataDelimiter = jsconfig.get("dataDelimiter");
-									var menuIdArray = paramData.menuId.split(dataDelimiter);
-									var menuId = menuIdArray[1];
 									popupProcess.addContents(com.message.I802+" : "+menuId);
 
 									if ((index+1) == parent.commonJs.getCountChecked("chkForGenerate")) {
@@ -91,7 +92,7 @@ $(function() {
 										});
 									}
 								} else {
-									popupProcess.addContents(com.message.E801+" : "+paramData.menuId);
+									popupProcess.addContents(com.message.E801+" : "+menuId);
 								}
 							}
 						});
