@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseAction;
 import project.common.module.menu.MenuManager;
+import zebra.util.CommonUtil;
+import zebra.util.ConfigUtil;
 
 public class Sys0402Action extends BaseAction {
 	@Autowired
@@ -35,12 +37,20 @@ public class Sys0402Action extends BaseAction {
 
 	public String getInsert() throws Exception {
 		biz.getInsert(paramEntity);
-		return "insert";
+		if (CommonUtil.equalsIgnoreCase(ConfigUtil.getProperty("type.menuCreationType"), "Name")) {
+			return "insertN";
+		} else {
+			return "insertC";
+		}
 	}
 
 	public String getUpdate() throws Exception {
 		biz.getUpdate(paramEntity);
-		return "update";
+		if (CommonUtil.equalsIgnoreCase(ConfigUtil.getProperty("type.menuCreationType"), "Name")) {
+			return "updateN";
+		} else {
+			return "updateC";
+		}
 	}
 
 	public String getUpdateSortOrder() throws Exception {
