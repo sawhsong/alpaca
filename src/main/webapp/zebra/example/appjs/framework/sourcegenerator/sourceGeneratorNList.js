@@ -90,7 +90,7 @@ $(function() {
 					space += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 				}
 
-				menuId = dataSet.getValue(i, "PATH");
+				menuId = commonJs.replace(dataSet.getValue(i, "PATH"), "/", delimiter);
 				style += (isLeaf != 1) ? "font-weight:bold;" : "";
 
 				var tdAction = new UiGridTd();

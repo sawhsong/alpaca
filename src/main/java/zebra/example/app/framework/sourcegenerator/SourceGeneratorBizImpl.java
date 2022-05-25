@@ -107,34 +107,34 @@ public class SourceGeneratorBizImpl extends BaseBiz implements SourceGeneratorBi
 
 		try {
 			FileUtil.createFolder(javaPath+"/"+menuPathStr);
-//			FileUtil.createFolder(jspPath+"/"+menuPathStr);
-//			FileUtil.createFolder(jspPath+"js/"+menuPathStr);
+			FileUtil.createFolder(jspPath+"/"+menuPathStr);
+			FileUtil.createFolder(jspPath+"js/"+menuPathStr);
 
-//			if (isCreateSpring) {
-//				FileUtil.createFolder(springPath);
-//			}
-//
-//			if (isCreateStruts) {
-//				FileUtil.createFolder(strutsPath);
-//			}
-//
-//			if (isCreateMessage) {
-//				FileUtil.createFolder(messagePath+"/"+menuPathStr);
-//			}
+			if (isCreateSpring) {
+				FileUtil.createFolder(springPath);
+			}
+
+			if (isCreateStruts) {
+				FileUtil.createFolder(strutsPath);
+			}
+
+			if (isCreateMessage) {
+				FileUtil.createFolder(messagePath+"/"+menuPathStr);
+			}
 
 			zebraFramworkBizService.createJavaActionN(requestDataSet);
 			zebraFramworkBizService.createJavaBizN(requestDataSet);
 			zebraFramworkBizService.createJavaBizImplN(requestDataSet);
 
-//			zebraFramworkBizService.createJspListN(requestDataSet);
-//			zebraFramworkBizService.createJspDetailN(requestDataSet);
-//			zebraFramworkBizService.createJspEditN(requestDataSet);
-//			zebraFramworkBizService.createJspInsertN(requestDataSet);
-//			zebraFramworkBizService.createJspUpdateN(requestDataSet);
-//
-//			zebraFramworkBizService.createConfSpringN(requestDataSet);
-//			zebraFramworkBizService.createConfStrutsN(requestDataSet);
-//			zebraFramworkBizService.createMessageFileN(requestDataSet);
+			zebraFramworkBizService.createJspListN(requestDataSet);
+			zebraFramworkBizService.createJspDetailN(requestDataSet);
+			zebraFramworkBizService.createJspEditN(requestDataSet);
+			zebraFramworkBizService.createJspInsertN(requestDataSet);
+			zebraFramworkBizService.createJspUpdateN(requestDataSet);
+
+			zebraFramworkBizService.createConfSpringN(requestDataSet);
+			zebraFramworkBizService.createConfStrutsN(requestDataSet);
+			zebraFramworkBizService.createMessageFileN(requestDataSet);
 
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
