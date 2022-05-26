@@ -2730,7 +2730,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 				beanElement.setAttribute("class", packageString + "." + thisMenuIdStartUpperCase + "Action");
 				rootElement.appendChild(beanElement);
 
-				Comment commentElement = document.createComment(thisMenuId + " - " + menuName);
+				Comment commentElement = document.createComment(thisMenuIdStartUpperCase + " - " + menuName);
 				beanElement.getParentNode().insertBefore(commentElement, beanElement);
 
 				beanElement = document.createElement("bean");
@@ -2900,7 +2900,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 							packageElement.appendChild(actionElement);
 						}
 
-						Comment commentElement = document.createComment(thisMenuId + " - " + menuName);
+						Comment commentElement = document.createComment(thisMenuIdStartUpperCase + " - " + menuName);
 						actionElement.getParentNode().insertBefore(commentElement, actionElement);
 
 						DOMImplementation domImpl = document.getImplementation();
