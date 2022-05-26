@@ -2164,16 +2164,16 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String javaPath = requestDataSet.getValue("javaSourcePath");
 		String[] menuPaths = CommonUtil.split(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"));
 		String menuPathStr = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1]+"/"+menuPaths[2];
-		String rootMenuId = menuPaths[0]+"/"+menuPaths[1];
+		String upperMenuId = menuPaths[0]+"/"+menuPaths[1];
 		String thisMenuId = menuPaths[2];
 		String menuName = requestDataSet.getValue("menuName");
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String actionHandlerType = requestDataSet.getValue("actionHandlerType");
 		String actionNameAjaxResponse = ConfigUtil.getProperty("name.source.javaAction.ajaxResponse");
 		String actionNamePageHandler = ConfigUtil.getProperty("name.source.javaAction.pageHandler");
-		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
-		String javaTargetpath = javaPath + "/" + rootMenuId + "/" + thisMenuId;
-		String sourcePath, sourceString, packageString, tempString;
+		String thisMenuIdStartUpperCase = CommonUtil.toStartUpperCase(thisMenuId);
+		String javaTargetpath = javaPath + "/" + upperMenuId + "/" + thisMenuId;
+		String sourcePath, sourceString, packageString, tempString, menuUrl;
 		File targetFile;
 
 		try {
@@ -2183,7 +2183,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 				sourcePath = srcPath+"/"+actionNameAjaxResponse;
 			}
 
-			targetFile = new File(javaTargetpath+"/"+thisMenuIdUpperCamelCase+"Action.java");
+			targetFile = new File(javaTargetpath+"/"+thisMenuIdStartUpperCase+"Action.java");
 			createEmptyFile(targetFile);
 
 			BufferedReader bufferedReader = new BufferedReader(new FileReader(sourcePath));
@@ -2196,11 +2196,11 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 
 			packageString = CommonUtil.replace(CommonUtil.remove(javaTargetpath, rootPath + "src/main/java/"), "/", ".");
 
-			String menuUrl = rootMenuId + "/" + CommonUtil.remove(thisMenuId, rootMenuId);
+			menuUrl = upperMenuId + "/" + CommonUtil.remove(thisMenuId, upperMenuId);
 
 			sourceString = CommonUtil.replace(sourceString, "#PROJECT_NAME#", projectName);
 			sourceString = CommonUtil.replace(sourceString, "#PACKAGE_NAME#", packageString);
-			sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+			sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdStartUpperCase);
 			sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
 			sourceString = CommonUtil.replace(sourceString, "#MENU_PATH#", menuPathStr);
 			sourceString = CommonUtil.replace(sourceString, "#MENU_URL#", menuUrl);
@@ -2221,20 +2221,20 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
 		String javaPath = requestDataSet.getValue("javaSourcePath");
 		String[] menuPaths = CommonUtil.split(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"));
-		String rootMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
+		String upperMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
 		String thisMenuId = menuPaths[2];
 		String menuName = requestDataSet.getValue("menuName");
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String srcBizFileName = ConfigUtil.getProperty("name.source.javaBiz");
-		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
-		String javaTargetpath = javaPath + "/" + rootMenuId + "/" + thisMenuId;
+		String thisMenuIdStartUpperCase = CommonUtil.toStartUpperCase(thisMenuId);
+		String javaTargetpath = javaPath + "/" + upperMenuId + "/" + thisMenuId;
 		String sourcePath, tempString, sourceString, packageString;
 		File targetFile;
 
 		try {
 			sourcePath = srcPath+"/"+srcBizFileName;
 
-			targetFile = new File(javaTargetpath+"/"+thisMenuIdUpperCamelCase+"Biz.java");
+			targetFile = new File(javaTargetpath+"/"+thisMenuIdStartUpperCase+"Biz.java");
 			createEmptyFile(targetFile);
 
 			BufferedReader bufferedReader = new BufferedReader(new FileReader(sourcePath));
@@ -2249,7 +2249,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 
 			sourceString = CommonUtil.replace(sourceString, "#PROJECT_NAME#", projectName);
 			sourceString = CommonUtil.replace(sourceString, "#PACKAGE_NAME#", packageString);
-			sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+			sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdStartUpperCase);
 			sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
 
 			osWriter.write(sourceString);
@@ -2268,21 +2268,21 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String projectName = CommonUtil.lowerCase(ConfigUtil.getProperty("name.project"));
 		String javaPath = requestDataSet.getValue("javaSourcePath");
 		String[] menuPaths = CommonUtil.split(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"));
-		String rootMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
+		String upperMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
 		String thisMenuId = menuPaths[2];
 		String menuName = requestDataSet.getValue("menuName");
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String srcBizImplFileName = ConfigUtil.getProperty("name.source.javaBizImpl");
-		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
-		String thisMenuIdLowerCamelCase = CommonUtil.toCamelCaseStartLowerCase(thisMenuId);
-		String javaTargetpath = javaPath + "/" + rootMenuId + "/" + thisMenuId;
+		String thisMenuIdStartUpperCase = CommonUtil.toStartUpperCase(thisMenuId);
+		String thisMenuIdStartLowerCase = CommonUtil.toStartLowerCase(thisMenuId);
+		String javaTargetpath = javaPath + "/" + upperMenuId + "/" + thisMenuId;
 		String sourcePath, tempString, sourceString, packageString;
 		File targetFile;
 
 		try {
 			sourcePath = srcPath+"/"+srcBizImplFileName;
 
-			targetFile = new File(javaTargetpath+"/"+thisMenuIdUpperCamelCase+"BizImpl.java");
+			targetFile = new File(javaTargetpath+"/"+thisMenuIdStartUpperCase+"BizImpl.java");
 			createEmptyFile(targetFile);
 
 			BufferedReader bufferedReader = new BufferedReader(new FileReader(sourcePath));
@@ -2297,8 +2297,8 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 
 			sourceString = CommonUtil.replace(sourceString, "#PROJECT_NAME#", projectName);
 			sourceString = CommonUtil.replace(sourceString, "#PACKAGE_NAME#", packageString);
-			sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
-			sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_LOWER#", thisMenuIdLowerCamelCase);
+			sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdStartUpperCase);
+			sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_LOWER#", thisMenuIdStartLowerCase);
 			sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
 
 			osWriter.write(sourceString);
@@ -2318,12 +2318,12 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String pageType = requestDataSet.getValue("jspSubPageType");
 		String jspPath = requestDataSet.getValue("jspSourcePath");
 		String[] menuPaths = CommonUtil.split(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"));
-		String rootMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
+		String upperMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
 		String thisMenuId = menuPaths[2];
 		String menuName = requestDataSet.getValue("menuName");
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
-		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
-		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
+		String thisMenuIdStartUpperCase = CommonUtil.toStartUpperCase(thisMenuId);
+		String jspTargetpath = jspPath + "/" + upperMenuId + "/" + thisMenuId;
 		String jsSectionStringStart = "<script type=\"text/javascript\">", jsSectionStringEnd = "</script>", jsString = "";
 		boolean isJsSection = false;
 		String srcJspFileName, sourceString, tempString, menuUrl;
@@ -2337,7 +2337,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 					srcJspFileName = ConfigUtil.getProperty("name.source.jspListForPop");
 				}
 
-				targetFile = new File(jspTargetpath+"/"+thisMenuIdUpperCamelCase+"List.jsp");
+				targetFile = new File(jspTargetpath+"/"+thisMenuIdStartUpperCase+"List.jsp");
 				createEmptyFile(targetFile);
 
 				BufferedReader bufferedReader = new BufferedReader(new FileReader(srcPath + "/" + srcJspFileName));
@@ -2361,9 +2361,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 				OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
 				sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
 
-				menuUrl = rootMenuId + "/" + thisMenuId;
+				menuUrl = upperMenuId + "/" + thisMenuId;
 
-				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdStartUpperCase);
 				sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
 				sourceString = CommonUtil.replace(sourceString, "#MENU_URL#", menuUrl);
 				sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);
@@ -2373,7 +2373,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 				osWriter.close();
 				bufferedReader.close();
 
-				createJsSourceN(requestDataSet, thisMenuIdUpperCamelCase+"List.js", jsString);
+				createJsSourceN(requestDataSet, thisMenuIdStartUpperCase+"List.js", jsString);
 			}
 
 			return true;
@@ -2388,12 +2388,12 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String pageType = requestDataSet.getValue("jspSubPageType");
 		String jspPath = requestDataSet.getValue("jspSourcePath");
 		String[] menuPaths = CommonUtil.split(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"));
-		String rootMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
+		String upperMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
 		String thisMenuId = menuPaths[2];
 		String menuName = requestDataSet.getValue("menuName");
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
-		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
-		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
+		String thisMenuIdStartUpperCase = CommonUtil.toStartUpperCase(thisMenuId);
+		String jspTargetpath = jspPath + "/" + upperMenuId + "/" + thisMenuId;
 		String jsSectionStringStart = "<script type=\"text/javascript\">", jsSectionStringEnd = "</script>", jsString = "";
 		boolean isJsSection = false;
 		String srcJspFileName, targetFileSuffix, sourceString, menuUrl;
@@ -2409,7 +2409,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 					srcJspFileName = ConfigUtil.getProperty("name.source.jspDetailPop");
 				}
 
-				targetFile = new File(jspTargetpath + "/" + thisMenuIdUpperCamelCase + "Detail" + targetFileSuffix + ".jsp");
+				targetFile = new File(jspTargetpath + "/" + thisMenuIdStartUpperCase + "Detail" + targetFileSuffix + ".jsp");
 				createEmptyFile(targetFile);
 
 				BufferedReader bufferedReader = new BufferedReader(new FileReader(srcPath + "/" + srcJspFileName));
@@ -2434,9 +2434,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 				OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
 				sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
 
-				menuUrl = rootMenuId + "/" + thisMenuId;
+				menuUrl = upperMenuId + "/" + thisMenuId;
 
-				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdStartUpperCase);
 				sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
 				sourceString = CommonUtil.replace(sourceString, "#MENU_URL#", menuUrl);
 				sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);
@@ -2446,7 +2446,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 				osWriter.close();
 				bufferedReader.close();
 
-				createJsSourceN(requestDataSet, thisMenuIdUpperCamelCase + "Detail" + targetFileSuffix + ".js", jsString);
+				createJsSourceN(requestDataSet, thisMenuIdStartUpperCase + "Detail" + targetFileSuffix + ".js", jsString);
 			}
 
 			return true;
@@ -2461,12 +2461,12 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String pageType = requestDataSet.getValue("jspSubPageType");
 		String jspPath = requestDataSet.getValue("jspSourcePath");
 		String[] menuPaths = CommonUtil.split(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"));
-		String rootMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
+		String upperMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
 		String thisMenuId = menuPaths[2];
 		String menuName = requestDataSet.getValue("menuName");
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
-		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
-		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
+		String thisMenuIdStartUpperCase = CommonUtil.toStartUpperCase(thisMenuId);
+		String jspTargetpath = jspPath + "/" + upperMenuId + "/" + thisMenuId;
 		String jsSectionStringStart = "<script type=\"text/javascript\">", jsSectionStringEnd = "</script>", jsString = "";
 		boolean isJsSection = false;
 		String srcJspFileName, targetFileSuffix, sourceString, menuUrl;
@@ -2482,7 +2482,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 					srcJspFileName = ConfigUtil.getProperty("name.source.jspEditPop");
 				}
 
-				targetFile = new File(jspTargetpath + "/" + thisMenuIdUpperCamelCase + "Edit" + targetFileSuffix + ".jsp");
+				targetFile = new File(jspTargetpath + "/" + thisMenuIdStartUpperCase + "Edit" + targetFileSuffix + ".jsp");
 				createEmptyFile(targetFile);
 
 				BufferedReader bufferedReader = new BufferedReader(new FileReader(srcPath + "/" + srcJspFileName));
@@ -2507,9 +2507,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 				OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
 				sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
 
-				menuUrl = rootMenuId + "/" + thisMenuId;
+				menuUrl = upperMenuId + "/" + thisMenuId;
 
-				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdStartUpperCase);
 				sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
 				sourceString = CommonUtil.replace(sourceString, "#MENU_URL#", menuUrl);
 				sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);
@@ -2519,7 +2519,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 				osWriter.close();
 				bufferedReader.close();
 
-				createJsSourceN(requestDataSet, thisMenuIdUpperCamelCase + "Edit" + targetFileSuffix + ".js", jsString);
+				createJsSourceN(requestDataSet, thisMenuIdStartUpperCase + "Edit" + targetFileSuffix + ".js", jsString);
 			}
 
 			return true;
@@ -2534,12 +2534,12 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String pageType = requestDataSet.getValue("jspSubPageType");
 		String jspPath = requestDataSet.getValue("jspSourcePath");
 		String[] menuPaths = CommonUtil.split(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"));
-		String rootMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
+		String upperMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
 		String thisMenuId = menuPaths[2];
 		String menuName = requestDataSet.getValue("menuName");
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
-		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
-		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
+		String thisMenuIdStartUpperCase = CommonUtil.toStartUpperCase(thisMenuId);
+		String jspTargetpath = jspPath + "/" + upperMenuId + "/" + thisMenuId;
 		String jsSectionStringStart = "<script type=\"text/javascript\">", jsSectionStringEnd = "</script>", jsString = "";
 		boolean isJsSection = false;
 		String srcJspFileName, targetFileSuffix, sourceString, menuUrl;
@@ -2555,7 +2555,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 					srcJspFileName = ConfigUtil.getProperty("name.source.jspInsertPop");
 				}
 
-				targetFile = new File(jspTargetpath + "/" + thisMenuIdUpperCamelCase + "Insert" + targetFileSuffix + ".jsp");
+				targetFile = new File(jspTargetpath + "/" + thisMenuIdStartUpperCase + "Insert" + targetFileSuffix + ".jsp");
 				createEmptyFile(targetFile);
 
 				BufferedReader bufferedReader = new BufferedReader(new FileReader(srcPath + "/" + srcJspFileName));
@@ -2580,9 +2580,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 				OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
 				sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
 
-				menuUrl = rootMenuId + "/" + thisMenuId;
+				menuUrl = upperMenuId + "/" + thisMenuId;
 
-				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdStartUpperCase);
 				sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
 				sourceString = CommonUtil.replace(sourceString, "#MENU_URL#", menuUrl);
 				sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);
@@ -2592,7 +2592,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 				osWriter.close();
 				bufferedReader.close();
 
-				createJsSourceN(requestDataSet, thisMenuIdUpperCamelCase + "Insert" + targetFileSuffix + ".js", jsString);
+				createJsSourceN(requestDataSet, thisMenuIdStartUpperCase + "Insert" + targetFileSuffix + ".js", jsString);
 			}
 
 			return true;
@@ -2607,12 +2607,12 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String pageType = requestDataSet.getValue("jspSubPageType");
 		String jspPath = requestDataSet.getValue("jspSourcePath");
 		String[] menuPaths = CommonUtil.split(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"));
-		String rootMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
+		String upperMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
 		String thisMenuId = menuPaths[2];
 		String menuName = requestDataSet.getValue("menuName");
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
-		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
-		String jspTargetpath = jspPath + "/" + rootMenuId + "/" + thisMenuId;
+		String thisMenuIdStartUpperCase = CommonUtil.toStartUpperCase(thisMenuId);
+		String jspTargetpath = jspPath + "/" + upperMenuId + "/" + thisMenuId;
 		String jsSectionStringStart = "<script type=\"text/javascript\">", jsSectionStringEnd = "</script>", jsString = "";
 		boolean isJsSection = false;
 		String srcJspFileName, targetFileSuffix, sourceString, menuUrl;
@@ -2627,7 +2627,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 					targetFileSuffix = "Pop";
 					srcJspFileName = ConfigUtil.getProperty("name.source.jspUpdatePop");
 				}
-				targetFile = new File(jspTargetpath + "/" + thisMenuIdUpperCamelCase + "Update" + targetFileSuffix + ".jsp");
+				targetFile = new File(jspTargetpath + "/" + thisMenuIdStartUpperCase + "Update" + targetFileSuffix + ".jsp");
 				createEmptyFile(targetFile);
 
 				BufferedReader bufferedReader = new BufferedReader(new FileReader(srcPath + "/" + srcJspFileName));
@@ -2652,9 +2652,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 				OutputStreamWriter osWriter = new OutputStreamWriter(new FileOutputStream(targetFile, true), "utf-8");
 				sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
 
-				menuUrl = rootMenuId + "/" + thisMenuId;
+				menuUrl = upperMenuId + "/" + thisMenuId;
 
-				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+				sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdStartUpperCase);
 				sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
 				sourceString = CommonUtil.replace(sourceString, "#MENU_URL#", menuUrl);
 				sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);
@@ -2664,7 +2664,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 				osWriter.close();
 				bufferedReader.close();
 
-				createJsSourceN(requestDataSet, thisMenuIdUpperCamelCase + "Update" + targetFileSuffix + ".js", jsString);
+				createJsSourceN(requestDataSet, thisMenuIdStartUpperCase + "Update" + targetFileSuffix + ".js", jsString);
 			}
 
 			return true;
@@ -2681,14 +2681,14 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String javaPath = dsRequest.getValue("javaSourcePath");
 		String targetPath = dsRequest.getValue("springConfigPath");
 		String[] menuPaths = CommonUtil.split(dsRequest.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"));
-		String rootMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
+		String upperMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
 		String thisMenuId = menuPaths[2];
 		String menuName = dsRequest.getValue("menuName");
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String srcFileName = ConfigUtil.getProperty("name.source.xmlMenuSpringConf");
-		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
-		String thisMenuIdLowerCamelCase = CommonUtil.toCamelCaseStartLowerCase(thisMenuId);
-		String javaTargetpath = javaPath + "/" + rootMenuId + "/" + thisMenuId;
+		String thisMenuIdStartUpperCase = CommonUtil.toStartUpperCase(thisMenuId);
+		String thisMenuIdStartLowerCase = CommonUtil.toStartLowerCase(thisMenuId);
+		String javaTargetpath = javaPath + "/" + upperMenuId + "/" + thisMenuId;
 		String sourceString, packageString;
 		File targetFile;
 
@@ -2725,18 +2725,18 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 				packageString = CommonUtil.replace(CommonUtil.replace(CommonUtil.remove(javaTargetpath, rootPath + "src/main/java/"), "/", "."), packageName, "${name.package.project}");
 
 				Element beanElement = document.createElement("bean");
-				beanElement.setAttribute("id", menuPaths[2] + "Action");
-				beanElement.setAttribute("name", menuPaths[2] + "Action");
-				beanElement.setAttribute("class", packageString + "." + thisMenuIdUpperCamelCase + "Action");
+				beanElement.setAttribute("id", thisMenuIdStartLowerCase + "Action");
+				beanElement.setAttribute("name", thisMenuIdStartLowerCase + "Action");
+				beanElement.setAttribute("class", packageString + "." + thisMenuIdStartUpperCase + "Action");
 				rootElement.appendChild(beanElement);
 
-				Comment commentElement = document.createComment(thisMenuIdUpperCamelCase + " - " + menuName);
+				Comment commentElement = document.createComment(thisMenuId + " - " + menuName);
 				beanElement.getParentNode().insertBefore(commentElement, beanElement);
 
 				beanElement = document.createElement("bean");
-				beanElement.setAttribute("id", thisMenuIdLowerCamelCase + "Biz");
-				beanElement.setAttribute("name", thisMenuIdLowerCamelCase + "Biz");
-				beanElement.setAttribute("class", packageString + "." + thisMenuIdUpperCamelCase + "BizImpl");
+				beanElement.setAttribute("id", thisMenuIdStartLowerCase + "Biz");
+				beanElement.setAttribute("name", thisMenuIdStartLowerCase + "Biz");
+				beanElement.setAttribute("class", packageString + "." + thisMenuIdStartUpperCase + "BizImpl");
 				beanElement.setAttribute("parent", "baseBiz");
 				rootElement.appendChild(beanElement);
 
@@ -2770,14 +2770,14 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String targetPath = dsRequest.getValue("strutsConfigPath");
 		String[] menuPaths = CommonUtil.split(dsRequest.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"));
 		String menuPathStr = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1]+"/"+menuPaths[2];
-		String rootMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
+		String upperMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
 		String thisMenuId = menuPaths[2];
 		String menuName = dsRequest.getValue("menuName");
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String srcFileName = ConfigUtil.getProperty("name.source.xmlMenuStrutsConf");
-		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
+		String thisMenuIdStartUpperCase = CommonUtil.toStartUpperCase(thisMenuId);
 		String jspRelPath = CommonUtil.substringAfter(jspPath, "webapp");
-		String javaTargetpath = javaPath + "/" + rootMenuId + "/" + thisMenuId;
+		String javaTargetpath = javaPath + "/" + upperMenuId + "/" + thisMenuId;
 		String sourceString, pageNameSuffix = "";
 		String isCreateDetail = CommonUtil.nvl(dsRequest.getValue("jspCreateDetail"));
 		String isCreateEdit = CommonUtil.nvl(dsRequest.getValue("jspCreateEdit"));
@@ -2854,12 +2854,12 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 						Element actionElement = document.createElement("action");
 						actionElement.setAttribute("name", menuPaths[1]+"/"+menuPaths[2] + "/*");
 						actionElement.setAttribute("method", "{1}");
-						actionElement.setAttribute("class", packageString + "." + thisMenuIdUpperCamelCase + "Action");
+						actionElement.setAttribute("class", packageString + "." + thisMenuIdStartUpperCase + "Action");
 
 						Element resultElement = document.createElement("result");
 						resultElement.setAttribute("name", "list");
 						resultElement.setAttribute("type", "debugDispatcherResult");
-						resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdUpperCamelCase + "List.jsp");
+						resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdStartUpperCase + "List.jsp");
 						actionElement.appendChild(resultElement);
 
 						if (CommonUtil.toBoolean(isCreateDetail)) {
@@ -2867,7 +2867,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 							resultElement = document.createElement("result");
 							resultElement.setAttribute("name", "detail");
 							resultElement.setAttribute("type", "debugDispatcherResult");
-							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdUpperCamelCase + "Detail"+pageNameSuffix);
+							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdStartUpperCase + "Detail"+pageNameSuffix);
 							actionElement.appendChild(resultElement);
 							packageElement.appendChild(actionElement);
 						}
@@ -2877,7 +2877,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 							resultElement = document.createElement("result");
 							resultElement.setAttribute("name", "edit");
 							resultElement.setAttribute("type", "debugDispatcherResult");
-							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdUpperCamelCase + "Edit"+pageNameSuffix);
+							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdStartUpperCase + "Edit"+pageNameSuffix);
 							actionElement.appendChild(resultElement);
 							packageElement.appendChild(actionElement);
 						}
@@ -2886,7 +2886,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 							resultElement = document.createElement("result");
 							resultElement.setAttribute("name", "insert");
 							resultElement.setAttribute("type", "debugDispatcherResult");
-							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdUpperCamelCase + "Insert"+pageNameSuffix);
+							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdStartUpperCase + "Insert"+pageNameSuffix);
 							actionElement.appendChild(resultElement);
 							packageElement.appendChild(actionElement);
 						}
@@ -2895,7 +2895,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 							resultElement = document.createElement("result");
 							resultElement.setAttribute("name", "update");
 							resultElement.setAttribute("type", "debugDispatcherResult");
-							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdUpperCamelCase + "Update"+pageNameSuffix);
+							resultElement.setTextContent(jspRelPath + "/" + menuPathStr + "/" + thisMenuIdStartUpperCase + "Update"+pageNameSuffix);
 							actionElement.appendChild(resultElement);
 							packageElement.appendChild(actionElement);
 						}
@@ -2935,13 +2935,13 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String isCreate = CommonUtil.nvl(dsRequest.getValue("createMessage"));
 		String targetPath = dsRequest.getValue("messageConfigPath");
 		String[] menuPaths = CommonUtil.split(dsRequest.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"));
-		String rootMenuId = menuPaths[0]+"-"+menuPaths[1];
+		String upperMenuId = CommonUtil.lowerCase(menuPaths[0])+"-"+menuPaths[1];
 		String thisMenuId = menuPaths[2];
 		String menuName = dsRequest.getValue("menuName");
 		String tableName = dsRequest.getValue("tableName");
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String srcFileName = ConfigUtil.getProperty("name.source.propMessage");
-		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
+		String thisMenuIdStartUpperCase = CommonUtil.toStartUpperCase(thisMenuId);
 		DataSet dsLang = ZebraCommonCodeManager.getCodeDataSetByCodeType("LANGUAGE_TYPE");
 		BufferedReader bufferedReader = null;
 		StringBuffer stringBuffer;
@@ -2950,8 +2950,8 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 
 		try {
 			if (CommonUtil.equalsIgnoreCase(isCreate, "Y")) {
-				targetPath = targetPath + "/" + rootMenuId + "/" + thisMenuId;
-				String targetFileName = "app-" + rootMenuId + "-" + thisMenuId;
+				targetPath = targetPath + "/" + upperMenuId + "/" + thisMenuId;
+				String targetFileName = "app-" + upperMenuId + "-" + thisMenuId;
 				File targetFile = new File(targetPath + "/" + targetFileName + ".properties");
 				createEmptyFile(targetFile);
 
@@ -2964,14 +2964,14 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 						stringBuffer.append(tempString + "\n");
 					}
 					sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
-					sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+					sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdStartUpperCase);
 					sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
 					sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);
 				} else {
 					String search = "\n# List - Search\n", grid = "\n# List - Data Grid\n", header = "\n# Detail, Insert, Update - Table Header\n", listEtc = "\n# List - Etc\n";
 					dsTableInfo = dummyDao.getTableDetailDataSetByTableName(tableName);
 					sourceStringWithTable += "#############################################################################################\n";
-					sourceStringWithTable += "# Messages - "+thisMenuIdUpperCamelCase+" - "+menuName+"\n";
+					sourceStringWithTable += "# Messages - "+thisMenuId+" - "+menuName+"\n";
 					sourceStringWithTable += "#   - \n";
 					sourceStringWithTable += "#############################################################################################\n";
 					sourceStringWithTable += "# Button\n";
@@ -3002,7 +3002,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 					String srcNameExt = CommonUtil.substringAfter(srcFileName, ".");
 					String srcFileNameByLang = srcNameTemp + "_" + lang + "." + srcNameExt;
 
-					targetFileName = "app-" + rootMenuId + "-" + thisMenuId + "_" + lang;
+					targetFileName = "app-" + upperMenuId + "-" + thisMenuId + "_" + lang;
 					targetFile = new File(targetPath + "/" + targetFileName + ".properties");
 					createEmptyFile(targetFile);
 
@@ -3015,7 +3015,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 							stringBuffer.append(tempString + "\n");
 						}
 						sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
-						sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+						sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdStartUpperCase);
 						sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
 						sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);
 					} else {
@@ -3032,7 +3032,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 
 			return true;
 		} catch (Exception ex) {
-			logger.error(ex);
+			ex.printStackTrace();
 			throw new FrameworkException(ex);
 		}
 	}
@@ -4003,14 +4003,14 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 		String rootPath = CommonUtil.remove((String)MemoryBean.get("applicationRealPath"), COMPILE_PATH);
 		String jspPath = requestDataSet.getValue("jspSourcePath");
 		String[] menuPaths = CommonUtil.split(requestDataSet.getValue("menuId"), ConfigUtil.getProperty("delimiter.data"));
-		String rootMenuId = menuPaths[0]+"/"+menuPaths[1];
+		String upperMenuId = CommonUtil.lowerCase(menuPaths[0])+"/"+menuPaths[1];
 		String thisMenuId = menuPaths[2];
 		String menuName = requestDataSet.getValue("menuName");
 		String srcPath = rootPath + ConfigUtil.getProperty("path.sourceFile");
 		String srcFileName = ConfigUtil.getProperty("name.source.js");
-		String thisMenuIdUpperCamelCase = CommonUtil.toCamelCaseStartUpperCase(thisMenuId);
-		String jspTargetpath = jspPath + "js" + "/" + rootMenuId + "/" + thisMenuId;
-		String sourceString, tempString;
+		String thisMenuIdStartUpperCase = CommonUtil.toStartUpperCase(thisMenuId);
+		String jspTargetpath = jspPath + "js" + "/" + upperMenuId + "/" + thisMenuId;
+		String sourceString, tempString, menuUrl;
 		File targetFile;
 
 		try {
@@ -4026,9 +4026,9 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 			sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
 			sourceString += jsString;
 
-			String menuUrl = rootMenuId + "/" + CommonUtil.remove(thisMenuId, rootMenuId);
+			menuUrl = upperMenuId + "/" + thisMenuId;
 
-			sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdUpperCamelCase);
+			sourceString = CommonUtil.replace(sourceString, "#MENU_ID_START_UPPER#", thisMenuIdStartUpperCase);
 			sourceString = CommonUtil.replace(sourceString, "#MENU_NAME#", menuName);
 			sourceString = CommonUtil.replace(sourceString, "#MENU_URL#", menuUrl);
 			sourceString = CommonUtil.replace(sourceString, "#THIS_MENU_ID#", thisMenuId);

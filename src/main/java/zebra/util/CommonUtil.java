@@ -121,6 +121,11 @@ public class CommonUtil extends StringUtils {
 		return sb.toString();
 	}
 
+	public static String toStartLowerCase(String value) {
+		if (isBlank(value)) {return value;}
+		return value.substring(0, 1).toLowerCase()+value.substring(1);
+	}
+
 	public static String toCamelCaseStartUpperCase(String value) {
 		StringBuffer sb = new StringBuffer();
 		String[] str = value.split("_");
@@ -145,6 +150,11 @@ public class CommonUtil extends StringUtils {
 			}
 		}
 		return strRtn;
+	}
+
+	public static String toStartUpperCase(String value) {
+		if (isBlank(value)) {return value;}
+		return value.substring(0, 1).toUpperCase()+value.substring(1);
 	}
 
 	public static int toInt(String value) {

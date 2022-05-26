@@ -80,7 +80,7 @@ $(function() {
 		if (dataSet.getRowCnt() > 0) {
 			for (var i=0; i<dataSet.getRowCnt(); i++) {
 				var gridTr = new UiGridTr();
-				var space = "", style = "", menuId = "";
+				var space = "", style = "", menuIds = "", menuId = "";
 				var delimiter = jsconfig.get("dataDelimiter");
 				var isLeaf = commonJs.toNumber(dataSet.getValue(i, "IS_LEAF"));
 				var iLevel = commonJs.toNumber(dataSet.getValue(i, "MENU_LEVEL")) - 1;
@@ -90,7 +90,8 @@ $(function() {
 					space += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 				}
 
-				menuId = commonJs.replace(dataSet.getValue(i, "PATH"), "/", delimiter);
+				menuIds = dataSet.getValue(i, "PATH").split("/");
+				menuId = commonJs.lowerCase(menuIds[0])+delimiter+menuIds[1]+delimiter+menuIds[2];
 				style += (isLeaf != 1) ? "font-weight:bold;" : "";
 
 				var tdAction = new UiGridTd();
