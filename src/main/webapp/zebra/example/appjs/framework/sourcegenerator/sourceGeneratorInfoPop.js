@@ -60,8 +60,7 @@ $(function() {
 						paramData.menuName = $this.attr("menuName");
 
 						var dataDelimiter = jsconfig.get("dataDelimiter");
-						var menuIdArray = paramData.menuId.split(dataDelimiter);
-						var menuId = menuIdArray[1];
+						var menuId = commonJs.replace(paramData.menuId, dataDelimiter, "/");
 
 						commonJs.ajaxSubmit({
 							url:"/zebra/framework/sourcegenerator/exeGenerate.do",
