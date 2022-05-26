@@ -3,6 +3,7 @@
  * Description : Bulletin Board
  */
 drop table zebra_board cascade constraints;
+drop sequence zebra_board_s;
 purge recyclebin;
 
 create table zebra_board (

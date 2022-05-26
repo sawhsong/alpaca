@@ -3,6 +3,7 @@ package project.conf.resource.ormapper.dao.SysBoardFile;
 import java.io.File;
 
 import project.common.extend.BaseHDao;
+import project.common.module.key.KeyManager;
 import project.conf.resource.ormapper.dto.oracle.SysBoard;
 import project.conf.resource.ormapper.dto.oracle.SysBoardFile;
 import zebra.data.DataSet;
@@ -17,7 +18,7 @@ public class SysBoardFileHDaoImpl extends BaseHDao implements SysBoardFileDao {
 		for (int i=0; i<fileDataSet.getRowCnt(); i++) {
 			SysBoardFile sysBoardFile = new SysBoardFile();
 
-			sysBoardFile.setFileId(CommonUtil.uid());
+			sysBoardFile.setFileId(KeyManager.getId("SYS_BOARD_FILE_S"));
 			sysBoardFile.setArticleId(sysBoard.getArticleId());
 			sysBoardFile.setOriginalName(fileDataSet.getValue(i, "ORIGINAL_NAME"));
 			sysBoardFile.setNewName(fileDataSet.getValue(i, "NEW_NAME"));

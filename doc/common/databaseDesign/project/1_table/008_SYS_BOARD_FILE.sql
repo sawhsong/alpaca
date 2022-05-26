@@ -3,6 +3,7 @@
  * Description : Attached file for Bulletin board
  */
 drop table sys_board_file cascade constraints;
+drop sequence sys_board_file_s;
 purge recyclebin;
 
 create table sys_board_file (

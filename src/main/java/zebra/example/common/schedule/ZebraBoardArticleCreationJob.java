@@ -44,20 +44,21 @@ public class ZebraBoardArticleCreationJob extends QuartzJobBean {
 			if (CommonUtil.toInt(CommonUtil.substring(uid, 0, 3)) % 2 == 0) {
 				zebraBoard.setBoardType(ZebraCommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
 
-				contents += "ZebraBoardArticleCreationJob System generated article - "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss")+"\n";
+				contents += "ZebraBoardArticleCreationJob System generated article - "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss")+" - "+uid+"\n";
 				contents += "context.getFireInstanceId() : "+context.getFireInstanceId()+"\n";
 				contents += "context.getJobRunTime() : "+CommonUtil.toString(context.getJobRunTime()/1000, "#,##0.00")+"\n";
 				contents += "context.getRefireCount() : "+context.getRefireCount()+"\n";
 				contents += "context.getFireTime() : "+CommonUtil.toString(context.getFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"\n";
 				contents += "context.getPreviousFireTime() : "+CommonUtil.toString(context.getPreviousFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"\n";
 				contents += "context.getNextFireTime() : "+CommonUtil.toString(context.getNextFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"\n";
+				contents += "System Generated UID : "+uid+"\n";
 			} else {
 				JobDetail jobDetail = context.getJobDetail();
 				JobDataMap jobDataMap = jobDetail.getJobDataMap();
 
 				zebraBoard.setBoardType(ZebraCommonCodeManager.getCodeByConstants("BOARD_TYPE_FREE"));
 
-				contents += "ZebraBoardArticleCreationJob System generated article - "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss")+"</br>";
+				contents += "ZebraBoardArticleCreationJob System generated article - "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss")+" - "+uid+"</br>";
 				contents += "context.getFireInstanceId() : "+context.getFireInstanceId()+"</br>";
 				contents += "context.getJobRunTime() : "+CommonUtil.toString(context.getJobRunTime()/1000, "#,##0.00")+"</br>";
 				contents += "context.getRefireCount() : "+context.getRefireCount()+"</br>";
@@ -65,6 +66,7 @@ public class ZebraBoardArticleCreationJob extends QuartzJobBean {
 				contents += "context.getPreviousFireTime() : "+CommonUtil.toString(context.getPreviousFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"</br>";
 				contents += "context.getNextFireTime() : "+CommonUtil.toString(context.getNextFireTime(), ConfigUtil.getProperty("format.dateTime.java"))+"</br>";
 				contents += "jobDetail.getDescription() : "+jobDetail.getDescription()+"</br>";
+				contents += "System Generated UID : "+uid+"</br>";
 				for (Iterator keys = jobDataMap.keySet().iterator(); keys.hasNext();) {
 					String key = (String)keys.next();
 					contents += "jobDataMap("+key+") : "+jobDataMap.get(key)+"</br>";
@@ -74,7 +76,7 @@ public class ZebraBoardArticleCreationJob extends QuartzJobBean {
 			zebraBoard.setWriterName("ZebraBoardArticleCreationJob");
 			zebraBoard.setWriterEmail(ConfigUtil.getProperty("mail.default.from"));
 			zebraBoard.setWriterIpAddress("127.0.0.1");
-			zebraBoard.setArticleSubject("ZebraBoardArticleCreationJob System generated article - "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss"));
+			zebraBoard.setArticleSubject("ZebraBoardArticleCreationJob System generated article - "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss")+" - "+uid);
 			zebraBoard.setArticleContents(contents);
 			zebraBoard.setInsertUserId("0");
 			zebraBoard.setInsertDate(CommonUtil.toDate(CommonUtil.getSysdate()));
