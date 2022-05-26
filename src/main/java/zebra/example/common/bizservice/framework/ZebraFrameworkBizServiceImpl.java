@@ -2971,7 +2971,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 					String search = "\n# List - Search\n", grid = "\n# List - Data Grid\n", header = "\n# Detail, Insert, Update - Table Header\n", listEtc = "\n# List - Etc\n";
 					dsTableInfo = dummyDao.getTableDetailDataSetByTableName(tableName);
 					sourceStringWithTable += "#############################################################################################\n";
-					sourceStringWithTable += "# Messages - "+thisMenuId+" - "+menuName+"\n";
+					sourceStringWithTable += "# Messages - "+thisMenuIdStartUpperCase+" - "+menuName+"\n";
 					sourceStringWithTable += "#   - \n";
 					sourceStringWithTable += "#############################################################################################\n";
 					sourceStringWithTable += "# Button\n";

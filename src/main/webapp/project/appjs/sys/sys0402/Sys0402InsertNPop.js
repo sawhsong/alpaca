@@ -112,11 +112,11 @@ $(function() {
 			$("#sortOrder").val(sortOrder);
 		} else if (menuLevel == 2) {
 			$("#menuId").removeAttr("style");
-			$("#menuUrl").val("/"+level1MenuId+"/");
+			$("#menuUrl").val("/"+level1MenuId.toLowerCase()+"/");
 			$("#sortOrder").val(sortOrder);
 		} else if (menuLevel == 3) {
 			if (!commonJs.isEmpty(level2MenuId)) {
-				$("#menuUrl").val("/"+level1MenuId+"/"+level2MenuId+"/");
+				$("#menuUrl").val("/"+level1MenuId.toLowerCase()+"/"+level2MenuId+"/");
 			}
 			$("#menuId").removeAttr("style");
 			$("#sortOrder").val(sortOrder);
