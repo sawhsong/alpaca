@@ -83,7 +83,7 @@ $(function() {
 			commonJs.doSearch({
 				url:"/#MENU_URL#/getList.do",
 				data:{},
-				callback:renderDataGridTable
+				onSuccess:renderDataGridTable
 			});
 		}
 	};
@@ -176,7 +176,7 @@ $(function() {
 
 	openPopup = function(param) {
 		var url = "", header = "";
-		var height = 510;
+		var height = 520;
 
 		if (param.mode == "Detail") {
 			url = "/#MENU_URL#/getDetail.do";
@@ -187,7 +187,7 @@ $(function() {
 		} else if (param.mode == "Edit") {
 			url = "/#MENU_URL#/getUpdate.do";
 			header = com.header.popHeaderEdit;
-			height = 634;
+			height = 648;
 		}
 
 		var popParam = {
@@ -214,7 +214,7 @@ $(function() {
 
 		commonJs.doDelete({
 			url:"/#MENU_URL#/exeDelete.do",
-			callback:doSearch
+			onSuccess:doSearch
 		});
 	};
 
@@ -254,10 +254,8 @@ $(function() {
 
 		commonJs.doExport({
 			url:"/#MENU_URL#/exeExport.do",
-			data:{
-				fileType:menuObject.fileType,
-				dataRange:menuObject.dataRange
-			}
+			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
+			menuObject:menuObject
 		});
 	};
 
@@ -343,22 +341,22 @@ $(function() {
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
 			<col width="3%"/>
+			<col width="3%"/>
 			<col width="*"/>
 			<col width="5%"/>
 			<col width="15%"/>
 			<col width="10%"/>
 			<col width="8%"/>
-			<col width="5%"/>
 		</colgroup>
 		<thead>
-			<tr class="noBorderHor">
+			<tr>
+				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="#THIS_MENU_ID#.grid.subject"/></th>
 				<th class="thGrid"><mc:msg key="#THIS_MENU_ID#.grid.file"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="#THIS_MENU_ID#.grid.writerName"/></th>
 				<th class="thGrid sortable:date"><mc:msg key="#THIS_MENU_ID#.grid.date"/></th>
 				<th class="thGrid sortable:numeric"><mc:msg key="#THIS_MENU_ID#.grid.hitCount"/></th>
-				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

@@ -20,6 +20,7 @@ import zebra.util.ExportUtil;
 
 import project.common.extend.BaseBiz;
 import project.common.module.commoncode.CommonCodeManager;
+import project.common.module.key.KeyManager;
 import project.conf.resource.ormapper.dao.SysBoard.SysBoardDao;
 import project.conf.resource.ormapper.dao.SysBoardFile.SysBoardFileDao;
 import project.conf.resource.ormapper.dto.oracle.SysBoard;
@@ -109,12 +110,11 @@ public class Sys9902BizImpl extends BaseBiz implements Sys9902Biz {
 		HttpSession session = paramEntity.getSession();
 		DataSet fileDataSet = paramEntity.getRequestFileDataSet();
 		SysBoard sysBoard = new SysBoard();
-		String uid = CommonUtil.uid();
 		String loggedInUserId = (String)session.getAttribute("UserId");
 		int result = -1;
 
 		try {
-			sysBoard.setArticleId(uid);
+			sysBoard.setArticleId(KeyManager.getId("SYS_BOARD_S"));
 			sysBoard.setBoardType(CommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
 			sysBoard.setWriterId(loggedInUserId);
 			sysBoard.setWriterName(requestDataSet.getValue("writerName"));

@@ -40,10 +40,10 @@ $(function() {
 
 		if (menuLevel == 1) {
 		} else if (menuLevel == 2) {
-			$("#menuUrl").val("/"+level1MenuId+"/"+$(this).val());
+			$("#menuUrl").val("/"+level1MenuId.toLowerCase()+"/"+$(this).val());
 		} else if (menuLevel == 3) {
 			if (!commonJs.isEmpty(level2MenuId)) {
-				$("#menuUrl").val("/"+level1MenuId+"/"+level2MenuId+"/"+$(this).val()+"/"+"getDefault.do");
+				$("#menuUrl").val("/"+level1MenuId.toLowerCase()+"/"+level2MenuId+"/"+$(this).val()+"/"+"getDefault.do");
 			}
 		}
 	});

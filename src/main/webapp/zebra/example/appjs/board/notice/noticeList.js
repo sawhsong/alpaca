@@ -198,7 +198,7 @@ $(function() {
 
 		commonJs.doDelete({
 			url:"/zebra/board/notice/exeDelete.do",
-			callback:doSearch
+			onSuccess:doSearch
 		});
 	};
 
@@ -235,7 +235,7 @@ $(function() {
 		commonJs.doSimpleProcess({
 			url:"/zebra/board/notice/getAttachedFile.do",
 			data:{articleId:$(img).attr("articleId")},
-			callback:function(result) {
+			onSuccess:function(result) {
 				var dataSet = result.dataSet;
 				attchedFileContextMenu = [];
 

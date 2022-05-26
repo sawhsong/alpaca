@@ -81,14 +81,14 @@ $(function() {
 		};
 
 		if (param.mode == "Update") {
-			parent.popup.resizeTo(0, 124);
+			parent.popup.resizeTo(0, 130);
 		}
 
 		if (param.mode == "Delete") {
 			commonJs.doDelete({
 				url:actionString,
 				data:{articleId:params.data.articleId},
-				callback:function() {
+				onSuccess:function() {
 					parent.popup.close();
 					parent.doSearch();
 				}

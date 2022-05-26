@@ -101,7 +101,7 @@ $(function() {
 			commonJs.doDelete({
 				url:action,
 				data:{articleId:params.data.articleId},
-				callback:function() {
+				onSuccess:function() {
 					commonJs.doSimpleProcessForPage({
 						action:"/#MENU_URL#/getDefault.do"
 					});
