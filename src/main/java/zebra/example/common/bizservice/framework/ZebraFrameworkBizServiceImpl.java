@@ -2950,7 +2950,7 @@ public class ZebraFrameworkBizServiceImpl extends BaseBiz implements ZebraFramew
 
 		try {
 			if (CommonUtil.equalsIgnoreCase(isCreate, "Y")) {
-				targetPath = targetPath + "/" + upperMenuId + "/" + thisMenuId;
+				targetPath = targetPath + "/" + CommonUtil.replace(upperMenuId, "-", "/") + "/" + thisMenuId;
 				String targetFileName = "app-" + upperMenuId + "-" + thisMenuId;
 				File targetFile = new File(targetPath + "/" + targetFileName + ".properties");
 				createEmptyFile(targetFile);
