@@ -41,4 +41,10 @@
     <!--Sys9808 - PERCI Source Generator-->
     <bean class="${name.package.project}.app.sys.sys9808.Sys9808Action" id="sys9808Action" name="sys9808Action"/>
     <bean class="${name.package.project}.app.sys.sys9808.Sys9808BizImpl" id="sys9808Biz" name="sys9808Biz" parent="baseBiz"/>
+    <!--SysCommonCode - Common Code-->
+    <bean class="${name.package.project}.app.sys.sysBasicInfo.sysCommonCode.SysCommonCodeAction" id="sysCommonCodeAction" name="sysCommonCodeAction"/>
+    <bean class="${name.package.project}.app.sys.sysBasicInfo.sysCommonCode.SysCommonCodeBizImpl" id="sysCommonCodeBiz" name="sysCommonCodeBiz" parent="baseBiz"/>
+    <!--SysCountryCurrency - Country / Currency-->
+    <bean class="${name.package.project}.app.sys.sysBasicInfo.sysCountryCurrency.SysCountryCurrencyAction" id="sysCountryCurrencyAction" name="sysCountryCurrencyAction"/>
+    <bean class="${name.package.project}.app.sys.sysBasicInfo.sysCountryCurrency.SysCountryCurrencyBizImpl" id="sysCountryCurrencyBiz" name="sysCountryCurrencyBiz" parent="baseBiz"/>
 </beans>

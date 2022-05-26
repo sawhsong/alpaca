@@ -32,7 +32,7 @@ public class ZebraCommonCodeHDaoImpl extends BaseHDao implements ZebraCommonCode
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		ZebraCommonCode zebraCommonCode = new ZebraCommonCode();
 
-		queryAdvisor.addWhereClause("use_yn = 'Y'");
+		queryAdvisor.addWhereClause("is_active = 'Y'");
 		queryAdvisor.addOrderByClause("code_type");
 		queryAdvisor.addOrderByClause("sort_order");
 
@@ -43,7 +43,7 @@ public class ZebraCommonCodeHDaoImpl extends BaseHDao implements ZebraCommonCode
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		ZebraCommonCode zebraCommonCode = new ZebraCommonCode();
 
-		queryAdvisor.addWhereClause("use_yn = 'Y'");
+		queryAdvisor.addWhereClause("is_active = 'Y'");
 		queryAdvisor.addWhereClause("common_code = '0000000000'");
 		queryAdvisor.addOrderByClause("code_type");
 
@@ -51,7 +51,7 @@ public class ZebraCommonCodeHDaoImpl extends BaseHDao implements ZebraCommonCode
 	}
 
 	public DataSet getActiveCommonCodeDataSet(QueryAdvisor queryAdvisor) throws Exception {
-		queryAdvisor.addWhereClause("use_yn = 'Y'");
+		queryAdvisor.addWhereClause("is_active = 'Y'");
 		queryAdvisor.addWhereClause("common_code = '0000000000'");
 		queryAdvisor.addOrderByClause("code_type");
 
@@ -72,7 +72,7 @@ public class ZebraCommonCodeHDaoImpl extends BaseHDao implements ZebraCommonCode
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		ZebraCommonCode zebraCommonCode = new ZebraCommonCode();
 
-		queryAdvisor.addWhereClause("use_yn = 'Y'");
+		queryAdvisor.addWhereClause("is_active = 'Y'");
 		queryAdvisor.addWhereClause("lower(code_type) like lower('%"+codeType+"%')");
 		queryAdvisor.addWhereClause("common_code = '0000000000'");
 		queryAdvisor.addOrderByClause("code_type");

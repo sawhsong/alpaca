@@ -76,7 +76,7 @@ public class ZebraCommonCodeManager extends BaseBiz implements ZebraCommonCodeMa
 
 		if (CommonUtil.isNotBlank(codeType) && CommonUtil.isNotBlank(comCode)) {
 			ds = getCodeDataSetByCodeType(codeType);
-			str = ds.getValue(ds.getRowIndex("COMMON_CODE", comCode), "DESCRIPTION_"+(CommonUtil.nvl(langCode, ConfigUtil.getProperty("etc.default.language"))).toUpperCase());
+			str = ds.getValue(ds.getRowIndex("COMMON_CODE", comCode), "CODE_MEANING");
 		}
 
 		return str;

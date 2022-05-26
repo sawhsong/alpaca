@@ -78,14 +78,14 @@ public class CommonCodeBizImpl extends BaseBiz implements CommonCodeBiz {
 			zebraCommonCode.setDescriptionKo(requestDataSet.getValue("descriptionKoMaster"));
 			zebraCommonCode.setProgramConstants(codeType + "_0000000000");
 			zebraCommonCode.setSortOrder("000");
-			zebraCommonCode.setUseYn(CommonUtil.nvl(requestDataSet.getValue("useYnMaster"), "N"));
-			zebraCommonCode.setDefaultYn(ZebraCommonCodeManager.getCodeByConstants("USE_YN_N"));
+			zebraCommonCode.setIsActive(CommonUtil.nvl(requestDataSet.getValue("isActiveMaster"), "N"));
+			zebraCommonCode.setIsDefault(ZebraCommonCodeManager.getCodeByConstants("IS_DEFAULT_YN_N"));
 			zebraCommonCode.setInsertUserId((String)session.getAttribute("UserId"));
 			if (CommonUtil.equalsIgnoreCase(processFrom, "update")) {
 				detailDataSet = (DataSet)paramEntity.getObject("detailDataSet");
 				masterDataRow = (int)paramEntity.getObject("masterDataRow");
 
-				zebraCommonCode.setDefaultYn(detailDataSet.getValue(masterDataRow, "DEFAULT_YN"));
+				zebraCommonCode.setIsDefault(detailDataSet.getValue(masterDataRow, "IS_DEFAULT"));
 				zebraCommonCode.setInsertUserId(detailDataSet.getValue(masterDataRow, "INSERT_USER_ID"));
 				zebraCommonCode.setInsertDate(CommonUtil.toDate(detailDataSet.getValue(masterDataRow, "INSERT_DATE")));
 				zebraCommonCode.setUpdateUserId((String)session.getAttribute("UserId"));
@@ -106,7 +106,7 @@ public class CommonCodeBizImpl extends BaseBiz implements CommonCodeBiz {
 				zebraCommonCode.setDescriptionKo(requestDataSet.getValue("descriptionKoDetail" + delimiter + i));
 				zebraCommonCode.setProgramConstants(codeType + "_" + CommonUtil.upperCase(commonCode));
 				zebraCommonCode.setSortOrder(requestDataSet.getValue("sortOrderDetail" + delimiter + i));
-				zebraCommonCode.setUseYn(CommonUtil.nvl(requestDataSet.getValue("useYnDetail" + delimiter + i), "N"));
+				zebraCommonCode.setIsActive(CommonUtil.nvl(requestDataSet.getValue("isActiveDetail" + delimiter + i), "N"));
 
 				result += zebraCommonCodeDao.insert(zebraCommonCode);
 			}

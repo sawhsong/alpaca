@@ -82,7 +82,8 @@ public class CommonCodeCheckbox extends TaglibSupport {
 						if (CommonUtil.isNotBlank(script)) {html.append(" onclick=\""+script+"\"");}
 						if (CommonUtil.isNotBlank(attrStr)) {html.append(" "+attrStr+"");}
 
-						html.append("/>"+spnTagStart+ds.getValue(i, "DESCRIPTION_"+defaultLangCode.toUpperCase())+spnTagEnd+"</label></div>");
+//						html.append("/>"+spnTagStart+ds.getValue(i, "DESCRIPTION_"+defaultLangCode.toUpperCase())+spnTagEnd+"</label></div>");
+						html.append("/>"+spnTagStart+ds.getValue(i, "CODE_MEANING")+spnTagEnd+"</label></div>");
 					} else {
 						html.append("<label class=\"checkbox-inline"+classNameCustomised);
 						if (CommonUtil.containsIgnoreCase(disabledValue, ds.getValue(i, "COMMON_CODE")) || CommonUtil.equalsIgnoreCase(status, "disabled")) {html.append(" disabled");}
@@ -100,7 +101,8 @@ public class CommonCodeCheckbox extends TaglibSupport {
 						if (CommonUtil.isNotBlank(script)) {html.append(" onclick=\""+script+"\"");}
 						if (CommonUtil.isNotBlank(attrStr)) {html.append(" "+attrStr+"");}
 
-						html.append("/>"+spnTagStart+ds.getValue(i, "DESCRIPTION_"+defaultLangCode.toUpperCase())+spnTagEnd+"</label>");
+//						html.append("/>"+spnTagStart+ds.getValue(i, "DESCRIPTION_"+defaultLangCode.toUpperCase())+spnTagEnd+"</label>");
+						html.append("/>"+spnTagStart+ds.getValue(i, "CODE_MEANING")+spnTagEnd+"</label></div>");
 					}
 				} else {
 					if (CommonUtil.equalsIgnoreCase(displayType, "block")) {
@@ -128,7 +130,8 @@ public class CommonCodeCheckbox extends TaglibSupport {
 						if (CommonUtil.isNotBlank(script)) {html.append(" onclick=\""+script+"\"");}
 						if (CommonUtil.isNotBlank(attrStr)) {html.append(" "+attrStr+"");}
 
-						html.append("/>"+ds.getValue(i, "DESCRIPTION_"+defaultLangCode.toUpperCase())+"</label>");
+//						html.append("/>"+ds.getValue(i, "DESCRIPTION_"+defaultLangCode.toUpperCase())+"</label>");
+						html.append("/>"+ds.getValue(i, "CODE_MEANING")+"</label>");
 					} else {
 						html.append("<label class=\"lblCheck");
 						if (CommonUtil.containsIgnoreCase(disabledValue, ds.getValue(i, "COMMON_CODE")) || CommonUtil.equalsIgnoreCase(status, "disabled")) {html.append("Dis");}
@@ -153,7 +156,8 @@ public class CommonCodeCheckbox extends TaglibSupport {
 						if (CommonUtil.isNotBlank(script)) {html.append(" onclick=\""+script+"\"");}
 						if (CommonUtil.isNotBlank(attrStr)) {html.append(" "+attrStr+"");}
 
-						html.append("/>"+ds.getValue(i, "DESCRIPTION_"+defaultLangCode.toUpperCase())+"</label>");
+//						html.append("/>"+ds.getValue(i, "DESCRIPTION_"+defaultLangCode.toUpperCase())+"</label>");
+						html.append("/>"+ds.getValue(i, "CODE_MEANING")+"</label>");
 					}
 				}
 			}

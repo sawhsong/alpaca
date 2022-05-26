@@ -14,15 +14,16 @@
 		</composite-id>
 
 		<property name="programConstants" column="PROGRAM_CONSTANTS" not-null="true" type="java.lang.String" length="100"/>
-		<property name="defaultYn" column="DEFAULT_YN" type="java.lang.String" length="1"/>
+		<property name="codeMeaning" column="CODE_MEANING" not-null="true" type="java.lang.String" length="1000"/>
 		<property name="descriptionEn" column="DESCRIPTION_EN" type="java.lang.String" length="1000"/>
 		<property name="descriptionKo" column="DESCRIPTION_KO" type="java.lang.String" length="1000"/>
 		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
 		<property name="insertUserId" column="INSERT_USER_ID" type="java.lang.String" length="30"/>
+		<property name="isActive" column="IS_ACTIVE" type="java.lang.String" length="1"/>
+		<property name="isDefault" column="IS_DEFAULT" type="java.lang.String" length="1"/>
 		<property name="sortOrder" column="SORT_ORDER" type="java.lang.String" length="3"/>
 		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
 		<property name="updateUserId" column="UPDATE_USER_ID" type="java.lang.String" length="30"/>
-		<property name="useYn" column="USE_YN" type="java.lang.String" length="1"/>
 	</class>
 
 	<sql-query name="zebraCommonCode.selectAll">
@@ -30,21 +31,22 @@
 		SELECT CODE_TYPE,
 		       COMMON_CODE,
 		       PROGRAM_CONSTANTS,
-		       DEFAULT_YN,
+		       CODE_MEANING,
 		       DESCRIPTION_EN,
 		       DESCRIPTION_KO,
 		       TO_CHAR(INSERT_DATE, 'yyyymmddhh24miss') AS INSERT_DATE,
 		       INSERT_USER_ID,
+		       IS_ACTIVE,
+		       IS_DEFAULT,
 		       SORT_ORDER,
 		       TO_CHAR(UPDATE_DATE, 'yyyymmddhh24miss') AS UPDATE_DATE,
-		       UPDATE_USER_ID,
-		       USE_YN
+		       UPDATE_USER_ID
 		  FROM ZEBRA_COMMON_CODE
 		 WHERE 1 = 1
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
-		 FOR UPDATE
+
 	]]>
 	</sql-query>
 
@@ -54,29 +56,31 @@
 		       CODE_TYPE,
 		       COMMON_CODE,
 		       PROGRAM_CONSTANTS,
-		       DEFAULT_YN,
+		       CODE_MEANING,
 		       DESCRIPTION_EN,
 		       DESCRIPTION_KO,
 		       INSERT_DATE,
 		       INSERT_USER_ID,
+		       IS_ACTIVE,
+		       IS_DEFAULT,
 		       SORT_ORDER,
 		       UPDATE_DATE,
-		       UPDATE_USER_ID,
-		       USE_YN
+		       UPDATE_USER_ID
 		       )
 		VALUES (
 		       ${CODE_TYPE},
 		       ${COMMON_CODE},
 		       ${PROGRAM_CONSTANTS},
-		       ${DEFAULT_YN},
+		       ${CODE_MEANING},
 		       ${DESCRIPTION_EN},
 		       ${DESCRIPTION_KO},
 		       ${INSERT_DATE},
 		       ${INSERT_USER_ID},
+		       ${IS_ACTIVE},
+		       ${IS_DEFAULT},
 		       ${SORT_ORDER},
 		       ${UPDATE_DATE},
-		       ${UPDATE_USER_ID},
-		       ${USE_YN}
+		       ${UPDATE_USER_ID}
 		       )
 	]]>
 	</sql-query>
@@ -85,15 +89,16 @@
 	<![CDATA[
 		UPDATE ZEBRA_COMMON_CODE
 		   SET PROGRAM_CONSTANTS = ${PROGRAM_CONSTANTS},
-		       DEFAULT_YN = ${DEFAULT_YN},
+		       CODE_MEANING = ${CODE_MEANING},
 		       DESCRIPTION_EN = ${DESCRIPTION_EN},
 		       DESCRIPTION_KO = ${DESCRIPTION_KO},
 		       INSERT_DATE = ${INSERT_DATE},
 		       INSERT_USER_ID = ${INSERT_USER_ID},
+		       IS_ACTIVE = ${IS_ACTIVE},
+		       IS_DEFAULT = ${IS_DEFAULT},
 		       SORT_ORDER = ${SORT_ORDER},
 		       UPDATE_DATE = ${UPDATE_DATE},
-		       UPDATE_USER_ID = ${UPDATE_USER_ID},
-		       USE_YN = ${USE_YN}
+		       UPDATE_USER_ID = ${UPDATE_USER_ID}
 		 WHERE 1 = 1
 		   ${frameworkGeneratedWhere}
 	]]>

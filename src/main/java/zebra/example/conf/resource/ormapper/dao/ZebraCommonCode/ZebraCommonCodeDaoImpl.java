@@ -43,7 +43,7 @@ public class ZebraCommonCodeDaoImpl extends BaseDao implements ZebraCommonCodeDa
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		ZebraCommonCodeMapper zebraCommonCodeMapper = getSqlSession().getMapper(ZebraCommonCodeMapper.class);
 
-		queryAdvisor.addWhereClause("use_yn = 'Y'");
+		queryAdvisor.addWhereClause("is_active = 'Y'");
 		queryAdvisor.addOrderByClause("code_type");
 		queryAdvisor.addOrderByClause("sort_order");
 
@@ -54,7 +54,7 @@ public class ZebraCommonCodeDaoImpl extends BaseDao implements ZebraCommonCodeDa
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		ZebraCommonCodeMapper zebraCommonCodeMapper = getSqlSession().getMapper(ZebraCommonCodeMapper.class);
 
-		queryAdvisor.addWhereClause("use_yn = 'Y'");
+		queryAdvisor.addWhereClause("is_active = 'Y'");
 		queryAdvisor.addWhereClause("common_code = '0000000000'");
 		queryAdvisor.addOrderByClause("code_type");
 
@@ -64,7 +64,7 @@ public class ZebraCommonCodeDaoImpl extends BaseDao implements ZebraCommonCodeDa
 	public DataSet getActiveCommonCodeDataSet(QueryAdvisor queryAdvisor) throws Exception {
 		DataSet dataSet;
 
-		queryAdvisor.addWhereClause("use_yn = 'Y'");
+		queryAdvisor.addWhereClause("is_active = 'Y'");
 		queryAdvisor.addWhereClause("common_code = '0000000000'");
 		queryAdvisor.addOrderByClause("code_type");
 
@@ -93,7 +93,7 @@ public class ZebraCommonCodeDaoImpl extends BaseDao implements ZebraCommonCodeDa
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		ZebraCommonCodeMapper zebraCommonCodeMapper = getSqlSession().getMapper(ZebraCommonCodeMapper.class);
 
-		queryAdvisor.addWhereClause("use_yn = 'Y'");
+		queryAdvisor.addWhereClause("is_active = 'Y'");
 		queryAdvisor.addWhereClause("lower(code_type) like lower('%"+codeType+"%')");
 		queryAdvisor.addWhereClause("common_code = '0000000000'");
 		queryAdvisor.addOrderByClause("code_type");

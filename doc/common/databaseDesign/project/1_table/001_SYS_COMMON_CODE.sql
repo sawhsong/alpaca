@@ -27,6 +27,7 @@ create table sys_common_code (
 pctfree 20 pctused 80 tablespace alpaca_data storage(initial 100k next 100k maxextents 2000 pctincrease 0);
 
 comment on table  sys_common_code                   is 'Common Lookup Code';
+
 comment on column sys_common_code.code_type         is 'Code type (PK) - PERCI codes have 50(need to be amended to 30 later), ideal length is 30';
 comment on column sys_common_code.common_code       is 'Common code (PK) - PERCI codes have 60(need to be amended to 30 later), ideal length is 30';
 comment on column sys_common_code.code_meaning      is 'Code Meaning';
@@ -223,11 +224,11 @@ select 'MINUTE_CODE' as code_type,
 -- From PERCI
 /*
  * Check dup
-	select lookup_type, lookup_code, count(*)
-	  from sys_common_lookups
-	 group by lookup_type, lookup_code
-	having count(*) > 1
-	;
+select lookup_type, lookup_code, count(*)
+  from sys_common_lookups
+ group by lookup_type, lookup_code
+having count(*) > 1
+;
  */
 insert into sys_common_code
 select lookup_type as code_type,
@@ -249,7 +250,7 @@ select lookup_type as code_type,
 union
 select lookup_type as code_type,
        lookup_code as common_code,
-       meaning as description_ko,
+       meaning as code_meaning,
        meaning as description_ko,
        meaning as description_en,
        lookup_type||'_'||lookup_code as program_constants,

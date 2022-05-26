@@ -23,8 +23,8 @@ public class ZebraCommonCode extends BaseDto implements Serializable {
 	private String COMMON_CODE;
 	private String programConstants;
 	private String PROGRAM_CONSTANTS;
-	private String defaultYn;
-	private String DEFAULT_YN;
+	private String codeMeaning;
+	private String CODE_MEANING;
 	private String descriptionEn;
 	private String DESCRIPTION_EN;
 	private String descriptionKo;
@@ -33,14 +33,16 @@ public class ZebraCommonCode extends BaseDto implements Serializable {
 	private String INSERT_DATE;
 	private String insertUserId;
 	private String INSERT_USER_ID;
+	private String isActive;
+	private String IS_ACTIVE;
+	private String isDefault;
+	private String IS_DEFAULT;
 	private String sortOrder;
 	private String SORT_ORDER;
 	private Date updateDate;
 	private String UPDATE_DATE;
 	private String updateUserId;
 	private String UPDATE_USER_ID;
-	private String useYn;
-	private String USE_YN;
 	private String insertUserName;
 	private String INSERT_USER_NAME;
 	private String updateUserName;
@@ -72,8 +74,8 @@ public class ZebraCommonCode extends BaseDto implements Serializable {
 		setFrwVarDateColumn("INSERT_DATE,UPDATE_DATE");
 		setFrwVarNumberColumn("");
 		setFrwVarClobColumn("");
-		setFrwVarDefaultColumn("DEFAULT_YN,INSERT_DATE,USE_YN");
-		setFrwVarDefaultValue("N,sysdate,Y");
+		setFrwVarDefaultColumn("INSERT_DATE,IS_ACTIVE,IS_DEFAULT");
+		setFrwVarDefaultValue("sysdate,Y,N");
 		setDefaultValue();
 	}
 
@@ -107,13 +109,13 @@ public class ZebraCommonCode extends BaseDto implements Serializable {
 		setValueFromAccessor("PROGRAM_CONSTANTS", programConstants);
 	}
 
-	public String getDefaultYn() {
-		return defaultYn;
+	public String getCodeMeaning() {
+		return codeMeaning;
 	}
 
-	public void setDefaultYn(String defaultYn) throws Exception {
-		this.defaultYn = defaultYn;
-		setValueFromAccessor("DEFAULT_YN", defaultYn);
+	public void setCodeMeaning(String codeMeaning) throws Exception {
+		this.codeMeaning = codeMeaning;
+		setValueFromAccessor("CODE_MEANING", codeMeaning);
 	}
 
 	public String getDescriptionEn() {
@@ -152,6 +154,24 @@ public class ZebraCommonCode extends BaseDto implements Serializable {
 		setValueFromAccessor("INSERT_USER_ID", insertUserId);
 	}
 
+	public String getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(String isActive) throws Exception {
+		this.isActive = isActive;
+		setValueFromAccessor("IS_ACTIVE", isActive);
+	}
+
+	public String getIsDefault() {
+		return isDefault;
+	}
+
+	public void setIsDefault(String isDefault) throws Exception {
+		this.isDefault = isDefault;
+		setValueFromAccessor("IS_DEFAULT", isDefault);
+	}
+
 	public String getSortOrder() {
 		return sortOrder;
 	}
@@ -177,15 +197,6 @@ public class ZebraCommonCode extends BaseDto implements Serializable {
 	public void setUpdateUserId(String updateUserId) throws Exception {
 		this.updateUserId = updateUserId;
 		setValueFromAccessor("UPDATE_USER_ID", updateUserId);
-	}
-
-	public String getUseYn() {
-		return useYn;
-	}
-
-	public void setUseYn(String useYn) throws Exception {
-		this.useYn = useYn;
-		setValueFromAccessor("USE_YN", useYn);
 	}
 
 	public String getInsertUserName() {
@@ -242,10 +253,10 @@ public class ZebraCommonCode extends BaseDto implements Serializable {
 		dataSet.setValue(dataSet.getRowCnt()-1, columnName, value);
 		for (int i=0; i<field.length; i++) {
 			if (field[i].getName().equals(CommonUtil.toCamelCaseStartLowerCase(columnName))) {
-				if (CommonUtil.containsIgnoreCase(getFrwVarNumberColumn(), columnName)) {
+				if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 					field[i].set(this, CommonUtil.toDouble(value));
-				} else if (CommonUtil.containsIgnoreCase(getFrwVarDateColumn(), columnName)) {
-					if (CommonUtil.equalsIgnoreCase(value, "SYSDATE")) {
+				} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+					if (CommonUtil.equalsIgnoreCase(value, "SYSDATE") || CommonUtil.containsIgnoreCase(value, "SYSDATE")) {
 						field[i].set(this, CommonUtil.toDate(CommonUtil.getSysdate()));
 					} else {
 						field[i].set(this, CommonUtil.toDate(value));
@@ -295,9 +306,9 @@ public class ZebraCommonCode extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.containsIgnoreCase(getFrwVarNumberColumn(), columnName)) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.containsIgnoreCase(getFrwVarDateColumn(), columnName)) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -336,15 +347,16 @@ public class ZebraCommonCode extends BaseDto implements Serializable {
 		str += "codeType : "+codeType+"\n";
 		str += "commonCode : "+commonCode+"\n";
 		str += "programConstants : "+programConstants+"\n";
-		str += "defaultYn : "+defaultYn+"\n";
+		str += "codeMeaning : "+codeMeaning+"\n";
 		str += "descriptionEn : "+descriptionEn+"\n";
 		str += "descriptionKo : "+descriptionKo+"\n";
 		str += "insertDate : "+insertDate+"\n";
 		str += "insertUserId : "+insertUserId+"\n";
+		str += "isActive : "+isActive+"\n";
+		str += "isDefault : "+isDefault+"\n";
 		str += "sortOrder : "+sortOrder+"\n";
 		str += "updateDate : "+updateDate+"\n";
 		str += "updateUserId : "+updateUserId+"\n";
-		str += "useYn : "+useYn+"\n";
 		str += "insertUserName : "+insertUserName+"\n";
 		str += "updateUserName : "+updateUserName+"\n";
 
@@ -360,15 +372,16 @@ public class ZebraCommonCode extends BaseDto implements Serializable {
 		str += "<column name=\"codeType\" value=\""+codeType+"\">";
 		str += "<column name=\"commonCode\" value=\""+commonCode+"\">";
 		str += "<column name=\"programConstants\" value=\""+programConstants+"\">";
-		str += "<column name=\"defaultYn\" value=\""+defaultYn+"\">";
+		str += "<column name=\"codeMeaning\" value=\""+codeMeaning+"\">";
 		str += "<column name=\"descriptionEn\" value=\""+descriptionEn+"\">";
 		str += "<column name=\"descriptionKo\" value=\""+descriptionKo+"\">";
 		str += "<column name=\"insertDate\" value=\""+insertDate+"\">";
 		str += "<column name=\"insertUserId\" value=\""+insertUserId+"\">";
+		str += "<column name=\"isActive\" value=\""+isActive+"\">";
+		str += "<column name=\"isDefault\" value=\""+isDefault+"\">";
 		str += "<column name=\"sortOrder\" value=\""+sortOrder+"\">";
 		str += "<column name=\"updateDate\" value=\""+updateDate+"\">";
 		str += "<column name=\"updateUserId\" value=\""+updateUserId+"\">";
-		str += "<column name=\"useYn\" value=\""+useYn+"\">";
 		str += "<column name=\"insertUserName\" value=\""+insertUserName+"\">";
 		str += "<column name=\"updateUserName\" value=\""+updateUserName+"\">";
 
@@ -384,15 +397,16 @@ public class ZebraCommonCode extends BaseDto implements Serializable {
 		str += "\"codeType\":\""+codeType+"\", ";
 		str += "\"commonCode\":\""+commonCode+"\", ";
 		str += "\"programConstants\":\""+programConstants+"\", ";
-		str += "\"defaultYn\":\""+defaultYn+"\", ";
+		str += "\"codeMeaning\":\""+codeMeaning+"\", ";
 		str += "\"descriptionEn\":\""+descriptionEn+"\", ";
 		str += "\"descriptionKo\":\""+descriptionKo+"\", ";
 		str += "\"insertDate\":\""+insertDate+"\", ";
 		str += "\"insertUserId\":\""+insertUserId+"\", ";
+		str += "\"isActive\":\""+isActive+"\", ";
+		str += "\"isDefault\":\""+isDefault+"\", ";
 		str += "\"sortOrder\":\""+sortOrder+"\", ";
 		str += "\"updateDate\":\""+updateDate+"\", ";
 		str += "\"updateUserId\":\""+updateUserId+"\", ";
-		str += "\"useYn\":\""+useYn+"\", ";
 		str += "\"insertUserName\":\""+insertUserName+"\", ";
 		str += "\"updateUserName\":\""+updateUserName+"\"";
 
