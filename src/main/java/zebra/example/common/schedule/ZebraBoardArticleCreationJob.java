@@ -11,6 +11,7 @@ import org.quartz.JobExecutionException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import zebra.example.common.module.commoncode.ZebraCommonCodeManager;
+import zebra.example.common.module.key.ZebraKeyManager;
 import zebra.example.conf.resource.ormapper.dao.ZebraBoard.ZebraBoardDao;
 import zebra.example.conf.resource.ormapper.dto.oracle.ZebraBoard;
 import zebra.util.CommonUtil;
@@ -39,7 +40,7 @@ public class ZebraBoardArticleCreationJob extends QuartzJobBean {
 
 			logger.debug("ZebraBoardArticleCreationJob Begin : "+CommonUtil.getSysdate("yyyy-MM-dd HH:mm:ss"));
 
-			zebraBoard.setArticleId(uid);
+			zebraBoard.setArticleId(ZebraKeyManager.getId("ZEBRA_BOARD_S"));
 			if (CommonUtil.toInt(CommonUtil.substring(uid, 0, 3)) % 2 == 0) {
 				zebraBoard.setBoardType(ZebraCommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
 

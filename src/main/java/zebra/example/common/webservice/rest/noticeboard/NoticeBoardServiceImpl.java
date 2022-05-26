@@ -11,6 +11,7 @@ import zebra.base.BaseWebService;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
 import zebra.example.common.module.commoncode.ZebraCommonCodeManager;
+import zebra.example.common.module.key.ZebraKeyManager;
 import zebra.example.conf.resource.ormapper.dao.ZebraBoard.ZebraBoardDao;
 import zebra.example.conf.resource.ormapper.dao.ZebraBoardFile.ZebraBoardFileDao;
 import zebra.example.conf.resource.ormapper.dto.oracle.ZebraBoard;
@@ -114,7 +115,6 @@ public class NoticeBoardServiceImpl extends BaseWebService implements NoticeBoar
 		DataSet requestDataSet;
 		DataSet fileDataSet;
 		ZebraBoard zebraBoard = new ZebraBoard();
-		String uid = CommonUtil.uid();
 		String userId;
 		int result = 0;
 
@@ -125,7 +125,7 @@ public class NoticeBoardServiceImpl extends BaseWebService implements NoticeBoar
 			fileDataSet = (DataSet)paramEntity.getObject("fileDataSet");
 			userId = (String)paramEntity.getObject("userId");
 
-			zebraBoard.setArticleId(uid);
+			zebraBoard.setArticleId(ZebraKeyManager.getId("ZEBRA_BOARD_S"));
 			zebraBoard.setBoardType(ZebraCommonCodeManager.getCodeByConstants("BOARD_TYPE_NOTICE"));
 			zebraBoard.setWriterId(userId);
 			zebraBoard.setWriterName(requestDataSet.getValue("writerName"));
