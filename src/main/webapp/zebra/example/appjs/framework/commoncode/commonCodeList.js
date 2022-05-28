@@ -11,7 +11,7 @@ $(function() {
 	 * event
 	 */
 	$("#btnNew").click(function(event) {
-		openPopup({mode:"New"});
+		getEdit("");
 	});
 
 	$("#btnDelete").click(function(event) {
@@ -75,8 +75,7 @@ $(function() {
 				}
 
 				var uiIcon = new UiIcon();
-				uiIcon.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("codeType:"+dataSet.getValue(i, "CODE_TYPE"))
-					.addAttribute("defaultYn:"+defaultYn).setScript("doAction(this)");
+				uiIcon.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("codeType:"+dataSet.getValue(i, "CODE_TYPE")).addAttribute("isDefault:"+isDefault).setScript("doAction(this)");
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiIcon));
 
 				var uiChk = new UiCheckbox();
@@ -84,11 +83,13 @@ $(function() {
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
 
 				var uiAnc = new UiAnchor();
-				uiAnc.setText(dataSet.getValue(i, "CODE_TYPE")).setScript("getDetail('"+dataSet.getValue(i, "CODE_TYPE")+"')");
+				uiAnc.setText(dataSet.getValue(i, "CODE_TYPE")).setScript("getEdit('"+dataSet.getValue(i, "CODE_TYPE")+"')");
 				uiGridTr.addChild(new UiGridTd().addClassName("Lt").addChild(uiAnc));
 
-				uiGridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "DESCRIPTION_"+langCode)));
+				uiGridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "CODE_MEANING")));
 				uiGridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "PROGRAM_CONSTANTS")));
+				uiGridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "DESCRIPTION_"+langCode)));
+
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "IS_ACTIVE")));
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").setText(isDefault));
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(dataSet.getValue(i, "INSERT_DATE"), dateFormat)));
@@ -99,7 +100,7 @@ $(function() {
 		} else {
 			var uiGridTr = new UiGridTr();
 
-			uiGridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:9").setText(com.message.I001));
+			uiGridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:10").setText(com.message.I001));
 			html += uiGridTr.toHtmlString();
 		}
 
@@ -121,40 +122,18 @@ $(function() {
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 
-	getDetail = function(codeType) {
-		openPopup({mode:"Detail", codeType:codeType});
-	};
-
-	openPopup = function(param) {
-		var url = "", header = "";
-		var height = 900;
-
-		if (param.mode == "Detail") {
-			url = "/zebra/framework/commoncode/getDetail.do";
-			header = framework.header.popHeaderDetail;
-		} else if (param.mode == "New") {
-			url = "/zebra/framework/commoncode/getInsert.do";
-			header = framework.header.popHeaderEdit;
-		} else if (param.mode == "Edit") {
-			url = "/zebra/framework/commoncode/getUpdate.do";
-			header = framework.header.popHeaderEdit;
-			height = 754;
-		}
-
-		var popParam = {
-			popupId:"commonCode"+param.mode,
-			url:url,
+	getEdit = function(codeType) {
+		popup = commonJs.openPopup({
+			popupId:"commonCodeEdit",
+			url:"/zebra/framework/commoncode/getEdit.do",
 			data:{
-				mode:param.mode,
 				codeType:commonJs.nvl(param.codeType, "")
 			},
-			header:header,
+			header:framework.header.popHeaderEdit,
 			blind:true,
 			width:1700,
-			height:height
-		};
-
-		popup = commonJs.openPopup(popParam);
+			height:900
+		});
 	};
 
 	doDelete = function() {
@@ -165,13 +144,13 @@ $(function() {
 
 		commonJs.doDelete({
 			url:"/zebra/framework/commoncode/exeDelete.do",
-			callback:doSearch
+			onSuccess:doSearch
 		});
 	};
 
 	doAction = function(img) {
 		var codeType = $(img).attr("codeType");
-		var defaultYn = $(img).attr("defaultYn");
+		var isDefault = $(img).attr("isDefault");
 
 		$("input:checkbox[name=chkForDel]").each(function(index) {
 			if (!$(this).is(":disabled") && $(this).val() == codeType) {
@@ -185,17 +164,16 @@ $(function() {
 			}
 		});
 
-		if (defaultYn == "Y") {
-			ctxMenu.commonAction[2].disable = true;
+		if (isDefault == "Y") {
+			ctxMenu.commonSimpleAction[1].disable = true;
 		} else {
-			ctxMenu.commonAction[2].disable = false;
+			ctxMenu.commonSimpleAction[1].disable = false;
 		}
 
-		ctxMenu.commonAction[0].fun = function() {getDetail(codeType);};
-		ctxMenu.commonAction[1].fun = function() {openPopup({mode:"Edit", codeType:codeType});};
-		ctxMenu.commonAction[2].fun = function() {doDelete();};
+		ctxMenu.commonAction[0].fun = function() {getEdit(codeType);};
+		ctxMenu.commonAction[1].fun = function() {doDelete();};
 
-		$(img).contextMenu(ctxMenu.commonAction, {
+		$(img).contextMenu(ctxMenu.commonSimpleAction, {
 			classPrefix:com.constants.ctxClassPrefixGrid,
 			displayAround:"trigger",
 			position:"bottom",
@@ -212,7 +190,7 @@ $(function() {
 		}
 
 		commonJs.doExport({
-			url:"/zebra/framework/commoncode/exeExport.do",
+			url:"/zebra/framework/commoncode/doExport.do",
 			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
 			menuObject:menuObject
 		});

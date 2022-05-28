@@ -23,14 +23,14 @@ public class CommonCodeAction extends BaseAction {
 		return "ajaxResponse";
 	}
 
-	public String getInsert() throws Exception {
-		biz.getInsert(this.paramEntity);
-		return "insert";
+	public String getEdit() throws Exception {
+		biz.getEdit(paramEntity);
+		return "edit";
 	}
 
-	public String exeInsert() throws Exception {
+	public String doEdit() throws Exception {
 		try {
-			biz.exeInsert(paramEntity);
+			biz.doEdit(paramEntity);
 			ZebraCommonCodeManager.reload();
 		} catch (Exception ex) {
 		}
@@ -38,19 +38,9 @@ public class CommonCodeAction extends BaseAction {
 		return "ajaxResponse";
 	}
 
-	public String getDetail() throws Exception {
-		biz.getDetail(paramEntity);
-		return "detail";
-	}
-
-	public String getUpdate() throws Exception {
-		biz.getUpdate(paramEntity);
-		return "update";
-	}
-
-	public String exeUpdate() throws Exception {
+	public String doDelete() throws Exception {
 		try {
-			biz.exeUpdate(paramEntity);
+			biz.doDelete(paramEntity);
 			ZebraCommonCodeManager.reload();
 		} catch (Exception ex) {
 		}
@@ -58,18 +48,8 @@ public class CommonCodeAction extends BaseAction {
 		return "ajaxResponse";
 	}
 
-	public String exeDelete() throws Exception {
-		try {
-			biz.exeDelete(paramEntity);
-			ZebraCommonCodeManager.reload();
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", this.paramEntity);
-		return "ajaxResponse";
-	}
-
-	public String exeExport() throws Exception {
-		biz.exeExport(paramEntity);
+	public String doExport() throws Exception {
+		biz.doExport(paramEntity);
 		setRequestAttribute("paramEntity", paramEntity);
 		return "export";
 	}

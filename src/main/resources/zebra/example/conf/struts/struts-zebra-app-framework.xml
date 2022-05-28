@@ -25,9 +25,7 @@
 		<!--/* CommonCode */-->
 		<action name="commoncode/*" class="zebra.example.app.framework.commoncode.CommonCodeAction" method="{1}">
 			<result name="list" type="debugDispatcherResult">/zebra/example/app/framework/commoncode/commonCodeList.jsp</result>
-			<result name="detail" type="debugDispatcherResult">/zebra/example/app/framework/commoncode/commonCodeDetailPop.jsp</result>
-			<result name="insert" type="debugDispatcherResult">/zebra/example/app/framework/commoncode/commonCodeInsertPop.jsp</result>
-			<result name="update" type="debugDispatcherResult">/zebra/example/app/framework/commoncode/commonCodeUpdatePop.jsp</result>
+			<result name="edit" type="debugDispatcherResult">/zebra/example/app/framework/commoncode/commonCodeEditPop.jsp</result>
 		</action>
 
 		<!--/* DomainDictionary */-->

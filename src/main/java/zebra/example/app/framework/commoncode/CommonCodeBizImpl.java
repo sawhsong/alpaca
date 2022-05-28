@@ -50,8 +50,12 @@ public class CommonCodeBizImpl extends BaseBiz implements CommonCodeBiz {
 		return paramEntity;
 	}
 
-	public ParamEntity getInsert(ParamEntity paramEntity) throws Exception {
+	public ParamEntity getEdit(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+
 		try {
+			paramEntity.setObject("resultDataSet", zebraCommonCodeDao.getCommonCodeDataSetByCodeType(requestDataSet.getValue("codeType")));
+
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -60,7 +64,37 @@ public class CommonCodeBizImpl extends BaseBiz implements CommonCodeBiz {
 		return paramEntity;
 	}
 
-	public ParamEntity exeInsert(ParamEntity paramEntity) throws Exception {
+	public ParamEntity doEdit(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		String codeType = CommonUtil.upperCase(requestDataSet.getValue("codeTypeMaster"));
+		DataSet detailDataSet;
+		int result = -1;
+		int masterDataRow = -1;
+
+		try {
+			detailDataSet = zebraCommonCodeDao.getCommonCodeDataSetByCodeType(codeType);
+			masterDataRow = detailDataSet.getRowIndex("COMMON_CODE", "0000000000");
+
+			result = zebraCommonCodeDao.delete(codeType);
+			if (result <= 0) {
+				throw new FrameworkException("E801", getMessage("E801", paramEntity));
+			}
+
+			paramEntity.setObject("processFrom", "update");
+			paramEntity.setObject("masterDataRow", masterDataRow);
+			paramEntity.setObject("detailDataSet", detailDataSet);
+			paramEntity = doInsert(paramEntity);
+
+			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		
+		return paramEntity;
+	}
+
+	public ParamEntity doInsert(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		HttpSession session = paramEntity.getSession();
 		String delimiter = ConfigUtil.getProperty("delimiter.data");
@@ -74,8 +108,9 @@ public class CommonCodeBizImpl extends BaseBiz implements CommonCodeBiz {
 		try {
 			zebraCommonCode.setCodeType(codeType);
 			zebraCommonCode.setCommonCode("0000000000");
-			zebraCommonCode.setDescriptionEn(requestDataSet.getValue("descriptionEnMaster"));
-			zebraCommonCode.setDescriptionKo(requestDataSet.getValue("descriptionKoMaster"));
+			zebraCommonCode.setCodeMeaning(requestDataSet.getValue("codeMeaningMaster"));
+			zebraCommonCode.setDescriptionEn(requestDataSet.getValue("descriptionMaster"));
+			zebraCommonCode.setDescriptionKo(requestDataSet.getValue("descriptionMaster"));
 			zebraCommonCode.setProgramConstants(codeType + "_0000000000");
 			zebraCommonCode.setSortOrder("000");
 			zebraCommonCode.setIsActive(CommonUtil.nvl(requestDataSet.getValue("isActiveMaster"), "N"));
@@ -102,8 +137,9 @@ public class CommonCodeBizImpl extends BaseBiz implements CommonCodeBiz {
 				String commonCode = requestDataSet.getValue("commonCodeDetail" + delimiter + i);
 
 				zebraCommonCode.setCommonCode(commonCode);
-				zebraCommonCode.setDescriptionEn(requestDataSet.getValue("descriptionEnDetail" + delimiter + i));
-				zebraCommonCode.setDescriptionKo(requestDataSet.getValue("descriptionKoDetail" + delimiter + i));
+				zebraCommonCode.setCodeMeaning(requestDataSet.getValue("codeMeaningDetail" + delimiter + i));
+				zebraCommonCode.setDescriptionEn(requestDataSet.getValue("descriptionDetail" + delimiter + i));
+				zebraCommonCode.setDescriptionKo(requestDataSet.getValue("descriptionDetail" + delimiter + i));
 				zebraCommonCode.setProgramConstants(codeType + "_" + CommonUtil.upperCase(commonCode));
 				zebraCommonCode.setSortOrder(requestDataSet.getValue("sortOrderDetail" + delimiter + i));
 				zebraCommonCode.setIsActive(CommonUtil.nvl(requestDataSet.getValue("isActiveDetail" + delimiter + i), "N"));
@@ -124,63 +160,7 @@ public class CommonCodeBizImpl extends BaseBiz implements CommonCodeBiz {
 		return paramEntity;
 	}
 
-	public ParamEntity getDetail(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-
-		try {
-			paramEntity.setObject("resultDataSet", zebraCommonCodeDao.getCommonCodeDataSetByCodeType(requestDataSet.getValue("codeType")));
-
-			paramEntity.setSuccess(true);
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-
-		return paramEntity;
-	}
-
-	public ParamEntity getUpdate(ParamEntity paramEntity) throws Exception {
-		try {
-			paramEntity = getDetail(paramEntity);
-
-			paramEntity.setSuccess(true);
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-
-		return paramEntity;
-	}
-
-	public ParamEntity exeUpdate(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		String codeType = CommonUtil.upperCase(requestDataSet.getValue("codeTypeMaster"));
-		DataSet detailDataSet;
-		int result = -1;
-		int masterDataRow = -1;
-
-		try {
-			detailDataSet = zebraCommonCodeDao.getCommonCodeDataSetByCodeType(codeType);
-			masterDataRow = detailDataSet.getRowIndex("COMMON_CODE", "0000000000");
-
-			result = zebraCommonCodeDao.delete(codeType);
-			if (result <= 0) {
-				throw new FrameworkException("E801", getMessage("E801", paramEntity));
-			}
-
-			paramEntity.setObject("processFrom", "update");
-			paramEntity.setObject("masterDataRow", masterDataRow);
-			paramEntity.setObject("detailDataSet", detailDataSet);
-			paramEntity = exeInsert(paramEntity);
-
-			paramEntity.setSuccess(true);
-			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		
-		return paramEntity;
-	}
-
-	public ParamEntity exeDelete(ParamEntity paramEntity) throws Exception {
+	public ParamEntity doDelete(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		String codeType = requestDataSet.getValue("codeType");
 		String chkForDel = requestDataSet.getValue("chkForDel");
@@ -207,7 +187,7 @@ public class CommonCodeBizImpl extends BaseBiz implements CommonCodeBiz {
 		return paramEntity;
 	}
 
-	public ParamEntity exeExport(ParamEntity paramEntity) throws Exception {
+	public ParamEntity doExport(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
 		ExportHelper exportHelper;
@@ -217,11 +197,13 @@ public class CommonCodeBizImpl extends BaseBiz implements CommonCodeBiz {
 		try {
 			String pageTitle = "Common Code List";
 			String fileName = "CommonCodeList";
-			String[] columnHeader = {"code_type", "common_code", "description_en", "program_constants"};
+			String[] columnHeader = {"code_type", "common_code", "code_meaning", "program_constants", "description_en", "description_ko", "sort_order", "is_active", "is_default"};
+			String[] fileHeader = {"CODE TYPE", "COMMON CODE", "CODE MEANING", "PROGRAM CONSTANTS", "DESCRIPTION(EN)", "DESCRIPTION(KO)", "SORT ORDER", "IS ACTIVE", "IS DEFAULT"};
 
 			exportHelper = ExportUtil.getExportHelper(requestDataSet.getValue("fileType"));
 			exportHelper.setPageTitle(pageTitle);
 			exportHelper.setColumnHeader(columnHeader);
+			exportHelper.setFileHeader(fileHeader);
 			exportHelper.setFileName(fileName);
 			exportHelper.setPdfWidth(1000);
 

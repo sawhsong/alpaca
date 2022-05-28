@@ -79,14 +79,15 @@
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
 			<col width="2%"/>
-			<col width="3%"/>
+			<col width="2%"/>
+			<col width="13%"/>
 			<col width="15%"/>
-			<col width="*"/>
 			<col width="18%"/>
-			<col width="7%"/>
-			<col width="7%"/>
-			<col width="9%"/>
-			<col width="9%"/>
+			<col width="*"/>
+			<col width="5%"/>
+			<col width="5%"/>
+			<col width="6%"/>
+			<col width="6%"/>
 		</colgroup>
 		<thead>
 			<tr>
@@ -95,6 +96,7 @@
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.commoncode.gridHeader.codeType"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.commoncode.gridHeader.codeMeaning"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.commoncode.gridHeader.programConstants"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.commoncode.gridHeader.description"/></th>
 				<th class="thGrid sortable:number"><mc:msg key="fwk.commoncode.gridHeader.isActive"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.commoncode.gridHeader.isDefault"/></th>
 				<th class="thGrid sortable:date"><mc:msg key="fwk.commoncode.gridHeader.insertDate"/></th>
@@ -103,7 +105,7 @@
 		</thead>
 		<tbody id="tblGridBody">
 			<tr>
-				<td class="tdGrid Ct" colspan="9"><mc:msg key="I002"/></td>
+				<td class="tdGrid Ct" colspan="10"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
 	</table>

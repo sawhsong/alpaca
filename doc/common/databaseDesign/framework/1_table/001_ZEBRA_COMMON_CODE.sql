@@ -63,18 +63,17 @@ insert into zebra_common_code values('BOARD_SEARCH_TYPE', 'SUBJECT',   'Subject'
 insert into zebra_common_code values('BOARD_SEARCH_TYPE', 'CONTENTS',  'Contents',               '내용',        'Contents',              'BOARD_SEARCH_TYPE_CONTENTS',    '002','Y','Y','0',sysdate,'','');
 insert into zebra_common_code values('BOARD_SEARCH_TYPE', 'WRITER',    'Writer',                 '작성자',       'Writer',                'BOARD_SEARCH_TYPE_WRITER',      '003','Y','Y','0',sysdate,'','');
 
-insert into zebra_common_code values('USER_THEME_TYPE','0000000000',   '사용자스킨구분',       '사용자스킨구분',      'User Theme Type','USER_THEME_TYPE_0000000000',  '000','Y','Y','0',sysdate,'','');
+insert into zebra_common_code values('USER_THEME_TYPE','0000000000',   'User Theme Type',  '사용자스킨구분',      'User Theme Type','USER_THEME_TYPE_0000000000',  '000','Y','Y','0',sysdate,'','');
 insert into zebra_common_code values('USER_THEME_TYPE','THEME000',     'Bootstrap',        'Bootstrap',       'Bootstrap',      'USER_THEME_TYPE_000',         '001','Y','Y','0',sysdate,'','');
 insert into zebra_common_code values('USER_THEME_TYPE','THEME001',     'Smoothness',       'Smoothness',      'Smoothness',     'USER_THEME_TYPE_001',         '002','Y','Y','0',sysdate,'','');
 insert into zebra_common_code values('USER_THEME_TYPE','THEME002',     'Redmond',          'Redmond',         'Redmond',        'USER_THEME_TYPE_002',         '003','Y','Y','0',sysdate,'','');
 insert into zebra_common_code values('USER_THEME_TYPE','THEME003',     'Lightness',        'Lightness',       'Lightness',      'USER_THEME_TYPE_003',         '004','Y','Y','0',sysdate,'','');
 insert into zebra_common_code values('USER_THEME_TYPE','THEME004',     'Start',            'Start',           'Start',          'USER_THEME_TYPE_004',         '005','Y','Y','0',sysdate,'','');
 insert into zebra_common_code values('USER_THEME_TYPE','THEME005',     'Sunny',            'Sunny',           'Sunny',          'USER_THEME_TYPE_005',         '006','Y','Y','0',sysdate,'','');
-insert into zebra_common_code values('USER_THEME_TYPE','THEME006',     'Flick',            'Flick',           'Flick',          'USER_THEME_TYPE_006',         '007','Y','Y','0',sysdate,'','');
-insert into zebra_common_code values('USER_THEME_TYPE','THEME007',     'Pepper Grinder',   'Pepper Grinder',  'Pepper Grinder', 'USER_THEME_TYPE_007',         '008','Y','Y','0',sysdate,'','');
-insert into zebra_common_code values('USER_THEME_TYPE','THEME008',     'Cupertino',        'Cupertino',       'Cupertino',      'USER_THEME_TYPE_008',         '009','Y','Y','0',sysdate,'','');
-insert into zebra_common_code values('USER_THEME_TYPE','THEME009',     'South Street',     'South Street',    'South Street',   'USER_THEME_TYPE_009',         '010','Y','Y','0',sysdate,'','');
-insert into zebra_common_code values('USER_THEME_TYPE','THEME010',     'Humanity',         'Humanity',        'Humanity',       'USER_THEME_TYPE_010',         '011','Y','Y','0',sysdate,'','');
+insert into zebra_common_code values('USER_THEME_TYPE','THEME006',     'Pepper Grinder',   'Pepper Grinder',  'Pepper Grinder', 'USER_THEME_TYPE_007',         '008','Y','Y','0',sysdate,'','');
+insert into zebra_common_code values('USER_THEME_TYPE','THEME007',     'Cupertino',        'Cupertino',       'Cupertino',      'USER_THEME_TYPE_008',         '009','Y','Y','0',sysdate,'','');
+insert into zebra_common_code values('USER_THEME_TYPE','THEME008',     'South Street',     'South Street',    'South Street',   'USER_THEME_TYPE_009',         '010','Y','Y','0',sysdate,'','');
+insert into zebra_common_code values('USER_THEME_TYPE','THEME009',     'Humanity',         'Humanity',        'Humanity',       'USER_THEME_TYPE_010',         '011','Y','Y','0',sysdate,'','');
 
 insert into zebra_common_code values('LANGUAGE_TYPE','0000000000', 'Language',  '언어타입',   'Language', 'LANGUAGE_TYPE_0000000000',  '000',  'Y','Y','0',sysdate,'','');
 insert into zebra_common_code values('LANGUAGE_TYPE','EN',         'English',   '영어',      'English',  'LANGUAGE_TYPE_EN',          '001',   'Y','Y','0',sysdate,'','');
