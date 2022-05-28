@@ -16,8 +16,8 @@
 
 	if (resultDataSet.getRowCnt() > 0) {
 		masterRow = resultDataSet.getRowIndex("COMMON_CODE", "0000000000");
-		isActive = resultDataSet.getValue(masterRow, "USE_YN");
-		isDefault = resultDataSet.getValue(masterRow, "DEFAULT_YN");
+		isActive = resultDataSet.getValue(masterRow, "IS_ACTIVE");
+		isDefault = resultDataSet.getValue(masterRow, "IS_DEFAULT");
 		if (CommonUtil.equals(isDefault, "Y")) {disableFlag = "disabled";}
 	}
 %>
@@ -76,8 +76,8 @@ var codeType = "<%=resultDataSet.getValue(masterRow, "CODE_TYPE")%>";
 			<col width="*"/>
 		</colgroup>
 		<tr>
-			<th class="thEdit Rt"><mc:msg key="fwk.commoncode.header.useYn"/></th>
-			<td class="tdEdit"><ui:ccradio name="useYnMaster" codeType="SIMPLE_YN" selectedValue="<%=isActive%>" status="disabled" source="framework"/></td>
+			<th class="thEdit Rt"><mc:msg key="fwk.commoncode.header.isActive"/></th>
+			<td class="tdEdit"><ui:ccradio name="isDefaultMaster" codeType="SIMPLE_YN" selectedValue="<%=isActive%>" status="disabled" source="framework"/></td>
 			<th class="thEdit Rt"><mc:msg key="fwk.commoncode.header.descriptionEn"/></th>
 			<td class="tdEdit"><%=resultDataSet.getValue(masterRow, "DESCRIPTION_EN")%></td>
 			<th class="thEdit Rt"><mc:msg key="fwk.commoncode.header.descriptionKo"/></th>
@@ -106,7 +106,7 @@ var codeType = "<%=resultDataSet.getValue(masterRow, "CODE_TYPE")%>";
 		<thead>
 			<tr>
 				<th class="thGrid"><mc:msg key="fwk.commoncode.header.commonCode"/></th>
-				<th class="thGrid"><mc:msg key="fwk.commoncode.header.useYn"/></th>
+				<th class="thGrid"><mc:msg key="fwk.commoncode.header.isActive"/></th>
 				<th class="thGrid"><mc:msg key="fwk.commoncode.header.descriptionEn"/></th>
 				<th class="thGrid"><mc:msg key="fwk.commoncode.header.descriptionKo"/></th>
 				<th class="thGrid"><mc:msg key="fwk.commoncode.header.sortOrder"/></th>
@@ -116,9 +116,9 @@ var codeType = "<%=resultDataSet.getValue(masterRow, "CODE_TYPE")%>";
 <%
 		if (resultDataSet.getRowCnt() > 0) {
 			for (int i=0; i<resultDataSet.getRowCnt(); i++) {
-				String rdoIsActiveName = "useYnDetail_"+i;
+				String rdoIsActiveName = "isActiveDetail_"+i;
 
-				isActive = resultDataSet.getValue(i, "USE_YN");
+				isActive = resultDataSet.getValue(i, "IS_ACTIVE");
 
 				pageContext.setAttribute("rdoIsActiveName", rdoIsActiveName);
 				pageContext.setAttribute("isActive", isActive);

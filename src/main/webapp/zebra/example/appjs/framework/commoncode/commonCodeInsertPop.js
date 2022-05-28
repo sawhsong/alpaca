@@ -81,7 +81,7 @@ $(function() {
 				$(this).attr("id", id+delimiter+groupIndex).attr("name", name+delimiter+groupIndex);
 
 				if (groupIndex == ($("#ulCommonCodeDetailHolder .dummyDetail").length - 1)) {
-					if (name.indexOf("useYnDetail") != -1) {
+					if (name.indexOf("isActiveDetail") != -1) {
 						if ($(this).val() == "Y") {$(this).prop("checked", true);}
 					}
 

@@ -93,10 +93,10 @@
 				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="fwk.commoncode.gridHeader.selectToDelete"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.commoncode.gridHeader.codeType"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.commoncode.gridHeader.description"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.commoncode.gridHeader.codeMeaning"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.commoncode.gridHeader.programConstants"/></th>
-				<th class="thGrid sortable:number"><mc:msg key="fwk.commoncode.gridHeader.useYn"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.commoncode.gridHeader.defaultYn"/></th>
+				<th class="thGrid sortable:number"><mc:msg key="fwk.commoncode.gridHeader.isActive"/></th>
+				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.commoncode.gridHeader.isDefault"/></th>
 				<th class="thGrid sortable:date"><mc:msg key="fwk.commoncode.gridHeader.insertDate"/></th>
 				<th class="thGrid sortable:date"><mc:msg key="fwk.commoncode.gridHeader.updateDate"/></th>
 			</tr>

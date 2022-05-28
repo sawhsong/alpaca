@@ -73,8 +73,8 @@
 		<tr>
 			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.codeType"/></th>
 			<td class="tdEdit"><ui:text name="codeTypeMaster" style="text-transform:uppercase;" checkName="fwk.commoncode.header.codeType" options="mandatory"/></td>
-			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.useYn"/></th>
-			<td class="tdEdit ct"><ui:ccradio name="useYnMaster" codeType="SIMPLE_YN" selectedValue="Y" source="framework"/></td>
+			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.isActive"/></th>
+			<td class="tdEdit ct"><ui:ccradio name="isActiveMaster" codeType="SIMPLE_YN" selectedValue="Y" source="framework"/></td>
 			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.descriptionEn"/></th>
 			<td class="tdEdit"><ui:text name="descriptionEnMaster" checkName="fwk.commoncode.header.descriptionEn" options="mandatory"/></td>
 			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.descriptionKo"/></th>
@@ -116,7 +116,7 @@
 				<th class="thGrid"></th>
 				<th class="thGrid"></th>
 				<th class="thGrid mandatory"><mc:msg key="fwk.commoncode.header.commonCode"/></th>
-				<th class="thGrid mandatory"><mc:msg key="fwk.commoncode.header.useYn"/></th>
+				<th class="thGrid mandatory"><mc:msg key="fwk.commoncode.header.isActive"/></th>
 				<th class="thGrid mandatory"><mc:msg key="fwk.commoncode.header.descriptionEn"/></th>
 				<th class="thGrid mandatory"><mc:msg key="fwk.commoncode.header.descriptionKo"/></th>
 				<th class="thGrid mandatory"><mc:msg key="fwk.commoncode.header.sortOrder"/></th>
@@ -153,7 +153,7 @@
 			<th id="thDragHander" class="thGrid dragHandler" title="<mc:msg key="fwk.commoncode.msg.drag"/>"><ui:icon id="iDragHandler" className="fa-lg fa-sort"/></th>
 			<th id="thDeleteButton" class="thGrid deleteButton" title="<mc:msg key="fwk.commoncode.msg.delete"/>"><ui:icon id="iDeleteButton" className="fa-lg fa-times"/></th>
 			<td class="tdGrid ct"><ui:text name="commonCodeDetail" style="text-transform:uppercase" checkName="fwk.commoncode.header.commonCode" options="mandatory"/></td>
-			<td class="tdGrid ct"><ui:ccradio name="useYnDetail" codeType="SIMPLE_YN" selectedValue="Y" source="framework"/></td>
+			<td class="tdGrid ct"><ui:ccradio name="isActiveDetail" codeType="SIMPLE_YN" selectedValue="Y" source="framework"/></td>
 			<td class="tdGrid ct"><ui:text name="descriptionEnDetail" checkName="fwk.commoncode.header.descriptionEn" options="mandatory"/></td>
 			<td class="tdGrid ct"><ui:text name="descriptionKoDetail" checkName="fwk.commoncode.header.descriptionKo" options="mandatory"/></td>
 			<td class="tdGrid ct"><ui:text name="sortOrderDetail" className="ct" checkName="fwk.commoncode.header.sortOrder" option="numeric" options="mandatory"/></td>

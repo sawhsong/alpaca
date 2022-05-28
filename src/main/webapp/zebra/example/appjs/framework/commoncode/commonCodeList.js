@@ -65,11 +65,11 @@ $(function() {
 
 		if (dataSet.getRowCnt() > 0) {
 			for (var i=0; i<dataSet.getRowCnt(); i++) {
-				var defaultYn = dataSet.getValue(i, "DEFAULT_YN");
+				var isDefault = dataSet.getValue(i, "IS_DEFAULT");
 				var className = "chkEn", disabledStr = "";
 				var uiGridTr = new UiGridTr();
 
-				if ("Y" == defaultYn) {
+				if ("Y" == isDefault) {
 					className = "chkDis";
 					disabledStr = "disabled";
 				}
@@ -89,8 +89,8 @@ $(function() {
 
 				uiGridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "DESCRIPTION_"+langCode)));
 				uiGridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "PROGRAM_CONSTANTS")));
-				uiGridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "USE_YN")));
-				uiGridTr.addChild(new UiGridTd().addClassName("Ct").setText(defaultYn));
+				uiGridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "IS_ACTIVE")));
+				uiGridTr.addChild(new UiGridTd().addClassName("Ct").setText(isDefault));
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(dataSet.getValue(i, "INSERT_DATE"), dateFormat)));
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(dataSet.getValue(i, "UPDATE_DATE"), dateFormat)));
 
