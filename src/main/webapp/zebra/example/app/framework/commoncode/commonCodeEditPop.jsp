@@ -9,16 +9,6 @@
 <%
 	ParamEntity pe = (ParamEntity)request.getAttribute("paramEntity");
 	DataSet dsRequest = (DataSet)pe.getRequestDataSet();
-	DataSet resultDataSet = (DataSet)pe.getObject("resultDataSet");
-	String langCode = CommonUtil.upperCase((String)session.getAttribute("langCode"));
-	String delimiter = ConfigUtil.getProperty("dataDelimiter");
-	String isActive = "", disableFlag = "";
-	int masterRow = -1;
-
-	if (resultDataSet.getRowCnt() > 0) {
-		masterRow = resultDataSet.getRowIndex("COMMON_CODE", "0000000000");
-		isActive = resultDataSet.getValue(masterRow, "IS_UACTIVE");
-	}
 %>
 <%/************************************************************************************************
 * HTML
@@ -44,9 +34,7 @@
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
-var codeType = "<%=resultDataSet.getValue(masterRow, "CODE_TYPE")%>";
-var ds = commonJs.getDataSetFromJavaDataSet("<%=resultDataSet.toStringForJs()%>");
-var masterRow = <%=masterRow%>;
+var codeType = "<%=dsRequest.getValue("codeType")%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -75,23 +63,23 @@ var masterRow = <%=masterRow%>;
 	<table class="tblEdit">
 		<colgroup>
 			<col width="6%"/>
-			<col width="17%"/>
-			<col width="6%"/>
+			<col width="18%"/>
 			<col width="7%"/>
-			<col width="9%"/>
-			<col width="24%"/>
-			<col width="9%"/>
+			<col width="20%"/>
+			<col width="5%"/>
+			<col width="7%"/>
+			<col width="6%"/>
 			<col width="*"/>
 		</colgroup>
 		<tr>
 			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.codeType"/></th>
-			<td class="tdEdit"><ui:text name="codeTypeMaster" value="<%=resultDataSet.getValue(masterRow, \"CODE_TYPE\")%>" style="text-transform:uppercase;" checkName="fwk.commoncode.header.codeType" options="mandatory"/></td>
-			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.useYn"/></th>
-			<td class="tdEdit ct"><ui:ccradio name="isActiveMaster" codeType="SIMPLE_YN" selectedValue="<%=isActive%>" source="framework"/></td>
-			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.descriptionEn"/></th>
-			<td class="tdEdit"><ui:text name="descriptionEnMaster" value="<%=resultDataSet.getValue(masterRow, \"DESCRIPTION_EN\")%>" checkName="fwk.commoncode.header.descriptionEn" options="mandatory"/></td>
-			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.descriptionKo"/></th>
-			<td class="tdEdit"><ui:text name="descriptionKoMaster" value="<%=resultDataSet.getValue(masterRow, \"DESCRIPTION_KO\")%>" checkName="fwk.commoncode.header.descriptionKo" options="mandatory"/></td>
+			<td class="tdEdit"><ui:text name="codeTypeMaster" style="text-transform:uppercase;" checkName="fwk.commoncode.header.codeType" options="mandatory"/></td>
+			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.codeMeaning"/></th>
+			<td class="tdEdit"><ui:text name="codeMeaningMaster" checkName="fwk.commoncode.header.codeMeaning" options="mandatory"/></td>
+			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.isActive"/></th>
+			<td class="tdEdit ct"><ui:ccradio name="isActiveMaster" codeType="SIMPLE_YN" selectedValue="Y" source="framework"/></td>
+			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.description"/></th>
+			<td class="tdEdit"><ui:text name="descriptionMaster" checkName="fwk.commoncode.header.description" options="mandatory"/></td>
 		</tr>
 	</table>
 </div>
@@ -119,19 +107,19 @@ var masterRow = <%=masterRow%>;
 			<col width="2%"/>
 			<col width="2%"/>
 			<col width="20%"/>
+			<col width="30%"/>
 			<col width="6%"/>
-			<col width="32%"/>
-			<col width="32%"/>
 			<col width="*"/>
+			<col width="6%"/>
 		</colgroup>
 		<thead>
 			<tr>
 				<th class="thGrid"></th>
 				<th class="thGrid"></th>
 				<th class="thGrid mandatory"><mc:msg key="fwk.commoncode.header.commonCode"/></th>
+				<th class="thGrid mandatory"><mc:msg key="fwk.commoncode.header.codeMeaning"/></th>
 				<th class="thGrid mandatory"><mc:msg key="fwk.commoncode.header.isActive"/></th>
-				<th class="thGrid mandatory"><mc:msg key="fwk.commoncode.header.descriptionEn"/></th>
-				<th class="thGrid mandatory"><mc:msg key="fwk.commoncode.header.descriptionKo"/></th>
+				<th class="thGrid mandatory"><mc:msg key="fwk.commoncode.header.description"/></th>
 				<th class="thGrid mandatory"><mc:msg key="fwk.commoncode.header.sortOrder"/></th>
 			</tr>
 		</thead>
@@ -157,18 +145,18 @@ var masterRow = <%=masterRow%>;
 			<col width="2%"/>
 			<col width="2%"/>
 			<col width="20%"/>
+			<col width="30%"/>
 			<col width="6%"/>
-			<col width="32%"/>
-			<col width="32%"/>
 			<col width="*"/>
+			<col width="6%"/>
 		</colgroup>
 		<tr class="noBorderAll">
 			<th id="thDragHander" class="thGrid dragHandler" title="<mc:msg key="fwk.commoncode.msg.drag"/>"><ui:icon id="iDragHandler" className="fa-lg fa-sort"/></th>
 			<th id="thDeleteButton" class="thGrid deleteButton" title="<mc:msg key="fwk.commoncode.msg.delete"/>"><ui:icon id="iDeleteButton" className="fa-lg fa-times"/></th>
 			<td class="tdGrid ct"><ui:text name="commonCodeDetail" style="text-transform:uppercase" checkName="fwk.commoncode.header.commonCode" options="mandatory"/></td>
+			<td class="tdGrid ct"><ui:text name="codeMeaningDetail" checkName="fwk.commoncode.header.codeMeaning" options="mandatory"/></td>
 			<td class="tdGrid ct"><ui:ccradio name="isActiveDetail" codeType="SIMPLE_YN" selectedValue="Y" source="framework"/></td>
-			<td class="tdGrid ct"><ui:text name="descriptionEnDetail" checkName="fwk.commoncode.header.descriptionEn" options="mandatory"/></td>
-			<td class="tdGrid ct"><ui:text name="descriptionKoDetail" checkName="fwk.commoncode.header.descriptionKo" options="mandatory"/></td>
+			<td class="tdGrid ct"><ui:text name="descriptionDetail" checkName="fwk.commoncode.header.descriptionEn" options="mandatory"/></td>
 			<td class="tdGrid ct"><ui:text name="sortOrderDetail" className="ct" checkName="fwk.commoncode.header.sortOrder" option="numeric" options="mandatory"/></td>
 		</tr>
 	</table>

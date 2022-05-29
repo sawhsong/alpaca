@@ -51,11 +51,7 @@ public class CommonCodeBizImpl extends BaseBiz implements CommonCodeBiz {
 	}
 
 	public ParamEntity getEdit(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-
 		try {
-			paramEntity.setObject("resultDataSet", zebraCommonCodeDao.getCommonCodeDataSetByCodeType(requestDataSet.getValue("codeType")));
-
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -64,26 +60,97 @@ public class CommonCodeBizImpl extends BaseBiz implements CommonCodeBiz {
 		return paramEntity;
 	}
 
-	public ParamEntity doEdit(ParamEntity paramEntity) throws Exception {
+	public ParamEntity getMasterData(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
+
+		try {
+			paramEntity.setAjaxResponseDataSet(zebraCommonCodeDao.getCommonCodeDataSetByCodeType(requestDataSet.getValue("codeType")));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+
+		return paramEntity;
+	}
+
+	public ParamEntity getDetailData(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+
+		try {
+			paramEntity.setAjaxResponseDataSet(zebraCommonCodeDao.getCommonCodeDataSetByCodeType(requestDataSet.getValue("codeType")));
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+
+		return paramEntity;
+	}
+
+	public ParamEntity doSave(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		ZebraCommonCode zebraCommonCode = new ZebraCommonCode();
+		HttpSession session = paramEntity.getSession();
+		String delimiter = ConfigUtil.getProperty("delimiter.data");
 		String codeType = CommonUtil.upperCase(requestDataSet.getValue("codeTypeMaster"));
+		int detailLength = CommonUtil.toInt(requestDataSet.getValue("detailLength"));
 		DataSet detailDataSet;
 		int result = -1;
 		int masterDataRow = -1;
 
 		try {
 			detailDataSet = zebraCommonCodeDao.getCommonCodeDataSetByCodeType(codeType);
-			masterDataRow = detailDataSet.getRowIndex("COMMON_CODE", "0000000000");
 
-			result = zebraCommonCodeDao.delete(codeType);
+			if (detailDataSet.getRowCnt() <= 0) {
+				zebraCommonCode.setIsDefault(ZebraCommonCodeManager.getCodeByConstants("IS_DEFAULT_YN_N"));
+				zebraCommonCode.setInsertUserId((String)session.getAttribute("UserId"));
+				zebraCommonCode.setInsertDate(CommonUtil.toDate(CommonUtil.getSysdate()));
+			} else {
+				masterDataRow = detailDataSet.getRowIndex("COMMON_CODE", "0000000000");
+
+				result = zebraCommonCodeDao.delete(codeType);
+				if (result <= 0) {
+					throw new FrameworkException("E801", getMessage("E801", paramEntity));
+				}
+
+				zebraCommonCode.setIsDefault(detailDataSet.getValue(masterDataRow, "IS_DEFAULT"));
+				zebraCommonCode.setInsertUserId(detailDataSet.getValue(masterDataRow, "INSERT_USER_ID"));
+				zebraCommonCode.setInsertDate(CommonUtil.toDate(detailDataSet.getValue(masterDataRow, "INSERT_DATE")));
+				zebraCommonCode.setUpdateUserId((String)session.getAttribute("UserId"));
+				zebraCommonCode.setUpdateDate(CommonUtil.toDate(CommonUtil.getSysdate()));
+			}
+
+			zebraCommonCode.setCodeType(codeType);
+			zebraCommonCode.setCommonCode("0000000000");
+			zebraCommonCode.setCodeMeaning(requestDataSet.getValue("codeMeaningMaster"));
+			zebraCommonCode.setDescriptionEn(requestDataSet.getValue("descriptionMaster"));
+			zebraCommonCode.setDescriptionKo(requestDataSet.getValue("descriptionMaster"));
+			zebraCommonCode.setProgramConstants(codeType + "_0000000000");
+			zebraCommonCode.setSortOrder("000");
+			zebraCommonCode.setIsActive(CommonUtil.nvl(requestDataSet.getValue("isActiveMaster"), "N"));
+
+			result = zebraCommonCodeDao.insert(zebraCommonCode);
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
 			}
 
-			paramEntity.setObject("processFrom", "update");
-			paramEntity.setObject("masterDataRow", masterDataRow);
-			paramEntity.setObject("detailDataSet", detailDataSet);
-			paramEntity = doInsert(paramEntity);
+			result = 0;
+			for (int i=0; i<detailLength; i++) {
+				String commonCode = requestDataSet.getValue("commonCodeDetail" + delimiter + i);
+
+				zebraCommonCode.setCommonCode(commonCode);
+				zebraCommonCode.setCodeMeaning(requestDataSet.getValue("codeMeaningDetail" + delimiter + i));
+				zebraCommonCode.setDescriptionEn(requestDataSet.getValue("descriptionDetail" + delimiter + i));
+				zebraCommonCode.setDescriptionKo(requestDataSet.getValue("descriptionDetail" + delimiter + i));
+				zebraCommonCode.setProgramConstants(codeType + "_" + CommonUtil.upperCase(commonCode));
+				zebraCommonCode.setSortOrder(requestDataSet.getValue("sortOrderDetail" + delimiter + i));
+				zebraCommonCode.setIsActive(CommonUtil.nvl(requestDataSet.getValue("isActiveDetail" + delimiter + i), "N"));
+
+				result += zebraCommonCodeDao.insert(zebraCommonCode);
+			}
+
+			if (result != detailLength) {
+				throw new FrameworkException("E801", getMessage("E801", paramEntity));
+			}
 
 			paramEntity.setSuccess(true);
 			paramEntity.setMessage("I801", getMessage("I801", paramEntity));

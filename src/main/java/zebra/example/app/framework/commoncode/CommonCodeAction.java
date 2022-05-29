@@ -28,9 +28,27 @@ public class CommonCodeAction extends BaseAction {
 		return "edit";
 	}
 
-	public String doEdit() throws Exception {
+	public String getMasterData() throws Exception {
 		try {
-			biz.doEdit(paramEntity);
+			biz.getMasterData(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", this.paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getDetailData() throws Exception {
+		try {
+			biz.getDetailData(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", this.paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String doSave() throws Exception {
+		try {
+			biz.doSave(paramEntity);
 			ZebraCommonCodeManager.reload();
 		} catch (Exception ex) {
 		}

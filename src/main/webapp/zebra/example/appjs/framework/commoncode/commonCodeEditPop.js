@@ -33,7 +33,7 @@ $(function() {
 
 		var detailLength = $("#ulCommonCodeDetailHolder .dummyDetail").length;
 		commonJs.doSave({
-			url:"/zebra/framework/commoncode/exeUpdate.do",
+			url:"/zebra/framework/commoncode/doSave.do",
 			data:{detailLength:detailLength},
 			callback:function() {
 				parent.popup.close();
@@ -128,20 +128,55 @@ $(function() {
 		$("#ulCommonCodeDetailHolder").disableSelection();
 	};
 
-	addCodeDetails = function() {
-		for (var i=0; i<ds.getRowCnt(); i++) {
-			var rowIdx = 0;
+	setMasterData = function() {
+		if (commonJs.isNotBlank(codeType)) {
+			commonJs.showProcMessageOnElement("divInformArea");
 
-			if (i == masterRow) {continue;}
+			commonJs.doSimpleProcess({
+				url:"/zebra/framework/commoncode/getMasterData.do",
+				data:{codeType:codeType},
+				onSuccess:function(result) {
+					var dataSet = result.dataSet, masterRow = dataSet.getRowIndex("COMMON_CODE", "0000000000");
 
-			$("#btnAdd").trigger("click");
-			rowIdx = delimiter+(i-1);
+					$("[name=codeTypeMaster]").val(dataSet.getValue(masterRow, "CODE_TYPE"));
+					$("[name=codeMeaningMaster]").val(dataSet.getValue(masterRow, "CODE_MEANING"));
+					commonJs.setCheckboxValue("isActiveMaster", dataSet.getValue(masterRow, "IS_ACTIVE"));
+					$("[name=descriptionMaster]").val(dataSet.getValue(masterRow, "DESCRIPTION_EN"));
+				}
+			});
 
-			$("[name=commonCodeDetail"+rowIdx+"]").val(ds.getValue(i, "COMMON_CODE"));
-			commonJs.setCheckboxValue("useYnDetail"+rowIdx, ds.getValue(i, "USE_YN"));
-			$("[name=descriptionEnDetail"+rowIdx+"]").val(ds.getValue(i, "DESCRIPTION_EN"));
-			$("[name=descriptionKoDetail"+rowIdx+"]").val(ds.getValue(i, "DESCRIPTION_KO"));
-			$("[name=sortOrderDetail"+rowIdx+"]").val(ds.getValue(i, "SORT_ORDER"));
+			setTimeout(() => commonJs.hideProcMessageOnElement("divInformArea"), 400);
+		}
+	};
+
+	setDetailData = function() {
+		if (commonJs.isNotBlank(codeType)) {
+			commonJs.showProcMessageOnElement("divScrollablePanelPopup");
+
+			commonJs.doSimpleProcess({
+				url:"/zebra/framework/commoncode/getDetailData.do",
+				data:{codeType:codeType},
+				onSuccess:function(result) {
+					var dataSet = result.dataSet, masterRow = dataSet.getRowIndex("COMMON_CODE", "0000000000");
+
+					for (var i=0; i<dataSet.getRowCnt(); i++) {
+						var rowIdx = 0;
+
+						if (i == masterRow) {continue;}
+
+						$("#btnAdd").trigger("click");
+						rowIdx = delimiter+(i-1);
+
+						$("[name=commonCodeDetail"+rowIdx+"]").val(dataSet.getValue(i, "COMMON_CODE"));
+						$("[name=codeMeaningDetail"+rowIdx+"]").val(dataSet.getValue(i, "CODE_MEANING"));
+						commonJs.setCheckboxValue("isActiveDetail"+rowIdx, dataSet.getValue(i, "IS_ACTIVE"));
+						$("[name=descriptionDetail"+rowIdx+"]").val(dataSet.getValue(i, "DESCRIPTION_EN"));
+						$("[name=sortOrderDetail"+rowIdx+"]").val(dataSet.getValue(i, "SORT_ORDER"));
+					}
+				}
+			});
+
+			setTimeout(() => commonJs.hideProcMessageOnElement("divScrollablePanelPopup"), 400);
 		}
 	};
 
@@ -174,25 +209,15 @@ $(function() {
 	});
 
 	$(window).load(function() {
-		parent.popup.setHeader(framework.header.popHeaderEdit);
 		setSortable();
 
+		$("#tblGrid").freezeHeader({
+			attachTo:$("#divDataArea")
+		});
+
 		setTimeout(function() {
-			commonJs.showProcMessageOnElement("divScrollablePanelPopup");
+			setMasterData();
+			setDetailData();
 		}, 200);
-
-		setTimeout(function() {
-			$("#tblGrid").freezeHeader({
-				attachTo:$("#divDataArea")
-			});
-		}, 400);
-
-		setTimeout(function() {
-			addCodeDetails();
-		}, 600);
-
-		setTimeout(function() {
-			commonJs.hideProcMessageOnElement("divScrollablePanelPopup");
-		}, 800);
 	});
 });

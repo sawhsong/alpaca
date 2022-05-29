@@ -126,13 +126,11 @@ $(function() {
 		popup = commonJs.openPopup({
 			popupId:"commonCodeEdit",
 			url:"/zebra/framework/commoncode/getEdit.do",
-			data:{
-				codeType:commonJs.nvl(param.codeType, "")
-			},
+			data:{codeType:codeType},
 			header:framework.header.popHeaderEdit,
 			blind:true,
 			width:1700,
-			height:900
+			height:860
 		});
 	};
 
