@@ -2,17 +2,17 @@
  * Framework Generated Javascript Source
  * - SysCommonCodeList.js
  *************************************************************************************************/
-jsconfig.put("useJqTooltip", false);
 var popup = null;
 var searchResultDataCount = 0;
-var attchedFileContextMenu = [];
+var dateFormat = jsconfig.get("dateFormatJs");
+var langCode = jsconfig.get("langCode").toUpperCase();
 
 $(function() {
 	/*!
 	 * event
 	 */
 	$("#btnNew").click(function(event) {
-		openPopup({mode:"New"});
+		getEdit("");
 	});
 
 	$("#btnDelete").click(function(event) {
@@ -27,14 +27,6 @@ $(function() {
 		commonJs.clearSearchCriteria();
 	});
 
-	$("#icnFromDate").click(function(event) {
-		commonJs.openCalendar(event, "fromDate");
-	});
-
-	$("#icnToDate").click(function(event) {
-		commonJs.openCalendar(event, "toDate");
-	});
-
 	$("#icnCheck").click(function(event) {
 		commonJs.toggleCheckboxes("chkForDel");
 	});
@@ -43,7 +35,7 @@ $(function() {
 		if (event.which == 13) {
 			var element = event.target;
 
-			if ($(element).is("[name=searchWord]") || $(element).is("[name=fromDate]") || $(element).is("[name=toDate]")) {
+			if ($(element).is("[name=commonCodeType]")) {
 				doSearch();
 			}
 		}
@@ -59,7 +51,7 @@ $(function() {
 			commonJs.doSearch({
 				url:"/sys/sysBasicInfo/sysCommonCode/getList.do",
 				data:{},
-				onSuccess:renderDataGridTable
+				callback:renderDataGridTable
 			});
 		}
 	};
@@ -69,59 +61,48 @@ $(function() {
 		var html = "";
 
 		searchResultDataCount = dataSet.getRowCnt();
+
 		$("#tblGridBody").html("");
 
 		if (dataSet.getRowCnt() > 0) {
 			for (var i=0; i<dataSet.getRowCnt(); i++) {
-				var space = "", iLength = 200;
-				var iLevel = parseInt(dataSet.getValue(i, "LEVEL")) - 1;
-				var gridTr = new UiGridTr();
+				var isDefault = dataSet.getValue(i, "IS_DEFAULT");
+				var className = "chkEn", disabledStr = "";
+				var uiGridTr = new UiGridTr();
 
-				gridTr.setClassName("noBorderHor");
+				if ("Y" == isDefault) {
+					className = "chkDis";
+					disabledStr = "disabled";
+				}
+
+				var uiIcon = new UiIcon();
+				uiIcon.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("codeType:"+dataSet.getValue(i, "CODE_TYPE")).addAttribute("isDefault:"+isDefault).setScript("doAction(this)");
+				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiIcon));
 
 				var uiChk = new UiCheckbox();
-				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "ARTICLE_ID"));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
-
-				if (iLevel > 0) {
-					for (var j=0; j<iLevel; j++) {
-						space += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-						iLength -= - 2;
-					}
-					space += "<i class=\"fa fa-comments\"></i>";
-				} else {
-					space += "<i class=\"fa fa-comment\"></i>";
-				}
+				uiChk.setId("chkForDel").setName("chkForDel").removeClassName("chkEn").addClassName(className).setValue(dataSet.getValue(i, "CODE_TYPE")).setOptions(disabledStr);
+				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
 
 				var uiAnc = new UiAnchor();
-				uiAnc.setText(commonJs.abbreviate(dataSet.getValue(i, "ARTICLE_SUBJECT"), iLength)).setScript("getDetail('"+dataSet.getValue(i, "ARTICLE_ID")+"')");
-				gridTr.addChild(new UiGridTd().addClassName("Lt").addTextBeforeChild(space+"&nbsp;&nbsp;").addChild(uiAnc));
+				uiAnc.setText(dataSet.getValue(i, "CODE_TYPE")).setScript("getEdit('"+dataSet.getValue(i, "CODE_TYPE")+"')");
+				uiGridTr.addChild(new UiGridTd().addClassName("Lt").addChild(uiAnc));
 
-				var gridTd = new UiGridTd();
-				gridTd.addClassName("Ct");
-				if (dataSet.getValue(i, "FILE_CNT") > 0) {
-					var iconAttachFile = new UiIcon();
-					iconAttachFile.setId("icnAttachedFile").setName("icnAttachedFile").addClassName("glyphicon-paperclip").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"));
-					gridTd.addChild(iconAttachFile);
-				}
-				gridTr.addChild(gridTd);
+				uiGridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "CODE_MEANING")));
+				uiGridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "PROGRAM_CONSTANTS")));
+				uiGridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "DESCRIPTION_"+langCode)));
 
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "WRITER_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "CREATED_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(dataSet.getValue(i, "HIT_CNT"), "#,###")));
+				uiGridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "IS_ACTIVE")));
+				uiGridTr.addChild(new UiGridTd().addClassName("Ct").setText(isDefault));
+				uiGridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(dataSet.getValue(i, "INSERT_DATE"), dateFormat)));
+				uiGridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(dataSet.getValue(i, "UPDATE_DATE"), dateFormat)));
 
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
-					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
-
-				html += gridTr.toHtmlString();
+				html += uiGridTr.toHtmlString();
 			}
 		} else {
-			var gridTr = new UiGridTr();
+			var uiGridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:7").setText(com.message.I001));
-			html += gridTr.toHtmlString();
+			uiGridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:10").setText(com.message.I001));
+			html += uiGridTr.toHtmlString();
 		}
 
 		$("#tblGridBody").append($(html));
@@ -134,52 +115,24 @@ $(function() {
 			script:"doSearch"
 		});
 
-		$("[name=icnAttachedFile]").each(function(index) {
-			$(this).contextMenu(attchedFileContextMenu);
-		});
-
 		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.boardAction);
+			$(this).contextMenu(ctxMenu.commonAction);
 		});
 
 		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForDel]"));
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 
-	getDetail = function(articleId) {
-		openPopup({mode:"Detail", articleId:articleId});
-	};
-
-	openPopup = function(param) {
-		var url = "", header = "";
-		var height = 520;
-
-		if (param.mode == "Detail") {
-			url = "/sys/sysBasicInfo/sysCommonCode/getDetail.do";
-			header = com.header.popHeaderDetail;
-		} else if (param.mode == "New" || param.mode == "Reply") {
-			url = "/sys/sysBasicInfo/sysCommonCode/getInsert.do";
-			header = com.header.popHeaderEdit;
-		} else if (param.mode == "Edit") {
-			url = "/sys/sysBasicInfo/sysCommonCode/getUpdate.do";
-			header = com.header.popHeaderEdit;
-			height = 648;
-		}
-
-		var popParam = {
-			popupId:"notice"+param.mode,
-			url:url,
-			data:{
-				mode:param.mode,
-				articleId:commonJs.nvl(param.articleId, "")
-			},
-			header:header,
+	getEdit = function(codeType) {
+		popup = commonJs.openPopup({
+			popupId:"commonCodeEdit",
+			url:"/sys/sysBasicInfo/sysCommonCode/getEdit.do",
+			data:{codeType:codeType},
+			header:framework.header.popHeaderEdit,
 			blind:true,
-			width:800,
-			height:height
-		};
-
-		popup = commonJs.openPopup(popParam);
+			width:1700,
+			height:860
+		});
 	};
 
 	doDelete = function() {
@@ -189,47 +142,54 @@ $(function() {
 		}
 
 		commonJs.doDelete({
-			url:"/sys/sysBasicInfo/sysCommonCode/exeDelete.do",
+			url:"/sys/sysBasicInfo/sysCommonCode/doDelete.do",
 			onSuccess:doSearch
 		});
 	};
 
 	doAction = function(img) {
-		var articleId = $(img).attr("articleId");
+		var codeType = $(img).attr("codeType");
+		var isDefault = $(img).attr("isDefault");
 
 		$("input:checkbox[name=chkForDel]").each(function(index) {
-			if (!$(this).is(":disabled") && $(this).val() == articleId) {
-				$(this).prop("checked", true);
+			if (!$(this).is(":disabled") && $(this).val() == codeType) {
+				if (!$(this).is(":checked")) {
+					$(this).click();
+				}
 			} else {
-				$(this).prop("checked", false);
+				if ($(this).is(":checked")) {
+					$(this).click();
+				}
 			}
 		});
 
-		ctxMenu.boardAction[0].fun = function() {getDetail(articleId);};
-		ctxMenu.boardAction[1].fun = function() {openPopup({mode:"Edit", articleId:articleId});};
-		ctxMenu.boardAction[2].fun = function() {openPopup({mode:"Reply", articleId:articleId});};
-		ctxMenu.boardAction[3].fun = function() {doDelete();};
+		if (isDefault == "Y") {
+			ctxMenu.commonSimpleAction[1].disable = true;
+		} else {
+			ctxMenu.commonSimpleAction[1].disable = false;
+		}
 
-		$(img).contextMenu(ctxMenu.boardAction, {
+		ctxMenu.commonSimpleAction[0].fun = function() {getEdit(codeType);};
+		ctxMenu.commonSimpleAction[1].fun = function() {doDelete();};
+
+		$(img).contextMenu(ctxMenu.commonSimpleAction, {
 			classPrefix:com.constants.ctxClassPrefixGrid,
 			displayAround:"trigger",
 			position:"bottom",
 			horAdjust:0,
-			verAdjust:2
+			verAdjust:2,
+			containment:$("#divScrollablePanel")
 		});
 	};
 
 	exeExport = function(menuObject) {
-		$("[name=fileType]").remove();
-		$("[name=dataRange]").remove();
-
 		if (searchResultDataCount <= 0) {
 			commonJs.warn(com.message.I001);
 			return;
 		}
 
 		commonJs.doExport({
-			url:"/sys/sysBasicInfo/sysCommonCode/exeExport.do",
+			url:"/sys/sysBasicInfo/sysCommonCode/doExport.do",
 			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
 			menuObject:menuObject
 		});
@@ -239,9 +199,18 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		commonJs.setFieldDateMask("fromDate");
-		commonJs.setFieldDateMask("toDate");
+		commonJs.setAutoComplete($("#commonCodeType"), {
+			url:"/common/autoCompletion/",
+			method:"getCommonCodeType",
+			label:"code_meaning",
+			value:"code_type",
+			select:function(event, ui) {
+				doSearch();
+			}
+		});
+
 		commonJs.setExportButtonContextMenu($("#btnExport"));
+
 		doSearch();
 	});
 });

@@ -45,7 +45,7 @@ comment on column sys_common_code.update_date       is 'Update Date';
 
 /**
  * Table Name  : SYS_COMMON_CODE
- * Data        : Common Lookup Code - Import Excel file (SYS_COMMON_CODE_1.xlsx, SYS_COMMON_CODE_2.xlsx)
+ * Data        : 
  */
 delete sys_common_code;
 
@@ -53,44 +53,43 @@ insert into sys_common_code values('SIMPLE_YN', '0000000000', 'Simple YN', 'Simp
 insert into sys_common_code values('SIMPLE_YN', 'Y',          'Yes',       'Yes',       'Yes',       'SIMPLE_YN_Y',          '001', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('SIMPLE_YN', 'N',          'No',        'No',        'No',        'SIMPLE_YN_N',          '002', 'Y', 'Y', '0', sysdate, null, null);
 
-insert into sys_common_code values('USE_YN', '0000000000', 'Is Used',    '사용여부', 'Use or Not', 'USE_YN_0000000000', '000',   'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('USE_YN', 'Y',          'Use',        '사용',     'Use',        'USE_YN_Y',          '001',   'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('USE_YN', 'N',          'Not in Use', '미사용',   'Not Use',    'USE_YN_N',          '002',   'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('USE_YN', '0000000000', 'Is Used',    'Is Used',    'Use or Not', 'USE_YN_0000000000', '000',   'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('USE_YN', 'Y',          'Use',        'Use',        'Use',        'USE_YN_Y',          '001',   'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('USE_YN', 'N',          'Not in Use', 'Not in Use', 'Not Use',    'USE_YN_N',          '002',   'Y', 'Y', '0', sysdate, null, null);
 
 insert into sys_common_code values('IS_ACTIVE', '0000000000', 'Is Active',    'Is Active', 'Is Active', 'IS_ACTIVE_0000000000', '000',   'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('IS_ACTIVE', 'Y',          'Active',       'Active',    'Active',    'IS_ACTIVE_Y',          '001',   'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('IS_ACTIVE', 'N',          'Inactive',     'Inactive',  'Inactive',  'IS_ACTIVE_N',          '002',   'Y', 'Y', '0', sysdate, null, null);
 
-insert into sys_common_code values('LANGUAGE_TYPE', '0000000000', 'Language Type', '언어타입',  'Language Type', 'LANGUAGE_TYPE_0000000000', '000', 'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('LANGUAGE_TYPE', 'EN',         'English',       '영어',      'English',       'LANGUAGE_TYPE_EN',         '001', 'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('LANGUAGE_TYPE', 'KO',         'Korean',        '한국어',    'Korean',        'LANGUAGE_TYPE_KO',         '002', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('LANGUAGE_TYPE', '0000000000', 'Language Type', 'Language Type', 'Language Type', 'LANGUAGE_TYPE_0000000000', '000', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('LANGUAGE_TYPE', 'EN',         'English',       'English',       'English',       'LANGUAGE_TYPE_EN',         '001', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('LANGUAGE_TYPE', 'KO',         'Korean',        'Korean',        'Korean',        'LANGUAGE_TYPE_KO',         '002', 'Y', 'Y', '0', sysdate, null, null);
 
-insert into sys_common_code values('BOARD_TYPE', '0000000000', 'Board Type',      '게시판구분', 'Board Type',      'BOARD_TYPE_0000000000', '000', 'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('BOARD_TYPE', 'FREE',       'Free Board',      '자유게시판', 'Free Board',      'BOARD_TYPE_FREE',       '001', 'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('BOARD_TYPE', 'NOTICE',     'Notice Board',    '공지사항',   'Notice Board',    'BOARD_TYPE_NOTICE',     '002', 'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('BOARD_TYPE', 'REPOSITORY', 'Data Repository', '자료실',     'Data Repository', 'BOARD_TYPE_REPOSITORY', '003', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('BOARD_TYPE', '0000000000', 'Board Type',      'Board Type',     'Board Type',       'BOARD_TYPE_0000000000', '000', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('BOARD_TYPE', 'FREE',       'Free Board',      'Free Board',     'Free Board',       'BOARD_TYPE_FREE',       '001', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('BOARD_TYPE', 'NOTICE',     'Notice Board',    'Notice Board',   'Notice Board',     'BOARD_TYPE_NOTICE',     '002', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('BOARD_TYPE', 'REPOSITORY', 'Data Repository', 'Data Repository', 'Data Repository', 'BOARD_TYPE_REPOSITORY', '003', 'Y', 'Y', '0', sysdate, null, null);
 
 insert into sys_common_code values('BOARD_SEARCH_TYPE', '0000000000', 'Board Search Criteria', '게시판검색형태', 'Board Search Criteria', 'BOARD_SEARCH_TYPE_0000000000', '000', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('BOARD_SEARCH_TYPE', 'SUBJECT',    'Subject',               '제목',            'Subject',               'BOARD_SEARCH_TYPE_SUBJECT',    '001', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('BOARD_SEARCH_TYPE', 'CONTENTS',   'Contents',              '내용',            'Contents',              'BOARD_SEARCH_TYPE_CONTENTS',   '002', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('BOARD_SEARCH_TYPE', 'WRITER',     'Writer',                '작성자',          'Writer',                'BOARD_SEARCH_TYPE_WRITER',     '003', 'Y', 'Y', '0', sysdate, null, null);
 
-insert into sys_common_code values('USER_THEME_TYPE', '0000000000', 'User Theme Type', '사용자스킨구분', 'User Theme Type', 'USER_THEME_TYPE_0000000000', '000', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('USER_THEME_TYPE', '0000000000', 'User Theme Type', '사용자스킨구분',      'User Theme Type', 'USER_THEME_TYPE_0000000000', '000', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('USER_THEME_TYPE', 'THEME000',   'Bootstrap',       'Bootstrap',       'Bootstrap',       'USER_THEME_TYPE_000',        '001', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('USER_THEME_TYPE', 'THEME001',   'Smoothness',      'Smoothness',      'Smoothness',      'USER_THEME_TYPE_001',        '002', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('USER_THEME_TYPE', 'THEME002',   'Redmond',         'Redmond',         'Redmond',         'USER_THEME_TYPE_002',        '003', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('USER_THEME_TYPE', 'THEME003',   'Lightness',       'Lightness',       'Lightness',       'USER_THEME_TYPE_003',        '004', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('USER_THEME_TYPE', 'THEME004',   'Start',           'Start',           'Start',           'USER_THEME_TYPE_004',        '005', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('USER_THEME_TYPE', 'THEME005',   'Sunny',           'Sunny',           'Sunny',           'USER_THEME_TYPE_005',        '006', 'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('USER_THEME_TYPE', 'THEME006',   'Flick',           'Flick',           'Flick',           'USER_THEME_TYPE_006',        '007', 'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('USER_THEME_TYPE', 'THEME007',   'Flick',           'Pepper Grinder',  'Pepper Grinder',  'USER_THEME_TYPE_007',        '008', 'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('USER_THEME_TYPE', 'THEME008',   'Cupertino',       'Cupertino',       'Cupertino',       'USER_THEME_TYPE_008',        '009', 'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('USER_THEME_TYPE', 'THEME009',   'Cupertino',       'South Street',    'South Street',    'USER_THEME_TYPE_009',        '010', 'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('USER_THEME_TYPE', 'THEME010',   'Humanity',        'Humanity',        'Humanity',        'USER_THEME_TYPE_010',        '011', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('USER_THEME_TYPE', 'THEME006',   'Pepper Grinder',  'Pepper Grinder',  'Pepper Grinder',  'USER_THEME_TYPE_007',        '007', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('USER_THEME_TYPE', 'THEME007',   'Cupertino',       'Cupertino',       'Cupertino',       'USER_THEME_TYPE_008',        '008', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('USER_THEME_TYPE', 'THEME008',   'Cupertino',       'South Street',    'South Street',    'USER_THEME_TYPE_009',        '009', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('USER_THEME_TYPE', 'THEME009',   'Humanity',        'Humanity',        'Humanity',        'USER_THEME_TYPE_010',        '010', 'Y', 'Y', '0', sysdate, null, null);
 
-insert into sys_common_code values('USER_TYPE', '0000000000', 'User Type',     'User Type',     'User Type',     'USER_TYPE_0000000000',    '000', 'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('USER_TYPE', 'INTERNAL',   'Internal User', 'Internal User', 'Internal User', 'USER_TYPE_INTERNAL', '001', 'Y', 'Y', '0', sysdate, null, null);
-insert into sys_common_code values('USER_TYPE', 'EXTERNAL',   'External User', 'External User', 'External User', 'USER_TYPE_EXTERNAL', '002', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('USER_TYPE', '0000000000', 'User Type',     'User Type',     'User Type',     'USER_TYPE_0000000000', '000', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('USER_TYPE', 'INTERNAL',   'Internal User', 'Internal User', 'Internal User', 'USER_TYPE_INTERNAL',   '001', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('USER_TYPE', 'EXTERNAL',   'External User', 'External User', 'External User', 'USER_TYPE_EXTERNAL',   '002', 'Y', 'Y', '0', sysdate, null, null);
 
 insert into sys_common_code values('USER_STATUS','0000000000', 'User type', 'User type', 'User type', 'USER_STATUS_0000000000', '000', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('USER_STATUS','RR',         'Requested', 'Requested', 'Requested', 'USER_STATUS_RR',         '001', 'Y', 'Y', '0', sysdate, null, null);

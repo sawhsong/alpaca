@@ -201,7 +201,7 @@ $(function() {
 		commonJs.setAutoComplete($("#commonCodeType"), {
 			url:"/zebra/common/autoCompletion/",
 			method:"getCommonCodeType",
-			label:"description"+langCode,
+			label:"code_meaning",
 			value:"code_type",
 			select:function(event, ui) {
 				doSearch();

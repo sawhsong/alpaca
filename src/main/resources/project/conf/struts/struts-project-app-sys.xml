@@ -99,7 +99,6 @@
         <!--SysCommonCode - Common Code-->
         <action class="project.app.sys.sysBasicInfo.sysCommonCode.SysCommonCodeAction" method="{1}" name="sysBasicInfo/sysCommonCode/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sysBasicInfo/sysCommonCode/SysCommonCodeList.jsp</result>
-            <result name="detail" type="debugDispatcherResult">/project/app/sys/sysBasicInfo/sysCommonCode/SysCommonCodeDetailPop.jsp</result>
             <result name="edit" type="debugDispatcherResult">/project/app/sys/sysBasicInfo/sysCommonCode/SysCommonCodeEditPop.jsp</result>
         </action>
         <!--SysCountryCurrency - Country / Currency-->

@@ -7,7 +7,7 @@
 * Declare objects & variables
 ************************************************************************************************/%>
 <%
-	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
+	ParamEntity pe = (ParamEntity)request.getAttribute("paramEntity");
 %>
 <%/************************************************************************************************
 * HTML
@@ -56,33 +56,18 @@
 	</div>
 </div>
 <div id="divSearchCriteriaArea" class="areaContainer">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<table class="tblDefault">
-				<colgroup>
-					<col width="50%"/>
-					<col width="50%"/>
-				</colgroup>
-				<tr>
-					<td class="tdDefault">
-						<label for="searchType" class="lblEn hor"><mc:msg key="sysCommonCode.search.searchType"/></label>
-						<div style="float:left;padding-right:4px;">
-							<ui:ccselect name="searchType" codeType="BOARD_SEARCH_TYPE" caption="==Select=="/>
-						</div>
-						<ui:text name="searchWord" className="hor" style="width:280px"/>
-					</td>
-					<td class="tdDefault">
-						<label for="fromDate" class="lblEn hor"><mc:msg key="sysCommonCode.search.searchPeriod"/></label>
-						<ui:text name="fromDate" className="Ct hor" style="width:100px" checkName="sysCommonCode.search.searchDateFrom" option="date"/>
-						<ui:icon id="icnFromDate" className="fa-calendar hor" title="sysCommonCode.search.searchDateFrom"/>
-						<div class="horGap20" style="padding:6px 8px 6px 0px;">-</div>
-						<ui:text name="toDate" className="Ct hor" style="width:100px" checkName="sysCommonCode.search.searchDateTo" option="date"/>
-						<ui:icon id="icnToDate" className="fa-calendar hor" title="sysCommonCode.search.searchDateTo"/>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
+	<table class="tblSearch">
+		<caption><mc:msg key="page.com.searchCriteria"/></caption>
+			<colgroup>
+				<col width="*"/>
+			</colgroup>
+			<tr>
+				<td class="tdSearch">
+					<label for="commonCodeType" class="lblEn hor">Code Type</label>
+					<ui:text name="commonCodeType" className="hor" style="width:280px"/>
+				</td>
+			</tr>
+	</table>
 </div>
 <div id="divInformArea"></div>
 <%/************************************************************************************************
@@ -97,28 +82,34 @@
 <div id="divDataArea" class="areaContainer">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="3%"/>
-			<col width="3%"/>
+			<col width="2%"/>
+			<col width="2%"/>
+			<col width="13%"/>
+			<col width="15%"/>
+			<col width="18%"/>
 			<col width="*"/>
 			<col width="5%"/>
-			<col width="15%"/>
-			<col width="10%"/>
-			<col width="8%"/>
+			<col width="5%"/>
+			<col width="6%"/>
+			<col width="6%"/>
 		</colgroup>
 		<thead>
 			<tr>
 				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sysCommonCode.grid.subject"/></th>
-				<th class="thGrid"><mc:msg key="sysCommonCode.grid.file"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sysCommonCode.grid.writerName"/></th>
-				<th class="thGrid sortable:date"><mc:msg key="sysCommonCode.grid.date"/></th>
-				<th class="thGrid sortable:numeric"><mc:msg key="sysCommonCode.grid.hitCount"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+				<th class="thGrid sortable:alphanumeric">codeType</th>
+				<th class="thGrid sortable:alphanumeric">codeMeaning</th>
+				<th class="thGrid sortable:alphanumeric">programConstants</th>
+				<th class="thGrid sortable:alphanumeric">description</th>
+				<th class="thGrid sortable:number">isActive</th>
+				<th class="thGrid sortable:alphanumeric">isDefault</th>
+				<th class="thGrid sortable:date">insertDate</th>
+				<th class="thGrid sortable:date">updateDate</th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
-			<tr class="noBorderHor noStripe">
-				<td class="tdGrid Ct" colspan="7"><mc:msg key="I002"/></td>
+			<tr>
+				<td class="tdGrid Ct" colspan="10"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
 	</table>

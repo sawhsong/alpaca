@@ -8,6 +8,7 @@ package project.app.sys.sysBasicInfo.sysCommonCode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseAction;
+import project.common.module.commoncode.CommonCodeManager;
 
 public class SysCommonCodeAction extends BaseAction {
 	@Autowired
@@ -23,54 +24,55 @@ public class SysCommonCodeAction extends BaseAction {
 			biz.getList(paramEntity);
 		} catch (Exception ex) {
 		}
-		setRequestAttribute("paramEntity", paramEntity);
+		setRequestAttribute("paramEntity", this.paramEntity);
 		return "ajaxResponse";
 	}
 
-	public String getDetail() throws Exception {
-		biz.getDetail(paramEntity);
-		return "detail";
+	public String getEdit() throws Exception {
+		biz.getEdit(paramEntity);
+		return "edit";
 	}
 
-	public String getInsert() throws Exception {
-		biz.getInsert(paramEntity);
-		return "insert";
-	}
-
-	public String getUpdate() throws Exception {
-		biz.getUpdate(paramEntity);
-		return "update";
-	}
-
-	public String exeInsert() throws Exception {
+	public String getMasterData() throws Exception {
 		try {
-			biz.exeInsert(paramEntity);
+			biz.getMasterData(paramEntity);
 		} catch (Exception ex) {
 		}
-		setRequestAttribute("paramEntity", paramEntity);
+		setRequestAttribute("paramEntity", this.paramEntity);
 		return "ajaxResponse";
 	}
 
-	public String exeUpdate() throws Exception {
+	public String getDetailData() throws Exception {
 		try {
-			biz.exeUpdate(paramEntity);
+			biz.getDetailData(paramEntity);
 		} catch (Exception ex) {
 		}
-		setRequestAttribute("paramEntity", paramEntity);
+		setRequestAttribute("paramEntity", this.paramEntity);
 		return "ajaxResponse";
 	}
 
-	public String exeDelete() throws Exception {
+	public String doSave() throws Exception {
 		try {
-			biz.exeDelete(paramEntity);
+			biz.doSave(paramEntity);
+			CommonCodeManager.reload();
 		} catch (Exception ex) {
 		}
-		setRequestAttribute("paramEntity", paramEntity);
+		setRequestAttribute("paramEntity", this.paramEntity);
 		return "ajaxResponse";
 	}
 
-	public String exeExport() throws Exception {
-		biz.exeExport(paramEntity);
+	public String doDelete() throws Exception {
+		try {
+			biz.doDelete(paramEntity);
+			CommonCodeManager.reload();
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", this.paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String doExport() throws Exception {
+		biz.doExport(paramEntity);
 		setRequestAttribute("paramEntity", paramEntity);
 		return "export";
 	}

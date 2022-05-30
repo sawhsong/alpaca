@@ -156,7 +156,7 @@ var codeType = "<%=dsRequest.getValue("codeType")%>";
 			<td class="tdGrid ct"><ui:text name="commonCodeDetail" style="text-transform:uppercase" checkName="fwk.commoncode.header.commonCode" options="mandatory"/></td>
 			<td class="tdGrid ct"><ui:text name="codeMeaningDetail" checkName="fwk.commoncode.header.codeMeaning" options="mandatory"/></td>
 			<td class="tdGrid ct"><ui:ccradio name="isActiveDetail" codeType="SIMPLE_YN" selectedValue="Y" source="framework"/></td>
-			<td class="tdGrid ct"><ui:text name="descriptionDetail" checkName="fwk.commoncode.header.descriptionEn" options="mandatory"/></td>
+			<td class="tdGrid ct"><ui:text name="descriptionDetail" checkName="fwk.commoncode.header.description" options="mandatory"/></td>
 			<td class="tdGrid ct"><ui:text name="sortOrderDetail" className="ct" checkName="fwk.commoncode.header.sortOrder" option="numeric" options="mandatory"/></td>
 		</tr>
 	</table>

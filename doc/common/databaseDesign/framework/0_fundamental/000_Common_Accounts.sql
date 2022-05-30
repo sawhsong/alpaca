@@ -15,6 +15,9 @@ select *
   from user_db_links
 ;
 
+drop database link perci_test;
+create database link perci_test connect to PERCI_0412 identified by "PERCI_REPL_12042022" using '192.168.10.5:1521/pdb1.default.default.oraclevcn.com';
+
 drop database link perci_live;
 create database link perci_live connect to PERCI identified by "OfA!g69b=HTuyrf" using '192.168.10.13:1521/pdb1.default.default.oraclevcn.com';
 
