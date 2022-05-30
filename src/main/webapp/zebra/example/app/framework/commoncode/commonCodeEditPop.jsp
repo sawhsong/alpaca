@@ -64,16 +64,16 @@ var codeType = "<%=dsRequest.getValue("codeType")%>";
 		<colgroup>
 			<col width="6%"/>
 			<col width="18%"/>
-			<col width="7%"/>
+			<col width="8%"/>
 			<col width="20%"/>
-			<col width="5%"/>
-			<col width="7%"/>
 			<col width="6%"/>
+			<col width="7%"/>
+			<col width="7%"/>
 			<col width="*"/>
 		</colgroup>
 		<tr>
 			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.codeType"/></th>
-			<td class="tdEdit"><ui:text name="codeTypeMaster" style="text-transform:uppercase;" checkName="fwk.commoncode.header.codeType" options="mandatory"/></td>
+			<td class="tdEdit"><ui:text name="codeTypeMaster" style="text-transform:uppercase;" checkName="fwk.commoncode.header.codeType" options="mandatory" status="disabled"/></td>
 			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.codeMeaning"/></th>
 			<td class="tdEdit"><ui:text name="codeMeaningMaster" checkName="fwk.commoncode.header.codeMeaning" options="mandatory"/></td>
 			<th class="thEdit Rt mandatory"><mc:msg key="fwk.commoncode.header.isActive"/></th>

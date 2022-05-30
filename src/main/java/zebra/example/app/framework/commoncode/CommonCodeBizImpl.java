@@ -94,14 +94,13 @@ public class CommonCodeBizImpl extends BaseBiz implements CommonCodeBiz {
 		String codeType = CommonUtil.upperCase(requestDataSet.getValue("codeTypeMaster"));
 		int detailLength = CommonUtil.toInt(requestDataSet.getValue("detailLength"));
 		DataSet detailDataSet;
-		int result = -1;
-		int masterDataRow = -1;
+		int result = -1, masterDataRow = -1;
 
 		try {
 			detailDataSet = zebraCommonCodeDao.getCommonCodeDataSetByCodeType(codeType);
 
 			if (detailDataSet.getRowCnt() <= 0) {
-				zebraCommonCode.setIsDefault(ZebraCommonCodeManager.getCodeByConstants("IS_DEFAULT_YN_N"));
+				zebraCommonCode.setIsDefault(ZebraCommonCodeManager.getCodeByConstants("SIMPLE_YN_N"));
 				zebraCommonCode.setInsertUserId((String)session.getAttribute("UserId"));
 				zebraCommonCode.setInsertDate(CommonUtil.toDate(CommonUtil.getSysdate()));
 			} else {
@@ -144,6 +143,7 @@ public class CommonCodeBizImpl extends BaseBiz implements CommonCodeBiz {
 				zebraCommonCode.setProgramConstants(codeType + "_" + CommonUtil.upperCase(commonCode));
 				zebraCommonCode.setSortOrder(requestDataSet.getValue("sortOrderDetail" + delimiter + i));
 				zebraCommonCode.setIsActive(CommonUtil.nvl(requestDataSet.getValue("isActiveDetail" + delimiter + i), "N"));
+				zebraCommonCode.setIsDefault(detailDataSet.getValue(masterDataRow, "IS_DEFAULT"));
 
 				result += zebraCommonCodeDao.insert(zebraCommonCode);
 			}

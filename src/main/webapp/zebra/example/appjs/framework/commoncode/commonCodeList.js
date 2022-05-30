@@ -141,7 +141,7 @@ $(function() {
 		}
 
 		commonJs.doDelete({
-			url:"/zebra/framework/commoncode/exeDelete.do",
+			url:"/zebra/framework/commoncode/doDelete.do",
 			onSuccess:doSearch
 		});
 	};
@@ -168,8 +168,8 @@ $(function() {
 			ctxMenu.commonSimpleAction[1].disable = false;
 		}
 
-		ctxMenu.commonAction[0].fun = function() {getEdit(codeType);};
-		ctxMenu.commonAction[1].fun = function() {doDelete();};
+		ctxMenu.commonSimpleAction[0].fun = function() {getEdit(codeType);};
+		ctxMenu.commonSimpleAction[1].fun = function() {doDelete();};
 
 		$(img).contextMenu(ctxMenu.commonSimpleAction, {
 			classPrefix:com.constants.ctxClassPrefixGrid,

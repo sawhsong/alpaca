@@ -35,6 +35,7 @@ $(function() {
 		commonJs.doSave({
 			url:"/zebra/framework/commoncode/doSave.do",
 			data:{detailLength:detailLength},
+//			showPostMessage:false,
 			callback:function() {
 				parent.popup.close();
 				parent.doSearch();
@@ -146,6 +147,8 @@ $(function() {
 			});
 
 			setTimeout(() => commonJs.hideProcMessageOnElement("divInformArea"), 400);
+		} else {
+			commonJs.enableObject($("[name=codeTypeMaster]"));
 		}
 	};
 
