@@ -84,7 +84,7 @@ $(function() {
 				var delimiter = jsconfig.get("dataDelimiter");
 				var isLeaf = commonJs.toNumber(dataSet.getValue(i, "IS_LEAF"));
 				var iLevel = commonJs.toNumber(dataSet.getValue(i, "MENU_LEVEL")) - 1;
-				var isActive = commonJs.toBoolean(dataSet.getValue(i, "IS_ACTIVE"));
+				var isEditable = commonJs.toBoolean(dataSet.getValue(i, "IS_EDITABLE"));
 
 				for (var j=0; j<iLevel; j++) {
 					space += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -95,7 +95,7 @@ $(function() {
 
 				var tdAction = new UiGridTd();
 				tdAction.addClassName("Ct");
-				if (isActive) {
+				if (isEditable) {
 					var iconAction = new UiIcon();
 					iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("menuId:"+menuId)
 					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
@@ -105,7 +105,7 @@ $(function() {
 
 				var tdSelect = new UiGridTd();
 				tdSelect.addClassName("Ct");
-				if (isActive) {
+				if (isEditable) {
 					var uiChk = new UiCheckbox();
 					uiChk.setId("chkForGenerate").setName("chkForGenerate").setValue(menuId).addAttribute("menuName:"+dataSet.getValue(i, "MENU_NAME_"+langCode));
 					tdSelect.addChild(uiChk);

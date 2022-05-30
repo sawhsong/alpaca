@@ -52,10 +52,13 @@ public class SourceGeneratorBizImpl extends BaseBiz implements SourceGeneratorBi
 			qaList.setPagination(false);
 
 			resultDataSet = sysMenuDao.getAllActiveMenuDataSetBySearchCriteria(qaList);
-			resultDataSet.addColumn("IS_ACTIVE");
+			resultDataSet.addColumn("IS_EDITABLE");
 			for (int i=0; i<resultDataSet.getRowCnt(); i++) {
-				if (CommonUtil.equals(resultDataSet.getValue(i, "IS_LEAF"), "1") && !BeanHelper.containsBean(CommonUtil.toCamelCaseStartLowerCase(resultDataSet.getValue(i, "MENU_ID"))+"Action")) {
-					resultDataSet.setValue(i, "IS_ACTIVE", "true");
+				if (CommonUtil.equals(resultDataSet.getValue(i, "IS_LEAF"), "1")) {
+					if (!(BeanHelper.containsBean(CommonUtil.toCamelCaseStartLowerCase(resultDataSet.getValue(i, "MENU_ID"))+"Action") || 
+							BeanHelper.containsBean(CommonUtil.toStartLowerCase(resultDataSet.getValue(i, "MENU_ID"))+"Action"))) {
+						resultDataSet.setValue(i, "IS_EDITABLE", "true");
+					}
 				}
 			}
 
