@@ -3,6 +3,7 @@
  * Description : Country and Currency Info - Use Excel file to initialise data (SYS_COUNTRY_CURRENCY.xlsx)
  */
 drop table sys_country_currency cascade constraints;
+drop sequence sys_country_currency_s;
 purge recyclebin;
 
 create table sys_country_currency (
@@ -25,6 +26,8 @@ create table sys_country_currency (
     using index tablespace alpaca_idx storage(initial 50k next 50k pctincrease 0)
 )
 pctfree 20 pctused 80 tablespace alpaca_data storage(initial 100k next 100k maxextents 2000 pctincrease 0);
+
+create sequence sys_country_currency_s minvalue 1 maxvalue 999999999999999999999999999 increment by 1 start with 500 nocache noorder nocycle;
 
 comment on table  sys_country_currency                          is 'Country and Currency Info';
 comment on column sys_country_currency.country_currency_id      is 'Country and Currency UID (PK)';

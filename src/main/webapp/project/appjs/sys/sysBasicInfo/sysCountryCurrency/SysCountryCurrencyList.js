@@ -2,17 +2,16 @@
  * Framework Generated Javascript Source
  * - SysCountryCurrencyList.js
  *************************************************************************************************/
-jsconfig.put("useJqTooltip", false);
 var popup = null;
 var searchResultDataCount = 0;
-var attchedFileContextMenu = [];
+var dateFormat = jsconfig.get("dateFormatJs");
 
 $(function() {
 	/*!
 	 * event
 	 */
 	$("#btnNew").click(function(event) {
-		openPopup({mode:"New"});
+		getEdit("");
 	});
 
 	$("#btnDelete").click(function(event) {
@@ -27,14 +26,6 @@ $(function() {
 		commonJs.clearSearchCriteria();
 	});
 
-	$("#icnFromDate").click(function(event) {
-		commonJs.openCalendar(event, "fromDate");
-	});
-
-	$("#icnToDate").click(function(event) {
-		commonJs.openCalendar(event, "toDate");
-	});
-
 	$("#icnCheck").click(function(event) {
 		commonJs.toggleCheckboxes("chkForDel");
 	});
@@ -43,7 +34,7 @@ $(function() {
 		if (event.which == 13) {
 			var element = event.target;
 
-			if ($(element).is("[name=searchWord]") || $(element).is("[name=fromDate]") || $(element).is("[name=toDate]")) {
+			if ($(element).is("[name=currencyCode]") || $(element).is("[name=countryName]")) {
 				doSearch();
 			}
 		}
@@ -73,54 +64,33 @@ $(function() {
 
 		if (dataSet.getRowCnt() > 0) {
 			for (var i=0; i<dataSet.getRowCnt(); i++) {
-				var space = "", iLength = 200;
-				var iLevel = parseInt(dataSet.getValue(i, "LEVEL")) - 1;
 				var gridTr = new UiGridTr();
 
-				gridTr.setClassName("noBorderHor");
+				var iconAction = new UiIcon();
+				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("countryCurrencyId:"+dataSet.getValue(i, "COUNTRY_CURRENCY_ID")).setScript("doAction(this)");
+				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				var uiChk = new UiCheckbox();
-				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "ARTICLE_ID"));
+				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "COUNTRY_CURRENCY_ID"));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
 
-				if (iLevel > 0) {
-					for (var j=0; j<iLevel; j++) {
-						space += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-						iLength -= - 2;
-					}
-					space += "<i class=\"fa fa-comments\"></i>";
-				} else {
-					space += "<i class=\"fa fa-comment\"></i>";
-				}
-
 				var uiAnc = new UiAnchor();
-				uiAnc.setText(commonJs.abbreviate(dataSet.getValue(i, "ARTICLE_SUBJECT"), iLength)).setScript("getDetail('"+dataSet.getValue(i, "ARTICLE_ID")+"')");
-				gridTr.addChild(new UiGridTd().addClassName("Lt").addTextBeforeChild(space+"&nbsp;&nbsp;").addChild(uiAnc));
+				uiAnc.setText(commonJs.abbreviate(dataSet.getValue(i, "CURRENCY_NAME"), 80)).setScript("getEdit('"+dataSet.getValue(i, "COUNTRY_CURRENCY_ID")+"')");
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addChild(uiAnc));
 
-				var gridTd = new UiGridTd();
-				gridTd.addClassName("Ct");
-				if (dataSet.getValue(i, "FILE_CNT") > 0) {
-					var iconAttachFile = new UiIcon();
-					iconAttachFile.setId("icnAttachedFile").setName("icnAttachedFile").addClassName("glyphicon-paperclip").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"));
-					gridTd.addChild(iconAttachFile);
-				}
-				gridTr.addChild(gridTd);
-
-				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "WRITER_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "CREATED_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(dataSet.getValue(i, "HIT_CNT"), "#,###")));
-
-				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
-					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
-				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "CURRENCY_ALPHABETIC_CODE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "CURRENCY_SYMBOL")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(commonJs.abbreviate(dataSet.getValue(i, "COUNTRY_NAME"), 80)));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "COUNTRY_CODE_3")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(dataSet.getValue(i, "INSERT_DATE"), dateFormat)));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(commonJs.getDateTimeMask(dataSet.getValue(i, "UPDATE_DATE"), dateFormat)));
 
 				html += gridTr.toHtmlString();
 			}
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:7").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:9").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
@@ -134,52 +104,24 @@ $(function() {
 			script:"doSearch"
 		});
 
-		$("[name=icnAttachedFile]").each(function(index) {
-			$(this).contextMenu(attchedFileContextMenu);
-		});
-
 		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.boardAction);
+			$(this).contextMenu(ctxMenu.commonSimpleAction);
 		});
 
 		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForDel]"));
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 
-	getDetail = function(articleId) {
-		openPopup({mode:"Detail", articleId:articleId});
-	};
-
-	openPopup = function(param) {
-		var url = "", header = "";
-		var height = 520;
-
-		if (param.mode == "Detail") {
-			url = "/sys/sysBasicInfo/sysCountryCurrency/getDetail.do";
-			header = com.header.popHeaderDetail;
-		} else if (param.mode == "New" || param.mode == "Reply") {
-			url = "/sys/sysBasicInfo/sysCountryCurrency/getInsert.do";
-			header = com.header.popHeaderEdit;
-		} else if (param.mode == "Edit") {
-			url = "/sys/sysBasicInfo/sysCountryCurrency/getUpdate.do";
-			header = com.header.popHeaderEdit;
-			height = 648;
-		}
-
-		var popParam = {
-			popupId:"notice"+param.mode,
-			url:url,
-			data:{
-				mode:param.mode,
-				articleId:commonJs.nvl(param.articleId, "")
-			},
-			header:header,
+	getEdit = function(countryCurrencyId) {
+		popup = commonJs.openPopup({
+			popupId:"commonCodeEdit",
+			url:"/sys/sysBasicInfo/sysCountryCurrency/getEdit.do",
+			data:{countryCurrencyId:countryCurrencyId},
+			header:com.header.popHeaderDetail,
 			blind:true,
-			width:800,
-			height:height
-		};
-
-		popup = commonJs.openPopup(popParam);
+			width:950,
+			height:378
+		});
 	};
 
 	doDelete = function() {
@@ -189,28 +131,30 @@ $(function() {
 		}
 
 		commonJs.doDelete({
-			url:"/sys/sysBasicInfo/sysCountryCurrency/exeDelete.do",
+			url:"/sys/sysBasicInfo/sysCountryCurrency/doDelete.do",
 			onSuccess:doSearch
 		});
 	};
 
 	doAction = function(img) {
-		var articleId = $(img).attr("articleId");
+		var countryCurrencyId = $(img).attr("countryCurrencyId");
 
 		$("input:checkbox[name=chkForDel]").each(function(index) {
-			if (!$(this).is(":disabled") && $(this).val() == articleId) {
-				$(this).prop("checked", true);
+			if (!$(this).is(":disabled") && $(this).val() == countryCurrencyId) {
+				if (!$(this).is(":checked")) {
+					$(this).click();
+				}
 			} else {
-				$(this).prop("checked", false);
+				if ($(this).is(":checked")) {
+					$(this).click();
+				}
 			}
 		});
 
-		ctxMenu.boardAction[0].fun = function() {getDetail(articleId);};
-		ctxMenu.boardAction[1].fun = function() {openPopup({mode:"Edit", articleId:articleId});};
-		ctxMenu.boardAction[2].fun = function() {openPopup({mode:"Reply", articleId:articleId});};
-		ctxMenu.boardAction[3].fun = function() {doDelete();};
+		ctxMenu.commonSimpleAction[0].fun = function() {getEdit(countryCurrencyId);};
+		ctxMenu.commonSimpleAction[1].fun = function() {doDelete();};
 
-		$(img).contextMenu(ctxMenu.boardAction, {
+		$(img).contextMenu(ctxMenu.commonSimpleAction, {
 			classPrefix:com.constants.ctxClassPrefixGrid,
 			displayAround:"trigger",
 			position:"bottom",
@@ -220,16 +164,13 @@ $(function() {
 	};
 
 	exeExport = function(menuObject) {
-		$("[name=fileType]").remove();
-		$("[name=dataRange]").remove();
-
 		if (searchResultDataCount <= 0) {
 			commonJs.warn(com.message.I001);
 			return;
 		}
 
 		commonJs.doExport({
-			url:"/sys/sysBasicInfo/sysCountryCurrency/exeExport.do",
+			url:"/sys/sysBasicInfo/sysCountryCurrency/doExport.do",
 			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
 			menuObject:menuObject
 		});
@@ -239,8 +180,32 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		commonJs.setFieldDateMask("fromDate");
-		commonJs.setFieldDateMask("toDate");
+		commonJs.setAutoComplete($("#currencyCode"), {
+			method:"getCurrencyCode",
+			label:"currency_code",
+			value:"currency_code",
+			focus: function(event, ui) {
+				$("#currencyCode").val(ui.item.label);
+				return false;
+			},
+			select:function(event, ui) {
+				doSearch();
+			}
+		});
+
+		commonJs.setAutoComplete($("#countryName"), {
+			method:"getCountryName",
+			label:"country_name",
+			value:"country_name",
+			focus: function(event, ui) {
+				$("#countryName").val(ui.item.label);
+				return false;
+			},
+			select:function(event, ui) {
+				doSearch();
+			}
+		});
+
 		commonJs.setExportButtonContextMenu($("#btnExport"));
 		doSearch();
 	});

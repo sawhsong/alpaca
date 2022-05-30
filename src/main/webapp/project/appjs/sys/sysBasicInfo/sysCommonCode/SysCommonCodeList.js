@@ -128,7 +128,7 @@ $(function() {
 			popupId:"commonCodeEdit",
 			url:"/sys/sysBasicInfo/sysCommonCode/getEdit.do",
 			data:{codeType:codeType},
-			header:framework.header.popHeaderEdit,
+			header:com.header.popHeaderEdit,
 			blind:true,
 			width:1700,
 			height:860

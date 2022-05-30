@@ -7,9 +7,8 @@
 * Declare objects & variables
 ************************************************************************************************/%>
 <%
-	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
-	DataSet requestDataSet = (DataSet)paramEntity.getRequestDataSet();
-	SysUser sysUser = (SysUser)session.getAttribute("SysUser");
+	ParamEntity pe = (ParamEntity)request.getAttribute("paramEntity");
+	DataSet dsRequest = (DataSet)pe.getRequestDataSet();
 %>
 <%/************************************************************************************************
 * HTML
@@ -28,6 +27,7 @@
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
+var countryCurrencyId = "<%=dsRequest.getValue("countryCurrencyId")%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -64,6 +64,7 @@
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
 	<table class="tblEdit">
+		<caption class="captionEdit">Currency Info</caption>
 		<colgroup>
 			<col width="15%"/>
 			<col width="35%"/>
@@ -71,38 +72,44 @@
 			<col width="35%"/>
 		</colgroup>
 		<tr>
-			<th class="thEdit Rt mandatory"><mc:msg key="sysCountryCurrency.header.writerName"/></th>
-			<td class="tdEdit">
-				<ui:text name="writerName" value="<%=sysUser.getUserName()%>" checkName="sysCountryCurrency.header.writerName" options="mandatory"/>
-			</td>
-			<th class="thEdit Rt mandatory"><mc:msg key="sysCountryCurrency.header.writerEmail"/></th>
-			<td class="tdEdit">
-				<ui:text name="writerEmail" value="<%=sysUser.getEmail()%>" checkName="sysCountryCurrency.header.writerEmail" option="email" options="mandatory"/>
-			</td>
+			<th class="thEdit Rt mandatory">Currency Name</th>
+			<td class="tdEdit"><ui:text name="currencyName" checkName="Currency Name" options="mandatory"/></td>
+			<th class="thEdit Rt">Currency Symbol</th>
+			<td class="tdEdit"><ui:text name="currencySymbol" maxlength="10" checkName="Currency Symbol"/></td>
 		</tr>
 		<tr>
-			<th class="thEdit Rt mandatory"><mc:msg key="sysCountryCurrency.header.articleSubject"/></th>
-			<td class="tdEdit" colspan="3">
-				<ui:text name="articleSubject" checkName="sysCountryCurrency.header.articleSubject" options="mandatory"/>
-			</td>
+			<th class="thEdit Rt mandatory">Alphabetic Code</th>
+			<td class="tdEdit"><ui:text name="currencyAlphabeticCode" maxlength="5" style="text-transform:uppercase;" checkName="Alphabetic Code" options="mandatory"/></td>
+			<th class="thEdit Rt">Numeric Code</th>
+			<td class="tdEdit"><ui:text name="currencyNumericCode" maxlength="5" checkName="Numeric Code"/></td>
+		</tr>
+	</table>
+	<div class="horGap10"></div>
+	<table class="tblEdit">
+		<caption class="captionEdit">Country Info</caption>
+		<colgroup>
+			<col width="15%"/>
+			<col width="35%"/>
+			<col width="15%"/>
+			<col width="35%"/>
+		</colgroup>
+		<tr>
+			<th class="thEdit Rt mandatory">Country Name</th>
+			<td class="tdEdit"><ui:text name="countryName" checkName="Country Name" options="mandatory"/></td>
+			<th class="thEdit Rt">Language Code</th>
+			<td class="tdEdit"><ui:text name="countryLanguageCode" maxlength="5" checkName="Language Code"/></td>
 		</tr>
 		<tr>
-			<th class="thEdit Rt"><mc:msg key="sysCountryCurrency.header.articleContents"/></th>
-			<td class="tdEdit" colspan="3">
-				<ui:txa name="articleContents" style="height:224px;"/>
-			</td>
+			<th class="thEdit Rt">Country Code 2</th>
+			<td class="tdEdit"><ui:text name="countryCode2" maxlength="5" style="text-transform:uppercase;" checkName="Country Code 2"/></td>
+			<th class="thEdit Rt">Country Code 3</th>
+			<td class="tdEdit"><ui:text name="countryCode3" maxlength="5" style="text-transform:uppercase;" checkName="Country Code 3"/></td>
 		</tr>
 		<tr>
-			<th class="thEdit Rt">
-				<mc:msg key="sysCountryCurrency.header.attachedFile"/><br/>
-				<div id="divButtonAreaRight">
-					<ui:button id="btnAddFile" caption="button.com.add" iconClass="fa-plus"/>
-				</div>
-			</th>
-			<td class="tdEdit" colspan="3">
-				<div id="divAttachedFile" style="width:100%;height:88px;overflow-y:auto;">
-				</div>
-			</td>
+			<th class="thEdit Rt">Numeric Code</th>
+			<td class="tdEdit"><ui:text name="countryNumericCode" maxlength="5" checkName="Country Numeric Code"/></td>
+			<th class="thEdit Rt"></th>
+			<td class="tdEdit"></td>
 		</tr>
 	</table>
 </div>

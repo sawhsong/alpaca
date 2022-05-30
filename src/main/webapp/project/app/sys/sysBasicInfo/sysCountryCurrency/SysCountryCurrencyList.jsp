@@ -56,33 +56,23 @@
 	</div>
 </div>
 <div id="divSearchCriteriaArea" class="areaContainer">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<table class="tblDefault">
-				<colgroup>
-					<col width="50%"/>
-					<col width="50%"/>
-				</colgroup>
-				<tr>
-					<td class="tdDefault">
-						<label for="searchType" class="lblEn hor"><mc:msg key="sysCountryCurrency.search.searchType"/></label>
-						<div style="float:left;padding-right:4px;">
-							<ui:ccselect name="searchType" codeType="BOARD_SEARCH_TYPE" caption="==Select=="/>
-						</div>
-						<ui:text name="searchWord" className="hor" style="width:280px"/>
-					</td>
-					<td class="tdDefault">
-						<label for="fromDate" class="lblEn hor"><mc:msg key="sysCountryCurrency.search.searchPeriod"/></label>
-						<ui:text name="fromDate" className="Ct hor" style="width:100px" checkName="sysCountryCurrency.search.searchDateFrom" option="date"/>
-						<ui:icon id="icnFromDate" className="fa-calendar hor" title="sysCountryCurrency.search.searchDateFrom"/>
-						<div class="horGap20" style="padding:6px 8px 6px 0px;">-</div>
-						<ui:text name="toDate" className="Ct hor" style="width:100px" checkName="sysCountryCurrency.search.searchDateTo" option="date"/>
-						<ui:icon id="icnToDate" className="fa-calendar hor" title="sysCountryCurrency.search.searchDateTo"/>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
+	<table class="tblSearch">
+		<caption><mc:msg key="page.com.searchCriteria"/></caption>
+		<colgroup>
+			<col width="7%"/>
+			<col width="20%"/>
+			<col width="7%"/>
+			<col width="20%"/>
+			<col width="*"/>
+		</colgroup>
+		<tr>
+			<th class="thSearch rt">Currency Code</th>
+			<td class="tdSearch"><ui:text name="currencyCode" style="text-transform:uppercase;"/></td>
+			<th class="thSearch rt">Country Name</th>
+			<td class="tdSearch"><ui:text name="countryName"/></td>
+			<td class="tdSearch"></td>
+		</tr>
+	</table>
 </div>
 <div id="divInformArea"></div>
 <%/************************************************************************************************
@@ -97,28 +87,32 @@
 <div id="divDataArea" class="areaContainer">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
+			<col width="2%"/>
 			<col width="3%"/>
-			<col width="3%"/>
-			<col width="*"/>
-			<col width="5%"/>
-			<col width="15%"/>
+			<col width="24%"/>
+			<col width="9%"/>
 			<col width="10%"/>
+			<col width="*"/>
+			<col width="8%"/>
+			<col width="8%"/>
 			<col width="8%"/>
 		</colgroup>
 		<thead>
 			<tr>
 				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sysCountryCurrency.grid.subject"/></th>
-				<th class="thGrid"><mc:msg key="sysCountryCurrency.grid.file"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sysCountryCurrency.grid.writerName"/></th>
-				<th class="thGrid sortable:date"><mc:msg key="sysCountryCurrency.grid.date"/></th>
-				<th class="thGrid sortable:numeric"><mc:msg key="sysCountryCurrency.grid.hitCount"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+				<th class="thGrid sortable:alphanumeric">Currency Name</th>
+				<th class="thGrid sortable:alphanumeric">Currency Code</th>
+				<th class="thGrid">Currency Symbol</th>
+				<th class="thGrid sortable:alphanumeric">Country Name</th>
+				<th class="thGrid sortable:alphanumeric">Country Code</th>
+				<th class="thGrid sortable:date">Insert Date</th>
+				<th class="thGrid sortable:date">Update Date</th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
-			<tr class="noBorderHor noStripe">
-				<td class="tdGrid Ct" colspan="7"><mc:msg key="I002"/></td>
+			<tr>
+				<td class="tdGrid Ct" colspan="9"><mc:msg key="I002"/></td>
 			</tr>
 		</tbody>
 	</table>

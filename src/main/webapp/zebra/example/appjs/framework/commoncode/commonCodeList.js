@@ -50,7 +50,7 @@ $(function() {
 			commonJs.doSearch({
 				url:"/zebra/framework/commoncode/getList.do",
 				data:{},
-				callback:renderDataGridTable
+				onSuccess:renderDataGridTable
 			});
 		}
 	};
@@ -115,7 +115,7 @@ $(function() {
 		});
 
 		$("[name=icnAction]").each(function(index) {
-			$(this).contextMenu(ctxMenu.commonAction);
+			$(this).contextMenu(ctxMenu.commonSimpleAction);
 		});
 
 		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForDel]"));

@@ -4,9 +4,18 @@ import project.common.extend.BaseHDao;
 import project.conf.resource.ormapper.dto.oracle.SysCountryCurrency;
 import zebra.data.DataSet;
 import zebra.data.QueryAdvisor;
+import zebra.util.CommonUtil;
 import zebra.util.ConfigUtil;
 
 public class SysCountryCurrencyHDaoImpl extends BaseHDao implements SysCountryCurrencyDao {
+	public int save(String countryCurrencyId, SysCountryCurrency sysCountryCurrency) throws Exception {
+		if (CommonUtil.isBlank(countryCurrencyId)) {
+			return insert(sysCountryCurrency);
+		} else {
+			return update(countryCurrencyId, sysCountryCurrency);
+		}
+	}
+
 	public int insert(SysCountryCurrency sysCountryCurrency) throws Exception {
 		return insertWithSQLQuery(sysCountryCurrency);
 	}
@@ -68,9 +77,15 @@ public class SysCountryCurrencyHDaoImpl extends BaseHDao implements SysCountryCu
 		return selectAsDataSet(queryAdvisor, "query.SysCountryCurrency.getCountryCurrencyDataSetBySearchCriteria");
 	}
 
-	public SysCountryCurrency getCountryCurrencyByCountryCurrencyId(String countryCurrencyId) throws Exception {
+	public SysCountryCurrency getCountryCurrencyById(String countryCurrencyId) throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		queryAdvisor.addWhereClause("country_currency_id = '"+countryCurrencyId+"'");
 		return (SysCountryCurrency)selectAllToDto(queryAdvisor, new SysCountryCurrency());
+	}
+
+	public DataSet getCountryCurrencyDataSetById(String countryCurrencyId) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		queryAdvisor.addWhereClause("country_currency_id = '"+countryCurrencyId+"'");
+		return selectAllAsDataSet(queryAdvisor, new SysCountryCurrency());
 	}
 }

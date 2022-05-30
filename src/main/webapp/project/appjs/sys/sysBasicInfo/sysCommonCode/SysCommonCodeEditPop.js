@@ -131,8 +131,6 @@ $(function() {
 
 	setMasterData = function() {
 		if (commonJs.isNotBlank(codeType)) {
-			commonJs.showProcMessageOnElement("divInformArea");
-
 			commonJs.doSimpleProcess({
 				url:"/sys/sysBasicInfo/sysCommonCode/getMasterData.do",
 				data:{codeType:codeType},
@@ -145,17 +143,15 @@ $(function() {
 					$("[name=descriptionMaster]").val(dataSet.getValue(masterRow, "DESCRIPTION_EN"));
 				}
 			});
-
-			setTimeout(() => commonJs.hideProcMessageOnElement("divInformArea"), 400);
 		} else {
 			commonJs.enableObject($("[name=codeTypeMaster]"));
 		}
+
+		setTimeout(() => commonJs.hideProcMessageOnElement("divInformArea"), 400);
 	};
 
 	setDetailData = function() {
 		if (commonJs.isNotBlank(codeType)) {
-			commonJs.showProcMessageOnElement("divScrollablePanelPopup");
-
 			commonJs.doSimpleProcess({
 				url:"/sys/sysBasicInfo/sysCommonCode/getDetailData.do",
 				data:{codeType:codeType},
@@ -178,9 +174,9 @@ $(function() {
 					}
 				}
 			});
-
-			setTimeout(() => commonJs.hideProcMessageOnElement("divScrollablePanelPopup"), 400);
 		}
+
+		setTimeout(() => commonJs.hideProcMessageOnElement("divScrollablePanelPopup"), 400);
 	};
 
 	/*!
@@ -217,6 +213,9 @@ $(function() {
 		$("#tblGrid").freezeHeader({
 			attachTo:$("#divDataArea")
 		});
+
+		commonJs.showProcMessageOnElement("divInformArea");
+		commonJs.showProcMessageOnElement("divScrollablePanelPopup");
 
 		setTimeout(function() {
 			setMasterData();

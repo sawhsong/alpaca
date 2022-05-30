@@ -72,13 +72,13 @@ var codeType = "<%=dsRequest.getValue("codeType")%>";
 			<col width="*"/>
 		</colgroup>
 		<tr>
-			<th class="thEdit Rt mandatory">codeType</th>
+			<th class="thEdit Rt mandatory">Code Type</th>
 			<td class="tdEdit"><ui:text name="codeTypeMaster" style="text-transform:uppercase;" checkName="codeType" options="mandatory" status="disabled"/></td>
-			<th class="thEdit Rt mandatory">codeMeaning</th>
+			<th class="thEdit Rt mandatory">Code Meaning</th>
 			<td class="tdEdit"><ui:text name="codeMeaningMaster" checkName="codeMeaning" options="mandatory"/></td>
-			<th class="thEdit Rt mandatory">isActive</th>
+			<th class="thEdit Rt mandatory">Is Active</th>
 			<td class="tdEdit ct"><ui:ccradio name="isActiveMaster" codeType="SIMPLE_YN" selectedValue="Y"/></td>
-			<th class="thEdit Rt mandatory">description</th>
+			<th class="thEdit Rt mandatory">Description</th>
 			<td class="tdEdit"><ui:text name="descriptionMaster" checkName="description" options="mandatory"/></td>
 		</tr>
 	</table>
@@ -116,11 +116,11 @@ var codeType = "<%=dsRequest.getValue("codeType")%>";
 			<tr>
 				<th class="thGrid"></th>
 				<th class="thGrid"></th>
-				<th class="thGrid mandatory">commonCode</th>
-				<th class="thGrid mandatory">codeMeaning</th>
-				<th class="thGrid mandatory">isActive</th>
-				<th class="thGrid mandatory">description</th>
-				<th class="thGrid mandatory">sortOrder</th>
+				<th class="thGrid mandatory">Common Code</th>
+				<th class="thGrid mandatory">Code Meaning</th>
+				<th class="thGrid mandatory">Is Active</th>
+				<th class="thGrid mandatory">Description</th>
+				<th class="thGrid mandatory">Sort Order</th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">
@@ -153,11 +153,11 @@ var codeType = "<%=dsRequest.getValue("codeType")%>";
 		<tr class="noBorderAll">
 			<th id="thDragHander" class="thGrid dragHandler" title="Drag and Drop to set sort order"><ui:icon id="iDragHandler" className="fa-lg fa-sort"/></th>
 			<th id="thDeleteButton" class="thGrid deleteButton" title="Click to delete this item"><ui:icon id="iDeleteButton" className="fa-lg fa-times"/></th>
-			<td class="tdGrid ct"><ui:text name="commonCodeDetail" style="text-transform:uppercase" checkName="commonCode" options="mandatory"/></td>
-			<td class="tdGrid ct"><ui:text name="codeMeaningDetail" checkName="codeMeaning" options="mandatory"/></td>
+			<td class="tdGrid ct"><ui:text name="commonCodeDetail" style="text-transform:uppercase" checkName="Common Code" options="mandatory"/></td>
+			<td class="tdGrid ct"><ui:text name="codeMeaningDetail" checkName="Code Meaning" options="mandatory"/></td>
 			<td class="tdGrid ct"><ui:ccradio name="isActiveDetail" codeType="SIMPLE_YN" selectedValue="Y"/></td>
-			<td class="tdGrid ct"><ui:text name="descriptionDetail" checkName="description" options="mandatory"/></td>
-			<td class="tdGrid ct"><ui:text name="sortOrderDetail" className="ct" checkName="sortOrder" option="numeric" options="mandatory"/></td>
+			<td class="tdGrid ct"><ui:text name="descriptionDetail" checkName="Description" options="mandatory"/></td>
+			<td class="tdGrid ct"><ui:text name="sortOrderDetail" className="ct" checkName="Sort Order" option="numeric" options="mandatory"/></td>
 		</tr>
 	</table>
 </li>

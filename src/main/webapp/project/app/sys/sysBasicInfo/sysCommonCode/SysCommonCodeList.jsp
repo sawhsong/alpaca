@@ -58,15 +58,16 @@
 <div id="divSearchCriteriaArea" class="areaContainer">
 	<table class="tblSearch">
 		<caption><mc:msg key="page.com.searchCriteria"/></caption>
-			<colgroup>
-				<col width="*"/>
-			</colgroup>
-			<tr>
-				<td class="tdSearch">
-					<label for="commonCodeType" class="lblEn hor">Code Type</label>
-					<ui:text name="commonCodeType" className="hor" style="width:280px"/>
-				</td>
-			</tr>
+		<colgroup>
+			<col width="5%"/>
+			<col width="20%"/>
+			<col width="*"/>
+		</colgroup>
+		<tr>
+			<th class="thSearch rt">Code Type</th>
+			<td class="tdSearch"><ui:text name="commonCodeType"/></td>
+			<td class="tdSearch"></td>
+		</tr>
 	</table>
 </div>
 <div id="divInformArea"></div>
@@ -97,14 +98,14 @@
 			<tr>
 				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
 				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
-				<th class="thGrid sortable:alphanumeric">codeType</th>
-				<th class="thGrid sortable:alphanumeric">codeMeaning</th>
-				<th class="thGrid sortable:alphanumeric">programConstants</th>
-				<th class="thGrid sortable:alphanumeric">description</th>
-				<th class="thGrid sortable:number">isActive</th>
-				<th class="thGrid sortable:alphanumeric">isDefault</th>
-				<th class="thGrid sortable:date">insertDate</th>
-				<th class="thGrid sortable:date">updateDate</th>
+				<th class="thGrid sortable:alphanumeric">Code Type</th>
+				<th class="thGrid sortable:alphanumeric">Code Meaning</th>
+				<th class="thGrid sortable:alphanumeric">Program Constants</th>
+				<th class="thGrid sortable:alphanumeric">Description</th>
+				<th class="thGrid sortable:number">Is Active</th>
+				<th class="thGrid sortable:alphanumeric">Is Default</th>
+				<th class="thGrid sortable:date">Insert Date</th>
+				<th class="thGrid sortable:date">Update Date</th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

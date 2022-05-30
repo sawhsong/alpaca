@@ -647,19 +647,19 @@ var nony = {
 						params.preProcess();
 					}
 
-//					popup = commonJs.openPopup({
-//						popupId:"exportFile",
-//						url:params.url,
-//						paramData:params.data,
-//						header:"exportFile",
-//						blind:false,
-//						width:200,
-//						height:100
-//					});
-					commonJs.doSimpleProcessForPage({
-						action:params.url,
-						data:params.data
+					popup = commonJs.openPopup({
+						popupId:"exportFile",
+						url:params.url,
+						paramData:params.data,
+						header:"exportFile",
+						blind:false,
+						width:200,
+						height:100
 					});
+//					commonJs.doSimpleProcessForPage({
+//						action:params.url,
+//						data:params.data
+//					});
 				}
 			}, {
 				caption:com.caption.no,

@@ -51,7 +51,7 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 				String menuId = resultDataSet.getValue(i, "MENU_ID");
 				String parentMenuId = resultDataSet.getValue(i, "PARENT_MENU_ID");
 				String root = resultDataSet.getValue(i, "ROOT");
-				boolean hasAction = BeanHelper.containsBean(CommonUtil.toCamelCaseStartLowerCase(menuId) + "Action");
+				boolean hasAction = BeanHelper.containsBean(CommonUtil.toCamelCaseStartLowerCase(menuId) + "Action") || BeanHelper.containsBean(CommonUtil.toStartLowerCase(menuId) + "Action");
 
 				if (hasAction) {
 					for (int j=0; j<resultDataSet.getRowCnt(); j++) {
