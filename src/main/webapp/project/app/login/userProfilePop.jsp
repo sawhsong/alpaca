@@ -47,8 +47,8 @@ var userId = "<%=sysUser.getUserId()%>";
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnEdit" caption="button.com.edit" iconClass="fa-edit"/>
-			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
+			<ui:button id="btnEdit" caption="button.com.edit"/>
+			<ui:button id="btnClose" caption="button.com.close"/>
 		</ui:buttonGroup>
 	</div>
 </div>
@@ -97,9 +97,9 @@ var userId = "<%=sysUser.getUserId()%>";
 		</tr>
 		<tr>
 			<th class="thEdit"><mc:msg key="login.header.language"/></th>
-			<td class="tdEdit"><%=CommonCodeManager.getCodeDescription("LANGUAGE_TYPE", sysUser.getLanguage())%></td>
+			<td class="tdEdit"><%=CommonCodeManager.getCodeMeaning("LANGUAGE_TYPE", sysUser.getLanguage())%></td>
 			<th class="thEdit"><mc:msg key="login.header.themeType"/></th>
-			<td class="tdEdit"><%=CommonCodeManager.getCodeDescription("USER_THEME_TYPE", sysUser.getThemeType())%></td>
+			<td class="tdEdit"><%=CommonCodeManager.getCodeMeaning("USER_THEME_TYPE", sysUser.getThemeType())%></td>
 		</tr>
 		<tr>
 			<th class="thEdit"><mc:msg key="login.header.maxRowsPerPage"/></th>

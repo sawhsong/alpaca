@@ -86,6 +86,7 @@ insert into sys_common_code values('USER_THEME_TYPE', 'THEME006',   'Pepper Grin
 insert into sys_common_code values('USER_THEME_TYPE', 'THEME007',   'Cupertino',       'Cupertino',       'Cupertino',       'USER_THEME_TYPE_008',        '008', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('USER_THEME_TYPE', 'THEME008',   'Cupertino',       'South Street',    'South Street',    'USER_THEME_TYPE_009',        '009', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('USER_THEME_TYPE', 'THEME009',   'Humanity',        'Humanity',        'Humanity',        'USER_THEME_TYPE_010',        '010', 'Y', 'Y', '0', sysdate, null, null);
+insert into sys_common_code values('USER_THEME_TYPE', 'THEME999',   'Random',          'Random',          'Random',          'USER_THEME_TYPE_999',        '999', 'Y', 'Y', '0', sysdate, null, null);
 
 insert into sys_common_code values('USER_TYPE', '0000000000', 'User Type',     'User Type',     'User Type',     'USER_TYPE_0000000000', '000', 'Y', 'Y', '0', sysdate, null, null);
 insert into sys_common_code values('USER_TYPE', 'INTERNAL',   'Internal User', 'Internal User', 'Internal User', 'USER_TYPE_INTERNAL',   '001', 'Y', 'Y', '0', sysdate, null, null);
