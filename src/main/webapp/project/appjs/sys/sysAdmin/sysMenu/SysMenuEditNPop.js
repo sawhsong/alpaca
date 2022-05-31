@@ -2,7 +2,7 @@
  * Framework Generated Javascript Source
  * - SysMenuEditPop.js
  *************************************************************************************************/
-jsconfig.put("scrollablePanelHeightAdjust", 22);
+jsconfig.put("scrollablePanelHeightAdjust", 24);
 
 $(function() {
 	/*!
@@ -105,7 +105,7 @@ $(function() {
 			}
 		}
 
-		$("#level2").selectpicker({container:"body"}).selectpicker("refresh");
+		$("#level2").selectpicker({container:"body"}).selectpicker("refresh").selectpicker("setStyle", "btn-default", "remove");
 	};
 
 	setFieldValue = function() {

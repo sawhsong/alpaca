@@ -152,7 +152,7 @@ $(function() {
 			header:com.header.popHeaderEdit,
 			blind:true,
 			width:700,
-			height:378
+			height:380
 		});
 	};
 
