@@ -1224,19 +1224,33 @@ var nony = {
 		document.body.removeChild(element);
 	},
 	enableObject : function(jqObject) {
+		if ($(jqObject).hasClass("bootstrapSelect")) {
+			$(jqObject).prop("disabled", false);
+			$(jqObject).selectpicker("refresh");
+			return;
+		}
+
 		if ($(jqObject).attr("type") == "text") {
 			$(jqObject).removeClass("txtDis").addClass("txtEn").removeAttr("readonly").attr("disabled", false);
 		} else if ($(jqObject).attr("type") == "select") {
 			$(jqObject).attr("disabled", false);
-			$.nony.refreshBootstrapSelectbox($(jqObject).attr("id"));
+		} else if ($(jqObject).attr("type") == "button") {
+			$(jqObject).attr("disabled", false);
 		}
 	},
 	disableObject : function(jqObject) {
+		if ($(jqObject).hasClass("bootstrapSelect")) {
+			$(jqObject).prop("disabled", true);
+			$(jqObject).selectpicker("refresh");
+			return;
+		}
+
 		if ($(jqObject).attr("type") == "text") {
 			$(jqObject).removeClass("txtEn").addClass("txtDis").attr("readonly", "readonly").attr("disabled", true);
 		} else if ($(jqObject).attr("type") == "select") {
 			$(jqObject).attr("disabled", true);
-			$.nony.refreshBootstrapSelectbox($(jqObject).attr("id"));
+		} else if ($(jqObject).attr("type") == "button") {
+			$(jqObject).attr("disabled", true);
 		}
 	},
 	/*!
@@ -1372,11 +1386,9 @@ var nony = {
 		if ($.nony.isEmpty(id)) {
 			$("select.bootstrapSelect").each(function(index) {
 				$(this).selectpicker("refresh");
-				$(this).selectpicker("render");
 			});
 		} else {
 			$("#"+id).selectpicker("refresh");
-			$("#"+id).selectpicker("render");
 		}
 	},
 	setSelectpickerValue : function(elementId, selectedValue) {

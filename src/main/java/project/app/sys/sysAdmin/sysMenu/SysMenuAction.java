@@ -39,6 +39,15 @@ public class SysMenuAction extends BaseAction {
 		}
 	}
 
+	public String getDetailData() throws Exception {
+		try {
+			biz.getDetailData(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
 	public String getUpdateSortOrder() throws Exception {
 		biz.getUpdateSortOrder(paramEntity);
 		return "updateSort";

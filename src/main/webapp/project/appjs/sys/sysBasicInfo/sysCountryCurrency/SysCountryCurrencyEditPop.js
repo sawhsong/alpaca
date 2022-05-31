@@ -18,6 +18,13 @@ $(function() {
 		});
 	});
 
+	$("#btnDelete").click(function(event) {
+		if ($(this).attr("disabled")) {
+			return;
+		}
+		doDelete();
+	});
+
 	$("#btnClose").click(function(event) {
 		parent.popup.close();
 	});
@@ -31,6 +38,23 @@ $(function() {
 	/*!
 	 * process
 	 */
+	setButton = function() {
+		if (commonJs.isBlank(countryCurrencyId)) {
+			commonJs.disableObject($("#btnDelete"));
+		}
+	};
+
+	doDelete = function() {
+		commonJs.doDelete({
+			url:"/sys/sysBasicInfo/sysCountryCurrency/doDelete.do",
+			data:{countryCurrencyId:countryCurrencyId},
+			onSuccess:function() {
+				parent.popup.close();
+				parent.doSearch();
+			}
+		});
+	};
+
 	setDetailData = function() {
 		if (commonJs.isNotBlank(countryCurrencyId)) {
 			commonJs.doSimpleProcess({
@@ -62,6 +86,7 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanelPopup");
 
 		setTimeout(function() {
+			setButton();
 			setDetailData();
 		}, 200);
 	});

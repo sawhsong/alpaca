@@ -11,6 +11,7 @@ public interface SysMenuBiz {
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getEdit(ParamEntity paramEntity) throws Exception;
+	public ParamEntity getDetailData(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getUpdateSortOrder(ParamEntity paramEntity) throws Exception;
 	public ParamEntity doSave(ParamEntity paramEntity) throws Exception;
 	public ParamEntity doUpdateSortOrder(ParamEntity paramEntity) throws Exception;

@@ -61,9 +61,15 @@ public class SysMenuHDaoImpl extends BaseHDao implements SysMenuDao {
 		return selectAsDataSet(queryAdvisor, "query.SysMenu.getMenuDataSetBySearchCriteria");
 	}
 
-	public SysMenu getMenuByMenuId(String menuId) throws Exception {
+	public SysMenu getMenuById(String menuId) throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		queryAdvisor.addWhereClause("menu_id = '"+menuId+"'");
 		return (SysMenu)selectAllToDto(queryAdvisor, new SysMenu());
+	}
+
+	public DataSet getMenuDataSetById(String menuId) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		queryAdvisor.addWhereClause("menu_id = '"+menuId+"'");
+		return selectAllAsDataSet(queryAdvisor, new SysMenu());
 	}
 }

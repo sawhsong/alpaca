@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
-import project.common.module.datahelper.DataHelper;
 import project.conf.resource.ormapper.dao.SysMenu.SysMenuDao;
 import project.conf.resource.ormapper.dto.oracle.SysMenu;
 import zebra.data.DataSet;
@@ -80,25 +79,12 @@ public class SysMenuBizImpl extends BaseBiz implements SysMenuBiz {
 		return paramEntity;
 	}
 
-	public ParamEntity getDetailDataSet(ParamEntity paramEntity) throws Exception {
+	public ParamEntity getDetailData(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		String delimiter = ConfigUtil.getProperty("delimiter.data");
 		String menuId = requestDataSet.getValue("menuId");
-		String paramValue = requestDataSet.getValue("paramValue");
-		String menuLevel = CommonUtil.split(paramValue, delimiter)[0];
-		String menuPath = CommonUtil.split(paramValue, delimiter)[1];
-		String deletable = CommonUtil.split(paramValue, delimiter)[2];
-		SysMenu sysMenu = new SysMenu();
 
 		try {
-			sysMenu = sysMenuDao.getMenuByMenuId(menuId);
-			sysMenu.setInsertUserName(DataHelper.getUserNameById(sysMenu.getInsertUserId()));
-			sysMenu.setUpdateUserName(DataHelper.getUserNameById(sysMenu.getUpdateUserId()));
-
-			paramEntity.setObject("sysMenu", sysMenu);
-			paramEntity.setObject("menuLevel", menuLevel);
-			paramEntity.setObject("menuPath", menuPath);
-			paramEntity.setObject("deletable", deletable);
+			paramEntity.setAjaxResponseDataSet(sysMenuDao.getMenuDataSetById(menuId));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -118,6 +104,7 @@ public class SysMenuBizImpl extends BaseBiz implements SysMenuBiz {
 	public ParamEntity doSave(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		HttpSession session = paramEntity.getSession();
+		String selectedMenuId = requestDataSet.getValue("selectedMenuId");
 		String menuId = requestDataSet.getValue("menuId");
 		String menuLevel = requestDataSet.getValue("menuLevel");
 		String level1MenuId = requestDataSet.getValue("level1");
@@ -126,36 +113,51 @@ public class SysMenuBizImpl extends BaseBiz implements SysMenuBiz {
 		SysMenu sysMenu = new SysMenu();
 
 		try {
-			sysMenu = sysMenuDao.getMenuByMenuId(menuId);
-			if (CommonUtil.isNotBlank(sysMenu.getMenuId())) {
-				throw new FrameworkException("E910", getMessage("E910", paramEntity));
-			}
-
-			sysMenu = new SysMenu();
-
 			if (CommonUtil.equalsIgnoreCase(menuLevel, "1")) {
-				sysMenu.setMenuId(CommonUtil.upperCase(requestDataSet.getValue("menuId")));
-				sysMenu.setParentMenuId(null);
-				sysMenu.setMenuIcon(CommonUtil.upperCase(requestDataSet.getValue("menuId")));
-			} else if (CommonUtil.equalsIgnoreCase(menuLevel, "2")) {
-				sysMenu.setMenuId(requestDataSet.getValue("menuId"));
-				sysMenu.setParentMenuId(CommonUtil.upperCase(level1MenuId));
-				sysMenu.setMenuIcon(requestDataSet.getValue("menuId"));
-			} else if (CommonUtil.equalsIgnoreCase(menuLevel, "3")) {
-				sysMenu.setMenuId(requestDataSet.getValue("menuId"));
-				sysMenu.setParentMenuId(level2MenuId);
-				sysMenu.setMenuIcon(null);
+				menuId = CommonUtil.upperCase(menuId);
 			}
-			sysMenu.setMenuNameEn(requestDataSet.getValue("menuNameEn"));
-			sysMenu.setMenuNameKo(requestDataSet.getValue("menuNameKo"));
+
+			sysMenu = sysMenuDao.getMenuById(menuId);
+
+			if (CommonUtil.isBlank(selectedMenuId)) {
+				if (CommonUtil.isNotBlank(sysMenu.getMenuId())) {
+					throw new FrameworkException("E910", getMessage("E910", paramEntity));
+				}
+
+				if (CommonUtil.equalsIgnoreCase(menuLevel, "1")) {
+					sysMenu.setMenuId(CommonUtil.upperCase(requestDataSet.getValue("menuId")));
+					sysMenu.setParentMenuId(null);
+					sysMenu.setMenuIcon(CommonUtil.upperCase(requestDataSet.getValue("menuId")));
+				} else if (CommonUtil.equalsIgnoreCase(menuLevel, "2")) {
+					sysMenu.setMenuId(requestDataSet.getValue("menuId"));
+					sysMenu.setParentMenuId(CommonUtil.upperCase(level1MenuId));
+					sysMenu.setMenuIcon(requestDataSet.getValue("menuId"));
+				} else if (CommonUtil.equalsIgnoreCase(menuLevel, "3")) {
+					sysMenu.setMenuId(requestDataSet.getValue("menuId"));
+					sysMenu.setParentMenuId(level2MenuId);
+					sysMenu.setMenuIcon(null);
+				}
+
+				sysMenu.setInsertUserId((String)session.getAttribute("UserId"));
+				sysMenu.setInsertDate(CommonUtil.getSysdateAsDate());
+			} else {
+				sysMenu.setUpdateUserId((String)session.getAttribute("UserId"));
+				sysMenu.setUpdateDate(CommonUtil.getSysdateAsDate());
+			}
+
 			sysMenu.setMenuUrl(requestDataSet.getValue("menuUrl"));
+			sysMenu.setMenuNameEn(requestDataSet.getValue("menuName"));
+			sysMenu.setMenuNameKo(requestDataSet.getValue("menuName"));
 			sysMenu.setSortOrder(requestDataSet.getValue("sortOrder"));
 			sysMenu.setDescription(requestDataSet.getValue("description"));
 			sysMenu.setIsActive(requestDataSet.getValue("isActive"));
-			sysMenu.setInsertUserId((String)session.getAttribute("UserId"));
-			sysMenu.setInsertDate(CommonUtil.toDate(CommonUtil.getSysdate()));
 
-			result = sysMenuDao.insert(sysMenu);
+			if (CommonUtil.isBlank(selectedMenuId)) {
+				result = sysMenuDao.insert(sysMenu);
+			} else {
+				result = sysMenuDao.update(menuId, sysMenu);
+			}
+
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
 			}

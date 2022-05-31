@@ -13,6 +13,13 @@
             <result name="list" type="debugDispatcherResult">/project/app/sys/sysBasicInfo/sysCountryCurrency/SysCountryCurrencyList.jsp</result>
             <result name="edit" type="debugDispatcherResult">/project/app/sys/sysBasicInfo/sysCountryCurrency/SysCountryCurrencyEditPop.jsp</result>
         </action>
+        <!--SysMenu - Menu-->
+        <action class="project.app.sys.sysAdmin.sysMenu.SysMenuAction" method="{1}" name="sysAdmin/sysMenu/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuList.jsp</result>
+            <result name="editN" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuEditNPop.jsp</result>
+            <result name="editC" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuEditCPop.jsp</result>
+            <result name="updateSort" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuUpdateSortPop.jsp</result>
+        </action>
         <!--Sys0402 - Menu-->
         <action class="project.app.sys.sys0402.Sys0402Action" method="{1}" name="0402/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sys0402/Sys0402List.jsp</result>
@@ -91,11 +98,6 @@
             <result name="list" type="debugDispatcherResult">/project/app/sys/sys9808/Sys9808List.jsp</result>
             <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9808/Sys9808DetailPop.jsp</result>
             <result name="info" type="debugDispatcherResult">/project/app/sys/sys9808/Sys9808InfoPop.jsp</result>
-        </action>
-        <!--SysMenu - Menu-->
-        <action class="project.app.sys.sysAdmin.sysMenu.SysMenuAction" method="{1}" name="sysAdmin/sysMenu/*">
-            <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuList.jsp</result>
-            <result name="edit" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuEditPop.jsp</result>
         </action>
     </package>
 </struts>

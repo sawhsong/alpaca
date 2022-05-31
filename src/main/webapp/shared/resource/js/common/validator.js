@@ -443,7 +443,10 @@
 			specialCharSome_ko:"특수문자(` \' \")는 사용하실수 없습니다.",
 
 			date_en:"{name} is not a valid Date.",
-			date_ko:"{name+은는} 유효한 날짜값이 아닙니다."
+			date_ko:"{name+은는} 유효한 날짜값이 아닙니다.",
+
+			exist_en:"Data already exists.",
+			exist_ko:"이미 존재하는 데이터 입니다."
 		}
 	};
 })(jQuery);

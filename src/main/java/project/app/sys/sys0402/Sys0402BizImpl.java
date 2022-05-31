@@ -82,7 +82,7 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 		SysMenu sysMenu = new SysMenu();
 
 		try {
-			sysMenu = sysMenuDao.getMenuByMenuId(menuId);
+			sysMenu = sysMenuDao.getMenuById(menuId);
 			sysMenu.setInsertUserName(DataHelper.getUserNameById(sysMenu.getInsertUserId()));
 			sysMenu.setUpdateUserName(DataHelper.getUserNameById(sysMenu.getUpdateUserId()));
 
@@ -136,7 +136,7 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 		SysMenu sysMenu = new SysMenu();
 
 		try {
-			sysMenu = sysMenuDao.getMenuByMenuId(menuId);
+			sysMenu = sysMenuDao.getMenuById(menuId);
 			if (CommonUtil.isNotBlank(sysMenu.getMenuId())) {
 				throw new FrameworkException("E910", getMessage("E910", paramEntity));
 			}
@@ -186,7 +186,7 @@ public class Sys0402BizImpl extends BaseBiz implements Sys0402Biz {
 		SysMenu sysMenu = new SysMenu();
 
 		try {
-			sysMenu = sysMenuDao.getMenuByMenuId(menuId);
+			sysMenu = sysMenuDao.getMenuById(menuId);
 
 			sysMenu.setMenuUrl(CommonUtil.nvl(requestDataSet.getValue("menuUrl"), "#"));
 			sysMenu.setSortOrder(requestDataSet.getValue("sortOrder"));

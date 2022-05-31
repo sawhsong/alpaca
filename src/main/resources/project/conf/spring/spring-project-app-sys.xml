@@ -5,6 +5,9 @@
     <!--SysCountryCurrency - Country / Currency-->
     <bean class="${name.package.project}.app.sys.sysBasicInfo.sysCountryCurrency.SysCountryCurrencyAction" id="sysCountryCurrencyAction" name="sysCountryCurrencyAction"/>
     <bean class="${name.package.project}.app.sys.sysBasicInfo.sysCountryCurrency.SysCountryCurrencyBizImpl" id="sysCountryCurrencyBiz" name="sysCountryCurrencyBiz" parent="baseBiz"/>
+    <!--SysMenu - Menu-->
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysMenu.SysMenuAction" id="sysMenuAction" name="sysMenuAction"/>
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysMenu.SysMenuBizImpl" id="sysMenuBiz" name="sysMenuBiz" parent="baseBiz"/>
     <!--Sys0402 - Menu-->
     <bean class="${name.package.project}.app.sys.sys0402.Sys0402Action" id="sys0402Action" name="sys0402Action"/>
     <bean class="${name.package.project}.app.sys.sys0402.Sys0402BizImpl" id="sys0402Biz" name="sys0402Biz" parent="baseBiz"/>
@@ -41,7 +44,4 @@
     <!--Sys9808 - PERCI Source Generator-->
     <bean class="${name.package.project}.app.sys.sys9808.Sys9808Action" id="sys9808Action" name="sys9808Action"/>
     <bean class="${name.package.project}.app.sys.sys9808.Sys9808BizImpl" id="sys9808Biz" name="sys9808Biz" parent="baseBiz"/>
-    <!--SysMenu - Menu-->
-    <bean class="${name.package.project}.app.sys.sysAdmin.sysMenu.SysMenuAction" id="sysMenuAction" name="sysMenuAction"/>
-    <bean class="${name.package.project}.app.sys.sysAdmin.sysMenu.SysMenuBizImpl" id="sysMenuBiz" name="sysMenuBiz" parent="baseBiz"/>
 </beans>
