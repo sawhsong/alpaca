@@ -247,6 +247,7 @@ $(function() {
 
 		setTimeout(() => commonJs.hideProcMessageOnElement("divScrollablePanelPopup"), 400);
 	};
+
 	/*!
 	 * load event (document / window)
 	 */
