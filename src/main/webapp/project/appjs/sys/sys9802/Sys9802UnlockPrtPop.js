@@ -48,7 +48,7 @@ $(function() {
 			});
 
 			$("#icnCheck").trigger("click");
-			commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForAction]"));
+			commonJs.bindToggleTrBackgroundWithCheckbox($("[name=chkForAction]"));
 		}, 400);
 	});
 });

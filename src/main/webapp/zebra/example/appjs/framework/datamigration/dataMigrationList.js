@@ -104,7 +104,7 @@ $(function() {
 
 		resizeListTable("tblSourceData");
 
-		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkSourceData]"));
+		commonJs.bindToggleTrBackgroundWithCheckbox($("[name=chkSourceData]"));
 		commonJs.hideProcMessageOnElement("tblSourceData");
 	};
 

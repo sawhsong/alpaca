@@ -20,15 +20,6 @@
             <result name="editC" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuEditCPop.jsp</result>
             <result name="updateSort" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuUpdateSortPop.jsp</result>
         </action>
-        <!--Sys0402 - Menu-->
-        <action class="project.app.sys.sys0402.Sys0402Action" method="{1}" name="0402/*">
-            <result name="list" type="debugDispatcherResult">/project/app/sys/sys0402/Sys0402List.jsp</result>
-            <result name="detail" type="debugDispatcherResult">/project/app/sys/sys0402/Sys0402DetailPop.jsp</result>
-            <result name="insertC" type="debugDispatcherResult">/project/app/sys/sys0402/Sys0402InsertCPop.jsp</result>
-            <result name="insertN" type="debugDispatcherResult">/project/app/sys/sys0402/Sys0402InsertNPop.jsp</result>
-            <result name="update" type="debugDispatcherResult">/project/app/sys/sys0402/Sys0402UpdatePop.jsp</result>
-            <result name="updateSort" type="debugDispatcherResult">/project/app/sys/sys0402/Sys0402UpdateSortPop.jsp</result>
-        </action>
         <!--Sys0404 - Authority Group-->
         <action class="project.app.sys.sys0404.Sys0404Action" method="{1}" name="0404/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sys0404/Sys0404List.jsp</result>

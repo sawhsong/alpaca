@@ -133,7 +133,7 @@ $(function() {
 		$("#tblGridBody").append($(html));
 		setGridTable(result.totalResultRows);
 
-		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForDel]"));
+		commonJs.bindToggleTrBackgroundWithCheckbox($("[name=chkForDel]"));
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 

@@ -85,7 +85,7 @@ $(function() {
 		$("#tblGridBody").append($(html));
 		setGridTable(result.totalResultRows);
 
-		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkToKill]"));
+		commonJs.bindToggleTrBackgroundWithCheckbox($("[name=chkToKill]"));
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 

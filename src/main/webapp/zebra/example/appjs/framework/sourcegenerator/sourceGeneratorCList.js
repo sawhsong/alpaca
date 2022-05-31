@@ -141,7 +141,7 @@ $(function() {
 			$(this).contextMenu(contextMenu);
 		});
 
-		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForGenerate]"));
+		commonJs.bindToggleTrBackgroundWithCheckbox($("[name=chkForGenerate]"));
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 

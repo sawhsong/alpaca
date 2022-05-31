@@ -122,7 +122,7 @@ $(function() {
 
 		resizeListTable("tblSourceData");
 
-		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForGenerate]"));
+		commonJs.bindToggleTrBackgroundWithCheckbox($("[name=chkForGenerate]"));
 		commonJs.hideProcMessageOnElement("tblSourceData");
 	};
 

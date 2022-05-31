@@ -20,15 +20,6 @@ var login = {
  * Sub System - sys
  */
 var sys = {
-	sys0402:{
-		caption:{
-		},
-		header:{
-			popHeaderSort:"Edit Sort Order"
-		},
-		message:{
-		}
-	},
 	sys0406:{
 		caption:{
 			auth:"Update Authority Group",

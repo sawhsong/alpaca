@@ -156,12 +156,14 @@ $(function() {
 
 			if (!commonJs.isEmpty(groupId) && groupId.indexOf(selectedAuthGroup) != -1) {
 				$(this).prop("checked", true);
-				$(this).addClass("checkedTr");
+//				$(this).addClass("checkedTr");
 			} else {
 				$(this).prop("checked", false);
-				$(this).removeClass("checkedTr");
+//				$(this).removeClass("checkedTr");
 			}
 		});
+
+		commonJs.bindToggleTrBackgroundWithCheckbox($("[name=chkToAssign]"));
 	};
 
 	hasChildChecked = function(paramLevel, paramMenuId) {

@@ -141,7 +141,7 @@ $(function() {
 			script:"doSearch"
 		});
 
-		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForAction]"));
+		commonJs.bindToggleTrBackgroundWithCheckbox($("[name=chkForAction]"));
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 

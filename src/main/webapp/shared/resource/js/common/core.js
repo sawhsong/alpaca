@@ -1086,7 +1086,7 @@ var nony = {
 
 		jsconfig.put("toggleCheckboxes", !checkFlag);
 	},
-	bindToggleTrBackgoundWithCheckbox : function(jqObject) {
+	bindToggleTrBackgroundWithCheckbox : function(jqObject) {
 		$(jqObject).each(function(index) {
 			$(this).bind("click", function() {
 				if ($(this).is(":checked")) {

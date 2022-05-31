@@ -20,15 +20,6 @@ var login = {
  * Sub System - sys
  */
 var sys = {
-	sys0402:{
-		caption:{
-		},
-		header:{
-			popHeaderSort:"정렬순서 조정"
-		},
-		message:{
-		}
-	},
 	sys0406:{
 		caption:{
 			auth:"권한그룹 변경",

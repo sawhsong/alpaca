@@ -62,7 +62,7 @@ $(function() {
 			isPageable:false
 		});
 
-		commonJs.bindToggleTrBackgoundWithCheckbox($("[name=chkForDel]"));
+		commonJs.bindToggleTrBackgroundWithCheckbox($("[name=chkForDel]"));
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 
