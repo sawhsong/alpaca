@@ -47,11 +47,11 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnNew" caption="button.com.new" iconClass="fa-plus-square"/>
-			<ui:button id="btnDelete" caption="button.com.delete" iconClass="fa-trash"/>
-			<ui:button id="btnSearch" caption="button.com.search" iconClass="fa-search"/>
-			<ui:button id="btnClear" caption="button.com.clear" iconClass="fa-refresh"/>
-			<ui:button id="btnExport" caption="button.com.export" iconClass="fa-download"/>
+			<ui:button id="btnNew" caption="button.com.new"/>
+			<ui:button id="btnDelete" caption="button.com.delete"/>
+			<ui:button id="btnSearch" caption="button.com.search"/>
+			<ui:button id="btnClear" caption="button.com.clear"/>
+			<ui:button id="btnExport" caption="button.com.export"/>
 		</ui:buttonGroup>
 	</div>
 </div>

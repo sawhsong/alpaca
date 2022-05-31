@@ -8,7 +8,6 @@
 ************************************************************************************************/%>
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
-	DataSet quickMenuDataSet = MenuManager.getQuickMenu();
 	DataSet menuDataSet = MenuManager.getMenuDataSetByLevel(1);
 	String langCode = CommonUtil.upperCase((String)session.getAttribute("langCode"));
 %>

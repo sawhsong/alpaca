@@ -92,5 +92,10 @@
             <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9808/Sys9808DetailPop.jsp</result>
             <result name="info" type="debugDispatcherResult">/project/app/sys/sys9808/Sys9808InfoPop.jsp</result>
         </action>
+        <!--SysMenu - Menu-->
+        <action class="project.app.sys.sysAdmin.sysMenu.SysMenuAction" method="{1}" name="sysAdmin/sysMenu/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuList.jsp</result>
+            <result name="edit" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuEditPop.jsp</result>
+        </action>
     </package>
 </struts>

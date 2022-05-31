@@ -41,4 +41,7 @@
     <!--Sys9808 - PERCI Source Generator-->
     <bean class="${name.package.project}.app.sys.sys9808.Sys9808Action" id="sys9808Action" name="sys9808Action"/>
     <bean class="${name.package.project}.app.sys.sys9808.Sys9808BizImpl" id="sys9808Biz" name="sys9808Biz" parent="baseBiz"/>
+    <!--SysMenu - Menu-->
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysMenu.SysMenuAction" id="sysMenuAction" name="sysMenuAction"/>
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysMenu.SysMenuBizImpl" id="sysMenuBiz" name="sysMenuBiz" parent="baseBiz"/>
 </beans>
