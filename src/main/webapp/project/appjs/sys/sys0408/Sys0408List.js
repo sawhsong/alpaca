@@ -156,10 +156,10 @@ $(function() {
 
 			if (!commonJs.isEmpty(groupId) && groupId.indexOf(selectedAuthGroup) != -1) {
 				$(this).prop("checked", true);
-				$(this).addClass("checkedTr");
+				$(this).parents("tr").addClass("checkedTr");
 			} else {
 				$(this).prop("checked", false);
-				$(this).removeClass("checkedTr");
+				$(this).parents("tr").removeClass("checkedTr");
 			}
 		});
 	};
