@@ -98,10 +98,10 @@
 <div id="divDataArea" class="areaContainer">
 	<table id="tblGrid" class="tblGrid sort autosort">
 		<colgroup>
-			<col width="3%"/>
-			<col width="10%"/>
-			<col width="20%"/>
-			<col width="15%"/>
+			<col width="2%"/>
+			<col width="18%"/>
+			<col width="17%"/>
+			<col width="21%"/>
 			<col width="7%"/>
 			<col width="*"/>
 			<col width="5%"/>
@@ -136,7 +136,7 @@
 
 				paramValue = resultDataSet.getValue(i, "LEVEL")+delimiter+menuPath;
 %>
-			<tr>
+			<tr class="noBorderHor">
 				<td class="tdGrid Ct"><input type="checkbox" id="chkToAssign" name="chkToAssign" class="inTblGrid chkEn" value="<%=menuId%>" paramValue="<%=paramValue%>" groupId="<%=groupId%>"/></td>
 				<td class="tdGrid" style="<%=style%>"><%=space%><%=menuId%></td>
 				<td class="tdGrid" style="<%=style%>"><%=menuName%></td>
