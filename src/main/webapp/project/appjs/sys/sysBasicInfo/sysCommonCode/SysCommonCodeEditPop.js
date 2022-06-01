@@ -139,7 +139,7 @@ $(function() {
 
 					$("[name=codeTypeMaster]").val(dataSet.getValue(masterRow, "CODE_TYPE"));
 					$("[name=codeMeaningMaster]").val(dataSet.getValue(masterRow, "CODE_MEANING"));
-					commonJs.setCheckboxValue("isActiveMaster", dataSet.getValue(masterRow, "IS_ACTIVE"));
+					commonJs.setRadioValue("isActiveMaster", dataSet.getValue(masterRow, "IS_ACTIVE"));
 					$("[name=descriptionMaster]").val(dataSet.getValue(masterRow, "DESCRIPTION_EN"));
 				}
 			});

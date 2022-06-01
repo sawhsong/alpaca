@@ -41,4 +41,7 @@
     <!--Sys9808 - PERCI Source Generator-->
     <bean class="${name.package.project}.app.sys.sys9808.Sys9808Action" id="sys9808Action" name="sys9808Action"/>
     <bean class="${name.package.project}.app.sys.sys9808.Sys9808BizImpl" id="sys9808Biz" name="sys9808Biz" parent="baseBiz"/>
+    <!--SysAuthGroup - Authority Group-->
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysAuthGroup.SysAuthGroupAction" id="sysAuthGroupAction" name="sysAuthGroupAction"/>
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysAuthGroup.SysAuthGroupBizImpl" id="sysAuthGroupBiz" name="sysAuthGroupBiz" parent="baseBiz"/>
 </beans>

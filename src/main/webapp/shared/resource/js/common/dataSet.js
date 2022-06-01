@@ -7,6 +7,7 @@ DataSet.prototype = {
 		this.NameIdx = new Array();
 		this.Name = new Array();
 		this.Value = new Array();
+		this.Dto = [];
 	},
 	toString : function() {
 		var str = "";
@@ -113,5 +114,12 @@ DataSet.prototype = {
 				}
 			}
 		}
+	},
+	getRowAsDto : function(row) {
+		if ($.nony.isBlank(row) || row < 0) {row = 0;}
+		for (var i=0; i<this.Name.length; i++) {
+			this.Dto[$.nony.toCamelCase(this.Name[i])] = this.Value[row][i];
+		}
+		return this.Dto;
 	}
 };

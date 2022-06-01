@@ -103,7 +103,7 @@ public class DataHelper extends BaseBiz {
 
 		QueryAdvisor qa = new QueryAdvisor();
 		qa.addVariable("authGroupId", authGroupId);
-		return sysAuthGroupDao.getAuthGroupDataSetByAuthGroupId(qa);
+		return sysAuthGroupDao.getAuthGroupDataSetById(qa);
 	}
 
 	public static SysAuthGroup getSysAuthGroupById(String authGroupId) throws Exception {

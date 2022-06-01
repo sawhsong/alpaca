@@ -8,6 +8,14 @@ import zebra.util.CommonUtil;
 import zebra.util.ConfigUtil;
 
 public class SysAuthGroupHDaoImpl extends BaseHDao implements SysAuthGroupDao {
+	public int save(String groupId, SysAuthGroup sysAuthGroup) throws Exception {
+		if (CommonUtil.isBlank(groupId)) {
+			return insert(sysAuthGroup);
+		} else {
+			return update(groupId, sysAuthGroup);
+		}
+	}
+
 	public int insert(SysAuthGroup sysAuthGroup) throws Exception {
 		return insertWithSQLQuery(sysAuthGroup);
 	}
@@ -39,19 +47,19 @@ public class SysAuthGroupHDaoImpl extends BaseHDao implements SysAuthGroupDao {
 		return deleteWithSQLQuery(queryAdvisor, new SysAuthGroup());
 	}
 
-	public DataSet getAuthGroupDataSetByAuthGroupId(QueryAdvisor queryAdvisor) throws Exception {
+	public DataSet getAuthGroupDataSetById(QueryAdvisor queryAdvisor) throws Exception {
 		return selectAsDataSet(queryAdvisor, "query.SysAuthGroup.getAuthGroupDataSetByAuthGroupId");
 	}
 
 	public DataSet getAuthGroupDataSetBySearchCriteria(QueryAdvisor queryAdvisor) throws Exception {
 		String dateFormat = ConfigUtil.getProperty("format.date.java");
 		queryAdvisor.addVariable("dateFormat", dateFormat);
-		queryAdvisor.addOrderByClause("nvl(update_date, insert_date) desc");
 		queryAdvisor.addOrderByClause("group_name");
+		queryAdvisor.addOrderByClause("nvl(update_date, insert_date) desc");
 		return selectAsDataSet(queryAdvisor, "query.SysAuthGroup.getAuthGroupDataSetBySearchCriteria");
 	}
 
-	public SysAuthGroup getAuthGroupByGroupId(String groupId) throws Exception {
+	public SysAuthGroup getAuthGroupById(String groupId) throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		queryAdvisor.addWhereClause("group_id = '"+groupId+"'");
 		return (SysAuthGroup)selectAllToDto(queryAdvisor, new SysAuthGroup());

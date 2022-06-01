@@ -16,6 +16,10 @@ $(function() {
 	});
 
 	$("#btnDelete").click(function(event) {
+		if ($(this).attr("disabled")) {
+			return;
+		}
+
 		doDelete();
 	});
 

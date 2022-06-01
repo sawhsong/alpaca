@@ -20,6 +20,11 @@
             <result name="editC" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuEditCPop.jsp</result>
             <result name="updateSort" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenu/SysMenuUpdateSortPop.jsp</result>
         </action>
+        <!--SysAuthGroup - Authority Group-->
+        <action class="project.app.sys.sysAdmin.sysAuthGroup.SysAuthGroupAction" method="{1}" name="sysAdmin/sysAuthGroup/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysAuthGroup/SysAuthGroupList.jsp</result>
+            <result name="edit" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysAuthGroup/SysAuthGroupEditPop.jsp</result>
+        </action>
         <!--Sys0404 - Authority Group-->
         <action class="project.app.sys.sys0404.Sys0404Action" method="{1}" name="0404/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sys0404/Sys0404List.jsp</result>

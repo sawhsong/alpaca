@@ -72,6 +72,7 @@ $(function() {
 		if ($(this).attr("disabled")) {
 			return;
 		}
+
 		doDelete();
 	});
 
