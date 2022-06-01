@@ -94,6 +94,8 @@ $(function() {
 				menuId = commonJs.lowerCase(menuIds[0])+delimiter+menuIds[1]+delimiter+menuIds[2];
 				style += (isLeaf != 1) ? "font-weight:bold;" : "";
 
+				gridTr.setClassName("noBorderHor");
+
 				var tdAction = new UiGridTd();
 				tdAction.addClassName("Ct");
 				if (isEditable) {

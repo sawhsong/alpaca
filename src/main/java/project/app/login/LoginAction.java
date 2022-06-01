@@ -35,6 +35,15 @@ public class LoginAction extends BaseAction {
 		return "requestRegister";
 	}
 
+	public String getPrivateKey() throws Exception {
+		try {
+			biz.getPrivateKey(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
 	public String login() throws Exception {
 		try {
 			biz.exeLogin(paramEntity);

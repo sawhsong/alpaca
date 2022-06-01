@@ -19,6 +19,7 @@ import project.conf.resource.ormapper.dao.SysUser.SysUserDao;
 import project.conf.resource.ormapper.dto.oracle.SysFavoriteMenu;
 import project.conf.resource.ormapper.dto.oracle.SysUser;
 import zebra.config.MemoryBean;
+import zebra.crypto.CryptoUtil;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
 import zebra.exception.FrameworkException;
@@ -145,6 +146,20 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 		return paramEntity;
 	}
 
+	public ParamEntity getPrivateKey(ParamEntity paramEntity) throws Exception {
+		DataSet ds = new DataSet();
+
+		try {
+			ds.addColumn("key", CryptoUtil.encodeKey(ConfigUtil.getProperty("etc.crypto.key")));
+
+			paramEntity.setAjaxResponseDataSet(ds);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
 	public ParamEntity exeLogin(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		SysUser sysUser = new SysUser();
@@ -161,7 +176,7 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 			}
 
 			// Check with LoginID and Password
-			sysUser = sysUserDao.getUserByLoginIdAndPassword(loginId, password);
+			sysUser = sysUserDao.getUserByLoginIdAndPassword(loginId, CryptoUtil.decryptInput(password, CryptoUtil.encodeKey(ConfigUtil.getProperty("etc.crypto.key"))));
 			if (sysUser == null || CommonUtil.isBlank(sysUser.getUserId())) {
 				throw new FrameworkException("E908", getMessage("E908", paramEntity));
 			}

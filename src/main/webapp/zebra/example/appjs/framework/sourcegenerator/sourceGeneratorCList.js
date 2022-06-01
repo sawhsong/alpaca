@@ -93,6 +93,8 @@ $(function() {
 				menuId = dataSet.getValue(i, "ROOT")+delimiter+dataSet.getValue(i, "MENU_ID");
 				style += (isLeaf != 1) ? "font-weight:bold;" : "";
 
+				gridTr.setClassName("noBorderHor");
+
 				var tdAction = new UiGridTd();
 				tdAction.addClassName("Ct");
 				if (isEditable) {

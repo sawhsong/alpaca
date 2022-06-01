@@ -88,5 +88,9 @@
             <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9808/Sys9808DetailPop.jsp</result>
             <result name="info" type="debugDispatcherResult">/project/app/sys/sys9808/Sys9808InfoPop.jsp</result>
         </action>
+        <!--SysMenuAuth - Menu Authority Group-->
+        <action class="project.app.sys.sysAdmin.sysMenuAuth.SysMenuAuthAction" method="{1}" name="sysAdmin/sysMenuAuth/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenuAuth/SysMenuAuthList.jsp</result>
+        </action>
     </package>
 </struts>

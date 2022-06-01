@@ -99,6 +99,7 @@ $(function() {
 				}
 
 				paramValue = dataSet.getValue(i, "MENU_LEVEL")+delimiter+menuPath+delimiter+deletable;
+				gridTr.setClassName("noBorderHor");
 
 				var iconAction = new UiIcon();
 				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("menuId:"+menuId).addAttribute("paramValue:"+paramValue).setScript("doAction(this)");

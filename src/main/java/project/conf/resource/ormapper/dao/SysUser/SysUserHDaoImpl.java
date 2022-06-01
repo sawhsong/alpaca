@@ -167,9 +167,15 @@ public class SysUserHDaoImpl extends BaseHDao implements SysUserDao {
 
 	public SysUser getUserByLoginIdAndPassword(String loginId, String password) throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		boolean useDBCrypto = CommonUtil.toBoolean(ConfigUtil.getProperty("login.useDBCrypto"));
 
 		queryAdvisor.addWhereClause("login_id = '"+loginId+"'");
-		queryAdvisor.addWhereClause("login_password = '"+password+"'");
+
+		if (useDBCrypto) {
+			queryAdvisor.addWhereClause("login_password = crypto.crypto_enc('"+password+"')");
+		} else {
+			queryAdvisor.addWhereClause("login_password = '"+password+"'");
+		}
 
 		return (SysUser)selectAllToDto(queryAdvisor, new SysUser());
 	}
