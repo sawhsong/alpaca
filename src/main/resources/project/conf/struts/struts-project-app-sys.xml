@@ -25,13 +25,6 @@
             <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysAuthGroup/SysAuthGroupList.jsp</result>
             <result name="edit" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysAuthGroup/SysAuthGroupEditPop.jsp</result>
         </action>
-        <!--Sys0404 - Authority Group-->
-        <action class="project.app.sys.sys0404.Sys0404Action" method="{1}" name="0404/*">
-            <result name="list" type="debugDispatcherResult">/project/app/sys/sys0404/Sys0404List.jsp</result>
-            <result name="detail" type="debugDispatcherResult">/project/app/sys/sys0404/Sys0404DetailPop.jsp</result>
-            <result name="insert" type="debugDispatcherResult">/project/app/sys/sys0404/Sys0404InsertPop.jsp</result>
-            <result name="update" type="debugDispatcherResult">/project/app/sys/sys0404/Sys0404UpdatePop.jsp</result>
-        </action>
         <!--Sys0408 - Menu - Authority Group-->
         <action class="project.app.sys.sys0408.Sys0408Action" method="{1}" name="0408/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sys0408/Sys0408List.jsp</result>

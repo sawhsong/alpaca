@@ -8,9 +8,9 @@
     <!--SysMenu - Menu-->
     <bean class="${name.package.project}.app.sys.sysAdmin.sysMenu.SysMenuAction" id="sysMenuAction" name="sysMenuAction"/>
     <bean class="${name.package.project}.app.sys.sysAdmin.sysMenu.SysMenuBizImpl" id="sysMenuBiz" name="sysMenuBiz" parent="baseBiz"/>
-    <!--Sys0404 - Authority Group-->
-    <bean class="${name.package.project}.app.sys.sys0404.Sys0404Action" id="sys0404Action" name="sys0404Action"/>
-    <bean class="${name.package.project}.app.sys.sys0404.Sys0404BizImpl" id="sys0404Biz" name="sys0404Biz" parent="baseBiz"/>
+    <!--SysAuthGroup - Authority Group-->
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysAuthGroup.SysAuthGroupAction" id="sysAuthGroupAction" name="sysAuthGroupAction"/>
+    <bean class="${name.package.project}.app.sys.sysAdmin.sysAuthGroup.SysAuthGroupBizImpl" id="sysAuthGroupBiz" name="sysAuthGroupBiz" parent="baseBiz"/>
     <!--Sys0408 - Menu - Authority Group-->
     <bean class="${name.package.project}.app.sys.sys0408.Sys0408Action" id="sys0408Action" name="sys0408Action"/>
     <bean class="${name.package.project}.app.sys.sys0408.Sys0408BizImpl" id="sys0408Biz" name="sys0408Biz" parent="baseBiz"/>
@@ -41,7 +41,4 @@
     <!--Sys9808 - PERCI Source Generator-->
     <bean class="${name.package.project}.app.sys.sys9808.Sys9808Action" id="sys9808Action" name="sys9808Action"/>
     <bean class="${name.package.project}.app.sys.sys9808.Sys9808BizImpl" id="sys9808Biz" name="sys9808Biz" parent="baseBiz"/>
-    <!--SysAuthGroup - Authority Group-->
-    <bean class="${name.package.project}.app.sys.sysAdmin.sysAuthGroup.SysAuthGroupAction" id="sysAuthGroupAction" name="sysAuthGroupAction"/>
-    <bean class="${name.package.project}.app.sys.sysAdmin.sysAuthGroup.SysAuthGroupBizImpl" id="sysAuthGroupBiz" name="sysAuthGroupBiz" parent="baseBiz"/>
 </beans>
