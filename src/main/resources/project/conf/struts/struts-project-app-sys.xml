@@ -25,12 +25,9 @@
             <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysAuthGroup/SysAuthGroupList.jsp</result>
             <result name="edit" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysAuthGroup/SysAuthGroupEditPop.jsp</result>
         </action>
-        <!--Sys0408 - Menu - Authority Group-->
-        <action class="project.app.sys.sys0408.Sys0408Action" method="{1}" name="0408/*">
-            <result name="list" type="debugDispatcherResult">/project/app/sys/sys0408/Sys0408List.jsp</result>
-            <result name="detail" type="debugDispatcherResult">/project/app/sys/sys0408/Sys0408DetailPop.jsp</result>
-            <result name="insert" type="debugDispatcherResult">/project/app/sys/sys0408/Sys0408InsertPop.jsp</result>
-            <result name="update" type="debugDispatcherResult">/project/app/sys/sys0408/Sys0408UpdatePop.jsp</result>
+        <!--SysMenuAuth - Menu Authority Group-->
+        <action class="project.app.sys.sysAdmin.sysMenuAuth.SysMenuAuthAction" method="{1}" name="sysAdmin/sysMenuAuth/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenuAuth/SysMenuAuthList.jsp</result>
         </action>
         <!--Sys9902 - Annoucement-->
         <action class="project.app.sys.sys9902.Sys9902Action" method="{1}" name="9902/*">
@@ -87,10 +84,6 @@
             <result name="list" type="debugDispatcherResult">/project/app/sys/sys9808/Sys9808List.jsp</result>
             <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9808/Sys9808DetailPop.jsp</result>
             <result name="info" type="debugDispatcherResult">/project/app/sys/sys9808/Sys9808InfoPop.jsp</result>
-        </action>
-        <!--SysMenuAuth - Menu Authority Group-->
-        <action class="project.app.sys.sysAdmin.sysMenuAuth.SysMenuAuthAction" method="{1}" name="sysAdmin/sysMenuAuth/*">
-            <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenuAuth/SysMenuAuthList.jsp</result>
         </action>
     </package>
 </struts>
