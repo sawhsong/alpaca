@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import project.common.extend.BaseBiz;
 import project.common.module.datahelper.DataHelper;
+import project.common.module.key.KeyManager;
 import project.conf.resource.ormapper.dao.SysAuthGroup.SysAuthGroupDao;
 import project.conf.resource.ormapper.dao.SysUser.SysUserDao;
 import project.conf.resource.ormapper.dto.oracle.SysUser;
@@ -126,20 +127,46 @@ public class SysUserBizImpl extends BaseBiz implements SysUserBiz {
 		return paramEntity;
 	}
 
+	public ParamEntity doResetPassword(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		String userId = requestDataSet.getValue("userId");
+		int result = -1;
+
+		try {
+			result = sysUserDao.resetPassword(userId);
+			if (result <= 0) {
+				throw new FrameworkException("E801", getMessage("E801", paramEntity));
+			}
+
+			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
 	public ParamEntity exeInsert(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		DataSet fileDataSet = paramEntity.getRequestFileDataSet();
 		HttpSession session = paramEntity.getSession();
 		String defaultFileName = "DefaultUser_128_Black.png";
-		String userId = CommonUtil.uid();
+		String userId = KeyManager.getId("SYS_USER_S");
 		String rootPath = (String)MemoryBean.get("applicationRealPath");
 		String appSrcRootPath = (String)MemoryBean.get("applicationSrcPathWeb");
 		String pathToSave = ConfigUtil.getProperty("path.image.photo");
 		SysUser sysUser = new SysUser();
+		DataSet dsUser;
 		int result = -1;
 		File files[], tempFile;
 
 		try {
+			// Check Dup
+			dsUser = sysUserDao.getUserInfoDataSetByLoginId(requestDataSet.getValue("loginId"));
+			if (dsUser.getRowCnt() > 0) {
+				throw new FrameworkException("E912", getMessage("E912", paramEntity));
+			}
+
 			sysUser.setUserId(userId);
 			sysUser.setUserName(requestDataSet.getValue("userName"));
 			sysUser.setLoginId(requestDataSet.getValue("loginId"));

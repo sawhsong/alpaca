@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys0406InsertPop.js
+ * - SysUserInsertPop.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -17,7 +17,7 @@ $(function() {
 			}
 
 			commonJs.doSaveWithFileForPage({
-				action:"/sys/0406/exeInsert.do"
+				action:"/sys/sysAdmin/sysUser/exeInsert.do"
 			});
 		}
 	});
@@ -29,7 +29,7 @@ $(function() {
 	$("#btnGetAuthenticationSecretKey").click(function(event) {
 		if ("disabled" != $(this).attr("disabled")) {
 			commonJs.doSearch({
-				url:"/sys/0406/getAuthenticationSecretKey.do",
+				url:"/sys/sysAdmin/sysUser/getAuthenticationSecretKey.do",
 				noForm:true,
 				onSuccess:function(result) {
 					var ds = result.dataSet;
@@ -50,7 +50,7 @@ $(function() {
 	 */
 	setAuthorityGroupSelectbox = function() {
 		commonJs.doSearch({
-			url:"/sys/0406/getAuthorityGroup.do",
+			url:"/sys/sysAdmin/sysUser/getAuthorityGroup.do",
 			noForm:true,
 			onSuccess:function(result) {
 				var ds = result.dataSet;

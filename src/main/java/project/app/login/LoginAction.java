@@ -113,15 +113,20 @@ public class LoginAction extends BaseAction {
 		try {
 			biz.exeUpdate(paramEntity);
 
-			paramEntity.setObject("messageCode", paramEntity.getMessageCode());
-			paramEntity.setObject("message", paramEntity.getMessage());
 			if (paramEntity.isSuccess()) {
 				paramEntity.setObject("action", "/login/logout.do");
 				paramEntity.setObject("message", paramEntity.getMessage()+"<br/>"+getMessage("login.message.restart", paramEntity));
 			} else {
 				paramEntity.setObject("script", "history.go(-1);");
 			}
+
+			paramEntity.setObject("messageCode", paramEntity.getMessageCode());
+			paramEntity.setObject("message", paramEntity.getMessage());
 		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+
+			paramEntity.setObject("messageCode", "E000");
+			paramEntity.setObject("message", ex.getMessage());
 			paramEntity.setObject("script", "history.go(-1);");
 		}
 

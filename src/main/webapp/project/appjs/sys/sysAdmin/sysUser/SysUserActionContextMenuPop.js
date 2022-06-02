@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys0406UpdatePop.js
+ * - SysUserUpdatePop.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -47,7 +47,7 @@ $(function() {
 	 */
 	setAuthorityGroupSelectbox = function() {
 		commonJs.doSearch({
-			url:"/sys/0406/getAuthorityGroup.do",
+			url:"/sys/sysAdmin/sysUser/getAuthorityGroup.do",
 			noForm:true,
 			onSuccess:function(result) {
 				var ds = result.dataSet;

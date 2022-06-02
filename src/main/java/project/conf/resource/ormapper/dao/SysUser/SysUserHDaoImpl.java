@@ -12,13 +12,37 @@ import zebra.util.ConfigUtil;
 
 public class SysUserHDaoImpl extends BaseHDao implements SysUserDao {
 	public int insert(Dto dto) throws Exception {
-		return insertWithDto(dto);
+		int result = -1;
+		result = insertWithDto(dto);
+		result = encryptPassword(((SysUser)dto).getUserId());
+		return result;
 	}
 
 	public int update(String userId, Dto dto) throws Exception {
 		QueryAdvisor queryAdvisor = new QueryAdvisor();
 		queryAdvisor.addWhereClause("user_id = '"+userId+"'");
 		return updateColumns(queryAdvisor, dto);
+	}
+
+	public int resetPassword(String userId) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		String resetString = CommonUtil.getRandomAlphanumeric(12);
+		SysUser sysUser = new SysUser();
+		int result = -1;
+
+		sysUser.setLoginPassword(resetString);
+		sysUser.addUpdateColumnFromField();
+
+		queryAdvisor.addWhereClause("user_id = '"+userId+"'");
+
+		result = updateColumns(queryAdvisor, sysUser);
+		result = encryptPassword(userId);
+
+		return result;
+	}
+
+	public int encryptPassword(String userId) throws Exception {
+		return executeSql("update sys_user set login_password = crypto.crypto_enc(login_password) where user_id = '"+userId+"'");
 	}
 
 	public int updateAuthGroupIdByAuthGroupIds(String authGroupIds[], String toCode) throws Exception {
@@ -140,13 +164,17 @@ public class SysUserHDaoImpl extends BaseHDao implements SysUserDao {
 	public int initialisePassword(ParamEntity paramEntity, Dto dto) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		QueryAdvisor queryAdvisor = paramEntity.getQueryAdvisor();
+		int result = -1;
 
 		queryAdvisor.addWhereClause("is_active = 'Y'");
 		queryAdvisor.addWhereClause("user_status = '"+CommonCodeManager.getCodeByConstants("USER_STATUS_NU")+"'");
 		queryAdvisor.addWhereClause("login_id = '"+requestDataSet.getValue("loginId")+"'");
 		queryAdvisor.addWhereClause("email = '"+requestDataSet.getValue("email")+"'");
 
-		return updateColumns(queryAdvisor, dto);
+		result = updateColumns(queryAdvisor, dto);
+//		result = encryptPassword(requestDataSet.getValue("loginId"));
+
+		return result;
 	}
 
 	public SysUser getUserByLoginId(String loginId) throws Exception {

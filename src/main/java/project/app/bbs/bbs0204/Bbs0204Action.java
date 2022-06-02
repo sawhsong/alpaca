@@ -61,14 +61,19 @@ public class Bbs0204Action extends BaseAction {
 			} else {
 				paramEntity.setObject("script", "history.go(-1);");
 			}
+
+			paramEntity.setObject("messageCode", paramEntity.getMessageCode());
+			paramEntity.setObject("message", paramEntity.getMessage());
 		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+
+			paramEntity.setObject("messageCode", "E000");
+			paramEntity.setObject("message", ex.getMessage());
 			paramEntity.setObject("script", "history.go(-1);");
 		} finally {
 			if (CommonUtil.isNotBlank(paramEntity.getRequestDataSet().getValue("articleContents"))) {
 				paramEntity.getRequestDataSet().setValue("articleContents", "");
 			}
-			paramEntity.setObject("messageCode", paramEntity.getMessageCode());
-			paramEntity.setObject("message", paramEntity.getMessage());
 		}
 		return "pageHandler";
 	}
@@ -82,14 +87,19 @@ public class Bbs0204Action extends BaseAction {
 			} else {
 				paramEntity.setObject("script", "history.go(-1);");
 			}
+
+			paramEntity.setObject("messageCode", paramEntity.getMessageCode());
+			paramEntity.setObject("message", paramEntity.getMessage());
 		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+
+			paramEntity.setObject("messageCode", "E000");
+			paramEntity.setObject("message", ex.getMessage());
 			paramEntity.setObject("script", "history.go(-1);");
 		} finally {
 			if (CommonUtil.isNotBlank(paramEntity.getRequestDataSet().getValue("articleContents"))) {
 				paramEntity.getRequestDataSet().setValue("articleContents", "");
 			}
-			paramEntity.setObject("messageCode", paramEntity.getMessageCode());
-			paramEntity.setObject("message", paramEntity.getMessage());
 		}
 		return "pageHandler";
 	}

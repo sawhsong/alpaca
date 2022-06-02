@@ -1,11 +1,19 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys0406UpdatePop.js
+ * - SysUserUpdatePop.js
  *************************************************************************************************/
 $(function() {
 	/*!
 	 * event
 	 */
+	$("#btnResetPassword").click(function(event) {
+		commonJs.doSave({
+			url:"/sys/sysAdmin/sysUser/doResetPassword.do",
+			noForm:true,
+			data:{userId:$("#userId").val()}
+		});
+	});
+
 	$("#btnSave").click(function(event) {
 		var fileValue = $("#photoPath").val();
 
@@ -17,7 +25,7 @@ $(function() {
 			}
 
 			commonJs.doSaveWithFileForPage({
-				action:"/sys/0406/exeUpdate.do"
+				action:"/sys/sysAdmin/sysUser/exeUpdate.do"
 			});
 		}
 	});
@@ -29,7 +37,7 @@ $(function() {
 	$("#btnGetAuthenticationSecretKey").click(function(event) {
 		if ("disabled" != $(this).attr("disabled")) {
 			commonJs.doSearch({
-				url:"/sys/0406/getAuthenticationSecretKey.do",
+				url:"/sys/sysAdmin/sysUser/getAuthenticationSecretKey.do",
 				noForm:true,
 				onSuccess:function(result) {
 					var ds = result.dataSet;
@@ -50,7 +58,7 @@ $(function() {
 	 */
 	setAuthorityGroupSelectbox = function() {
 		commonJs.doSearch({
-			url:"/sys/0406/getAuthorityGroup.do",
+			url:"/sys/sysAdmin/sysUser/getAuthorityGroup.do",
 			noForm:true,
 			onSuccess:function(result) {
 				var ds = result.dataSet;
@@ -69,7 +77,7 @@ $(function() {
 
 	setButtonStatus = function() {
 		commonJs.doSearch({
-			url:"/sys/0406/hasAuthKey.do",
+			url:"/sys/sysAdmin/sysUser/hasAuthKey.do",
 			noForm:true,
 			data:{userId:$("#userId").val()},
 			onSuccess:function(result) {

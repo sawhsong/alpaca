@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys0406DetailPop.js
+ * - SysUserDetailPop.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -32,9 +32,9 @@ $(function() {
 		var params = {};
 
 		if (param.mode == "Update") {
-			action = "/sys/0406/getUpdate.do";
+			action = "/sys/sysAdmin/sysUser/getUpdate.do";
 		} else if (param.mode == "Delete") {
-			action = "/sys/0406/exeDelete.do";
+			action = "/sys/sysAdmin/sysUser/exeDelete.do";
 		}
 
 		if (param.mode == "Update") {

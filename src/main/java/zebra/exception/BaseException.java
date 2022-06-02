@@ -25,6 +25,7 @@ public class BaseException extends Exception {
 	}
 
 	public BaseException(Exception ex) {
+		logger.error(ex.getMessage());
 		if (ex instanceof SQLException) {
 			this.code = CommonUtil.toString(((SQLException)ex).getErrorCode());
 			this.message = CommonUtil.removeString(ex.getMessage(), new String[] {"\n", "\t", "\"", "\'"});
@@ -35,6 +36,7 @@ public class BaseException extends Exception {
 	}
 
 	public BaseException(ParamEntity paramEntity, Exception ex) {
+		logger.error(ex.getMessage());
 		if (ex instanceof UndeclaredThrowableException) {
 			if (((UndeclaredThrowableException)ex).getUndeclaredThrowable().getCause() instanceof SQLException) {
 				this.code = "ORA-"+CommonUtil.toString(((SQLException)((UndeclaredThrowableException)ex).getUndeclaredThrowable().getCause()).getErrorCode());

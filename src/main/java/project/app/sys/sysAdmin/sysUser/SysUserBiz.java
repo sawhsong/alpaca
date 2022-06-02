@@ -14,6 +14,7 @@ public interface SysUserBiz {
 	public ParamEntity getInsert(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getUpdate(ParamEntity paramEntity) throws Exception;
 	public ParamEntity getActionContextMenu(ParamEntity paramEntity) throws Exception;
+	public ParamEntity doResetPassword(ParamEntity paramEntity) throws Exception;
 	public ParamEntity exeInsert(ParamEntity paramEntity) throws Exception;
 	public ParamEntity exeUpdate(ParamEntity paramEntity) throws Exception;
 	public ParamEntity exeDelete(ParamEntity paramEntity) throws Exception;

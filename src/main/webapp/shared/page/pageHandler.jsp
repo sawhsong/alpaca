@@ -17,7 +17,7 @@
 	String action = CommonUtil.nvl((String)paramEntity.getObject("action"));
 	String script = CommonUtil.nvl((String)paramEntity.getObject("script"));
 	String messageCode = CommonUtil.nvl((String)paramEntity.getObject("messageCode"));
-	String message = CommonUtil.nvl((String)paramEntity.getObject("message"));
+	String message = CommonUtil.replace(CommonUtil.nvl((String)paramEntity.getObject("message")), "; ", "<br/>");
 	String target = CommonUtil.nvl((String)paramEntity.getObject("target"));
 
 	String pagehandlerActionType = ConfigUtil.getProperty("pagehandler.actionType");
@@ -49,7 +49,7 @@ $(function() {
 		if ($.nony.isEmpty(messageCode) || messageCode.indexOf("I") != -1) {
 			dialogType = com.message.I000;
 		} else if (messageCode.indexOf("E") != -1) {
-			dialogType = "error";
+			dialogType = "Error";
 		} else {
 			dialogType = com.message.I000;
 		}
@@ -64,6 +64,11 @@ $(function() {
 					draggable:false,
 					modal:true,
 					blind:false,
+					buttons:[{
+						caption:com.caption.ok,
+						callback:function() {
+						}
+					}],
 					oncloseCallback:function() {
 						doProcess();
 					}

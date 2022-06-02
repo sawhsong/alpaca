@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import project.common.extend.BaseBiz;
 import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
 import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
+import project.conf.resource.ormapper.dao.ProjectDummy.ProjectDummyDao;
 import project.conf.resource.ormapper.dao.SysAuthGroup.SysAuthGroupDao;
 import project.conf.resource.ormapper.dao.SysUser.SysUserDao;
 import project.conf.resource.ormapper.dto.oracle.HpOrganisationD;
@@ -19,10 +20,19 @@ import zebra.util.CommonUtil;
 public class DataHelper extends BaseBiz {
 	@SuppressWarnings("unused")
 	private static Logger logger = LogManager.getLogger(DataHelper.class);
+	private static ProjectDummyDao dummyDao;
 	private static SysUserDao sysUserDao;
 	private static SysAuthGroupDao sysAuthGroupDao;
 	private static HpPersonDDao hpPersonDDao;
 	private static HpOrganisationDDao hpOrganisationDDao;
+
+	public static ProjectDummyDao getDummyDao() {
+		return dummyDao;
+	}
+
+	public static void setDummyDao(ProjectDummyDao dummyDao) {
+		DataHelper.dummyDao = dummyDao;
+	}
 
 	public static SysUserDao getSysUserDao() {
 		return sysUserDao;
@@ -55,6 +65,10 @@ public class DataHelper extends BaseBiz {
 	public static void setHpOrganisationDDao(HpOrganisationDDao hpOrganisationDDao) {
 		DataHelper.hpOrganisationDDao = hpOrganisationDDao;
 	}
+
+	/*!
+	 * Dummy
+	 */
 
 	/*!
 	 * SysUser

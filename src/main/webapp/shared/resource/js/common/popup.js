@@ -422,7 +422,7 @@
 				params.dialogContentsWidth = (params.width);
 			}
 
-			params.dialogContentsHeight = $(testElement).outerHeight()+8;
+			params.dialogContentsHeight = $(testElement).outerHeight()+10;
 			$(testElement).remove();
 		},
 		_setEffect : function() {

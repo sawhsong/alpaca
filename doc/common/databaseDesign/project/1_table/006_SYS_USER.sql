@@ -1,8 +1,9 @@
 /**
  * Table Name  : SYS_USER
- * Description : User Info - Use Excel file to initialise data (SYS_USER_1.xlsx, SYS_USER_2.xlsx)
+ * Description : 
  */
 drop table sys_user cascade constraints;
+drop sequence sys_user_s;
 purge recyclebin;
 
 create table sys_user (
@@ -48,6 +49,8 @@ create table sys_user (
     using index tablespace alpaca_idx storage(initial 50k next 50k pctincrease 0)
 )
 pctfree 20 pctused 80 tablespace alpaca_data storage(initial 100k next 100k maxextents 2000 pctincrease 0);
+
+create sequence sys_user_s minvalue 1 maxvalue 999999999999999999999999999 increment by 1 start with 10 nocache noorder nocycle;
 
 comment on table  sys_user                                                       is 'User Info - Use Excel file to initialise data (SYS_USER_1.xlsx, SYS_USER_2.xlsx)';
 comment on column sys_user.user_id                                               is 'User UID (PK)';

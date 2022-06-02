@@ -18,6 +18,10 @@ $(function() {
 	});
 
 	$("#btnDelete").click(function(event) {
+		if ($(this).attr("disabled")) {
+			return;
+		}
+
 		doDelete();
 	});
 
@@ -31,22 +35,6 @@ $(function() {
 
 	$("#icnCheck").click(function(event) {
 		commonJs.toggleCheckboxes("chkForDel");
-	});
-
-	$("#authGroup").change(function() {
-		doSearch();
-	});
-
-	$("#userType").change(function() {
-		doSearch();
-	});
-
-	$("#userStatus").change(function() {
-		doSearch();
-	});
-
-	$("#isActive").change(function() {
-		doSearch();
 	});
 
 	$(document).keypress(function(event) {
@@ -98,7 +86,7 @@ $(function() {
 			commonJs.doSearch({
 				url:"/sys/sysAdmin/sysUser/getList.do",
 				data:{},
-				callback:renderDataGridTable
+				onSuccess:renderDataGridTable
 			});
 		}
 	};
@@ -182,19 +170,19 @@ $(function() {
 			height = 670;
 		} else if (param.mode == "UpdateAuthGroup") {
 			url = "/sys/sysAdmin/sysUser/getActionContextMenu.do";
-			header = sys.sysAdmin.sysUser.caption.auth;
+			header = "Update Authority Group";
 			width = 350; height = 400;
 		} else if (param.mode == "UpdateUserType") {
 			url = "/sys/sysAdmin/sysUser/getActionContextMenu.do";
-			header = sys.sysAdmin.sysUser.caption.type;
+			header = "Update User Type";
 			width = 330; height = 194;
 		} else if (param.mode == "UpdateUserStatus") {
 			url = "/sys/sysAdmin/sysUser/getActionContextMenu.do";
-			header = sys.sysAdmin.sysUser.caption.status;
+			header = "Update User Status";
 			width = 330; height = 238;
 		} else if (param.mode == "UpdateActiveStatus") {
 			url = "/sys/sysAdmin/sysUser/getActionContextMenu.do";
-			header = sys.sysAdmin.sysUser.caption.active;
+			header = "Update Active Status";
 			width = 330; height = 200;
 		}
 
@@ -229,7 +217,7 @@ $(function() {
 
 		commonJs.doDelete({
 			url:"/sys/sysAdmin/sysUser/exeDelete.do",
-			callback:doSearch
+			onSuccess:doSearch
 		});
 	};
 
@@ -333,6 +321,7 @@ $(function() {
 			}
 		});
 
+		commonJs.setEvent("change", [$("#authGroup"), $("#userType"), $("#userStatus"), $("#isActive")], doSearch);
 		setAuthorityGroupSelectbox();
 	});
 });

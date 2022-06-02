@@ -55,11 +55,15 @@ public class MultiDatasourceAction extends BaseAction {
 			} else {
 				paramEntity.setObject("script", "history.go(-1);");
 			}
-		} catch (Exception ex) {
-			paramEntity.setObject("script", "history.go(-1);");
-		} finally {
+
 			paramEntity.setObject("messageCode", paramEntity.getMessageCode());
 			paramEntity.setObject("message", paramEntity.getMessage());
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+
+			paramEntity.setObject("messageCode", "E000");
+			paramEntity.setObject("message", ex.getMessage());
+			paramEntity.setObject("script", "history.go(-1);");
 		}
 
 		return "pageHandler";
@@ -74,11 +78,15 @@ public class MultiDatasourceAction extends BaseAction {
 			} else {
 				paramEntity.setObject("script", "history.go(-1);");
 			}
-		} catch (Exception ex) {
-			paramEntity.setObject("script", "history.go(-1);");
-		} finally {
+
 			paramEntity.setObject("messageCode", paramEntity.getMessageCode());
 			paramEntity.setObject("message", paramEntity.getMessage());
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+
+			paramEntity.setObject("messageCode", "E000");
+			paramEntity.setObject("message", ex.getMessage());
+			paramEntity.setObject("script", "history.go(-1);");
 		}
 
 		return "pageHandler";
