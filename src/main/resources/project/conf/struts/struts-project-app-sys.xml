@@ -29,6 +29,14 @@
         <action class="project.app.sys.sysAdmin.sysMenuAuth.SysMenuAuthAction" method="{1}" name="sysAdmin/sysMenuAuth/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysMenuAuth/SysMenuAuthList.jsp</result>
         </action>
+        <!--SysUser - User-->
+        <action class="project.app.sys.sysAdmin.sysUser.SysUserAction" method="{1}" name="sysAdmin/sysUser/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysUser/SysUserList.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysUser/SysUserDetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysUser/SysUserInsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysUser/SysUserUpdatePop.jsp</result>
+            <result name="actionContextMenu" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysUser/SysUserActionContextMenuPop.jsp</result>
+        </action>
         <!--Sys9902 - Annoucement-->
         <action class="project.app.sys.sys9902.Sys9902Action" method="{1}" name="9902/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sys9902/Sys9902List.jsp</result>
@@ -42,14 +50,6 @@
             <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9904/Sys9904DetailPop.jsp</result>
             <result name="insert" type="debugDispatcherResult">/project/app/sys/sys9904/Sys9904InsertPop.jsp</result>
             <result name="update" type="debugDispatcherResult">/project/app/sys/sys9904/Sys9904UpdatePop.jsp</result>
-        </action>
-        <!--Sys0406 - User-->
-        <action class="project.app.sys.sys0406.Sys0406Action" method="{1}" name="0406/*">
-            <result name="list" type="debugDispatcherResult">/project/app/sys/sys0406/Sys0406List.jsp</result>
-            <result name="detail" type="debugDispatcherResult">/project/app/sys/sys0406/Sys0406DetailPop.jsp</result>
-            <result name="insert" type="debugDispatcherResult">/project/app/sys/sys0406/Sys0406InsertPop.jsp</result>
-            <result name="update" type="debugDispatcherResult">/project/app/sys/sys0406/Sys0406UpdatePop.jsp</result>
-            <result name="actionContextMenu" type="debugDispatcherResult">/project/app/sys/sys0406/Sys0406ActionContextMenuPop.jsp</result>
         </action>
         <!--Sys9802 - Assignment-->
         <action class="project.app.sys.sys9802.Sys9802Action" method="{1}" name="9802/*">

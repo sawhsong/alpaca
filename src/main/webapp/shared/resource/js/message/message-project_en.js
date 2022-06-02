@@ -20,18 +20,6 @@ var login = {
  * Sub System - sys
  */
 var sys = {
-	sys0406:{
-		caption:{
-			auth:"Update Authority Group",
-			type:"Update User Type",
-			status:"Update User Status",
-			active:"Update Active Status"
-		},
-		header:{
-		},
-		message:{
-		}
-	},
 	sys9802:{
 		caption:{
 			unlockPrt:"Unlock PRT",

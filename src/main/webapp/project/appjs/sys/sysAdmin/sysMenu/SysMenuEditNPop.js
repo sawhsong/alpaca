@@ -2,7 +2,7 @@
  * Framework Generated Javascript Source
  * - SysMenuEditPop.js
  *************************************************************************************************/
-jsconfig.put("scrollablePanelHeightAdjust", 24);
+jsconfig.put("scrollablePanelHeightAdjust", 20);
 
 $(function() {
 	/*!
@@ -107,6 +107,7 @@ $(function() {
 		}
 
 		$("#level2").selectpicker({container:"body"}).selectpicker("refresh").selectpicker("setStyle", "btn-default", "remove");
+		commonJs.setSelectpickerValue("level2", menuPath.split("-")[1]);
 	};
 
 	setFieldValue = function() {
@@ -215,11 +216,8 @@ $(function() {
 
 			if (!commonJs.startsWith(menuPath, "QM")) {
 				if (menuLevel == "1") {
-				} else if (menuLevel == "2") {
+				} else {
 					commonJs.setSelectpickerValue("level1", menuPath.split("-")[0]);
-				} else if (menuLevel == "3") {
-					commonJs.setSelectpickerValue("level1", menuPath.split("-")[0]);
-					commonJs.setSelectpickerValue("level2", menuPath.split("-")[1]);
 				}
 
 				$("#menuLevel").trigger("change");
