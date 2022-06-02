@@ -129,7 +129,6 @@ var assignmentId = "";
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight"></div>
 </div>
-<div id="divAdminToolArea"><%@ include file="/project/common/include/bodyAdminToolArea.jsp"%></div>
 <div id="divSearchCriteriaArea"></div>
 <div id="divInformArea"></div>
 <%/************************************************************************************************

@@ -198,7 +198,7 @@ $(function() {
 				var gridTr = new UiGridTr();
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnActionWorkingRightsStatus").setName("icnActionWorkingRightsStatus").addClassName("fa-ellipsis-h fa-lg").addAttribute("workingRightsStatusId:"+ds.getValue(i, "WORKING_RIGHTS_STATUS_ID")).setScript("doActionWorkingRightsStatus(this)");
+				iconAction.setName("icnActionWorkingRightsStatus").setUseFor("action").addAttribute("workingRightsStatusId:"+ds.getValue(i, "WORKING_RIGHTS_STATUS_ID")).setScript("doActionWorkingRightsStatus(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "IS_ACTIVE")));
@@ -256,7 +256,7 @@ $(function() {
 				var gridTr = new UiGridTr();
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnActionScheduledPayrollNoti").setName("icnActionScheduledPayrollNoti").addClassName("fa-ellipsis-h fa-lg").addAttribute("notificationId:"+ds.getValue(i, "NOTIFICATION_ID")).setScript("doActionScheduledPayrollNoti(this)");
+				iconAction.setName("icnActionScheduledPayrollNoti").setUseFor("action").addAttribute("notificationId:"+ds.getValue(i, "NOTIFICATION_ID")).setScript("doActionScheduledPayrollNoti(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "IS_ACTIVE")));

@@ -86,7 +86,7 @@ var personId = "<%=personId%>";
 			</colgroup>
 			<thead>
 				<tr>
-					<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="Select To Send"/></th>
+					<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid" title="Select To Send"/></th>
 					<th class="thGrid">Assignment Number</th>
 					<th class="thGrid">Period Start</th>
 					<th class="thGrid">Period End</th>

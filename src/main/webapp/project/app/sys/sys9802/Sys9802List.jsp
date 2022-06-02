@@ -111,7 +111,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+					<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.asgNumber"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9802.grid.personName"/></th>
 					<th class="thGrid"><mc:msg key="sys9802.grid.hasPrt"/></th>

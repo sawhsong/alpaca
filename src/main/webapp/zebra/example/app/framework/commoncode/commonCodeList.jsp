@@ -89,8 +89,8 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="fwk.commoncode.gridHeader.selectToDelete"/></th>
+				<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid" title="fwk.commoncode.gridHeader.selectToDelete"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.commoncode.gridHeader.codeType"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.commoncode.gridHeader.codeMeaning"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.commoncode.gridHeader.programConstants"/></th>

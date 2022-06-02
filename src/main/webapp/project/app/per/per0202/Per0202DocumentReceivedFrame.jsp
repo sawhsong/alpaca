@@ -102,7 +102,7 @@ var personId = "<%=personId%>";
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
+				<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
 				<th class="thGrid">Document Name</th>
 				<th class="thGrid">Copy To Organisation</th>
 				<th class="thGrid">Description</th>

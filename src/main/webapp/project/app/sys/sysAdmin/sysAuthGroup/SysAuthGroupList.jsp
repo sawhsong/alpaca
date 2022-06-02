@@ -80,8 +80,8 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+				<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid"/></th>
 				<th class="thGrid sortable:alphanumeric">Group Name</th>
 				<th class="thGrid">Description</th>
 				<th class="thGrid">Is Active</th>

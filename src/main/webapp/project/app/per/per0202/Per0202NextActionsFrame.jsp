@@ -102,7 +102,7 @@ var personId = "<%=personId%>";
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
+				<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
 				<th class="thGrid">Assigned To</th>
 				<th class="thGrid">Action Type</th>
 				<th class="thGrid">Person Name</th>

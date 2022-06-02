@@ -78,7 +78,7 @@ var personId = "<%=personId%>";
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
+				<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
 				<th class="thGrid">Opportunity Id</th>
 				<th class="thGrid">Creation Date</th>
 				<th class="thGrid">Status</th>

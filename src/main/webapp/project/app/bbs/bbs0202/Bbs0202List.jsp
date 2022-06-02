@@ -52,7 +52,6 @@
 		</ui:buttonGroup>
 	</div>
 </div>
-<div id="divAdminToolArea"><%@ include file="/project/common/include/bodyAdminToolArea.jsp"%></div>
 <div id="divSearchCriteriaArea" class="areaContainer">
 	<div class="panel panel-default">
 		<div class="panel-body">
@@ -72,10 +71,10 @@
 					<td class="tdDefault">
 						<label for="fromDate" class="lblEn hor"><mc:msg key="bbs0202.search.searchPeriod"/></label>
 						<ui:text name="fromDate" className="Ct hor" style="width:100px" checkName="bbs0202.search.searchDateFrom" option="date"/>
-						<ui:icon id="icnFromDate" className="fa-calendar hor" title="bbs0202.search.searchDateFrom"/>
+						<ui:icon id="icnFromDate" useFor="calendar" className="hor" title="bbs0202.search.searchDateFrom"/>
 						<div class="horGap20" style="padding:6px 8px 6px 0px;">-</div>
 						<ui:text name="toDate" className="Ct hor" style="width:100px" checkName="bbs0202.search.searchDateTo" option="date"/>
-						<ui:icon id="icnToDate" className="fa-calendar hor" title="bbs0202.search.searchDateTo"/>
+						<ui:icon id="icnToDate" useFor="calendar" className="hor" title="bbs0202.search.searchDateTo"/>
 					</td>
 				</tr>
 			</table>

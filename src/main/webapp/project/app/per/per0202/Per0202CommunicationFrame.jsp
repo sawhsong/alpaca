@@ -79,7 +79,7 @@ var personId = "<%=personId%>";
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
+				<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
 				<th class="thGrid sortable:alphanumeric">Contact Type</th>
 				<th class="thGrid sortable:alphanumeric">Activity Type</th>
 				<th class="thGrid">Contact Date</th>

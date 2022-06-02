@@ -98,7 +98,7 @@ $(function() {
 				var uiGridTr = new UiGridTr();
 
 				var uiIcon = new UiIcon();
-				uiIcon.setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("tableName:"+dataSet.getValue(i, "TABLE_NAME")).setScript("doAction(this)");
+				uiIcon.setName("icnAction").setUseFor("action").addAttribute("tableName:"+dataSet.getValue(i, "TABLE_NAME")).setScript("doAction(this)");
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiIcon));
 
 				var uiChk = new UiCheckbox();

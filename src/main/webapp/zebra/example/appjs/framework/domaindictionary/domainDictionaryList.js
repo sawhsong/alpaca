@@ -66,12 +66,11 @@ $(function() {
 				var uiGridTr = new UiGridTr();
 
 				var uiIcon = new UiIcon();
-				uiIcon.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("domainId:"+dataSet.getValue(i, "DOMAIN_ID"))
-					.addAttribute("title:"+com.header.action).setScript("doAction(this)");
+				uiIcon.setName("icnAction").setUseFor("action").addAttribute("domainId:"+dataSet.getValue(i, "DOMAIN_ID")).setScript("doAction(this)");
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiIcon));
 
 				var uiChk = new UiCheckbox();
-				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "DOMAIN_ID"));
+				uiChk.setName("chkForDel").setValue(dataSet.getValue(i, "DOMAIN_ID"));
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
 
 				var uiAnc = new UiAnchor();

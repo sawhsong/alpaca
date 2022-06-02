@@ -131,7 +131,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+					<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid"/></th>
 					<th class="thGrid sortable:numeric">Id</th>
 					<th class="thGrid sortable:alphanumeric">Organisation Name</th>
 					<th class="thGrid">Type</th>

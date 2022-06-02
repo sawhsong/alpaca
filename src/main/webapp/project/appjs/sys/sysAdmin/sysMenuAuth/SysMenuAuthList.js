@@ -17,11 +17,11 @@ $(function() {
 		}
 
 		commonJs.doSave({
-			url:"/sys/0408/exeInsert.do",
+			url:"/sys/sysAdmin/sysMenuAuth/doSave.do",
 			data:{},
-			callback:function() {
+			onSuccess:function() {
 				commonJs.doSimpleProcessForPage({
-					action:"/sys/0408/getList.do"
+					action:"/sys/sysAdmin/sysMenuAuth/getList.do"
 				});
 			}
 		});

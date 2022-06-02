@@ -49,9 +49,7 @@ $(function() {
 				var gridTr = new UiGridTr();
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg")
-				.addAttribute("opportunityId:"+ds.getValue(i, "OPPORTUNITY_ID")).addAttribute("status:"+ds.getValue(i, "STATUS"))
-				.setScript("doAction(this)");
+				iconAction.setName("icnAction").setUseFor("action").addAttribute("opportunityId:"+ds.getValue(i, "OPPORTUNITY_ID")).addAttribute("status:"+ds.getValue(i, "STATUS")).setScript("doAction(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiAnchor().setText(ds.getValue(i, "OPPORTUNITY_ID")).setScript("getDetail('"+ds.getValue(i, "OPPORTUNITY_ID")+"', '"+ds.getValue(i, "STATUS")+"')")));

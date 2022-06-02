@@ -108,8 +108,8 @@
 		</colgroup>
 		<thead>
 			<tr class="noBorderHor">
-				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="fwk.bbs.title.selectToDelete"/></th>
+				<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid" title="fwk.bbs.title.selectToDelete"/></th>
 				<th class="thGrid"><mc:msg key="fwk.bbs.gridHeader.subject"/></th>
 				<th class="thGrid"><mc:msg key="fwk.bbs.gridHeader.file"/></th>
 				<th class="thGrid"><mc:msg key="fwk.bbs.gridHeader.writer"/></th>

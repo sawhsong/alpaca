@@ -72,7 +72,7 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid"/></th>
 				<th class="thGrid">Menu ID</th>
 				<th class="thGrid">Menu Name</th>
 				<th class="thGrid">Description</th>

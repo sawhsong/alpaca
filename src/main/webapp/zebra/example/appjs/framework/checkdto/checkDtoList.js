@@ -85,7 +85,7 @@ $(function() {
 				var className = dataSet.getValue(i, "CLASS_NAME");
 
 				var uiIcon = new UiIcon();
-				uiIcon.setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("tableName:"+tableName).addAttribute("className:"+className).setScript("doAction(this)");
+				uiIcon.setName("icnAction").setUseFor("action").addAttribute("tableName:"+tableName).addAttribute("className:"+className).setScript("doAction(this)");
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiIcon));
 
 				var uiChk = new UiCheckbox();

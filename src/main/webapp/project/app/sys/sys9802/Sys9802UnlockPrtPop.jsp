@@ -83,7 +83,7 @@ var mode = "<%=mode%>";
 		</colgroup>
 		<thead id="tblGridHead">
 			<tr>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid"/></th>
 				<th class="thGrid">Asg Id</th>
 				<th class="thGrid">Assignment Number</th>
 				<th class="thGrid caution">Last Invoiced</th>

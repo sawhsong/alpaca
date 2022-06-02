@@ -107,7 +107,7 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="Select To Kill"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid" title="Select To Kill"/></th>
 				<th class="thGrid sortable:numeric">SID</th>
 				<th class="thGrid sortable:numeric">Serial No</th>
 				<th class="thGrid">SQL Id</th>

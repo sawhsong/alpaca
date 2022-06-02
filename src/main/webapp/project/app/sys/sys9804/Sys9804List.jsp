@@ -138,7 +138,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+					<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9804.grid.id"/></th>
 					<th class="thGrid sortable:alphanumeric"><mc:msg key="sys9804.grid.number"/></th>
 					<th class="thGrid"><mc:msg key="sys9804.grid.groupInvoiceId"/></th>

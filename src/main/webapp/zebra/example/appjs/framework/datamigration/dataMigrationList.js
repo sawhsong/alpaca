@@ -75,7 +75,7 @@ $(function() {
 				var uiGridTr = new UiGridTr();
 
 				var uiChk = new UiCheckbox();
-				uiChk.setId("chkSourceData").setName("chkSourceData").setValue(dataSet.getValue(i, "TABLE_NAME"));
+				uiChk.setName("chkSourceData").setValue(dataSet.getValue(i, "TABLE_NAME"));
 				uiGridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
 
 				var uiAnc = new UiAnchor();

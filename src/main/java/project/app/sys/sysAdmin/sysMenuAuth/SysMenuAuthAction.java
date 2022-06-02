@@ -24,9 +24,9 @@ public class SysMenuAuthAction extends BaseAction {
 		return "list";
 	}
 
-	public String exeInsert() throws Exception {
+	public String doSave() throws Exception {
 		try {
-			biz.exeInsert(paramEntity);
+			biz.doSave(paramEntity);
 			MenuManager.reload();
 		} catch (Exception ex) {
 		}

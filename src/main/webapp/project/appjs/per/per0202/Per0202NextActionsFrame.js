@@ -58,7 +58,7 @@ $(function() {
 				var gridTr = new UiGridTr();
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("nextActionId:"+ds.getValue(i, "NEXT_ACTION_ID")).setScript("doAction(this)");
+				iconAction.setName("icnAction").setUseFor("action").addAttribute("nextActionId:"+ds.getValue(i, "NEXT_ACTION_ID")).setScript("doAction(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ASSIGNED_PERSON_NAME")));

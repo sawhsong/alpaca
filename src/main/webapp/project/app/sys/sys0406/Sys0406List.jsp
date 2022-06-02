@@ -57,7 +57,6 @@
 		</ui:buttonGroup>
 	</div>
 </div>
-<div id="divAdminToolArea"><%@ include file="/project/common/include/bodyAdminToolArea.jsp"%></div>
 <div id="divSearchCriteriaArea" class="areaContainer">
 	<div class="panel panel-default">
 		<div class="panel-body">
@@ -116,8 +115,8 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
+				<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid" title="page.com.selectToDelete"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0406.grid.userName"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0406.grid.loginId"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="sys0406.grid.authGroup"/></th>

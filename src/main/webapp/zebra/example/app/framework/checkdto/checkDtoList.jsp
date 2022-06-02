@@ -94,7 +94,7 @@
 				</colgroup>
 				<thead>
 					<tr>
-						<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
+						<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
 						<th class="thGrid"><i id="icnActionCheck" class="fa fa-check-square-o fa-lg icnEn"></i></th>
 						<th class="thGrid sortable:alphanumeric">Table Name</th>
 						<th class="thGrid sortable:alphanumeric">DTO Name</th>

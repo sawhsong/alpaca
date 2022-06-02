@@ -90,7 +90,7 @@
 			<div class="accordionGroup">
 				<h3 id="hABCNews">ABC News - JustIn
 					<span id="spanHeaderABCNews" style="float:right;">
-						<ui:icon id="icnRefreshABCNews" className="fa-refresh fa-lg" title="Refresh"/>
+						<ui:icon id="icnRefreshABCNews" useFor="refresh" title="Refresh"/>
 					</span>
 				</h3>
 				<div id="divABCNews" class="accordionContents" style="height:360px;">
@@ -107,7 +107,7 @@
 			<div class="accordionGroup">
 				<h3 id="hNotice">Notice
 					<span id="spanHeaderNotice" style="float:right;">
-						<ui:icon id="icnRefreshNotice" className="fa-refresh fa-lg" title="Refresh"/>
+						<ui:icon id="icnRefreshNotice" useFor="refresh" title="Refresh"/>
 					</span>
 				</h3>
 				<div id="divNotice" class="accordionContents">
@@ -125,7 +125,7 @@
 			<div class="accordionGroup">
 				<h3 id="hChart1">Chart1
 					<span id="spanHeaderChart1" style="float:right;">
-						<ui:icon id="icnRefreshChart1" className="fa-refresh fa-lg" title="Refresh"/>
+						<ui:icon id="icnRefreshChart1" useFor="refresh" title="Refresh"/>
 					</span>
 				</h3>
 				<div id="divChart1" class="accordionContents">
@@ -136,7 +136,7 @@
 			<div class="accordionGroup">
 				<h3 id="hNewsComAu">sbs.com.au - news
 					<span id="spanHeaderSbsComAu" style="float:right;">
-						<ui:icon id="icnRefreshSbsComAu" className="fa-refresh fa-lg" title="Refresh"/>
+						<ui:icon id="icnRefreshSbsComAu" useFor="refresh" title="Refresh"/>
 					</span>
 				</h3>
 				<div id="divSbsComAu" class="accordionContents" style="height:360px;">
@@ -153,7 +153,7 @@
 			<div class="accordionGroup">
 				<h3 id="hFreeBoard">Free Board
 					<span id="spanHeaderFreeBoard" style="float:right;">
-						<ui:icon id="icnRefreshFreeBoard" className="fa-refresh fa-lg" title="Refresh"/>
+						<ui:icon id="icnRefreshFreeBoard" useFor="refresh" title="Refresh"/>
 					</span>
 				</h3>
 				<div id="divFreeBoard" class="accordionContents">
@@ -171,7 +171,7 @@
 			<div class="accordionGroup">
 				<h3 id="hChart2">Chart2
 					<span id="spanHeaderChart2" style="float:right;">
-						<ui:icon id="icnRefreshChart2" className="fa-refresh fa-lg" title="Refresh"/>
+						<ui:icon id="icnRefreshChart2" useFor="refresh" title="Refresh"/>
 					</span>
 				</h3>
 				<div id="divChart2" class="accordionContents">

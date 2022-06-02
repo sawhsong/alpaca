@@ -108,8 +108,8 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
-					<th class="thGrid"><ui:icon id="icnRdo" className="fa-dot-circle-o fa-lg" status="display"/></th>
+					<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
+					<th class="thGrid"><ui:icon id="icnRdo" useFor="radioGrid" status="display"/></th>
 					<th class="thGrid sortable:alphanumeric">Assignment Number</th>
 					<th class="thGrid sortable:alphanumeric">Person Name</th>
 					<th class="thGrid">Has PRT</th>

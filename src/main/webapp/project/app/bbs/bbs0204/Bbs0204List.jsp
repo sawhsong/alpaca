@@ -55,7 +55,6 @@
 		</ui:buttonGroup>
 	</div>
 </div>
-<div id="divAdminToolArea"><%@ include file="/project/common/include/bodyAdminToolArea.jsp"%></div>
 <div id="divSearchCriteriaArea" class="areaContainer">
 	<div class="panel panel-default">
 		<div class="panel-body">
@@ -75,10 +74,10 @@
 					<td class="tdDefault">
 						<label for="fromDate" class="lblEn hor"><mc:msg key="bbs0204.search.searchPeriod"/></label>
 						<ui:text name="fromDate" className="Ct hor" style="width:100px" checkName="bbs0204.search.searchDateFrom" option="date"/>
-						<ui:icon id="icnFromDate" className="fa-calendar hor" title="bbs0204.search.searchDateFrom"/>
+						<ui:icon id="icnFromDate" useFor="calendar" className="hor" title="bbs0204.search.searchDateFrom"/>
 						<div class="horGap20" style="padding:6px 8px 6px 0px;">-</div>
 						<ui:text name="toDate" className="Ct hor" style="width:100px" checkName="bbs0204.search.searchDateTo" option="date"/>
-						<ui:icon id="icnToDate" className="fa-calendar hor" title="bbs0204.search.searchDateTo"/>
+						<ui:icon id="icnToDate" useFor="calendar" className="hor" title="bbs0204.search.searchDateTo"/>
 					</td>
 				</tr>
 			</table>
@@ -109,8 +108,8 @@
 		</colgroup>
 		<thead>
 			<tr class="noBorderHor">
-				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
+				<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid"/></th>
 				<th class="thGrid"><mc:msg key="bbs0204.grid.articleSubject"/></th>
 				<th class="thGrid"><mc:msg key="bbs0204.grid.file"/></th>
 				<th class="thGrid"><mc:msg key="bbs0204.grid.writerName"/></th>

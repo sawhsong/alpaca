@@ -100,8 +100,7 @@ $(function() {
 				tdAction.addClassName("Ct");
 				if (isEditable) {
 					var iconAction = new UiIcon();
-					iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("menuId:"+menuId)
-					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
+					iconAction.setName("icnAction").setUseFor("action").addAttribute("menuId:"+menuId).setScript("doAction(this)");
 					tdAction.addChild(iconAction);
 				}
 				gridTr.addChild(tdAction);
@@ -110,7 +109,7 @@ $(function() {
 				tdSelect.addClassName("Ct");
 				if (isEditable) {
 					var uiChk = new UiCheckbox();
-					uiChk.setId("chkForGenerate").setName("chkForGenerate").setValue(menuId).addAttribute("menuName:"+dataSet.getValue(i, "MENU_NAME_"+langCode));
+					uiChk.setName("chkForGenerate").setValue(menuId).addAttribute("menuName:"+dataSet.getValue(i, "MENU_NAME_"+langCode));
 					tdSelect.addChild(uiChk);
 				}
 				gridTr.addChild(tdSelect);

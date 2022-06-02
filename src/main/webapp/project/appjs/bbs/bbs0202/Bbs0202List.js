@@ -84,7 +84,7 @@ $(function() {
 				gridTd.addClassName("Ct");
 				if (dataSet.getValue(i, "FILE_CNT") > 0) {
 					var iconAttachFile = new UiIcon();
-					iconAttachFile.setId("icnAttachedFile").setName("icnAttachedFile").addClassName("glyphicon-paperclip").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID")).setScript("getAttachedFile(this)");
+					iconAttachFile.setName("icnAttachedFile").addClassName("glyphicon-paperclip").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID")).setScript("getAttachedFile(this)");
 					gridTd.addChild(iconAttachFile);
 				}
 				gridTr.addChild(gridTd);

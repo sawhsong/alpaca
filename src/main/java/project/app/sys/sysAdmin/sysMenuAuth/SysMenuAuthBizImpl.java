@@ -49,7 +49,7 @@ public class SysMenuAuthBizImpl extends BaseBiz implements SysMenuAuthBiz {
 		return paramEntity;
 	}
 
-	public ParamEntity exeInsert(ParamEntity paramEntity) throws Exception {
+	public ParamEntity doSave(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		HttpSession session = paramEntity.getSession();
 		String authGroupId = requestDataSet.getValue("authGroup");
@@ -92,7 +92,7 @@ public class SysMenuAuthBizImpl extends BaseBiz implements SysMenuAuthBiz {
 	private void setAuthorityGroup(ParamEntity paramEntity) throws Exception {
 		QueryAdvisor qaAuth = paramEntity.getQueryAdvisor();
 
-		qaAuth.addOrderByClause("group_id");
+		qaAuth.addOrderByClause("group_name");
 		paramEntity.setObject("authGroupDataSet", sysAuthGroupDao.getAllAuthGroupDataSet(qaAuth));
 	}
 }

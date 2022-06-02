@@ -204,7 +204,7 @@ var personId = "<%=personId%>";
 							</colgroup>
 							<thead>
 								<tr>
-									<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
+									<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
 									<th class="thGrid">Active</th>
 									<th class="thGrid">Working Rights</th>
 									<th class="thGrid">Visa Status</th>
@@ -247,7 +247,7 @@ var personId = "<%=personId%>";
 							</colgroup>
 							<thead>
 								<tr>
-									<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
+									<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
 									<th class="thGrid">Active</th>
 									<th class="thGrid">Type</th>
 									<th class="thGrid">Period</th>

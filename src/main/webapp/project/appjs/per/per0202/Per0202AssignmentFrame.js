@@ -582,7 +582,7 @@ $(function() {
 				var gridTr = new UiGridTr();
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnActionForAsgRate").setName("icnActionForAsgRate").addClassName("fa-ellipsis-h fa-lg").addAttribute("assignmentRateId:"+ds.getValue(i, "ASSIGNMENT_RATE_ID")).setScript("doActionForAsgRate(this)");
+				iconAction.setName("icnActionForAsgRate").setUseFor("action").addAttribute("assignmentRateId:"+ds.getValue(i, "ASSIGNMENT_RATE_ID")).setScript("doActionForAsgRate(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(ds.getValue(i, "AMOUNT"), "#,##0.00")));
@@ -674,7 +674,7 @@ $(function() {
 				var gridTr = new UiGridTr();
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnActionForDeliverableRate").setName("icnActionForDeliverableRate").addClassName("fa-ellipsis-h fa-lg").addAttribute("deliverableRateId:"+ds.getValue(i, "ASG_DELIVERABLES_RATES_ID")).setScript("doActionForDeliverableRate(this)");
+				iconAction.setName("icnActionForDeliverableRate").setUseFor("action").addAttribute("deliverableRateId:"+ds.getValue(i, "ASG_DELIVERABLES_RATES_ID")).setScript("doActionForDeliverableRate(this)");
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "ELEMENT_NAME")));

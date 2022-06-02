@@ -108,14 +108,14 @@
 		<thead>
 			<tr class="noBorderHor">
 				<th class="thGrid">
-					<ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="fwk.notice.title.selectToDelete"/>
+					<ui:icon id="icnCheck" useFor="checkGrid" title="fwk.notice.title.selectToDelete"/>
 				</th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.notice.gridHeader.subject"/></th>
 				<th class="thGrid"><mc:msg key="fwk.notice.gridHeader.file"/></th>
 				<th class="thGrid sortable:alphanumeric"><mc:msg key="fwk.notice.gridHeader.writer"/></th>
 				<th class="thGrid sortable:date"><mc:msg key="fwk.notice.gridHeader.createdDate"/></th>
 				<th class="thGrid sortable:numeric"><mc:msg key="fwk.notice.gridHeader.visitCount"/></th>
-				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
+				<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

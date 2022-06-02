@@ -7,10 +7,10 @@
 * Declare objects & variables
 ************************************************************************************************/%>
 <%
-	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
-	DataSet requestDataSet = paramEntity.getRequestDataSet();
-	DataSet resultDataSet = (DataSet)paramEntity.getObject("resultDataSet");
-	DataSet authGroupDataSet = (DataSet)paramEntity.getObject("authGroupDataSet");
+	ParamEntity pe = (ParamEntity)request.getAttribute("paramEntity");
+	DataSet requestDataSet = pe.getRequestDataSet();
+	DataSet resultDataSet = (DataSet)pe.getObject("resultDataSet");
+	DataSet authGroupDataSet = (DataSet)pe.getObject("authGroupDataSet");
 	String langCode = CommonUtil.upperCase((String)session.getAttribute("langCode"));
 	String delimiter = ConfigUtil.getProperty("delimiter.data");
 	String selectedAuthGroup = requestDataSet.getValue("authGroup");
@@ -53,37 +53,27 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnSave" caption="button.com.save" iconClass="fa-save"/>
+			<ui:button id="btnSave" caption="button.com.save"/>
 		</ui:buttonGroup>
 	</div>
 </div>
-<div id="divAdminToolArea"><%@ include file="/project/common/include/bodyAdminToolArea.jsp"%></div>
 <div id="divSearchCriteriaArea" class="areaContainer">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<table class="tblDefault">
-				<tr>
-					<td class="tdDefault">
-						<label for="authGroup" class="lblEn hor mandatory"><mc:msg key="sys0408.search.authGroup"/></label>
-						<div style="float:left;padding-right:4px;">
-							<ui:select name="authGroup" checkName="sys0408.search.authGroup" options="mandatory">
-								<ui:seloption value="" text="==Select=="/>
-<%
-							for (int i=0; i<authGroupDataSet.getRowCnt(); i++) {
-								String selected = CommonUtil.equalsIgnoreCase(selectedAuthGroup, authGroupDataSet.getValue(i, "GROUP_ID")) ? "selected" : "";
-%>
-								<option value="<%=authGroupDataSet.getValue(i, "GROUP_ID")%>" desc="<%=authGroupDataSet.getValue(i, "DESCRIPTION")%>" <%=selected%>><%=authGroupDataSet.getValue(i, "GROUP_NAME")%></option>
-<%
-							}
-%>
-							</ui:select>
-						</div>
-						<ui:text name="authGroupDesc" className="hor" style="font-weight:bold;width:500px" status="display"/>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
+	<table class="tblSearch">
+		<caption><mc:msg key="page.com.searchCriteria"/></caption>
+		<colgroup>
+			<col width="8%"/>
+			<col width="*"/>
+		</colgroup>
+		<tr>
+			<th class="thSearch rt mandatory">Authority Group</th>
+			<td class="tdSearch">
+				<div style="float:left;margin-right:10px;">
+					<%=authGroupDataSet.getAsHtmlStringForSelectbox("GROUP_ID", "GROUP_NAME", selectedAuthGroup, "==Select==", "id:authGroup;name:authGroup;class:bootstrapSelect;options:mandatory", "", "desc:DESCRIPTION")%>
+				</div>
+				<ui:text name="authGroupDesc" className="hor" style="font-weight:bold;width:900px;" status="display"/>
+			</td>
+		</tr>
+	</table>
 </div>
 <div id="divInformArea"></div>
 <%/************************************************************************************************
@@ -108,7 +98,7 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="sys0408.grid.selectToAssign"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid"/></th>
 				<th class="thGrid"><mc:msg key="sys0408.grid.menuId"/></th>
 				<th class="thGrid"><mc:msg key="sys0408.grid.menuName"/></th>
 				<th class="thGrid"><mc:msg key="sys0408.grid.menuUrl"/></th>

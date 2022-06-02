@@ -79,8 +79,8 @@ var personId = "<%=personId%>";
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="page.com.selectToDelete"/></th>
+				<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid" title="page.com.selectToDelete"/></th>
 				<th class="thGrid">Service Provider</th>
 				<th class="thGrid">Referral Date</th>
 				<th class="thGrid">Entity Employee</th>

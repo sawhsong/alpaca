@@ -96,8 +96,8 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon className="fa-magic fa-lg"/></th>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg"/></th>
+				<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid"/></th>
 				<th class="thGrid sortable:alphanumeric">Code Type</th>
 				<th class="thGrid sortable:alphanumeric">Code Meaning</th>
 				<th class="thGrid sortable:alphanumeric">Program Constants</th>

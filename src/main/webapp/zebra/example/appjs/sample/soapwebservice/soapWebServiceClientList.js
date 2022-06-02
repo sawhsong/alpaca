@@ -89,7 +89,7 @@ $(function() {
 				gridTr.setClassName("noBorderHor noStripe");
 
 				var uiChk = new UiCheckbox();
-				uiChk.setId("chkForDel").setName("chkForDel").setValue(dataSet.getValue(i, "ARTICLE_ID"));
+				uiChk.setName("chkForDel").setValue(dataSet.getValue(i, "ARTICLE_ID"));
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(uiChk));
 
 				if (iLevel > 0) {
@@ -110,7 +110,7 @@ $(function() {
 				gridTd.addClassName("Ct");
 				if (dataSet.getValue(i, "FILE_CNT") > 0) {
 					var iconAttachFile = new UiIcon();
-					iconAttachFile.setId("icnAttachedFile").setName("icnAttachedFile").addClassName("glyphicon-paperclip").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
+					iconAttachFile.setName("icnAttachedFile").addClassName("glyphicon-paperclip").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
 						.setScript("getAttachedFile(this)");
 					gridTd.addChild(iconAttachFile);
 				}
@@ -121,7 +121,7 @@ $(function() {
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(dataSet.getValue(i, "VISIT_CNT"), "#,###")));
 
 				var iconAction = new UiIcon();
-				iconAction.setId("icnAction").setName("icnAction").addClassName("fa-ellipsis-h fa-lg").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
+				iconAction.setName("icnAction").setUseFor("action").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
 					.setScript("doAction(this)").addAttribute("title:"+com.header.action);
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(iconAction));
 

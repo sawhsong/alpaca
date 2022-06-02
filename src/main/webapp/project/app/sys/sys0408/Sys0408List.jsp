@@ -57,7 +57,6 @@
 		</ui:buttonGroup>
 	</div>
 </div>
-<div id="divAdminToolArea"><%@ include file="/project/common/include/bodyAdminToolArea.jsp"%></div>
 <div id="divSearchCriteriaArea" class="areaContainer">
 	<div class="panel panel-default">
 		<div class="panel-body">
@@ -108,7 +107,7 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th class="thGrid"><ui:icon id="icnCheck" className="fa-check-square-o fa-lg" title="sys0408.grid.selectToAssign"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid"/></th>
 				<th class="thGrid"><mc:msg key="sys0408.grid.menuId"/></th>
 				<th class="thGrid"><mc:msg key="sys0408.grid.menuName"/></th>
 				<th class="thGrid"><mc:msg key="sys0408.grid.menuUrl"/></th>
