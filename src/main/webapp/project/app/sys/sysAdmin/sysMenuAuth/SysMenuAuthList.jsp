@@ -99,52 +99,18 @@
 		<thead>
 			<tr>
 				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid"/></th>
-				<th class="thGrid"><mc:msg key="sys0408.grid.menuId"/></th>
-				<th class="thGrid"><mc:msg key="sys0408.grid.menuName"/></th>
-				<th class="thGrid"><mc:msg key="sys0408.grid.menuUrl"/></th>
-				<th class="thGrid"><mc:msg key="sys0408.grid.sortOrder"/></th>
-				<th class="thGrid"><mc:msg key="sys0408.grid.menuDesc"/></th>
-				<th class="thGrid"><mc:msg key="sys0408.grid.isActive"/></th>
+				<th class="thGrid">Menu Id</th>
+				<th class="thGrid">Menu Name</th>
+				<th class="thGrid">Menu URL</th>
+				<th class="thGrid">Sort Order</th>
+				<th class="thGrid">Description</th>
+				<th class="thGrid">Is Active</th>
 			</tr>
 		</thead>
-		<tbody>
-<%
-		if (resultDataSet.getRowCnt() > 0) {
-			for (int i=0; i<resultDataSet.getRowCnt(); i++) {
-				String menuPath = resultDataSet.getValue(i, "PATH");
-				String menuId = resultDataSet.getValue(i, "MENU_ID");
-				String menuName = resultDataSet.getValue(i, "MENU_NAME_"+langCode);
-				String groupId = resultDataSet.getValue(i, "GROUP_ID");
-				String space = "", style = "", paramValue = "";
-				int iLevel = CommonUtil.toInt(resultDataSet.getValue(i, "LEVEL")) - 1;
-
-				style = (iLevel == 0 || iLevel == 1) ? "font-weight:bold;" : "";
-
-				for (int j=0; j<iLevel; j++) {
-					space += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-				}
-
-				paramValue = resultDataSet.getValue(i, "LEVEL")+delimiter+menuPath;
-%>
-			<tr class="noBorderHor">
-				<td class="tdGrid Ct"><input type="checkbox" id="chkToAssign" name="chkToAssign" class="inTblGrid chkEn" value="<%=menuId%>" paramValue="<%=paramValue%>" groupId="<%=groupId%>"/></td>
-				<td class="tdGrid" style="<%=style%>"><%=space%><%=menuId%></td>
-				<td class="tdGrid" style="<%=style%>"><%=menuName%></td>
-				<td class="tdGrid"><%=resultDataSet.getValue(i, "MENU_URL")%></td>
-				<td class="tdGrid Ct"><%=resultDataSet.getValue(i, "SORT_ORDER")%></td>
-				<td class="tdGrid"><%=resultDataSet.getValue(i, "DESCRIPTION")%></td>
-				<td class="tdGrid Ct"><%=resultDataSet.getValue(i, "IS_ACTIVE")%></td>
-			</tr>
-<%
-			}
-		} else {
-%>
+		<tbody id="tblGridBody">
 			<tr>
 				<td class="tdGrid Ct" colspan="7"><mc:msg key="I002"/></td>
 			</tr>
-<%
-		}
-%>
 		</tbody>
 	</table>
 </div>

@@ -30,7 +30,6 @@ public class SysMenuAuthBizImpl extends BaseBiz implements SysMenuAuthBiz {
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
 			setAuthorityGroup(paramEntity);
-			paramEntity.setObject("resultDataSet", MemoryBean.get("menuDataSet"));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
@@ -40,8 +39,7 @@ public class SysMenuAuthBizImpl extends BaseBiz implements SysMenuAuthBiz {
 
 	public ParamEntity getList(ParamEntity paramEntity) throws Exception {
 		try {
-			setAuthorityGroup(paramEntity);
-			paramEntity.setObject("resultDataSet", MemoryBean.get("menuDataSet"));
+			paramEntity.setAjaxResponseDataSet((DataSet)MemoryBean.get("menuDataSet"));
 			paramEntity.setSuccess(true);
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);

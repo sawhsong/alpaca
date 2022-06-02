@@ -9,7 +9,7 @@ create table sys_user (
     user_id                         varchar2(30)                                 not null,      -- User UID (PK)
     user_name                       varchar2(50)                                 not null,      -- User name
     login_id                        varchar2(30)                                 not null,      -- Login ID
-    login_password                  varchar2(30)                                 not null,      -- Login password
+    login_password                  varchar2(500)                                not null,      -- Login password
     person_id                       varchar2(30)                                 not null,      -- Person UID ([PERCI.HP_PERSON_D.PERSON_ID])
     auth_group_id                   varchar2(30)        default 'Z'              not null,      -- Authority group code for menu access ([sys_auth_group.auth_id], Default : Z)
     language                        varchar2(30)                                 not null,      -- Language ([sys_common_code.language_type])
