@@ -304,8 +304,8 @@ $(function() {
 			},
 			header:"User Profile Detail",
 			blind:true,
-			width:720,
-			height:380
+			width:750,
+			height:510
 		});
 	};
 

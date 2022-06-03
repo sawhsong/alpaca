@@ -104,24 +104,17 @@ public class LoginAction extends BaseAction {
 		return "userProfile";
 	}
 
-	public String getUpdateUserProfile() throws Exception {
-		biz.getUserProfile(paramEntity);
-		return "updateUserProfile";
-	}
-
 	public String exeUpdate() throws Exception {
 		try {
 			biz.exeUpdate(paramEntity);
 
 			if (paramEntity.isSuccess()) {
+				paramEntity.setObject("messageCode", "I000");
+				paramEntity.setObject("message", paramEntity.getMessage()+"<br/><br/>"+getMessage("login.message.restart", paramEntity));
 				paramEntity.setObject("action", "/login/logout.do");
-				paramEntity.setObject("message", paramEntity.getMessage()+"<br/>"+getMessage("login.message.restart", paramEntity));
 			} else {
 				paramEntity.setObject("script", "history.go(-1);");
 			}
-
-			paramEntity.setObject("messageCode", paramEntity.getMessageCode());
-			paramEntity.setObject("message", paramEntity.getMessage());
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 
