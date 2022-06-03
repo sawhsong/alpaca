@@ -107,7 +107,7 @@
 			</td>
 			<th class="thEdit"><mc:msg key="login.header.password"/></th>
 			<td class="tdEdit">
-				<input type="text" id="loginPassword" name="loginPassword" value="************" class="txtDis" checkName="<mc:msg key="login.header.password"/>" disabled mandatory/>
+				<input type="text" id="loginPassword" name="loginPassword" value="************" class="txtDpl" checkName="<mc:msg key="login.header.password"/>" readonly mandatory/>
 			</td>
 		</tr>
 		<tr>
