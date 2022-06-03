@@ -108,7 +108,7 @@
 			</td>
 			<th class="thEdit"><mc:msg key="login.header.password"/></th>
 			<td class="tdEdit">
-				<input type="text" id="loginPassword" name="loginPassword" value="<%=sysUser.getLoginPassword()%>" class="txtEn" checkName="<mc:msg key="login.header.password"/>" mandatory/>
+				<input type="text" id="loginPassword" name="loginPassword" value="************" class="txtDis" checkName="<mc:msg key="login.header.password"/>" disabled mandatory/>
 			</td>
 		</tr>
 		<tr>

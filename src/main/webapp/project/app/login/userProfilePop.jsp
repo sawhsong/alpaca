@@ -93,7 +93,7 @@ var userId = "<%=sysUser.getUserId()%>";
 			<th class="thEdit"><mc:msg key="login.header.userName"/></th>
 			<td class="tdEdit"><%=sysUser.getUserName()%></td>
 			<th class="thEdit"><mc:msg key="login.header.password"/></th>
-			<td class="tdEdit"><%=sysUser.getLoginPassword()%></td>
+			<td class="tdEdit">************</td>
 		</tr>
 		<tr>
 			<th class="thEdit"><mc:msg key="login.header.language"/></th>
