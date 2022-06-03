@@ -48,9 +48,8 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnSave" caption="button.com.save" iconClass="fa-save"/>
-			<ui:button id="btnBack" caption="button.com.back" iconClass="fa-arrow-left"/>
-			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
+			<ui:button id="btnSave" caption="button.com.save"/>
+			<ui:button id="btnClose" caption="button.com.close"/>
 		</ui:buttonGroup>
 	</div>
 </div>

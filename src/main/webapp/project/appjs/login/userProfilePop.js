@@ -21,11 +21,6 @@ $(function() {
 		}
 	});
 
-	$("#btnBack").click(function(event) {
-		parent.popupUserProfile.resizeTo(0, -124);
-		history.go(-1);
-	});
-
 	$("#btnClose").click(function(event) {
 		parent.popupUserProfile.close();
 	});

@@ -110,7 +110,7 @@ public class LoginAction extends BaseAction {
 
 			if (paramEntity.isSuccess()) {
 				paramEntity.setObject("messageCode", "I000");
-				paramEntity.setObject("message", paramEntity.getMessage()+"<br/><br/>"+getMessage("login.message.restart", paramEntity));
+				paramEntity.setObject("message", paramEntity.getMessage()+"<br/>"+getMessage("login.message.restart", paramEntity));
 				paramEntity.setObject("action", "/login/logout.do");
 			} else {
 				paramEntity.setObject("script", "history.go(-1);");
