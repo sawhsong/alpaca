@@ -57,7 +57,7 @@ $(function() {
 			if (params.mode == "resetPassword") {
 				params = {
 					popupId:"ResetPassword",
-					url:"/login/resetPassword.do",
+					url:"/common/commonFunction/getResetPassword.do",
 					data:{},
 					header:login.header.resetPassword,
 					blind:false,

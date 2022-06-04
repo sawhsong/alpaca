@@ -1,5 +1,5 @@
 /**
- * updateUserProfilePop.js
+ * UserProfilePop.js
  */
 $(function() {
 	/*!
@@ -16,7 +16,7 @@ $(function() {
 			}
 
 			commonJs.doSaveWithFileForPage({
-				action:"/login/exeUpdate.do"
+				action:"/common/commonFunction/doUpdateUserProfile.do"
 			});
 		}
 	});
@@ -28,7 +28,7 @@ $(function() {
 	$("#btnGetAuthenticationSecretKey").click(function(event) {
 		if ("disabled" != $(this).attr("disabled")) {
 			commonJs.doSearch({
-				url:"/login/getAuthenticationSecretKey.do",
+				url:"/common/commonFunction/getAuthenticationSecretKey.do",
 				noForm:true,
 				onSuccess:function(result) {
 					var ds = result.dataSet;
@@ -43,7 +43,7 @@ $(function() {
 	 */
 	setButtonStatus = function() {
 		commonJs.doSearch({
-			url:"/login/hasAuthKey.do",
+			url:"/common/commonFunction/hasAuthKey.do",
 			noForm:true,
 			onSuccess:function(result) {
 				var ds = result.dataSet;

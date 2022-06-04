@@ -16,6 +16,7 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 
 import project.app.login.LoginAction;
+import project.common.module.commonfunction.CommonFunctionAction;
 import zebra.util.CommonUtil;
 import zebra.util.ConfigUtil;
 
@@ -38,8 +39,8 @@ public class LoginInterceptor implements Interceptor {
 		HttpSession session = request.getSession();
 		Map sessionMap = context.getSession();
 		Object action = invocation.getAction();
-		String userId = "", returnValue = "";
-		boolean isAuthenticated;
+		String userId = (String)sessionMap.get("UserId"), returnValue = "";
+		boolean isAuthenticated = CommonUtil.toBoolean(CommonUtil.nvl((String)sessionMap.get("IsAuthenticated"), "false"));
 
 //		for (Iterator iter = context.getContextMap().entrySet().iterator(); iter.hasNext();) {
 //			Entry entry = (Entry)iter.next();
@@ -63,17 +64,33 @@ public class LoginInterceptor implements Interceptor {
 			}
 		}
 
-		if (action instanceof LoginAction) {
-			if (CommonUtil.equalsIgnoreCase(invocation.getProxy().getMethod(), "getUserProfile")) {
-				userId = (String)sessionMap.get("UserId");
-				isAuthenticated = CommonUtil.toBoolean(CommonUtil.nvl((String)sessionMap.get("IsAuthenticated"), "false"));
+//		if (action instanceof LoginAction) {
+//			if (CommonUtil.equalsIgnoreCase(invocation.getProxy().getMethod(), "getUserProfile")) {
+//				userId = (String)sessionMap.get("UserId");
+//				if (CommonUtil.isBlank(userId)) {
+//					returnValue = "checkScreenForLogin";
+//				}
+//			}
+//		} else {
+//			userId = (String)sessionMap.get("UserId");
+//			if (CommonUtil.isBlank(userId)) {
+//				if (isAjaxCall(request)) {
+//					returnValue = "ajaxSessionTimeout";
+//				} else {
+//					returnValue = "checkScreenForLogin";
+//				}
+//			}
+//		}
+
+		if (action instanceof LoginAction || action instanceof CommonFunctionAction) {
+			String method = invocation.getProxy().getMethod();
+
+			if (CommonUtil.isIn(method, "getUserProfile", "getFavoriteMenuList", "getFavoriteMenu")) {
 				if (CommonUtil.isBlank(userId) || !isAuthenticated) {
 					returnValue = "checkScreenForLogin";
 				}
 			}
 		} else {
-			userId = (String)sessionMap.get("UserId");
-			isAuthenticated = CommonUtil.toBoolean(CommonUtil.nvl((String)sessionMap.get("IsAuthenticated"), "false"));
 			if (CommonUtil.isBlank(userId) || !isAuthenticated) {
 				if (isAjaxCall(request)) {
 					returnValue = "ajaxSessionTimeout";

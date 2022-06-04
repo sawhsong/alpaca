@@ -39,6 +39,14 @@
 		<property name="hpOrganisationDDao" ref="hpOrganisationDDao"/>
 	</bean>
 
+	<!--/* Common Function */-->
+	<bean id="commonFunctionAction" name="commonFunctionAction" class="${name.package.project}.common.module.commonfunction.CommonFunctionAction"/>
+	<bean id="commonFunctionBiz" name="commonFunctionBiz" class="${name.package.project}.common.module.commonfunction.CommonFunctionBizImpl" parent="baseBiz"/>
+	<bean id="commonFunctionMessageSender" class="${name.package.project}.common.module.commonfunction.CommonFunctionMessageSender">
+		<property name="javaMailSender" ref="javaMailSender"/>
+		<property name="messageSourceAccessor" ref="messageSourceAccessor"/>
+	</bean>
+
 	<!--/* Feed */-->
 	<bean id="feedAction" name="feedAction" class="${name.package.project}.common.module.feed.FeedAction"/>
 	<bean id="feedBiz" name="feedBiz" class="${name.package.project}.common.module.feed.FeedBizImpl" parent="baseBiz"/>

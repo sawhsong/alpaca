@@ -2,7 +2,6 @@
  * Framework Generated Javascript Source
  * - SysUserList.js
  *************************************************************************************************/
-jsconfig.put("useJqTooltip", false);
 var popup = null;
 var searchResultDataCount = 0;
 var toDateFormat = jsconfig.get("dateFormatJs");
@@ -67,8 +66,8 @@ $(function() {
 
 		$("#btnAction").contextMenu(ctxMenu, {
 			classPrefix:com.constants.ctxClassPrefixButton,
-			effectDuration:300,
-			effect:"slide",
+			effectDuration:100,
+			effect:"fade",
 			borderRadius:"bottom 4px",
 			displayAround:"trigger",
 			position:"bottom",

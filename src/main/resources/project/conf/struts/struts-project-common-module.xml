@@ -9,6 +9,13 @@
 		<action name="autoCompletion/*" class="project.common.module.autocompletion.AutoCompletionAction" method="{1}">
 		</action>
 
+		<!--/* Common Function */-->
+		<action name="commonFunction/*" class="project.common.module.commonfunction.CommonFunctionAction" method="{1}">
+			<result name="userProfile" type="debugDispatcherResult">/project/common/module/commonfunction/UserProfilePop.jsp</result>
+			<result name="resetPassword" type="debugDispatcherResult">/project/common/module/commonfunction/ResetPasswordPop.jsp</result>
+			<result name="favoriteMenu" type="debugDispatcherResult">/project/common/module/commonfunction/FavoriteMenuPop.jsp</result>
+		</action>
+
 		<!--/* Feed */-->
 		<action name="feed/*" class="project.common.module.feed.FeedAction" method="{1}">
 		</action>

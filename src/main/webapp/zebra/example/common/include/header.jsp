@@ -129,7 +129,7 @@ $(function() {
 // 	getMyProfile = function(userId) {
 // 		popupUserProfile = commonJs.openPopup({
 // 			popupId:"UserProfile",
-// 			url:"/login/getUserProfile.do",
+// 			url:"/common/commonFunction/getUserProfile.do",
 // 			data:{
 // 				userId:userId
 // 			},

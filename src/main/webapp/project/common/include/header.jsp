@@ -181,7 +181,7 @@ $(function() {
 						commonJs.warn("Menu item has already been added.");
 					} else {
 						commonJs.doSave({
-							url:"/login/saveFavoriteMenu.do",
+							url:"/common/commonFunction/saveFavoriteMenu.do",
 							noForm:true,
 							data:{menuId:leftMenuId},
 							onSuccess:function(result) {
@@ -198,7 +198,7 @@ $(function() {
 			fun:function() {
 				popupFavoriteMenu = commonJs.openPopup({
 					popupId:"DeleteFavoriteMenu",
-					url:"/login/getFavoriteMenu.do",
+					url:"/common/commonFunction/getFavoriteMenu.do",
 					data:{},
 					header:"Favorite Menu",
 					blind:false,
@@ -298,7 +298,7 @@ $(function() {
 	getMyProfile = function(userId) {
 		popupUserProfile = commonJs.openPopup({
 			popupId:"UserProfile",
-			url:"/login/getUserProfile.do",
+			url:"/common/commonFunction/getUserProfile.do",
 			data:{
 				userId:userId
 			},

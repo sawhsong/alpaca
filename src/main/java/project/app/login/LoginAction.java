@@ -25,11 +25,6 @@ public class LoginAction extends BaseAction {
 		return "loginPage";
 	}
 
-	public String resetPassword() throws Exception {
-		biz.index(paramEntity);
-		return "resetPassword";
-	}
-
 	public String requestRegister() throws Exception {
 		biz.index(paramEntity);
 		return "requestRegister";
@@ -81,15 +76,6 @@ public class LoginAction extends BaseAction {
 		return "ajaxResponse";
 	}
 
-	public String exeResetPassword() throws Exception {
-		try {
-			biz.exeResetPassword(paramEntity);
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
-	}
-
 	public String exeRequestRegister() throws Exception {
 		try {
 			biz.exeRequestRegister(paramEntity);
@@ -97,33 +83,6 @@ public class LoginAction extends BaseAction {
 		}
 		setRequestAttribute("paramEntity", paramEntity);
 		return "ajaxResponse";
-	}
-
-	public String getUserProfile() throws Exception {
-		biz.getUserProfile(paramEntity);
-		return "userProfile";
-	}
-
-	public String exeUpdate() throws Exception {
-		try {
-			biz.exeUpdate(paramEntity);
-
-			if (paramEntity.isSuccess()) {
-				paramEntity.setObject("messageCode", "I000");
-				paramEntity.setObject("message", paramEntity.getMessage()+"<br/>"+getMessage("login.message.restart", paramEntity));
-				paramEntity.setObject("action", "/login/logout.do");
-			} else {
-				paramEntity.setObject("script", "history.go(-1);");
-			}
-		} catch (Exception ex) {
-			logger.error(ex.getMessage());
-
-			paramEntity.setObject("messageCode", "E000");
-			paramEntity.setObject("message", ex.getMessage());
-			paramEntity.setObject("script", "history.go(-1);");
-		}
-
-		return "pageHandler";
 	}
 
 	public String controlAdminTool() throws Exception {
@@ -173,53 +132,6 @@ public class LoginAction extends BaseAction {
 		return "ajaxResponse";
 	}
 
-	public String hasAuthKey() throws Exception {
-		try {
-			biz.hasAuthKey(paramEntity);
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
-	}
-
-	public String getAuthenticationSecretKey() throws Exception {
-		try {
-			biz.getAuthenticationSecretKey(paramEntity);
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
-	}
-
-	public String saveFavoriteMenu() throws Exception {
-		try {
-			biz.saveFavoriteMenu(paramEntity);
-
-			if (paramEntity.isSuccess()) {
-				String userId = (String)session.getAttribute("UserId");
-
-				session.setAttribute("FavoriteMenuDataSet", MenuManager.getFavoriteMenuDataSet(userId));
-			}
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
-	}
-
-	public String getFavoriteMenu() throws Exception {
-		biz.getFavoriteMenu(paramEntity);
-		return "favoriteMenu";
-	}
-
-	public String getFavoriteMenuList() throws Exception {
-		try {
-			biz.getFavoriteMenuList(paramEntity);
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
-	}
-
 	public String logout() throws Exception {
 		session.invalidate();
 		MemoryBean.remove(session.getId());
@@ -229,21 +141,6 @@ public class LoginAction extends BaseAction {
 	public String getAuthentication() throws Exception {
 		biz.index(paramEntity);
 		return "authenticate";
-	}
-
-	public String doDeleteFavoriteMenu() throws Exception {
-		try {
-			biz.doDeleteFavoriteMenu(paramEntity);
-
-			if (paramEntity.isSuccess()) {
-				String userId = (String)session.getAttribute("UserId");
-
-				session.setAttribute("FavoriteMenuDataSet", MenuManager.getFavoriteMenuDataSet(userId));
-			}
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
 	}
 
 	public String doAuthentication() throws Exception {

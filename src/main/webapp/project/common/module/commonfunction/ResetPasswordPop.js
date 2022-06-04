@@ -1,5 +1,5 @@
 /**
- * resetPasswordPop.js
+ * ResetPasswordPop.js
  */
 var popup = null;
 
@@ -30,7 +30,7 @@ $(function() {
 		}
 
 		commonJs.doSimpleProcess({
-			url:"/login/exeResetPassword.do",
+			url:"/common/commonFunction/doResetPassword.do",
 			callback:function(result) {
 				commonJs.openDialog({
 					type:com.message.I000,
