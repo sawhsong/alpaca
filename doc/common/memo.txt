@@ -1,6 +1,0 @@
-/**
- * 2018.09.03
- */
-@ Local Oracle XE
-	# user
-		* sys as sysdba / Password_10 (Office)

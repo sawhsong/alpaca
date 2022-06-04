@@ -1,0 +1,23 @@
+/*
+ * 2022.06.04
+ */
+Creat new menu item
+    commonMenu
+        Bookmarks - favoriteMenu
+        User Profile - my profile
+        Request Register
+        Reset Password <- button function - send email
+            login page
+            user profile
+            user management sys menu
+
+                set login password
+                    LoginBizImpl
+                        exeRequestRegister
+                        exeUpdate
+                    SysUserBizImpl
+                        exeInsert
+                    SysUserHDaoImpl
+                        resetPassword
+
+Keep doing menu code change

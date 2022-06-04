@@ -157,7 +157,7 @@ $(function() {
 			header:com.header.popHeaderEdit,
 			blind:true,
 			width:700,
-			height:380
+			height:384
 		});
 	};
 

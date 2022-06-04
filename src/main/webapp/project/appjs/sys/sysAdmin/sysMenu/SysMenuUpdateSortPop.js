@@ -76,7 +76,7 @@ $(function() {
 			}
 		}
 
-		$("#level2").selectpicker({container:"body"}).selectpicker("refresh");
+		$("#level2").selectpicker({container:"body"}).selectpicker("refresh").selectpicker("setStyle", "btn-default", "remove");
 	};
 
 	refreshDataArea = function() {
