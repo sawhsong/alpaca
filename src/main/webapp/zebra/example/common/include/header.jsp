@@ -24,10 +24,10 @@
 var garbageCollectorPopup = null;
 
 $(function() {
-// 	$("#aLoggedInUser").click(function() {
-// 		$("#divLoggedInUser").addClass("selected");
-// 		$("#divLoggedInUser").trigger("click");
-// 	});
+	$("#aLoggedInUser").click(function() {
+		$("#divLoggedInUser").addClass("selected");
+		$("#divLoggedInUser").trigger("click");
+	});
 
 	$("#aLogoFramework").click(function(event) {
 		$("#hdnHeaderMenuId").val("");
@@ -109,43 +109,43 @@ $(function() {
 		});
 	};
 
-// 	setLoginUserContextMenu = function() {
-<%-- 		ctxMenu.loggedInUser[0].fun = function() {getMyProfile("<%=userId%>");}; --%>
-// 		ctxMenu.loggedInUser[1].fun = function() {logout();};
-// 		$("#divLoggedInUser").contextMenu(ctxMenu.loggedInUser, {
-// 			classPrefix:com.constants.ctxClassPrefixHeader,
-// 			effectDuration:300,
-// 			effect:"slide",
-// 			borderRadius:"bottom 3px",
-// 			displayAround:"trigger",
-// 			position:"bottom",
-// 			verAdjust:0,
-// 			onClose:function() {
-// 				$("#divLoggedInUser").removeClass("selected");
-// 			}
-// 		});
-// 	};
+	setLoginUserContextMenu = function() {
+		ctxMenu.loggedInUser[0].fun = function() {getMyProfile("<%=userId%>");};
+		ctxMenu.loggedInUser[1].fun = function() {logout();};
+		$("#divLoggedInUser").contextMenu(ctxMenu.loggedInUser, {
+			classPrefix:com.constants.ctxClassPrefixHeader,
+			effectDuration:100,
+			effect:"fade",
+			borderRadius:"bottom 3px",
+			displayAround:"trigger",
+			position:"bottom",
+			verAdjust:0,
+			onClose:function() {
+				$("#divLoggedInUser").removeClass("selected");
+			}
+		});
+	};
 
-// 	getMyProfile = function(userId) {
-// 		popupUserProfile = commonJs.openPopup({
-// 			popupId:"UserProfile",
-// 			url:"/common/commonFunction/getUserProfile.do",
-// 			data:{
-// 				userId:userId
-// 			},
-// 			header:"User Profile Detail",
-// 			blind:true,
-// 			width:750,
-// 			height:510
-// 		});
-// 	};
+	getMyProfile = function(userId) {
+		popupUserProfile = commonJs.openPopup({
+			popupId:"UserProfile",
+			url:"/common/commonFunction/getUserProfile.do",
+			data:{
+				userId:userId
+			},
+			header:"User Profile Detail",
+			blind:true,
+			width:750,
+			height:510
+		});
+	};
 
 	logout = function() {
 		commonJs.doSubmit({form:$("form:eq(0)"), action:"/login/logout.do"});
 	};
 
 	$(window).load(function() {
-// 		setLoginUserContextMenu();
+		setLoginUserContextMenu();
 		setThemeSelectorContextMenu();
 	});
 });
