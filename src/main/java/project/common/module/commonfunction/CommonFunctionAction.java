@@ -10,6 +10,18 @@ public class CommonFunctionAction extends BaseAction {
 	private CommonFunctionBiz biz;
 
 	/*!
+	 * Common
+	 */
+	public String getPrivateKey() throws Exception {
+		try {
+			biz.getPrivateKey(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	/*!
 	 * Reset Password
 	 */
 	public String getResetPassword() throws Exception {
@@ -34,24 +46,6 @@ public class CommonFunctionAction extends BaseAction {
 		return "userProfile";
 	}
 
-	public String hasAuthKey() throws Exception {
-		try {
-			biz.hasAuthKey(paramEntity);
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
-	}
-
-	public String getAuthenticationSecretKey() throws Exception {
-		try {
-			biz.getAuthenticationSecretKey(paramEntity);
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
-	}
-
 	public String doUpdateUserProfile() throws Exception {
 		try {
 			biz.doUpdateUserProfile(paramEntity);
@@ -74,8 +68,40 @@ public class CommonFunctionAction extends BaseAction {
 		return "pageHandler";
 	}
 
+	public String hasAuthKey() throws Exception {
+		try {
+			biz.hasAuthKey(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getAuthenticationSecretKey() throws Exception {
+		try {
+			biz.getAuthenticationSecretKey(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
+	public String getChangePassword() throws Exception {
+		biz.getChangePassword(paramEntity);
+		return "changePassword";
+	}
+
+	public String doChangePassword() throws Exception {
+		try {
+			biz.doChangePassword(paramEntity);
+		} catch (Exception ex) {
+		}
+		setRequestAttribute("paramEntity", paramEntity);
+		return "ajaxResponse";
+	}
+
 	/*!
-	 * User Profile
+	 * Favorite Menu - Bookmarks
 	 */
 	public String saveFavoriteMenu() throws Exception {
 		try {

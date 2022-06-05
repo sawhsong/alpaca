@@ -10,7 +10,6 @@
 	ParamEntity pe = (ParamEntity)request.getAttribute("paramEntity");
 	DataSet dsRequest = (DataSet)pe.getRequestDataSet();
 	String loginId = dsRequest.getValue("loginId");
-	String email = dsRequest.getValue("email");
 %>
 <%/************************************************************************************************
 * HTML
@@ -26,17 +25,13 @@
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
-.form-control {padding:6px 12px;}
 .panelHolder {margin:0px auto;width:100%;text-align:center;}
 .panel {margin-top:20px;display:inline-block;width:90%;}
-.panel-body {padding:25px 25px 20px 25px;}
-.addonIcon {width:16px;}
-.input-group {padding-bottom:4px;}
-.buttonDiv {padding-top:18px;padding-bottom:0px;}
+.panel-body {padding:10px 15px 10px 15px;}
 </style>
 <script type="text/javascript" src="<mc:cp key="commonModuleViewPageJsName"/>"></script>
 <script type="text/javascript">
-var loginId = "<%=loginId%>", email = "<%=email%>";
+var loginId = "<%=loginId%>";
 </script>
 </head>
 <%/************************************************************************************************
@@ -47,17 +42,14 @@ var loginId = "<%=loginId%>", email = "<%=email%>";
 <div id="divPopupWindowHolder" class="panelHolder">
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<div class="input-group">
-				<div class="input-group-addon"><ui:icon className="fa-user fa-lg addonIcon" status="display" title="Login Id"/></div>
-				<ui:text name="loginId" value="<%=loginId%>" className="form-control" placeHolder="page.com.loginId" checkName="page.com.loginId" options="mandatory"/>
-			</div>
-			<div class="input-group">
-				<div class="input-group-addon"><ui:icon className="fa-envelope fa-lg addonIcon" status="display" title="Email"/></div>
-				<ui:text name="email" value="<%=email%>" className="form-control" placeHolder="page.com.email" checkName="page.com.email" options="mandatory" option="email"/>
-			</div>
-			<div class="buttonDiv">
-				<ui:button id="btnReset" type="primary" caption="button.com.emailNewPassword" iconClass="fa-send" buttonStyle="padding-top:8px;width:100%;height:40px;font-size:14px;"/>
-			</div>
+			<label for="oldPassword" class="lblEn hor">Old Password</label>
+			<ui:password name="oldPassword" className="hor" checkName="Old Password" options="mandatory"/>
+			<label for="newPassword" class="lblEn hor">New Password</label>
+			<ui:password name="newPassword" className="hor" checkName="New Password" options="mandatory"/>
+			<label for="confirmPassword" class="lblEn hor">Confirm Password</label>
+			<ui:password name="confirmPassword" className="hor" checkName="Confirm Password" options="mandatory"/>
+			<div class="verGap20"></div>
+			<ui:button id="btnSave" type="primary" caption="button.com.save"/>
 		</div>
 	</div>
 </div>

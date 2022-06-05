@@ -2,29 +2,20 @@ package project.common.module.commonfunction;
 
 import java.io.File;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import project.app.login.LoginMessageSender;
 import project.common.extend.BaseBiz;
 import project.common.module.menu.MenuManager;
-import project.conf.resource.ormapper.dao.HpAssignmentsD.HpAssignmentsDDao;
-import project.conf.resource.ormapper.dao.HpBillingCode.HpBillingCodeDao;
-import project.conf.resource.ormapper.dao.HpOrganisationD.HpOrganisationDDao;
-import project.conf.resource.ormapper.dao.HpPaymentMethods.HpPaymentMethodsDao;
-import project.conf.resource.ormapper.dao.HpPersonD.HpPersonDDao;
-import project.conf.resource.ormapper.dao.SysCommonCode.SysCommonCodeDao;
-import project.conf.resource.ormapper.dao.SysCountryCurrency.SysCountryCurrencyDao;
 import project.conf.resource.ormapper.dao.SysFavoriteMenu.SysFavoriteMenuDao;
 import project.conf.resource.ormapper.dao.SysUser.SysUserDao;
 import project.conf.resource.ormapper.dto.oracle.SysFavoriteMenu;
 import project.conf.resource.ormapper.dto.oracle.SysUser;
 import zebra.config.MemoryBean;
+import zebra.crypto.CryptoUtil;
 import zebra.data.DataSet;
 import zebra.data.ParamEntity;
-import zebra.data.QueryAdvisor;
 import zebra.exception.FrameworkException;
 import zebra.util.CommonUtil;
 import zebra.util.ConfigUtil;
@@ -37,6 +28,20 @@ public class CommonFunctionBizImpl extends BaseBiz implements CommonFunctionBiz 
 	private SysFavoriteMenuDao sysFavoriteMenuDao;
 	@Autowired
 	private CommonFunctionMessageSender messageSender;
+
+	public ParamEntity getPrivateKey(ParamEntity paramEntity) throws Exception {
+		DataSet ds = new DataSet();
+
+		try {
+			ds.addColumn("key", CryptoUtil.encodeKey(ConfigUtil.getProperty("etc.crypto.key")));
+
+			paramEntity.setAjaxResponseDataSet(ds);
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
 
 	public ParamEntity getResetPassword(ParamEntity paramEntity) throws Exception {
 		try {
@@ -70,16 +75,15 @@ public class CommonFunctionBizImpl extends BaseBiz implements CommonFunctionBiz 
 			}
 
 			// Initailise the password
-			sysUser.addUpdateColumn("login_password", randomString);
-			result = sysUserDao.initialisePassword(paramEntity, sysUser);
+			result = sysUserDao.resetPasswordByLoginId(loginId, randomString);
 			if (result <= 0) {
-				throw new FrameworkException("E904", getMessage("E904", paramEntity));
+				throw new FrameworkException("E801", getMessage("E801", paramEntity));
 			}
 
 			// Select SysUser
 			sysUser = sysUserDao.getUserByLoginId(loginId);
 
-			messageSender.sendResetPasswordMessage(sysUser);
+			messageSender.sendResetPasswordMessage(sysUser, randomString);
 
 			paramEntity.setSuccess(true);
 			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
@@ -111,39 +115,6 @@ public class CommonFunctionBizImpl extends BaseBiz implements CommonFunctionBiz 
 		return paramEntity;
 	}
 
-	public ParamEntity hasAuthKey(ParamEntity paramEntity) throws Exception {
-		HttpSession session = paramEntity.getSession();
-		DataSet resultDataSet = new DataSet();
-
-		try {
-			SysUser sysUser = (SysUser)session.getAttribute("SysUser");
-
-			resultDataSet.addColumn("hasAuthKey", CommonUtil.isNotBlank(sysUser.getAuthenticationSecretKey()) ? "true" : "false");
-
-			paramEntity.setAjaxResponseDataSet(resultDataSet);
-			paramEntity.setSuccess(true);
-
-			return paramEntity;
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-	}
-
-	public ParamEntity getAuthenticationSecretKey(ParamEntity paramEntity) throws Exception {
-		DataSet resultDataSet = new DataSet();
-
-		try {
-			resultDataSet.addColumn("authenticationSecretKey", CommonUtil.getAuthenticationSecretKey());
-
-			paramEntity.setAjaxResponseDataSet(resultDataSet);
-			paramEntity.setSuccess(true);
-
-			return paramEntity;
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-	}
-
 	public ParamEntity doUpdateUserProfile(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		DataSet dsFile = paramEntity.getRequestFileDataSet();
@@ -161,7 +132,6 @@ public class CommonFunctionBizImpl extends BaseBiz implements CommonFunctionBiz 
 
 			sysUser.setUserName(requestDataSet.getValue("userName"));
 			sysUser.setLoginId(requestDataSet.getValue("loginId"));
-			sysUser.setLoginPassword(requestDataSet.getValue("loginPassword"));
 			sysUser.setLanguage(requestDataSet.getValue("language"));
 			sysUser.setThemeType(requestDataSet.getValue("themeType"));
 			sysUser.setMaxRowPerPage(CommonUtil.toDouble(requestDataSet.getValue("maxRowsPerPage")));
@@ -213,6 +183,89 @@ public class CommonFunctionBizImpl extends BaseBiz implements CommonFunctionBiz 
 
 			paramEntity.setSuccess(true);
 			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity hasAuthKey(ParamEntity paramEntity) throws Exception {
+		HttpSession session = paramEntity.getSession();
+		DataSet resultDataSet = new DataSet();
+
+		try {
+			SysUser sysUser = (SysUser)session.getAttribute("SysUser");
+
+			resultDataSet.addColumn("hasAuthKey", CommonUtil.isNotBlank(sysUser.getAuthenticationSecretKey()) ? "true" : "false");
+
+			paramEntity.setAjaxResponseDataSet(resultDataSet);
+			paramEntity.setSuccess(true);
+
+			return paramEntity;
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+	}
+
+	public ParamEntity getAuthenticationSecretKey(ParamEntity paramEntity) throws Exception {
+		DataSet resultDataSet = new DataSet();
+
+		try {
+			resultDataSet.addColumn("authenticationSecretKey", CommonUtil.getAuthenticationSecretKey());
+
+			paramEntity.setAjaxResponseDataSet(resultDataSet);
+			paramEntity.setSuccess(true);
+
+			return paramEntity;
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+	}
+
+	public ParamEntity getChangePassword(ParamEntity paramEntity) throws Exception {
+		try {
+			paramEntity.setSuccess(true);
+		} catch (Exception ex) {
+			throw new FrameworkException(paramEntity, ex);
+		}
+		return paramEntity;
+	}
+
+	public ParamEntity doChangePassword(ParamEntity paramEntity) throws Exception {
+		DataSet requestDataSet = paramEntity.getRequestDataSet();
+		SysUser sysUser = new SysUser();
+		String loginId = requestDataSet.getValue("loginId");
+		String oldPass = CryptoUtil.decryptInput(requestDataSet.getValue("oldPassword"), CryptoUtil.encodeKey(ConfigUtil.getProperty("etc.crypto.key")));
+		String newPass = CryptoUtil.decryptInput(requestDataSet.getValue("newPassword"), CryptoUtil.encodeKey(ConfigUtil.getProperty("etc.crypto.key")));
+		String confPass = CryptoUtil.decryptInput(requestDataSet.getValue("confirmPassword"), CryptoUtil.encodeKey(ConfigUtil.getProperty("etc.crypto.key")));
+		int result = -1;
+
+		try {
+			// Check if new pass and confirm pass are matching
+			if (!CommonUtil.equals(newPass, confPass)) {
+				throw new FrameworkException("E915", getMessage("E915", paramEntity));
+			}
+
+			// Check with LoginID
+			sysUser = sysUserDao.getUserByLoginId(loginId);
+			if (sysUser == null || CommonUtil.isBlank(sysUser.getUserId())) {
+				throw new FrameworkException("E907", getMessage("E907", paramEntity));
+			}
+
+			// Check with LoginID and Password
+			sysUser = sysUserDao.getUserByLoginIdAndPassword(loginId, oldPass);
+			if (sysUser == null || CommonUtil.isBlank(sysUser.getUserId())) {
+				throw new FrameworkException("E908", getMessage("E908", paramEntity));
+			}
+
+			// Change password
+			result = sysUserDao.changePasswordByLoginId(loginId, confPass);
+			if (result <= 0) {
+				throw new FrameworkException("E801", getMessage("E801", paramEntity));
+			}
+
+			paramEntity.setSuccess(true);
+			paramEntity.setMessage("I804", getMessage("I804", paramEntity));
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}

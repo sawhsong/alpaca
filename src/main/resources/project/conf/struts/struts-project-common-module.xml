@@ -11,8 +11,9 @@
 
 		<!--/* Common Function */-->
 		<action name="commonFunction/*" class="project.common.module.commonfunction.CommonFunctionAction" method="{1}">
-			<result name="userProfile" type="debugDispatcherResult">/project/common/module/commonfunction/UserProfilePop.jsp</result>
 			<result name="resetPassword" type="debugDispatcherResult">/project/common/module/commonfunction/ResetPasswordPop.jsp</result>
+			<result name="userProfile" type="debugDispatcherResult">/project/common/module/commonfunction/UserProfilePop.jsp</result>
+			<result name="changePassword" type="debugDispatcherResult">/project/common/module/commonfunction/ChangePasswordPop.jsp</result>
 			<result name="favoriteMenu" type="debugDispatcherResult">/project/common/module/commonfunction/FavoriteMenuPop.jsp</result>
 		</action>
 

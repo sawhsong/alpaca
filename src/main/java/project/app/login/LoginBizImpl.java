@@ -96,20 +96,6 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 		return paramEntity;
 	}
 
-	public ParamEntity getPrivateKey(ParamEntity paramEntity) throws Exception {
-		DataSet ds = new DataSet();
-
-		try {
-			ds.addColumn("key", CryptoUtil.encodeKey(ConfigUtil.getProperty("etc.crypto.key")));
-
-			paramEntity.setAjaxResponseDataSet(ds);
-			paramEntity.setSuccess(true);
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
-
 	public ParamEntity exeLogin(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		SysUser sysUser = new SysUser();

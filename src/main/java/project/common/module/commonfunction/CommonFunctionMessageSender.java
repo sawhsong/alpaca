@@ -13,7 +13,7 @@ import zebra.util.ConfigUtil;
 
 @SuppressWarnings("rawtypes")
 public class CommonFunctionMessageSender extends AbstractMessageSender implements ApplicationListener {
-	public void sendResetPasswordMessage(SysUser sysUser) throws Exception {
+	public void sendResetPasswordMessage(SysUser sysUser, String randomString) throws Exception {
 		String defaultEncoding = ConfigUtil.getProperty("mail.default.encoding");
 		String subject = "Password Reset Notice";
 		String userName = sysUser.getUserName();
@@ -31,7 +31,7 @@ public class CommonFunctionMessageSender extends AbstractMessageSender implement
 			sb.append("<html><head></head><body>");
 			sb.append("Password Reset Notice for "+userName+"<br/><br/>");
 			sb.append("Login ID : "+sysUser.getLoginId()+"<br/>");
-			sb.append("Password : "+sysUser.getLoginPassword()+"<br/>");
+			sb.append("Password : "+randomString+"<br/>");
 			sb.append("</body></html>");
 
 			mimeMessageHelper.setText(sb.toString(), sb.toString());

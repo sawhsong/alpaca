@@ -133,7 +133,7 @@ public class SysUserBizImpl extends BaseBiz implements SysUserBiz {
 		int result = -1;
 
 		try {
-			result = sysUserDao.resetPassword(userId);
+//			result = sysUserDao.resetPasswordByLoginId(userId);
 			if (result <= 0) {
 				throw new FrameworkException("E801", getMessage("E801", paramEntity));
 			}

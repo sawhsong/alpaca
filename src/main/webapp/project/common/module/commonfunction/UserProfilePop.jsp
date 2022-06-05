@@ -12,6 +12,9 @@
 	SysUser sysUser = (SysUser)pe.getObject("sysUser");
 	String maxRowPerPage[] = (String[])pe.getObject("maxRowPerPage");
 	String pageNumPerPage[] = (String[])pe.getObject("pageNumPerPage");
+
+	pageContext.setAttribute("maxRowPerPage", maxRowPerPage);
+	pageContext.setAttribute("pageNumPerPage", pageNumPerPage);
 %>
 <%/************************************************************************************************
 * HTML
@@ -48,6 +51,8 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
+			<ui:button id="btnChangePassword" caption="Change Password" iconClass="fa-key"/>
+			<ui:button id="btnResetPassword" caption="Reset Password" iconClass="fa-key"/>
 			<ui:button id="btnSave" caption="button.com.save"/>
 			<ui:button id="btnClose" caption="button.com.close"/>
 		</ui:buttonGroup>
@@ -71,7 +76,7 @@
 			<table class="tblDefault">
 				<tr>
 					<td class="tdDefaultCt">
-						<img id="img<%=sysUser.getUserId()%>" src="<%=sysUser.getPhotoPath()%>" class="imgDis" style="width:90px;height:90px;" title="<%=sysUser.getUserName()%>"/>
+						<img id="img<%=sysUser.getUserId()%>" src="<%=sysUser.getPhotoPath()%>" class="imgDis" style="width:100px;height:90px;" title="<%=sysUser.getUserName()%>"/>
 					</td>
 				</tr>
 			</table>
@@ -85,43 +90,29 @@
 			<col width="28%"/>
 		</colgroup>
 		<tr>
-			<th class="thEdit"><mc:msg key="login.header.changePhoto"/></th>
-			<td class="tdEdit" colspan="3">
-				<input type="file" id="filePhotoPath" name="filePhotoPath" class="file" value="" style="width:540px;" checkName="<mc:msg key="login.header.changePhoto"/>"/>
-			</td>
+			<th class="thEdit rt">Change Photo</th>
+			<td class="tdEdit" colspan="3"><ui:file name="filePhotoPath" style="width:540px;" checkName="Change Photo"/></td>
 		</tr>
 		<tr>
-			<th class="thEdit"><mc:msg key="login.header.userId"/></th>
-			<td class="tdEdit">
-				<input type="text" id="userId" name="userId" value="<%=sysUser.getUserId()%>" class="txtDpl" readonly/>
-			</td>
-			<th class="thEdit"><mc:msg key="login.header.loginId"/></th>
-			<td class="tdEdit">
-				<input type="text" id="loginId" name="loginId" value="<%=sysUser.getLoginId()%>" class="txtEn" checkName="<mc:msg key="login.header.loginId"/>" mandatory/>
-			</td>
+			<th class="thEdit rt">User Id</th>
+			<td class="tdEdit"><ui:text name="userId" value="<%=sysUser.getUserId()%>" status="display"/></td>
+			<th class="thEdit rt">Login Id</th>
+			<td class="tdEdit"><ui:text name="loginId" value="<%=sysUser.getLoginId()%>" checkName="Login Id" options="mandatory"/></td>
 		</tr>
 		<tr>
-			<th class="thEdit"><mc:msg key="login.header.userName"/></th>
-			<td class="tdEdit">
-				<input type="text" id="userName" name="userName" value="<%=sysUser.getUserName()%>" class="txtEn" checkName="<mc:msg key="login.header.userName"/>" mandatory/>
-			</td>
-			<th class="thEdit"><mc:msg key="login.header.password"/></th>
-			<td class="tdEdit">
-				<input type="text" id="loginPassword" name="loginPassword" value="************" class="txtDpl" checkName="<mc:msg key="login.header.password"/>" readonly mandatory/>
-			</td>
+			<th class="thEdit rt">User Name</th>
+			<td class="tdEdit"><ui:text name="userName" value="<%=sysUser.getUserName()%>" checkName="User Name" options="mandatory"/></td>
+			<th class="thEdit rt">Password</th>
+			<td class="tdEdit"><ui:password name="loginPassword" value="************" status="display"/></td>
 		</tr>
 		<tr>
-			<th class="thEdit"><mc:msg key="login.header.language"/></th>
-			<td class="tdEdit">
-				<ui:ccselect name="language" codeType="LANGUAGE_TYPE" options="mandatory" selectedValue="<%=sysUser.getLanguage()%>"/>
-			</td>
-			<th class="thEdit"><mc:msg key="login.header.themeType"/></th>
-			<td class="tdEdit">
-				<ui:ccselect name="themeType" codeType="USER_THEME_TYPE" options="mandatory" selectedValue="<%=sysUser.getThemeType()%>"/>
-			</td>
+			<th class="thEdit rt">Language</th>
+			<td class="tdEdit"><ui:ccselect name="language" selectedValue="<%=sysUser.getLanguage()%>" codeType="LANGUAGE_TYPE" options="mandatory"/></td>
+			<th class="thEdit rt">Theme Type</th>
+			<td class="tdEdit"><ui:ccselect name="themeType" selectedValue="<%=sysUser.getThemeType()%>" codeType="USER_THEME_TYPE" options="mandatory"/></td>
 		</tr>
 		<tr>
-			<th class="thEdit"><mc:msg key="login.header.maxRowsPerPage"/></th>
+			<th class="thEdit rt">Data Rows Per Page</th>
 			<td class="tdEdit">
 				<select id="maxRowsPerPage" name="maxRowsPerPage" class="bootstrapSelect">
 <%
@@ -134,7 +125,7 @@
 %>
 				</select>
 			</td>
-			<th class="thEdit"><mc:msg key="login.header.pageNumsPerPage"/></th>
+			<th class="thEdit rt">Page Count Per Page</th>
 			<td class="tdEdit">
 				<select id="pageNumsPerPage" name="pageNumsPerPage" class="bootstrapSelect">
 <%
@@ -149,17 +140,15 @@
 			</td>
 		</tr>
 		<tr>
-			<th class="thEdit">Authentication Key</th>
+			<th class="thEdit rt">Authentication Key</th>
 			<td class="tdEdit" colspan="3">
 				<ui:text name="authenticationSecretKey" value="<%=sysUser.getAuthenticationSecretKey()%>" checkName="Authentication Key" className="hor" style="width:77%;"/>
 				<ui:button id="btnGetAuthenticationSecretKey" caption="Generate Key" iconClass="fa-key"/>
 			</td>
 		</tr>
 		<tr>
-			<th class="thEdit"><mc:msg key="login.header.email"/></th>
-			<td class="tdEdit" colspan="3">
-				<input type="text" id="email" name="email" value="<%=sysUser.getEmail()%>" class="txtEn" checkName="<mc:msg key="login.header.email"/>" mandatory option="email"/>
-			</td>
+			<th class="thEdit rt">Email</th>
+			<td class="tdEdit" colspan="3"><ui:text name="email" value="<%=sysUser.getEmail()%>" checkName="Email" options="mandatory" option="email"/></td>
 		</tr>
 	</table>
 </div>

@@ -112,6 +112,7 @@ var com = {
 		I801:"Job has been successfully completed.",
 		I802:"Job is in processing.",
 		I803:"You do not have permissions to access the item.",
+		I804:"Password has successfully changed.<br/>Application will be restarting.",
 
 		I901:"File object does not exist.",
 		I902:"There is no data selected.",

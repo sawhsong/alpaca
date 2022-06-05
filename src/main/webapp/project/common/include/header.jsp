@@ -9,7 +9,6 @@
 	SysUser sysUserHeaderPage = (SysUser)session.getAttribute("SysUser");
 	String authGroupIdHeaderPage = sysUserHeaderPage.getAuthGroupId();
 	String defaultStartUrlHeaderPage = sysUserHeaderPage.getDefaultStartUrl();
-
 	String userNameHeaderPage = sysUserHeaderPage.getUserName();
 	String userIdHeaderPage = sysUserHeaderPage.getUserId();
 	String languageCodeHeaderPage = CommonUtil.upperCase((String)session.getAttribute("langCode"));
@@ -377,7 +376,7 @@ $(function() {
 					<a id="aThemeSelector">${sessionScope.themeName}</a>
 				</div>
 <%
-				if (CommonUtil.equals(userIdHeaderPage, "0") || CommonUtil.equals(userIdHeaderPage, "1")) {
+				if (CommonUtil.equals(userIdHeaderPage, "0")) {
 %>
 				<div class="divGblMenuBreak"></div>
 				<div id="divFrameworkMenu" class="headerGblMenus">

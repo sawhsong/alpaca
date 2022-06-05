@@ -87,7 +87,11 @@ public class LoginInterceptor implements Interceptor {
 
 			if (CommonUtil.isIn(method, "getUserProfile", "getFavoriteMenuList", "getFavoriteMenu")) {
 				if (CommonUtil.isBlank(userId) || !isAuthenticated) {
-					returnValue = "checkScreenForLogin";
+					if (isAjaxCall(request)) {
+						returnValue = "ajaxSessionTimeout";
+					} else {
+						returnValue = "checkScreenForLogin";
+					}
 				}
 			}
 		} else {

@@ -31,7 +31,7 @@ $(function() {
 
 		commonJs.doSimpleProcess({
 			url:"/common/commonFunction/doResetPassword.do",
-			callback:function(result) {
+			onSuccess:function(result) {
 				commonJs.openDialog({
 					type:com.message.I000,
 					contents:result.message,

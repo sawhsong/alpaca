@@ -40,7 +40,7 @@ $(function() {
 			}
 
 			commonJs.doSimpleProcess({
-				url:"/login/getPrivateKey.do",
+				url:"/common/commonFunction/getPrivateKey.do",
 				noForm:true,
 				onSuccess:function(result) {
 					var dataSet = result.dataSet, key = dataSet.getValue(0, "key"), parsedKey = CryptoJS.enc.Base64.parse(key), encPass = "";
@@ -59,7 +59,7 @@ $(function() {
 					popupId:"ResetPassword",
 					url:"/common/commonFunction/getResetPassword.do",
 					data:{},
-					header:login.header.resetPassword,
+					header:"Reset Password",
 					blind:false,
 					draggable:false,
 					width:400,
