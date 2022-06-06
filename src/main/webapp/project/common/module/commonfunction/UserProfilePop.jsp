@@ -51,8 +51,8 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnChangePassword" caption="Change Password" iconClass="fa-key"/>
-			<ui:button id="btnResetPassword" caption="Reset Password" iconClass="fa-key"/>
+			<ui:button id="btnChangePassword" caption="Change Password" iconClass="fa-lock fa-lg"/>
+			<ui:button id="btnResetPassword" caption="Reset Password" iconClass="fa-lock fa-lg"/>
 			<ui:button id="btnSave" caption="button.com.save"/>
 			<ui:button id="btnClose" caption="button.com.close"/>
 		</ui:buttonGroup>

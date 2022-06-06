@@ -12,8 +12,8 @@ import zebra.util.ConfigUtil;
 public class SysUserHDaoImpl extends BaseHDao implements SysUserDao {
 	public int insert(Dto dto) throws Exception {
 		int result = -1;
-		result = insertWithDto(dto);
-		result = encryptPassword(((SysUser)dto).getUserId());
+		result = insertWithSQLQuery(dto);
+		result = encryptPasswordByUserId(((SysUser)dto).getUserId());
 		return result;
 	}
 
@@ -38,7 +38,7 @@ public class SysUserHDaoImpl extends BaseHDao implements SysUserDao {
 		queryAdvisor.addWhereClause("login_id = '"+loginId+"'");
 
 		result = updateColumns(queryAdvisor, sysUser);
-		result = encryptPassword(loginId);
+		result = encryptPasswordByLoginId(loginId);
 
 		return result;
 	}
@@ -56,13 +56,9 @@ public class SysUserHDaoImpl extends BaseHDao implements SysUserDao {
 		queryAdvisor.addWhereClause("login_id = '"+loginId+"'");
 
 		result = updateColumns(queryAdvisor, sysUser);
-		result = encryptPassword(loginId);
+		result = encryptPasswordByLoginId(loginId);
 
 		return result;
-	}
-
-	public int encryptPassword(String loginId) throws Exception {
-		return executeSql("update sys_user set login_password = crypto.crypto_enc(login_password) where login_id = '"+loginId+"'");
 	}
 
 	public int updateAuthGroupIdByAuthGroupIds(String authGroupIds[], String toCode) throws Exception {
@@ -210,5 +206,30 @@ public class SysUserHDaoImpl extends BaseHDao implements SysUserDao {
 		}
 
 		return (SysUser)selectAllToDto(queryAdvisor, new SysUser());
+	}
+
+	public SysUser getActiveUserByLoginIdAndPassword(String loginId, String password) throws Exception {
+		QueryAdvisor queryAdvisor = new QueryAdvisor();
+		boolean useDBCrypto = CommonUtil.toBoolean(ConfigUtil.getProperty("login.useDBCrypto"));
+
+		queryAdvisor.addWhereClause("login_id = '"+loginId+"'");
+		queryAdvisor.addWhereClause("user_status = '"+CommonCodeManager.getCodeByConstants("USER_STATUS_NU")+"'");
+		queryAdvisor.addWhereClause("is_active = '"+CommonCodeManager.getCodeByConstants("IS_ACTIVE_Y")+"'");
+
+		if (useDBCrypto) {
+			queryAdvisor.addWhereClause("login_password = crypto.crypto_enc('"+password+"')");
+		} else {
+			queryAdvisor.addWhereClause("login_password = '"+password+"'");
+		}
+
+		return (SysUser)selectAllToDto(queryAdvisor, new SysUser());
+	}
+
+	private int encryptPasswordByLoginId(String loginId) throws Exception {
+		return executeSql("update sys_user set login_password = crypto.crypto_enc(login_password) where login_id = '"+loginId+"'");
+	}
+
+	private int encryptPasswordByUserId(String userId) throws Exception {
+		return executeSql("update sys_user set login_password = crypto.crypto_enc(login_password) where user_id = '"+userId+"'");
 	}
 }

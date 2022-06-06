@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import de.taimos.totp.TOTP;
 import project.common.extend.BaseBiz;
 import project.common.module.commoncode.CommonCodeManager;
+import project.common.module.key.KeyManager;
 import project.conf.resource.ormapper.dao.SysUser.SysUserDao;
 import project.conf.resource.ormapper.dto.oracle.SysUser;
 import zebra.crypto.CryptoUtil;
@@ -44,27 +45,32 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 	public ParamEntity exeRequestRegister(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		SysUser sysUser = new SysUser();
-		String uid = CommonUtil.uid();
 		String loginId = requestDataSet.getValue("loginId");
-		String password = requestDataSet.getValue("password");
 		String email = requestDataSet.getValue("email");
 		String isSendEmail = CommonUtil.nvl(requestDataSet.getValue("sendEmail"), "N");
 		String photoPathName = ConfigUtil.getProperty("path.image.photo")+"/"+"DefaultUser_128_Black.png";
+		String pass = CryptoUtil.decryptInput(requestDataSet.getValue("password"), CryptoUtil.encodeKey(ConfigUtil.getProperty("etc.crypto.key")));
+		String confPass = CryptoUtil.decryptInput(requestDataSet.getValue("passwordConfirm"), CryptoUtil.encodeKey(ConfigUtil.getProperty("etc.crypto.key")));
 		int result = -1;
 
 		try {
+			// Check if pass and confirm pass are matching
+			if (!CommonUtil.equals(pass, confPass)) {
+				throw new FrameworkException("E915", getMessage("E915", paramEntity));
+			}
+
 			// Check if the user already exists with the login id and password
-			sysUser = sysUserDao.getUserByLoginIdAndPassword(loginId, password);
+			sysUser = sysUserDao.getUserByLoginIdAndPassword(loginId, pass);
 			if (!(sysUser == null || CommonUtil.isEmpty(sysUser.getUserId()))) {
 				throw new FrameworkException("E912", getMessage("E912", paramEntity));
 			}
 
 			// Sets SysUser object and save it
 			sysUser = new SysUser();
-			sysUser.setUserId(uid);
+			sysUser.setUserId(KeyManager.getId("SYS_USER_S"));
 			sysUser.setUserName(requestDataSet.getValue("userName"));
 			sysUser.setLoginId(requestDataSet.getValue("loginId"));
-			sysUser.setLoginPassword(requestDataSet.getValue("password"));
+			sysUser.setLoginPassword(pass);
 			sysUser.setAuthGroupId("Z");
 			sysUser.setLanguage(ConfigUtil.getProperty("etc.default.language"));
 			sysUser.setThemeType(ConfigUtil.getProperty("view.theme.default"));
@@ -74,9 +80,12 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 			sysUser.setEmail(email);
 			sysUser.setUserStatus(CommonCodeManager.getCodeByConstants("USER_STATUS_RR"));
 			sysUser.setPhotoPath(photoPathName);
+			sysUser.setDefaultStartUrl("/index/dashboard.do");
 			sysUser.setIsActive(CommonCodeManager.getCodeByConstants("IS_ACTIVE_N"));
 			sysUser.setAuthenticationSecretKey(CommonUtil.getAuthenticationSecretKey());
+			sysUser.setPersonId("0");
 			sysUser.setInsertUserId("0");
+			sysUser.setInsertDate(CommonUtil.getSysdateAsDate());
 
 			result = sysUserDao.insert(sysUser);
 			if (result <= 0) {
@@ -115,6 +124,12 @@ public class LoginBizImpl extends BaseBiz implements LoginBiz {
 			sysUser = sysUserDao.getUserByLoginIdAndPassword(loginId, CryptoUtil.decryptInput(password, CryptoUtil.encodeKey(ConfigUtil.getProperty("etc.crypto.key"))));
 			if (sysUser == null || CommonUtil.isBlank(sysUser.getUserId())) {
 				throw new FrameworkException("E908", getMessage("E908", paramEntity));
+			}
+
+			// Check if isActive with LoginID and Password
+			sysUser = sysUserDao.getActiveUserByLoginIdAndPassword(loginId, CryptoUtil.decryptInput(password, CryptoUtil.encodeKey(ConfigUtil.getProperty("etc.crypto.key"))));
+			if (sysUser == null || CommonUtil.isBlank(sysUser.getUserId())) {
+				throw new FrameworkException("E916", getMessage("E916", paramEntity));
 			}
 
 			paramEntity.setObject("sysUser", sysUser);

@@ -6,11 +6,34 @@ $(function() {
 	/*!
 	 * event
 	 */
+	$("#btnChangePassword").click(function(event) {
+		popup = commonJs.openPopup( {
+			popupId:"ChangePassword",
+			url:"/common/commonFunction/getChangePassword.do",
+			data:{
+				loginId:$("#loginId").val()
+			},
+			header:"Change Password",
+			blind:false,
+			draggable:false,
+			width:350,
+			height:324
+		});
+	});
+
 	$("#btnResetPassword").click(function(event) {
-		commonJs.doSave({
-			url:"/sys/sysAdmin/sysUser/doResetPassword.do",
-			noForm:true,
-			data:{userId:$("#userId").val()}
+		popup = commonJs.openPopup( {
+			popupId:"ResetPassword",
+			url:"/common/commonFunction/getResetPassword.do",
+			data:{
+				loginId:$("#loginId").val(),
+				email:$("#email").val()
+			},
+			header:"Reset Password",
+			blind:false,
+			draggable:false,
+			width:350,
+			height:266
 		});
 	});
 

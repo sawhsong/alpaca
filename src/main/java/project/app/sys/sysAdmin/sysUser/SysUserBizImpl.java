@@ -127,25 +127,6 @@ public class SysUserBizImpl extends BaseBiz implements SysUserBiz {
 		return paramEntity;
 	}
 
-	public ParamEntity doResetPassword(ParamEntity paramEntity) throws Exception {
-		DataSet requestDataSet = paramEntity.getRequestDataSet();
-		String userId = requestDataSet.getValue("userId");
-		int result = -1;
-
-		try {
-//			result = sysUserDao.resetPasswordByLoginId(userId);
-			if (result <= 0) {
-				throw new FrameworkException("E801", getMessage("E801", paramEntity));
-			}
-
-			paramEntity.setSuccess(true);
-			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
-		} catch (Exception ex) {
-			throw new FrameworkException(paramEntity, ex);
-		}
-		return paramEntity;
-	}
-
 	public ParamEntity exeInsert(ParamEntity paramEntity) throws Exception {
 		DataSet requestDataSet = paramEntity.getRequestDataSet();
 		DataSet fileDataSet = paramEntity.getRequestFileDataSet();

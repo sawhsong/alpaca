@@ -3,21 +3,22 @@
  */
 Creat new menu item
     commonMenu
-        Bookmarks - favoriteMenu
-        User Profile - my profile
-        Request Register
-        Reset Password <- button function - send email
-            login page
-            user profile
-            user management sys menu
+        Bookmarks - favoriteMenu Done
+        User Profile - my profile Done
+        Change Password Done
+        Reset Password <- button function - send email Done
+            login page Done
+            user profile Done
+            exeRequestRegister Done
+            user management sys menu Done
 
                 set login password
                     LoginBizImpl
-                        exeRequestRegister
-                        exeUpdate
+                        exeRequestRegister Done
+                        exeUpdate Done
                     SysUserBizImpl
-                        exeInsert
+                        exeInsert Done
                     SysUserHDaoImpl
-                        resetPassword
+                        resetPassword Done
 
 Keep doing menu code change

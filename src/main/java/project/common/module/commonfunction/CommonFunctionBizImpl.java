@@ -86,7 +86,7 @@ public class CommonFunctionBizImpl extends BaseBiz implements CommonFunctionBiz 
 			messageSender.sendResetPasswordMessage(sysUser, randomString);
 
 			paramEntity.setSuccess(true);
-			paramEntity.setMessage("I801", getMessage("I801", paramEntity));
+			paramEntity.setMessage("I805", getMessage("I805", paramEntity));
 		} catch (Exception ex) {
 			throw new FrameworkException(paramEntity, ex);
 		}
@@ -255,7 +255,7 @@ public class CommonFunctionBizImpl extends BaseBiz implements CommonFunctionBiz 
 			// Check with LoginID and Password
 			sysUser = sysUserDao.getUserByLoginIdAndPassword(loginId, oldPass);
 			if (sysUser == null || CommonUtil.isBlank(sysUser.getUserId())) {
-				throw new FrameworkException("E908", getMessage("E908", paramEntity));
+				throw new FrameworkException("E916", getMessage("E916", paramEntity));
 			}
 
 			// Change password

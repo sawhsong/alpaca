@@ -1,5 +1,5 @@
 /**
- * favoriteMenuPop.js
+ * FavoriteMenuPop.js
  */
 $(function() {
 	/*!
@@ -24,7 +24,7 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanel");
 
 		commonJs.doSearch({
-			url:"/login/getFavoriteMenuList.do",
+			url:"/common/commonFunction/getFavoriteMenuList.do",
 			data:{},
 			onSuccess:renderGridData
 		});
@@ -73,7 +73,7 @@ $(function() {
 		}
 
 		commonJs.doDelete({
-			url:"/login/doDeleteFavoriteMenu.do",
+			url:"/common/commonFunction/doDeleteFavoriteMenu.do",
 			onSuccess:function() {
 				$("#btnClose").trigger("click");
 				parent.doMainMenu(parent.$("#hdnHeaderMenuId").val(), parent.$("#hdnHeaderMenuName").val(), parent.$("#hdnHeaderMenuUrl").val());

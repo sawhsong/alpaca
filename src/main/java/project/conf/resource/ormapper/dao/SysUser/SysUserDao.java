@@ -11,7 +11,6 @@ public interface SysUserDao extends IDao {
 	public int update(String userId, Dto dto) throws Exception;
 	public int resetPasswordByLoginId(String loginId, String randomString) throws Exception;
 	public int changePasswordByLoginId(String loginId, String newPassword) throws Exception;
-	public int encryptPassword(String userId) throws Exception;
 	public int updateAuthGroupIdByAuthGroupIds(String authGroupIds[], String toCode) throws Exception;
 	public int updateAuthGroupIdByAuthGroupId(String authGroupId, String toCode) throws Exception;
 	public int updateByUserIds(String userIds[], SysUser sysUser) throws Exception;
@@ -24,4 +23,5 @@ public interface SysUserDao extends IDao {
 	public SysUser getUserByLoginId(String loginId) throws Exception;
 	public SysUser getUserByUserId(String userId) throws Exception;
 	public SysUser getUserByLoginIdAndPassword(String loginId, String password) throws Exception;
+	public SysUser getActiveUserByLoginIdAndPassword(String loginId, String password) throws Exception;
 }

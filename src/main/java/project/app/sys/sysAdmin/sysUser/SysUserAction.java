@@ -47,15 +47,6 @@ public class SysUserAction extends BaseAction {
 		return "actionContextMenu";
 	}
 
-	public String doResetPassword() throws Exception {
-		try {
-			biz.doResetPassword(paramEntity);
-		} catch (Exception ex) {
-		}
-		setRequestAttribute("paramEntity", paramEntity);
-		return "ajaxResponse";
-	}
-
 	public String exeInsert() throws Exception {
 		try {
 			biz.exeInsert(paramEntity);

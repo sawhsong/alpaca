@@ -1,6 +1,6 @@
 <%/************************************************************************************************
 * Description
-* - 
+* - FavoriteMenu
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCommon.jsp"%>
 <%/************************************************************************************************
@@ -45,8 +45,8 @@
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnDelete" caption="button.com.delete" iconClass="fa-trash"/>
-			<ui:button id="btnClose" caption="button.com.close" iconClass="fa-times"/>
+			<ui:button id="btnDelete" caption="button.com.delete"/>
+			<ui:button id="btnClose" caption="button.com.close"/>
 		</ui:buttonGroup>
 	</div>
 </div>
