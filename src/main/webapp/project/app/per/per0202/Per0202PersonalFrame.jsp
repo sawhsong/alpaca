@@ -67,7 +67,7 @@ var personId = "<%=personId%>";
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerFrame">
-	<div id="divFrameDataAreaWrapper" style="overflow:auto">
+	<div id="divFrameDataAreaWrapper">
 		<div id="divLeft" class="accordion" style="width:45%;float:left">
 			<div class="accordionGroup">
 				<h3 id="hPersonDetails">Person Details</h3>

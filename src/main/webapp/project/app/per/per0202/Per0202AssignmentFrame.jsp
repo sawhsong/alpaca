@@ -100,7 +100,7 @@ var prtDocumentId = "<%=dsPrt.getValue("PRT_DOCUMENT_ID")%>";
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerFrame">
-	<div id="divFrameDataAreaWrapper" style="overflow:auto">
+	<div id="divFrameDataAreaWrapper">
 		<div class="accordion" style="width:35%;float:left">
 			<div class="accordionGroup">
 				<h3>Assignment Detail</h3>

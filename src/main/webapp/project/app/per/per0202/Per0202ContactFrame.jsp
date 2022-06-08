@@ -71,7 +71,7 @@ var operationalRelationship = "<%=address.getOperationalRelation()%>";
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerFrame">
-	<div id="divFrameDataAreaWrapper" style="overflow:auto">
+	<div id="divFrameDataAreaWrapper">
 		<div id="divLeft" class="accordion" style="width:50%;float:left">
 			<div class="accordionGroup">
 				<h3 id="hHomeAddress">Postal Address</h3>

@@ -80,7 +80,7 @@ var opportunityId = "<%=dsRequest.getValue("opportunityId")%>";
 * Real Contents - scrollable panel(data, paging)
 ************************************************************************************************/%>
 <div id="divDataArea" class="areaContainerPopup">
-	<div id="divFrameDataAreaWrapper" style="overflow:auto">
+	<div id="divFrameDataAreaWrapper">
 		<div id="accordionPerson" class="accordion">
 			<div class="accordionGroup">
 				<h3 id="hPersonDetails">Person Details</h3>
