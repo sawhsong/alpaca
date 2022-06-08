@@ -72,7 +72,7 @@ public class Selectbox extends TaglibBodySupport {
 
 			html.append(bodyContent.getString());
 
-			html.append("</select>\n");
+			html.append(" </select>\n");
 
 			jspWriter.print(html.toString());
 			initialise();

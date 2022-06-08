@@ -65,7 +65,7 @@
 			<col width="10%"/>
 			<col width="23%"/>
 			<col width="10%"/>
-			<col width="24%"/>
+			<col width="*"/>
 		</colgroup>
 		<tr>
 			<th class="thSearch rt">User Name</th>

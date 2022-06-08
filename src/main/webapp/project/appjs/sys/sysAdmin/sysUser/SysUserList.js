@@ -282,7 +282,7 @@ $(function() {
 					}));
 				}
 
-				$("#authGroup").selectpicker("refresh");
+				$("#authGroup").selectpicker({container:"body"}).selectpicker("refresh");
 			}
 		});
 	};
