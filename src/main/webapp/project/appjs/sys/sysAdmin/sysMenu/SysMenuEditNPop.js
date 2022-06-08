@@ -2,7 +2,7 @@
  * Framework Generated Javascript Source
  * - SysMenuEditPop.js
  *************************************************************************************************/
-jsconfig.put("scrollablePanelHeightAdjust", 20);
+jsconfig.put("scrollablePanelHeightAdjust", 24);
 
 $(function() {
 	/*!

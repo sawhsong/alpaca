@@ -81,7 +81,7 @@ var dsMenu2 = commonJs.getDataSetFromJavaDataSet("<%=dsMenu2.toStringForJs()%>")
 			<th class="thInform rt">Menu Level</th>
 			<td class="tdInform"><ui:ccselect name="menuLevel" codeType="MENU_LEVEL"/></td>
 			<td class="tdInform">
-				<div id="divLevel1" style="float:left;width:30%;margin-left:15px;display:block;">
+				<div id="divLevel1" style="float:left;width:30%;margin-left:15px;display:none;">
 					<label for="level1" class="lblEn hor">Level 1</label>
 					<ui:select name="level1">
 <%
@@ -95,7 +95,7 @@ var dsMenu2 = commonJs.getDataSetFromJavaDataSet("<%=dsMenu2.toStringForJs()%>")
 %>
 					</ui:select>
 				</div>
-				<div id="divLevel2" style="float:left;width:*;margin-left:15px;display:block;">
+				<div id="divLevel2" style="float:left;width:*;margin-left:15px;display:none;">
 					<label for="level2" class="lblEn hor">Level 2</label>
 					<select id="level2" name="level2" class="bootstrapSelect"></select>
 				</div>
