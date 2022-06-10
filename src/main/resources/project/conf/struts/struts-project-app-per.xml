@@ -6,7 +6,7 @@
         <!--Per0202 - Person Profile-->
         <action class="project.app.per.per0202.Per0202Action" method="{1}" name="0202/*">
             <result name="list" type="debugDispatcherResult">/project/app/per/per0202/Per0202List.jsp</result>
-            <result name="personDetailFrameContainer" type="debugDispatcherResult">/project/app/per/per0202/Per0202PersonDetailFrameContainer.jsp</result>
+            <result name="personFrameContainer" type="debugDispatcherResult">/project/app/per/per0202/Per0202PersonFrameContainer.jsp</result>
             <result name="personal" type="debugDispatcherResult">/project/app/per/per0202/Per0202PersonalFrame.jsp</result>
             <result name="contact" type="debugDispatcherResult">/project/app/per/per0202/Per0202ContactFrame.jsp</result>
             <result name="documentOutstanding" type="debugDispatcherResult">/project/app/per/per0202/Per0202DocumentOutstandingFrame.jsp</result>

@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202PersonDetailFrameContainer.js
+ * - Per0202PersonFrameContainer.js
  *************************************************************************************************/
 var popup;
 

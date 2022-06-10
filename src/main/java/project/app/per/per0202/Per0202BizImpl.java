@@ -101,7 +101,7 @@ public class Per0202BizImpl extends BaseBiz implements Per0202Biz {
 		return paramEntity;
 	}
 
-	public ParamEntity getPersonDetailFrameContainer(ParamEntity paramEntity) throws Exception {
+	public ParamEntity getPersonFrameContainer(ParamEntity paramEntity) throws Exception {
 		DataSet dsRequest = paramEntity.getRequestDataSet();
 		String personId = dsRequest.getValue("personId");
 		HpPersonD hpPersonD;

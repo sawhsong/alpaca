@@ -30,8 +30,8 @@ public class Per0202Action extends BaseAction {
 		return "ajaxResponse";
 	}
 
-	public String getPersonDetailFrameContainer() throws Exception {
-		biz.getPersonDetailFrameContainer(paramEntity);
+	public String getPersonFrameContainer() throws Exception {
+		biz.getPersonFrameContainer(paramEntity);
 
 		if (paramEntity.isSuccess()) {
 			HpPersonD hpPersonD = (HpPersonD)paramEntity.getObject("hpPersonD");
@@ -46,7 +46,7 @@ public class Per0202Action extends BaseAction {
 			session.setAttribute("PersonFullNameQuickSearch", hpPersonD.getFullName());
 			session.setAttribute("HpPersonDQuickSearch", hpPersonD);
 		}
-		return "personDetailFrameContainer";
+		return "personFrameContainer";
 	}
 
 	public String getPersonal() throws Exception {

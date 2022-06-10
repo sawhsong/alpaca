@@ -130,7 +130,7 @@ $(function() {
 	getPersonDetail = function(personId) {
 		$("#personId").val(personId);
 		commonJs.doSimpleProcessForPage({
-			action:"/per/0202/getPersonDetailFrameContainer.do"
+			action:"/per/0202/getPersonFrameContainer.do"
 		});
 	};
 
