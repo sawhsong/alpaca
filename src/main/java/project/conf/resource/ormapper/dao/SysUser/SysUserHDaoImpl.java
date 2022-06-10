@@ -12,7 +12,8 @@ import zebra.util.ConfigUtil;
 public class SysUserHDaoImpl extends BaseHDao implements SysUserDao {
 	public int insert(Dto dto) throws Exception {
 		int result = -1;
-		result = insertWithSQLQuery(dto);
+//		result = insertWithSQLQuery(dto);
+		result = insertWithDto(dto);
 		result = encryptPasswordByUserId(((SysUser)dto).getUserId());
 		return result;
 	}
