@@ -156,7 +156,6 @@ var articleId = "<%=dsRequest.getValue("articleId")%>";
 <%/************************************************************************************************
 * Additional Form
 ************************************************************************************************/%>
-<form id="fmHidden" name="fmHidden" method="post" action="">
-</form>
+<form id="fmHidden" name="fmHidden" method="post" action=""></form>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9904DetailPop.js
+ * - SysFreeBoardDetail.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -33,7 +33,7 @@ $(function() {
 	 */
 	setEditor = function() {
 		$("#articleContents").ckeditor({
-			height:480,
+			height:500,
 			toolbar:com.constants.toolbarDefault,
 			readOnly:true
 		});
@@ -51,20 +51,20 @@ $(function() {
 	};
 
 	doProcessByButton = function(param) {
-		var actionString = "";
+		var action = "";
 		var params = {};
 
 		if (param.mode == "Update") {
-			actionString = "/sys/9904/getUpdate.do";
+			action = "/sys/sysBbs/sysFreeBoard/getUpdate.do";
 		} else if (param.mode == "Reply") {
-			actionString = "/sys/9904/getInsert.do";
+			action = "/sys/sysBbs/sysFreeBoard/getInsert.do";
 		} else if (param.mode == "Delete") {
-			actionString = "/sys/9904/exeDelete.do";
+			action = "/sys/sysBbs/sysFreeBoard/exeDelete.do";
 		}
 
 		params = {
 			form:"fmDefault",
-			action:actionString,
+			action:action,
 			data:{
 				mode:param.mode,
 				articleId:articleId
@@ -73,11 +73,11 @@ $(function() {
 
 		if (param.mode == "Delete") {
 			commonJs.doDelete({
-				url:actionString,
+				url:action,
 				data:{articleId:params.data.articleId},
 				onSuccess:function() {
 					commonJs.doSimpleProcessForPage({
-						action:"/sys/9904/getDefault.do"
+						action:"/sys/sysBbs/sysFreeBoard/getDefault.do"
 					});
 				}
 			});

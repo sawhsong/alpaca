@@ -1,8 +1,7 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9902List.js
+ * - SysFreeBoardList.js
  *************************************************************************************************/
-jsconfig.put("useJqTooltip", false);
 var popup = null;
 var searchResultDataCount = 0;
 var attchedFileContextMenu = [];
@@ -12,7 +11,7 @@ $(function() {
 	 * event
 	 */
 	$("#btnNew").click(function(event) {
-		openPopup({mode:"New"});
+		getInsert();
 	});
 
 	$("#btnDelete").click(function(event) {
@@ -57,7 +56,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/sys/9902/getList.do",
+				url:"/sys/sysBbs/sysFreeBoard/getList.do",
 				data:{},
 				onSuccess:renderDataGridTable
 			});
@@ -111,8 +110,8 @@ $(function() {
 				gridTr.addChild(gridTd);
 
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "WRITER_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "INSERT_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "UPDATE_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "CREATED_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "UPDATED_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(dataSet.getValue(i, "HIT_CNT"), "#,###")));
 
 				html += gridTr.toHtmlString();
@@ -146,40 +145,37 @@ $(function() {
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 
-	getDetail = function(articleId) {
-		openPopup({mode:"Detail", articleId:articleId});
+	getInsert = function() {
+		commonJs.doSimpleProcessForPage({
+			action:"/sys/sysBbs/sysFreeBoard/getInsert.do"
+		});
 	};
 
-	openPopup = function(param) {
-		var url = "", header = "";
-		var height = 520;
+	getDetail = function(articleId) {
+		commonJs.doSimpleProcessForPage({
+			action:"/sys/sysBbs/sysFreeBoard/getDetail.do",
+			data:{
+				articleId:articleId
+			}
+		});
+	};
 
-		if (param.mode == "Detail") {
-			url = "/sys/9902/getDetail.do";
-			header = com.header.popHeaderDetail;
-		} else if (param.mode == "New" || param.mode == "Reply") {
-			url = "/sys/9902/getInsert.do";
-			header = com.header.popHeaderEdit;
-		} else if (param.mode == "Edit") {
-			url = "/sys/9902/getUpdate.do";
-			header = com.header.popHeaderEdit;
-			height = 646;
+	doProcess = function(param) {
+		var action = "";
+
+		if (param.mode == "Edit") {
+			action = "/sys/sysBbs/sysFreeBoard/getUpdate.do";
+		} else if (param.mode == "Reply") {
+			action = "/sys/sysBbs/sysFreeBoard/getInsert.do";
 		}
 
-		var popParam = {
-			popupId:"notice"+param.mode,
-			url:url,
+		commonJs.doSimpleProcessForPage({
+			action:action,
 			data:{
 				mode:param.mode,
-				articleId:commonJs.nvl(param.articleId, "")
-			},
-			header:header,
-			blind:true,
-			width:800,
-			height:height
-		};
-
-		popup = commonJs.openPopup(popParam);
+				articleId:param.articleId
+			}
+		});
 	};
 
 	doDelete = function() {
@@ -189,7 +185,7 @@ $(function() {
 		}
 
 		commonJs.doDelete({
-			url:"/sys/9902/exeDelete.do",
+			url:"/sys/sysBbs/sysFreeBoard/exeDelete.do",
 			onSuccess:doSearch
 		});
 	};
@@ -210,8 +206,8 @@ $(function() {
 		});
 
 		ctxMenu.boardAction[0].fun = function() {getDetail(articleId);};
-		ctxMenu.boardAction[1].fun = function() {openPopup({mode:"Edit", articleId:articleId});};
-		ctxMenu.boardAction[2].fun = function() {openPopup({mode:"Reply", articleId:articleId});};
+		ctxMenu.boardAction[1].fun = function() {doProcess({mode:"Edit", articleId:articleId});};
+		ctxMenu.boardAction[2].fun = function() {doProcess({mode:"Reply", articleId:articleId});};
 		ctxMenu.boardAction[3].fun = function() {doDelete();};
 
 		$(img).contextMenu(ctxMenu.boardAction, {
@@ -225,9 +221,9 @@ $(function() {
 
 	getAttachedFile = function(img) {
 		commonJs.doSimpleProcess({
-			url:"/sys/9902/getAttachedFile.do",
+			url:"/sys/sysBbs/sysFreeBoard/getAttachedFile.do",
 			data:{articleId:$(img).attr("articleId")},
-			onSuccess:function(result) {
+			callback:function(result) {
 				var dataSet = result.dataSet;
 				attchedFileContextMenu = [];
 
@@ -262,7 +258,8 @@ $(function() {
 					displayAround:"trigger",
 					position:"bottom",
 					horAdjust:0,
-					verAdjust:2
+					verAdjust:2,
+					containment:$("#divScrollablePanel")
 				});
 			}
 		});
@@ -280,13 +277,16 @@ $(function() {
 	};
 
 	exeExport = function(menuObject) {
+		$("[name=fileType]").remove();
+		$("[name=dataRange]").remove();
+
 		if (searchResultDataCount <= 0) {
 			commonJs.warn(com.message.I001);
 			return;
 		}
 
 		commonJs.doExport({
-			url:"/sys/9902/exeExport.do",
+			url:"/sys/sysBbs/sysFreeBoard/exeExport.do",
 			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
 			menuObject:menuObject
 		});

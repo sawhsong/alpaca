@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9902InsertPop.js
+ * - SysFreeBoardUpdate.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -8,21 +8,15 @@ $(function() {
 	 */
 	$("#btnSave").click(function(event) {
 		if (commonJs.doValidate("fmDefault")) {
-			commonJs.doSaveWithFile({
-				url:"/sys/9902/exeInsert.do",
-				data:{
-					articleId:articleId
-				},
-				onSuccess:function() {
-					parent.popup.close();
-					parent.doSearch();
-				}
+			commonJs.doSaveWithFileForPage({
+				action:"/sys/sysBbs/sysFreeBoard/exeUpdate.do",
+				data:{articleId:articleId}
 			});
 		}
 	});
 
-	$("#btnClose").click(function(event) {
-		parent.popup.close();
+	$("#btnBack").click(function(event) {
+		history.go(-1);
 	});
 
 	$("#btnAddFile").click(function(event) {
@@ -41,10 +35,17 @@ $(function() {
 	/*!
 	 * process
 	 */
+	setEditor = function() {
+		$("#articleContents").ckeditor({
+			height:316,
+			toolbar:com.constants.toolbarDefault
+		});
+	};
 
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
+		setEditor();
 	});
 });

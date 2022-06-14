@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9902DetailPop.js
+ * - SysNoticeDetailPop.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -31,7 +31,7 @@ $(function() {
 	/*!
 	 * process
 	 */
-	exeDownload = function(repositoryPath, originalName, newName) {
+	doDownload = function(repositoryPath, originalName, newName) {
 		commonJs.doSimpleProcessForPage({
 			action:"/download.do",
 			data:{
@@ -47,11 +47,11 @@ $(function() {
 		var params = {};
 
 		if (param.mode == "Update") {
-			actionString = "/sys/9902/getUpdate.do";
+			actionString = "/sys/sysBbs/sysNotice/getUpdate.do";
 		} else if (param.mode == "Reply") {
-			actionString = "/sys/9902/getInsert.do";
+			actionString = "/sys/sysBbs/sysNotice/getInsert.do";
 		} else if (param.mode == "Delete") {
-			actionString = "/sys/9902/exeDelete.do";
+			actionString = "/sys/sysBbs/sysNotice/exeDelete.do";
 		}
 
 		params = {
@@ -64,22 +64,20 @@ $(function() {
 		};
 
 		if (param.mode == "Update") {
-			parent.popup.resizeTo(0, 132);
+			parent.popup.resizeTo(0, 130);
 		}
 
 		if (param.mode == "Delete") {
 			commonJs.doDelete({
 				url:actionString,
-				data:{
-					articleId:articleId
-				},
+				data:{articleId:params.data.articleId},
 				onSuccess:function() {
 					parent.popup.close();
 					parent.doSearch();
 				}
 			});
 		} else {
-			commonJs.doSimpleProcessForPage(params);
+			commonJs.doSubmit(params);
 		}
 	};
 

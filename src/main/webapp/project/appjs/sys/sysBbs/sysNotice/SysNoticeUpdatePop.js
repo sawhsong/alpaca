@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9904UpdatePop.js
+ * - SysNoticeUpdatePop.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -8,15 +8,19 @@ $(function() {
 	 */
 	$("#btnSave").click(function(event) {
 		if (commonJs.doValidate("fmDefault")) {
-			commonJs.doSaveWithFileForPage({
-				action:"/sys/9904/exeUpdate.do",
-				data:{articleId:articleId}
+			commonJs.doSaveWithFile({
+				url:"/sys/sysBbs/sysNotice/exeUpdate.do",
+				data:{articleId:articleId},
+				callback:function() {
+					parent.popup.close();
+					parent.doSearch();
+				}
 			});
 		}
 	});
 
-	$("#btnBack").click(function(event) {
-		history.go(-1);
+	$("#btnClose").click(function(event) {
+		parent.popup.close();
 	});
 
 	$("#btnAddFile").click(function(event) {
@@ -35,17 +39,11 @@ $(function() {
 	/*!
 	 * process
 	 */
-	setEditor = function() {
-		$("#articleContents").ckeditor({
-			height:320,
-			toolbar:com.constants.toolbarDefault
-		});
-	};
 
 	/*!
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		setEditor();
+		parent.popup.setHeader(com.header.popHeaderEdit);
 	});
 });

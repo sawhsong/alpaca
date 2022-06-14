@@ -74,7 +74,7 @@ var articleId = "<%=requestDataSet.getValue("articleId")%>";
 			<col width="37%"/>
 		</colgroup>
 		<tr>
-			<th class="thEdit Rt mandatory"><mc:msg key="fwk.bbs.header.writerName"/></th>
+			<th class="thEdit Rt mandatory"><mc:msg key="fwk.bbs.header.writerName"/>asdfasdfsadf</th>
 			<td class="tdEdit">
 				<ui:text name="writerName" value="<%=sysUser.getUserName()%>" checkName="fwk.bbs.header.writerName" options="mandatory"/>
 			</td>

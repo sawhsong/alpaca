@@ -37,19 +37,19 @@
             <result name="update" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysUser/SysUserUpdatePop.jsp</result>
             <result name="actionContextMenu" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysUser/SysUserActionContextMenuPop.jsp</result>
         </action>
-        <!--Sys9902 - Annoucement-->
-        <action class="project.app.sys.sys9902.Sys9902Action" method="{1}" name="9902/*">
-            <result name="list" type="debugDispatcherResult">/project/app/sys/sys9902/Sys9902List.jsp</result>
-            <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9902/Sys9902DetailPop.jsp</result>
-            <result name="insert" type="debugDispatcherResult">/project/app/sys/sys9902/Sys9902InsertPop.jsp</result>
-            <result name="update" type="debugDispatcherResult">/project/app/sys/sys9902/Sys9902UpdatePop.jsp</result>
+        <!--SysNotice - Notice-->
+        <action class="project.app.sys.sysBbs.sysNotice.SysNoticeAction" method="{1}" name="sysBbs/sysNotice/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysBbs/sysNotice/SysNoticeList.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/sys/sysBbs/sysNotice/SysNoticeDetailPop.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/sys/sysBbs/sysNotice/SysNoticeInsertPop.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/sys/sysBbs/sysNotice/SysNoticeUpdatePop.jsp</result>
         </action>
-        <!--Sys9904 - Free Board-->
-        <action class="project.app.sys.sys9904.Sys9904Action" method="{1}" name="9904/*">
-            <result name="list" type="debugDispatcherResult">/project/app/sys/sys9904/Sys9904List.jsp</result>
-            <result name="detail" type="debugDispatcherResult">/project/app/sys/sys9904/Sys9904DetailPop.jsp</result>
-            <result name="insert" type="debugDispatcherResult">/project/app/sys/sys9904/Sys9904InsertPop.jsp</result>
-            <result name="update" type="debugDispatcherResult">/project/app/sys/sys9904/Sys9904UpdatePop.jsp</result>
+        <!--SysFreeBoard - Free Board-->
+        <action class="project.app.sys.sysBbs.sysFreeBoard.SysFreeBoardAction" method="{1}" name="sysBbs/sysFreeBoard/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysBbs/sysFreeBoard/SysFreeBoardList.jsp</result>
+            <result name="detail" type="debugDispatcherResult">/project/app/sys/sysBbs/sysFreeBoard/SysFreeBoardDetail.jsp</result>
+            <result name="insert" type="debugDispatcherResult">/project/app/sys/sysBbs/sysFreeBoard/SysFreeBoardInsert.jsp</result>
+            <result name="update" type="debugDispatcherResult">/project/app/sys/sysBbs/sysFreeBoard/SysFreeBoardUpdate.jsp</result>
         </action>
         <!--Sys9802 - Assignment-->
         <action class="project.app.sys.sys9802.Sys9802Action" method="{1}" name="9802/*">

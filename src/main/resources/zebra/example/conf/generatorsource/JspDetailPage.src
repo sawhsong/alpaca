@@ -140,10 +140,10 @@ $(function() {
 	<div id="divButtonAreaLeft"></div>
 	<div id="divButtonAreaRight">
 		<ui:buttonGroup id="buttonGroup">
-			<ui:button id="btnEdit" caption="button.com.edit" iconClass="fa-edit"/>
-			<ui:button id="btnReply" caption="button.com.reply" iconClass="fa-reply-all"/>
-			<ui:button id="btnDelete" caption="button.com.delete" iconClass="fa-save"/>
-			<ui:button id="btnBack" caption="button.com.back" iconClass="fa-arrow-left"/>
+			<ui:button id="btnEdit" caption="button.com.edit"/>
+			<ui:button id="btnReply" caption="button.com.reply"/>
+			<ui:button id="btnDelete" caption="button.com.delete"/>
+			<ui:button id="btnBack" caption="button.com.back"/>
 		</ui:buttonGroup>
 	</div>
 </div>

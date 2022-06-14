@@ -1,8 +1,7 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9904List.js
+ * - SysNoticeList.js
  *************************************************************************************************/
-jsconfig.put("useJqTooltip", false);
 var popup = null;
 var searchResultDataCount = 0;
 var attchedFileContextMenu = [];
@@ -12,7 +11,7 @@ $(function() {
 	 * event
 	 */
 	$("#btnNew").click(function(event) {
-		getInsert();
+		openPopup({mode:"New"});
 	});
 
 	$("#btnDelete").click(function(event) {
@@ -57,7 +56,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/sys/9904/getList.do",
+				url:"/sys/sysBbs/sysNotice/getList.do",
 				onSuccess:renderDataGridTable
 			});
 		}
@@ -88,8 +87,8 @@ $(function() {
 
 				if (iLevel > 0) {
 					for (var j=0; j<iLevel; j++) {
-						space += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-						iLength -= - 2;
+						space += "&nbsp;&nbsp;&nbsp;&nbsp;";
+						iLength = iLength - 2;
 					}
 					space += "<i class=\"fa fa-comments\"></i>";
 				} else {
@@ -98,20 +97,21 @@ $(function() {
 
 				var uiAnc = new UiAnchor();
 				uiAnc.setText(commonJs.abbreviate(dataSet.getValue(i, "ARTICLE_SUBJECT"), iLength)).setScript("getDetail('"+dataSet.getValue(i, "ARTICLE_ID")+"')");
-				gridTr.addChild(new UiGridTd().addClassName("Lt").addTextBeforeChild(space+"&nbsp;&nbsp;").addChild(uiAnc));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").addTextBeforeChild(space+"&nbsp;&nbsp;").addChild(uiAnc).addAttribute("title:"+commonJs.htmlToString(dataSet.getValue(i, "ARTICLE_SUBJECT"))));
 
 				var gridTd = new UiGridTd();
 				gridTd.addClassName("Ct");
 				if (dataSet.getValue(i, "FILE_CNT") > 0) {
 					var iconAttachFile = new UiIcon();
-					iconAttachFile.setName("icnAttachedFile").addClassName("glyphicon-paperclip").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID")).setScript("getAttachedFile(this)");
+					iconAttachFile.setName("icnAttachedFile").addClassName("glyphicon-paperclip").addAttribute("articleId:"+dataSet.getValue(i, "ARTICLE_ID"))
+						.setScript("getAttachedFile(this)");
 					gridTd.addChild(iconAttachFile);
 				}
 				gridTr.addChild(gridTd);
 
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(dataSet.getValue(i, "WRITER_NAME")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "INSERT_DATE")));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "UPDATE_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "CREATED_DATE")));
+				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(dataSet.getValue(i, "UPDATED_DATE")));
 				gridTr.addChild(new UiGridTd().addClassName("Rt").setText(commonJs.getNumberMask(dataSet.getValue(i, "HIT_CNT"), "#,###")));
 
 				html += gridTr.toHtmlString();
@@ -119,7 +119,7 @@ $(function() {
 		} else {
 			var gridTr = new UiGridTr();
 
-			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:7").setText(com.message.I001));
+			gridTr.addChild(new UiGridTd().addClassName("Ct").setAttribute("colspan:8").setText(com.message.I001));
 			html += gridTr.toHtmlString();
 		}
 
@@ -145,37 +145,40 @@ $(function() {
 		commonJs.hideProcMessageOnElement("divScrollablePanel");
 	};
 
-	getInsert = function() {
-		commonJs.doSimpleProcessForPage({
-			action:"/sys/9904/getInsert.do"
-		});
-	};
-
 	getDetail = function(articleId) {
-		commonJs.doSimpleProcessForPage({
-			action:"/sys/9904/getDetail.do",
-			data:{
-				articleId:articleId
-			}
-		});
+		openPopup({mode:"Detail", articleId:articleId});
 	};
 
-	doProcess = function(param) {
-		var action = "";
+	openPopup = function(param) {
+		var url = "", header = "";
+		var height = 520;
 
-		if (param.mode == "Edit") {
-			action = "/zebra/board/freeboard/getUpdate.do";
-		} else if (param.mode == "Reply") {
-			action = "/zebra/board/freeboard/getInsert.do";
+		if (param.mode == "Detail") {
+			url = "/sys/sysBbs/sysNotice/getDetail.do";
+			header = framework.header.popHeaderDetail;
+		} else if (param.mode == "New" || param.mode == "Reply") {
+			url = "/sys/sysBbs/sysNotice/getInsert.do";
+			header = framework.header.popHeaderEdit;
+		} else if (param.mode == "Edit") {
+			url = "/sys/sysBbs/sysNotice/getUpdate.do";
+			header = framework.header.popHeaderEdit;
+			height = 648;
 		}
 
-		commonJs.doSimpleProcessForPage({
-			action:action,
+		var popParam = {
+			popupId:"notice"+param.mode,
+			url:url,
 			data:{
 				mode:param.mode,
-				articleId:param.articleId
-			}
-		});
+				articleId:commonJs.nvl(param.articleId, "")
+			},
+			header:header,
+			blind:true,
+			width:800,
+			height:height
+		};
+
+		popup = commonJs.openPopup(popParam);
 	};
 
 	doDelete = function() {
@@ -185,7 +188,7 @@ $(function() {
 		}
 
 		commonJs.doDelete({
-			url:"/sys/9904/exeDelete.do",
+			url:"/sys/sysBbs/sysNotice/exeDelete.do",
 			onSuccess:doSearch
 		});
 	};
@@ -206,8 +209,8 @@ $(function() {
 		});
 
 		ctxMenu.boardAction[0].fun = function() {getDetail(articleId);};
-		ctxMenu.boardAction[1].fun = function() {doProcess({mode:"Edit", articleId:articleId});};
-		ctxMenu.boardAction[2].fun = function() {doProcess({mode:"Reply", articleId:articleId});};
+		ctxMenu.boardAction[1].fun = function() {openPopup({mode:"Edit", articleId:articleId});};
+		ctxMenu.boardAction[2].fun = function() {openPopup({mode:"Reply", articleId:articleId});};
 		ctxMenu.boardAction[3].fun = function() {doDelete();};
 
 		$(img).contextMenu(ctxMenu.boardAction, {
@@ -221,10 +224,8 @@ $(function() {
 
 	getAttachedFile = function(img) {
 		commonJs.doSimpleProcess({
-			url:"/sys/9904/getAttachedFile.do",
-			data:{
-				articleId:$(img).attr("articleId")
-			},
+			url:"/sys/sysBbs/sysNotice/getAttachedFile.do",
+			data:{articleId:$(img).attr("articleId")},
 			onSuccess:function(result) {
 				var dataSet = result.dataSet;
 				attchedFileContextMenu = [];
@@ -260,8 +261,7 @@ $(function() {
 					displayAround:"trigger",
 					position:"bottom",
 					horAdjust:0,
-					verAdjust:2,
-					containment:$("#divScrollablePanel")
+					verAdjust:2
 				});
 			}
 		});
@@ -285,7 +285,7 @@ $(function() {
 		}
 
 		commonJs.doExport({
-			url:"/sys/9904/exeExport.do",
+			url:"/sys/sysBbs/sysNotice/exeExport.do",
 			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
 			menuObject:menuObject
 		});
@@ -297,7 +297,9 @@ $(function() {
 	$(window).load(function() {
 		commonJs.setFieldDateMask("fromDate");
 		commonJs.setFieldDateMask("toDate");
+
 		commonJs.setExportButtonContextMenu($("#btnExport"));
+
 		doSearch();
 	});
 });

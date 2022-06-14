@@ -8,7 +8,6 @@
 ************************************************************************************************/%>
 <%
 	ParamEntity paramEntity = (ParamEntity)request.getAttribute("paramEntity");
-	DataSet dsRequest = (DataSet)paramEntity.getRequestDataSet();
 	ZebraBoard freeBoard = (ZebraBoard)paramEntity.getObject("freeBoard");
 	DataSet fileDataSet = (DataSet)paramEntity.getObject("fileDataSet");
 %>
