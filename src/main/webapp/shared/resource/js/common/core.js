@@ -430,7 +430,7 @@ var nony = {
 					}
 				}
 			});
-		}, 300);
+		}, 500);
 	},
 	doSimpleProcess : function(params) { // no confirm message, no post message (ex, getEdit, getInsert, getUpdate etc)
 		commonJs.ajaxSubmit({
