@@ -12,8 +12,9 @@
 	border-bottom:0px solid #C5DBEC;
 	border-left:0px solid #C5DBEC;
 	background:#FFFFFF;
+	overflow-y:hidden;
 }
-#divBodyLeftMenuPanel {}
+#divBodyLeftMenuPanel {overflow-y:hidden;}
 
 /**
  * Left menu header
@@ -67,7 +68,7 @@
 /**
  * Left Menu Accordion - Project Left Menus(Level2 and Level3)
  */
-.leftMenuAccordionHolder {}
+.leftMenuAccordionHolder {overflow-y:auto;}
 .leftMenuAccordionGroup {}
 .leftMenuAccordionGroup h3 {border-radius:0px;border:1px solid transparent;padding:12px 4px 12px 36px !important;box-shadow:0px 1px 4px rgba(0, 0, 0, .1);text-shadow:1px 1px 2px rgba(255, 255, 255, 1.0);outline:0px;
 	color:#2E6E9E;
