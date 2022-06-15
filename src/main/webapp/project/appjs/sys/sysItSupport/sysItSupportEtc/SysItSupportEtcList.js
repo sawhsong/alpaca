@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9806List.js
+ * - SysItSupportEtcList.js
  *************************************************************************************************/
 var popup = null;
 
@@ -71,7 +71,7 @@ $(function() {
 		}
 
 		commonJs.doSave({
-			url:"/sys/9806/doSaveOrg.do",
+			url:"/sys/sysItSupport/sysItSupportEtc/doSaveOrg.do",
 			data:{},
 			onSuccess:function() {
 				commonJs.showProcMessageOnElement("divOrg");
@@ -89,7 +89,7 @@ $(function() {
 		}
 
 		commonJs.doSave({
-			url:"/sys/9806/doSaveBillingCodeCreationType.do",
+			url:"/sys/sysItSupport/sysItSupportEtc/doSaveBillingCodeCreationType.do",
 			data:{},
 			onSuccess:function() {
 				commonJs.showProcMessageOnElement("divBillingCode");
@@ -107,7 +107,7 @@ $(function() {
 		}
 		
 		commonJs.doSave({
-			url:"/sys/9806/doSaveAccntShift.do",
+			url:"/sys/sysItSupport/sysItSupportEtc/doSaveAccntShift.do",
 			data:{},
 			onSuccess:function() {
 				commonJs.showProcMessageOnElement("divAccountShift");
@@ -125,7 +125,7 @@ $(function() {
 		}
 
 		commonJs.doSave({
-			url:"/sys/9806/doUpdateEoExpenseStatus.do",
+			url:"/sys/sysItSupport/sysItSupportEtc/doUpdateEoExpenseStatus.do",
 			data:{},
 			onSuccess:function() {
 				commonJs.showProcMessageOnElement("divEoExpenseStatus");
@@ -178,7 +178,7 @@ $(function() {
 			$("#acnTo").val("");
 		} else {
 			commonJs.doSimpleProcess({
-				url:"/sys/9806/getOrgInfo.do",
+				url:"/sys/sysItSupport/sysItSupportEtc/getOrgInfo.do",
 				data:{organisationId:val},
 				noForm:true,
 				onSuccess:function(result) {
@@ -201,7 +201,7 @@ $(function() {
 			commonJs.refreshBootstrapSelectbox("billingCodeCreationTypeTo");
 		} else {
 			commonJs.doSimpleProcess({
-				url:"/sys/9806/getBillingCodeInfo.do",
+				url:"/sys/sysItSupport/sysItSupportEtc/getBillingCodeInfo.do",
 				data:{billingCodeId:val},
 				noForm:true,
 				onSuccess:function(result) {

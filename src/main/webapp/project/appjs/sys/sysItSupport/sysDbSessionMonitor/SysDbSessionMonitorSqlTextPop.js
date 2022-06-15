@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9898SqlTextPop.js
+ * - SysDbSessionMonitorSqlTextPop.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -17,7 +17,7 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanelPopup");
 
 		commonJs.doSearch({
-			url:"/sys/9898/getSqlText.do",
+			url:"/sys/sysItSupport/sysDbSessionMonitor/getSqlText.do",
 			dataType:"html",
 			data:{
 				dataSource:dataSource,

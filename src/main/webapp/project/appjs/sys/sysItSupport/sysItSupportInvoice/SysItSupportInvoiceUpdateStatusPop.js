@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9804UpdateStatusPop.js
+ * - SysItSupportInvoiceUpdateStatusPop.js
  *************************************************************************************************/
 jsconfig.put("scrollablePanelHeightAdjust", 23);
 
@@ -19,7 +19,7 @@ $(function() {
 		}
 
 		commonJs.doSave({
-			url:"/sys/9804/doUpdateInvoiceStatus.do",
+			url:"/sys/sysItSupport/sysItSupportInvoice/doUpdateInvoiceStatus.do",
 			callback:function() {
 				parent.popup.close();
 				parent.doSearch();

@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9804UpdateInvoiceSubTotalPop.js
+ * - SysItSupportInvoiceUpdateInvoiceSubTotalPop.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -9,7 +9,7 @@ $(function() {
 	$("#btnSave").click(function(event) {
 		if (commonJs.doValidate($("#gstAmountTo"))) {
 			commonJs.doSave({
-				url:"/sys/9804/doUpdateInvoiceSubTotal.do",
+				url:"/sys/sysItSupport/sysItSupportInvoice/doUpdateInvoiceSubTotal.do",
 				data:{invoiceId:invoiceId},
 				callback:function() {
 					parent.popup.close();
@@ -46,7 +46,7 @@ $(function() {
 		var name = $(jqObj).attr("name");
 		if (name == "gstAmountTo") {
 			commonJs.doSimpleProcess({
-				url:"/sys/9804/doCalculateAmount.do",
+				url:"/sys/sysItSupport/sysItSupportInvoice/doCalculateAmount.do",
 				data:{
 					gstAmountTo:$("#gstAmountTo").val(),
 					invoiceAmount:$("#invoiceAmount").val()

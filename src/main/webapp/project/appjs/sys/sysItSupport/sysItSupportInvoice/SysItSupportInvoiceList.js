@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9804List.js
+ * - SysItSupportInvoiceList.js
  *************************************************************************************************/
 var popup = null;
 var searchResultDataCount = 0;
@@ -59,11 +59,11 @@ $(function() {
 	 */
 	setActionButtonContextMenu = function() {
 		var ctxMenu = [{
-			name:sys.sys9804.caption.updateStatus,
+			name:"Update Status",
 			img:"fa-list-alt",
 			fun:function() {openPopup({mode:"UpdateStatus"});}
 		}, {
-			name:sys.sys9804.caption.updateInvoiceSubTotal,
+			name:"Update Invoice Sub Total",
 			img:"fa-usd",
 			fun:function() {openPopup({mode:"UpdateInvoiceSubTotal"});}
 		}];
@@ -86,7 +86,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/sys/9804/getList.do",
+				url:"/sys/sysItSupport/sysItSupportInvoice/getList.do",
 				dataType:"xml",
 				callback:renderDataGridTable
 			});
@@ -163,10 +163,10 @@ $(function() {
 		}
 
 		if (param.mode == "Detail") {
-			url = "/sys/9804/getDetail.do";
+			url = "/sys/sysItSupport/sysItSupportInvoice/getDetail.do";
 			width = 1900, height = 990;
 		} else if (param.mode == "UpdateStatus") {
-			url = "/sys/9804/getUpdateInvoiceStatus.do";
+			url = "/sys/sysItSupport/sysItSupportInvoice/getUpdateInvoiceStatus.do";
 			width = 1500, height = 700;
 		} else if (param.mode == "UpdateInvoiceSubTotal") {
 			if (commonJs.getCountChecked("chkForAction") > 1) {
@@ -178,12 +178,12 @@ $(function() {
 				return;
 			}
 
-			url = "/sys/9804/getUpdateInvoiceSubTotal.do";
+			url = "/sys/sysItSupport/sysItSupportInvoice/getUpdateInvoiceSubTotal.do";
 			width = 700, height = 400;
 		}
 
 		var popParam = {
-			popupId:"Sys9804"+param.mode,
+			popupId:"SysItSupportInvoice"+param.mode,
 			url:url,
 			data:{
 				mode:param.mode,
@@ -209,7 +209,7 @@ $(function() {
 		}
 
 		commonJs.doExport({
-			url:"/sys/9804/exeExport.do",
+			url:"/sys/sysItSupport/sysItSupportInvoice/exeExport.do",
 			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
 			menuObject:menuObject
 		});

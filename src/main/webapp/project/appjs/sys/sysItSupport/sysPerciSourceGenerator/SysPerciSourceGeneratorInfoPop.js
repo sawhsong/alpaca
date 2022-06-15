@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9808InfoPop.js
+ * - SysPerciSourceGeneratorInfoPop.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -62,7 +62,7 @@ $(function() {
 						paramData.tableName = $this.val();
 
 						commonJs.ajaxSubmit({
-							url:"/sys/9808/exeGenerate.do",
+							url:"/sys/sysItSupport/sysPerciSourceGenerator/exeGenerate.do",
 							dataType:"json",
 							data:paramData,
 							blind:false,

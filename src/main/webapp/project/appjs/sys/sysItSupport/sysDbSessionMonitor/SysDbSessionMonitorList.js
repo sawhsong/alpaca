@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9898List.js
+ * - SysDbSessionMonitorList.js
  *************************************************************************************************/
 var popup;
 
@@ -36,7 +36,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/sys/9898/doSearch.do",
+				url:"/sys/sysItSupport/sysDbSessionMonitor/doSearch.do",
 				dataType:"html",
 				data:{},
 				callback:renderGridData
@@ -103,7 +103,7 @@ $(function() {
 	getSqlText = function(sqlId) {
 		popup = commonJs.openPopup({
 			popupId:"ViewSQL",
-			url:"/sys/9898/getSql.do",
+			url:"/sys/sysItSupport/sysDbSessionMonitor/getSql.do",
 			data:{
 				sqlId:sqlId,
 				dataSource:$("#dataSource").val()
@@ -122,7 +122,7 @@ $(function() {
 
 		if (commonJs.doValidate("fmDefault")) {
 			commonJs.doProcess({
-				url:"/sys/9898/exeKillSessions.do",
+				url:"/sys/sysItSupport/sysDbSessionMonitor/exeKillSessions.do",
 				confirmMessage:"Are you sure to proceed?",
 				callback:function(result) {
 					var ds = result.dataSet;

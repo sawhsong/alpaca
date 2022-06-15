@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9808List.js
+ * - SysPerciSourceGeneratorList.js
  *************************************************************************************************/
 var popupDetail = null;
 var popupInfo = null;
@@ -27,7 +27,7 @@ $(function() {
 
 		popupInfo = commonJs.openPopup({
 			popupId:"GeneratorInfo",
-			url:"/sys/9808/getGeneratorInfo.do",
+			url:"/sys/sysItSupport/sysPerciSourceGenerator/getGeneratorInfo.do",
 			header:"Source Code Generator",
 			data:{dataSource:$("#dataSource").val()},
 			blind:true,
@@ -70,7 +70,7 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanel");
 
 		commonJs.doSearch({
-			url:"/sys/9808/getList.do",
+			url:"/sys/sysItSupport/sysPerciSourceGenerator/getList.do",
 			dataType:"json",
 			callback:renderDataGridTable
 		});
@@ -124,7 +124,7 @@ $(function() {
 	getDetail = function(tableName) {
 		popupDetail = commonJs.openPopup({
 			popupId:"TableDetail",
-			url:"/sys/9808/getDetail.do",
+			url:"/sys/sysItSupport/sysPerciSourceGenerator/getDetail.do",
 			data:{
 				tableName:tableName,
 				dataSource:$("#dataSource").val()

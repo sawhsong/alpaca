@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9899List.js
+ * - SysSiteRunningTestList.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -22,7 +22,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/sys/9899/doSearch.do",
+				url:"/sys/sysItSupport/sysSiteRunningTest/doSearch.do",
 				dataType:"html",
 				data:{},
 				callback:renderGridData
@@ -86,6 +86,6 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		doSearch();
+//		doSearch();
 	});
 });
