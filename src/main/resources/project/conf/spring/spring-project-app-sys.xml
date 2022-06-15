@@ -17,28 +17,28 @@
     <!--SysUser - User-->
     <bean class="${name.package.project}.app.sys.sysAdmin.sysUser.SysUserAction" id="sysUserAction" name="sysUserAction"/>
     <bean class="${name.package.project}.app.sys.sysAdmin.sysUser.SysUserBizImpl" id="sysUserBiz" name="sysUserBiz" parent="baseBiz"/>
+    <!--SysItSupportAssignment - Assignment-->
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysItSupportAssignment.SysItSupportAssignmentAction" id="sysItSupportAssignmentAction" name="sysItSupportAssignmentAction"/>
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysItSupportAssignment.SysItSupportAssignmentBizImpl" id="sysItSupportAssignmentBiz" name="sysItSupportAssignmentBiz" parent="baseBiz"/>
+    <!--SysItSupportInvoice - Invoice-->
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysItSupportInvoice.SysItSupportInvoiceAction" id="sysItSupportInvoiceAction" name="sysItSupportInvoiceAction"/>
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysItSupportInvoice.SysItSupportInvoiceBizImpl" id="sysItSupportInvoiceBiz" name="sysItSupportInvoiceBiz" parent="baseBiz"/>
+    <!--SysItSupportEtc - ETC-->
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysItSupportEtc.SysItSupportEtcAction" id="sysItSupportEtcAction" name="sysItSupportEtcAction"/>
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysItSupportEtc.SysItSupportEtcBizImpl" id="sysItSupportEtcBiz" name="sysItSupportEtcBiz" parent="baseBiz"/>
+    <!--SysPerciSourceGenerator - PERCI Source Generator-->
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysPerciSourceGenerator.SysPerciSourceGeneratorAction" id="sysPerciSourceGeneratorAction" name="sysPerciSourceGeneratorAction"/>
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysPerciSourceGenerator.SysPerciSourceGeneratorBizImpl" id="sysPerciSourceGeneratorBiz" name="sysPerciSourceGeneratorBiz" parent="baseBiz"/>
+    <!--SysDbSessionMonitor - Databse Session Monitor-->
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysDbSessionMonitor.SysDbSessionMonitorAction" id="sysDbSessionMonitorAction" name="sysDbSessionMonitorAction"/>
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysDbSessionMonitor.SysDbSessionMonitorBizImpl" id="sysDbSessionMonitorBiz" name="sysDbSessionMonitorBiz" parent="baseBiz"/>
+    <!--SysSiteRunningTest - Site Running Test-->
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysSiteRunningTest.SysSiteRunningTestAction" id="sysSiteRunningTestAction" name="sysSiteRunningTestAction"/>
+    <bean class="${name.package.project}.app.sys.sysItSupport.sysSiteRunningTest.SysSiteRunningTestBizImpl" id="sysSiteRunningTestBiz" name="sysSiteRunningTestBiz" parent="baseBiz"/>
     <!--SysNotice - Notice-->
     <bean class="${name.package.project}.app.sys.sysBbs.sysNotice.SysNoticeAction" id="sysNoticeAction" name="sysNoticeAction"/>
     <bean class="${name.package.project}.app.sys.sysBbs.sysNotice.SysNoticeBizImpl" id="sysNoticeBiz" name="sysNoticeBiz" parent="baseBiz"/>
     <!--SysFreeBoard - Free Board-->
     <bean class="${name.package.project}.app.sys.sysBbs.sysFreeBoard.SysFreeBoardAction" id="sysFreeBoardAction" name="sysFreeBoardAction"/>
     <bean class="${name.package.project}.app.sys.sysBbs.sysFreeBoard.SysFreeBoardBizImpl" id="sysFreeBoardBiz" name="sysFreeBoardBiz" parent="baseBiz"/>
-    <!--Sys9804 - Invoice-->
-    <bean class="${name.package.project}.app.sys.sys9804.Sys9804Action" id="sys9804Action" name="sys9804Action"/>
-    <bean class="${name.package.project}.app.sys.sys9804.Sys9804BizImpl" id="sys9804Biz" name="sys9804Biz" parent="baseBiz"/>
-    <!--Sys9802 - Assignment-->
-    <bean class="${name.package.project}.app.sys.sys9802.Sys9802Action" id="sys9802Action" name="sys9802Action"/>
-    <bean class="${name.package.project}.app.sys.sys9802.Sys9802BizImpl" id="sys9802Biz" name="sys9802Biz" parent="baseBiz"/>
-    <!--Sys9806 - ETC-->
-    <bean class="${name.package.project}.app.sys.sys9806.Sys9806Action" id="sys9806Action" name="sys9806Action"/>
-    <bean class="${name.package.project}.app.sys.sys9806.Sys9806BizImpl" id="sys9806Biz" name="sys9806Biz" parent="baseBiz"/>
-    <!--Sys9898 - Monitor Databse Session-->
-    <bean class="${name.package.project}.app.sys.sys9898.Sys9898Action" id="sys9898Action" name="sys9898Action"/>
-    <bean class="${name.package.project}.app.sys.sys9898.Sys9898BizImpl" id="sys9898Biz" name="sys9898Biz" parent="baseBiz"/>
-    <!--Sys9899 - Site Running Test-->
-    <bean class="${name.package.project}.app.sys.sys9899.Sys9899Action" id="sys9899Action" name="sys9899Action"/>
-    <bean class="${name.package.project}.app.sys.sys9899.Sys9899BizImpl" id="sys9899Biz" name="sys9899Biz" parent="baseBiz"/>
-    <!--Sys9808 - PERCI Source Generator-->
-    <bean class="${name.package.project}.app.sys.sys9808.Sys9808Action" id="sys9808Action" name="sys9808Action"/>
-    <bean class="${name.package.project}.app.sys.sys9808.Sys9808BizImpl" id="sys9808Biz" name="sys9808Biz" parent="baseBiz"/>
 </beans>
