@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9802UnlockPrtPop.js
+ * - SysItSupportAssignmentUnlockPrtPop.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -17,7 +17,7 @@ $(function() {
 		}
 
 		commonJs.doDelete({
-			url:"/sys/9802/doUnlockPrt.do",
+			url:"/sys/sysItSupport/sysItSupportAssignment/doUnlockPrt.do",
 			callback:function() {
 				parent.popup.close();
 				parent.doSearch();

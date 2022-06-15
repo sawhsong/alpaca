@@ -38,7 +38,7 @@
             <result name="actionContextMenu" type="debugDispatcherResult">/project/app/sys/sysAdmin/sysUser/SysUserActionContextMenuPop.jsp</result>
         </action>
         <!--SysItSupportAssignment - Assignment-->
-        <action class="project.app.sys.sysItSupport.sysItSupportAssignment.SysItSupportAssignmentAction" method="{1}" name="9802/*">
+        <action class="project.app.sys.sysItSupport.sysItSupportAssignment.SysItSupportAssignmentAction" method="{1}" name="sysItSupport/sysItSupportAssignment/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportAssignment/SysItSupportAssignmentList.jsp</result>
             <result name="detail" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportAssignment/SysItSupportAssignmentDetailPop.jsp</result>
             <result name="unlockPrt" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportAssignment/SysItSupportAssignmentUnlockPrtPop.jsp</result>
@@ -46,29 +46,29 @@
             <result name="updateEndUser" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportAssignment/SysItSupportAssignmentUpdateEndUserPop.jsp</result>
         </action>
         <!--SysItSupportInvoice - Invoice-->
-        <action class="project.app.sys.sysItSupport.sysItSupportInvoice.SysItSupportInvoiceAction" method="{1}" name="9804/*">
+        <action class="project.app.sys.sysItSupport.sysItSupportInvoice.SysItSupportInvoiceAction" method="{1}" name="sysItSupport/sysItSupportInvoice/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportInvoice/SysItSupportInvoiceList.jsp</result>
             <result name="detail" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportInvoice/SysItSupportInvoiceDetailPop.jsp</result>
             <result name="updateStatus" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportInvoice/SysItSupportInvoiceUpdateStatusPop.jsp</result>
             <result name="updateInvoiceSubTotal" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportInvoice/SysItSupportInvoiceUpdateInvoiceSubTotalPop.jsp</result>
         </action>
         <!--SysItSupportEtc - ETC-->
-        <action class="project.app.sys.sysItSupport.sysItSupportEtc.SysItSupportEtcAction" method="{1}" name="9806/*">
+        <action class="project.app.sys.sysItSupport.sysItSupportEtc.SysItSupportEtcAction" method="{1}" name="sysItSupport/sysItSupportEtc/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysItSupportEtc/SysItSupportEtcList.jsp</result>
         </action>
         <!--SysPerciSourceGenerator - PERCI Source Generator-->
-        <action class="project.app.sys.sysItSupport.sysPerciSourceGenerator.SysPerciSourceGeneratorAction" method="{1}" name="9808/*">
+        <action class="project.app.sys.sysItSupport.sysPerciSourceGenerator.SysPerciSourceGeneratorAction" method="{1}" name="sysItSupport/sysPerciSourceGenerator/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysPerciSourceGenerator/SysPerciSourceGeneratorList.jsp</result>
             <result name="detail" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysPerciSourceGenerator/SysPerciSourceGeneratorDetailPop.jsp</result>
             <result name="info" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysPerciSourceGenerator/SysPerciSourceGeneratorInfoPop.jsp</result>
         </action>
         <!--SysDbSessionMonitor - Databse Session Monitor-->
-        <action class="project.app.sys.sysItSupport.sysDbSessionMonitor.SysDbSessionMonitorAction" method="{1}" name="9898/*">
+        <action class="project.app.sys.sysItSupport.sysDbSessionMonitor.SysDbSessionMonitorAction" method="{1}" name="sysItSupport/sysDbSessionMonitor/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysDbSessionMonitor/SysDbSessionMonitorList.jsp</result>
             <result name="sqlText" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysDbSessionMonitor/SysDbSessionMonitorSqlTextPop.jsp</result>
         </action>
         <!--SysSiteRunningTest - Site Runnin Test-->
-        <action class="project.app.sys.sysItSupport.sysSiteRunningTest.SysSiteRunningTestAction" method="{1}" name="9899/*">
+        <action class="project.app.sys.sysItSupport.sysSiteRunningTest.SysSiteRunningTestAction" method="{1}" name="sysItSupport/sysSiteRunningTest/*">
             <result name="list" type="debugDispatcherResult">/project/app/sys/sysItSupport/sysSiteRunningTest/SysSiteRunningTestList.jsp</result>
         </action>
         <!--SysNotice - Notice-->

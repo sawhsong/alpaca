@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9802UpdateEndUserPop.js
+ * - SysItSupportAssignmentUpdateEndUserPop.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -21,7 +21,7 @@ $(function() {
 		}
 
 		commonJs.doSave({
-			url:"/sys/9802/doUpdateEndUser.do",
+			url:"/sys/sysItSupport/sysItSupportAssignment/doUpdateEndUser.do",
 			callback:function() {
 				parent.popup.close();
 				parent.doSearch();

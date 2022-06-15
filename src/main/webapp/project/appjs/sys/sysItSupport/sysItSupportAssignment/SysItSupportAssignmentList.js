@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9802List.js
+ * - SysItSupportAssignmentList.js
  *************************************************************************************************/
 var popup = null;
 var searchResultDataCount = 0;
@@ -57,11 +57,11 @@ $(function() {
 	 */
 	setActionButtonContextMenu = function() {
 		var ctxMenu = [{
-			name:sys.sys9802.caption.unlockPrt,
+			name:"Unlock PRT",
 			img:"fa-unlock-alt",
 			fun:function() {openPopup({mode:"UnlockPrt"});}
 		}, {
-			name:sys.sys9802.caption.updateWorkingState,
+			name:"Update Working State",
 			img:"fa-map",
 			fun:function() {openPopup({mode:"UpdateWorkingState"});}
 		}, {
@@ -88,7 +88,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/sys/9802/getList.do",
+				url:"/sys/sysItSupport/sysItSupportAssignment/getList.do",
 				dataType:"html",
 				callback:renderDataGridTable
 			});
@@ -158,21 +158,21 @@ $(function() {
 		}
 
 		if (param.mode == "Detail") {
-			url = "/sys/9802/getDetail.do";
+			url = "/sys/sysItSupport/sysItSupportAssignment/getDetail.do";
 			width = 1900, height = 990;
 		} else if (param.mode == "UnlockPrt") {
-			url = "/sys/9802/getUnlockPrt.do";
+			url = "/sys/sysItSupport/sysItSupportAssignment/getUnlockPrt.do";
 			width = 1900, height = 600;
 		} else if (param.mode == "UpdateWorkingState") {
-			url = "/sys/9802/getUpdateWorkingState.do";
+			url = "/sys/sysItSupport/sysItSupportAssignment/getUpdateWorkingState.do";
 			width = 1000, height = 500;
 		} else if (param.mode == "UpdateEndUser") {
-			url = "/sys/9802/getUpdateEndUser.do";
+			url = "/sys/sysItSupport/sysItSupportAssignment/getUpdateEndUser.do";
 			width = 1100, height = 500;
 		}
 
 		var popParam = {
-			popupId:"Sys9802"+param.mode,
+			popupId:"sysItSupportAssignment"+param.mode,
 			url:url,
 			data:{
 				mode:param.mode,
@@ -194,7 +194,7 @@ $(function() {
 		}
 
 		commonJs.doExport({
-			url:"/sys/9802/exeExport.do",
+			url:"/sys/sysItSupport/sysItSupportAssignment/exeExport.do",
 			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
 			menuObject:menuObject
 		});

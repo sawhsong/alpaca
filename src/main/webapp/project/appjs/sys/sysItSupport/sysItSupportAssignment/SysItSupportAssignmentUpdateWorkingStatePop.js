@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Sys9802UpdateWorkingStatePop.js
+ * - SysItSupportAssignmentUpdateWorkingStatePop.js
  *************************************************************************************************/
 jsconfig.put("scrollablePanelHeightAdjust", 24);
 
@@ -19,7 +19,7 @@ $(function() {
 		}
 
 		commonJs.doSave({
-			url:"/sys/9802/doUpdateWorkingState.do",
+			url:"/sys/sysItSupport/sysItSupportAssignment/doUpdateWorkingState.do",
 			callback:function() {
 				parent.popup.close();
 				parent.doSearch();
