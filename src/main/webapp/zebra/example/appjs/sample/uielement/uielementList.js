@@ -162,7 +162,7 @@ $(function() {
 	$(window).load(function() {
 		var spinner = $( "#txtSpinner" ).spinner();
 
-		commonJs.changeTabSelection($("#tabCategory li:eq(0) a"));
+		commonJs.changeTabSelection($("#tabCategory li:eq(1) a"));
 
 		$("#tblFixedHeaderTable2").freezeHeader({
 			attachTo:$("#divDataGrid"),
