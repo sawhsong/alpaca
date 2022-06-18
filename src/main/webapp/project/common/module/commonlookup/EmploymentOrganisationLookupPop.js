@@ -91,7 +91,7 @@ $(function() {
 		}
 
 		$(keyField).val(id);
-		$(valueField).val(name);
+		$(valueField).val(name+" ("+id+")");
 
 		popupObject.close();
 	};
@@ -104,7 +104,7 @@ $(function() {
 		$("#empOrgName").focus();
 
 		commonJs.setAutoComplete($("#empOrgName"), {
-			method:"getOrgByName",
+			method:"getOrgByNameOrId",
 			label:"org_name_with_org_id",
 			value:"organisation_name",
 			focus: function(event, ui) {

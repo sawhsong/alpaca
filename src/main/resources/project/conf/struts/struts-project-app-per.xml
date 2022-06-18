@@ -21,8 +21,11 @@
             <result name="assignmentList" type="debugDispatcherResult">/project/app/per/per0202/Per0202AssignmentListFrame.jsp</result>
             <result name="assignment" type="debugDispatcherResult">/project/app/per/per0202/Per0202AssignmentFrame.jsp</result>
             <result name="superannuation" type="debugDispatcherResult">/project/app/per/per0202/Per0202SuperannuationFrame.jsp</result>
-
             <result name="payslips" type="debugDispatcherResult">/project/app/per/per0202/Per0202PayslipsFrame.jsp</result>
+        </action>
+        <!--PerBasicProfile - Person Profile (Old Type)-->
+        <action class="project.app.per.perBasicInfo.perBasicProfile.PerBasicProfileAction" method="{1}" name="perBasicInfo/perBasicProfile/*">
+            <result name="list" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileList.jsp</result>
         </action>
     </package>
 </struts>
