@@ -4,17 +4,24 @@
 ************************************************************************************************/%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isErrorPage="true"%>
-<%@ page import="java.util.*, java.io.*, zebra.util.WebUtil, zebra.util.CommonUtil"%>
+<%@ page import="org.apache.logging.log4j.*, java.util.*, java.io.*, zebra.util.WebUtil, zebra.util.CommonUtil"%>
 <%
 if (CommonUtil.toBoolean(request.getHeader("isAjaxCallForFramework"))) {
 	out.println((String)request.getAttribute("javax.servlet.error.message"));
 } else {
+	Integer statusCode = (Integer)request.getAttribute("javax.servlet.error.status_code");
+	String errorMessage = (String)request.getAttribute("javax.servlet.error.message");
+	if (CommonUtil.isNotBlank(errorMessage)) {
+		Logger logger = LogManager.getLogger(getClass());
+		logger.error("[Exception] [Error Code : "+statusCode+"] => "+errorMessage);
+	}
 %>
 <%/************************************************************************************************
 * HTML
 ************************************************************************************************/%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <head>
 <title>Error</title>
 <%/************************************************************************************************

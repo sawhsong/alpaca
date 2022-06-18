@@ -1,3 +1,5 @@
+<link rel="icon" href="data:;base64,iVBORw0KGgo="> <!-- For favicon not found exception -->
+
 <!-- Keep the order of css files -->
 <link type="text/css" rel="stylesheet" href="<mc:cp key="cssJqUi"/>/jquery-ui.css"/>
 <link type="text/css" rel="stylesheet" href="<mc:cp key="cssBootstrap"/>/bootstrap.css"/>
