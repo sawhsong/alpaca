@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202NextActionsFrame.js
+ * - NextActionsFrame.js
  *************************************************************************************************/
 var searchResultDataCount = 0;
 jsconfig.put("scrollablePanelHeightAdjust", 20);
@@ -39,7 +39,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/per/0202/getNextActionsList.do",
+				url:"/per/perBasicInfo/perBasicProfile/getNextActionsList.do",
 				dataType:"html",
 				data:{personId:personId},
 				callback:renderGridData

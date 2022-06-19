@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202AdditionalServiceFrame.js
+ * - AdditionalServiceFrame.js
  *************************************************************************************************/
 var popup;
 
@@ -26,7 +26,6 @@ $(function() {
 	setGridTable = function(totalResultRows) {
 		$("#tblGrid").freezeHeader({
 			attachTo:$("#divDataArea"),
-//			attachToHeight:722,
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
 			totalResultRows:totalResultRows,
@@ -39,7 +38,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/per/0202/getAdditionalServiceList.do",
+				url:"/per/perBasicInfo/perBasicProfile/getAdditionalServiceList.do",
 				dataType:"html",
 				data:{personId:personId},
 				callback:renderGridData

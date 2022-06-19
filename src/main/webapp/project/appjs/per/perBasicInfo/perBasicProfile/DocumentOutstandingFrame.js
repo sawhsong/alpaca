@@ -1,10 +1,8 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202DocumentOutstanding.js
+ * - DocumentOutstandingFrame.js
  *************************************************************************************************/
 var searchResultDataCount = 0;
-jsconfig.put("useJqTooltip", true);
-jsconfig.put("scrollablePanelHeightAdjust", 44);
 var gridAction = [{
 	name:"Manage Document",
 	img:"fa-cogs",
@@ -49,7 +47,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/per/0202/getDocumentOutstandingList.do",
+				url:"/per/perBasicInfo/perBasicProfile/getDocumentOutstandingList.do",
 				data:{personId:personId},
 				callback:renderGridData
 			});

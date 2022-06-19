@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202OpportunityDetailPop.js
+ * - OpportunityDetailPop.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -19,21 +19,21 @@ $(function() {
 	/*!
 	 * process
 	 */
-	setBlind = function() {
+	showProcMessage = function() {
 		commonJs.showProcMessageOnElement("divOppAsgDetails");
 		commonJs.showProcMessageOnElement("divOpportunityDocument");
+	};
 
-		setTimeout(function() {
-			commonJs.hideProcMessageOnElement("divOppAsgDetails");
-			commonJs.hideProcMessageOnElement("divOpportunityDocument");
-		}, 1000);
+	hideProcMessage = function() {
+		commonJs.hideProcMessageOnElement("divOppAsgDetails");
+		commonJs.hideProcMessageOnElement("divOpportunityDocument");
 	};
 
 	getOpportunityDocuments = function() {
 		commonJs.showProcMessageOnElement("divGridHolderOpportunityDocument");
 
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getOpportunityDocuments.do",
+			url:"/per/perBasicInfo/perBasicProfile/getOpportunityDocuments.do",
 			noForm:true,
 			data:{opportunityId:opportunityId},
 			callback:function(result) {
@@ -82,6 +82,8 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
+		showProcMessage();
+
 		commonJs.setAccordion({
 			containerClass:"accordion",
 			multipleExpand:true,
@@ -90,11 +92,9 @@ $(function() {
 		});
 
 		setTimeout(function() {
-			setBlind();
-		}, 100);
-
-		setTimeout(function() {
 			getOpportunityDocuments();
+
+			hideProcMessage();
 		}, 400);
 	});
 });

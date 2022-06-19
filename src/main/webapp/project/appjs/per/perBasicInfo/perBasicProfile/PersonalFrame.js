@@ -171,16 +171,16 @@ $(function() {
 	 * ! load event (document / window)
 	 */
 	$(window).load(function() {
+		commonJs.setFieldDateMask("dateOfBirth");
+		commonJs.setFieldDateMask("firstContact");
+		setEditor();
+		showProcMessage();
+
 		commonJs.setAccordion({
 			containerClass:"accordion",
 			multipleExpand:true,
 			expandAll:true
 		});
-
-		commonJs.setFieldDateMask("dateOfBirth");
-		commonJs.setFieldDateMask("firstContact");
-		setEditor();
-		showProcMessage();
 
 		commonJs.setAutoComplete($("#employmentCompanyOrgName"), {
 			method:"getOrgByNameOrId",

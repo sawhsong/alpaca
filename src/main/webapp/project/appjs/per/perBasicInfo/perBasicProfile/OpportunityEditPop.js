@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202EditOpportunityPop.js
+ * - OpportunityEditPop.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -31,25 +31,25 @@ $(function() {
 	/*!
 	 * process
 	 */
-	setBlind = function() {
+	showProcMessage = function() {
 		commonJs.showProcMessageOnElement("divPersonDetails");
 		commonJs.showProcMessageOnElement("divOpportunityDetails");
 		commonJs.showProcMessageOnElement("divAsgTermWc");
 		commonJs.showProcMessageOnElement("divDocuments");
+	};
 
-		setTimeout(function() {
-			commonJs.hideProcMessageOnElement("divPersonDetails");
-			commonJs.hideProcMessageOnElement("divOpportunityDetails");
-			commonJs.hideProcMessageOnElement("divAsgTermWc");
-			commonJs.hideProcMessageOnElement("divDocuments");
-		}, 800);
+	hideProcMessage = function() {
+		commonJs.hideProcMessageOnElement("divPersonDetails");
+		commonJs.hideProcMessageOnElement("divOpportunityDetails");
+		commonJs.hideProcMessageOnElement("divAsgTermWc");
+		commonJs.hideProcMessageOnElement("divDocuments");
 	};
 
 	getOpportunityDocuments = function() {
 		commonJs.showProcMessageOnElement("divDocuments");
 
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getOpportunityDocuments.do",
+			url:"/per/perBasicInfo/perBasicProfile/getOpportunityDocuments.do",
 			noForm:true,
 			data:{opportunityId:opportunityId},
 			callback:function(result) {
@@ -108,6 +108,7 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
+		showProcMessage();
 		commonJs.setFieldDateMask("oppDueDate");
 		commonJs.setFieldDateMask("asgStartDate");
 		commonJs.setFieldDateMask("asgEndDate");
@@ -261,8 +262,9 @@ $(function() {
 		$("#asgManagementFee").number(true, 3);
 
 		setTimeout(function() {
-			setBlind();
 			getOpportunityDocuments();
-		}, 200);
+
+			hideProcMessage();
+		}, 400);
 	});
 });

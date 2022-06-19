@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202ContactFrame.js
+ * - ContactFrame.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -21,8 +21,8 @@ $(function() {
 	};
 
 	setWrapperSize = function() {
-		$("#divDataArea").height(722);
-		$("#divFrameDataAreaWrapper").height($("#divScrollablePanelFrame").height());
+//		$("#divDataArea").height(722);
+//		$("#divFrameDataAreaWrapper").height($("#divScrollablePanelFrame").height());
 	};
 
 	setRadioCheckValues = function() {
@@ -38,6 +38,8 @@ $(function() {
 	 * ! load event (document / window)
 	 */
 	$(window).load(function() {
+		setBlind();
+
 		commonJs.setAccordion({
 			containerClass:"accordion",
 			multipleExpand:true,
@@ -45,7 +47,6 @@ $(function() {
 		});
 
 		setRadioCheckValues();
-		setBlind();
 		setWrapperSize();
 	});
 });

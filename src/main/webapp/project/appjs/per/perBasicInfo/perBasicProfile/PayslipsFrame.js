@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202PayslipsFrame.js
+ * - PayslipsFrame.js
  *************************************************************************************************/
 var searchResultDataCount = 0;
 jsconfig.put("scrollablePanelHeightAdjust", 40);
@@ -35,7 +35,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/per/0202/getPayslipList.do",
+				url:"/per/perBasicInfo/perBasicProfile/getPayslipList.do",
 				dataType:"html",
 				data:{personId:personId},
 				callback:renderGridData

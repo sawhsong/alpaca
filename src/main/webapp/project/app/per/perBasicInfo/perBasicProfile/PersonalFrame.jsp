@@ -151,7 +151,7 @@ var personId = "<%=personId%>";
 				<h3 id="hPersonalComment">Personal Comments</h3>
 				<div id="divPersonalComment" class="accordionContents">
 <%-- 					<ui:txa name="personalComment" style="height:270px;"/> --%>
-					<div id="personalComment" style="padding:6px;height:240px;border:1px solid #cccccc;border-radius:3px;overflow:auto;line-height:150%;"></div>
+					<div id="personalComment" style="padding:6px;height:250px;border:1px solid #cccccc;border-radius:3px;overflow:auto;line-height:150%;"></div>
 				</div>
 			</div>
 			<div class="accordionGroup">

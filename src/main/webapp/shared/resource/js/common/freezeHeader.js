@@ -185,37 +185,6 @@
 			visibleHeight = $.nony.toNumber($(options.attachTo).offset().top - $scrollablePanel.offset().top);
 
 			/*!
-			 * Check page scroll for hiding/displaying header according to the wapper
-			 * 		options.scrollWrapper
-			 */
-			if (!$.nony.isEmpty(options.scrollWrapper)) {
-				$scrollablePanel = $(options.scrollWrapper);
-
-				$scrollablePanel.bind("scroll", function() {
-					var tableWrapperId = jsconfig.get("divSystemGeneratedFixedTableHeaderWrapperId"+tableId);
-					var $tableWrapper = $("#"+tableWrapperId);
-
-					$tableWrapper.css("top", $(options.attachTo).offset().top);
-
-					if (visibleHeight < $scrollablePanel.scrollTop()) {
-						$fixedTable.hide();
-					} else {
-						$fixedTable.show();
-					}
-				});
-			} else {
-				$scrollablePanel.bind("scroll", function() {
-					$fixedTable.css("top", $(options.attachTo).offset().top);
-
-					if (visibleHeight < $scrollablePanel.scrollTop()) {
-						$fixedTable.hide();
-					} else {
-						$fixedTable.show();
-					}
-				});
-			}
-
-			/*!
 			 * If (table width != '100%' or table width > attachTo width)
 			 * -> this case : another attachTo div should be created inside 'divDataArea'
 			 */
@@ -288,6 +257,34 @@
 				});
 
 				$(options.attachTo).scrollLeft("0");
+			}
+
+			/*!
+			 * Check page scroll for hiding/displaying header according to the wapper
+			 * 		options.scrollWrapper
+			 */
+			if (!$.nony.isEmpty(options.scrollWrapper)) {
+				$scrollablePanel = $(options.scrollWrapper);
+
+				$scrollablePanel.bind("scroll", function() {
+					$fixedTable.css("top", $(options.attachTo).offset().top);
+
+					if (visibleHeight < $scrollablePanel.scrollTop()) {
+						$fixedTable.hide();
+					} else {
+						$fixedTable.show();
+					}
+				});
+			} else {
+				$scrollablePanel.bind("scroll", function() {
+					$fixedTable.css("top", $(options.attachTo).offset().top);
+
+					if (visibleHeight < $scrollablePanel.scrollTop()) {
+						$fixedTable.hide();
+					} else {
+						$fixedTable.show();
+					}
+				});
 			}
 
 			$(options.attachTo).scrollTop("0");

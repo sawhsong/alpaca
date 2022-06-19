@@ -1,8 +1,7 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202CommunicationFrame.js
+ * - CommunicationFrame.js
  *************************************************************************************************/
-jsconfig.put("scrollablePanelHeightAdjust", 10);
 var searchResultDataCount = 0;
 
 $(function() {
@@ -35,7 +34,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/per/0202/getCommunicationList.do",
+				url:"/per/perBasicInfo/perBasicProfile/getCommunicationList.do",
 				dataType:"html",
 				data:{personId:personId},
 				callback:renderGridData
@@ -111,7 +110,7 @@ $(function() {
 		}
 
 		commonJs.doExport({
-			url:"/per/0202/exeExport.do",
+			url:"/per/perBasicInfo/perBasicProfile/exeExport.do",
 			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
 			menuObject:menuObject
 		});

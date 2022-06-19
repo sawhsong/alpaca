@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202NextActionsFrame.js
+ * - OpportunityFrame.js
  *************************************************************************************************/
 jsconfig.put("scrollablePanelHeightAdjust", 40);
 
@@ -30,7 +30,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/per/0202/getOpportunityList.do",
+				url:"/per/perBasicInfo/perBasicProfile/getOpportunityList.do",
 				dataType:"html",
 				data:{personId:personId},
 				callback:renderGridData
@@ -101,12 +101,12 @@ $(function() {
 
 		if (status == "Open") {
 			popupId = "Edit Opportunity";
-			url = "/per/0202/getEditOpportunity.do";
-			width = 1880, height = 970;
+			url = "/per/perBasicInfo/perBasicProfile/getEditOpportunity.do";
+			width = 1700, height = 900;
 		} else {
 			popupId = "Opportunity Details";
-			url = "/per/0202/getOpportunityDetail.do";
-			width = 1880, height = 970;
+			url = "/per/perBasicInfo/perBasicProfile/getOpportunityDetail.do";
+			width = 1700, height = 900;
 		}
 
 		parent.popup = parent.commonJs.openPopup({

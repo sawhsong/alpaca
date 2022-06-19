@@ -1,10 +1,9 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202DocumentReceivedFrame.js
+ * - DocumentReceivedFrame.js
  *************************************************************************************************/
-var searchResultDataCount = 0;
-jsconfig.put("useJqTooltip", true);
 jsconfig.put("scrollablePanelHeightAdjust", 54);
+var searchResultDataCount = 0;
 var gridAction = [{
 	name:"Add File",
 	img:"fa-plus",
@@ -49,7 +48,6 @@ $(function() {
 	setGridTable = function(totalResultRows) {
 		$("#tblGrid").freezeHeader({
 			attachTo:$("#divDataArea"),
-//			attachToHeight:618,
 			pagingArea:$("#divPagingArea"),
 			isPageable:true,
 			totalResultRows:totalResultRows,
@@ -62,7 +60,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/per/0202/getDocumentReceivedList.do",
+				url:"/per/perBasicInfo/perBasicProfile/getDocumentReceivedList.do",
 				data:{personId:personId},
 				callback:renderGridData
 			});

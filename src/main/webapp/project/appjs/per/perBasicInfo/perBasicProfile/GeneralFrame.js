@@ -1,8 +1,8 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202GeneralFrame.js
+ * - GeneralFrame.js
  *************************************************************************************************/
-jsconfig.put("scrollablePanelHeightAdjust", -10);
+jsconfig.put("scrollablePanelHeightAdjust", 44);
 $(function() {
 	/*!
 	 * event
@@ -36,22 +36,22 @@ $(function() {
 	/*!
 	 * process
 	 */
-	setBlind = function() {
+	showProcMessage = function() {
 		commonJs.showProcMessageOnElement("divGeneralInfo");
 		commonJs.showProcMessageOnElement("divPaymentAdviceDelivery");
 		commonJs.showProcMessageOnElement("divWorkingRightsStatus");
 		commonJs.showProcMessageOnElement("divScheduledPayrollNoti");
+	};
 
-		setTimeout(function() {
-			commonJs.hideProcMessageOnElement("divGeneralInfo");
-			commonJs.hideProcMessageOnElement("divPaymentAdviceDelivery");
-			commonJs.hideProcMessageOnElement("divWorkingRightsStatus");
-			commonJs.hideProcMessageOnElement("divScheduledPayrollNoti");
-		}, 1000);
+	hideProcMessage = function() {
+		commonJs.hideProcMessageOnElement("divGeneralInfo");
+		commonJs.hideProcMessageOnElement("divPaymentAdviceDelivery");
+		commonJs.hideProcMessageOnElement("divWorkingRightsStatus");
+		commonJs.hideProcMessageOnElement("divScheduledPayrollNoti");
 	};
 
 	setWrapperSize = function() {
-		$("#divFrameDataAreaWrapper").height($("#divScrollablePanelFrame").height()-42);
+//		$("#divFrameDataAreaWrapper").height($("#divScrollablePanelFrame").height()-42);
 	};
 
 	setAutoCompletion = function() {
@@ -126,10 +126,8 @@ $(function() {
 	};
 
 	getGeneralInfo = function() {
-		commonJs.showProcMessageOnElement("divGeneralInfo");
-
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getGeneralInfo.do",
+			url:"/per/perBasicInfo/perBasicProfile/getGeneralInfo.do",
 			noForm:true,
 			data:{personId:personId},
 			callback:function(result) {
@@ -137,10 +135,6 @@ $(function() {
 				setGeneralInfoValues(ds);
 			}
 		});
-
-		setTimeout(function() {
-			commonJs.hideProcMessageOnElement("divGeneralInfo");
-		}, 1000);
 	};
 	setGeneralInfoValues = function(ds) {
 		try {
@@ -178,7 +172,7 @@ $(function() {
 		commonJs.showProcMessageOnElement("divGridHolderWorkingRightsStatus");
 
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getWorkingRightsStatusList.do",
+			url:"/per/perBasicInfo/perBasicProfile/getWorkingRightsStatusList.do",
 			noForm:true,
 			data:{personId:personId},
 			callback:function(result) {
@@ -221,7 +215,7 @@ $(function() {
 		$("#tblWorkingRightsStatus").freezeHeader({
 			attachTo:$("#divGridHolderWorkingRightsStatus"),
 			attachToHeight:198,
-			scrollWrapper:$("#divFrameDataAreaWrapper"),
+			scrollWrapper:$("#divScrollablePanelFrame"),
 			isPageable:false
 		});
 
@@ -236,7 +230,7 @@ $(function() {
 		commonJs.showProcMessageOnElement("divGridHolderScheduledPayrollNoti");
 
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getScheduledPayrollNotiList.do",
+			url:"/per/perBasicInfo/perBasicProfile/getScheduledPayrollNotiList.do",
 			noForm:true,
 			data:{personId:personId},
 			callback:function(result) {
@@ -279,7 +273,7 @@ $(function() {
 		$("#tblScheduledPayrollNoti").freezeHeader({
 			attachTo:$("#divGridHolderScheduledPayrollNoti"),
 			attachToHeight:198,
-			scrollWrapper:$("#divFrameDataAreaWrapper"),
+			scrollWrapper:$("#divScrollablePanelFrame"),
 			isPageable:false
 		});
 
@@ -324,6 +318,8 @@ $(function() {
 	 * ! load event (document / window)
 	 */
 	$(window).load(function() {
+		showProcMessage();
+
 		commonJs.setAccordion({
 			containerClass:"accordion",
 			multipleExpand:true,
@@ -334,7 +330,6 @@ $(function() {
 		commonJs.setFieldDateMask("memberSince");
 		commonJs.setFieldDateMask("resignationDate");
 
-//		setBlind();
 		setWrapperSize();
 		setAutoCompletion();
 
@@ -342,6 +337,8 @@ $(function() {
 			getGeneralInfo();
 			getWorkingRightsStatus();
 			getScheduledPayrollNoti();
+
+			hideProcMessage();
 		}, 300);
 	});
 });

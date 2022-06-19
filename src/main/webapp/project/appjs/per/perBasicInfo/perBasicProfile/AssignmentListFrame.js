@@ -1,9 +1,9 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202DocumentOutstanding.js
+ * - AssignmentListFrame.js
  *************************************************************************************************/
-var searchResultDataCount = 0;
 jsconfig.put("scrollablePanelHeightAdjust", 72);
+var searchResultDataCount = 0;
 var gridAction = [{
 	name:"Copy Assignment",
 	img:"fa-clipboard",
@@ -39,7 +39,7 @@ $(function() {
 		commonJs.showProcMessageOnElement("divScrollablePanelFrame");
 
 		commonJs.doSearch({
-			url:"/per/0202/getAssignmentDataList.do",
+			url:"/per/perBasicInfo/perBasicProfile/getAssignmentDataList.do",
 			dataType:"html",
 			data:{personId:personId},
 			callback:renderGridData

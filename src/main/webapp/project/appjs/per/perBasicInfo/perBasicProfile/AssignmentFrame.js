@@ -1,8 +1,8 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202AssignmentFrame.js
+ * - AssignmentFrame.js
  *************************************************************************************************/
-jsconfig.put("scrollablePanelHeightAdjust", -10);
+jsconfig.put("scrollablePanelHeightAdjust", 76);
 
 var gridAction = [{
 	name:"Edit",
@@ -72,7 +72,7 @@ $(function() {
 
 	$("#timsheetApprover1").change(function(event) {
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getApproverEmail.do",
+			url:"/per/perBasicInfo/perBasicProfile/getApproverEmail.do",
 			noForm:true,
 			data:{approverId:$(this).val()},
 			callback:function(result) {
@@ -83,7 +83,7 @@ $(function() {
 	});
 	$("#timsheetApprover2").change(function(event) {
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getApproverEmail.do",
+			url:"/per/perBasicInfo/perBasicProfile/getApproverEmail.do",
 			noForm:true,
 			data:{approverId:$(this).val()},
 			callback:function(result) {
@@ -94,7 +94,7 @@ $(function() {
 	});
 	$("#timsheetApprover3").change(function(event) {
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getApproverEmail.do",
+			url:"/per/perBasicInfo/perBasicProfile/getApproverEmail.do",
 			noForm:true,
 			data:{approverId:$(this).val()},
 			callback:function(result) {
@@ -105,7 +105,7 @@ $(function() {
 	});
 	$("#timesheetNotiToPerson").change(function(event) {
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getApproverEmail.do",
+			url:"/per/perBasicInfo/perBasicProfile/getApproverEmail.do",
 			noForm:true,
 			data:{approverId:$(this).val()},
 			callback:function(result) {
@@ -117,7 +117,7 @@ $(function() {
 
 	$("#expenseApprover1").change(function(event) {
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getApproverEmail.do",
+			url:"/per/perBasicInfo/perBasicProfile/getApproverEmail.do",
 			noForm:true,
 			data:{approverId:$(this).val()},
 			callback:function(result) {
@@ -128,7 +128,7 @@ $(function() {
 	});
 	$("#expenseApprover2").change(function(event) {
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getApproverEmail.do",
+			url:"/per/perBasicInfo/perBasicProfile/getApproverEmail.do",
 			noForm:true,
 			data:{approverId:$(this).val()},
 			callback:function(result) {
@@ -139,7 +139,7 @@ $(function() {
 	});
 	$("#expenseApprover3").change(function(event) {
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getApproverEmail.do",
+			url:"/per/perBasicInfo/perBasicProfile/getApproverEmail.do",
 			noForm:true,
 			data:{approverId:$(this).val()},
 			callback:function(result) {
@@ -150,7 +150,7 @@ $(function() {
 	});
 	$("#expenseNotiToPerson").change(function(event) {
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getApproverEmail.do",
+			url:"/per/perBasicInfo/perBasicProfile/getApproverEmail.do",
 			noForm:true,
 			data:{approverId:$(this).val()},
 			callback:function(result) {
@@ -162,7 +162,7 @@ $(function() {
 
 	$("#deliverableApprover1").change(function(event) {
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getApproverEmail.do",
+			url:"/per/perBasicInfo/perBasicProfile/getApproverEmail.do",
 			noForm:true,
 			data:{approverId:$(this).val()},
 			callback:function(result) {
@@ -173,7 +173,7 @@ $(function() {
 	});
 	$("#deliverableApprover2").change(function(event) {
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getApproverEmail.do",
+			url:"/per/perBasicInfo/perBasicProfile/getApproverEmail.do",
 			noForm:true,
 			data:{approverId:$(this).val()},
 			callback:function(result) {
@@ -184,7 +184,7 @@ $(function() {
 	});
 	$("#deliverableApprover3").change(function(event) {
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getApproverEmail.do",
+			url:"/per/perBasicInfo/perBasicProfile/getApproverEmail.do",
 			noForm:true,
 			data:{approverId:$(this).val()},
 			callback:function(result) {
@@ -195,7 +195,7 @@ $(function() {
 	});
 	$("#deliverableNotiToPerson").change(function(event) {
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getApproverEmail.do",
+			url:"/per/perBasicInfo/perBasicProfile/getApproverEmail.do",
 			noForm:true,
 			data:{approverId:$(this).val()},
 			callback:function(result) {
@@ -220,8 +220,20 @@ $(function() {
 	/*!
 	 * process
 	 */
+	showProcMessage = function() {
+		commonJs.showProcMessageOnElement("divGridHolderPrtDocument");
+		commonJs.showProcMessageOnElement("divAsgRate");
+		commonJs.showProcMessageOnElement("divGridHolderDeliverableRate");
+	};
+
+	hideProcMessage = function() {
+		commonJs.hideProcMessageOnElement("divGridHolderPrtDocument");
+		commonJs.hideProcMessageOnElement("divAsgRate");
+		commonJs.hideProcMessageOnElement("divGridHolderDeliverableRate");
+	};
+
 	setWrapperSize = function() {
-		$("#divFrameDataAreaWrapper").height($("#divScrollablePanelFrame").height()-86);
+//		$("#divFrameDataAreaWrapper").height($("#divScrollablePanelFrame").height()-86);
 	};
 
 	setNotiToPersonList = function(sectionName) {
@@ -237,7 +249,7 @@ $(function() {
 			});
 
 			commonJs.doSimpleProcess({
-				url:"/per/0202/getNotiToPersonList.do",
+				url:"/per/perBasicInfo/perBasicProfile/getNotiToPersonList.do",
 				noForm:true,
 				data:{organisationId:$("#"+orgElementId).val()},
 				callback:function(result) {
@@ -511,10 +523,8 @@ $(function() {
 
 	getPrtDocumentList = function() {
 		if (!commonJs.isEmpty(prtDocumentId)) {
-			commonJs.showProcMessageOnElement("divGridHolderPrtDocument");
-
 			commonJs.doSimpleProcess({
-				url:"/per/0202/getPrtDocumentList.do",
+				url:"/per/perBasicInfo/perBasicProfile/getPrtDocumentList.do",
 				noForm:true,
 				data:{prtDocumentId:prtDocumentId},
 				callback:function(result) {
@@ -549,18 +559,14 @@ $(function() {
 		}
 
 		$("#tbodyPrtDocument").append($(html));
-
-		commonJs.hideProcMessageOnElement("divGridHolderPrtDocument");
 	};
 	getPrtDocumentDetail = function(documentId) {
 		commonJs.alert("Detail : "+documentId);
 	};
 
 	getAssignmentRateList = function() {
-		commonJs.showProcMessageOnElement("divAsgRate");
-
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getAssignmentRateList.do",
+			url:"/per/perBasicInfo/perBasicProfile/getAssignmentRateList.do",
 			noForm:true,
 			data:{assignmentId:assignmentId},
 			callback:function(result) {
@@ -613,15 +619,13 @@ $(function() {
 		$("#tblAsgRates").freezeHeader({
 			attachTo:$("#divGridHolderAsgRates"),
 			attachToHeight:200,
-			scrollWrapper:$("#divFrameDataAreaWrapper"),
+			scrollWrapper:$("#divScrollablePanelFrame"),
 			isPageable:false
 		});
 
 		$("[name=icnActionForAsgRate]").each(function(index) {
 			$(this).contextMenu(gridAction);
 		});
-
-		commonJs.hideProcMessageOnElement("divAsgRate");
 	};
 	doActionForAsgRate = function(img) {
 		var assignmentRateId = $(img).attr("assignmentRateId");
@@ -649,10 +653,8 @@ $(function() {
 			return false;
 		}
 
-		commonJs.showProcMessageOnElement("divGridHolderDeliverableRate");
-
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getDeliverableRateList.do",
+			url:"/per/perBasicInfo/perBasicProfile/getDeliverableRateList.do",
 			noForm:true,
 			data:{assignmentId:assignmentId},
 			callback:function(result) {
@@ -699,15 +701,13 @@ $(function() {
 		$("#tblDeliverableRate").freezeHeader({
 			attachTo:$("#divGridHolderDeliverableRate"),
 			attachToHeight:220,
-			scrollWrapper:$("#divFrameDataAreaWrapper"),
+			scrollWrapper:$("#divScrollablePanelFrame"),
 			isPageable:false
 		});
 
 		$("[name=icnActionForDeliverableRate]").each(function(index) {
 			$(this).contextMenu(gridAction);
 		});
-
-		commonJs.hideProcMessageOnElement("divGridHolderDeliverableRate");
 
 		isDeliverableRateLoaded = true;
 	};
@@ -784,6 +784,8 @@ $(function() {
 	 * ! load event (document / window)
 	 */
 	$(window).load(function() {
+		showProcMessage();
+
 		commonJs.setAccordion({
 			containerClass:"accordion",
 			multipleExpand:true,
@@ -808,6 +810,8 @@ $(function() {
 			loadTimesheetNotiToPerson();
 			loadExpenseNotiToPerson();
 			loadDeliverableNotiToPerson();
+
+			hideProcMessage();
 		}, 400);
 
 		parent.parent.commonJs.hideProcMessageOnElement("divFrame");
