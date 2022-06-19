@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202PersonFrameContainer.js
+ * - FrameContainer.js
  *************************************************************************************************/
 var popup;
 
@@ -11,7 +11,7 @@ $(function() {
 	$("#tabCategoryPersonDetail li a").click(function() {
 		var index = $(this).parent().index(),
 			action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
-			actionString = "/per/0202/get"+action+".do"+"?personId="+personId;
+			actionString = "/per/perBasicInfo/perBasicProfile/get"+action+".do"+"?personId="+personId;
 
 		hideSubTabs("PersonDetail");
 		changeTabSelection($(this));
@@ -37,7 +37,7 @@ $(function() {
 	$("#tabCategoryDocument li a").click(function() {
 		var index = $(this).parent().index(),
 			action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
-			actionString = "/per/0202/getDocument"+action+".do"+"?personId="+personId;
+			actionString = "/per/perBasicInfo/perBasicProfile/getDocument"+action+".do"+"?personId="+personId;
 
 		hideSubTabs("Document");
 		changeTabSelection($(this));
@@ -47,7 +47,7 @@ $(function() {
 	$("#tabCategoryEcmsEbo li a").click(function() {
 		var index = $(this).parent().index(),
 			action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
-			actionString = "/per/0202/get"+action+".do"+"?personId="+personId;
+			actionString = "/per/perBasicInfo/perBasicProfile/get"+action+".do"+"?personId="+personId;
 
 		hideSubTabs("EcmsEbo");
 		changeTabSelection($(this));
@@ -63,7 +63,7 @@ $(function() {
 	$("#tabCategoryAssignments li a").click(function() {
 		var index = $(this).parent().index(),
 			action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
-			actionString = "/per/0202/get"+action+".do"+"?personId="+personId+"&assignmentId="+assignmentId;
+			actionString = "/per/perBasicInfo/perBasicProfile/get"+action+".do"+"?personId="+personId+"&assignmentId="+assignmentId;
 
 		assignmentId = "";
 
@@ -76,7 +76,7 @@ $(function() {
 	$("#tabCategoryPortal li a").click(function() {
 		var index = $(this).parent().index(),
 			action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
-			actionString = "/per/0202/get"+action+".do"+"?personId="+personId;
+			actionString = "/per/perBasicInfo/perBasicProfile/get"+action+".do"+"?personId="+personId;
 
 		hideSubTabs("Assignments");
 		changeTabSelection($(this));
@@ -169,7 +169,7 @@ $(function() {
 	bindClickAssignments = function() {
 		var index = $(this).parent().index(),
 		action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
-		actionString = "/per/0202/get"+action+".do"+"?personId="+personId+"&assignmentId="+assignmentId;
+		actionString = "/per/perBasicInfo/perBasicProfile/get"+action+".do"+"?personId="+personId+"&assignmentId="+assignmentId;
 
 		hideSubTabs("Assignments");
 		disableTabs("Assignments");

@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - PerBasicProfileList.js
+ * - List.js
  *************************************************************************************************/
 var popupLookup = null;
 var searchResultDataCount = 0;

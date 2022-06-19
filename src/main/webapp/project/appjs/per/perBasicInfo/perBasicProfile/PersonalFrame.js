@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Per0202PersonalFrame.js
+ * - PersonalFrame.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -53,31 +53,32 @@ $(function() {
 //commonJs.printLog({message:"divFrameWindowHolder : "+$("#divFrameWindowHolder").height()});
 //commonJs.printLog({message:"divFixedPanelFrame : "+$("#divFixedPanelFrame").height()});
 //commonJs.printLog({message:"divScrollablePanelFrame : "+$("#divScrollablePanelFrame").height()});
-		$("#divDataArea").height(722); // divFrameWindowHolder - divFixedPanelFrame - additional height
-		$("#divFrameDataAreaWrapper").height($("#divScrollablePanelFrame").height());
+//		$("#divDataArea").height(722); // divFrameWindowHolder - divFixedPanelFrame - additional height
+//		$("#divFrameDataAreaWrapper").height($("#divScrollablePanelFrame").height());
 	};
 
 	setFieldPersonDetailValues = function(ds) {
-		var personType = ds.getValue(0, "PERSON_TYPE").toUpperCase().split(",");
-
+		var person = ds.getRowAsDto();
+		var personType = commonJs.upperCase(person.personType).split(",");
 		try {
-			$("#personNumber").val(ds.getValue(0, "PERSON_NUMBER"));
-			commonJs.setRadioValue("prefix", ds.getValue(0, "PREFIX"));
-			$("#surname").val(ds.getValue(0, "SURNAME"));
-			$("#firstName").val(ds.getValue(0, "FIRST_NAME"));
-			$("#middleName").val(ds.getValue(0, "MIDDLE_NAME"));
-			$("#preferredName").val(ds.getValue(0, "PREFERRED_NAME"));
-			$("#dateOfBirth").val(ds.getValue(0, "DATE_OF_BIRTH"));
-			$("#firstContact").val(ds.getValue(0, "FIRST_CONTACT"));
-			commonJs.setRadioValue("maritalStatus", ds.getValue(0, "MARITAL_STATUS"));
-			commonJs.setRadioValue("gender", ds.getValue(0, "GENDER"));
-			$("#employmentCompanyOrgId").val(ds.getValue(0, "EMPLOYMENT_COMPANY_ORG_ID"));
-			$("#employmentCompanyOrgName").val(ds.getValue(0, "EMPLOYMENT_COMPANY_ORG_NAME"));
-			$("#title").val(ds.getValue(0, "TITLE"));
-			$("#referralId").val(ds.getValue(0, "REFERRAL_ID"));
-			$("#referralName").val(ds.getValue(0, "REFERRAL_NAME"));
-			$("#referralOrganisationId").val(ds.getValue(0, "REFERRAL_ORGANISATION_ID"));
-			$("#referralOrganisationName").val(ds.getValue(0, "REFERRAL_ORGANISATION_NAME"));
+			$("#personNumber").val(person.personNumber);
+			commonJs.setRadioValue("prefix", person.prefix);
+			$("#surname").val(person.surname);
+			$("#firstName").val(person.firstName);
+			$("#middleName").val(person.middleName);
+			$("#preferredName").val(person.preferredName);
+			$("#dateOfBirth").val(person.dateOfBirth);
+			$("#firstContact").val(person.firstContact);
+			commonJs.setRadioValue("maritalStatus", person.maritalStatus);
+			commonJs.setRadioValue("gender", person.gender);
+			commonJs.setRadioValue("isAorTsi", commonJs.nvl(person.isAOrTsi, "N"));
+			$("#employmentCompanyOrgId").val(person.employmentCompanyOrgId);
+			$("#employmentCompanyOrgName").val(person.employmentCompanyOrgName);
+			$("#title").val(person.title);
+			$("#referralId").val(person.referralId);
+			$("#referralName").val(person.referralName);
+			$("#referralOrganisationId").val(person.referralOrganisationId);
+			$("#referralOrganisationName").val(person.referralOrganisationName);
 		} catch(e) {}
 
 		setTimeout(function() {
@@ -117,10 +118,8 @@ $(function() {
 	};
 
 	getPersonDetail = function() {
-		commonJs.showProcMessageOnElement("divPersonDetails");
-
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getPersonDetail.do",
+			url:"/per/perBasicInfo/perBasicProfile/getPersonDetail.do",
 			noForm:true,
 			data:{personId:personId},
 			callback:function(result) {
@@ -128,17 +127,11 @@ $(function() {
 				setFieldPersonDetailValues(ds);
 			}
 		});
-
-		setTimeout(function() {
-			commonJs.hideProcMessageOnElement("divPersonDetails");
-		}, 1000);
 	};
 
 	getPersonalComment = function() {
-		commonJs.showProcMessageOnElement("divPersonalComment");
-
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getPersonalComment.do",
+			url:"/per/perBasicInfo/perBasicProfile/getPersonalComment.do",
 			dataType:"html",
 			noForm:true,
 			data:{personId:personId},
@@ -147,17 +140,11 @@ $(function() {
 				setPersonalCommentFieldValues(ds);
 			}
 		});
-
-		setTimeout(function() {
-			commonJs.hideProcMessageOnElement("divPersonalComment");
-		}, 1000);
 	};
 
 	getCommsHistory = function() {
-		commonJs.showProcMessageOnElement("divCommsHistory");
-
 		commonJs.doSimpleProcess({
-			url:"/per/0202/getCommsHistory.do",
+			url:"/per/perBasicInfo/perBasicProfile/getCommsHistory.do",
 			noForm:true,
 			dataType:"html",
 			data:{personId:personId},
@@ -166,10 +153,18 @@ $(function() {
 				setCommsHistoryFieldValues(ds);
 			}
 		});
+	};
 
-		setTimeout(function() {
-			commonJs.hideProcMessageOnElement("divCommsHistory");
-		}, 1000);
+	showProcMessage = function() {
+		commonJs.showProcMessageOnElement("divPersonDetails");
+		commonJs.showProcMessageOnElement("divPersonalComment");
+		commonJs.showProcMessageOnElement("divCommsHistory");
+	};
+
+	hideProcMessage = function() {
+		commonJs.hideProcMessageOnElement("divPersonDetails");
+		commonJs.hideProcMessageOnElement("divPersonalComment");
+		commonJs.hideProcMessageOnElement("divCommsHistory");
 	};
 
 	/*
@@ -185,6 +180,7 @@ $(function() {
 		commonJs.setFieldDateMask("dateOfBirth");
 		commonJs.setFieldDateMask("firstContact");
 		setEditor();
+		showProcMessage();
 
 		commonJs.setAutoComplete($("#employmentCompanyOrgName"), {
 			method:"getOrgByNameOrId",
@@ -261,6 +257,8 @@ $(function() {
 			getPersonDetail();
 			getPersonalComment();
 			getCommsHistory();
+
+			hideProcMessage();
 		}, 400);
 	});
 });

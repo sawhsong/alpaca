@@ -319,6 +319,14 @@ public class CommonUtil extends StringUtils {
 		return false;
 	}
 
+	public static boolean containsIgnoreCase(String value, String... values) {
+		if (isBlank(value)) {return false;}
+		for (String s : values) {
+			if (containsIgnoreCase(value, s)) {return true;}
+		}
+		return false;
+	}
+
 	public static String removeString(String value, String... values) {
 		if (isBlank(value)) {return value;}
 		String val = value;

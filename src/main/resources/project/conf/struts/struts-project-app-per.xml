@@ -25,23 +25,23 @@
         </action>
         <!--PerBasicProfile - Person Profile (Old Type)-->
         <action class="project.app.per.perBasicInfo.perBasicProfile.PerBasicProfileAction" method="{1}" name="perBasicInfo/perBasicProfile/*">
-            <result name="list" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileList.jsp</result>
-            <result name="personFrameContainer" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileFrameContainer.jsp</result>
-            <result name="personal" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfilePersonalFrame.jsp</result>
-            <result name="contact" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/Per0202Conta/perBasicInfo/perBasicProfile/PerBasicProfileContactFrame.jsp</result>
-            <result name="documentOutstanding" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileDocumentOutstandingFrame.jsp</result>
-            <result name="documentReceived" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileDocumentReceivedFrame.jsp</result>
-            <result name="additionalService" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileAdditionalServiceFrame.jsp</result>
-            <result name="communication" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileCommunicationFrame.jsp</result>
-            <result name="nextActions" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileNextActionsFrame.jsp</result>
-            <result name="general" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileGeneralFrame.jsp</result>
-            <result name="opportunity" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileOpportunityFrame.jsp</result>
-            <result name="editOpportunity" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileOpportunityEditPop.jsp</result>
-            <result name="opportunityDetail" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileOpportunityDetailPop.jsp</result>
-            <result name="assignmentList" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileAssignmentListFrame.jsp</result>
-            <result name="assignment" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileAssignmentFrame.jsp</result>
-            <result name="superannuation" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfileSuperannuationFrame.jsp</result>
-            <result name="payslips" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PerBasicProfilePayslipsFrame.jsp</result>
+            <result name="list" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/List.jsp</result>
+            <result name="personFrameContainer" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/FrameContainer.jsp</result>
+            <result name="personal" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PersonalFrame.jsp</result>
+            <result name="contact" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/ContactFrame.jsp</result>
+            <result name="documentOutstanding" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/DocumentOutstandingFrame.jsp</result>
+            <result name="documentReceived" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/DocumentReceivedFrame.jsp</result>
+            <result name="additionalService" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/AdditionalServiceFrame.jsp</result>
+            <result name="communication" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/CommunicationFrame.jsp</result>
+            <result name="nextActions" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/NextActionsFrame.jsp</result>
+            <result name="general" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/GeneralFrame.jsp</result>
+            <result name="opportunity" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/OpportunityFrame.jsp</result>
+            <result name="editOpportunity" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/OpportunityEditPop.jsp</result>
+            <result name="opportunityDetail" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/OpportunityDetailPop.jsp</result>
+            <result name="assignmentList" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/AssignmentListFrame.jsp</result>
+            <result name="assignment" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/AssignmentFrame.jsp</result>
+            <result name="superannuation" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/SuperannuationFrame.jsp</result>
+            <result name="payslips" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PayslipsFrame.jsp</result>
         </action>
     </package>
 </struts>
