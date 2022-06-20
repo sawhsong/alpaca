@@ -6,7 +6,7 @@
         <!--PerBasicProfile - Person Profile (Old Type)-->
         <action class="project.app.per.perBasicInfo.perBasicProfile.PerBasicProfileAction" method="{1}" name="perBasicInfo/perBasicProfile/*">
             <result name="list" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/List.jsp</result>
-            <result name="personFrameContainer" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/FrameContainer.jsp</result>
+            <result name="frameContainer" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/FrameContainer.jsp</result>
             <result name="personal" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/PersonalFrame.jsp</result>
             <result name="contact" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/ContactFrame.jsp</result>
             <result name="documentOutstanding" type="debugDispatcherResult">/project/app/per/perBasicInfo/perBasicProfile/DocumentOutstandingFrame.jsp</result>

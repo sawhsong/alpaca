@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Org0202OrganisationDetailFramContainer.js
+ * - FramContainer.js
  *************************************************************************************************/
 var popup;
 
@@ -11,7 +11,7 @@ $(function() {
 	$("#tabCategoryOrganisationDetail li a").click(function() {
 		var index = $(this).parent().index(),
 			action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
-			actionString = "/org/0202/get"+action+".do"+"?organisationId="+organisationId;
+			actionString = "/org/orgBasicInfo/orgBasicProfile/get"+action+".do"+"?organisationId="+organisationId;
 
 		hideSubTabs("OrganisationDetail");
 		changeTabSelection($(this));
@@ -27,7 +27,7 @@ $(function() {
 	$("#tabCategoryEcms li a").click(function() {
 		var index = $(this).parent().index(),
 		action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
-		actionString = "/org/0202/getEcms"+action+".do"+"?organisationId="+organisationId;
+		actionString = "/org/orgBasicInfo/orgBasicProfile/getEcms"+action+".do"+"?organisationId="+organisationId;
 
 		changeTabSelection($(this));
 		setFrame(actionString);
@@ -36,7 +36,7 @@ $(function() {
 	$("#tabCategoryWorkcover li a").click(function() {
 		var index = $(this).parent().index(),
 		action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
-		actionString = "/org/0202/getWorkcover"+action+".do"+"?organisationId="+organisationId;
+		actionString = "/org/orgBasicInfo/orgBasicProfile/getWorkcover"+action+".do"+"?organisationId="+organisationId;
 
 		changeTabSelection($(this));
 		setFrame(actionString);
@@ -45,7 +45,7 @@ $(function() {
 	$("#tabCategoryPayrollTax li a").click(function() {
 		var index = $(this).parent().index(),
 		action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
-		actionString = "/org/0202/getPayrollTax"+action+".do"+"?organisationId="+organisationId;
+		actionString = "/org/orgBasicInfo/orgBasicProfile/getPayrollTax"+action+".do"+"?organisationId="+organisationId;
 
 		changeTabSelection($(this));
 		setFrame(actionString);
@@ -54,7 +54,7 @@ $(function() {
 	$("#tabCategoryRateCard li a").click(function() {
 		var index = $(this).parent().index(),
 		action = commonJs.removeString($(this).text(), [" ", "/", "&nbsp;"]),
-		actionString = "/org/0202/getRateCard"+action+".do"+"?organisationId="+organisationId;
+		actionString = "/org/orgBasicInfo/orgBasicProfile/getRateCard"+action+".do"+"?organisationId="+organisationId;
 
 		changeTabSelection($(this));
 		setFrame(actionString);

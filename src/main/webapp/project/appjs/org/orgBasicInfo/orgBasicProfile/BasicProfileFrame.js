@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Org0202BasicInfoFrame.js
+ * - BasicProfileFrame.js
  *************************************************************************************************/
 $(function() {
 	/*!
@@ -229,7 +229,7 @@ $(function() {
 		commonJs.showProcMessageOnElement("divRelationshipInternalDetails");
 
 		commonJs.doSimpleProcess({
-			url:"/org/0202/getOrganisationDetail.do",
+			url:"/org/orgBasicInfo/orgBasicProfile/getOrganisationDetail.do",
 			noForm:true,
 			data:{organisationId:organisationId},
 			callback:function(result) {
@@ -311,7 +311,7 @@ $(function() {
 		commonJs.showProcMessageOnElement("divCommunicationHistory");
 
 		commonJs.doSimpleProcess({
-			url:"/org/0202/getCommunicationHistory.do",
+			url:"/org/orgBasicInfo/orgBasicProfile/getCommunicationHistory.do",
 			noForm:true,
 			dataType:"html",
 			data:{organisationId:organisationId},

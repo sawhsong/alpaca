@@ -46,7 +46,7 @@ public class PerBasicProfileAction extends BaseAction {
 			session.setAttribute("PersonFullNameQuickSearch", hpPersonD.getFullName());
 			session.setAttribute("HpPersonDQuickSearch", hpPersonD);
 		}
-		return "personFrameContainer";
+		return "frameContainer";
 	}
 
 	public String getPersonal() throws Exception {

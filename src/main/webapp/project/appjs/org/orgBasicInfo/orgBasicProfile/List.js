@@ -1,8 +1,7 @@
 /**************************************************************************************************
  * Framework Generated Javascript Source
- * - Org0202List.js
+ * - List.js
  *************************************************************************************************/
-jsconfig.put("useJqTooltip", false);
 var popup = null;
 var searchResultDataCount = 0;
 var attchedFileContextMenu = [];
@@ -84,7 +83,7 @@ $(function() {
 
 		if (commonJs.doValidate($("#fmDefault"))) {
 			commonJs.doSearch({
-				url:"/org/0202/getList.do",
+				url:"/org/orgBasicInfo/orgBasicProfile/getList.do",
 				dataType:"html",
 				onSuccess:renderGridData
 			});
@@ -139,7 +138,7 @@ $(function() {
 
 	getDetail = function(organisationId) {
 		commonJs.doSimpleProcessForPage({
-			action:"/org/0202/getOrganisationDetailFrameContainer.do",
+			action:"/org/orgBasicInfo/orgBasicProfile/getOrganisationDetailFrameContainer.do",
 			data:{organisationId:organisationId}
 		});
 	};
@@ -152,7 +151,7 @@ $(function() {
 		}
 
 		commonJs.doDelete({
-			url:"/org/0202/exeDelete.do",
+			url:"/org/orgBasicInfo/orgBasicProfile/exeDelete.do",
 			callback:doSearch
 		});
 	};
@@ -170,7 +169,7 @@ $(function() {
 		return;
 
 		commonJs.doExport({
-			url:"/org/0202/exeExport.do",
+			url:"/org/orgBasicInfo/orgBasicProfile/exeExport.do",
 			data:commonJs.serialiseObject($("#divSearchCriteriaArea")),
 			menuObject:menuObject
 		});
