@@ -47,15 +47,15 @@
 ************************************************************************************************/%>
 <%@ include file="/shared/page/incCssJs.jsp"%>
 <style type="text/css">
-button.bootstrapSelect.dropdown-toggle {padding:3px 20px 2px 5px;}
-.tblEdit th {padding:2px 4px;}
-.tblEdit td {padding:2px 2px;}
-.tblGrid th, .tblGrid td {padding:5px 4px;}
-.thEdit {padding:2px 4px;}
-.tdEdit {padding:2px 2px;}
-.txtEn, .txtDpl, .txtDis, .txaEn, .txaDis, .txaDpl {padding:4px 4px;}
-.btn {padding:2px 10px;}
-.sectionHeader {padding:2px 4px;background:#f5f5f5;border:1px solid #dddddd}
+/* button.bootstrapSelect.dropdown-toggle {padding:3px 20px 2px 5px;} */
+/* .tblEdit th {padding:2px 4px;} */
+/* .tblEdit td {padding:2px 2px;} */
+/* .tblGrid th, .tblGrid td {padding:5px 4px;} */
+/* .thEdit {padding:2px 4px;} */
+/* .tdEdit {padding:2px 2px;} */
+/* .txtEn, .txtDpl, .txtDis, .txaEn, .txaDis, .txaDpl {padding:4px 4px;} */
+/* .btn {padding:2px 10px;} */
+/* .sectionHeader {padding:2px 4px;background:#f5f5f5;border:1px solid #dddddd} */
 </style>
 <script type="text/javascript" src="<mc:cp key="viewPageJsName"/>"></script>
 <script type="text/javascript">
