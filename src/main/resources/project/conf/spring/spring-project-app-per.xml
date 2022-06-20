@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-    <!--Per0202 - Person Profile-->
-    <bean class="${name.package.project}.app.per.per0202.Per0202Action" id="per0202Action" name="per0202Action"/>
-    <bean class="${name.package.project}.app.per.per0202.Per0202BizImpl" id="per0202Biz" name="per0202Biz" parent="baseBiz"/>
     <!--PerBasicProfile - Person Profile (Old Type)-->
     <bean class="${name.package.project}.app.per.perBasicInfo.perBasicProfile.PerBasicProfileAction" id="perBasicProfileAction" name="perBasicProfileAction"/>
     <bean class="${name.package.project}.app.per.perBasicInfo.perBasicProfile.PerBasicProfileBizImpl" id="perBasicProfileBiz" name="perBasicProfileBiz" parent="baseBiz"/>
