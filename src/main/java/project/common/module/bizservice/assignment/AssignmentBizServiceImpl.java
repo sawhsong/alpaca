@@ -89,21 +89,35 @@ public class AssignmentBizServiceImpl extends BaseBiz implements AssignmentBizSe
 	public String getManagementFeeByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception {
 		String dataSource = (String)queryAdvisor.getObject("dataSource");
 		DataSet ds;
+		double value = 0;
 
 		hpAssignmentsDDao.setDataSourceName(dataSource);
 		ds = hpAssignmentsDDao.getManagementFeeAndPayrollTaxByAssignmentId(assignmentId);
 
-		return ds.getValue("MANAGEMENT_FEE");
+		for (int i=0; i<ds.getRowCnt(); i++) {
+			if (CommonUtil.equals(ds.getValue(i, "MGT_FEE_PAYROLL_TAX_TYPE"), "ManagementFee")) {
+				value += CommonUtil.toDouble(ds.getValue(i, "PERCENTAGE"));
+			}
+		}
+
+		return CommonUtil.toString(value, "#,##0.00");
 	}
 
 	public String getPayrollTaxByAssignmentId(QueryAdvisor queryAdvisor, String assignmentId) throws Exception {
 		String dataSource = (String)queryAdvisor.getObject("dataSource");
 		DataSet ds;
+		double value = 0;
 
 		hpAssignmentsDDao.setDataSourceName(dataSource);
 		ds = hpAssignmentsDDao.getManagementFeeAndPayrollTaxByAssignmentId(assignmentId);
 
-		return ds.getValue("PAYROLL_TAX");
+		for (int i=0; i<ds.getRowCnt(); i++) {
+			if (CommonUtil.equals(ds.getValue(i, "MGT_FEE_PAYROLL_TAX_TYPE"), "PayrollTax")) {
+				value += CommonUtil.toDouble(ds.getValue(i, "PERCENTAGE"));
+			}
+		}
+
+		return CommonUtil.toString(value, "#,##0.00");
 	}
 
 	public int updateWorkingState(QueryAdvisor queryAdvisor, String assignmentIds[], String toWorkingState) throws Exception {

@@ -268,109 +268,161 @@
 
 	<sql-query name="query.HpAssignmentsD.getManagementFeeAndPayrollTaxByAssignmentId">
 	<![CDATA[
-		select (select nvl(sum(evd.entry_value), 0) as total_mgt_fee
-		          from hp_element_values_d evd,
-		               hp_element_attributes_d ead
-		         where evd.entry_value is not null
-		           and ead.name = 'Percentage'
-		           and evd.element_att_id = ead.element_att_id
-		           and evd.asg_element_id in (select asg_element_id
-		                                        from hp_assignment_elements_d
-		                                       where assignment_id = '${assignmentId}'
-		                                         and (invoice_flag is null or invoice_flag = 'N')
-		                                         and element_id in (select element_id
-		                                                              from hp_elements_d
-		                                                             where element_name like '%Mgt Fee%'
-		                                                           )
-		                                         and element_id in (select element_id
-		                                                              from hp_elements_d
-		                                                             where classifications_id in (select classifications_id
-		                                                                                            from hp_classifications
-		                                                                                           where classifications_name in ('Pre-Tax-Payback Deductions',
-		                                                                                                                          'Pre-Tax Deductions',
-		                                                                                                                          'Post-Tax Deductions',
-		                                                                                                                          'Tax Deductions',
-		                                                                                                                          'Cash Payments',
-		                                                                                                                          'Superannuation',
-		                                                                                                                          'EPS Superannuation',
-		                                                                                                                          'Super Sal Sac'
-		                                                                                                                         )
-		                                                                                         )
-		                                                           )
-		                                      union
-		                                      select asg_element_id
-		                                        from hp_assignment_elements_d
-		                                       where assignment_id = '${assignmentId}'
-		                                         and invoice_flag = 'Y'
-		                                         and element_id in (select element_id
-		                                                              from hp_elements_d
-		                                                             where element_name like '%Mgt Fee%'
-		                                                           )
-		                                         and element_id in (select element_id
-		                                                              from hp_elements_d
-		                                                             where classifications_id in (select classifications_id
-		                                                                                            from hp_classifications
-		                                                                                           where classifications_name in ('Earnings',
-		                                                                                                                          'Information',
-		                                                                                                                          'Others',
-		                                                                                                                          'Cash Payments'
-		                                                                                                                         )
-		                                                                                         )
-		                                                           )
-		                                     )
-		       ) as management_fee,
-		       (select nvl(sum(evd.entry_value), 0) as total_payroll_tax
-		          from hp_element_values_d evd,
-		               hp_element_attributes_d ead
-		         where evd.entry_value is not null
-		           and ead.name = 'Percentage'
-		           and evd.element_att_id = ead.element_att_id
-		           and evd.asg_element_id in (select asg_element_id
-		                                        from hp_assignment_elements_d
-		                                       where assignment_id = '${assignmentId}'
-		                                         and (invoice_flag is null or invoice_flag = 'N')
-		                                         and element_id in (select element_id
-		                                                              from hp_elements_d
-		                                                             where element_name like '% PRT %'
-		                                                           )
-		                                         and element_id in (select element_id
-		                                                              from hp_elements_d
-		                                                             where classifications_id in (select classifications_id
-		                                                                                            from hp_classifications
-		                                                                                           where classifications_name in ('Pre-Tax-Payback Deductions',
-		                                                                                                                          'Pre-Tax Deductions',
-		                                                                                                                          'Post-Tax Deductions',
-		                                                                                                                          'Tax Deductions',
-		                                                                                                                          'Cash Payments',
-		                                                                                                                          'Superannuation',
-		                                                                                                                          'EPS Superannuation',
-		                                                                                                                          'Super Sal Sac'
-		                                                                                                                         )
-		                                                                                         )
-		                                                           )
-		                                      union
-		                                      select asg_element_id
-		                                        from hp_assignment_elements_d
-		                                       where assignment_id = '${assignmentId}'
-		                                         and invoice_flag = 'Y'
-		                                         and element_id in (select element_id
-		                                                              from hp_elements_d
-		                                                             where element_name like '% PRT %'
-		                                                           )
-		                                         and element_id in (select element_id
-		                                                              from hp_elements_d
-		                                                             where classifications_id in (select classifications_id
-		                                                                                            from hp_classifications
-		                                                                                           where classifications_name in ('Earnings',
-		                                                                                                                          'Information',
-		                                                                                                                          'Others',
-		                                                                                                                          'Cash Payments'
-		                                                                                                                         )
-		                                                                                         )
-		                                                           )
-		                                     )
-		       ) as payroll_tax 
-		  from dual
+		select src.*,
+		       case src.asg_tab_element_attr_type
+		            when 'Percentage' then src.asg_tab_element_attr_value
+		            when 'Rate' then round(src.asg_tab_element_attr_value / src.pref_rate_rate_amount * 100, 2)
+		            when 'Flat Amount' then round(src.asg_tab_element_attr_value / src.pref_rate_rate_amount * 100, 2)
+		       end as percentage
+		  from (select 'ManagementFee' as mgt_fee_payroll_tax_type,
+		               'DeductionTab' as asg_tab_type,
+		               aed.assignment_id,
+		               aed.element_id asg_tab_element_id,
+		               hed.element_name as asg_tab_element_name,
+		               aed.alternate_name as asg_tab_element_alternate_name,
+		               ead.name as asg_tab_element_attr_type,
+		               nvl(to_number(trim(evd.entry_value)), 0) as asg_tab_element_attr_value,
+		               prf_asg_rate.element_id as prf_asg_rate_element_id,
+		               (select element_name from hp_elements_d where element_id = prf_asg_rate.element_id) as prf_asg_rate_element_name,
+		               prf_asg_rate.alternate_name as prf_asg_rate_alternate_name,
+		               prf_asg_rate.amount as pref_rate_rate_amount
+		          from hp_assignment_elements_d aed,
+		               hp_element_attributes_d ead,
+		               hp_element_values_d evd,
+		               hp_elements_d hed,
+		               (select *
+		                  from hp_assignment_rates
+		                 where preferred = 'Y'
+		               ) prf_asg_rate
+		         where aed.assignment_id = '${assignmentId}'
+		           and (aed.invoice_flag is null or aed.invoice_flag = 'N')
+		           and aed.element_id in (select element_id
+		                                    from hp_elements_d
+		                                   where classifications_id in (select classifications_id
+		                                                                  from hp_classifications
+		                                                                 where classifications_name in ('Pre-Tax-Payback Deductions', 'Pre-Tax Deductions', 'Post-Tax Deductions', 'Tax Deductions', 'Cash Payments', 'Superannuation', 'EPS Superannuation', 'Super Sal Sac')
+		                                                               )
+		                                 )
+		           and evd.entry_value is not null
+		           and aed.asg_element_id = evd.asg_element_id
+		           and ead.element_att_id = evd.element_att_id
+		           and aed.element_id = hed.element_id
+		           and aed.assignment_id = prf_asg_rate.assigment_id
+		        union
+		        select 'ManagementFee' as mgt_fee_payroll_tax_type,
+		               'InvoiceTab' as asg_tab_type,
+		               aed.assignment_id,
+		               aed.element_id asg_tab_element_id,
+		               hed.element_name as asg_tab_element_name,
+		               aed.alternate_name as asg_tab_element_alternate_name,
+		               ead.name as asg_tab_element_attr_type,
+		               nvl(to_number(trim(evd.entry_value)), 0) as asg_tab_element_attr_value,
+		               prf_asg_rate.element_id as prf_asg_rate_element_id,
+		               (select element_name from hp_elements_d where element_id = prf_asg_rate.element_id) as prf_asg_rate_element_name,
+		               prf_asg_rate.alternate_name as prf_asg_rate_alternate_name,
+		               prf_asg_rate.amount as pref_rate_rate_amount
+		          from hp_assignment_elements_d aed,
+		               hp_element_attributes_d ead,
+		               hp_element_values_d evd,
+		               hp_elements_d hed,
+		               (select *
+		                  from hp_assignment_rates
+		                 where preferred = 'Y'
+		               ) prf_asg_rate
+		         where aed.assignment_id = '${assignmentId}'
+		           and aed.invoice_flag = 'Y'
+		           and aed.element_id in (select element_id
+		                                    from hp_elements_d
+		                                   where classifications_id in (select classifications_id
+		                                                                  from hp_classifications
+		                                                                 where classifications_name in ('Earnings', 'Information', 'Others', 'Cash Payments')
+		                                                               )
+		                                 )
+		           and evd.entry_value is not null
+		           and aed.asg_element_id = evd.asg_element_id
+		           and ead.element_att_id = evd.element_att_id
+		           and aed.element_id = hed.element_id
+		           and aed.assignment_id = prf_asg_rate.assigment_id
+		       ) src
+		 where src.asg_tab_element_name like '%Mgt Fee%'
+		union
+		select src.*,
+		       case src.asg_tab_element_attr_type
+		            when 'Percentage' then src.asg_tab_element_attr_value
+		            when 'Rate' then round(src.asg_tab_element_attr_value / src.pref_rate_rate_amount * 100, 2)
+		            when 'Flat Amount' then round(src.asg_tab_element_attr_value / src.pref_rate_rate_amount * 100, 2)
+		       end as percentage
+		  from (select 'PayrollTax' as mgt_fee_payroll_tax_type,
+		               'DeductionTab' as asg_tab_type,
+		               aed.assignment_id,
+		               aed.element_id asg_tab_element_id,
+		               hed.element_name as asg_tab_element_name,
+		               aed.alternate_name as asg_tab_element_alternate_name,
+		               ead.name as asg_tab_element_attr_type,
+		               nvl(to_number(trim(evd.entry_value)), 0) as asg_tab_element_attr_value,
+		               prf_asg_rate.element_id as prf_asg_rate_element_id,
+		               (select element_name from hp_elements_d where element_id = prf_asg_rate.element_id) as prf_asg_rate_element_name,
+		               prf_asg_rate.alternate_name as prf_asg_rate_alternate_name,
+		               prf_asg_rate.amount as pref_rate_rate_amount
+		          from hp_assignment_elements_d aed,
+		               hp_element_attributes_d ead,
+		               hp_element_values_d evd,
+		               hp_elements_d hed,
+		               (select *
+		                  from hp_assignment_rates
+		                 where preferred = 'Y'
+		               ) prf_asg_rate
+		         where aed.assignment_id = '${assignmentId}'
+		           and (aed.invoice_flag is null or aed.invoice_flag = 'N')
+		           and aed.element_id in (select element_id
+		                                    from hp_elements_d
+		                                   where classifications_id in (select classifications_id
+		                                                                  from hp_classifications
+		                                                                 where classifications_name in ('Pre-Tax-Payback Deductions', 'Pre-Tax Deductions', 'Post-Tax Deductions', 'Tax Deductions', 'Cash Payments', 'Superannuation', 'EPS Superannuation', 'Super Sal Sac')
+		                                                               )
+		                                 )
+		           and evd.entry_value is not null
+		           and aed.asg_element_id = evd.asg_element_id
+		           and ead.element_att_id = evd.element_att_id
+		           and aed.element_id = hed.element_id
+		           and aed.assignment_id = prf_asg_rate.assigment_id
+		        union
+		        select 'PayrollTax' as mgt_fee_payroll_tax_type,
+		               'InvoiceTab' as asg_tab_type,
+		               aed.assignment_id,
+		               aed.element_id asg_tab_element_id,
+		               hed.element_name as asg_tab_element_name,
+		               aed.alternate_name as asg_tab_element_alternate_name,
+		               ead.name as asg_tab_element_attr_type,
+		               nvl(to_number(trim(evd.entry_value)), 0) as asg_tab_element_attr_value,
+		               prf_asg_rate.element_id as prf_asg_rate_element_id,
+		               (select element_name from hp_elements_d where element_id = prf_asg_rate.element_id) as prf_asg_rate_element_name,
+		               prf_asg_rate.alternate_name as prf_asg_rate_alternate_name,
+		               prf_asg_rate.amount as pref_rate_rate_amount
+		          from hp_assignment_elements_d aed,
+		               hp_element_attributes_d ead,
+		               hp_element_values_d evd,
+		               hp_elements_d hed,
+		               (select *
+		                  from hp_assignment_rates
+		                 where preferred = 'Y'
+		               ) prf_asg_rate
+		         where aed.assignment_id = '${assignmentId}'
+		           and aed.invoice_flag = 'Y'
+		           and aed.element_id in (select element_id
+		                                    from hp_elements_d
+		                                   where classifications_id in (select classifications_id
+		                                                                  from hp_classifications
+		                                                                 where classifications_name in ('Earnings', 'Information', 'Others', 'Cash Payments')
+		                                                               )
+		                                 )
+		           and evd.entry_value is not null
+		           and aed.asg_element_id = evd.asg_element_id
+		           and ead.element_att_id = evd.element_att_id
+		           and aed.element_id = hed.element_id
+		           and aed.assignment_id = prf_asg_rate.assigment_id
+		       ) src
+		 where src.asg_tab_element_name like '%PRT%'
 	]]>
 	</sql-query>
 </hibernate-mapping>
