@@ -420,6 +420,7 @@ var nony = {
 				dataType:params.dataType || "json",
 				formId:(params.noForm == true) ? "" : params.formId || "fmDefault",
 				data:params.data || {},
+				async:(params.async == true) ? true : false,
 				success:function(data, textStatus) {
 					var result = commonJs.parseAjaxResult(data, textStatus, params.dataType||"json");
 
@@ -438,6 +439,7 @@ var nony = {
 			dataType:params.dataType || "json",
 			formId:(params.noForm == true) ? "" : params.formId || "fmDefault",
 			data:params.data || {},
+			async:(params.async == true) ? true : false,
 			success:function(data, textStatus) {
 				var result = commonJs.parseAjaxResult(data, textStatus, params.dataType||"json");
 
@@ -464,6 +466,7 @@ var nony = {
 						dataType:params.dataType || "json",
 						formId:(params.noForm == true) ? "" : params.formId || "fmDefault",
 						data:params.data || {},
+						async:(params.async == true) ? true : false,
 						success:function(data, textStatus) {
 							var result = commonJs.parseAjaxResult(data, textStatus, params.dataType||"json");
 
@@ -500,6 +503,7 @@ var nony = {
 						dataType:params.dataType || "json",
 						formId:(params.noForm == true) ? "" : params.formId || "fmDefault",
 						data:params.data || {},
+						async:(params.async == true) ? true : false,
 						success:function(data, textStatus) {
 							var result = commonJs.parseAjaxResult(data, textStatus, params.dataType||"json");
 
@@ -536,6 +540,7 @@ var nony = {
 						dataType:params.dataType || "json",
 						formId:(params.noForm == true) ? "" : params.formId || "fmDefault",
 						data:params.data || {},
+						async:(params.async == true) ? true : false,
 						success:function(data, textStatus) {
 							var result = commonJs.parseAjaxResult(data, textStatus, params.dataType||"json");
 
@@ -572,6 +577,7 @@ var nony = {
 						dataType:params.dataType || "json",
 						formId:(params.noForm == true) ? "" : params.formId || "fmDefault",
 						data:params.data || {},
+						async:(params.async == true) ? true : false,
 						success:function(data, textStatus) {
 							var result = commonJs.parseAjaxResult(data, textStatus, params.dataType||"json");
 
@@ -608,6 +614,7 @@ var nony = {
 						dataType:params.dataType || "json",
 						formId:(params.noForm == true) ? "" : params.formId || "fmDefault",
 						data:params.data || {},
+						async:(params.async == true) ? true : false,
 						success:function(data, textStatus) {
 							var result = commonJs.parseAjaxResult(data, textStatus, params.dataType||"json");
 

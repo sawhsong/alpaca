@@ -189,6 +189,7 @@
 			}
 
 			params.dataType = params.dataType || "html";
+			params.async = (params.async == true) ? true : false;
 			params.type = "POST";
 			params.data = formData;
 			params.contentType = false,
