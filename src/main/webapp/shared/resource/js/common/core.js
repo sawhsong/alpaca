@@ -1957,6 +1957,12 @@ var nony = {
 						}
 					}]
 				});
+			} else {
+				if (typeof params.callback == "function") {
+					params.callback(result);
+				} else if (typeof params.onSuccess == "function") {
+					params.onSuccess(result);
+				}
 			}
 		}
 	},
@@ -1986,6 +1992,10 @@ var nony = {
 					width:340,
 					blind:true
 				});
+			} else {
+				try {
+					location.replace("/index/index.do");
+				} catch(e) {}
 			}
 		} else {
 			if (typeof params.onError == "function") {
@@ -2008,6 +2018,11 @@ var nony = {
 						contents:result.message
 					});
 
+					try {
+						$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
+						$.nony.hideProcMessage();
+					} catch(e) {}
+				} else {
 					try {
 						$.nony.hideProcMessageOnElement(jsconfig.get("showProcMessageOnElement"));
 						$.nony.hideProcMessage();
