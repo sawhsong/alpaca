@@ -75,7 +75,7 @@
 			<col width="*"/>
 		</colgroup>
 		<tr>
-			<th class="thSearch rt">Person equals</th>
+			<th class="thSearch rt" title="Search Person">Person equals</th>
 			<td class="tdSearch"><ui:hidden name="personId" value="<%=personId%>"/><ui:text name="personEquals" value="<%=personNameToDisplay%>" style="width:95%"/></td>
 			<th class="thSearch rt">Person like</th>
 			<td class="tdSearch"><ui:text name="personLike" value="<%=personNumber%>" style="width:95%"/></td>
