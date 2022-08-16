@@ -43,6 +43,19 @@ $(function() {
 						}
 					}]
 				});
+			},
+			onError:function(result) {
+				commonJs.openDialog({
+					type:com.message.E000,
+					contents:result.message,
+					blind:true,
+					buttons:[{
+						caption:com.caption.ok,
+						callback:function() {
+							parent.popup.close();
+						}
+					}]
+				});
 			}
 		});
 	};
