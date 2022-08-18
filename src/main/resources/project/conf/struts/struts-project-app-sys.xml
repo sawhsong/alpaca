@@ -85,5 +85,15 @@
             <result name="insert" type="debugDispatcherResult">/project/app/sys/sysBbs/sysFreeBoard/SysFreeBoardInsert.jsp</result>
             <result name="update" type="debugDispatcherResult">/project/app/sys/sysBbs/sysFreeBoard/SysFreeBoardUpdate.jsp</result>
         </action>
+        <!--SysWcAct - ACT-->
+        <action class="project.app.sys.sysWc.sysWcAct.SysWcActAction" method="{1}" name="sysWc/sysWcAct/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysWc/sysWcAct/SysWcActList.jsp</result>
+            <result name="edit" type="debugDispatcherResult">/project/app/sys/sysWc/sysWcAct/SysWcActEditPop.jsp</result>
+        </action>
+        <!--SysWcNsw - NSW-->
+        <action class="project.app.sys.sysWc.sysWcNsw.SysWcNswAction" method="{1}" name="sysWc/sysWcNsw/*">
+            <result name="list" type="debugDispatcherResult">/project/app/sys/sysWc/sysWcNsw/SysWcNswList.jsp</result>
+            <result name="edit" type="debugDispatcherResult">/project/app/sys/sysWc/sysWcNsw/SysWcNswEditPop.jsp</result>
+        </action>
     </package>
 </struts>

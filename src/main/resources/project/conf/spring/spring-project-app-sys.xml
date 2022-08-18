@@ -41,4 +41,10 @@
     <!--SysFreeBoard - Free Board-->
     <bean class="${name.package.project}.app.sys.sysBbs.sysFreeBoard.SysFreeBoardAction" id="sysFreeBoardAction" name="sysFreeBoardAction"/>
     <bean class="${name.package.project}.app.sys.sysBbs.sysFreeBoard.SysFreeBoardBizImpl" id="sysFreeBoardBiz" name="sysFreeBoardBiz" parent="baseBiz"/>
+    <!--SysWcAct - ACT-->
+    <bean class="${name.package.project}.app.sys.sysWc.sysWcAct.SysWcActAction" id="sysWcActAction" name="sysWcActAction"/>
+    <bean class="${name.package.project}.app.sys.sysWc.sysWcAct.SysWcActBizImpl" id="sysWcActBiz" name="sysWcActBiz" parent="baseBiz"/>
+    <!--SysWcNsw - NSW-->
+    <bean class="${name.package.project}.app.sys.sysWc.sysWcNsw.SysWcNswAction" id="sysWcNswAction" name="sysWcNswAction"/>
+    <bean class="${name.package.project}.app.sys.sysWc.sysWcNsw.SysWcNswBizImpl" id="sysWcNswBiz" name="sysWcNswBiz" parent="baseBiz"/>
 </beans>

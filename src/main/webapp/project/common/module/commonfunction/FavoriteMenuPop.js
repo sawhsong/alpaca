@@ -41,7 +41,7 @@ $(function() {
 				var gridTr = new UiGridTr();
 
 				gridTr.addChild(new UiGridTd().addClassName("Ct").addChild(new UiCheckbox().setName("chkForDel").setValue(ds.getValue(i, "LEFT_MENU_ID"))));
-				gridTr.addChild(new UiGridTd().addClassName("Ct").setText(ds.getValue(i, "LEFT_MENU_ID")));
+				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "LEFT_MENU_ID")));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "LEFT_MENU_NAME_"+languageCode)));
 				gridTr.addChild(new UiGridTd().addClassName("Lt").setText(ds.getValue(i, "MENU_PATH_NAME_"+languageCode)));
 
