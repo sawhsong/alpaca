@@ -28,8 +28,6 @@ import project.conf.resource.ormapper.dto.oracle.SysBoard;
 public class SysWcActBizImpl extends BaseBiz implements SysWcActBiz {
 	@Autowired
 	private SysBoardDao sysBoardDao;
-	@Autowired
-	private SysBoardFileDao sysBoardFileDao;
 
 	public ParamEntity getDefault(ParamEntity paramEntity) throws Exception {
 		try {
@@ -63,7 +61,6 @@ public class SysWcActBizImpl extends BaseBiz implements SysWcActBiz {
 
 		try {
 			paramEntity.setObject("sysBoard", sysBoardDao.getBoardByArticleId(articleId));
-			paramEntity.setObject("fileDataSet", sysBoardFileDao.getBoardFileListDataSetByArticleId(articleId));
 
 			sysBoardDao.updateVisitCountByArticleId(articleId);
 

@@ -51,7 +51,6 @@
 			<ui:button id="btnDelete" caption="button.com.delete"/>
 			<ui:button id="btnSearch" caption="button.com.search"/>
 			<ui:button id="btnClear" caption="button.com.clear"/>
-			<ui:button id="btnExport" caption="button.com.export"/>
 		</ui:buttonGroup>
 	</div>
 </div>
@@ -64,8 +63,8 @@
 			<col width="*"/>
 		</colgroup>
 		<tr>
-			<th class="thSearch rt"><mc:msg key="sysWcAct.search.searchType"/></th>
-			<td class="tdSearch"><ui:ccselect name="searchType" codeType="BOARD_SEARCH_TYPE" caption="==Select=="/></td>
+			<th class="thSearch rt">Status</th>
+			<td class="tdSearch"><ui:ccselect name="status" codeType="IS_ACTIVE" caption="==Select=="/></td>
 			<td class="tdSearch"></td>
 		</tr>
 	</table>
@@ -85,21 +84,29 @@
 		<colgroup>
 			<col width="3%"/>
 			<col width="3%"/>
-			<col width="*"/>
-			<col width="5%"/>
-			<col width="15%"/>
 			<col width="10%"/>
+			<col width="15%"/>
+			<col width="15%"/>
+			<col width="4%"/>
+			<col width="4%"/>
+			<col width="*"/>
+			<col width="7%"/>
+			<col width="7%"/>
 			<col width="8%"/>
 		</colgroup>
 		<thead>
 			<tr>
 				<th class="thGrid"><ui:icon useFor="actionHeaderGrid"/></th>
-				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid" title="page.com.selectToDelete"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sysWcAct.grid.subject"/></th>
-				<th class="thGrid"><mc:msg key="sysWcAct.grid.file"/></th>
-				<th class="thGrid sortable:alphanumeric"><mc:msg key="sysWcAct.grid.writerName"/></th>
-				<th class="thGrid sortable:date"><mc:msg key="sysWcAct.grid.date"/></th>
-				<th class="thGrid sortable:numeric"><mc:msg key="sysWcAct.grid.hitCount"/></th>
+				<th class="thGrid"><ui:icon id="icnCheck" useFor="checkGrid"/></th>
+				<th class="thGrid">Group Class</th>
+				<th class="thGrid">Group Name</th>
+				<th class="thGrid">Sub Division</th>
+				<th class="thGrid">Is Active</th>
+				<th class="thGrid">ANZIC</th>
+				<th class="thGrid">Code Name</th>
+				<th class="thGrid">Start Date</th>
+				<th class="thGrid">End Date</th>
+				<th class="thGrid">Percentage</th>
 			</tr>
 		</thead>
 		<tbody id="tblGridBody">

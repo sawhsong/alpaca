@@ -127,4 +127,6 @@
     <bean class="${name.package.project}.conf.resource.ormapper.dao.EoExpense.EoExpenseHDaoImpl" id="eoExpenseDao" init-method="init" name="eoExpenseDao" parent="baseHDao" scope="prototype"/>
     <!--SysFavoriteMenu DAO-->
     <bean class="${name.package.project}.conf.resource.ormapper.dao.SysFavoriteMenu.SysFavoriteMenuHDaoImpl" id="sysFavoriteMenuDao" init-method="init" name="sysFavoriteMenuDao" parent="baseHDao" scope="prototype"/>
+    <!--WcActCodeGroup DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.WcActCodeGroup.WcActCodeGroupHDaoImpl" id="wcActCodeGroupDao" init-method="init" name="wcActCodeGroupDao" parent="baseHDao" scope="prototype"/>
 </beans>

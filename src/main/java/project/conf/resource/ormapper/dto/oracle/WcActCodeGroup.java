@@ -1,6 +1,6 @@
 /**************************************************************************************************
  * Framework Generated DTO Source
- * - WC_ACT_CODE_RATE_D - 
+ * - WC_ACT_CODE_GROUP - 
  *************************************************************************************************/
 package project.conf.resource.ormapper.dto.oracle;
 
@@ -13,30 +13,34 @@ import zebra.util.CommonUtil;
 import project.common.extend.BaseDto;
 
 @SuppressWarnings("unused")
-public class WcActCodeRateD extends BaseDto implements Serializable {
+public class WcActCodeGroup extends BaseDto implements Serializable {
 	/**
 	 * Columns
 	 */
-	private double codeRateDId;
-	private String CODE_RATE_D_ID;
-	private double codeRateId;
-	private String CODE_RATE_ID;
+	private double codeGroupId;
+	private String CODE_GROUP_ID;
+	private String codeGroupName;
+	private String CODE_GROUP_NAME;
 	private double createdBy;
 	private String CREATED_BY;
 	private Date creationDate;
 	private String CREATION_DATE;
-	private Date endDate;
-	private String END_DATE;
+	private String description;
+	private String DESCRIPTION;
+	private String division;
+	private String DIVISION;
+	private String groupClass;
+	private String GROUP_CLASS;
+	private String groupName;
+	private String GROUP_NAME;
 	private String isActive;
 	private String IS_ACTIVE;
 	private double lastUpdatedBy;
 	private String LAST_UPDATED_BY;
 	private Date lastUpdateDate;
 	private String LAST_UPDATE_DATE;
-	private double percentage;
-	private String PERCENTAGE;
-	private Date startDate;
-	private String START_DATE;
+	private String subDivision;
+	private String SUB_DIVISION;
 	private String insertUserName;
 	private String INSERT_USER_NAME;
 	private String updateUserName;
@@ -46,7 +50,7 @@ public class WcActCodeRateD extends BaseDto implements Serializable {
 	 * Constructor
 	 */
 	@SuppressWarnings("rawtypes")
-	public WcActCodeRateD() throws Exception {
+	public WcActCodeGroup() throws Exception {
 		Class cls = getClass();
 		Field field[] = cls.getDeclaredFields();
 
@@ -65,8 +69,8 @@ public class WcActCodeRateD extends BaseDto implements Serializable {
 		dataSet.addRow();
 		updateColumnsDataSet.addName(updateColumnsDataSetHeader);
 		setFrwVarPrimaryKey("");
-		setFrwVarDateColumn("CREATION_DATE,END_DATE,LAST_UPDATE_DATE,START_DATE");
-		setFrwVarNumberColumn("CODE_RATE_D_ID,CODE_RATE_ID,CREATED_BY,LAST_UPDATED_BY,PERCENTAGE");
+		setFrwVarDateColumn("CREATION_DATE,LAST_UPDATE_DATE");
+		setFrwVarNumberColumn("CODE_GROUP_ID,CREATED_BY,LAST_UPDATED_BY");
 		setFrwVarClobColumn("");
 		setFrwVarDefaultColumn("");
 		setFrwVarDefaultValue("");
@@ -76,22 +80,22 @@ public class WcActCodeRateD extends BaseDto implements Serializable {
 	/**
 	 * Accessors
 	 */
-	public double getCodeRateDId() {
-		return codeRateDId;
+	public double getCodeGroupId() {
+		return codeGroupId;
 	}
 
-	public void setCodeRateDId(double codeRateDId) throws Exception {
-		this.codeRateDId = codeRateDId;
-		setValueFromAccessor("CODE_RATE_D_ID", CommonUtil.toString(codeRateDId));
+	public void setCodeGroupId(double codeGroupId) throws Exception {
+		this.codeGroupId = codeGroupId;
+		setValueFromAccessor("CODE_GROUP_ID", CommonUtil.toString(codeGroupId));
 	}
 
-	public double getCodeRateId() {
-		return codeRateId;
+	public String getCodeGroupName() {
+		return codeGroupName;
 	}
 
-	public void setCodeRateId(double codeRateId) throws Exception {
-		this.codeRateId = codeRateId;
-		setValueFromAccessor("CODE_RATE_ID", CommonUtil.toString(codeRateId));
+	public void setCodeGroupName(String codeGroupName) throws Exception {
+		this.codeGroupName = codeGroupName;
+		setValueFromAccessor("CODE_GROUP_NAME", codeGroupName);
 	}
 
 	public double getCreatedBy() {
@@ -112,13 +116,40 @@ public class WcActCodeRateD extends BaseDto implements Serializable {
 		setValueFromAccessor("CREATION_DATE", CommonUtil.toString(creationDate));
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setEndDate(Date endDate) throws Exception {
-		this.endDate = endDate;
-		setValueFromAccessor("END_DATE", CommonUtil.toString(endDate));
+	public void setDescription(String description) throws Exception {
+		this.description = description;
+		setValueFromAccessor("DESCRIPTION", description);
+	}
+
+	public String getDivision() {
+		return division;
+	}
+
+	public void setDivision(String division) throws Exception {
+		this.division = division;
+		setValueFromAccessor("DIVISION", division);
+	}
+
+	public String getGroupClass() {
+		return groupClass;
+	}
+
+	public void setGroupClass(String groupClass) throws Exception {
+		this.groupClass = groupClass;
+		setValueFromAccessor("GROUP_CLASS", groupClass);
+	}
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) throws Exception {
+		this.groupName = groupName;
+		setValueFromAccessor("GROUP_NAME", groupName);
 	}
 
 	public String getIsActive() {
@@ -148,22 +179,13 @@ public class WcActCodeRateD extends BaseDto implements Serializable {
 		setValueFromAccessor("LAST_UPDATE_DATE", CommonUtil.toString(lastUpdateDate));
 	}
 
-	public double getPercentage() {
-		return percentage;
+	public String getSubDivision() {
+		return subDivision;
 	}
 
-	public void setPercentage(double percentage) throws Exception {
-		this.percentage = percentage;
-		setValueFromAccessor("PERCENTAGE", CommonUtil.toString(percentage));
-	}
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) throws Exception {
-		this.startDate = startDate;
-		setValueFromAccessor("START_DATE", CommonUtil.toString(startDate));
+	public void setSubDivision(String subDivision) throws Exception {
+		this.subDivision = subDivision;
+		setValueFromAccessor("SUB_DIVISION", subDivision);
 	}
 
 	public String getInsertUserName() {
@@ -301,16 +323,18 @@ public class WcActCodeRateD extends BaseDto implements Serializable {
 	public String toString() {
 		String str = "";
 
-		str += "codeRateDId : "+codeRateDId+"\n";
-		str += "codeRateId : "+codeRateId+"\n";
+		str += "codeGroupId : "+codeGroupId+"\n";
+		str += "codeGroupName : "+codeGroupName+"\n";
 		str += "createdBy : "+createdBy+"\n";
 		str += "creationDate : "+creationDate+"\n";
-		str += "endDate : "+endDate+"\n";
+		str += "description : "+description+"\n";
+		str += "division : "+division+"\n";
+		str += "groupClass : "+groupClass+"\n";
+		str += "groupName : "+groupName+"\n";
 		str += "isActive : "+isActive+"\n";
 		str += "lastUpdatedBy : "+lastUpdatedBy+"\n";
 		str += "lastUpdateDate : "+lastUpdateDate+"\n";
-		str += "percentage : "+percentage+"\n";
-		str += "startDate : "+startDate+"\n";
+		str += "subDivision : "+subDivision+"\n";
 		str += "insertUserName : "+insertUserName+"\n";
 		str += "updateUserName : "+updateUserName+"\n";
 
@@ -323,16 +347,18 @@ public class WcActCodeRateD extends BaseDto implements Serializable {
 	public String toXmlString() {
 		String str = "";
 
-		str += "<column name=\"codeRateDId\" value=\""+codeRateDId+"\">";
-		str += "<column name=\"codeRateId\" value=\""+codeRateId+"\">";
+		str += "<column name=\"codeGroupId\" value=\""+codeGroupId+"\">";
+		str += "<column name=\"codeGroupName\" value=\""+codeGroupName+"\">";
 		str += "<column name=\"createdBy\" value=\""+createdBy+"\">";
 		str += "<column name=\"creationDate\" value=\""+creationDate+"\">";
-		str += "<column name=\"endDate\" value=\""+endDate+"\">";
+		str += "<column name=\"description\" value=\""+description+"\">";
+		str += "<column name=\"division\" value=\""+division+"\">";
+		str += "<column name=\"groupClass\" value=\""+groupClass+"\">";
+		str += "<column name=\"groupName\" value=\""+groupName+"\">";
 		str += "<column name=\"isActive\" value=\""+isActive+"\">";
 		str += "<column name=\"lastUpdatedBy\" value=\""+lastUpdatedBy+"\">";
 		str += "<column name=\"lastUpdateDate\" value=\""+lastUpdateDate+"\">";
-		str += "<column name=\"percentage\" value=\""+percentage+"\">";
-		str += "<column name=\"startDate\" value=\""+startDate+"\">";
+		str += "<column name=\"subDivision\" value=\""+subDivision+"\">";
 		str += "<column name=\"insertUserName\" value=\""+insertUserName+"\">";
 		str += "<column name=\"updateUserName\" value=\""+updateUserName+"\">";
 
@@ -345,16 +371,18 @@ public class WcActCodeRateD extends BaseDto implements Serializable {
 	public String toJsonString() {
 		String str = "";
 
-		str += "\"codeRateDId\":\""+codeRateDId+"\", ";
-		str += "\"codeRateId\":\""+codeRateId+"\", ";
+		str += "\"codeGroupId\":\""+codeGroupId+"\", ";
+		str += "\"codeGroupName\":\""+codeGroupName+"\", ";
 		str += "\"createdBy\":\""+createdBy+"\", ";
 		str += "\"creationDate\":\""+creationDate+"\", ";
-		str += "\"endDate\":\""+endDate+"\", ";
+		str += "\"description\":\""+description+"\", ";
+		str += "\"division\":\""+division+"\", ";
+		str += "\"groupClass\":\""+groupClass+"\", ";
+		str += "\"groupName\":\""+groupName+"\", ";
 		str += "\"isActive\":\""+isActive+"\", ";
 		str += "\"lastUpdatedBy\":\""+lastUpdatedBy+"\", ";
 		str += "\"lastUpdateDate\":\""+lastUpdateDate+"\", ";
-		str += "\"percentage\":\""+percentage+"\", ";
-		str += "\"startDate\":\""+startDate+"\", ";
+		str += "\"subDivision\":\""+subDivision+"\", ";
 		str += "\"insertUserName\":\""+insertUserName+"\", ";
 		str += "\"updateUserName\":\""+updateUserName+"\"";
 
