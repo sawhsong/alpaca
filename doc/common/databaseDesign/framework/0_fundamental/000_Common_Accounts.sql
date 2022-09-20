@@ -1,10 +1,15 @@
 /**
+ * Local XE DB Pass
+ */
+admin
+
+/**
  * User
  */
 -- alpaca
 create user alpaca identified by alpaca;
 grant connect, resource to alpaca;
-grant create synonym, create view, create database link, create public synonym, drop public synonym to alpaca;
+grant create synonym, create view, create database link, create public synonym, drop public synonym, create tablespace to alpaca;
 grant unlimited tablespace to alpaca;
 grant execute on sys.dbms_crypto to alpaca;
 
