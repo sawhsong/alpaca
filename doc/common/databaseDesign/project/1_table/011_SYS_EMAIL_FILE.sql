@@ -15,7 +15,7 @@ create table sys_email_file (
     update_user_id                  varchar2(30),                                               -- Update User UID
     update_date                     date,                                                       -- Update Date
 
-    constraint fk_362481771395200 foreign key(email_sender_id) references email_sender(email_sender_id),
+    constraint fk_362481771395200 foreign key(email_sender_id) references sys_email_sender(email_sender_id),
     constraint pk_sys_email_file primary key(email_file_id)
     using index tablespace alpaca_idx storage(initial 50k next 50k pctincrease 0)
 )
