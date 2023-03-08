@@ -53,7 +53,7 @@ public class MainBizImpl extends BaseBiz implements MainBiz {
 
 			if ("Run".equals(mode)) {
 				System.gc();
-				System.runFinalization();
+//				System.runFinalization();
 			}
 
 			Runtime rt = Runtime.getRuntime();
