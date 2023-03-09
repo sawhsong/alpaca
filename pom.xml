@@ -84,6 +84,13 @@
 		<!-- Oracle ATD - End -->
 		<dependency>
 			<groupId>ds</groupId>
+			<artifactId>ss_css2</artifactId>
+			<version>${version.userdefined}</version>
+			<scope>system</scope>
+			<systemPath>${webapp.lib}/ss_css2_customised_pd4ml.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>ds</groupId>
 			<artifactId>log4jdbc4</artifactId>
 			<version>${version.userdefined}</version>
 			<scope>system</scope>
@@ -201,7 +208,7 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>log4j-over-slf4j</artifactId>
-			<version>1.7.25</version>
+			<version>1.7.32</version>
 		</dependency>
 
 <!-- 		<dependency> -->
@@ -432,6 +439,11 @@
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-spring-plugin</artifactId>
+			<version>${version.struts2}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-convention-plugin</artifactId>
 			<version>${version.struts2}</version>
 		</dependency>
 		<dependency>
