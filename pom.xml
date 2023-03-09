@@ -87,7 +87,7 @@
 			<artifactId>ss_css2</artifactId>
 			<version>${version.userdefined}</version>
 			<scope>system</scope>
-			<systemPath>${webapp.lib}/ss_css2_customised_pd4ml.jar</systemPath>
+			<systemPath>${webapp.lib}/ss_css2_customised_for_pd4ml.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>ds</groupId>
