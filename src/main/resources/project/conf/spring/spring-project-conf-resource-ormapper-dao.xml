@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
     <!--/* Dummy DAO */-->
     <bean class="${name.package.project}.conf.resource.ormapper.dao.ProjectDummy.ProjectDummyHDaoImpl" id="projectDummyDao" init-method="init" name="projectDummyDao" parent="baseHDao" scope="prototype"/>
     <!--/* SysMenu DAO */-->
@@ -129,4 +130,20 @@
     <bean class="${name.package.project}.conf.resource.ormapper.dao.SysFavoriteMenu.SysFavoriteMenuHDaoImpl" id="sysFavoriteMenuDao" init-method="init" name="sysFavoriteMenuDao" parent="baseHDao" scope="prototype"/>
     <!--WcActCodeGroup DAO-->
     <bean class="${name.package.project}.conf.resource.ormapper.dao.WcActCodeGroup.WcActCodeGroupHDaoImpl" id="wcActCodeGroupDao" init-method="init" name="wcActCodeGroupDao" parent="baseHDao" scope="prototype"/>
+    <!--MrnAuthGroup DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.MrnAuthGroup.MrnAuthGroupHDaoImpl" id="mrnAuthGroupDao" init-method="init" name="mrnAuthGroupDao" parent="baseHDao" scope="prototype"/>
+    <!--MrnBoard DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.MrnBoard.MrnBoardHDaoImpl" id="mrnBoardDao" init-method="init" name="mrnBoardDao" parent="baseHDao" scope="prototype"/>
+    <!--MrnBoardFile DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.MrnBoardFile.MrnBoardFileHDaoImpl" id="mrnBoardFileDao" init-method="init" name="mrnBoardFileDao" parent="baseHDao" scope="prototype"/>
+    <!--MrnEmailFile DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.MrnEmailFile.MrnEmailFileHDaoImpl" id="mrnEmailFileDao" init-method="init" name="mrnEmailFileDao" parent="baseHDao" scope="prototype"/>
+    <!--MrnEmailSender DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.MrnEmailSender.MrnEmailSenderHDaoImpl" id="mrnEmailSenderDao" init-method="init" name="mrnEmailSenderDao" parent="baseHDao" scope="prototype"/>
+    <!--MrnFavoriteMenu DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.MrnFavoriteMenu.MrnFavoriteMenuHDaoImpl" id="mrnFavoriteMenuDao" init-method="init" name="mrnFavoriteMenuDao" parent="baseHDao" scope="prototype"/>
+    <!--MrnMenu DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.MrnMenu.MrnMenuHDaoImpl" id="mrnMenuDao" init-method="init" name="mrnMenuDao" parent="baseHDao" scope="prototype"/>
+    <!--MrnMenuAuthLink DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.MrnMenuAuthLink.MrnMenuAuthLinkHDaoImpl" id="mrnMenuAuthLinkDao" init-method="init" name="mrnMenuAuthLinkDao" parent="baseHDao" scope="prototype"/>
 </beans>

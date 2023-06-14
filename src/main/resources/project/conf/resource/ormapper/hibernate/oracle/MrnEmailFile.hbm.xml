@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - MRN_EMAIL_FILE - Email attachment
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.MrnEmailFile" table="MRN_EMAIL_FILE" lazy="false">
+		<meta attribute="class-description" inherit="false">Email attachment</meta>
+
+		<id name="emailFileId" column="EMAIL_FILE_ID" type="java.lang.String" length="30"></id>
+
+		<property name="emailSenderId" column="EMAIL_SENDER_ID" not-null="true" type="java.lang.String" length="30"/>
+		<property name="fileName" column="FILE_NAME" type="java.lang.String" length="300"/>
+		<property name="filePath" column="FILE_PATH" type="java.lang.String" length="300"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUserId" column="INSERT_USER_ID" type="java.lang.String" length="30"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUserId" column="UPDATE_USER_ID" type="java.lang.String" length="30"/>
+	</class>
+
+	<sql-query name="mrnEmailFile.selectAll">
+	<![CDATA[
+		SELECT EMAIL_SENDER_ID,
+		       EMAIL_FILE_ID,
+		       FILE_NAME,
+		       FILE_PATH,
+		       TO_CHAR(INSERT_DATE, 'yyyymmddhh24miss') AS INSERT_DATE,
+		       INSERT_USER_ID,
+		       TO_CHAR(UPDATE_DATE, 'yyyymmddhh24miss') AS UPDATE_DATE,
+		       UPDATE_USER_ID
+		  FROM MRN_EMAIL_FILE
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="mrnEmailFile.insert">
+	<![CDATA[
+		INSERT INTO MRN_EMAIL_FILE (
+		       EMAIL_SENDER_ID,
+		       EMAIL_FILE_ID,
+		       FILE_NAME,
+		       FILE_PATH,
+		       INSERT_DATE,
+		       INSERT_USER_ID,
+		       UPDATE_DATE,
+		       UPDATE_USER_ID
+		       )
+		VALUES (
+		       ${EMAIL_SENDER_ID},
+		       ${EMAIL_FILE_ID},
+		       ${FILE_NAME},
+		       ${FILE_PATH},
+		       ${INSERT_DATE},
+		       ${INSERT_USER_ID},
+		       ${UPDATE_DATE},
+		       ${UPDATE_USER_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="mrnEmailFile.update">
+	<![CDATA[
+		UPDATE MRN_EMAIL_FILE
+		   SET EMAIL_SENDER_ID = ${EMAIL_SENDER_ID},
+		       FILE_NAME = ${FILE_NAME},
+		       FILE_PATH = ${FILE_PATH},
+		       INSERT_DATE = ${INSERT_DATE},
+		       INSERT_USER_ID = ${INSERT_USER_ID},
+		       UPDATE_DATE = ${UPDATE_DATE},
+		       UPDATE_USER_ID = ${UPDATE_USER_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="mrnEmailFile.updateColumns">
+	<![CDATA[
+		UPDATE MRN_EMAIL_FILE
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="mrnEmailFile.delete">
+	<![CDATA[
+		DELETE MRN_EMAIL_FILE
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>

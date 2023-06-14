@@ -14,8 +14,11 @@
 		<property name="creationDate" column="CREATION_DATE" not-null="true" type="java.util.Date"/>
 		<property name="lastUpdatedBy" column="LAST_UPDATED_BY" not-null="true" type="java.lang.Double"/>
 		<property name="lastUpdateDate" column="LAST_UPDATE_DATE" not-null="true" type="java.util.Date"/>
-		<property name="userName" column="USER_NAME" type="java.lang.String" length="30"/>
+		<property name="userName" column="USER_NAME" type="java.lang.String" length="100"/>
+		<property name="authenticationSecretKey" column="AUTHENTICATION_SECRET_KEY" type="java.lang.String" length="50"/>
+		<property name="authGroupId" column="AUTH_GROUP_ID" type="java.lang.String" length="30"/>
 		<property name="customerId" column="CUSTOMER_ID" type="java.lang.Double"/>
+		<property name="defaultStartUrl" column="DEFAULT_START_URL" type="java.lang.String" length="100"/>
 		<property name="description" column="DESCRIPTION" type="java.lang.String" length="100"/>
 		<property name="disabledDate" column="DISABLED_DATE" type="java.util.Date"/>
 		<property name="email" column="EMAIL" type="java.lang.String" length="100"/>
@@ -26,6 +29,8 @@
 		<property name="lastPasswordChange" column="LAST_PASSWORD_CHANGE" type="java.util.Date"/>
 		<property name="locked" column="LOCKED" type="java.lang.String" length="1"/>
 		<property name="loginAttempts" column="LOGIN_ATTEMPTS" type="java.lang.Double"/>
+		<property name="maxRowPerPage" column="MAX_ROW_PER_PAGE" type="java.lang.Double"/>
+		<property name="pageNumPerPage" column="PAGE_NUM_PER_PAGE" type="java.lang.Double"/>
 		<property name="password" column="PASSWORD" type="java.lang.String" length="50"/>
 		<property name="personId" column="PERSON_ID" type="java.lang.Double"/>
 		<property name="pin" column="PIN" type="java.lang.Double"/>
@@ -44,6 +49,7 @@
 		<property name="securityQuestionAnswer1" column="SECURITY_QUESTION_ANSWER_1" type="java.lang.String" length="30"/>
 		<property name="securityQuestionAnswer2" column="SECURITY_QUESTION_ANSWER_2" type="java.lang.String" length="30"/>
 		<property name="supplier" column="SUPPLIER" type="java.lang.Double"/>
+		<property name="themeType" column="THEME_TYPE" type="java.lang.String" length="30"/>
 		<property name="toDate" column="TO_DATE" type="java.util.Date"/>
 	</class>
 
@@ -55,7 +61,10 @@
 		       LAST_UPDATED_BY,
 		       TO_CHAR(LAST_UPDATE_DATE, 'yyyymmddhh24miss') AS LAST_UPDATE_DATE,
 		       USER_NAME,
+		       AUTHENTICATION_SECRET_KEY,
+		       AUTH_GROUP_ID,
 		       CUSTOMER_ID,
+		       DEFAULT_START_URL,
 		       DESCRIPTION,
 		       TO_CHAR(DISABLED_DATE, 'yyyymmddhh24miss') AS DISABLED_DATE,
 		       EMAIL,
@@ -66,6 +75,8 @@
 		       TO_CHAR(LAST_PASSWORD_CHANGE, 'yyyymmddhh24miss') AS LAST_PASSWORD_CHANGE,
 		       LOCKED,
 		       LOGIN_ATTEMPTS,
+		       MAX_ROW_PER_PAGE,
+		       PAGE_NUM_PER_PAGE,
 		       PASSWORD,
 		       PERSON_ID,
 		       PIN,
@@ -84,12 +95,14 @@
 		       SECURITY_QUESTION_ANSWER_1,
 		       SECURITY_QUESTION_ANSWER_2,
 		       SUPPLIER,
+		       THEME_TYPE,
 		       TO_CHAR(TO_DATE, 'yyyymmddhh24miss') AS TO_DATE
 		  FROM SYS_USERS
 		 WHERE 1 = 1
 		 ${auto_fill}
 		 ${frameworkGeneratedWhere}
 		 ${frameworkGeneratedOrderBy}
+
 	]]>
 	</sql-query>
 
@@ -102,7 +115,10 @@
 		       LAST_UPDATED_BY,
 		       LAST_UPDATE_DATE,
 		       USER_NAME,
+		       AUTHENTICATION_SECRET_KEY,
+		       AUTH_GROUP_ID,
 		       CUSTOMER_ID,
+		       DEFAULT_START_URL,
 		       DESCRIPTION,
 		       DISABLED_DATE,
 		       EMAIL,
@@ -113,6 +129,8 @@
 		       LAST_PASSWORD_CHANGE,
 		       LOCKED,
 		       LOGIN_ATTEMPTS,
+		       MAX_ROW_PER_PAGE,
+		       PAGE_NUM_PER_PAGE,
 		       PASSWORD,
 		       PERSON_ID,
 		       PIN,
@@ -131,6 +149,7 @@
 		       SECURITY_QUESTION_ANSWER_1,
 		       SECURITY_QUESTION_ANSWER_2,
 		       SUPPLIER,
+		       THEME_TYPE,
 		       TO_DATE
 		       )
 		VALUES (
@@ -140,7 +159,10 @@
 		       ${LAST_UPDATED_BY},
 		       ${LAST_UPDATE_DATE},
 		       ${USER_NAME},
+		       ${AUTHENTICATION_SECRET_KEY},
+		       ${AUTH_GROUP_ID},
 		       ${CUSTOMER_ID},
+		       ${DEFAULT_START_URL},
 		       ${DESCRIPTION},
 		       ${DISABLED_DATE},
 		       ${EMAIL},
@@ -151,6 +173,8 @@
 		       ${LAST_PASSWORD_CHANGE},
 		       ${LOCKED},
 		       ${LOGIN_ATTEMPTS},
+		       ${MAX_ROW_PER_PAGE},
+		       ${PAGE_NUM_PER_PAGE},
 		       ${PASSWORD},
 		       ${PERSON_ID},
 		       ${PIN},
@@ -169,6 +193,7 @@
 		       ${SECURITY_QUESTION_ANSWER_1},
 		       ${SECURITY_QUESTION_ANSWER_2},
 		       ${SUPPLIER},
+		       ${THEME_TYPE},
 		       ${TO_DATE}
 		       )
 	]]>
@@ -182,7 +207,10 @@
 		       LAST_UPDATED_BY = ${LAST_UPDATED_BY},
 		       LAST_UPDATE_DATE = ${LAST_UPDATE_DATE},
 		       USER_NAME = ${USER_NAME},
+		       AUTHENTICATION_SECRET_KEY = ${AUTHENTICATION_SECRET_KEY},
+		       AUTH_GROUP_ID = ${AUTH_GROUP_ID},
 		       CUSTOMER_ID = ${CUSTOMER_ID},
+		       DEFAULT_START_URL = ${DEFAULT_START_URL},
 		       DESCRIPTION = ${DESCRIPTION},
 		       DISABLED_DATE = ${DISABLED_DATE},
 		       EMAIL = ${EMAIL},
@@ -193,6 +221,8 @@
 		       LAST_PASSWORD_CHANGE = ${LAST_PASSWORD_CHANGE},
 		       LOCKED = ${LOCKED},
 		       LOGIN_ATTEMPTS = ${LOGIN_ATTEMPTS},
+		       MAX_ROW_PER_PAGE = ${MAX_ROW_PER_PAGE},
+		       PAGE_NUM_PER_PAGE = ${PAGE_NUM_PER_PAGE},
 		       PASSWORD = ${PASSWORD},
 		       PERSON_ID = ${PERSON_ID},
 		       PIN = ${PIN},
@@ -211,6 +241,7 @@
 		       SECURITY_QUESTION_ANSWER_1 = ${SECURITY_QUESTION_ANSWER_1},
 		       SECURITY_QUESTION_ANSWER_2 = ${SECURITY_QUESTION_ANSWER_2},
 		       SUPPLIER = ${SUPPLIER},
+		       THEME_TYPE = ${THEME_TYPE},
 		       TO_DATE = ${TO_DATE}
 		 WHERE 1 = 1
 		   ${frameworkGeneratedWhere}

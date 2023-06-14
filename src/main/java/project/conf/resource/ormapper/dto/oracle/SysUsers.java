@@ -29,8 +29,14 @@ public class SysUsers extends BaseDto implements Serializable {
 	private String LAST_UPDATE_DATE;
 	private String userName;
 	private String USER_NAME;
+	private String authenticationSecretKey;
+	private String AUTHENTICATION_SECRET_KEY;
+	private String authGroupId;
+	private String AUTH_GROUP_ID;
 	private double customerId;
 	private String CUSTOMER_ID;
+	private String defaultStartUrl;
+	private String DEFAULT_START_URL;
 	private String description;
 	private String DESCRIPTION;
 	private Date disabledDate;
@@ -51,6 +57,10 @@ public class SysUsers extends BaseDto implements Serializable {
 	private String LOCKED;
 	private double loginAttempts;
 	private String LOGIN_ATTEMPTS;
+	private double maxRowPerPage;
+	private String MAX_ROW_PER_PAGE;
+	private double pageNumPerPage;
+	private String PAGE_NUM_PER_PAGE;
 	private String password;
 	private String PASSWORD;
 	private double personId;
@@ -87,6 +97,8 @@ public class SysUsers extends BaseDto implements Serializable {
 	private String SECURITY_QUESTION_ANSWER_2;
 	private double supplier;
 	private String SUPPLIER;
+	private String themeType;
+	private String THEME_TYPE;
 	private Date toDate;
 	private String TO_DATE;
 	private String insertUserName;
@@ -118,10 +130,10 @@ public class SysUsers extends BaseDto implements Serializable {
 		updateColumnsDataSet.addName(updateColumnsDataSetHeader);
 		setFrwVarPrimaryKey("USER_ID");
 		setFrwVarDateColumn("CREATION_DATE,LAST_UPDATE_DATE,DISABLED_DATE,FROM_DATE,LAST_LOGIN,LAST_PASSWORD_CHANGE,TO_DATE");
-		setFrwVarNumberColumn("USER_ID,CREATED_BY,LAST_UPDATED_BY,CUSTOMER_ID,LOGIN_ATTEMPTS,PERSON_ID,PIN,PORTAL_ORG_PROFILE_ID,SUPPLIER");
+		setFrwVarNumberColumn("USER_ID,CREATED_BY,LAST_UPDATED_BY,CUSTOMER_ID,LOGIN_ATTEMPTS,MAX_ROW_PER_PAGE,PAGE_NUM_PER_PAGE,PERSON_ID,PIN,PORTAL_ORG_PROFILE_ID,SUPPLIER");
 		setFrwVarClobColumn("");
-		setFrwVarDefaultColumn("LAST_PASSWORD_CHANGE,LOCKED,LOGIN_ATTEMPTS,PROP_TO_PORTAL,RESET_PASSWORD,RESET_TERM_CONDITION");
-		setFrwVarDefaultValue("trunc(sysdate),N,0,I,Y,Y");
+		setFrwVarDefaultColumn("AUTH_GROUP_ID,LAST_PASSWORD_CHANGE,LOCKED,LOGIN_ATTEMPTS,PROP_TO_PORTAL,RESET_PASSWORD,RESET_TERM_CONDITION");
+		setFrwVarDefaultValue("Z,trunc(sysdate),N,0,I,Y,Y");
 		setDefaultValue();
 	}
 
@@ -182,6 +194,24 @@ public class SysUsers extends BaseDto implements Serializable {
 		setValueFromAccessor("USER_NAME", userName);
 	}
 
+	public String getAuthenticationSecretKey() {
+		return authenticationSecretKey;
+	}
+
+	public void setAuthenticationSecretKey(String authenticationSecretKey) throws Exception {
+		this.authenticationSecretKey = authenticationSecretKey;
+		setValueFromAccessor("AUTHENTICATION_SECRET_KEY", authenticationSecretKey);
+	}
+
+	public String getAuthGroupId() {
+		return authGroupId;
+	}
+
+	public void setAuthGroupId(String authGroupId) throws Exception {
+		this.authGroupId = authGroupId;
+		setValueFromAccessor("AUTH_GROUP_ID", authGroupId);
+	}
+
 	public double getCustomerId() {
 		return customerId;
 	}
@@ -189,6 +219,15 @@ public class SysUsers extends BaseDto implements Serializable {
 	public void setCustomerId(double customerId) throws Exception {
 		this.customerId = customerId;
 		setValueFromAccessor("CUSTOMER_ID", CommonUtil.toString(customerId));
+	}
+
+	public String getDefaultStartUrl() {
+		return defaultStartUrl;
+	}
+
+	public void setDefaultStartUrl(String defaultStartUrl) throws Exception {
+		this.defaultStartUrl = defaultStartUrl;
+		setValueFromAccessor("DEFAULT_START_URL", defaultStartUrl);
 	}
 
 	public String getDescription() {
@@ -279,6 +318,24 @@ public class SysUsers extends BaseDto implements Serializable {
 	public void setLoginAttempts(double loginAttempts) throws Exception {
 		this.loginAttempts = loginAttempts;
 		setValueFromAccessor("LOGIN_ATTEMPTS", CommonUtil.toString(loginAttempts));
+	}
+
+	public double getMaxRowPerPage() {
+		return maxRowPerPage;
+	}
+
+	public void setMaxRowPerPage(double maxRowPerPage) throws Exception {
+		this.maxRowPerPage = maxRowPerPage;
+		setValueFromAccessor("MAX_ROW_PER_PAGE", CommonUtil.toString(maxRowPerPage));
+	}
+
+	public double getPageNumPerPage() {
+		return pageNumPerPage;
+	}
+
+	public void setPageNumPerPage(double pageNumPerPage) throws Exception {
+		this.pageNumPerPage = pageNumPerPage;
+		setValueFromAccessor("PAGE_NUM_PER_PAGE", CommonUtil.toString(pageNumPerPage));
 	}
 
 	public String getPassword() {
@@ -443,6 +500,15 @@ public class SysUsers extends BaseDto implements Serializable {
 		setValueFromAccessor("SUPPLIER", CommonUtil.toString(supplier));
 	}
 
+	public String getThemeType() {
+		return themeType;
+	}
+
+	public void setThemeType(String themeType) throws Exception {
+		this.themeType = themeType;
+		setValueFromAccessor("THEME_TYPE", themeType);
+	}
+
 	public Date getToDate() {
 		return toDate;
 	}
@@ -549,9 +615,9 @@ public class SysUsers extends BaseDto implements Serializable {
 	public void addUpdateColumn(String columnName, String columnValue) throws Exception {
 		String dataType = "";
 
-		if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
+		if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarNumberColumn(), ","))) {
 			dataType = "Number";
-		} else if (CommonUtil.isIn(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
+		} else if (CommonUtil.isInIgnoreCase(columnName, CommonUtil.split(getFrwVarDateColumn(), ","))) {
 			dataType = "Date";
 		} else {
 			dataType = "String";
@@ -593,7 +659,10 @@ public class SysUsers extends BaseDto implements Serializable {
 		str += "lastUpdatedBy : "+lastUpdatedBy+"\n";
 		str += "lastUpdateDate : "+lastUpdateDate+"\n";
 		str += "userName : "+userName+"\n";
+		str += "authenticationSecretKey : "+authenticationSecretKey+"\n";
+		str += "authGroupId : "+authGroupId+"\n";
 		str += "customerId : "+customerId+"\n";
+		str += "defaultStartUrl : "+defaultStartUrl+"\n";
 		str += "description : "+description+"\n";
 		str += "disabledDate : "+disabledDate+"\n";
 		str += "email : "+email+"\n";
@@ -604,6 +673,8 @@ public class SysUsers extends BaseDto implements Serializable {
 		str += "lastPasswordChange : "+lastPasswordChange+"\n";
 		str += "locked : "+locked+"\n";
 		str += "loginAttempts : "+loginAttempts+"\n";
+		str += "maxRowPerPage : "+maxRowPerPage+"\n";
+		str += "pageNumPerPage : "+pageNumPerPage+"\n";
 		str += "password : "+password+"\n";
 		str += "personId : "+personId+"\n";
 		str += "pin : "+pin+"\n";
@@ -622,6 +693,7 @@ public class SysUsers extends BaseDto implements Serializable {
 		str += "securityQuestionAnswer1 : "+securityQuestionAnswer1+"\n";
 		str += "securityQuestionAnswer2 : "+securityQuestionAnswer2+"\n";
 		str += "supplier : "+supplier+"\n";
+		str += "themeType : "+themeType+"\n";
 		str += "toDate : "+toDate+"\n";
 		str += "insertUserName : "+insertUserName+"\n";
 		str += "updateUserName : "+updateUserName+"\n";
@@ -641,7 +713,10 @@ public class SysUsers extends BaseDto implements Serializable {
 		str += "<column name=\"lastUpdatedBy\" value=\""+lastUpdatedBy+"\">";
 		str += "<column name=\"lastUpdateDate\" value=\""+lastUpdateDate+"\">";
 		str += "<column name=\"userName\" value=\""+userName+"\">";
+		str += "<column name=\"authenticationSecretKey\" value=\""+authenticationSecretKey+"\">";
+		str += "<column name=\"authGroupId\" value=\""+authGroupId+"\">";
 		str += "<column name=\"customerId\" value=\""+customerId+"\">";
+		str += "<column name=\"defaultStartUrl\" value=\""+defaultStartUrl+"\">";
 		str += "<column name=\"description\" value=\""+description+"\">";
 		str += "<column name=\"disabledDate\" value=\""+disabledDate+"\">";
 		str += "<column name=\"email\" value=\""+email+"\">";
@@ -652,6 +727,8 @@ public class SysUsers extends BaseDto implements Serializable {
 		str += "<column name=\"lastPasswordChange\" value=\""+lastPasswordChange+"\">";
 		str += "<column name=\"locked\" value=\""+locked+"\">";
 		str += "<column name=\"loginAttempts\" value=\""+loginAttempts+"\">";
+		str += "<column name=\"maxRowPerPage\" value=\""+maxRowPerPage+"\">";
+		str += "<column name=\"pageNumPerPage\" value=\""+pageNumPerPage+"\">";
 		str += "<column name=\"password\" value=\""+password+"\">";
 		str += "<column name=\"personId\" value=\""+personId+"\">";
 		str += "<column name=\"pin\" value=\""+pin+"\">";
@@ -670,6 +747,7 @@ public class SysUsers extends BaseDto implements Serializable {
 		str += "<column name=\"securityQuestionAnswer1\" value=\""+securityQuestionAnswer1+"\">";
 		str += "<column name=\"securityQuestionAnswer2\" value=\""+securityQuestionAnswer2+"\">";
 		str += "<column name=\"supplier\" value=\""+supplier+"\">";
+		str += "<column name=\"themeType\" value=\""+themeType+"\">";
 		str += "<column name=\"toDate\" value=\""+toDate+"\">";
 		str += "<column name=\"insertUserName\" value=\""+insertUserName+"\">";
 		str += "<column name=\"updateUserName\" value=\""+updateUserName+"\">";
@@ -689,7 +767,10 @@ public class SysUsers extends BaseDto implements Serializable {
 		str += "\"lastUpdatedBy\":\""+lastUpdatedBy+"\", ";
 		str += "\"lastUpdateDate\":\""+lastUpdateDate+"\", ";
 		str += "\"userName\":\""+userName+"\", ";
+		str += "\"authenticationSecretKey\":\""+authenticationSecretKey+"\", ";
+		str += "\"authGroupId\":\""+authGroupId+"\", ";
 		str += "\"customerId\":\""+customerId+"\", ";
+		str += "\"defaultStartUrl\":\""+defaultStartUrl+"\", ";
 		str += "\"description\":\""+description+"\", ";
 		str += "\"disabledDate\":\""+disabledDate+"\", ";
 		str += "\"email\":\""+email+"\", ";
@@ -700,6 +781,8 @@ public class SysUsers extends BaseDto implements Serializable {
 		str += "\"lastPasswordChange\":\""+lastPasswordChange+"\", ";
 		str += "\"locked\":\""+locked+"\", ";
 		str += "\"loginAttempts\":\""+loginAttempts+"\", ";
+		str += "\"maxRowPerPage\":\""+maxRowPerPage+"\", ";
+		str += "\"pageNumPerPage\":\""+pageNumPerPage+"\", ";
 		str += "\"password\":\""+password+"\", ";
 		str += "\"personId\":\""+personId+"\", ";
 		str += "\"pin\":\""+pin+"\", ";
@@ -718,6 +801,7 @@ public class SysUsers extends BaseDto implements Serializable {
 		str += "\"securityQuestionAnswer1\":\""+securityQuestionAnswer1+"\", ";
 		str += "\"securityQuestionAnswer2\":\""+securityQuestionAnswer2+"\", ";
 		str += "\"supplier\":\""+supplier+"\", ";
+		str += "\"themeType\":\""+themeType+"\", ";
 		str += "\"toDate\":\""+toDate+"\", ";
 		str += "\"insertUserName\":\""+insertUserName+"\", ";
 		str += "\"updateUserName\":\""+updateUserName+"\"";

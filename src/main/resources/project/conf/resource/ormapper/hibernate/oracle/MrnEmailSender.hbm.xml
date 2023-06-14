@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--/*
+ * Framework Generated Hibernate Config hbm Source
+ * - MRN_EMAIL_SENDER - Email sender
+ */-->
+<hibernate-mapping>
+	<class name="project.conf.resource.ormapper.dto.oracle.MrnEmailSender" table="MRN_EMAIL_SENDER" lazy="false">
+		<meta attribute="class-description" inherit="false">Email sender</meta>
+
+		<id name="emailSenderId" column="EMAIL_SENDER_ID" type="java.lang.String" length="30"></id>
+
+		<property name="actionDate" column="ACTION_DATE" not-null="true" type="java.util.Date"/>
+		<property name="actionName" column="ACTION_NAME" not-null="true" type="java.lang.String" length="500"/>
+		<property name="actionSrc" column="ACTION_SRC" not-null="true" type="java.lang.String" length="100"/>
+		<property name="fromEmail" column="FROM_EMAIL" not-null="true" type="java.lang.String" length="100"/>
+		<property name="status" column="STATUS" not-null="true" type="java.lang.String" length="30"/>
+		<property name="subject" column="SUBJECT" not-null="true" type="java.lang.String" length="1000"/>
+		<property name="toEmail" column="TO_EMAIL" not-null="true" type="java.lang.String" length="100"/>
+		<property name="bccEmail" column="BCC_EMAIL" type="java.lang.String" length="100"/>
+		<property name="ccEmail" column="CC_EMAIL" type="java.lang.String" length="100"/>
+		<property name="contents" column="CONTENTS" type="java.lang.String"/>
+		<property name="fromName" column="FROM_NAME" type="java.lang.String" length="100"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUserId" column="INSERT_USER_ID" type="java.lang.String" length="30"/>
+		<property name="templateName" column="TEMPLATE_NAME" type="java.lang.String" length="300"/>
+		<property name="templatePath" column="TEMPLATE_PATH" type="java.lang.String" length="300"/>
+		<property name="toName" column="TO_NAME" type="java.lang.String" length="100"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUserId" column="UPDATE_USER_ID" type="java.lang.String" length="30"/>
+	</class>
+
+	<sql-query name="mrnEmailSender.selectAll">
+	<![CDATA[
+		SELECT EMAIL_SENDER_ID,
+		       TO_CHAR(ACTION_DATE, 'yyyymmddhh24miss') AS ACTION_DATE,
+		       ACTION_NAME,
+		       ACTION_SRC,
+		       FROM_EMAIL,
+		       STATUS,
+		       SUBJECT,
+		       TO_EMAIL,
+		       BCC_EMAIL,
+		       CC_EMAIL,
+		       CONTENTS,
+		       FROM_NAME,
+		       TO_CHAR(INSERT_DATE, 'yyyymmddhh24miss') AS INSERT_DATE,
+		       INSERT_USER_ID,
+		       TEMPLATE_NAME,
+		       TEMPLATE_PATH,
+		       TO_NAME,
+		       TO_CHAR(UPDATE_DATE, 'yyyymmddhh24miss') AS UPDATE_DATE,
+		       UPDATE_USER_ID
+		  FROM MRN_EMAIL_SENDER
+		 WHERE 1 = 1
+		 ${auto_fill}
+		 ${frameworkGeneratedWhere}
+		 ${frameworkGeneratedOrderBy}
+
+	]]>
+	</sql-query>
+
+	<sql-query name="mrnEmailSender.insert">
+	<![CDATA[
+		INSERT INTO MRN_EMAIL_SENDER (
+		       EMAIL_SENDER_ID,
+		       ACTION_DATE,
+		       ACTION_NAME,
+		       ACTION_SRC,
+		       FROM_EMAIL,
+		       STATUS,
+		       SUBJECT,
+		       TO_EMAIL,
+		       BCC_EMAIL,
+		       CC_EMAIL,
+		       CONTENTS,
+		       FROM_NAME,
+		       INSERT_DATE,
+		       INSERT_USER_ID,
+		       TEMPLATE_NAME,
+		       TEMPLATE_PATH,
+		       TO_NAME,
+		       UPDATE_DATE,
+		       UPDATE_USER_ID
+		       )
+		VALUES (
+		       ${EMAIL_SENDER_ID},
+		       ${ACTION_DATE},
+		       ${ACTION_NAME},
+		       ${ACTION_SRC},
+		       ${FROM_EMAIL},
+		       ${STATUS},
+		       ${SUBJECT},
+		       ${TO_EMAIL},
+		       ${BCC_EMAIL},
+		       ${CC_EMAIL},
+		       ${CONTENTS},
+		       ${FROM_NAME},
+		       ${INSERT_DATE},
+		       ${INSERT_USER_ID},
+		       ${TEMPLATE_NAME},
+		       ${TEMPLATE_PATH},
+		       ${TO_NAME},
+		       ${UPDATE_DATE},
+		       ${UPDATE_USER_ID}
+		       )
+	]]>
+	</sql-query>
+
+	<sql-query name="mrnEmailSender.update">
+	<![CDATA[
+		UPDATE MRN_EMAIL_SENDER
+		   SET ACTION_DATE = ${ACTION_DATE},
+		       ACTION_NAME = ${ACTION_NAME},
+		       ACTION_SRC = ${ACTION_SRC},
+		       FROM_EMAIL = ${FROM_EMAIL},
+		       STATUS = ${STATUS},
+		       SUBJECT = ${SUBJECT},
+		       TO_EMAIL = ${TO_EMAIL},
+		       BCC_EMAIL = ${BCC_EMAIL},
+		       CC_EMAIL = ${CC_EMAIL},
+		       CONTENTS = ${CONTENTS},
+		       FROM_NAME = ${FROM_NAME},
+		       INSERT_DATE = ${INSERT_DATE},
+		       INSERT_USER_ID = ${INSERT_USER_ID},
+		       TEMPLATE_NAME = ${TEMPLATE_NAME},
+		       TEMPLATE_PATH = ${TEMPLATE_PATH},
+		       TO_NAME = ${TO_NAME},
+		       UPDATE_DATE = ${UPDATE_DATE},
+		       UPDATE_USER_ID = ${UPDATE_USER_ID}
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="mrnEmailSender.updateColumns">
+	<![CDATA[
+		UPDATE MRN_EMAIL_SENDER
+		   SET ${frameworkGeneratedColumnsToUpdate}
+		 WHERE 1 = 1
+		 ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+
+	<sql-query name="mrnEmailSender.delete">
+	<![CDATA[
+		DELETE MRN_EMAIL_SENDER
+		 WHERE 1 = 1
+		   ${frameworkGeneratedWhere}
+	]]>
+	</sql-query>
+</hibernate-mapping>
