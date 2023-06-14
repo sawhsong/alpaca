@@ -185,8 +185,9 @@ public class SysItSupportEtcBizImpl extends BaseBiz implements SysItSupportEtcBi
 				HpOrganisationD hpOrganisationD = new HpOrganisationD();
 				hpOrganisationDDao.setDataSourceName(dataSource);
 
-				hpOrganisationD.addUpdateColumn("es_account_manager", shiftToId);
-				hpOrganisationD.addUpdateColumn("es_cs_consultant", shiftToId);
+//				hpOrganisationD.addUpdateColumn("es_account_manager", shiftToId);
+//				hpOrganisationD.addUpdateColumn("es_cs_consultant", shiftToId);
+				hpOrganisationD.addUpdateColumn("es_customer_administrator", shiftToId);
 				hpOrganisationD.addUpdateColumn("last_updated_by", "1");
 				hpOrganisationD.addUpdateColumn("last_update_date", "sysdate", "Date");
 

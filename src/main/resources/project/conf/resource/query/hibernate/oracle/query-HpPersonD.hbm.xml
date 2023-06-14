@@ -222,11 +222,30 @@
 	]]>
 	</sql-query>
 
+<!-- 	<sql-query name="query.HpPersonD.shiftAccountFromOpportunity"> -->
+<!-- 	<![CDATA[ -->
+<!-- 		update hp_person_d -->
+<!-- 		   set ecms_account_mgr_id = '${shiftToId}', -->
+<!-- 		       ecms_cs_consultant_id = '${shiftToId}', -->
+<!-- 		       last_update_date = sysdate, -->
+<!-- 		       last_updated_by = '1' -->
+<!-- 		 where person_id in (select person_id -->
+<!-- 		                       from opportunity -->
+<!-- 		                      where status = 'Open' -->
+<!-- 		                        and opportunity_id in (select opportunity_id -->
+<!-- 		                                                 from opportunity_assignment_details -->
+<!-- 		                                                where billing_org in (select organisation_id -->
+<!-- 		                                                                        from hp_organisation_d -->
+<!-- 		                                                                       where organisation_id in (${organisationIds}) -->
+<!-- 		                                                                     ) -->
+<!-- 		                                              ) -->
+<!-- 		                    ) -->
+<!-- 	]]> -->
+<!-- 	</sql-query> -->
 	<sql-query name="query.HpPersonD.shiftAccountFromOpportunity">
 	<![CDATA[
 		update hp_person_d
-		   set ecms_account_mgr_id = '${shiftToId}',
-		       ecms_cs_consultant_id = '${shiftToId}',
+		   set customer_support = '${shiftToId}',
 		       last_update_date = sysdate,
 		       last_updated_by = '1'
 		 where person_id in (select person_id
@@ -243,11 +262,20 @@
 	]]>
 	</sql-query>
 
+<!-- 	<sql-query name="query.HpPersonD.shiftAccountFromAssignment"> -->
+<!-- 	<![CDATA[ -->
+<!-- 		update hp_person_d -->
+<!-- 		   set ecms_account_mgr_id = '${shiftToId}', -->
+<!-- 		       ecms_cs_consultant_id = '${shiftToId}', -->
+<!-- 		       last_update_date = sysdate, -->
+<!-- 		       last_updated_by = '1' -->
+<!-- 		 where person_id in (select person_id from hp_assignments_d where asg_active = 'Y' and billing_organisation_id in (${organisationIds})) -->
+<!-- 	]]> -->
+<!-- 	</sql-query> -->
 	<sql-query name="query.HpPersonD.shiftAccountFromAssignment">
 	<![CDATA[
 		update hp_person_d
-		   set ecms_account_mgr_id = '${shiftToId}',
-		       ecms_cs_consultant_id = '${shiftToId}',
+		   set customer_support = '${shiftToId}',
 		       last_update_date = sysdate,
 		       last_updated_by = '1'
 		 where person_id in (select person_id from hp_assignments_d where asg_active = 'Y' and billing_organisation_id in (${organisationIds}))
