@@ -146,4 +146,6 @@
     <bean class="${name.package.project}.conf.resource.ormapper.dao.MrnMenu.MrnMenuHDaoImpl" id="mrnMenuDao" init-method="init" name="mrnMenuDao" parent="baseHDao" scope="prototype"/>
     <!--MrnMenuAuthLink DAO-->
     <bean class="${name.package.project}.conf.resource.ormapper.dao.MrnMenuAuthLink.MrnMenuAuthLinkHDaoImpl" id="mrnMenuAuthLinkDao" init-method="init" name="mrnMenuAuthLinkDao" parent="baseHDao" scope="prototype"/>
+    <!--SysCommonLookups DAO-->
+    <bean class="${name.package.project}.conf.resource.ormapper.dao.SysCommonLookups.SysCommonLookupsHDaoImpl" id="sysCommonLookupsDao" init-method="init" name="sysCommonLookupsDao" parent="baseHDao" scope="prototype"/>
 </beans>
