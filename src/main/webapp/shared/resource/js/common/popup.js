@@ -254,6 +254,116 @@
 				}
 			};
 		},
+		openDownloadPop : function(params) {
+			if ($("#"+params.popupId).length > 0) {return;}
+
+			if ($.nony.contains(params.width+"", "%")) {
+				var temp = $.nony.toNumber($.nony.removeString(params.width, "%"));
+				params.width = ($(window).innerWidth() * (temp/100));
+			}
+
+			if ($.nony.contains(params.height+"", "%")) {
+				var temp = $.nony.toNumber($.nony.removeString(params.height, "%"));
+				params.height = ($(window).innerHeight() * (temp/100));
+			}
+
+			params.popupId = params.popupId || "popupDialog_"+$.nony.getTimeStamp();
+			params.popupMethod = "openDownloadPop";
+			params.type = params.type || com.message.I000;
+			params.header = params.header || params.type;
+			params.contents = params.contents || "";
+			params.width = params.width;
+			params.height = params.height;
+			params.heightAdjust = params.heightAdjust || 0;
+			params.left = params.left || "center";
+			params.top = params.top || "center";
+			params.effect = params.effect;
+			params.draggable = (params.draggable == false) ? false : true;
+			params.modal = (params.modal == false) ? false : true;
+			params.blind = (params.blind == true) ? true : false;
+			params.shadow = (params.shadow == false) ? false : true;
+			params.url = params.url || jsconfig.get("shareRoot")+"/page/"+"blankForPopup.jsp";
+			params.paramData = params.paramData || params.data || {};
+			params.iframeName = params.iframeName || "popupDialogIframe_"+$.nony.getTimeStamp();
+
+			if ($.nony.isEmpty(params.buttons)) {
+				if (com.message.I000 == params.type) {
+					params.buttons = [{caption:com.caption.ok, callback:function() {}}];
+				} else if (com.message.Q000 == params.type || "Confirm" == params.type) {
+					params.buttons = [{
+						caption:com.caption.ok, callback:function() {}
+					}, {
+						caption:com.caption.cancel, callback:function() {}
+					}];
+				} else if ("Confirmation" == params.type) {
+					params.buttons = [{caption:com.caption.ok, callback:function() {}}];
+				} else if (com.message.W000 == params.type) {
+					params.buttons = [{caption:com.caption.ok, callback:function() {}}];
+				} else if (com.message.E000 == params.type) {
+					params.buttons = [{caption:com.caption.ok, callback:function() {}}];
+				}
+			}
+
+			this._setOptions(params);
+			this._createObjects();
+			this._setModal();
+			this._setBlind();
+			this._appendObjects();
+			this._setShadow();
+			this._setPosition();
+			this._setButtons();
+			this._bindEvent(params);
+			this._setEffect();
+
+			return {
+				popupId : this.popupId,
+				effect : this.effect,
+				popupBase : this.popupBase,
+				oncloseCallback : this.oncloseCallback,
+				popupHeaderTitle : this.popupHeaderTitle,
+				popupIframe : this.popupIframe,
+				close : function() {
+					var popupBase = this.popupBase;
+					var oncloseCallback = this.oncloseCallback;
+					var unblockOption;
+					var closingFunction = function() {
+						$(popupBase).remove();
+						if (typeof oncloseCallback == "function") {unblockOption = {fadeOut:100, onUnblock:function() {oncloseCallback();}};}
+						else {unblockOption = {fadeOut:100};}
+
+						if (($(".nonyPopWinBase").length + $(".nonyDialogBase").length) == 0) {
+							$.unblockUI(unblockOption);
+						}
+					};
+
+					if ("slide" == this.effect) {
+						$(this.popupBase).stop().slideUp(jsconfig.get("effectDuration"), function() {
+							closingFunction();
+						});
+					} else if ("fade" == this.effect) {
+						$(this.popupBase).stop().fadeOut(jsconfig.get("effectDuration"), function() {
+							closingFunction();
+						});
+					} else {
+						$(this.popupBase).stop().hide(jsconfig.get("effectDuration"), function() {
+							closingFunction();
+						});
+					}
+				},
+				setHeader : function(header) {
+					$(this.popupHeaderTitle).html(header);
+				},
+				setContents : function(contentsString) {
+					var html = "<div style=\"padding:5px 5px\">"+contentsString+"</div>";
+					$("#popupBodyContentsForDownload").html(html);
+				},
+				addContents : function(contentsString) {
+					var html = $.nony.nvl($("#popupBodyContentsForDownload").html());
+					var contentsHtml = $.nony.isEmpty(html) ? "<div style=\"padding:5px 5px\">"+contentsString+"</div>" : html+"<div style=\"padding:5px 5px\">"+contentsString+"</div>";
+					$("#popupBodyContentsForDownload").html(contentsHtml);
+				}
+			};
+		},
 		/**
 		 * Options
 		 * @param params
@@ -318,17 +428,31 @@
 				this.popupBody = $("<div id='divNonyPopupBody' class='nonyDialogBody'></div>");
 				this.popupIframe = $("<iframe id='"+this.iframeName+"' name='"+this.iframeName+"' src='"+this.url+"' class='iframeInPopup' frameborder='0' marginwidth='0' marginheight='0' scrolling='auto'></iframe>");
 				this.popupFooter = $("<div id='divNonyPopupFooter' class='nonyDialogFooter'></div>");
+			} else if (this.popupMethod == "openDownloadPop") {
+				this.popupBase = $("<div id='"+this.popupId+"' class='nonyDialogBase' style='display:none'></div>").css("width", this.width).css("height", this.height);
+				this.popupWinHolder = $("<div id='divNonyPopupWindowHolder' class='nonyDialogWindowHolder'></div>");
+				this.popupHeaderHolder = $("<div id='divNonyPopupHeaderHolder' class='nonyDialogHeaderHolder'></div>");
+				this.popupHeaderTitle = $("<div id='divNonyPopupHeaderTitle' class='nonyDialogHeaderTitle'></div>").html(this.header);
+				this.popupHeaderCloseButton = $("<div id='divNonyPopupHeaderCloseButton' class='nonyDialogHeaderCloseButton'><i class='fa fa-times fa-lg icnEn'></i></div>");
+				this.popupHeaderBreaker = $("<div id='divNonyPopupHeaderBreaker' class='nonyDialogHeaderBreaker'></div>");
+				this.popupBody = $("<div id='divNonyPopupBody' class='nonyDialogBody'></div>");
+				this.popupBodyContentsForDownload = $("<div id='divNonyPopupBodyContentsForDownload'></div>");
+				this.popupIframe = $("<iframe id='"+this.iframeName+"' name='"+this.iframeName+"' src='"+this.url+"' style='margin:0px 0px;padding:0px 0px;' frameborder='0' marginwidth='0' marginheight='0' height='0' scrolling='no'></iframe>");
+				this.popupFooter = $("<div id='divNonyPopupFooter' class='nonyDialogFooter'></div>");
 			}
 
 			if (this.draggable) {
 				$(this.popupHeaderHolder).css("cursor", "move");
 			}
 
-			$(this.popupIframe).css("height", (this.height - correctionValueForHeight) + "px");
-
 			if (this.popupMethod == "popupWithIframe") {
+				$(this.popupIframe).css("height", (this.height - correctionValueForHeight) + "px");
 				$(this.popupIframe).corner("bottom 5px");
 			} else if (this.popupMethod == "popupDialog") {
+				$(this.popupIframe).css("height", (this.height - correctionValueForHeight) + "px");
+				$(this.popupFooter).corner("bottom 5px");
+			} else if (this.popupMethod == "openDownloadPop") {
+				$(this.popupBodyContentsForDownload).css("height", (this.height - correctionValueForHeight) + "px").css("margin-bottom", "-12px");
 				$(this.popupFooter).corner("bottom 5px");
 			}
 		},
@@ -373,10 +497,15 @@
 			$(this.popupHeaderCloseButton).appendTo(this.popupHeaderHolder);
 			$(this.popupHeaderBreaker).appendTo(this.popupWinHolder);
 			$(this.popupBody).appendTo(this.popupWinHolder);
+
+			if (this.popupMethod == "openDownloadPop") {
+				$(this.popupBodyContentsForDownload).appendTo(this.popupBody);
+			}
+
 			$(this.popupIframe).appendTo(this.popupBody);
 			$(this.popupBase).appendTo("body");
 
-			if (this.popupMethod == "popupDialog") {
+			if (this.popupMethod == "popupDialog" || this.popupMethod == "openDownloadPop") {
 				$(this.popupFooter).appendTo(this.popupBody).css("margin-top", "-1px");
 			}
 
@@ -387,6 +516,11 @@
 			this.params.popupHeaderCloseButton = $(this.popupHeaderCloseButton);
 			this.params.popupHeaderBreaker = $(this.popupHeaderBreaker);
 			this.params.popupBody = $(this.popupBody);
+
+			if (this.popupMethod == "openDownloadPop") {
+				this.params.popupBodyContentsForDownload = $(this.popupBodyContentsForDownload);
+			}
+
 			this.params.popupIframe = $(this.popupIframe);
 			this.params.popupFooter = $(this.popupFooter);
 		},
@@ -399,6 +533,38 @@
 
 			if ("center" == this.top) {$(this.popupBase).css("top", (($(window).innerHeight() / 2) - (this.height / 2)));}
 			else {$(this.popupBase).css("top", this.top);}
+		},
+		_setEffect : function() {
+			var onLoad = this.onLoad;
+			var checkContentsHeight = this._checkContentsHeight;
+			var setContents = this._setContents;
+			var setDialogHeight = this._setDialogHeight;
+			var params = this.params;
+
+			if (params.popupMethod == "popupDialog") {
+				checkContentsHeight(params);
+				setDialogHeight(params);
+			} else if (params.popupMethod == "openDownloadPop") {
+				checkContentsHeight(params);
+				setDialogHeight(params);
+			}
+
+			if ("slide" == this.effect) {
+				$(this.popupBase).delay(200).slideDown(jsconfig.get("effectDuration"), function() {
+					if (params.popupMethod == "popupDialog" || params.popupMethod == "openDownloadPop") {setContents(params);}
+					if (typeof onLoad == "function") {onLoad();}
+				});
+			} else if ("fade" == this.effect) {
+				$(this.popupBase).delay(200).fadeIn(jsconfig.get("effectDuration"), function() {
+					if (params.popupMethod == "popupDialog" || params.popupMethod == "openDownloadPop") {setContents(params);}
+					if (typeof onLoad == "function") {onLoad();}
+				});
+			} else {
+				$(this.popupBase).delay(200).show(jsconfig.get("effectDuration"), function() {
+					if (params.popupMethod == "popupDialog" || params.popupMethod == "openDownloadPop") {setContents(params);}
+					if (typeof onLoad == "function") {onLoad();}
+				});
+			}
 		},
 		_checkContentsHeight : function(params) {
 			var html = "", testElement, outerWidth = 0;
@@ -425,35 +591,6 @@
 			params.dialogContentsHeight = $(testElement).outerHeight()+10;
 			$(testElement).remove();
 		},
-		_setEffect : function() {
-			var onLoad = this.onLoad;
-			var checkContentsHeight = this._checkContentsHeight;
-			var setContents = this._setContents;
-			var setDialogHeight = this._setDialogHeight;
-			var params = this.params;
-
-			if (params.popupMethod == "popupDialog") {
-				checkContentsHeight(params);
-				setDialogHeight(params);
-			}
-
-			if ("slide" == this.effect) {
-				$(this.popupBase).delay(200).slideDown(jsconfig.get("effectDuration"), function() {
-					if (params.popupMethod == "popupDialog") {setContents(params);}
-					if (typeof onLoad == "function") {onLoad();}
-				});
-			} else if ("fade" == this.effect) {
-				$(this.popupBase).delay(200).fadeIn(jsconfig.get("effectDuration"), function() {
-					if (params.popupMethod == "popupDialog") {setContents(params);}
-					if (typeof onLoad == "function") {onLoad();}
-				});
-			} else {
-				$(this.popupBase).delay(200).show(jsconfig.get("effectDuration"), function() {
-					if (params.popupMethod == "popupDialog") {setContents(params);}
-					if (typeof onLoad == "function") {onLoad();}
-				});
-			}
-		},
 		_setDialogHeight : function(params) {
 			var dialogHeight = params.dialogContentsHeight, dialogWidth = params.dialogContentsWidth;
 			var popupFooterHeight = $(params.popupFooter).actual("outerHeight"), heightAdjust = 0, heightSum = 0;
@@ -468,6 +605,12 @@
 			heightSum += ($.nony.getCssAttributeNumber($(params.popupHeaderBreaker), "border"));
 			heightSum += ($.nony.getCssAttributeNumber($(params.popupHeaderBreaker), "margin-top") + $.nony.getCssAttributeNumber($(params.popupHeaderBreaker), "margin-bottom"));
 			heightSum += ($.nony.getCssAttributeNumber($(params.popupHeaderBreaker), "padding-top") + $.nony.getCssAttributeNumber($(params.popupHeaderBreaker), "padding-bottom"));
+
+			if (params.popupMethod == "openDownloadPop") {
+				heightSum += ($.nony.getCssAttributeNumber($(params.popupBodyContentsForDownload), "border"));
+				heightSum -= ($.nony.getCssAttributeNumber($(params.popupBodyContentsForDownload), "margin-bottom"));
+			}
+
 			heightSum += ($.nony.getCssAttributeNumber($(params.popupIframe), "border"));
 			heightSum += ($.nony.getCssAttributeNumber($(params.popupBody), "border"));
 
@@ -490,31 +633,57 @@
 			else if ($.nony.browser.FireFox) {heightAdjust = (params.heightAdjust + 2);}
 			else {heightAdjust = (params.heightAdjust + 2);}
 
-			$(params.popupIframe).height(dialogHeight + "px");
-			$(params.popupBase).height((($(params.popupIframe).outerHeight()) + heightSum + popupFooterHeight + heightAdjust) + "px");
+			if (params.popupMethod == "openDownloadPop") {
+				dialogHeight = (dialogHeight - 6);
+				$(params.popupBodyContentsForDownload).height(dialogHeight + "px");
+				$(params.popupBase).height((($(params.popupBodyContentsForDownload).outerHeight()) + heightSum + popupFooterHeight - 8) + "px");
 
-			$(params.popupIframe).width(dialogWidth + "px");
-			$(params.popupBase).width(dialogWidth + "px");
+				$(params.popupBodyContentsForDownload).width(dialogWidth + "px");
+				$(params.popupBase).width(dialogWidth + "px");
+			} else {
+				$(params.popupIframe).height(dialogHeight + "px");
+				$(params.popupBase).height((($(params.popupIframe).outerHeight()) + heightSum + popupFooterHeight + heightAdjust) + "px");
+
+				$(params.popupIframe).width(dialogWidth + "px");
+				$(params.popupBase).width(dialogWidth + "px");
+			}
 
 			$(params.popupBase).css("top", (($(window).innerHeight() / 2) - (($(params.popupBase).outerHeight()) / 2)) + "px");
 			$(params.popupBase).css("left", (($(window).innerWidth() / 2) - (($(params.popupBase).outerWidth()) / 2)) + "px");
 		},
 		_setContents : function(params) {
-			var divHolder = $("#"+params.iframeName).contents().find("#divPopupWindowHolder");
-			var html = "";
+			if (params.popupMethod == "openDownloadPop") {
+				var divHolder = $(params.popupBodyContentsForDownload);
+				var html = "";
 
-			$(divHolder).addClass("areaContainerPopup");
+				$(divHolder).addClass("areaContainerPopup");
 
-			html += "<table><tr>";
-			html += "<td style='padding:0px 4px;vertical-align:top;'><img src='"+jsconfig.get("imgThemeCom")+"/"+params.type+".png"+"'/></td>";
-			html += "<td style='padding:2px 4px;line-height:14px;font-weight:bold;'>"+$.nony.replace(params.contents, "\n", "<br/>")+"</td>";
-			html += "</tr></table>";
+				html += "<table><tr>";
+				html += "<td style='padding:0px 4px;vertical-align:top;'><img src='"+jsconfig.get("imgThemeCom")+"/"+params.type+".png"+"'/></td>";
+				html += "<td style='padding:2px 4px;line-height:14px;font-weight:bold;'>"+$.nony.replace(params.contents, "\n", "<br/>")+"</td>";
+				html += "</tr></table>";
 
-			$(divHolder).html(html);
+				$(divHolder).html(html);
 
-			params.popupWindowHolderInIframe = $(divHolder);
-			params.dialogWidth = $(divHolder).outerWidth();
-			params.dialogHeight = $(divHolder).outerHeight();
+				params.dialogWidth = $(divHolder).outerWidth();
+				params.dialogHeight = $(divHolder).outerHeight();
+			} else {
+				var divHolder = $("#"+params.iframeName).contents().find("#divPopupWindowHolder");
+				var html = "";
+
+				$(divHolder).addClass("areaContainerPopup");
+
+				html += "<table><tr>";
+				html += "<td style='padding:0px 4px;vertical-align:top;'><img src='"+jsconfig.get("imgThemeCom")+"/"+params.type+".png"+"'/></td>";
+				html += "<td style='padding:2px 4px;line-height:14px;font-weight:bold;'>"+$.nony.replace(params.contents, "\n", "<br/>")+"</td>";
+				html += "</tr></table>";
+
+				$(divHolder).html(html);
+
+				params.popupWindowHolderInIframe = $(divHolder);
+				params.dialogWidth = $(divHolder).outerWidth();
+				params.dialogHeight = $(divHolder).outerHeight();
+			}
 		},
 		_setButtons : function() {
 			var buttonScript = "";
@@ -524,12 +693,11 @@
 
 				if ($.nony.isEmpty(button.callback)) {
 					throw new Error("The callback function has not been defined!");
-					break;
 				}
 
 				if (button.caption.toLowerCase().indexOf("yes") != -1 || button.caption.toLowerCase().indexOf("ok") != -1) {
 					iconString = "fa fa-check fa-lg";
-				} else if (button.caption.toLowerCase().indexOf("no") != -1 || button.caption.toLowerCase().indexOf("cancel") != -1) {
+				} else if (button.caption.toLowerCase().indexOf("no") != -1 || button.caption.toLowerCase().indexOf("cancel") != -1 || button.caption.toLowerCase().indexOf("close") != -1) {
 					iconString = "fa fa-times fa-lg";
 				} else {
 					iconString = "";
@@ -578,6 +746,12 @@
 			$(this.popupHeaderCloseButton).bind("click touchstart", params, this._close);
 
 			if (params.popupMethod == "popupDialog") {
+				for (var i=0; i<this.buttons.length; i++) {
+					var button = this.buttons[i];
+					$("#btnPopupDialog_"+this.popupId+"_"+button.caption).bind("click touchstart", params, button.callback);
+					$("#btnPopupDialog_"+this.popupId+"_"+button.caption).bind("click touchstart", params, this._close);
+				}
+			} else if (params.popupMethod == "openDownloadPop") {
 				for (var i=0; i<this.buttons.length; i++) {
 					var button = this.buttons[i];
 					$("#btnPopupDialog_"+this.popupId+"_"+button.caption).bind("click touchstart", params, button.callback);

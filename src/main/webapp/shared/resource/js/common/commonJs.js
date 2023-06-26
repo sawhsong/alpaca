@@ -93,6 +93,7 @@ var commonJs = {
 	openWindow : function(params) {return $.nony.openWindow(params);},
 	openPopup : function(params) {return $.nony.openPopup(params);},
 	openDialog : function(params) {return $.nony.openDialog(params);},
+	openDownloadPop : function(params) {return $.nony.openDownloadPop(params);},
 	alert : function(msg) {return $.nony.alert(msg);},
 	inform : function(msg) {return $.nony.alert(msg);},
 	confirm : function(params) {return $.nony.confirm(params);},
@@ -303,7 +304,9 @@ $(window).load(function() {
 
 	if ("Y" == jsconfig.get("autoSetSearchCriteria")) {$.nony._setAutoSearchCriteria(jsconfig.get("searchCriteriaDataSetString"));}
 	if (jsconfig.get("useJqTooltip")) {$.nony._jqTooltip();}
-	if (jsconfig.get("useScrollablePanel")) {$.nony._doResizeScrollablePanel();}
+	if (jsconfig.get("useScrollablePanel")) {
+		setTimeout(() => $.nony._doResizeScrollablePanel(), 50);
+	}
 });
 
 /*!

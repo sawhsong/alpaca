@@ -654,15 +654,35 @@ var nony = {
 						params.preProcess();
 					}
 
-					popup = commonJs.openPopup({
-						popupId:"exportFile",
+					// popupDownloadPop
+					popup = commonJs.openDownloadPop({
+						type:com.message.I000,
 						url:params.url,
 						paramData:params.data,
-						header:"exportFile",
-						blind:false,
-						width:200,
-						height:100
+						header:"Downloading...",
+						contents:"Depending on the size of the file, it may take some time.<br/>You can close this popup after the download is complete.",
+						width:420,
+						onLoad:function() {
+						},
+						buttons:[{
+							caption:com.caption.close,
+							callback:function() {
+								popup.close();
+							}
+						}]
 					});
+
+					// popup
+//					popup = commonJs.openPopup({
+//						popupId:"exportFile",
+//						url:params.url,
+//						paramData:params.data,
+//						header:"exportFile",
+//						blind:false,
+//						width:200,
+//						height:100
+//					});
+					// refresh page
 //					commonJs.doSimpleProcessForPage({
 //						action:params.url,
 //						data:params.data
@@ -789,7 +809,7 @@ var nony = {
 	},
 	toCamelCase : function(val) {
 		if ($.nony.isBlank(val)) {return "";}
-		if (!$.nony.contains(val, "_")) {return val;}
+		if (!$.nony.contains(val, "_")) {return val.toLowerCase();}
 		return val.toLowerCase().replace(/(\_[a-z])/g, function(arg) {
 			return arg.toUpperCase().replace('_','');
 		});
@@ -1506,6 +1526,9 @@ var nony = {
 	openDialog : function(params) {
 		return $.nony.popup.openDialog(params);
 	},
+	openDownloadPop : function(params) {
+		return $.nony.popup.openDownloadPop(params);
+	},
 	alert : function(msg) {
 		var params = {};
 
@@ -1914,6 +1937,8 @@ var nony = {
 	},
 	_doAjaxSuccessProc : function(params, result) {
 		var msgHandleType = jsconfig.get("pagehandlerActionType");
+		var ajaxShowPostMessage = jsconfig.get("ajaxShowPostMessage");
+		var showPostMessage = (params.showPostMessage == false) ? false : $.nony.toBoolean(ajaxShowPostMessage);
 
 		if (params.showPostMessage == false) {
 			setTimeout(function() {
