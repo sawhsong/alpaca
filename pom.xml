@@ -14,7 +14,7 @@
 
 		<webapp.lib>${basedir}/src/main/webapp/WEB-INF/lib</webapp.lib>
 		<version.userdefined>1.0</version.userdefined>
-		<version.poi>3.17</version.poi>
+		<version.poi>5.2.3</version.poi>
 		<version.springframework>5.2.9.RELEASE</version.springframework>
 		<version.struts2>2.5.16</version.struts2>
 		<versoin.cxf>3.2.6</versoin.cxf>
@@ -272,7 +272,7 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml-schemas</artifactId>
-			<version>${version.poi}</version>
+			<version>4.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>

@@ -18,6 +18,7 @@ import org.apache.poi.xssf.streaming.SXSSFCell;
 import org.apache.poi.xssf.streaming.SXSSFRow;
 import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 
@@ -134,7 +135,7 @@ public class ExcelExportHelper extends ExportHelper {
 		style = (XSSFCellStyle)wb.createCellStyle();
 		style.setFont(titleFont);
 		style.setAlignment(HorizontalAlignment.CENTER);
-		style.setFillForegroundColor(new XSSFColor(new Color(207, 218, 233)));
+		style.setFillForegroundColor(new XSSFColor(new Color(207, 218, 233), new DefaultIndexedColorMap()));
 		style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 		styles.put("pageTitle", style);
 
@@ -147,7 +148,7 @@ public class ExcelExportHelper extends ExportHelper {
 		style.setFont(headerFont);
 		style.setWrapText(true);
 		style.setAlignment(HorizontalAlignment.CENTER);
-		style.setFillForegroundColor(new XSSFColor(new Color(252, 248, 227)));
+		style.setFillForegroundColor(new XSSFColor(new Color(252, 248, 227), new DefaultIndexedColorMap()));
 		style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 		styles.put("columnHeader", style);
 
