@@ -208,7 +208,7 @@ var nony = {
 		var paramData = {};
 
 		$(jqObject).find("input, select").each(function(index) {
-			paramData[$(this).attr("name")] = $(this).val();
+			paramData[$(this).attr("name")] = $.nony.ifNull($(this).val());
 		});
 
 		return paramData;
@@ -778,6 +778,23 @@ var nony = {
 	},
 	nvl : function(val, defaultVal) {
 		if ($.nony.isEmpty(val)) {
+			if ($.nony.isEmpty(defaultVal)) {
+				return "";
+			} else {
+				return defaultVal;
+			}
+		} else {
+			return val;
+		}
+	},
+	ifNull : function(val, defaultVal) {
+		if ($.nony.isEmpty(val)) {
+			if ($.nony.isEmpty(defaultVal)) {
+				return "";
+			} else {
+				return defaultVal;
+			}
+		} else if ($.nony.lowerCase(val) == "null") {
 			if ($.nony.isEmpty(defaultVal)) {
 				return "";
 			} else {
