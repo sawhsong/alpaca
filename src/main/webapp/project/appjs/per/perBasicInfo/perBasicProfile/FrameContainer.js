@@ -197,7 +197,9 @@ $(function() {
 	 * load event (document / window)
 	 */
 	$(window).load(function() {
-		setIframeSize();
 		$("#tabCategoryPersonDetail li:eq(0) a").trigger("click");
+		setTimeout(()=>{
+			setIframeSize();
+		}, 80);
 	});
 });
