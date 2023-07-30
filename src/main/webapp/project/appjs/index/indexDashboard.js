@@ -187,7 +187,24 @@ var config = {
 		]
 	},
 	options: {
-		responsive: true
+		responsive: true,
+		interaction: {
+			mode: "point"
+		},
+		title: {
+			display: true,
+			text: "Pie Chart"
+		},
+		tooltips: {
+			mode: "index",
+			intersect: true
+		},
+		onClick:function(event, item) {
+			console.log(item);
+			var activeElement = myPie.getElementsAtEvent(event);
+			console.log(activeElement);
+			console.log(activeElement[0]._datasetIndex);
+		}
 	}
 };
 
@@ -320,11 +337,14 @@ $(function() {
 
 		setTimeout(function() {
 			var ctx = $("#cvChart1")[0].getContext("2d");
-			window.myMixedChart = new Chart(ctx, {
+			myMixedChart = new Chart(ctx, {
 				type: "bar",
 				data: chartData,
 				options: {
 					responsive: true,
+					interaction: {
+						mode: "point"
+					},
 					title: {
 						display: true,
 						text: "Combo Bar Line Chart"
@@ -332,6 +352,11 @@ $(function() {
 					tooltips: {
 						mode: "index",
 						intersect: true
+					},
+					onClick:function(event, item) {
+						var activeElement = myMixedChart.getElementsAtEvent(event);
+						console.log(activeElement);
+						console.log(activeElement[0]._datasetIndex);
 					}
 				}
 			});
@@ -348,7 +373,7 @@ $(function() {
 
 		setTimeout(function() {
 			var ctx = $("#cvChart2")[0].getContext("2d");
-			window.myPie = new Chart(ctx, config);
+			myPie = new Chart(ctx, config);
 
 			commonJs.hideProcMessageOnElement("divChart2");
 		}, 1000);
