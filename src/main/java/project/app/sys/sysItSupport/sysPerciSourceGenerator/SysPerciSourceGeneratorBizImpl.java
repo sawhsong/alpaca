@@ -246,16 +246,17 @@ public class SysPerciSourceGeneratorBizImpl extends BaseBiz implements SysPerciS
 		String tableName = dsRequest.getValue("tableName");
 
 		String hbmSourcePath = "C:/projectRepository/PerciSource/Hbm.src";
+		String queryXmlSourcePath = "C:/projectRepository/PerciSource/Query.src";
 		String singleSourcePath = "C:/projectRepository/PerciSource/DBHandler.src";
 		String collectionSourcePath = "C:/projectRepository/PerciSource/CollectionDBHandler.src";
-		String targetPath = destinationFolder+"/dao";
-		String tempString, sourceString, packageString, fndPackage, primaryKeyColumn = "", columns = "";
+		String targetPath = destinationFolder+"/dao", queryXmlTargetPath = destinationFolder+"/perci-query";
+		String tempString, sourceString, packageString, fndPackage, primaryKeyColumn = "", columns = "", qrySelectAll = "", qryDelete ="";
 
 		BufferedReader bufferedReader = null;
 		StringBuffer stringBuffer = null;
 		OutputStreamWriter osWriter = null;
 
-		File hbmFile, singleFile, collectionFile;
+		File hbmFile, singleFile, collectionFile, queryXmlFile;
 
 		try {
 			FileUtil.createFolder(targetPath);
@@ -306,6 +307,42 @@ public class SysPerciSourceGeneratorBizImpl extends BaseBiz implements SysPerciS
 			sourceString = CommonUtil.replace(sourceString, "#TABLE_NAME#", tableName);
 			sourceString = CommonUtil.replace(sourceString, "#PRIMARY_KEY_COLUMN#", primaryKeyColumn);
 			sourceString = CommonUtil.replace(sourceString, "#COLUMNS#", columns);
+
+			osWriter.write(sourceString);
+			osWriter.flush();
+			osWriter.close();
+			bufferedReader.close();
+
+			/*!
+			 * Query XML File
+			 */
+			FileUtil.createFolder(queryXmlTargetPath);
+
+			queryXmlFile = new File(queryXmlTargetPath+"/query-"+CommonUtil.toCamelCaseStartUpperCase(tableName)+".xml");
+			createEmptyFile(queryXmlFile);
+
+			bufferedReader = new BufferedReader(new FileReader(queryXmlSourcePath));
+			stringBuffer = new StringBuffer();
+			while ((tempString = bufferedReader.readLine()) != null) {
+				stringBuffer.append(tempString+"\n");
+			}
+			osWriter = new OutputStreamWriter(new FileOutputStream(queryXmlFile, true), "utf-8");
+			sourceString = CommonUtil.removeEnd(stringBuffer.toString(), "\n");
+
+			qrySelectAll += "select *\n";
+			qrySelectAll += "  from "+CommonUtil.lowerCase(tableName)+"\n";
+			qrySelectAll += " where 1 = 1\n";
+			qrySelectAll += "   ${where_clause}\n";
+			qrySelectAll += "   ${auto_fill}\n";
+			qrySelectAll += "   ${order_by_clause}";
+
+			qryDelete += "delete "+CommonUtil.lowerCase(tableName)+"\n";
+			qryDelete += " where 1 = 1\n";
+			qryDelete += "   ${where_clause}";
+
+			sourceString = CommonUtil.replace(sourceString, "#TABLE_NAME_CAMELCASE#", CommonUtil.toCamelCaseStartUpperCase(tableName));
+			sourceString = CommonUtil.replace(sourceString, "#QUERY_SELECT_ALL#", qrySelectAll);
+			sourceString = CommonUtil.replace(sourceString, "#QUERY_DELETE#", qryDelete);
 
 			osWriter.write(sourceString);
 			osWriter.flush();
@@ -372,7 +409,7 @@ public class SysPerciSourceGeneratorBizImpl extends BaseBiz implements SysPerciS
 
 		String sourcePath = "C:/projectRepository/PerciSource/Abstract.src";
 		String targetPath = destinationFolder+"/dto/abs";
-		String tempString, sourceString, packageString, columns = "", accessors = "", setValues = "";
+		String tempString, sourceString, packageString, columns = "", accessors = "", setValues = "", setValuesByDataSet = "";
 
 		BufferedReader bufferedReader = null;
 		StringBuffer stringBuffer = null;
@@ -419,7 +456,25 @@ public class SysPerciSourceGeneratorBizImpl extends BaseBiz implements SysPerciS
 				accessors += "\t}\n\n";
 				accessors += "\tpublic void set"+colNameUpperCamelCase+"("+convertedDataType+" "+colNameLowerCamelCase+") {\n";
 				accessors += "\t\tthis."+colNameLowerCamelCase+" = "+colNameLowerCamelCase+";\n";
-				accessors += "\t}\n\n";
+				if (i != (tableInfoDataSet.getRowCnt() - 1)) {
+					accessors += "\t}\n\n";
+				} else {
+					accessors += "\t}\n";
+				}
+
+				setValuesByDataSet += (CommonUtil.isBlank(setValuesByDataSet) ? "" : "\t\t");
+				if (CommonUtil.equalsIgnoreCase(convertedDataType, "Long")) {
+					setValuesByDataSet += "this."+colNameLowerCamelCase+" = ESUtils.toLong(esDataSet.getValue(rowIndex, \""+colName+"\"));";
+				} else if (CommonUtil.equalsIgnoreCase(convertedDataType, "Double")) {
+					setValuesByDataSet += "this."+colNameLowerCamelCase+" = ESUtils.toDouble(esDataSet.getValue(rowIndex, \""+colName+"\"));";
+				} else if (CommonUtil.equalsIgnoreCase(convertedDataType, "Date")) {
+					setValuesByDataSet += "this."+colNameLowerCamelCase+" = ESUtils.toDate(esDataSet.getValue(rowIndex, \""+colName+"\"), \"yyyyMMddHHmmss\");";
+				} else {
+					setValuesByDataSet += "this."+colNameLowerCamelCase+" = esDataSet.getValue(rowIndex, \""+colName+"\");";
+				}
+				if (i != (tableInfoDataSet.getRowCnt() - 1)) {
+					setValuesByDataSet += "\n";
+				}
 
 				setValues += (CommonUtil.isBlank(setValues) ? "" : "\t\t");
 				setValues += "this."+colNameLowerCamelCase+" = source.get"+colNameUpperCamelCase+"();";
@@ -432,6 +487,7 @@ public class SysPerciSourceGeneratorBizImpl extends BaseBiz implements SysPerciS
 			sourceString = CommonUtil.replace(sourceString, "#TABLE_NAME_CAMELCASE#", CommonUtil.toCamelCaseStartUpperCase(tableName));
 			sourceString = CommonUtil.replace(sourceString, "#COLUMNS#", columns);
 			sourceString = CommonUtil.replace(sourceString, "#ACCESSORS#", accessors);
+			sourceString = CommonUtil.replace(sourceString, "#SET_VALUES_BY_DATA_SET#", setValuesByDataSet);
 			sourceString = CommonUtil.replace(sourceString, "#SET_VALUES#", setValues);
 
 			osWriter.write(sourceString);

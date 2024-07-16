@@ -103,7 +103,7 @@ var dataSource = "<%=dataSource%>";
 			<td class="tdEdit" style="border-left:0px;border-top:0px">Collection Strategy Builder Module Class</td>
 		</tr>
 		<tr>
-			<th class="thEdit Rt" rowspan="4">DAO</th>
+			<th class="thEdit Rt" rowspan="5">DAO</th>
 			<td class="tdEdit Ct" colspan="2">
 				<label class="lblCheckEn block">
 					<input type="checkbox" name="dao" class="chkEn inTbl" value="Y" checked/>DAO Classes
@@ -114,6 +114,10 @@ var dataSource = "<%=dataSource%>";
 		<tr>
 			<td class="tdEdit Ct" style="border-right:0px;border-bottom:0px"></td>
 			<td class="tdEdit" style="border-left:0px;border-bottom:0px">Hibernate XML</td>
+		</tr>
+		<tr>
+			<td class="tdEdit Ct" style="border-right:0px;border-top:0px;border-bottom:0px"></td>
+			<td class="tdEdit" style="border-left:0px;border-top:0px;border-bottom:0px">Query XML</td>
 		</tr>
 		<tr>
 			<td class="tdEdit Ct" style="border-right:0px;border-top:0px;border-bottom:0px"></td>
